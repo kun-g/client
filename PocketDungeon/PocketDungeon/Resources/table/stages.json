@@ -1,0 +1,1028 @@
+[
+    {
+        "chapterId": 0,
+        "posX": 4,
+        "posY": 8,
+        "gid": 6,
+        "title":"dungeonname0.png",
+        "desc":"非常隐蔽的地洞，难以被察觉，其中偶尔会\n有怪物的身影出现。",
+        "icon":"mapicon2.png",
+        "stage":[
+            {
+                "stageId": 0,
+                "cost": 0,
+                "team": 1,
+                "hidden":false,
+                "dungeon": 0,
+                "teammate": [
+                {
+                  "class" : 131,
+                  "name" : "约书亚",
+                  "gender" : 1,
+                  "hairStyle" : 5,
+                  "hairColor" : 13,
+                  "xp" : 0
+                },
+                {
+                  "class" : 132,
+                  "name" : "凯瑟琳",
+                  "gender" : 0,
+                  "hairStyle" : 5,
+                  "hairColor" :3 ,
+                  "xp" : 0
+                }
+                ]
+            }
+        ]
+    },
+    {
+    "abtest": [
+        {
+		"chapterId": 1,
+		"posX": 2,
+		"posY": 7,
+		"gid": 6,
+		"title":"dungeonname1.png",
+        "label":"多姆洞穴",
+		"desc":"似乎是天然形成的洞穴，出没着一些危险的\n野生怪物，让不少旅人有去无回。",
+		"icon":"mapicon2.png",
+
+		"stage":[
+            {
+				"stageId": 1,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 1,
+                "prev": [0]
+			},
+            {
+                "stageId": 2,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 2,
+                "tutorial":3,
+                "prev": [1]
+            },
+            {
+                "stageId": 3,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 3,
+                "prev": [2]
+            },
+            {
+                "stageId": 4,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":4,
+                "prev": [3]
+            },
+            {
+                "stageId": 5,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 5,
+                "prev": [4]
+            },
+            {
+                "stageId": 6,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 6,
+                "prev": [5]
+            },
+            {
+                "stageId": 7,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 7,
+                "prev": [6]
+            },
+            {
+                "stageId":78,
+                "cost":10,
+                "dungeon":64,
+                "isInfinite":true,
+                "prev":[7]
+            }
+		]
+	},
+{
+"chapterId": 1,
+"posX": 2,
+"posY": 7,
+"gid": 6,
+"title":"dungeonname1.png",
+"label":"多姆洞穴",
+"desc":"似乎是天然形成的洞穴，出没着一些危险的\n野生怪物，让不少旅人有去无回。",
+"icon":"mapicon2.png",
+
+"stage":[
+{
+"stageId": 1,
+"cost": 15,
+"team": 1,
+"hidden":false,
+"dungeon": 84,
+"prev": [0]
+},
+{
+"stageId": 2,
+"cost": 15,
+"team": 1,
+"hidden":false,
+"dungeon": 85,
+"tutorial":3,
+    "teammate": [
+        {
+            "class" : 164,
+            "name" : "琳达",
+            "gender" : 0,
+            "hairColor" : 15,
+            "xp" : 0
+        }],
+"prev": [1]
+},
+{
+"stageId": 3,
+"cost": 15,
+"team": 1,
+"hidden":false,
+"dungeon": 86,
+    "teammate": [
+        {
+            "class" : 164,
+            "name" : "琳达",
+            "gender" : 0,
+            "hairColor" : 15,
+            "xp" : 0
+        }],
+"prev": [2]
+},
+{
+"stageId": 4,
+"cost": 15,
+"team": 2,
+"hidden":false,
+"dungeon":87,
+"prev": [3]
+},
+{
+"stageId": 5,
+"cost": 15,
+"team": 2,
+"hidden":false,
+"dungeon": 88,
+"prev": [4]
+},
+{
+"stageId": 6,
+"cost": 15,
+"team": 3,
+"hidden":false,
+"dungeon": 89,
+"prev": [5]
+},
+{
+"stageId": 7,
+"cost": 15,
+"team": 3,
+"hidden":false,
+"dungeon": 90,
+"prev": [6]
+},
+{
+"stageId":78,
+"cost":10,
+"dungeon":64,
+"isInfinite":true,
+"prev":[7]
+}
+]
+}
+]
+},
+	{
+		"chapterId": 2,
+		"posX": 3,
+		"posY": 6,
+		"gid": 7,
+		"title":"dungeonname2.png",
+        "label":"密谋森林",
+		"desc":"阴森诡异的密谋森林，吞噬了很多勇者的生\n命，因此很少有人再敢靠近它。",
+		"icon":"mapicon1.png",
+		"stage":[
+            {
+                "stageId": 8,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 8,
+                "prev": [7]
+            },
+            {
+                "stageId": 9,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 9,
+                "prev": [8]
+            },
+            {
+                "stageId": 10,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 10,
+                "prev": [9]
+            },
+            {
+                "stageId": 11,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":11,
+                "prev": [10]
+            },
+            {
+                "stageId": 12,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 12,
+                "prev": [11]
+            },
+            {
+                "stageId": 13,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 13,
+                "prev": [12]
+            },
+            {
+                "stageId": 14,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 14,
+                "prev": [13]
+            },
+            {
+                "stageId":79,
+                "cost":10,
+                "dungeon":65,
+                "isInfinite":true,
+                "prev":[14]
+            }
+		]
+	},
+	{
+		"chapterId": 3,
+		"posX": 5,
+		"posY": 6,
+		"gid": 9,
+		"title":"dungeonname3.png",
+        "label":"湖滨大道",
+		"desc":"沿着凯多湖边一直蔓延的湖滨大道，由于年\n久失修，如今成为了盗贼们的聚集地。",
+		"icon":"mapicon7.png",
+		"stage":[
+            {
+                "stageId": 15,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 15,
+                "prev": [14]
+            },
+            {
+                "stageId": 16,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 16,
+                "prev": [15]
+            },
+            {
+                "stageId": 17,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 17,
+                "prev": [16]
+            },
+            {
+                "stageId": 18,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":18,
+                "prev": [17]
+            },
+            {
+                "stageId": 19,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 19,
+                "prev": [18]
+            },
+            {
+                "stageId": 20,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 20,
+                "prev": [19]
+            },
+            {
+                "stageId": 21,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 21,
+                "prev": [20]
+            },
+            {
+                "stageId":80,
+                "cost":10,
+                "dungeon":66,
+                "isInfinite":true,
+                "prev":[21]
+            }
+		]
+	},
+	{
+        "chapterId":4,
+		"posX": 4,
+		"posY": 6,
+		"gid": 8,
+		"title":"dungeonname7.png",
+        "label":"旋风谷",
+		"desc":"塔伦山脉中最险要的地方，遍布着夺命的悬\n崖，稍不留神就会让你付出惨痛的代价。",
+		"icon":"mapicon4.png",
+		"stage":[
+            {
+                "stageId": 22,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 22,
+                "prev": [21]
+            },
+            {
+                "stageId": 23,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 23,
+                "prev": [22]
+            },
+            {
+                "stageId": 24,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 24,
+                "prev": [23]
+            },
+            {
+                "stageId": 25,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":25,
+                "prev": [24]
+            },
+            {
+                "stageId": 26,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 26,
+                "prev": [25]
+            },
+            {
+                "stageId": 27,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 27,
+                "prev": [26]
+            },
+            {
+                "stageId": 28,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 28,
+                "prev": [27]
+            },
+            {
+                "stageId":81,
+                "cost":10,
+                "dungeon":67,
+                "isInfinite":true,
+                "prev":[28]
+            }
+		]
+	},
+	{
+		"chapterId": 5,
+		"posX": 4,
+		"posY": 5,
+		"gid": 10,
+		"title":"dungeonname5.png",
+        "label":"暮色平原",
+		"desc":"表面上一片祥和的大草原，但却暗潮涌动\n潜伏的怪物们会告诫你不要小看这片平原。",
+		"icon":"mapicon3.png",
+		"stage":[
+		    {
+				"stageId": 29,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 29,
+				"prev":	[28]
+			},
+			{
+				"stageId": 30,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 30,
+				"prev": [29]
+			},
+			{
+				"stageId": 31,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 31,
+				"prev": [30]
+			},
+			{
+				"stageId": 32,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 32,
+				"prev": [31]
+			},
+			{
+				"stageId": 33,
+				"cost": 15,
+				"team": 3,
+			    "hidden":false,
+				"dungeon": 33,
+				"prev": [32]
+			},
+            {
+                "stageId": 34,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 34,
+                "prev": [33]
+            },
+            {
+                "stageId": 35,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 35,
+                "prev": [34]
+            },
+            {
+                "stageId":82,
+                "cost":10,
+                "dungeon":68,
+                "isInfinite":true,
+                "prev":[35]
+            }
+		]
+	},
+	{
+		"chapterId": 6,
+		"posX": 5,
+		"posY": 4,
+		"gid": 11,
+		"title":"dungeonname6.png",
+        "label":"野蛮哨站",
+		"desc":"兽人的哨站，存放着兽人抢夺村庄的战利品，\n重兵把守，勇者们几乎都是有去无回。",
+		"icon":"mapicon5.png",
+		"stage":[
+			{
+			    "stageId": 36,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 36,
+				"prev":	[35]
+			},
+			{
+				"stageId": 37,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon":37,
+				"prev": [36]
+			},
+			{
+				"stageId": 38,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 38,
+				"prev": [37]
+			},
+			{
+				"stageId": 39,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 39,
+				"prev": [38]
+			},
+			{
+				"stageId": 40,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 40,
+				"prev": [39]
+			},
+            {
+                "stageId": 41,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 41,
+                "prev": [40]
+            },
+            {
+                "stageId": 42,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 42,
+                "prev": [41]
+            },
+            {
+                "stageId":83,
+                "cost":10,
+                "dungeon":69,
+                "isInfinite":true,
+                "prev":[42]
+            }
+		]
+	},
+	{
+		"chapterId": 7,
+		"posX": 3,
+		"posY": 4,
+		"gid": 12,
+		"title":"dungeonname4.png",
+        "label":"断肠崖",
+		"desc":"山谷险要的地势加上诡异的巨大山风，让这\n里成为勇者们永远的噩梦。",
+		"icon":"mapicon4.png",
+		"stage":[
+			{
+				"stageId": 43,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 43,
+				"prev":	[42]
+			},
+		    {
+				"stageId": 44,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 44,
+				"prev": [43]
+			},
+			{
+				"stageId": 45,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 45,
+				"prev": [44]
+			},
+			{
+				"stageId": 46,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 46,
+				"prev": [45]
+			},
+			{
+				"stageId": 47,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon":47,
+				"prev": [46]
+			},
+            {
+                "stageId": 48,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":48,
+                "prev": [47]
+            },
+            {
+                "stageId": 49,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":49,
+                "prev": [48]
+            },
+            {
+                "stageId":84,
+                "cost":10,
+                "dungeon":70,
+                "isInfinite":true,
+                "prev":[49]
+            }
+		]
+	},
+	{
+		"chapterId": 8,
+		"posX": 3,
+		"posY": 3,
+		"gid": 13,
+		"title":"dungeonname8.png",
+        "label":"丛林密道",
+		"desc":"不见天日的丛林中，隐藏着的古老密道，现\n在已经荒废并且成为怪物们的巢穴。",
+		"icon":"mapicon1.png",
+		"stage":[
+		    {
+				"stageId": 50,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 50,
+				"prev":	[49]
+			},
+			{
+			    "stageId": 51,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 51,
+				"prev": [50]
+			},
+			{
+				"stageId": 52,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 52,
+				"prev": [51]
+			},
+			{
+				"stageId": 53,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 53,
+				"prev": [52]
+			},
+			{
+				"stageId": 54,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 54,
+				"prev": [53]
+			},
+            {
+                "stageId": 55,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 55,
+                "prev": [54]
+            },
+            {
+                "stageId": 56,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 56,
+                "prev": [55]
+            },
+            {
+                "stageId":85,
+                "cost":10,
+                "dungeon":71,
+                "isInfinite":true,
+                "prev":[56]
+            }
+		]
+	},
+	{
+		"chapterId": 9,
+		"posX": 4,
+		"posY": 3,
+		"gid": 14,
+		"title":"dungeonname9.png",
+        "label":"巫师营地",
+		"desc":"巫师掌控着的地盘，营地中驻扎着巫师手下\n的邪恶军团，是一支极具威胁的军队。",
+		"icon":"mapicon5.png",
+		"stage":[
+		    {
+				"stageId": 57,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 57,
+				"prev":	[56]
+			},
+			{
+			    "stageId": 58,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 58,
+				"prev": [57]
+			},
+			{
+				"stageId": 59,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon":59,
+				"prev": [58]
+			},
+			{
+				"stageId": 60,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 60,
+				"prev": [59]
+			},
+			{
+				"stageId": 61,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon":61,
+				"prev": [60]
+			},
+            {
+                "stageId": 62,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":62,
+                "prev": [61]
+            },
+            {
+                "stageId": 63,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":63,
+                "prev": [62]
+            },
+            {
+                "stageId":86,
+                "cost":10,
+                "dungeon":72,
+                "isInfinite":true,
+                "prev":[63]
+            }
+		]
+	},
+	{
+		"chapterId": 10,
+		"posX": 5,
+		"posY": 2,
+		"gid": 15,
+		"title":"dungeonname10.png",
+        "label":"死灵洞穴",
+		"desc":"盘踞着未知力量的洞穴，据说这股力量来自\n遥远的上古，是人类无法探知的境地。",
+		"icon":"mapicon2.png",
+		"stage":[
+		    {
+				"stageId": 64,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 76,
+				"prev":[1000]
+			},
+			{
+				"stageId": 65,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 77,
+				"prev": [1000]
+			},
+			{
+				"stageId": 66,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 78,
+				"prev": [1000]
+			},
+			{
+				"stageId": 67,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 79,
+				"prev": [1000]
+			},
+			{
+				"stageId": 68,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 80,
+				"prev": [1000]
+			},
+            {
+                "stageId": 69,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon":81,
+                "prev": [1000]
+            },
+            {
+                "stageId": 70,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 82,
+                "prev": [1000]
+            },
+            {
+                "stageId":87,
+                "cost":10,
+                "dungeon":83,
+                "isInfinite":true,
+                "prev":[1000]
+            }
+		]
+	},
+	{
+		"chapterId": 11,
+		"posX": 2,
+		"posY": 2,
+		"gid": 16,
+		"title":"dungeonname11.png",
+        "label":"塔卡宫殿",
+		"desc":"领主塔卡的宫殿，卡塔不仅拥有强大的佣兵\n军团，据称他已经掌握了未知力量。",
+	    "icon":"mapicon6.png",
+		"stage":[
+		    {
+			    "stageId": 71,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 84,
+				"prev":[1000]
+			},
+			{
+				"stageId": 72,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon":85,
+				"prev": [1000]
+			},
+			{
+				"stageId": 73,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon":86,
+				"prev": [1000]
+			},
+			{
+				"stageId":74,
+				"cost": 15,
+				"team": 3,
+				"hidden":false,
+				"dungeon": 87,
+				"prev": [1000]
+			},
+			{
+			    "stageId":75,
+			    "cost": 15,
+			    "team": 3,
+			    "hidden":false,
+			    "dungeon": 88,
+			    "prev": [1000]
+			},
+            {
+                "stageId":76,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 89,
+                "prev": [1000]
+            },
+            {
+                "stageId":77,
+                "cost": 15,
+                "team": 3,
+                "hidden":false,
+                "dungeon": 90,
+                "prev": [1000]
+            }
+        ]
+    },
+    {
+        "chapterId": 12,
+        "label":"日常任务章",
+        "hidden": true,
+        "stage":[
+            {
+                "stageId": 88,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 76,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 89,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 77,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 90,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 78,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 91,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 79,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 92,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 80,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 93,
+                "cost":10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 81 ,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 94,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 82,
+                "event":"event_daily"
+            },
+            {
+                "stageId": 95,
+                "cost": 10,
+                "team": 3,
+                "hidden":true,
+                "dungeon": 83,
+                "event":"event_daily"
+            }
+        ]
+    }
+]
+	
+		
