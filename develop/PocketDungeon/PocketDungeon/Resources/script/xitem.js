@@ -1,0 +1,765 @@
+/**
+ * User: hammer
+ * Date: 13-7-10
+ * Time: 下午10:21
+ */
+
+var libTable = loadModule("table.js");
+
+var ItemScheme = {
+    cid : "ClassId",
+    sid : "ServerId",
+    stc : "StackCount",
+    sta : "Status",
+    xp : "Xp",
+    eh : "Enhance"
+};
+
+function Item(source)
+{
+    this.ClassId = -1;
+    this.ServerId = -1;
+    this.StackCount = 1;
+    this.Status = 0;
+    this.Xp = 0;
+
+    if( source != null )
+    {
+        this.parse(source);
+    }
+}
+
+Item.prototype.parse = function(source)
+{
+    loadModule("util.js").applyScheme(this, ItemScheme, source);
+    //trans internal to interface
+    if( this.Enhance != null ){
+        for(var ky in this.Enhance){
+            var eh = this.Enhance[ky];
+            if( eh.level != null && eh.lv == null ){
+                eh.lv = eh.level;
+            }
+        }
+    }
+}
+
+//trans to public form
+Item.prototype.short = function(){
+    var ret = {};
+    for(var short in ItemScheme){
+        var long = ItemScheme[short];
+        if( this[long] != null ){
+            ret[short] = this[long];
+        }
+    }
+    return ret;
+}
+
+//trans to server internal form
+Item.prototype.internal = function(){
+    var out = this.short();
+    if( out.eh != null ){
+        var neh = [];
+        for(var k in out.eh ){
+            var old = out.eh[k];
+            neh.push({
+                id: old.id,
+                level: old.lv
+            })
+        }
+        out.eh = neh;
+    }
+    return out;
+}
+
+Item.prototype.equipUpgradeXp = function(){
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass.upgradeTarget != null )
+    {//can upgrade
+        var upgradeXp = ItemClass.upgradeXp;
+        if( upgradeXp == null ){
+            upgradeXp = libTable.queryTable(TABLE_UPGRADE, ItemClass.rank).xp;
+        }
+        return upgradeXp;
+    }
+    else
+    {//can't upgrade
+        return -1;
+    }
+}
+
+Item.prototype.isAvailable = function(){
+    var role = engine.user.actor;
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass.category == ITEM_EQUIPMENT ){
+        //check rank
+        if( ItemClass.rank != null ){
+            if( role.Level < ItemClass.rank ){
+                return false;
+            }
+        }
+        //check classLimit
+        if( ItemClass.classLimit != null ){
+            var fit = false;
+            for( var k in ItemClass.classLimit ){
+                if( ItemClass.classLimit[k] == role.ClassId ){
+                    fit = true;
+                    break;
+                }
+            }
+            if( !fit ) return false;
+        }
+    }
+    if( ItemClass.category == ITEM_RECIPE ){
+        //check ingredient
+        for(var k in ItemClass.recipeIngredient){
+            var ing = ItemClass.recipeIngredient[k];
+            if( engine.user.inventory.countItem(ing.item) < ing.count ) return false;
+        }
+    }
+    return true;
+}
+
+Item.prototype.isUpgradable = function(){
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass != null && ItemClass.label != null )
+    {//set value
+        if( ItemClass.upgradeTarget != null )
+        {//can upgrade
+            var upgradeXp = ItemClass.upgradeXp;
+            if( upgradeXp == null ){
+                upgradeXp = libTable.queryTable(TABLE_UPGRADE, ItemClass.rank).xp;
+            }
+            var xp = this.Xp;
+            if( xp == null ) xp = 0;
+            if( xp >= upgradeXp
+                && ItemClass.rank != null
+                && ItemClass.rank < engine.user.actor.Level ){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//--- query functions ---
+Item.prototype.getMaxEnhanceLevel = function(){
+    var mel = 0;
+    if( this.Enhance != null ){
+        for(var k in this.Enhance){
+            var level = this.Enhance[k].lv + 1;
+            if( level > mel ){
+                mel = level;
+            }
+        }
+    }
+    return mel;
+}
+
+function Inventory()
+{
+    this.Items = [];
+    this.Capacity = 30;
+    this.Gold = 0;
+    this.Diamond = 0;
+    this.Count = 0;
+}
+
+Inventory.prototype.update = function(event)
+{
+    var vibrate = true;
+    var updateTreasure = false;
+    var updateItems = false;
+    var updateCapacity = false;
+
+    if( event.arg.clr ){
+        this.Items = [];
+        this.Capacity = 30;
+        this.Gold = 0;
+        this.Diamond = 0;
+        this.Count = 0;
+        vibrate = false;
+    }
+    if( event.arg.dim != null ){
+        this.Diamond = event.arg.dim;
+        updateTreasure = true;
+    }
+    if( event.arg.god != null ){
+        this.Gold = event.arg.god;
+        updateTreasure = true;
+    }
+    if( event.arg.cap != null ){
+        this.Capacity = event.arg.cap;
+        updateCapacity = true;
+    }
+    if( event.arg.itm != null ){
+        for(var k in event.arg.itm){
+            var item = new Item(event.arg.itm[k]);
+            var exist = this.queryItem(item.ServerId);
+            if( exist >= 0 )
+            {//fix the item
+                item = this.Items[exist];
+                item.parse(event.arg.itm[k]);
+            }
+            else if( item.ClassId < 0 ) continue;//添加道具/却没有ClassId，错误指令，废弃
+
+            var itemData = libTable.queryTable(TABLE_ITEM, item.ClassId);
+            var isStoreItem = itemData.storeOnly === true ? true : false;
+            if( item.StackCount > 0 )
+            {//add or modify
+                if( exist >= 0 )
+                {//modify
+                    this.Items[exist] = item;
+                }
+                else
+                {//add
+                    if( FLAG_PROTECT && item.ClassId < 0 ){
+                        error("Inventory.update: invalid item: \n"+JSON.stringify(item));
+                        continue;
+                    }
+
+                    this.Items.push(item);
+                    if(!isStoreItem) this.Count++;
+                }
+                //equip item
+                if( item.Status == ITEMSTATUS_EQUIPED )
+                {
+                    engine.user.actor.setArmor(item);
+                }
+            }
+            else
+            {//remove
+                if( exist >= 0 )
+                {
+                    if( item.Status == ITEMSTATUS_EQUIPED ){
+                        //unequip first
+                        var ItemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
+                        engine.user.actor.removeArmor(ItemClass.subcategory);
+                    }
+                    this.Items.splice(exist, 1);
+                    if(!isStoreItem) this.Count--;
+                }
+                else
+                {
+                    error("Inventory.update: Item not exist. SRC="+JSON.stringify(event.arg.itm[k]));
+                }
+            }
+        }
+        updateItems = true;
+    }
+    if( updateTreasure && vibrate ){
+        engine.event.processNotification(Message_UpdateTreasure);
+    }
+    if( updateCapacity && vibrate ){
+        engine.event.processNotification(Message_UpdateInventoryCapacity);
+    }
+    if( updateItems && vibrate ){
+        engine.event.processNotification(Message_UpdateItem);
+    }
+}
+
+//return item index
+Inventory.prototype.queryItem = function(sid)
+{
+    for(var k in this.Items)
+    {
+        var item = this.Items[k];
+        if( item.ServerId == sid )
+        {
+            return Number(k);
+        }
+    }
+    return -1;
+}
+
+Inventory.prototype.getItem = function(sid){
+    var idx = this.queryItem(sid);
+    if( idx >= 0 ){
+        return this.Items[idx];
+    }
+    return null;
+}
+
+Inventory.prototype.countItem = function(cid){
+    var ret = 0;
+    for(var k in this.Items){
+        var item = this.Items[k];
+        if( item.ClassId == cid ){
+            ret += item.StackCount;
+        }
+    }
+    return ret;
+}
+
+Inventory.prototype.syncArmors = function(){
+    engine.user.actor.Armors = [];
+    for(var k in this.Items){
+        var item = this.Items[k];
+        if( item.Status == ITEMSTATUS_EQUIPED ){
+            engine.user.actor.setArmor(item);
+        }
+    }
+    engine.user.actor.fix();
+}
+
+Inventory.prototype.sort = function(){
+    this.Items = this.Items.sort(function(a, b){
+        var CA = libTable.queryTable(TABLE_ITEM, a.ClassId);
+        var CB = libTable.queryTable(TABLE_ITEM, b.ClassId);
+        if( CA.category != CB.category ){
+            return CA.category - CB.category;
+        }
+        else{
+            return b.ClassId - a.ClassId;
+        }
+    });
+}
+
+Inventory.prototype.getItems = function()
+{
+    return this.Items;
+}
+
+Inventory.prototype.getNormalItems = function()
+{
+    return this.Items.filter(function(itm){
+        var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
+        if( itemData.storeOnly === true ) return false;
+        else return true;
+    });
+}
+
+Inventory.prototype.getShopItems = function()
+{
+    return this.Items.filter(function(itm){
+        var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
+        if( itemData.storeOnly === true ) return true;
+        else return false;
+    });
+}
+
+Inventory.prototype.checkUpgradable = function(){
+    var slots = [
+        EquipSlot_MainHand,
+        EquipSlot_SecondHand,
+        EquipSlot_Chest,
+        EquipSlot_Legs
+    ];
+    for(var k in slots){
+        var item = engine.user.actor.queryArmor(slots[k]);
+        item = syncItemData(item);
+        if( item.isUpgradable() ) return true;
+    }
+    return false;
+}
+
+//--- ui component ---
+
+var UIItem = cc.Node.extend({
+    init: function(item, flag, def){
+        if( !this._super()) return false;
+        //init code here
+        this.DEF = def;
+        this.FLAG = flag;
+        if( this.DEF == null )
+        {
+            this.DEF = "itembg.png";
+        }
+        if( this.FLAG == null )
+        {
+            this.FLAG = false;
+        }
+        this.setItem(item);
+        return true;
+    },
+    setItem: function(item, owner)
+    {
+        if( owner == null ) owner = engine.user.actor;
+        this.ITEM = item;
+        this.removeAllChildren();
+        this.icon = null;
+        this.dot = null;
+        this.num = null;
+        this.frameAvailable = null;
+
+        if( this.ITEM != null )
+        {
+            var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
+
+            if( ItemClass.label == null ){
+                var sp = cc.Sprite.create(this.DEF);
+                this.addChild(sp);
+                return;
+            }
+
+            if( ItemClass != null )
+            {
+                //var tbg = cc.Sprite.create(ItemTypeImages[ItemClass.category]);
+                //this.addChild(tbg);
+                if( ItemClass.iconm != null && ItemClass.iconf != null )
+                {
+                    if( owner != null )
+                    {
+                        if( owner.Gender == 0 )
+                        {//female icon
+                            var icon = cc.Sprite.create(ItemClass.iconf);
+                        }
+                        else
+                        {//male icon
+                            var icon = cc.Sprite.create(ItemClass.iconm);
+                        }
+                    }
+                    else
+                    {//if no user, use male
+                        var icon = cc.Sprite.create(ItemClass.iconm);
+                    }
+                }
+                else
+                {
+                    var icon = cc.Sprite.create(ItemClass.icon);
+                }
+                this.addChild(icon, 0);
+                this.icon = icon;
+                if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED )
+                {
+                    var equipTag = cc.Sprite.createWithSpriteFrameName("bag-equipped.png");
+                    equipTag.setAnchorPoint(cc.p(0.5 , 1));
+                    equipTag.setPosition(cc.p(30, 50));
+                    this.addChild(equipTag, 50);
+                }
+                this.setStackCount(this.ITEM.StackCount);
+                //add quality tag
+                if( ItemClass.quality != null){
+                    var fileName = "itemquality"+(ItemClass.quality+1)+".png";
+                    var qualityTag = cc.Sprite.create(fileName);
+                    qualityTag.setAnchorPoint(cc.p(0, 0));
+                    qualityTag.setPosition(cc.p(-50, -50));
+                    this.addChild(qualityTag, 20);
+                }
+            }
+            else
+            {
+                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
+                var sp = cc.Sprite.create("wenhao.png");
+                this.addChild(sp, 0);
+            }
+        }
+        else
+        {
+            var sp = cc.Sprite.create(this.DEF);
+            this.addChild(sp, 0);
+        }
+    },
+    showFrame: function()
+    {
+        var frame = cc.Sprite.create("skillbg.png");
+        this.addChild(frame, 10);
+    },
+    setStackCount: function(num){
+        try{
+
+        if( num > 1 ){
+            if( this.dot == null ){
+                this.dot = cc.Sprite.create("cardnummask.png");
+                this.dot.setAnchorPoint(cc.p(1, 0));
+                this.dot.setPosition(cc.p(this.icon.getContentSize().width/2-5, -this.icon.getContentSize().height/2+5));
+                this.addChild(this.dot, 30);
+            }
+            if( this.num == null ){
+                this.num = cc.LabelBMFont.create(num, "font1.fnt");
+                this.num.setAnchorPoint(cc.p(0.5, 0.5));
+                this.num.setPosition(cc.p(32-5, -32+5));
+                this.addChild(this.num, 40);
+            }
+            else{
+                this.num.setString(num);
+            }
+            if( this.stackColor != null ){
+                this.num.setColor(this.stackColor);
+            }
+        }
+        else{
+            if( this.dot != null ){
+                this.removeChild(this.dot);
+                delete this.dot;
+            }
+            if( this.num != null ){
+                this.removeChild(this.num);
+                delete this.num;
+            }
+        }
+
+        }catch(e){
+            traceError(e);
+            printArray(arguments);
+        }
+    },
+    setStackColor: function(color){
+        this.stackColor = color;
+        if( this.num != null ){
+            this.num.setColor(this.stackColor);
+        }
+    },
+    setAvailable: function(flag){
+        if( flag ){//remove
+            if( this.frameAvailable != null ){
+                this.removeChild(this.frameAvailable);
+                delete this.frameAvailable;
+            }
+        }
+        else{//add
+            if( this.frameAvailable == null ){
+                this.frameAvailable = cc.Sprite.create("bag-unavailable.png");
+                this.addChild(this.frameAvailable, 5);
+            }
+        }
+    },
+    setDefaultIcon: function(def){
+        this.DEF = def;
+        if( this.DEF == null )
+        {
+            this.DEF = "itembg.png";
+        }
+    },
+    getItem: function()
+    {
+        return this.ITEM;
+    }
+});
+
+UIItem.create = function(item, flag, def){
+    var ret = new UIItem();
+    ret.init(item, flag, def);
+    return ret;
+}
+
+UIItem.make = function(thiz, args)
+{
+    var ret = {};
+    var def = null;
+    if( args.def != null )
+    {
+        def = args.def;
+    }
+    var flag = false;
+    if( args.flg != null )
+    {
+        flag = args.flg;
+    }
+    ret.id = UIItem.create(null, flag, def);
+    ret.node = ret.id;
+    return ret;
+}
+
+//--- ItemPreviewArea
+
+var ITEMPREVIEW_WIDTH = 130;
+var ITEMPREVIEW_HEIGHT = 170;
+
+function queryPrize(pit){
+    var ret = {
+        icon: null,
+        label: null
+    };
+    var strIcon,strLabel;
+    var spQuality = null;
+    switch(pit.type){
+        case PRIZETYPE_ITEM:{//item
+            var itemClass = libTable.queryTable(TABLE_ITEM, pit.value);
+            if( itemClass != null ){
+                strIcon = itemClass.icon;
+                strLabel = itemClass.label;
+                if( itemClass.iconm != null && itemClass.iconf != null )
+                {
+                    if( engine.user.actor != null )
+                    {
+                        if( engine.user.actor.Gender == 0 )
+                        {//female icon
+                            strIcon = itemClass.iconf;
+                        }
+                        else
+                        {//male icon
+                            strIcon = itemClass.iconm;
+                        }
+                    }
+                    else
+                    {//if no user, use male
+                        strIcon = itemClass.iconm;
+                    }
+                }
+            }
+            else{
+                strIcon = "wenhao.png";
+                strLabel = "???";
+            }
+            if( pit.count > 1 ){
+                strLabel += "x"+pit.count;
+            }
+            if( itemClass.quality != null){
+                var fileName = "itemquality"+(itemClass.quality+1)+".png";
+                spQuality = cc.Sprite.create(fileName);
+                spQuality.setAnchorPoint(cc.p(0, 0));
+                spQuality.setPosition(cc.p(0, 0));
+            }
+        }break;
+        case PRIZETYPE_GOLD:{//gold
+            strIcon = "mission-coin.png";
+            strLabel = pit.count+"金币";
+        }break;
+        case PRIZETYPE_DIAMOND:{//diamond
+            strIcon = "mission-jewel.png";
+            strLabel = pit.count+"宝石";
+        }break;
+        case PRIZETYPE_EXP:{//exp
+            strIcon = "mission-xp.png";
+            strLabel = pit.count+"经验";
+        }break;
+        case PRIZETYPE_WXP:{//wxp
+            strIcon = "mission-sld.png";
+            strLabel = pit.count+"熟练";
+        }break;
+        default : return null;
+    }
+    ret.label = strLabel;
+    ret.icon = cc.Sprite.create(strIcon);
+    if( spQuality != null ){
+        ret.icon.addChild(spQuality);
+    }
+    return ret;
+}
+
+function createPrizeItem(prz){
+    var pit = queryPrize(prz);
+    if( pit != null ){
+        var node = cc.Node.create();
+        node.icon = pit.icon;
+        node.label = cc.LabelTTF.create(pit.label, UI_FONT, UI_SIZE_S);
+        node.label.setDimensions(cc.size(ITEMPREVIEW_WIDTH, 60));
+        node.label.setVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_TOP);
+        node.label.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
+        //place the node
+        node.icon.setPosition(cc.p(0, 0));
+        node.addChild(node.icon);
+        node.label.setPosition(cc.p(0, -83));
+        node.addChild(node.label);
+        return node;
+    }
+    return null;
+}
+
+var ItemPreview = cc.Layer.extend({
+    init: function(){
+        if( !this._super()) return false;
+        //init code here
+        this.DIMENSION = cc.size(0, 0);
+        return true;
+    },
+    setDimension: function(dimension){
+        this.DIMENSION = dimension;
+    },
+    pushPreview: function(pv){
+        var pit = queryPrize(pv);
+        if( pit != null ){
+            //create the node
+            var node = cc.Node.create();
+            node.icon = pit.icon;
+            node.label = cc.LabelTTF.create(pit.label, UI_FONT, UI_SIZE_S);
+            node.label.setDimensions(cc.size(ITEMPREVIEW_WIDTH, 60));
+            node.label.setVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_TOP);
+            node.label.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
+            if( this.COLOR != null ){
+                node.label.setColor(this.COLOR);
+            }
+            //place the node
+            node.icon.setPosition(cc.p(65, 115));
+            node.addChild(node.icon);
+            node.label.setPosition(cc.p(65, 32));
+            node.addChild(node.label);
+            this.addChild(node);
+        }
+    },
+    formatPreview: function(){
+        var count = this.getChildrenCount();
+        var nodes = this.getChildren();
+        if( this.DIMENSION.width == 0 ){
+            var index = 0;
+            for(var k in nodes){
+                var nd = nodes[k];
+                nd.setPosition(cc.p(index*ITEMPREVIEW_WIDTH, 0));
+                index++;
+            }
+            this.setContentSize(cc.size(ITEMPREVIEW_WIDTH*count, ITEMPREVIEW_HEIGHT));
+        }
+        else{
+            var PC = Math.floor(this.DIMENSION.width/ITEMPREVIEW_WIDTH);
+            var LN = Math.ceil(count/PC);
+            var WD = count*ITEMPREVIEW_WIDTH;
+            if( LN > 1 ){
+                WD = PC*ITEMPREVIEW_WIDTH;
+            }
+            var size = cc.size(WD, ITEMPREVIEW_HEIGHT*LN);
+            this.setContentSize(size);
+            var index = 0;
+            for(var k in nodes){
+                var PX = Math.floor(index%PC);
+                var PY = Math.floor(index/PC);
+                var nd = nodes[k];
+                nd.setPosition(cc.p(PX*ITEMPREVIEW_WIDTH, size.height - PY*ITEMPREVIEW_HEIGHT - ITEMPREVIEW_HEIGHT));
+                index++;
+            }
+        }
+    },
+    setPreview: function(pvs){
+        //过滤职业
+        var RoleClass = engine.user.actor.ClassId;
+        pvs = pvs.filter(function(pv){
+            if( pv.classLimit != null ){
+                var fit = false;
+                for( var k in pv.classLimit ){
+                    if( pv.classLimit[k] == RoleClass ){
+                        fit = true;
+                        break;
+                    }
+                }
+                if( !fit ) return false;
+            }
+            return true;
+        });
+
+        for(var k in pvs){
+            this.pushPreview(pvs[k]);
+        }
+        this.formatPreview();
+    },
+    setTextColor: function(color){
+        this.COLOR = color;
+    }
+});
+
+ItemPreview.createRaw = function(dimension){
+    var ret = new ItemPreview();
+    ret.init();
+    if( dimension != null ){
+        ret.setDimension(dimension);
+    }
+    return ret;
+}
+
+ItemPreview.create = function(pvs, dimension){
+    var ret = new ItemPreview();
+    ret.init();
+    if( dimension != null ){
+        ret.setDimension(dimension);
+    }
+    if( pvs != null ){
+        ret.setPreview(pvs);
+    }
+    return ret;
+}
+
+exports.Item = Item;
+exports.Inventory = Inventory;
+exports.UIItem = UIItem;
+exports.queryPrize = queryPrize;
+exports.ItemPreview = ItemPreview;
+exports.createPrizeItem = createPrizeItem;
