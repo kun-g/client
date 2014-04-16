@@ -11,6 +11,8 @@ var libEffect = loadModule("effect.js");
 var theLayer = null;
 var theRole;
 
+var theRoleFlag = false;
+
 var theSkillEffect;
 
 function onClose(sender){
@@ -209,11 +211,12 @@ function onEnter()
     theLayer.setScale(0);
     theLayer.runAction(actionPopIn());
     
-    
+    theRoleFlag = true;
 }
 
 function onExit()
 {
+    theRoleFlag = false;
 }
 
 function onActivate(){
@@ -224,6 +227,8 @@ function onActivate(){
 
 function show(role){
     theRole = role;
+
+    if( theRoleFlag ) return;
 
     theLayer = engine.ui.newLayer({
         onEnter: onEnter,

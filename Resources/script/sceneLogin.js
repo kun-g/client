@@ -461,9 +461,9 @@ function onEnter()
     debug("- LOGIN ENTER -");
 
     //91 special process
-    if( iap.getStoreName() == "Nd91" ){
-        onStartGame();
-    }
+//    if( iap.getStoreName() == "Nd91" ){
+//        onStartGame();
+//    }
 }
 
 function onExit()

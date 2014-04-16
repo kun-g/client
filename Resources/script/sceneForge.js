@@ -107,7 +107,6 @@ function setModeTag(mode){
         theLayer.owner.btnEnhance.setNormalSpriteFrame(sfc.getSpriteFrame("forge2-common-tabqh2.png"));
         theLayer.owner.btnEnhance.setSelectedSpriteFrame(sfc.getSpriteFrame("forge2-common-tabqh1.png"));
         theLayer.owner.btnEnhance.setEnabled(true);
-        theSSLayer = null;
     }
     if( mode == MODE_FORGE ){
         theLayer.owner.btnForge.setNormalSpriteFrame(sfc.getSpriteFrame("forge3-common-tabdz1.png"));
@@ -121,7 +120,6 @@ function setModeTag(mode){
         theLayer.owner.btnForge.setNormalSpriteFrame(sfc.getSpriteFrame("forge3-common-tabdz2.png"));
         theLayer.owner.btnForge.setSelectedSpriteFrame(sfc.getSpriteFrame("forge3-common-tabdz1.png"));
         theLayer.owner.btnForge.setEnabled(true);
-        theSSLayer = null;
     }
     if( mode == MODE_EXTRACT ){
         theLayer.owner.btnExtract.setNormalSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl1.png"));
@@ -819,6 +817,7 @@ function onEnhance(sender){
     }
 
     if( isFlying ) return;
+    theSSLayer = null;
 
     //clean transitionContent
     if( theTransitionContent != null ){
@@ -912,6 +911,7 @@ function onForge(sender){
     }
 
     if( isFlying ) return;
+    theSSLayer = null;
 
     //clean transitionContent
     if( theTransitionContent != null ){

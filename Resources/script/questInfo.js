@@ -96,8 +96,8 @@ function loadQuestList(){
     theLayer.owner.nodeDesc.setVisible(false);
     theListLayer.removeAllChildren();
     theListLayer.setTouchEnabled(true);
-    theLayer.ui.buttonBack.setVisible(false);
-    theLayer.ui.buttonSubmit.setVisible(false);
+    theLayer.owner.btnBack.setVisible(false);
+    theLayer.owner.btnSubmit.setVisible(false);
 
     var size = cc.size(LINE_WIDTH, engine.user.quest.Count*LINE_HEIGHT);
     theListLayer.setContentSize(size);
@@ -143,8 +143,8 @@ function loadQuestDesc(quest){
     theLayer.owner.nodeDesc.setVisible(true);
     theDescLayer.removeAllChildren();
     theListLayer.setTouchEnabled(false);
-    theLayer.ui.buttonBack.setVisible(true);
-    theLayer.ui.buttonSubmit.setVisible(true);
+    theLayer.owner.btnBack.setVisible(true);
+    theLayer.owner.btnSubmit.setVisible(true);
 
     theQuest = quest;
     theQuest.fixState();
@@ -204,10 +204,10 @@ function loadQuestDesc(quest){
 
     theDescLayer.setContentSize(size);
     if( theQuest.State == QUESTSTATUS_COMPLETE ){
-        theLayer.ui.buttonSubmit.setEnabled(true);
+        theLayer.owner.btnSubmit.setEnabled(true);
     }
     else{
-        theLayer.ui.buttonSubmit.setEnabled(false);
+        theLayer.owner.btnSubmit.setEnabled(false);
     }
 
     var curroffset = theLayer.ui.scrollDesc.getContentOffset();
@@ -263,21 +263,6 @@ function onEnter(){
             ui: "UIScrollView",
             id: "scrollDesc",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
-        },
-        btnBack: {
-            ui: "UIButtonL",
-            id: "buttonBack",
-            menu: "menuRoot",
-            label: "buttontext-back.png",
-            func: onBack
-        },
-        btnSubmit: {
-            ui: "UIButtonL",
-            id: "buttonSubmit",
-            menu: "menuRoot",
-            label: "buttontext-lqjl.png",
-            func: onSubmit,
-            type: BUTTONTYPE_DEFAULT
         }
     });
     this.addChild(this.node);
@@ -287,8 +272,8 @@ function onEnter(){
 
     this.owner.nodeList.setVisible(false);
     this.owner.nodeDesc.setVisible(false);
-    this.ui.buttonBack.setVisible(false);
-    this.ui.buttonSubmit.setVisible(false);
+    this.owner.btnBack.setVisible(false);
+    this.owner.btnSubmit.setVisible(false);
 
     //theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
@@ -308,8 +293,6 @@ function onEnter(){
     engine.ui.regMenu(this.owner.menuRoot);
 
     loadQuestList();
-    
-    
 }
 
 function show(){

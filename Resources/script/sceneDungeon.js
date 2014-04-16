@@ -37,6 +37,7 @@ var MODE_PAUSE = 1;
 var MAGIC_WALL = 0.109756;
 
 var theSkillCdEffect;
+var theFadeInFlag = false;
 
 function onEvent(event)
 {
@@ -119,7 +120,6 @@ function onEvent(event)
         case Message_TouchGrid:
         {
             var pos = event.arg.pos;
-            debug("POS = "+pos);
             var block = theDungeon.Blocks[pos];
             if( block.trans != null ){
                 pos = block.trans;
@@ -450,6 +450,11 @@ function onPause(sender)
     }
 }
 
+function onQuest(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    loadModule("questInfo.js").show();
+}
+
 function showBuyRevive(){
     var order = engine.session.queryStore(ItemId_RevivePotion, 1);
     if( order != null ){
@@ -594,7 +599,7 @@ function doDungeonResult(win){
         effect.attachEffect(theLayer, cc.p(winSize.width/2, winSize.height/2), 11, effect.EFFECTMODE_STAY);
         cc.AudioEngine.getInstance().playEffect("win.mp3");
 
-        var actDelay = cc.DelayTime.create(5);
+        var actDelay = cc.DelayTime.create(4);
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
         theLayer.runAction(actSeq);
@@ -604,7 +609,7 @@ function doDungeonResult(win){
         effect.attachEffect(theLayer, cc.p(winSize.width/2, winSize.height/2), 12, effect.EFFECTMODE_STAY);
         cc.AudioEngine.getInstance().playEffect("lose.mp3");
 
-        var actDelay = cc.DelayTime.create(5);
+        var actDelay = cc.DelayTime.create(4);
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
         theLayer.runAction(actSeq);
@@ -614,7 +619,9 @@ function doDungeonResult(win){
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
         theLayer.runAction(actSeq);
-        //theLayer.mask.runAction(cc.FadeIn.create(3));//no more fade in
+        theFadeInFlag = true;
+        theLayer.mask.stopAllActions();
+        //theLayer.mask.runAction(cc.FadeIn.create(3));//fade handly
     }
 
     if( theDungeon.TutorialFlag ){
@@ -677,6 +684,7 @@ function onGameOver()
 function onEnter()
 {
     theLayer = this;
+    theFadeInFlag = false;
 
     cc.AudioEngine.getInstance().playMusic("battle.mp3", true);
 
@@ -754,6 +762,7 @@ function onEnter()
 
     theLayer.owner = {};
     theLayer.owner.onPause = onPause;
+    theLayer.owner.onQuest = onQuest;
 
     var node = cc.BuilderReader.load("sceneDungeon.ccbi", theLayer.owner);
     theLayer.addChild(node);
@@ -895,6 +904,13 @@ function applyParty()
 
 function update(delta)
 {
+    if( theFadeInFlag ){
+        var step = Math.floor((255*delta)/3);
+        var curAlpha = theLayer.mask.getOpacity();
+        curAlpha += step;
+        if( curAlpha > 255 ) curAlpha = 255;
+        theLayer.mask.setOpacity(curAlpha);
+    }
     theLayer.actions.updateActions(delta);
     if( theLayer.actions.isAllActionDone() )
     {

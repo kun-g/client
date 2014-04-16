@@ -59,6 +59,7 @@
 		53885EA917E93DE500A3A8B4 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53885EA817E93DE500A3A8B4 /* RootViewController.mm */; };
 		53885EAB17E93DE500A3A8B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53885EAA17E93DE500A3A8B4 /* main.m */; };
 		538862DB17E93DF500A3A8B4 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 538862DA17E93DF500A3A8B4 /* AppDelegate.cpp */; };
+		53892D6F18FE79E300CF2251 /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53892D6E18FE79E300CF2251 /* static.json */; };
 		538AC94718EC41170072C7AA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AC93C18EC41170072C7AA /* NSObject+SBJSON.m */; };
 		538AC94818EC41170072C7AA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AC93E18EC41170072C7AA /* NSString+SBJSON.m */; };
 		538AC94918EC41170072C7AA /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AC94018EC41170072C7AA /* SBJSON.m */; };
@@ -362,7 +363,6 @@
 		53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */ = {isa = PBXBuildFile; fileRef = 53A305E218FD3102001CE8B0 /* main.debug.jsc */; };
 		53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3086018FD3113001CE8B0 /* PP25Pay.plist */; };
 		53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3089E18FD3113001CE8B0 /* Setup.plist */; };
-		53A3152D18FD3128001CE8B0 /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53A30D4F18FD3120001CE8B0 /* static.json */; };
 		53A3159018FD317E001CE8B0 /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158318FD317E001CE8B0 /* blackbox */; };
 		53A3159118FD317E001CE8B0 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158418FD317E001CE8B0 /* dblackbox */; };
 		53A3159218FD317E001CE8B0 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158518FD317E001CE8B0 /* dscript */; };
@@ -503,6 +503,7 @@
 		538862D717E93DF500A3A8B4 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		538862D917E93DF500A3A8B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		538862DA17E93DF500A3A8B4 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
+		53892D6E18FE79E300CF2251 /* static.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = static.json; sourceTree = "<group>"; };
 		538AC93A18EC41170072C7AA /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		538AC93B18EC41170072C7AA /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		538AC93C18EC41170072C7AA /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -1237,7 +1238,6 @@
 		53A305E218FD3102001CE8B0 /* main.debug.jsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.debug.jsc; sourceTree = "<group>"; };
 		53A3086018FD3113001CE8B0 /* PP25Pay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PP25Pay.plist; sourceTree = "<group>"; };
 		53A3089E18FD3113001CE8B0 /* Setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
-		53A30D4F18FD3120001CE8B0 /* static.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = static.json; sourceTree = "<group>"; };
 		53A3158318FD317E001CE8B0 /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
 		53A3158418FD317E001CE8B0 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
 		53A3158518FD317E001CE8B0 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
@@ -1463,6 +1463,7 @@
 		53885E8A17E93DE400A3A8B4 /* PocketDungeon */ = {
 			isa = PBXGroup;
 			children = (
+				53892D6E18FE79E300CF2251 /* static.json */,
 				53A305BF18FD3101001CE8B0 /* Resources */,
 				53A3014A18FD30EA001CE8B0 /* libs */,
 				53885EA317E93DE500A3A8B4 /* ios */,
@@ -2944,7 +2945,6 @@
 				53A305E218FD3102001CE8B0 /* main.debug.jsc */,
 				53A3086018FD3113001CE8B0 /* PP25Pay.plist */,
 				53A3089E18FD3113001CE8B0 /* Setup.plist */,
-				53A30D4F18FD3120001CE8B0 /* static.json */,
 			);
 			name = Resources;
 			path = ../../Resources;
@@ -3064,6 +3064,7 @@
 				53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */,
 				53A30DBB18FD3121001CE8B0 /* jsb.jsc in Resources */,
 				53A30DC118FD3121001CE8B0 /* jsb_cocosbuilder.jsc in Resources */,
+				53892D6F18FE79E300CF2251 /* static.json in Resources */,
 				53A315BD18FD3191001CE8B0 /* Info.plist in Resources */,
 				53A315B918FD3191001CE8B0 /* Icon@2x.png in Resources */,
 				53A315B718FD3191001CE8B0 /* Icon-Small@2x.png in Resources */,
@@ -3096,7 +3097,6 @@
 				53A305B618FD30EC001CE8B0 /* js.msg in Resources */,
 				53A3159418FD317E001CE8B0 /* font in Resources */,
 				53A315BA18FD3191001CE8B0 /* Icon@2x~ipad.png in Resources */,
-				53A3152D18FD3128001CE8B0 /* static.json in Resources */,
 				53A315B318FD3191001CE8B0 /* Default~iphone.png in Resources */,
 				53A304C518FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A315B818FD3191001CE8B0 /* Icon.png in Resources */,
