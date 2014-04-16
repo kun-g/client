@@ -265,10 +265,10 @@ bool iOSsystem::removeDirectory(string path)
 bool iOSsystem::getPreference(string key, string &out)
 {
     //special values 测试使用的代码
-//    if( key == "flag_debug" ){
-//        out = string("1");
-//        return YES;
-//    }
+    if( key == "flag_debug" ){
+        out = string("1");
+        return YES;
+    }
     
     bool ret = true;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
