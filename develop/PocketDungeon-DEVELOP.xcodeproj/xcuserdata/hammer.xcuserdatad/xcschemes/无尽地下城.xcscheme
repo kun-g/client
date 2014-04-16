@@ -17,7 +17,7 @@
                BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
                BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
                BlueprintName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;"
-               ReferencedContainer = "container:PocketDungeon.xcodeproj">
+               ReferencedContainer = "container:PocketDungeon-DEVELOP.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
             BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
             BlueprintName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;"
-            ReferencedContainer = "container:PocketDungeon.xcodeproj">
+            ReferencedContainer = "container:PocketDungeon-DEVELOP.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,7 +54,7 @@
             BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
             BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
             BlueprintName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;"
-            ReferencedContainer = "container:PocketDungeon.xcodeproj">
+            ReferencedContainer = "container:PocketDungeon-DEVELOP.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
             BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
             BlueprintName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;"
-            ReferencedContainer = "container:PocketDungeon.xcodeproj">
+            ReferencedContainer = "container:PocketDungeon-DEVELOP.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -25,7 +25,7 @@ var theMe;
 var theCache;
 
 var PAGE_SIZE = 10;//每页显示的玩家数量
-var PAGE_COUNT = 5;
+var PAGE_COUNT = 3;
 
 var BAR_WIDTH = 580;
 var BAR_HEIGHT = 150;
@@ -59,7 +59,7 @@ function createRoleBar(role, rank){
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
     layer.owner.labPower.setString(role.getPower());
     layer.ui.avatar.setRole(role);
-    layer.owner.labBPRank = rank;
+    layer.owner.labBPRank.setString(rank);
 
     //--- vip panel ---
     if( role.vip != null && role.vip > 0 ){
@@ -132,7 +132,7 @@ function update(delta){
         if( this.LOAD_INDEX < theRankList.length ){
             var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
             role.fix();
-            var rank = thePage*PAGE_SIZE+1;
+            var rank = thePage*PAGE_SIZE+1+this.LOAD_INDEX;
             var node = createRoleBar(role, rank);
             node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT));
             node.KEY = Number(this.LOAD_INDEX);
@@ -147,11 +147,22 @@ function update(delta){
     }
 }
 
+function updatePageNumber(page){
+    var p = page+1;
+    if( page <= PAGE_COUNT ){
+        theLayer.owner.labelPage.setString(p+"/"+PAGE_COUNT);
+    }
+    else{
+        theLayer.owner.labelPage.setString(p);
+    }
+}
+
 function onMyPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var myPage = Math.floor(theMe/PAGE_SIZE);
     if( myPage != thePage ){
         fillPage(myPage);
+        updatePageNumber(myPage);
     }
 }
 
@@ -159,34 +170,46 @@ function onFirstPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( thePage != 0 ){
         fillPage(0);
+        updatePageNumber(0);
     }
 }
 
 function onPreviousPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var page = thePage-1;
-    if( page < 0 ){
-        PopMsg.pop(POPTYPE_ERROR, "已经到第一页了");
+    if( thePage == 0 ){
+        PopMsg.pop("已经到第一页了", POPTYPE_ERROR);
     }
     else{
+        var page = thePage-1;
+        if( page < 0 ) page = 0;
+        if( page > PAGE_COUNT-1 ) page = PAGE_COUNT-1;
+
         fillPage(page);
+        updatePageNumber(page);
     }
 }
 
 function onNextPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var page = thePage+1;
-    if( page >= PAGE_COUNT ){
-        PopMsg.pop(POPTYPE_ERROR, "已经到最后一页了");
+    if( thePage == PAGE_COUNT-1 ){
+        PopMsg.pop("已经到最后一页了", POPTYPE_ERROR);
     }
     else{
+        var page = thePage+1;
+        if( page < 0 ) page = 0;
+        if( page > PAGE_COUNT-1 ) page = PAGE_COUNT-1;
+
         fillPage(page);
+        updatePageNumber(page);
     }
 }
 
 function onLastPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    fillPage(PAGE_COUNT-1);
+    if( thePage != PAGE_COUNT-1 ){
+        fillPage(PAGE_COUNT-1);
+        updatePageNumber(PAGE_COUNT-1);
+    }
 }
 
 function onClose(sender){
