@@ -1,0 +1,8 @@
+{
+    "access_key": "tTdA3zzuKgHF-UFuk0ulveAVCsqpXlF6PmUTN9Ey",
+    "secret_key": "tr6Xk6YmYDpN492XnmREnMb0Q09bjW6EXSd372k6",
+    "bucket": "hotupdate",
+    "sync_dir": "./hotupdate",
+    "async_ops": "fop1;fop2;fopN",
+    "debug_level": 1
+}
