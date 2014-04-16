@@ -41,8 +41,7 @@
         { "type": "event", "event": "onBePhysicalDamage" },
         { "type": "event", "event": "onBePhysicalRangeDamage" },
           { "type": "event", "event": "onBeSpellDamage" },
-          { "type": "event", "event": "onBeSpellRangeDamage" },
-          { "type": "targetMutex", "mutex": "reinforce" }
+          { "type": "event", "event": "onBeSpellRangeDamage" }
       ],
       "availableCondition": [
         { "type": "effectCount" }
@@ -1982,7 +1981,7 @@
         "label": "宝箱",
         "config": {
             "triggerCondition": [
-                { "type": "event", "event": "onBeActivate" }
+                { "type": "event", "event": "onBeActivate"}
             ],
             "targetSelection":{
                 "pool":"Self",
@@ -1998,5 +1997,569 @@
                 {"type":"kill"}
             ]
         }
+    },
+    {
+        "skillId":83,
+        "label":"扣除生命值",
+        "desc":"我方全体掉血",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                {"type": "damage", "formular": {"src":{"strong":0.5}}}
+            ],
+            "levelConfig":[
+                {"type": "playEffect","effect":9,"pos":"target"},
+                {"type": "playEffect","effect":34,"pos":"target"}
+            ]
+      }
+    },
+      {
+          "skillId":84,
+          "label":"全体生命值",
+          "desc":"全体回血",
+          "config": {
+            "basic": {
+              "targetEffect": 19
+            },
+            "triggerCondition": [
+              {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+             "pool": "Team",
+             "filter": ["Alive", "Visible"]
+          },
+          "action":[
+            {"type": "heal", "formular": {"src":{"strong":0.5}, "c":5}},
+              {"type": "playEffect","effect":3,"pos":"target"}
+          ]
+          }
+      },
+    {
+        "skillId":85,
+        "label":"转换阵营",
+        "desc":"我方阵营",
+        "config": {
+            "triggerCondition": [
+                {"type" :"event","event": "onEnterLevel"}
+            ],
+            "targetSelection": {
+                "pool": "Self",
+                "filter": ["Alive"]
+            },
+            "action":[
+                {"type":"changeFaction","name":"hero"},
+                {"type":"kill"}
+            ]
+        }
+    },
+    {
+        "skillId":86,
+        "label":"转换阵营",
+        "desc":"敌方阵营",
+        "config": {
+            "triggerCondition": [
+                {"type" :"event","event": "onEnterLevel"}
+            ],
+            "targetSelection": {
+                "pool": "Self",
+                "filter": ["Alive"]
+            },
+            "action":[
+                {"type":"changeFaction","name":"monster"},
+                {"type":"kill"}
+            ]
+        }
+    },
+    {
+        "skillId": 87,
+        "label":"全体加速",
+        "desc":"我方全体攻击加速",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                { "type": "installSpell", "spell": 88}
+
+            ]
+        }
+    },
+    {
+        "skillId":88,
+        "config": {
+            "installAction":[
+                { "type": "setProperty",  "modifications": {"speed":{"src":{"speed":3},"c":20}} }
+            ],
+            "uninstallAction": [
+                { "type": "resetProperty" }
+            ],
+            "buffType":"RoleBuff",
+            "availableCondition": [
+                { "type": "event", "event": "onEndBattleTurn", "eventCount": 2 }
+            ],
+            "property":
+            {
+                "strong": 0
+            },
+            "xproperty":
+            {
+                "strong": 1
+            }
+        }
+    },
+    {
+        "skillId": 89,
+        "label":"上升攻击力",
+        "desc":"我方全体攻击上升",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                { "type": "installSpell", "spell": 90}
+
+            ]
+        }
+    },
+    {
+        "skillId":90,
+        "config": {
+            "installAction":[
+                { "type": "setProperty" }
+            ],
+            "uninstallAction": [
+                { "type": "resetProperty" }
+            ],
+            "buffType":"RoleBuff",
+            "availableCondition": [
+                { "type": "event", "event": "onEndBattleTurn", "eventCount": 2 }
+            ],
+            "levelConfig" : [
+                {"modifications": {"attack":{"src":{"attack":1}}}}]
+
+        }
+    },
+    {
+        "skillId": 91,
+        "label":"降低攻击力",
+        "desc":"我方全体攻击降低",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                { "type": "installSpell", "spell": 92}
+
+            ]
+        }
+    },
+    {
+        "skillId":92,
+        "config": {
+            "installAction":[
+                { "type": "setProperty" }
+            ],
+            "uninstallAction": [
+                { "type": "resetProperty" }
+            ],
+            "buffType":"RoleDebuff",
+            "availableCondition": [
+                { "type": "event", "event": "onEndBattleTurn", "eventCount": 2 }
+            ],
+            "levelConfig" : [
+                {"modifications": {"attack":{"src":{"attack":-0.5}}}}]
+
+        }
+    },
+    {
+        "skillId": 93,
+        "label":"中毒",
+        "desc":"我方全体持续掉血",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                { "type": "installSpell", "spell": 94}
+
+            ]
+        }
+    },
+    {
+        "skillId": 94,
+            "config": {
+            "action":[
+                {"type": "damage","damageType":"poison","formular": {"src":{"health":0.1}}}
+            ],
+            "targetSelection":
+            { 
+              "pool":"Self",
+              "filter": ["Alive"]
+            },
+            "buffType":"HealthDebuff",
+            "triggerCondition":[
+                { "type": "event", "event": "onBattleTurnEnd"},
+                { "type": "event", "event": "onMoveTurnEnd"}
+            ],
+            "availableCondition": [
+                { "type": "effectCount", "count":3}
+            ]
+            }
+    },
+    {
+        "skillId": 95,
+        "label":"无敌",
+        "desc":"我方全体无敌",
+        "config":{
+            "triggerCondition":
+                {"type" :"event","event": "onShow"}
+            ,
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                { "type": "installSpell", "spell": 96}
+
+
+            ]
+        }
+    },
+    {
+        "skillId": 96,
+        "config": {
+            "action":[
+                {"type": "ignoreHurt" }
+            ],
+            "targetSelection":
+            { "pool":"Self",
+                "filter": ["Alive"]},
+            "buffType":"RoleBuff",
+            "triggerCondition": [
+                { "type": "event", "event": "onBePhysicalDamage" },
+                { "type": "event", "event": "onBePhysicalRangeDamage" },
+                { "type": "event", "event": "onBeSpellDamage" },
+                { "type": "event", "event": "onBeSpellRangeDamage" }
+            ],
+                "availableCondition": [
+                { "type": "effectCount", "count":2}
+            ]
+        }
+    },
+    {
+        "skillId": 97,
+        "label":"攻击吸收",
+        "desc":"我方全体攻击吸收",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                { "type": "installSpell", "spell": 98}
+
+            ]
+        }
+    },
+    {
+        "skillId": 98,
+        "config": {
+           "triggerCondition": [
+                   { "type": "event", "event": "onBePhysicalDamage" },
+                   { "type": "event", "event": "onBePhysicalRangeDamage" },
+                   { "type": "event", "event": "onBeSpellDamage" },
+                   { "type": "event", "event": "onBeSpellRangeDamage" }
+            ],
+            "targetSelection": {
+                "pool": "Self",
+                "filter": ["Alive", "Visible"]
+            },
+
+            "buffType":"RoleBuff",
+            "action": [
+                {"type": "ignoreHurt"},
+                {"type": "heal", "formular": {"environment":{"damage":1}}}
+            ],
+            "availableCondition": [
+                { "type": "effectCount", "count":1}
+           ]
+
+        }
+    },
+    {
+        "skillId": 99,
+        "label":"清除buff",
+        "desc":"清除我方所有buff",
+        "config": {
+            "basic": {
+                "targetEffect": 19
+            },
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "Teammate",
+                "filter": ["Alive", "Visible"]
+            },
+            "action":[
+                {"type":"clearDebuff"},
+                {"type":"clearBuff"}
+             ]
+
+            }
+
+    },
+    {
+        "skillId": 100,
+        "label":"怒之力",
+        "icon": "问美术",
+        "desc": "使用时当回合命中下降，不能回避攻击,下回合造成300%伤害.",
+        "slotId": 0,
+        "config": {
+            "basic" : {
+                "spellAction": 2,
+                "spellEffect": 4,
+                "targetEffect": 1 ,
+                "spellDelay": 0.3
+            },
+            "targetSelection": {
+                "pool": "Self"
+            },
+            "triggerCondition": [
+                { "type": "countDown", "cd": 10 }
+            ],
+            "action": [
+                { "type": "installSpell", "spell": 1}
+            ],
+            "levelConfig": [
+                {"level": 1},
+                {"level": 2},
+                {"level": 3}
+            ]
+        }
+    },
+    {
+        "skillId": 101,
+        "slotId": -1,
+        "config": {
+            "basic": {
+                "spellAction": 4,
+                "spellEffect": 1,
+                "spellDelay": 0.3
+            },
+            "triggerCondition": [
+                { "type": "event", "event": "onBePhysicalDamage" },
+                { "type": "event", "event": "onBePhysicalRangeDamage" },
+                { "type": "event", "event": "onBeSpellDamage" },
+                { "type": "event", "event": "onBeSpellRangeDamage" }
+            ],
+            "availableCondition": [
+                { "type": "effectCount" }
+            ],
+            "action": [
+                { "type": "modifyVar", "x": "damage", "formular": {"acquisition": {"damage":3}} }
+            ],
+            "levelConfig": [
+                {"count": 1},
+                {"count": 2},
+                {"count": 3}
+            ]
+        }
+    },
+    {
+            "skillId": 102,
+            "label":"血之狂怒",
+            "icon": "等美术",
+            "desc":"血之狂怒 每受到A点伤害,获得A*B的伤害加成。",
+            "slotId":2,
+            "config":{
+            "basic":{
+            "spellEffect": 32,
+            "targetEffect": 10,
+            "spellDelay": 0.3,
+            "targetDelay": 0.3
+            },
+            "triggerCondition": [
+            { "type": "event", "event": "Damage" }
+                        ],
+            "action": [
+            { "type": "damage","damageType":"Spell" }
+            ],
+            "targetSelection": {
+            "pool": "Self",
+            "filter": ["Alive", "Visible"]
+            },
+            "levelConfig":[
+            {"formular": {"src":{"attack":0.2},"c":2}},
+            {"formular": {"src":{"attack":0.3},"c":10}},
+            {"formular": {"src":{"attack":0.4},"c":15}}
+            ]
+            }
+       },
+    {
+        "skillId": 103,
+        "label":"咆哮",
+        "desc":"一定几率降低怪物命中",
+        "config": {
+            "basic": {
+                "targetEffect": 15
+            },
+            "triggerCondition": [
+                {"type" :"card", "id": 6}
+            ],
+            "targetSelection": {
+                "pool": "Team",
+                "filter": ["Alive"]
+            },
+            "action":[
+                {"type": "costCard", "card":6},
+                {"type":"installSpell", "spell": 23}
+            ]
+        }
+    },
+        {
+        "skillId": 104,
+        "label":"复仇之力",
+        "icon": "等美术",
+        "desc":"怪物攻击队伍并造成伤害，狂战士有几率立即复仇该生物。",
+        "slotId": 3 ,
+        "config": {
+            "basic" : {
+                "spellAction":4,
+                "spellEffect": 9,
+                "targetEffect": 1 ,
+                "spellDelay": 0,
+                "targetDelay": 0
+            },
+            "targetSelection": {
+                "pool": "Target",
+                "filter": ["Alive", "Visible"]
+            },
+            "triggerCondition": [
+                { "type": "event", "event": "onTeammateBePhysicalDamage" },
+                { "type": "event", "event": "onTeammateBePhysicalRangeDamage" },
+                { "type": "chance", "chance": 0.45 },
+                { "type": "targetMutex", "mutex": "reinforce" },
+                {"type":"alive"}
+            ],
+            "action": [
+                {"type": "modifyVar", "x": "damage" },
+                {"type": "setTargetMutex", "mutex": "reinforce", "count": 1 },
+                {"type": "setMyMutex", "mutex": "reinforce", "count": 1 },
+                {"type": "replaceTar" },
+                {"type": "ignoreHurt" }
+            ],
+            "levelConfig": [
+                { "formular": {"environment": {"damage":0.8}} },
+                { "formular": {"environment": {"damage":0.7}} },
+                { "formular": {"environment": {"damage":0.5}} }
+            ]
+        }
+    },
+    {
+        "skillId":105,
+        "label":"寒冰箭",
+        "icon": "等美术",
+        "desc":"对场上多个怪物造成伤害。",
+        "slotId": 0,
+        "config": {
+            "basic": {
+                "spellAction": 1,
+                "spellEffect": 4,
+                "targetEffect": 0,
+                "targetDelay": 0.3
+            },
+            "triggerCondition": [
+                { "type": "countDown", "cd": 10 }
+            ],
+            "targetSelection": {
+                "pool": "Enemy",
+                "filter": ["Alive", "Visible"],
+                "method": "Rand"
+            },
+            "action": [
+                { "type": "damage","damageType":"Spell","isRange":true }
+            ],
+            "levelConfig" : [
+                { "formular": {"src":{"attack":0.8}} },
+                { "formular": {"src":{"attack":1}} },
+                { "formular": {"src":{"attack":1.2}} }
+            ]
+        }
+    },
+    {
+        "skillId": 106,
+        "label":"魔力漩涡",
+        "icon": "等美术",
+        "desc":"场上敌人越多,魔导师的攻击力也随之增强。",
+        "slotId":1,
+        "config":{
+            "basic":{
+                "spellEffect": 32,
+                "targetEffect": 10,
+                "spellDelay": 0.3,
+                "targetDelay": 0.3
+            },
+            "triggerCondition": [
+                { "type": "event", "event": "Enemy" }
+            ],
+            "action": [
+                { "type": "modifyVar", "x": "敌人的数量", "formular": {"acquisition": {"damage":4}} }
+            ],
+            "targetSelection": {
+                "pool": "Self",
+                "filter": ["Alive", "Visible"]
+            },
+            "levelConfig":[
+                {"formular": {"src":{"attack":0.2},"c":2}},
+                {"formular": {"src":{"attack":0.3},"c":10}},
+                {"formular": {"src":{"attack":0.4},"c":15}}
+            ]
+        }
     }
+
+
 ]

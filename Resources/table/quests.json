@@ -4655,7 +4655,7 @@
     ],
         "cond":
         { "and": [
-            { "<": [ { "type": "getProperty", "key": "tutorialStage"}, 1000 ] }
+            { "<": [ { "type": "getProperty", "key": "tutotialStage"}, 1000 ] }
         ]
         }
 
@@ -4694,10 +4694,6 @@
             {
                 "type":3,
                 "count":250
-            },
-            {
-                "type":1,
-                "count":150
             }
         ],
         "cond":
@@ -4721,10 +4717,6 @@
         "prize":[
             {
                 "type":3,
-                "count":150
-            },
-            {
-                "type":1,
                 "count":150
             }
         ],
