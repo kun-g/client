@@ -23,8 +23,7 @@ var MODE_LOAD = 1;
 var theMode;
 
 var remoteServer = [
-    {"ip":"61.174.8.226", "port":7756},
-    {"ip":"101.69.181.231", "port":7756}
+    {"ip":"60.191.205.25", "port":7757}
 ];
 
 var localServer = [

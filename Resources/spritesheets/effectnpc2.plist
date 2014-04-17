@@ -7,7 +7,7 @@
             <key>effectnpc2-clear1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{286,304},{80,102}}</string>
+                <string>{{418,108},{80,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,11 +20,11 @@
             <key>effectnpc2-clear2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,408},{80,102}}</string>
+                <string>{{346,398},{80,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{80,102}}</string>
                 <key>sourceSize</key>
@@ -33,7 +33,7 @@
             <key>effectnpc2-clear3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,304},{80,102}}</string>
+                <string>{{346,294},{80,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,6 +46,19 @@
             <key>effectnpc2-clear4.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{418,212},{80,80}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{80,80}}</string>
+                <key>sourceSize</key>
+                <string>{80,80}</string>
+            </dict>
+            <key>effectnpc2-clear5.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{2,304},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -56,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>effectnpc2-clear5.png</key>
+            <key>effectnpc2-clear6.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{300,300}}</string>
@@ -69,6 +82,97 @@
                 <key>sourceSize</key>
                 <string>{300,300}</string>
             </dict>
+            <key>effectnpc2-wd1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{204,304},{140,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,140}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>effectnpc2-wd2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{304,224},{76,68}}</string>
+                <key>offset</key>
+                <string>{-32,36}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{76,68}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>effectnpc2-wd3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{412,2},{104,94}}</string>
+                <key>offset</key>
+                <string>{-18,22}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,1},{104,94}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>effectnpc2-wd4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{304,2},{116,106}}</string>
+                <key>offset</key>
+                <string>{-4,3}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{8,14},{116,106}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>effectnpc2-wd5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{304,120},{112,102}}</string>
+                <key>offset</key>
+                <string>{11,-13}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{25,32},{112,102}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>effectnpc2-wd6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{428,294},{90,82}}</string>
+                <key>offset</key>
+                <string>{25,-29}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{50,58},{90,82}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
+            <key>effectnpc2-wd7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{450,386},{42,38}}</string>
+                <key>offset</key>
+                <string>{43,-48}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{92,99},{42,38}}</string>
+                <key>sourceSize</key>
+                <string>{140,140}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -79,7 +183,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1518411fe494d87d943247ad2d55aa2f$</string>
+            <string>$TexturePacker:SmartUpdate:39d5d40b0b1f3270bca9ff5704ac63b6$</string>
             <key>textureFileName</key>
             <string>effectnpc2.png</string>
         </dict>

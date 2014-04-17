@@ -186,8 +186,10 @@ static Nd91Delegate* gNd91Delegate = nil;
             [[NdComPlatform defaultPlatform] NdShowToolBar:NdToolBarAtBottomRight];
         }
         else{
-            mpUACD->onLoggedOut();
+            CCLOG("AAAABBBBCCCC");
             [[NdComPlatform defaultPlatform] NdHideToolBar];
+            CCLOG("AAAABBBBCCCC2");
+            mpUACD->onLoggedOut();
         }
     }
 }
