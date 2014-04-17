@@ -6,8 +6,7 @@ ENCRYPT_KEY="WhyDoingThis" #default encrypt key
 #1 procedural constants
 WORK_PATH=`dirname $0`
 cd $WORK_PATH
-RES_PATH="Clients/PocketDungeon/PocketDungeon/Resources"
-CLI_PATH="Clients/PocketDungeon/PocketDungeon"
+RES_PATH="Resources"
 
 BLACKLIST=( \
 "/Resources/blackbox/" \
@@ -113,7 +112,7 @@ folder $RES_PATH/dscript/dummy
 folder $RES_PATH/dtable/dummy
 CompileJSC $RES_PATH/blackbox $RES_PATH/dblackbox
 CompileJSC $RES_PATH/script $RES_PATH/dscript
-CompileJSC $CLI_PATH/libs/javascript/bindings/js $RES_PATH
+CompileJSC libs/javascript/bindings/js $RES_PATH
 Encrypt $RES_PATH/table $RES_PATH/dtable
 echo "  compile done."
 
