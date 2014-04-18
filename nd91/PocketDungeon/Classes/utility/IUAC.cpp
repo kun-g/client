@@ -32,3 +32,4 @@ UACDelegate* IUAC::getUACDelegate()
 
 void IUAC::onResume(){}
 void IUAC::onPause(){}
+

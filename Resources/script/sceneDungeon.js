@@ -47,7 +47,7 @@ function onEvent(event)
         {
             if( event.arg.stg != null ){
                 engine.user.dungeon.stage = event.arg.stg;
-                if( event.arg.stg == 0 )
+                if( event.arg.stg == INITIAL_STAGE )
                 {
                     theDungeon.TutorialFlag = true;
                     debug("DUNGEON TUTOROAL FLAG");

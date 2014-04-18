@@ -339,6 +339,7 @@ function onEvent(event)
         {
             engine.user.player.RMB = event.arg.rmb;
             engine.user.actor.vip = event.arg.vip;
+            engine.user.player.AID = event.arg.aid;
             engine.event.processNotification(Message_UpdateVIPLevel);
             return true;
         }

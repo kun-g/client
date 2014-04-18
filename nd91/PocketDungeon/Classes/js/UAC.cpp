@@ -11,6 +11,10 @@
 
 using namespace std;
 
+UACJSDelegate::UACJSDelegate(){
+    mObject = NULL;
+}
+
 UACJSDelegate* UACJSDelegate::getInstance()
 {
     static UACJSDelegate ins;
@@ -24,38 +28,54 @@ void UACJSDelegate::setCallback(JSObject *obj)
 
 void UACJSDelegate::onUACReady()
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onUACReady", 0);
-    CallbackManager::getInstance()->postCallback(call);
-    call->release();
+    if( mObject != NULL ){
+        JSCallback* call = JSCallback::alloc(mObject, "onUACReady", 0);
+        CallbackManager::getInstance()->postCallback(call);
+        call->release();
+    }
 }
 
 void UACJSDelegate::onLoggedIn(const string &token)
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onLoggedIn", 1);
-    call->setArgumentString(0, token);
-    CallbackManager::getInstance()->postCallback(call);
-    call->release();
+    if( mObject != NULL ){
+        JSCallback* call = JSCallback::alloc(mObject, "onLoggedIn", 1);
+        call->setArgumentString(0, token);
+        CallbackManager::getInstance()->postCallback(call);
+        call->release();
+    }
 }
 
 void UACJSDelegate::onLoggedOut()
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onLoggedOut", 0);
-    CallbackManager::getInstance()->postCallback(call);
-    call->release();
+    if( mObject != NULL ){
+        JSCallback* call = JSCallback::alloc(mObject, "onLoggedOut", 0);
+        CallbackManager::getInstance()->postCallback(call);
+        call->release();
+    }
+
 }
 
 void UACJSDelegate::onLoginViewClosed()
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onLoginViewClosed", 0);
-    CallbackManager::getInstance()->postCallback(call);
-    call->release();
+    if( mObject != NULL ){
+        JSCallback* call = JSCallback::alloc(mObject, "onLoginViewClosed", 0);
+        CallbackManager::getInstance()->postCallback(call);
+        call->release();
+    }
 }
 
 void UACJSDelegate::onManageViewClosed()
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onManageViewClosed", 0);
-    CallbackManager::getInstance()->postCallback(call);
-    call->release();
+    if( mObject != NULL ){
+        JSCallback* call = JSCallback::alloc(mObject, "onManageViewClosed", 0);
+        CallbackManager::getInstance()->postCallback(call);
+        call->release();
+    }
+}
+
+void UACJSDelegate::resetDelegate()
+{
+    mObject = NULL;
 }
 
 JSBool jsbUACInit(JSContext* cx, unsigned argc, JS::Value* vp)

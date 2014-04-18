@@ -11,6 +11,7 @@
 #include "tools.h"
 #include "SimpleAudioEngine.h"
 #include "TCP.h"
+#include "UAC.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -352,6 +353,7 @@ JSBool jsbSysReset(JSContext* cx, unsigned argc, JS::Value* vp)
     //reset system callback
     sEBGC = NULL;
     sEFGC = NULL;
+    UACJSDelegate::getInstance()->resetDelegate();
     
     return JS_TRUE;
 }

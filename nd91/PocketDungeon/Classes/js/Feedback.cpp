@@ -14,7 +14,7 @@ using namespace std;
 
 JSBool jsbFeedbackInit(JSContext* cx, unsigned argc, JS::Value* vp)
 {
-    getFeedback()->initFeedback();
+    //getFeedback()->initFeedback();
     return JS_TRUE;
 }
 

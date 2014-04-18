@@ -22,7 +22,7 @@
 void preInitAPI()
 {
     setSystem(new iOSsystem());//set ios system
-    setFeedback(new iOSfeedback());//set feedback
+    //setFeedback(new iOSfeedback());//set feedback
     Nd91UAC* Nd91 = new Nd91UAC();
     setUAC(Nd91);
     setIAP(Nd91);

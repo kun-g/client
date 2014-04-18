@@ -13,6 +13,7 @@
 #include "jsb_opengl_registration.h"
 #include "XMLHTTPRequest.h"
 
+#include "PublishVersions.h"
 #include "ISystem.h"
 #include "NativeAPI.h"
 #include "CallbackManager.h"
@@ -37,6 +38,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    preInitAPI();
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
@@ -165,6 +167,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     CCScriptEngineProtocol *pEngine = ScriptingCore::getInstance();
     CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
+    
+    postInitAPI();
+    
     ScriptingCore::getInstance()->runScript("main.js");
     
     //start callback manager
@@ -201,6 +206,7 @@ void AppDelegate::applicationDidEnterBackground()
     //SimpleAudioEngine::sharedEngine()->pauseAllEffects();
     
     triggerEnterBackground();
+    onPauseApp();
 }
 
 // this function will be called when the app is active again
@@ -211,4 +217,5 @@ void AppDelegate::applicationWillEnterForeground()
     //SimpleAudioEngine::sharedEngine()->resumeAllEffects();
     
     triggerEnterForeground();
+    onResumeApp();
 }

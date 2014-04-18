@@ -13,6 +13,7 @@ function Player()
     this.EnergyTimer = engine.game.getServerTime();
     this.Tutorial = 0;
     this.RMB = 0;
+    this.AID = 0;
     this.Flags = {};
 }
 

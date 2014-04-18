@@ -30,7 +30,11 @@ public:
     void onLoginViewClosed();
     void onManageViewClosed();
     
+    void resetDelegate();
+    
 private:
+    UACJSDelegate();
+    
     JSObject* mObject;
 };
 

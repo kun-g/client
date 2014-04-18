@@ -93,7 +93,7 @@ function splash(){
 function main()
 {
     //global init
-    feedback.init();
+    //feedback.init();
     system.setAppBadgeNumber(0);
 
     //start the game

@@ -7,7 +7,7 @@
             <key>dailymission-common-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{391,195},{21,28}}</string>
+                <string>{{412,991},{21,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>dailymission-common-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{361,195},{21,28}}</string>
+                <string>{{418,968},{21,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,11 +33,11 @@
             <key>dailymission-common-3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{490,164},{20,29}}</string>
+                <string>{{387,968},{20,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{20,29}}</string>
                 <key>sourceSize</key>
@@ -46,7 +46,7 @@
             <key>dailymission-common-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{361,164},{23,27}}</string>
+                <string>{{387,990},{23,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>dailymission-common-award.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{246,324},{200,163}}</string>
+                <string>{{246,803},{200,163}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -69,10 +69,23 @@
                 <key>sourceSize</key>
                 <string>{204,165}</string>
             </dict>
+            <key>dailymission-common-award2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,583},{207,174}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{207,174}}</string>
+                <key>sourceSize</key>
+                <string>{207,174}</string>
+            </dict>
             <key>dailymission-common-bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,364},{579,65}}</string>
+                <string>{{2,2},{579,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +98,7 @@
             <key>dailymission-common-btnreward1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,258},{242,104}}</string>
+                <string>{{69,246},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,11 +111,11 @@
             <key>dailymission-common-btnreward2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{246,218},{242,104}}</string>
+                <string>{{69,2},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{242,104}}</string>
                 <key>sourceSize</key>
@@ -111,7 +124,7 @@
             <key>dailymission-common-btnstart1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,152},{242,104}}</string>
+                <string>{{2,909},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +137,7 @@
             <key>dailymission-common-btnstart2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,46},{242,104}}</string>
+                <string>{{2,803},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +150,7 @@
             <key>dailymission-common-pattern.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{376,42}}</string>
+                <string>{{2,759},{376,42}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,11 +163,11 @@
             <key>dailymission-common-tabmrrw1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{246,46},{113,170}}</string>
+                <string>{{175,2},{113,170}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,170}}</string>
                 <key>sourceSize</key>
@@ -163,7 +176,7 @@
             <key>dailymission-common-tabmrrw2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{380,2},{113,130}}</string>
+                <string>{{175,117},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
@@ -176,7 +189,7 @@
             <key>dailymission-common-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{361,117},{139,45}}</string>
+                <string>{{246,968},{139,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -196,7 +209,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1ccfeac35c73d82a359c81385865a31e$</string>
+            <string>$TexturePacker:SmartUpdate:37ec97dacf904aa77bfc777d4c3c5839$</string>
             <key>textureFileName</key>
             <string>dailymission-common.png</string>
         </dict>
