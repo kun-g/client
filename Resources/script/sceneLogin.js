@@ -342,8 +342,13 @@ function startLogin()
     theLayer.loadingCircle.setVisible(false);
 
     updateLoading("登录中", 0.05);
-    uac.setDelegate(uacDelegate);
-    uac.init();
+    //test code
+    //uac.setDelegate(uacDelegate);
+    //uac.init();
+    gamecenter.setCallback(function(val){
+        debug("GameCenter.Callback("+val+")");
+    });
+    gamecenter.authenticateLocalPlayer(true);
 }
 
 function serverTimeOut(){

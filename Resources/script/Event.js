@@ -46,8 +46,9 @@ Event.prototype.start = function()
     system.setEnterBackgroundCallback(onEnterBackground);
     system.setEnterForegroundCallback(onEnterForeground);
     //init iap
-    iap.setCallback(onPaymentResult, this);
-    iap.init();
+    //test code
+    //iap.setCallback(onPaymentResult, this);
+    //iap.init();
 }
 
 Event.prototype.testServers = function(serverList)
