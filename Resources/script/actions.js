@@ -1438,9 +1438,6 @@ function makeDungeonBlock(pace, act)
             || this.typ == BLOCK_LOCKEDEXIT )
         {
             dungeon.ExitPos = this.pos;
-            if( dungeon.Level == 0 && dungeon.TutorialFlag ){
-                engine.dialogue.startDialogue(2);
-            }
         }
 
         //optimize update access
@@ -1645,36 +1642,6 @@ function makeEnterLevel(pace, act){
 
     ret.onStart = function(dungeon, layer){
         debug("EnterLevel = \n"+JSON.stringify(this));
-        if( this.lvl == 0 && dungeon.TutorialFlag && openScened )
-        {
-            engine.dialogue.startDialogue(0);
-            var tut = loadModule("tutorial.js");
-            tut.setHintCloseCallback(function(){
-                engine.dialogue.clearEventCallback();
-                engine.dialogue.startDialogue(1);
-                tut.setHintCloseCallback(null, null);
-            });
-            engine.dialogue.setEventCallback("onDialogueEnd", tut.showHint, tut);
-        }
-        if( this.lvl == 1 && dungeon.TutorialFlag )
-        {
-            engine.dialogue.startDialogue(8);
-            //统计
-            tdga.event("Intro#4");
-            engine.event.sendNTFEvent(Request_ReportState, {
-                                      key: "intro",
-                                      val: "finish first level"
-                                      });
-        }
-        if( this.lvl == 2 && dungeon.TutorialFlag )
-        {
-            //统计
-            tdga.event("Intro#5");
-            engine.event.sendNTFEvent(Request_ReportState, {
-                                      key: "intro",
-                                      val: "finish second level"
-                                      });
-        }
         //clear
         dungeon.resetBlocks();
         dungeon.Units = [];

@@ -67,6 +67,7 @@ void Nd91UAC::onPause()
 
 void Nd91UAC::onResume()
 {
+    CCLOG("onResume");//test
     [[NdComPlatform defaultPlatform] NdPause];
 }
 
@@ -186,8 +187,8 @@ static Nd91Delegate* gNd91Delegate = nil;
             [[NdComPlatform defaultPlatform] NdShowToolBar:NdToolBarAtBottomRight];
         }
         else{
-            mpUACD->onLoggedOut();
             [[NdComPlatform defaultPlatform] NdHideToolBar];
+            mpUACD->onLoggedOut();
         }
     }
 }

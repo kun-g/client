@@ -32,12 +32,25 @@ var payStr = [
 
 var theLastBillNo = null;
 
-function genBillNo(pid){
-    var actorName = engine.user.actor.Name;
-    var zoneId = engine.session.zoneId;
-    var time = Math.floor(engine.game.getServerTime()/1000);
-    return actorName+"@"+zoneId+"@"+time+"@"+pid+"@"+engine.game.getConfig().binary_channel;
+function fixNumber(num, len){
+    var str = ""+num;
+    if( str.length > len ){
+        str = str.substr(0, len);
+    }
+    while(str.length < len){
+        str = "0" + str;
+    }
+    return str;
 }
+
+function genBillNo(pid){
+    var actorName = fixNumber(engine.user.player.AID, 8);
+    var productId = fixNumber(pid, 2);
+    var zoneId = fixNumber(engine.session.zoneId, 2);
+    var time = fixNumber(Math.floor(engine.game.getServerTime()/1000), 10);
+    return actorName+productId+zoneId+time+engine.game.getConfig().binary_channel;
+}
+
 
 function onEvent(event)
 {

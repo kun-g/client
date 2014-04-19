@@ -7,7 +7,20 @@
             <key>jewel-btn1-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,580},{124,181}}</string>
+                <string>{{2,778},{124,181}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{124,181}}</string>
+                <key>sourceSize</key>
+                <string>{124,181}</string>
+            </dict>
+            <key>jewel-btn1-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,652},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,27 +30,14 @@
                 <key>sourceSize</key>
                 <string>{124,181}</string>
             </dict>
-            <key>jewel-btn1-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{128,662},{124,181}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{124,181}}</string>
-                <key>sourceSize</key>
-                <string>{124,181}</string>
-            </dict>
             <key>jewel-btn2-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,662},{124,181}}</string>
+                <string>{{185,580},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,181}}</string>
                 <key>sourceSize</key>
@@ -46,7 +46,7 @@
             <key>jewel-btn2-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,861},{124,181}}</string>
+                <string>{{368,460},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>jewel-btn3-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{776,735},{124,181}}</string>
+                <string>{{2,526},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>jewel-btn3-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{776,609},{124,181}}</string>
+                <string>{{185,454},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,11 +85,11 @@
             <key>jewel-btn4-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{650,582},{124,181}}</string>
+                <string>{{2,400},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,181}}</string>
                 <key>sourceSize</key>
@@ -98,7 +98,7 @@
             <key>jewel-btn4-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{808,483},{124,181}}</string>
+                <string>{{833,483},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>jewel-btn5-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{467,536},{124,181}}</string>
+                <string>{{650,380},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,11 +124,11 @@
             <key>jewel-btn5-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,454},{124,181}}</string>
+                <string>{{865,300},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,181}}</string>
                 <key>sourceSize</key>
@@ -137,7 +137,7 @@
             <key>jewel-btn6-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{467,410},{124,181}}</string>
+                <string>{{467,334},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,11 +150,11 @@
             <key>jewel-btn6-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{682,399},{124,181}}</string>
+                <string>{{284,328},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,181}}</string>
                 <key>sourceSize</key>
@@ -163,11 +163,11 @@
             <key>jewel-btn7-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{854,300},{124,181}}</string>
+                <string>{{682,254},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,181}}</string>
                 <key>sourceSize</key>
@@ -176,7 +176,7 @@
             <key>jewel-btn7-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,328},{124,181}}</string>
+                <string>{{499,208},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,20 +189,7 @@
             <key>jewel-btn8-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{499,284},{124,181}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{124,181}}</string>
-                <key>sourceSize</key>
-                <string>{124,181}</string>
-            </dict>
-            <key>jewel-btn8-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{862,117},{124,181}}</string>
+                <string>{{865,117},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -212,14 +199,27 @@
                 <key>sourceSize</key>
                 <string>{124,181}</string>
             </dict>
-            <key>jewel-btncz1.png</key>
+            <key>jewel-btn8-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{682,284},{113,170}}</string>
+                <string>{{567,82},{124,181}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{124,181}}</string>
+                <key>sourceSize</key>
+                <string>{124,181}</string>
+            </dict>
+            <key>jewel-btncz1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{750,82},{113,170}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,170}}</string>
                 <key>sourceSize</key>
@@ -239,19 +239,6 @@
                 <string>{113,170}</string>
             </dict>
             <key>jewel-gradebg1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,126},{293,78}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{293,78}}</string>
-                <key>sourceSize</key>
-                <string>{293,78}</string>
-            </dict>
-            <key>jewel-gradebg2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,46},{293,78}}</string>
@@ -277,27 +264,40 @@
                 <key>sourceSize</key>
                 <string>{293,78}</string>
             </dict>
-            <key>jewel-novipbg960.png</key>
+            <key>jewel-jt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{561,82},{280,200}}</string>
+                <string>{{499,46},{76,66}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{76,66}}</string>
+                <key>sourceSize</key>
+                <string>{76,66}</string>
+            </dict>
+            <key>jewel-sj.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{682,208},{60,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{280,200}}</string>
+                <string>{{0,0},{60,38}}</string>
                 <key>sourceSize</key>
-                <string>{280,200}</string>
+                <string>{60,38}</string>
             </dict>
             <key>jewel-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{499,130},{86,45}}</string>
+                <string>{{185,400},{86,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{86,45}}</string>
                 <key>sourceSize</key>
@@ -319,7 +319,7 @@
             <key>jewel-vip10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{988,139},{31,26}}</string>
+                <string>{{991,139},{31,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,11 +345,11 @@
             <key>jewel-vip3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{843,138},{17,26}}</string>
+                <string>{{991,206},{17,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{17,26}}</string>
                 <key>sourceSize</key>
@@ -371,11 +371,11 @@
             <key>jewel-vip5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{843,110},{17,26}}</string>
+                <string>{{991,187},{17,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{17,26}}</string>
                 <key>sourceSize</key>
@@ -384,11 +384,11 @@
             <key>jewel-vip6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{843,82},{18,26}}</string>
+                <string>{{991,167},{18,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{18,26}}</string>
                 <key>sourceSize</key>
@@ -436,7 +436,7 @@
             <key>jewel-vipbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,206},{280,272}}</string>
+                <string>{{2,126},{280,272}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,7 +475,7 @@
             <key>jewel-zhs.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{499,46},{82,60}}</string>
+                <string>{{499,124},{82,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -495,7 +495,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:92b9ffc3e41d101277a0061f8b02e0a9$</string>
+            <string>$TexturePacker:SmartUpdate:feb57cbf031d334087ba13c11ba06ea7$</string>
             <key>textureFileName</key>
             <string>jewel.png</string>
         </dict>

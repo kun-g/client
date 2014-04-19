@@ -20,15 +20,15 @@
             <key>dailyprize-common-bg2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{583,2},{420,37}}</string>
+                <string>{{583,2},{308,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{420,37}}</string>
+                <string>{{0,0},{308,31}}</string>
                 <key>sourceSize</key>
-                <string>{420,37}</string>
+                <string>{308,31}</string>
             </dict>
             <key>dailyprize-common-btnreward1.png</key>
             <dict>
@@ -46,7 +46,7 @@
             <key>dailyprize-common-btnreward2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{583,41},{242,104}}</string>
+                <string>{{583,35},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>dailyprize-common-day1-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{707,547},{154,233}}</string>
+                <string>{{472,609},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>dailyprize-common-day1-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,799},{154,233}}</string>
+                <string>{{707,524},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>dailyprize-common-day1-3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,643},{154,233}}</string>
+                <string>{{2,799},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>dailyprize-common-day2-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{237,537},{154,233}}</string>
+                <string>{{2,643},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>dailyprize-common-day2-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{472,459},{154,233}}</string>
+                <string>{{237,537},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>dailyprize-common-day2-3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{754,391},{154,233}}</string>
+                <string>{{472,453},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>dailyprize-common-day3-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{519,303},{154,233}}</string>
+                <string>{{2,487},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,11 +150,11 @@
             <key>dailyprize-common-day3-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{809,156},{154,233}}</string>
+                <string>{{237,381},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{154,233}}</string>
                 <key>sourceSize</key>
@@ -163,7 +163,7 @@
             <key>dailyprize-common-day3-3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,487},{154,233}}</string>
+                <string>{{472,297},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,11 +176,11 @@
             <key>dailyprize-common-day4-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{237,381},{154,233}}</string>
+                <string>{{809,289},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{154,233}}</string>
                 <key>sourceSize</key>
@@ -215,7 +215,7 @@
             <key>dailyprize-common-day5-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{574,147},{154,233}}</string>
+                <string>{{574,141},{154,233}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,11 +280,11 @@
             <key>dailyprize-common-tabqdjl1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{827,41},{113,170}}</string>
+                <string>{{893,2},{113,170}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,170}}</string>
                 <key>sourceSize</key>
@@ -293,7 +293,7 @@
             <key>dailyprize-common-tabqdjl2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{472,615},{113,130}}</string>
+                <string>{{874,174},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>dailyprize-common-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{472,256},{138,45}}</string>
+                <string>{{827,35},{138,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -326,7 +326,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7a3666d9130efa684703ddfae53b5c33$</string>
+            <string>$TexturePacker:SmartUpdate:86a2dd7884eb085fca1af97660929539$</string>
             <key>textureFileName</key>
             <string>dailyprize-common.png</string>
         </dict>

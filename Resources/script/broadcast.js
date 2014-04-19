@@ -23,8 +23,6 @@ function Broadcast(){
 }
 
 Broadcast.prototype.pushBroadcast = function(arg){
-    debug("PUSH BROADCAST"+JSON.stringify(arg));//test
-
     //处理字符串
     var broad = libTable.queryTable(TABLE_BROADCAST, +arg.typ);
     if( broad != null ){
@@ -99,7 +97,6 @@ Broadcast.prototype.invokeDisplay = function(){
         }
         //scroll up
         this.FLYING = this.ACTIVE.shift();
-        debug("Broadcast.invokeDisplay = "+JSON.stringify(this.FLYING));//test
         this.FLYING.node.setPosition(cc.p(winSize.width + BROADCAST_OFFX, BROADCAST_OFFY));
         this.LAYER.addChild(this.FLYING.node);
         var dist = this.FLYING.length + winSize.width + BROADCAST_OFFX*2;
