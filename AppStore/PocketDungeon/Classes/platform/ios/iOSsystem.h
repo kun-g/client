@@ -59,6 +59,8 @@ public:
     
     bool getPreference(std::string key, std::string &out);
     
+    void setPreference(std::string key, std::string val);
+    
     bool isFirstLaunch();
 };
 

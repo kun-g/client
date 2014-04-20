@@ -11,6 +11,23 @@ var synCount = 0;
 
 var role = loadModule("role.js");
 
+var loginSucessInvokes = [];
+function pushLoginSuccessInvoke(obj, func, args){
+    loginSucessInvokes.push({
+        OBJ: obj,
+        FUNC: func,
+        ARGS: args
+    });
+}
+function processLoginSucessInvokes(){
+    isGameLoggedIn = true;
+    for(var k in loginSucessInvokes){
+        var ivk = loginSucessInvokes[k];
+        ivk.FUNC.apply(ivk.OBJ, ivk.ARGS);
+    }
+    loginSucessInvokes = [];
+}
+
 function syncEvent(event, key){
     if( event.arg.clr )
     {
@@ -46,6 +63,8 @@ function onEvent(event)
     {
         case Message_AccountLoginSuccess:
         {
+            processLoginSucessInvokes();
+
             engine.user.initProfile(event.arg.usr);
 
             //sync time
@@ -292,7 +311,7 @@ function onEvent(event)
             var deliver = event.arg;
             if( deliver.typ == 0 ){
                 deliver.tit = "组队战斗奖励";
-                deliver.txt = "你的英雄继续和别人组队厮杀打拼。又挣到了一些奖励⋯⋯";
+                deliver.txt = "你的英雄和别人组队厮杀打拼。又挣到了一些奖励⋯⋯";
             }
             engine.session.pushSystemDeliver(deliver);
             engine.event.processNotification(Message_NewSystemDeliver);
@@ -378,3 +397,5 @@ function getDungeonFlag()
 
 exports.onEvent = onEvent;
 exports.getDungeonFlag = getDungeonFlag;
+exports.pushLoginSuccessInvoke = pushLoginSuccessInvoke;
+

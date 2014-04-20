@@ -29,10 +29,28 @@ void UACJSDelegate::onUACReady()
     call->release();
 }
 
-void UACJSDelegate::onLoggedIn(const string &token)
+void UACJSDelegate::onLoggedIn(const string &token, int accountType)
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onLoggedIn", 1);
+    int argc = 2;
+    if( accountType < 0 ){ argc = 1; }
+    JSCallback* call = JSCallback::alloc(mObject, "onLoggedIn", argc);
     call->setArgumentString(0, token);
+    if( accountType >= 0 ){
+        call->setArgumentInt(1, accountType);
+    }
+    CallbackManager::getInstance()->postCallback(call);
+    call->release();
+}
+
+void UACJSDelegate::onAccountChanged(const string &token, int accountType)
+{
+    int argc = 2;
+    if( accountType < 0 ){ argc = 1; }
+    JSCallback* call = JSCallback::alloc(mObject, "onAccountChanged", argc);
+    call->setArgumentString(0, token);
+    if( accountType >= 0 ){
+        call->setArgumentInt(1, accountType);
+    }
     CallbackManager::getInstance()->postCallback(call);
     call->release();
 }

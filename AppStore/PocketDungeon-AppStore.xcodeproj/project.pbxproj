@@ -17,6 +17,7 @@
 		533FB3CB18840010008925DC /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 533FB3C918840010008925DC /* GameCenter.mm */; };
 		533FB3CD18841201008925DC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533FB3CC18841201008925DC /* GameKit.framework */; };
 		534267E318891A20005C4DE2 /* IUAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534267E118891A20005C4DE2 /* IUAC.cpp */; };
+		5348704C190369A5007443D3 /* GameCenterUAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5348704A190369A5007443D3 /* GameCenterUAC.cpp */; };
 		534BEFE717F535E00078CD45 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 534BEFE617F535E00078CD45 /* StoreKit.framework */; };
 		534DC5AC1884D6560084E703 /* jsGameCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534DC5AA1884D6560084E703 /* jsGameCenter.cpp */; };
 		535615CB18113104008298BF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535615CA18113104008298BF /* AdSupport.framework */; };
@@ -419,6 +420,8 @@
 		533FB3CC18841201008925DC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		534267E118891A20005C4DE2 /* IUAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IUAC.cpp; sourceTree = "<group>"; };
 		534267E218891A20005C4DE2 /* IUAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUAC.h; sourceTree = "<group>"; };
+		5348704A190369A5007443D3 /* GameCenterUAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCenterUAC.cpp; sourceTree = "<group>"; };
+		5348704B190369A5007443D3 /* GameCenterUAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterUAC.h; sourceTree = "<group>"; };
 		534BEFE617F535E00078CD45 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		534DC5AA1884D6560084E703 /* jsGameCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsGameCenter.cpp; sourceTree = "<group>"; };
 		534DC5AB1884D6560084E703 /* jsGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsGameCenter.h; sourceTree = "<group>"; };
@@ -1343,6 +1346,8 @@
 				534DC5AB1884D6560084E703 /* jsGameCenter.h */,
 				53744E3418891EFF0096A891 /* PublishVersions.mm */,
 				53744E3518891EFF0096A891 /* PublishVersions.h */,
+				5348704A190369A5007443D3 /* GameCenterUAC.cpp */,
+				5348704B190369A5007443D3 /* GameCenterUAC.h */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -3247,6 +3252,7 @@
 				53A3055318FD30EC001CE8B0 /* CCInvocation.cpp in Sources */,
 				53A304B818FD30EB001CE8B0 /* CCGeometry.cpp in Sources */,
 				53A3054018FD30EC001CE8B0 /* CCNodeLoaderLibrary.cpp in Sources */,
+				5348704C190369A5007443D3 /* GameCenterUAC.cpp in Sources */,
 				53A3056C18FD30EC001CE8B0 /* AttachmentLoader.cpp in Sources */,
 				53A3049F18FD30EB001CE8B0 /* CCAction.cpp in Sources */,
 				53A305AF18FD30EC001CE8B0 /* jsb_opengl_manual.cpp in Sources */,

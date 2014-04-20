@@ -95,6 +95,7 @@ public:
     
     //system perferences
     virtual bool getPreference(std::string key, std::string &out) = 0;
+    virtual void setPreference(std::string key, std::string val) = 0;
     
     virtual bool isFirstLaunch() = 0;
 };

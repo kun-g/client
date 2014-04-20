@@ -19,6 +19,7 @@ function Session(){
 
     this.accountName = null;
     this.accountId = null;
+    this.accountType = null;
     this.zoneId = 0;
 
     this.roleCache = {};

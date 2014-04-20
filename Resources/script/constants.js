@@ -14,6 +14,15 @@ var FLAG_BLACKBOX = true;
 var MUSIC_VOLUME = 0.75;
 var SFX_VOLUME = 1;
 
+var AccountTypeName = [
+    "未定义",//0
+    "设备",  //1
+    "PP助手",//2
+    "PP助手",//3
+    "91助手",//4
+    "GameCenter"//5
+];
+
 /*** FILE PATHS ***/
 var PATH_UPDATE = "update/";
 var PATH_DOWNLOAD = "download/";
@@ -222,6 +231,7 @@ var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
 var Request_Echo = 103;
 var Request_Awake = 104;
+var Request_BindAccount = 105;
 
 var Request_GetDailyPrize = 300;
 

@@ -288,6 +288,16 @@ bool iOSsystem::getPreference(string key, string &out)
     return ret;
 }
 
+void iOSsystem::setPreference(string key, string val)
+{
+    @autoreleasepool {
+        NSString* strKey = [NSString stringWithUTF8String:key.c_str()];
+        NSString* strVal = [NSString stringWithUTF8String:val.c_str()];
+        [[NSUserDefaults standardUserDefaults] setObject:strVal forKey:strKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
 bool iOSsystem::isFirstLaunch()
 {
     bool ret;

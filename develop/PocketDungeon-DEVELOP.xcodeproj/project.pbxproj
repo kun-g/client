@@ -368,7 +368,6 @@
 		53A3159218FD317E001CE8B0 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158518FD317E001CE8B0 /* dscript */; };
 		53A3159318FD317E001CE8B0 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158618FD317E001CE8B0 /* dtable */; };
 		53A3159418FD317E001CE8B0 /* font in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158718FD317E001CE8B0 /* font */; };
-		53A3159518FD317E001CE8B0 /* misc in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158818FD317E001CE8B0 /* misc */; };
 		53A3159618FD317E001CE8B0 /* node in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158918FD317E001CE8B0 /* node */; };
 		53A3159718FD317E001CE8B0 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158A18FD317E001CE8B0 /* script */; };
 		53A3159818FD317E001CE8B0 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158B18FD317E001CE8B0 /* sound */; };
@@ -1243,7 +1242,6 @@
 		53A3158518FD317E001CE8B0 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
 		53A3158618FD317E001CE8B0 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		53A3158718FD317E001CE8B0 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
-		53A3158818FD317E001CE8B0 /* misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = misc; sourceTree = "<group>"; };
 		53A3158918FD317E001CE8B0 /* node */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node; sourceTree = "<group>"; };
 		53A3158A18FD317E001CE8B0 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
 		53A3158B18FD317E001CE8B0 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
@@ -2923,7 +2921,6 @@
 				53A3158518FD317E001CE8B0 /* dscript */,
 				53A3158618FD317E001CE8B0 /* dtable */,
 				53A3158718FD317E001CE8B0 /* font */,
-				53A3158818FD317E001CE8B0 /* misc */,
 				53A3158918FD317E001CE8B0 /* node */,
 				53A3158A18FD317E001CE8B0 /* script */,
 				53A3158B18FD317E001CE8B0 /* sound */,
@@ -3090,7 +3087,6 @@
 				53A3159818FD317E001CE8B0 /* sound in Resources */,
 				53A315BE18FD3191001CE8B0 /* iTunesArtwork in Resources */,
 				53A3159618FD317E001CE8B0 /* node in Resources */,
-				53A3159518FD317E001CE8B0 /* misc in Resources */,
 				53A315AE18FD3191001CE8B0 /* AppStore.plist in Resources */,
 				53A3159918FD317E001CE8B0 /* sprite in Resources */,
 				53A30DC018FD3121001CE8B0 /* jsb_cocos2d_extension.jsc in Resources */,

@@ -1,6 +1,7 @@
 require("jsb.js");
 
 var engine = {};
+var isGameLoggedIn = false;
 
 function initEngine()
 {
@@ -83,6 +84,7 @@ function splash(){
             var call = cc.CallFunc.create(function(){
                 //delayed init
                 startEngine();
+                isGameLoggedIn = false;
                 engine.ui.newScene(loadModule("sceneLogin.js").scene());
             });
             this.runAction(call);

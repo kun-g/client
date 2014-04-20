@@ -43,21 +43,51 @@ function onUACReady(){
     uac.presentLoginView();
 }
 
-function onLoggedIn(token){
+function onLoggedIn(token, type){
     debug("onLoggedIn("+token+")");
     //send login request
     var arg = {};
     arg.id = uac.getUserName();
-    arg.tp = engine.game.getConfig().account_type;
+    arg.tp = type;
     arg.bv = system.getBinaryVersion();
     arg.rv = engine.game.getConfig().resource_version;
     arg.ch = engine.game.getConfig().binary_channel;
     arg.tk = token;
 
+    if( arg.tp == null ){
+        arg.tp = engine.game.getConfig().account_type;
+    }
+
     engine.session.accountName = uac.getUserName();
     engine.session.accountId = uac.getUserId();
+    engine.session.accountType = arg.tp;
 
     engine.event.sendRPCEvent(Request_AccountLogin, arg, LoginResp, theLayer);
+}
+
+function onAccountChanged(token, type){
+    debug("onAccountChanged("+token+", "+type+")");
+    if( isGameLoggedIn ){
+        if( type != null && type != engine.session.accountType ){
+            engine.event.sendRPCEvent(Request_BindAccount, {
+                typ: type,
+                id: token,
+            }, function(rsp){
+                if( rsp.RET == RET_OK && rsp.aid != engine.player.AID ){
+                    system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
+                        if( btn != 0 ){//not switch
+                            debug("onSwitchAccount");
+                            uac.setAccountMode(1);
+                            reboot();
+                        }
+                    }, "不切换", "现在切换");
+                }
+            });
+        }
+    }
+    else{
+        loadModule("back.js").pushLoginSuccessInvoke(uacDelegate, onAccountChanged, [token, type]);
+    }
 }
 
 function onLoggedOut(){
@@ -79,6 +109,7 @@ function onManageViewClosed(){
 var uacDelegate = {};
 uacDelegate.onUACReady = onUACReady;
 uacDelegate.onLoggedIn = onLoggedIn;
+uacDelegate.onAccountChanged = onAccountChanged;
 uacDelegate.onLoggedOut = onLoggedOut;
 uacDelegate.onLoginViewClosed = onLoginViewClosed;
 uacDelegate.onManageViewClosed = onManageViewClosed;
@@ -341,13 +372,8 @@ function startLogin()
     theLayer.loadingCircle.setVisible(false);
 
     updateLoading("登录中", 0.05);
-    //test code
-    //uac.setDelegate(uacDelegate);
-    //uac.init();
-    gamecenter.setCallback(function(val){
-        debug("GameCenter.Callback("+val+")");
-    });
-    gamecenter.authenticateLocalPlayer(true);
+    uac.setDelegate(uacDelegate);
+    uac.init();
 }
 
 function serverTimeOut(){

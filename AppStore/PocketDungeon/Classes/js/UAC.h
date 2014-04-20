@@ -24,7 +24,8 @@ public:
     void setCallback(JSObject* obj);
     
     void onUACReady();
-    void onLoggedIn(const std::string &token);
+    void onLoggedIn(const std::string &token, int accountType);
+    void onAccountChanged(const std::string &token, int accountType);
     void onLoggedOut();
     
     void onLoginViewClosed();
