@@ -73,7 +73,7 @@ function onAccountChanged(token, type){
                 typ: type,
                 id: token,
             }, function(rsp){
-                if( rsp.RET == RET_OK && rsp.aid != engine.player.AID ){
+                if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
                     system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
                         if( btn != 0 ){//not switch
                             debug("onSwitchAccount");

@@ -66,20 +66,21 @@ function onEvent(event)
                         tdga.paymentSuccess(theLastBillNo);
                         theLastBillNo = null;
                     }
-                    /* 现在由服务器直接发送结果
-                    engine.event.sendRPCEvent(Request_ChargeDiamond, {
-                        pid: event.arg.product,
-                        stp: iap.getStoreName(),
-                        rep: event.arg.message
-                    }, function(rsp){
-                        if( rsp.RET == RET_OK ){
-                            uikit.showAlert("充值成功");
-                        }
-                        else{
-                            uikit.showAlert("充值失败");
-                        }
-                    }, theLayer);
-                    */
+                    if( iap.getStoreName() == "AppStore" ){
+                            engine.event.sendRPCEvent(Request_ChargeDiamond, {
+                            pid: event.arg.product,
+                            stp: iap.getStoreName(),
+                            rep: event.arg.message
+                        }, function(rsp){
+                            if( rsp.RET == RET_OK ){
+                                uikit.showAlert("充值成功");
+                            }
+                            else{
+                                uikit.showAlert("充值失败");
+                            }
+                        }, theLayer);
+                    }
+                    
                 }
                     break;
                 case 1://cancel

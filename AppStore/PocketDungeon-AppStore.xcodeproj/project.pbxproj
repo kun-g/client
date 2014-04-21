@@ -385,6 +385,18 @@
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		535CDF501904CA9600B61EAB /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		53A305BD18FD30EC001CE8B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2919,6 +2931,7 @@
 				53885E7517E93DE400A3A8B4 /* Resources */,
 			);
 			buildRules = (
+				535CDF501904CA9600B61EAB /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
