@@ -27,7 +27,7 @@ var remoteServer = [
 ];
 
 var localServer = [
-    {"ip":"122.226.199.14", "port":7757}
+    {"ip":"122.226.199.14", "port":7756}
 ];
 
 var currentServer;
@@ -67,25 +67,23 @@ function onLoggedIn(token, type){
 
 function onAccountChanged(token, type){
     debug("onAccountChanged("+token+", "+type+")");
-    if( isGameLoggedIn ){
-        if( type != null && type != engine.session.accountType ){
-            engine.event.sendRPCEvent(Request_BindAccount, {
-                typ: type,
-                id: token,
-            }, function(rsp){
-                if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
-                    system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
-                        if( btn != 0 ){//not switch
-                            debug("onSwitchAccount");
-                            uac.setAccountMode(1);
-                            reboot();
-                        }
-                    }, "不切换", "现在切换");
-                }
-            });
-        }
+    if( type != null && type != engine.session.accountType ){
+        engine.event.sendRPCEvent(Request_BindAccount, {
+            typ: type,
+            id: token,
+        }, function(rsp){
+              if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
+                  system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
+                       if( btn != 0 ){//not switch
+                           debug("onSwitchAccount");
+                           uac.setAccountMode(1);
+                           reboot();
+                       }
+                  }, "不切换", "现在切换");
+              }
+        });
     }
-    else{
+    if( !isGameLoggedIn ){
         loadModule("back.js").pushLoginSuccessInvoke(uacDelegate, onAccountChanged, [token, type]);
     }
 }

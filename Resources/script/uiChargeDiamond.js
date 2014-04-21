@@ -67,9 +67,10 @@ function onEvent(event)
                         theLastBillNo = null;
                     }
                     if( iap.getStoreName() == "AppStore" ){
-                            engine.event.sendRPCEvent(Request_ChargeDiamond, {
+                        uikit.waitRPC(Request_ChargeDiamond, {
                             pid: event.arg.product,
                             stp: iap.getStoreName(),
+                            bill: genBillNo(event.arg.product),
                             rep: event.arg.message
                         }, function(rsp){
                             if( rsp.RET == RET_OK ){
@@ -80,7 +81,6 @@ function onEvent(event)
                             }
                         }, theLayer);
                     }
-                    
                 }
                     break;
                 case 1://cancel

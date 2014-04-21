@@ -39,6 +39,7 @@ void GameCenterUAC::presentLoginView()
     if( mAccountMode == GCUAC_Device ){
         string deviceId;
         getSystem()->getDeviceId(deviceId);
+        mAccountToken = deviceId;
         getUACDelegate()->onLoggedIn(deviceId, ACCOUNT_DEVICE);
         GameCenter::getInstance()->authenticateLocalPlayer();
     }
@@ -72,7 +73,7 @@ void GameCenterUAC::logout()
 
 void GameCenterUAC::getUserName(string &name)
 {
-    getSystem()->getDeviceId(name);
+    name = mAccountToken;
 }
 
 void GameCenterUAC::getUserId(string &token)

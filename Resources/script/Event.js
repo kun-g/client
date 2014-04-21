@@ -41,14 +41,12 @@ function Event()
 
 Event.prototype.start = function()
 {
-    //scheduler.scheduleCallbackForTarget(this, onTick, 0, cc.REPEAT_FOREVER, 0, false);
     //init system callback
     system.setEnterBackgroundCallback(onEnterBackground);
     system.setEnterForegroundCallback(onEnterForeground);
     //init iap
-    //test code
-    //iap.setCallback(onPaymentResult, this);
-    //iap.init();
+    iap.setCallback(onPaymentResult, this);
+    iap.init();
 }
 
 Event.prototype.testServers = function(serverList)

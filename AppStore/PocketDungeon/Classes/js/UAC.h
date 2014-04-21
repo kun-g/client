@@ -37,6 +37,7 @@ private:
 
 JSBool jsbUACInit(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACSetDelegate(JSContext* cx, unsigned argc, JS::Value* vp);
+JSBool jsbUACSetAccountMode(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACPresentLoginView(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACPresentManageView(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACLogout(JSContext* cx, unsigned argc, JS::Value* vp);

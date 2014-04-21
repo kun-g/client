@@ -25,6 +25,7 @@ public:
 
 @interface AppStore : NSObject<SKProductsRequestDelegate, SKPaymentTransactionObserver>
 {
+    NSArray* mProductsMeta;
     NSArray* mProducts;
     AppStoreIAP* mpHandle;
 }

@@ -86,7 +86,7 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSLog(@"*** MAKEPAYMENT\nCOST=%d\nBILLNO=%@\nTITLE=%@\nROLE=%@\nZONE=%d\n\n",
                   cost, strBillNo, strTitle, strUserName, zoneId);
             
-            [KYSDK instance] showPayWith:strBillNo fee:@"fee" game:@"0000" gamesvr:@"0" subject:@"subject" md5Key:@"md5key" appScheme:@"scheme"];
+            [KYSDK instance] showPayWith:strBillNo fee:@"fee" game:@"4032" gamesvr:@"0" subject:@"subject" md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" appScheme:@"scheme"];
         }
         else{
             NSLog(@"KuaiyongUAC.makePayment: product(%d) not found.", product);
