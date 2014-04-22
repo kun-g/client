@@ -11,13 +11,16 @@ var synCount = 0;
 
 var role = loadModule("role.js");
 
-var loginSucessInvokes = [];
-function pushLoginSuccessInvoke(obj, func, args){
-    loginSucessInvokes.push({
+var loginSucessInvokes = {};
+function pushLoginSuccessInvoke(key, obj, func, args){
+    loginSucessInvokes[key] = {
         OBJ: obj,
         FUNC: func,
         ARGS: args
-    });
+    };
+}
+function removeLoginSucessInvoke(key){
+    delete loginSucessInvokes[key];
 }
 function processLoginSucessInvokes(){
     isGameLoggedIn = true;
@@ -25,7 +28,7 @@ function processLoginSucessInvokes(){
         var ivk = loginSucessInvokes[k];
         ivk.FUNC.apply(ivk.OBJ, ivk.ARGS);
     }
-    loginSucessInvokes = [];
+    loginSucessInvokes = {};
 }
 
 function syncEvent(event, key){
@@ -398,4 +401,4 @@ function getDungeonFlag()
 exports.onEvent = onEvent;
 exports.getDungeonFlag = getDungeonFlag;
 exports.pushLoginSuccessInvoke = pushLoginSuccessInvoke;
-
+exports.removeLoginSucessInvoke = removeLoginSucessInvoke;

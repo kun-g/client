@@ -396,6 +396,8 @@
 		53DF0758190416F700BF3B75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF0738190416F600BF3B75 /* SBJsonParser.m */; };
 		53DF0759190416F700BF3B75 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF073A190416F600BF3B75 /* SBJsonWriter.m */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
+		53FD928D19057AD600137789 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53FD928C19057AD600137789 /* CoreText.framework */; };
+		53FD928F19057DD200137789 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53FD928E19057DD100137789 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1276,6 +1278,8 @@
 		53DF0739190416F600BF3B75 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		53DF073A190416F600BF3B75 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		53FD928C19057AD600137789 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		53FD928E19057DD100137789 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1283,6 +1287,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53FD928F19057DD200137789 /* MessageUI.framework in Frameworks */,
+				53FD928D19057AD600137789 /* CoreText.framework in Frameworks */,
 				53A315C518FD413B001CE8B0 /* libcocos2dx-talkingdata.a in Frameworks */,
 				53243B6018EC3C70003BEF42 /* CFNetwork.framework in Frameworks */,
 				53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */,
@@ -1432,6 +1438,8 @@
 		53885E7917E93DE400A3A8B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53FD928E19057DD100137789 /* MessageUI.framework */,
+				53FD928C19057AD600137789 /* CoreText.framework */,
 				53243B5F18EC3C70003BEF42 /* CFNetwork.framework */,
 				53F150201893E74C00B3FF06 /* CoreTelephony.framework */,
 				531F129E18895FA8004E036F /* Security.framework */,
@@ -3524,6 +3532,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PocketDungeon/Classes/platform/ios",
+					"$(PROJECT_DIR)/PocketDungeon/Classes/platform/ios/kuaiyong/lib",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3586,6 +3595,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PocketDungeon/Classes/platform/ios",
+					"$(PROJECT_DIR)/PocketDungeon/Classes/platform/ios/kuaiyong/lib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketDungeon/Prefix.pch;

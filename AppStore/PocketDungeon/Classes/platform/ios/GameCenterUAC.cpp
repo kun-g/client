@@ -73,7 +73,12 @@ void GameCenterUAC::logout()
 
 void GameCenterUAC::getUserName(string &name)
 {
-    name = mAccountToken;
+    if( mAccountMode == GCUAC_Device ){
+        getSystem()->getDeviceId(name);
+    }
+    else{
+        name = mAccountToken;
+    }
 }
 
 void GameCenterUAC::getUserId(string &token)

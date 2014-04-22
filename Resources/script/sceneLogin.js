@@ -70,21 +70,24 @@ function onAccountChanged(token, type){
     if( type != null && type != engine.session.accountType ){
         engine.event.sendRPCEvent(Request_BindAccount, {
             typ: type,
-            id: token,
+            id: token
         }, function(rsp){
               if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
                   system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
-                       if( btn != 0 ){//not switch
+                       if( btn != 0 ){//switch
                            debug("onSwitchAccount");
                            uac.setAccountMode(1);
                            reboot();
+                       }
+                       else{
+                           loadModule("back.js").removeLoginSucessInvoke("switchAccount");
                        }
                   }, "不切换", "现在切换");
               }
         });
     }
     if( !isGameLoggedIn ){
-        loadModule("back.js").pushLoginSuccessInvoke(uacDelegate, onAccountChanged, [token, type]);
+        loadModule("back.js").pushLoginSuccessInvoke("switchAccount", uacDelegate, onAccountChanged, [token, type]);
     }
 }
 

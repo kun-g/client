@@ -15,30 +15,35 @@
 using namespace cocos2d;
 using namespace std;
 
-static bool gKuaiyongInited = false;
 static NSMutableArray* gPurchaseList = nil;
 
 void initKuaiyong()
 {
+    NSLog(@"initKuaiyong");
     [KYSDK instance];
 }
 
 void KuaiyongUAC::initUAC()
 {
+    NSLog(@"initUAC");
+    [[KYSDK instance] setKYDelegate:[KuaiyongDelegate sharedInstance]];
     getUACDelegate()->onUACReady();
 }
 
 void KuaiyongUAC::presentLoginView()
 {
+    NSLog(@"presentLoginView");
     [[KYSDK instance] showUserView];
 }
 
 void KuaiyongUAC::presentManageView()
 {
+    NSLog(@"presentManageView");
 }
 
 void KuaiyongUAC::logout()
 {
+    NSLog(@"logout");
     [[KYSDK instance] userLogOut];
 }
 
@@ -54,7 +59,18 @@ void KuaiyongUAC::getUserId(std::string &token)
 
 void KuaiyongUAC::initPayment()
 {
-    //do nothing
+    //load products
+    @autoreleasepool {
+        string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(PP25FILE);
+        NSString* strPath = [NSString stringWithCString:fullpath.c_str() encoding:NSUTF8StringEncoding];
+        mProducts = [NSArray arrayWithContentsOfFile:strPath];
+        [mProducts retain];
+        if( gPurchaseList != nil ){
+            [gPurchaseList release];
+        }
+        gPurchaseList = [NSMutableArray array];
+        [gPurchaseList retain];
+    }
 }
 
 bool KuaiyongUAC::isPaymentEnabled()
@@ -72,6 +88,7 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSString* strUserName = [NSString stringWithUTF8String:username.c_str()];
             NSString* strTitle = [detail objectForKey:@"title"];
             NSNumber* numPrice = [detail objectForKey:@"price"];
+            NSNumber* numZone = [NSNumber numberWithInt:zoneId];
             int cost = [numPrice intValue]*quantity;
             
             //record purchase
@@ -86,7 +103,7 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSLog(@"*** MAKEPAYMENT\nCOST=%d\nBILLNO=%@\nTITLE=%@\nROLE=%@\nZONE=%d\n\n",
                   cost, strBillNo, strTitle, strUserName, zoneId);
             
-            [KYSDK instance] showPayWith:strBillNo fee:@"fee" game:@"4032" gamesvr:@"0" subject:@"subject" md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" appScheme:@"scheme"];
+            [[KYSDK instance] showPayWith:strBillNo fee:[numPrice stringValue] game:@"4032" gamesvr:[numZone stringValue] subject:strTitle md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" appScheme:@"pocketdungeon"];
         }
         else{
             NSLog(@"KuaiyongUAC.makePayment: product(%d) not found.", product);
@@ -189,7 +206,6 @@ static KuaiyongDelegate* gKuaiyongDelegate = nil;
     else{
         NSLog(@"*** payment not found");
     }
-
 }
 
 @end
