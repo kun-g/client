@@ -27,7 +27,7 @@ var remoteServer = [
 ];
 
 var localServer = [
-    {"ip":"122.226.199.14", "port":7756}
+    {"ip":"122.226.199.14", "port":7757}
 ];
 
 var currentServer;
