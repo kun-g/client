@@ -12,14 +12,20 @@
 		5308A0C6188395B0008CEC46 /* IFeedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0C4188395B0008CEC46 /* IFeedback.cpp */; };
 		5308A0C91883A023008CEC46 /* iOSfeedback.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0C71883A022008CEC46 /* iOSfeedback.mm */; };
 		5308A0CC1883C162008CEC46 /* Feedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0CA1883C162008CEC46 /* Feedback.cpp */; };
+		531F129A18892CF6004E036F /* PP25UAC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 531F129818892CF6004E036F /* PP25UAC.mm */; };
 		531F129D18895859004E036F /* UAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 531F129B18895859004E036F /* UAC.cpp */; };
 		531F129F18895FA8004E036F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531F129E18895FA8004E036F /* Security.framework */; };
+		53243B6018EC3C70003BEF42 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53243B5F18EC3C70003BEF42 /* CFNetwork.framework */; };
+		53243B6318EC3C90003BEF42 /* libMobileGestalt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53243B6218EC3C90003BEF42 /* libMobileGestalt.dylib */; };
+		53243B6E18EC3D2E003BEF42 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53243B6C18EC3D2E003BEF42 /* Alixpay.bundle */; };
 		533FB3CB18840010008925DC /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 533FB3C918840010008925DC /* GameCenter.mm */; };
 		533FB3CD18841201008925DC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533FB3CC18841201008925DC /* GameKit.framework */; };
+		534267DF1889177E005C4DE2 /* PPAppPlatformKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 534267DD1889177E005C4DE2 /* PPAppPlatformKit.framework */; };
 		534267E318891A20005C4DE2 /* IUAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534267E118891A20005C4DE2 /* IUAC.cpp */; };
-		5348704C190369A5007443D3 /* GameCenterUAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5348704A190369A5007443D3 /* GameCenterUAC.cpp */; };
 		534BEFE717F535E00078CD45 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 534BEFE617F535E00078CD45 /* StoreKit.framework */; };
 		534DC5AC1884D6560084E703 /* jsGameCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534DC5AA1884D6560084E703 /* jsGameCenter.cpp */; };
+		535615CB18113104008298BF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535615CA18113104008298BF /* AdSupport.framework */; };
+		53575817190119F600E6932D /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53575816190119F600E6932D /* static.json */; };
 		535EF25617E942B400D0D61D /* CallbackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22417E942B400D0D61D /* CallbackManager.cpp */; };
 		535EF25717E942B400D0D61D /* Download.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22617E942B400D0D61D /* Download.cpp */; };
 		535EF25817E942B400D0D61D /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22817E942B400D0D61D /* File.cpp */; };
@@ -40,6 +46,8 @@
 		535EF28917E9444D00D0D61D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28817E9444C00D0D61D /* libz.dylib */; };
 		535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28A17E9445800D0D61D /* SystemConfiguration.framework */; };
 		535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28E17E9447100D0D61D /* libiconv.dylib */; };
+		536D4F3F190786E100FC13D3 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 536D4F3D190786E100FC13D3 /* script */; };
+		536D4F40190786E100FC13D3 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 536D4F3E190786E100FC13D3 /* table */; };
 		53744E3618891EFF0096A891 /* PublishVersions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53744E3418891EFF0096A891 /* PublishVersions.mm */; };
 		538818611894A2B500B1E461 /* TDGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5388185F1894A2B500B1E461 /* TDGA.cpp */; };
 		53885E7B17E93DE400A3A8B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */; };
@@ -60,6 +68,11 @@
 		538AC94A18EC41170072C7AA /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AC94218EC41170072C7AA /* SBJsonBase.m */; };
 		538AC94B18EC41170072C7AA /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AC94418EC41170072C7AA /* SBJsonParser.m */; };
 		538AC94C18EC41170072C7AA /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 538AC94618EC41170072C7AA /* SBJsonWriter.m */; };
+		538AC95218EC45930072C7AA /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 538AC94E18EC45930072C7AA /* AlipayRsaLib.a */; };
+		538AC95318EC45930072C7AA /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 538AC94F18EC45930072C7AA /* AlixPaylib.a */; };
+		538AC95418EC45940072C7AA /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 538AC95018EC45930072C7AA /* libcrypto.a */; };
+		538AC95518EC45940072C7AA /* libUPPayPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 538AC95118EC45930072C7AA /* libUPPayPlugin.a */; };
+		53A1782E1818FEE3004C8E67 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A1782D1818FEE3004C8E67 /* OpenUDID.m */; };
 		53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */ = {isa = PBXBuildFile; fileRef = 53A3014C18FD30EA001CE8B0 /* chipmunk-docs.html */; };
 		53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53A3016918FD30EA001CE8B0 /* LICENSE.txt */; };
 		53A3048018FD30EB001CE8B0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53A3016A18FD30EA001CE8B0 /* README.txt */; };
@@ -379,22 +392,10 @@
 		53A315BD18FD3191001CE8B0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A315AC18FD3191001CE8B0 /* Info.plist */; };
 		53A315BE18FD3191001CE8B0 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 53A315AD18FD3191001CE8B0 /* iTunesArtwork */; };
 		53A315C518FD413B001CE8B0 /* libcocos2dx-talkingdata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A315C418FD31C6001CE8B0 /* libcocos2dx-talkingdata.a */; };
-		53C284D418FFBE2600725B8F /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53C284D318FFBE2600725B8F /* static.json */; };
-		53C284D618FFC13E00725B8F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C284D518FFC13D00725B8F /* CoreTelephony.framework */; };
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
+		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
+		53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F51918FC27AE00C2D3AB /* PPImage.bundle */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildRule section */
-		535CDF501904CA9600B61EAB /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			fileType = pattern.proxy;
-			isEditable = 1;
-			outputFiles = (
-			);
-			script = "";
-		};
-/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		53A305BD18FD30EC001CE8B0 /* PBXContainerItemProxy */ = {
@@ -423,20 +424,25 @@
 		5308A0C81883A022008CEC46 /* iOSfeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSfeedback.h; sourceTree = "<group>"; };
 		5308A0CA1883C162008CEC46 /* Feedback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Feedback.cpp; sourceTree = "<group>"; };
 		5308A0CB1883C162008CEC46 /* Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feedback.h; sourceTree = "<group>"; };
+		531F129818892CF6004E036F /* PP25UAC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PP25UAC.mm; sourceTree = "<group>"; };
+		531F129918892CF6004E036F /* PP25UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PP25UAC.h; sourceTree = "<group>"; };
 		531F129B18895859004E036F /* UAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UAC.cpp; sourceTree = "<group>"; };
 		531F129C18895859004E036F /* UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAC.h; sourceTree = "<group>"; };
 		531F129E18895FA8004E036F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		53243B5F18EC3C70003BEF42 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		53243B6218EC3C90003BEF42 /* libMobileGestalt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMobileGestalt.dylib; path = usr/lib/libMobileGestalt.dylib; sourceTree = SDKROOT; };
+		53243B6C18EC3D2E003BEF42 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
 		533FB3C918840010008925DC /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
 		533FB3CA18840010008925DC /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		533FB3CC18841201008925DC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		534267DD1889177E005C4DE2 /* PPAppPlatformKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PPAppPlatformKit.framework; path = PocketDungeon/Classes/platform/ios/PPAppPlatformKit.framework; sourceTree = "<group>"; };
 		534267E118891A20005C4DE2 /* IUAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IUAC.cpp; sourceTree = "<group>"; };
 		534267E218891A20005C4DE2 /* IUAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUAC.h; sourceTree = "<group>"; };
-		5348704A190369A5007443D3 /* GameCenterUAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCenterUAC.cpp; sourceTree = "<group>"; };
-		5348704B190369A5007443D3 /* GameCenterUAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterUAC.h; sourceTree = "<group>"; };
 		534BEFE617F535E00078CD45 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		534DC5AA1884D6560084E703 /* jsGameCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsGameCenter.cpp; sourceTree = "<group>"; };
 		534DC5AB1884D6560084E703 /* jsGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsGameCenter.h; sourceTree = "<group>"; };
 		535615CA18113104008298BF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		53575816190119F600E6932D /* static.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = static.json; sourceTree = "<group>"; };
 		535EF22417E942B400D0D61D /* CallbackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CallbackManager.cpp; sourceTree = "<group>"; };
 		535EF22517E942B400D0D61D /* CallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackManager.h; sourceTree = "<group>"; };
 		535EF22617E942B400D0D61D /* Download.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Download.cpp; sourceTree = "<group>"; };
@@ -475,6 +481,8 @@
 		535EF28817E9444C00D0D61D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		535EF28A17E9445800D0D61D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		535EF28E17E9447100D0D61D /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		536D4F3D190786E100FC13D3 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
+		536D4F3E190786E100FC13D3 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		53744E3418891EFF0096A891 /* PublishVersions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PublishVersions.mm; sourceTree = "<group>"; };
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5388185F1894A2B500B1E461 /* TDGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDGA.cpp; sourceTree = "<group>"; };
@@ -509,6 +517,12 @@
 		538AC94418EC41170072C7AA /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		538AC94518EC41170072C7AA /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		538AC94618EC41170072C7AA /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		538AC94E18EC45930072C7AA /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = AlipayRsaLib.a; path = PocketDungeon/Classes/platform/ios/AlipayRsaLib.a; sourceTree = "<group>"; };
+		538AC94F18EC45930072C7AA /* AlixPaylib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = AlixPaylib.a; path = PocketDungeon/Classes/platform/ios/AlixPaylib.a; sourceTree = "<group>"; };
+		538AC95018EC45930072C7AA /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = PocketDungeon/Classes/platform/ios/libcrypto.a; sourceTree = "<group>"; };
+		538AC95118EC45930072C7AA /* libUPPayPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUPPayPlugin.a; path = PocketDungeon/Classes/platform/ios/libUPPayPlugin.a; sourceTree = "<group>"; };
+		53A1782C1818FEE3004C8E67 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		53A1782D1818FEE3004C8E67 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		53A3014C18FD30EA001CE8B0 /* chipmunk-docs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "chipmunk-docs.html"; sourceTree = "<group>"; };
 		53A3014F18FD30EA001CE8B0 /* chipmunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chipmunk.h; sourceTree = "<group>"; };
 		53A3015018FD30EA001CE8B0 /* chipmunk_ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chipmunk_ffi.h; sourceTree = "<group>"; };
@@ -1251,10 +1265,10 @@
 		53A315AC18FD3191001CE8B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ios/Info.plist; sourceTree = "<group>"; };
 		53A315AD18FD3191001CE8B0 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = ios/iTunesArtwork; sourceTree = "<group>"; };
 		53A315BF18FD31C6001CE8B0 /* cocos2dx-talkingdata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2dx-talkingdata.xcodeproj"; path = "../libs/GA/proj.ios/cocos2dx-talkingdata.xcodeproj"; sourceTree = "<group>"; };
-		53C284D318FFBE2600725B8F /* static.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = static.json; sourceTree = "<group>"; };
-		53C284D518FFC13D00725B8F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53D8B4B11888047E00F2804E /* aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes.cpp; sourceTree = "<group>"; };
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		53F9F51918FC27AE00C2D3AB /* PPImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPImage.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1262,11 +1276,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53C284D618FFC13E00725B8F /* CoreTelephony.framework in Frameworks */,
 				53A315C518FD413B001CE8B0 /* libcocos2dx-talkingdata.a in Frameworks */,
+				538AC95318EC45930072C7AA /* AlixPaylib.a in Frameworks */,
+				53243B6318EC3C90003BEF42 /* libMobileGestalt.dylib in Frameworks */,
+				538AC95518EC45940072C7AA /* libUPPayPlugin.a in Frameworks */,
+				53243B6018EC3C70003BEF42 /* CFNetwork.framework in Frameworks */,
+				53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */,
 				531F129F18895FA8004E036F /* Security.framework in Frameworks */,
+				538AC95418EC45940072C7AA /* libcrypto.a in Frameworks */,
 				533FB3CD18841201008925DC /* GameKit.framework in Frameworks */,
 				53A304F918FD30EB001CE8B0 /* libcurl.a in Frameworks */,
+				535615CB18113104008298BF /* AdSupport.framework in Frameworks */,
 				53A304FA18FD30EB001CE8B0 /* libwebp.a in Frameworks */,
 				535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */,
 				535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */,
@@ -1279,8 +1299,10 @@
 				53885E8117E93DE400A3A8B4 /* AudioToolbox.framework in Frameworks */,
 				53885E8317E93DE400A3A8B4 /* AVFoundation.framework in Frameworks */,
 				53885E8517E93DE400A3A8B4 /* UIKit.framework in Frameworks */,
+				534267DF1889177E005C4DE2 /* PPAppPlatformKit.framework in Frameworks */,
 				53885E8717E93DE400A3A8B4 /* Foundation.framework in Frameworks */,
 				53885E8917E93DE400A3A8B4 /* CoreGraphics.framework in Frameworks */,
+				538AC95218EC45930072C7AA /* AlipayRsaLib.a in Frameworks */,
 				5308A0C2188394C0008CEC46 /* libUMFeedback.a in Frameworks */,
 				534BEFE717F535E00078CD45 /* StoreKit.framework in Frameworks */,
 			);
@@ -1336,9 +1358,13 @@
 			isa = PBXGroup;
 			children = (
 				538AC93918EC41170072C7AA /* json */,
+				53243B6C18EC3D2E003BEF42 /* Alixpay.bundle */,
 				5308A0BF188394C0008CEC46 /* libUMFeedback.a */,
+				53F9F51918FC27AE00C2D3AB /* PPImage.bundle */,
 				5308A0C0188394C0008CEC46 /* umFeedback.bundle */,
 				5308A0C1188394C0008CEC46 /* UMFeedback.h */,
+				53A1782C1818FEE3004C8E67 /* OpenUDID.h */,
+				53A1782D1818FEE3004C8E67 /* OpenUDID.m */,
 				535EF23B17E942B400D0D61D /* AppStoreIAP.h */,
 				535EF23C17E942B400D0D61D /* AppStoreIAP.mm */,
 				535EF23D17E942B400D0D61D /* GTMBase64.h */,
@@ -1356,8 +1382,8 @@
 				534DC5AB1884D6560084E703 /* jsGameCenter.h */,
 				53744E3418891EFF0096A891 /* PublishVersions.mm */,
 				53744E3518891EFF0096A891 /* PublishVersions.h */,
-				5348704A190369A5007443D3 /* GameCenterUAC.cpp */,
-				5348704B190369A5007443D3 /* GameCenterUAC.h */,
+				531F129818892CF6004E036F /* PP25UAC.mm */,
+				531F129918892CF6004E036F /* PP25UAC.h */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -1403,8 +1429,15 @@
 		53885E7917E93DE400A3A8B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53C284D518FFC13D00725B8F /* CoreTelephony.framework */,
+				538AC94E18EC45930072C7AA /* AlipayRsaLib.a */,
+				538AC94F18EC45930072C7AA /* AlixPaylib.a */,
+				538AC95018EC45930072C7AA /* libcrypto.a */,
+				538AC95118EC45930072C7AA /* libUPPayPlugin.a */,
+				53243B6218EC3C90003BEF42 /* libMobileGestalt.dylib */,
+				53243B5F18EC3C70003BEF42 /* CFNetwork.framework */,
+				53F150201893E74C00B3FF06 /* CoreTelephony.framework */,
 				531F129E18895FA8004E036F /* Security.framework */,
+				534267DD1889177E005C4DE2 /* PPAppPlatformKit.framework */,
 				533FB3CC18841201008925DC /* GameKit.framework */,
 				535615CA18113104008298BF /* AdSupport.framework */,
 				534BEFE617F535E00078CD45 /* StoreKit.framework */,
@@ -1426,7 +1459,7 @@
 		53885E8A17E93DE400A3A8B4 /* PocketDungeon */ = {
 			isa = PBXGroup;
 			children = (
-				53C284D318FFBE2600725B8F /* static.json */,
+				53575816190119F600E6932D /* static.json */,
 				53A305BF18FD3101001CE8B0 /* Resources */,
 				53A3014A18FD30EA001CE8B0 /* libs */,
 				53885EA317E93DE500A3A8B4 /* ios */,
@@ -2881,6 +2914,8 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				536D4F3D190786E100FC13D3 /* script */,
+				536D4F3E190786E100FC13D3 /* table */,
 				53A3158318FD317E001CE8B0 /* blackbox */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
@@ -2929,7 +2964,6 @@
 				53885E7517E93DE400A3A8B4 /* Resources */,
 			);
 			buildRules = (
-				535CDF501904CA9600B61EAB /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -3007,14 +3041,15 @@
 			files = (
 				53A3059618FD30EC001CE8B0 /* README in Resources */,
 				53A315B518FD3191001CE8B0 /* Icon-Small-50.png in Resources */,
+				53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */,
 				53A30DC218FD3121001CE8B0 /* jsb_debugger.jsc in Resources */,
 				53A30DBE18FD3121001CE8B0 /* jsb_cocos2d.jsc in Resources */,
 				53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */,
 				53A315B018FD3191001CE8B0 /* Default-Portrait@2x~ipad.png in Resources */,
-				53C284D418FFBE2600725B8F /* static.json in Resources */,
 				53A315B618FD3191001CE8B0 /* Icon-Small.png in Resources */,
 				53A315B118FD3191001CE8B0 /* Default.png in Resources */,
 				53A304C418FD30EB001CE8B0 /* ChangeLog in Resources */,
+				53243B6E18EC3D2E003BEF42 /* Alixpay.bundle in Resources */,
 				53A315B418FD3191001CE8B0 /* Icon-72.png in Resources */,
 				53A315BB18FD3191001CE8B0 /* Icon~ipad.png in Resources */,
 				53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */,
@@ -3022,6 +3057,7 @@
 				53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */,
 				53A30DBB18FD3121001CE8B0 /* jsb.jsc in Resources */,
 				53A30DC118FD3121001CE8B0 /* jsb_cocosbuilder.jsc in Resources */,
+				53575817190119F600E6932D /* static.json in Resources */,
 				53A315BD18FD3191001CE8B0 /* Info.plist in Resources */,
 				53A315B918FD3191001CE8B0 /* Icon@2x.png in Resources */,
 				53A315B718FD3191001CE8B0 /* Icon-Small@2x.png in Resources */,
@@ -3042,6 +3078,8 @@
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,
 				53A30DBC18FD3121001CE8B0 /* jsb_chipmunk.jsc in Resources */,
+				536D4F40190786E100FC13D3 /* table in Resources */,
+				536D4F3F190786E100FC13D3 /* script in Resources */,
 				53A3159818FD317E001CE8B0 /* sound in Resources */,
 				53A315BE18FD3191001CE8B0 /* iTunesArtwork in Resources */,
 				53A3159618FD317E001CE8B0 /* node in Resources */,
@@ -3132,6 +3170,7 @@
 				53A3051418FD30EB001CE8B0 /* ioapi.cpp in Sources */,
 				53A304DC18FD30EB001CE8B0 /* CCMenu.cpp in Sources */,
 				53A304AC18FD30EB001CE8B0 /* CCAtlasNode.cpp in Sources */,
+				53A1782E1818FEE3004C8E67 /* OpenUDID.m in Sources */,
 				53A3054118FD30EC001CE8B0 /* CCParticleSystemQuadLoader.cpp in Sources */,
 				53A3057118FD30EC001CE8B0 /* extension.cpp in Sources */,
 				53A3052B18FD30EC001CE8B0 /* SimpleAudioEngine_objc.m in Sources */,
@@ -3207,6 +3246,7 @@
 				53A3048318FD30EB001CE8B0 /* cpConstraint.c in Sources */,
 				53A304C918FD30EB001CE8B0 /* mat4.c in Sources */,
 				53A304DD18FD30EB001CE8B0 /* CCMenuItem.cpp in Sources */,
+				531F129A18892CF6004E036F /* PP25UAC.mm in Sources */,
 				53A3055818FD30EC001CE8B0 /* CCEditBoxImplNone.cpp in Sources */,
 				53A3049718FD30EB001CE8B0 /* cpSpace.c in Sources */,
 				53A3049318FD30EB001CE8B0 /* cpCollision.c in Sources */,
@@ -3263,7 +3303,6 @@
 				53A3055318FD30EC001CE8B0 /* CCInvocation.cpp in Sources */,
 				53A304B818FD30EB001CE8B0 /* CCGeometry.cpp in Sources */,
 				53A3054018FD30EC001CE8B0 /* CCNodeLoaderLibrary.cpp in Sources */,
-				5348704C190369A5007443D3 /* GameCenterUAC.cpp in Sources */,
 				53A3056C18FD30EC001CE8B0 /* AttachmentLoader.cpp in Sources */,
 				53A3049F18FD30EB001CE8B0 /* CCAction.cpp in Sources */,
 				53A305AF18FD30EC001CE8B0 /* jsb_opengl_manual.cpp in Sources */,

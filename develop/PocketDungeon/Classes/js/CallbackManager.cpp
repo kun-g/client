@@ -173,7 +173,6 @@ void CallbackManager::tick(float delta)
     pthread_mutex_lock(&mMutex);
     CCArray *process = mpCurrMsgList;
     mpCurrMsgList = mpCurrMsgList == &mMsgList1 ? &mMsgList2 : &mMsgList1;
-    pthread_mutex_unlock(&mMutex);
     
     CCObject *pObj = NULL;
     CCARRAY_FOREACH(process, pObj)
@@ -183,4 +182,5 @@ void CallbackManager::tick(float delta)
         //pCall->release();
     }
     process->removeAllObjects();
+    pthread_mutex_unlock(&mMutex);
 }

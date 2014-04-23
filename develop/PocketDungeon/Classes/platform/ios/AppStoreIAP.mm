@@ -38,7 +38,6 @@ bool AppStoreIAP::isPaymentEnabled()
 
 void AppStoreIAP::makePayment(string billno, int product, uint32_t quantity, string username, int zoneId)
 {
-    NSLog(@"makePayment(%d)", product);
     [[AppStore sharedAppStore] makePurchase:product withQuantity:quantity];
 }
 
@@ -99,11 +98,10 @@ AppStore* gAppStoreInstance = nil;
     @autoreleasepool {
         string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(APPSTORE_FILENAME);
         NSString* strPath = [NSString stringWithCString:fullpath.c_str() encoding:NSUTF8StringEncoding];
-        mProductsMeta = [NSArray arrayWithContentsOfFile:strPath];
-        [mProductsMeta retain];
-        if( mProductsMeta != nil )
+        NSArray* productArray = [NSArray arrayWithContentsOfFile:strPath];
+        if( productArray != nil )
         {
-            NSSet* productSet = [NSSet setWithArray:mProductsMeta];
+            NSSet* productSet = [NSSet setWithArray:productArray];
             
             SKProductsRequest *request = [[[SKProductsRequest alloc] initWithProductIdentifiers:productSet] autorelease];
             request.delegate = self;
@@ -122,7 +120,7 @@ AppStore* gAppStoreInstance = nil;
         SKProduct *theProduct = nil;
         if( mProducts != nil )
         {
-            theProduct = [self queryProductByIndex:product];
+            theProduct = [mProducts objectAtIndex:product];
         }
         if( theProduct != nil )
         {
@@ -165,17 +163,29 @@ AppStore* gAppStoreInstance = nil;
             SKPaymentTransaction* transaction = [list lastObject];
             
             //NSLog(@"TRANSCATION = %@", transaction.payment.productIdentifier);//debug
-            int product = [self queryProductIndex:transaction.payment.productIdentifier];
+            int product = -1;
+            for(int i=0; i<mProducts.count; ++i)
+            {
+                SKProduct* pd = [mProducts objectAtIndex:i];
+                if( [pd.productIdentifier compare:transaction.payment.productIdentifier] == NSOrderedSame )
+                {
+                    product = i;
+                    break;
+                }
+            }
             
             switch (transaction.transactionState) {
                 case SKPaymentTransactionStatePurchased:
                 case SKPaymentTransactionStateRestored:
                 {
                     //NSLog(@"PAYMENT SUCESS");
+                    
+                    NSString* strDate = [transaction.transactionDate description];
                     NSString* strReceipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
+                    NSString* strMessage = [[NSString alloc] initWithFormat:@"{\"id\":\"%@\", \"date\":\"%@\", \"receipt\":\"%@\"}", transaction.transactionIdentifier, strDate, strReceipt];
                     mpHandle->getIAPDelegate()->onPaymentResult(Payment_Success,
                                                                 product,
-                                                                string([strReceipt cStringUsingEncoding:NSUTF8StringEncoding]));
+                                                                string([strMessage cStringUsingEncoding:NSUTF8StringEncoding]));
                     
                     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 }
@@ -208,33 +218,6 @@ AppStore* gAppStoreInstance = nil;
             [list removeLastObject];
         }
     }
-}
-
--(int) queryProductIndex:(NSString *)iapId
-{
-    int product = -1;
-    for(int i=0; i<mProductsMeta.count; ++i)
-    {
-        NSString* pd = [mProductsMeta objectAtIndex:i];
-        if( [pd compare:iapId] == NSOrderedSame )
-        {
-            product = i;
-            break;
-        }
-    }
-    return product;
-}
-
--(SKProduct*) queryProductByIndex:(int)idx
-{
-    NSString* iapId = [mProductsMeta objectAtIndex:idx];
-    for(SKProduct* p in mProducts)
-    {
-        if( [p.productIdentifier compare:iapId] == NSOrderedSame ){
-            return p;
-        }
-    }
-    return nil;
 }
 
 @end

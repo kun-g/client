@@ -24,8 +24,7 @@ public:
     void setCallback(JSObject* obj);
     
     void onUACReady();
-    void onLoggedIn(const std::string &token, int accountType);
-    void onAccountChanged(const std::string &token, int accountType);
+    void onLoggedIn(const std::string &token);
     void onLoggedOut();
     
     void onLoginViewClosed();
@@ -37,7 +36,6 @@ private:
 
 JSBool jsbUACInit(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACSetDelegate(JSContext* cx, unsigned argc, JS::Value* vp);
-JSBool jsbUACSetAccountMode(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACPresentLoginView(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACPresentManageView(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbUACLogout(JSContext* cx, unsigned argc, JS::Value* vp);

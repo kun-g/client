@@ -2,13 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>com.tringame.pocketdungeon.pay6</string>
-	<string>com.tringame.pocketdungeon.pay12</string>
-	<string>com.tringame.pocketdungeon.pay30</string>
-	<string>com.tringame.pocketdungeon.pay68</string>
-	<string>com.tringame.pocketdungeon.pay128</string>
-	<string>com.tringame.pocketdungeon.pay198</string>
-	<string>com.tringame.pocketdungeon.pay328</string>
-	<string>com.tringame.pocketdungeon.pay648</string>
+	<string>com.tringame.everdungeon.pay6</string>
+	<string>com.tringame.everdungeon.pay12</string>
+	<string>com.tringame.everdungeon.pay30</string>
+	<string>com.tringame.everdungeon.pay68</string>
+	<string>com.tringame.everdungeon.pay128</string>
+	<string>com.tringame.everdungeon.pay198</string>
+	<string>com.tringame.everdungeon.pay328</string>
+	<string>com.tringame.everdungeon.pay648</string>
 </array>
 </plist>

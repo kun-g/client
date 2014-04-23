@@ -13,6 +13,9 @@
 
 #import "RootViewController.h"
 
+#import <PPAppPlatformKit/PPAppPlatformKit.h>
+#import "PublishVersions.h"
+
 @implementation AppController
 
 @synthesize window;
@@ -25,6 +28,9 @@
 static AppDelegate s_sharedApplication;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    preInitAPI();
+
     // Add the view controller's view to the window and display.
     window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
     EAGLView *__glView = [EAGLView viewWithFrame: [window bounds]
@@ -55,6 +61,8 @@ static AppDelegate s_sharedApplication;
     [window makeKeyAndVisible];
 
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
+
+    postInitAPI();
     
     cocos2d::CCApplication::sharedApplication()->run();
     return YES;
@@ -66,6 +74,7 @@ static AppDelegate s_sharedApplication;
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    onPauseApp();
     cocos2d::CCDirector::sharedDirector()->pause();
 }
 
@@ -73,6 +82,7 @@ static AppDelegate s_sharedApplication;
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    onResumeApp();
     cocos2d::CCDirector::sharedDirector()->resume();
 }
 
@@ -99,6 +109,7 @@ static AppDelegate s_sharedApplication;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    [[PPAppPlatformKit sharedInstance] alixPayResult:url];
     return YES;
 }
 

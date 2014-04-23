@@ -102,7 +102,7 @@ JSBool jsbTDGASetAge(JSContext* cx, unsigned argc, JS::Value* vp)
     int age;
     JS_ValueToInt32(cx, argv[0], &age);
     CCLOG("- TDGA setAge(%d)", age);
-    gTDGAAccount->setAge(age);
+    //gTDGAAccount->setAge(age);
     return JS_TRUE;
 }
 

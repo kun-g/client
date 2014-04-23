@@ -17,8 +17,7 @@ class UACDelegate
 {
 public:
     virtual void onUACReady() = 0;
-    virtual void onLoggedIn(const std::string &token, int accountType) = 0;
-    virtual void onAccountChanged(const std::string &token, int accountType) = 0;
+    virtual void onLoggedIn(const std::string &token) = 0;
     virtual void onLoggedOut() = 0;
     
     virtual void onLoginViewClosed() = 0;
@@ -33,20 +32,10 @@ public:
     void setUACDelegate(UACDelegate *pDelegate);
     UACDelegate* getUACDelegate();
     
-    //init uac module
     virtual void initUAC() = 0;
-    
-    //present login view / start to login
     virtual void presentLoginView() = 0;
-    
-    //present account manage view
     virtual void presentManageView() = 0;
-    
-    //logout current account
     virtual void logout() = 0;
-    
-    //switch account mode
-    virtual void setAccountMode(int mode) = 0;
     
     virtual void getUserName(std::string &name) = 0;
     virtual void getUserId(std::string &token) = 0;

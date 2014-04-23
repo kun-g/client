@@ -15,7 +15,7 @@
 #import "IFeedback.h"
 #import "iOSfeedback.h"
 #import "IUAC.h"
-#import "GameCenterUAC.h"
+#import "PP25UAC.h"
 
 #import "TalkingData.h"
 
@@ -23,9 +23,10 @@ void preInitAPI()
 {
     setSystem(new iOSsystem());//set ios system
     setFeedback(new iOSfeedback());//set feedback
+    PP25UAC* pp = new PP25UAC();
+    setIAP(pp);
+    setUAC(pp);
     TDCCTalkingDataGA::onStart(TDGA_APPKEY, CHANNEL_ID_CSTR);
-    setUAC(new GameCenterUAC());
-    setIAP(new AppStoreIAP());
 }
 
 void postInitAPI()
