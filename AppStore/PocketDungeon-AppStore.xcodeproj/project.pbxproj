@@ -20,7 +20,6 @@
 		5348704C190369A5007443D3 /* GameCenterUAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5348704A190369A5007443D3 /* GameCenterUAC.cpp */; };
 		534BEFE717F535E00078CD45 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 534BEFE617F535E00078CD45 /* StoreKit.framework */; };
 		534DC5AC1884D6560084E703 /* jsGameCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534DC5AA1884D6560084E703 /* jsGameCenter.cpp */; };
-		535615CB18113104008298BF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535615CA18113104008298BF /* AdSupport.framework */; };
 		535EF25617E942B400D0D61D /* CallbackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22417E942B400D0D61D /* CallbackManager.cpp */; };
 		535EF25717E942B400D0D61D /* Download.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22617E942B400D0D61D /* Download.cpp */; };
 		535EF25817E942B400D0D61D /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22817E942B400D0D61D /* File.cpp */; };
@@ -1268,7 +1267,6 @@
 				531F129F18895FA8004E036F /* Security.framework in Frameworks */,
 				533FB3CD18841201008925DC /* GameKit.framework in Frameworks */,
 				53A304F918FD30EB001CE8B0 /* libcurl.a in Frameworks */,
-				535615CB18113104008298BF /* AdSupport.framework in Frameworks */,
 				53A304FA18FD30EB001CE8B0 /* libwebp.a in Frameworks */,
 				535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */,
 				535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */,
@@ -2949,7 +2947,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					53885E7617E93DE400A3A8B4 = {
-						DevelopmentTeam = 6SA2THV979;
+						DevelopmentTeam = T9HY3H5P2X;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;

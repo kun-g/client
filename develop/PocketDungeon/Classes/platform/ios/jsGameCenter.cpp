@@ -8,6 +8,7 @@
 
 #include "jsGameCenter.h"
 #include "GameCenter.h"
+#include "CallbackManager.h"
 
 using namespace std;
 
@@ -26,10 +27,10 @@ public:
     {
         if( sGCCB != NULL )
         {
-            JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
-            jsval ret;
-            jsval arg = JS_NumberValue(0);
-            JS_CallFunction(cx, NULL, sGCCB, 1, &arg, &ret);
+            JSCallback* call = JSCallback::alloc(sGCCB, 1);
+            call->setArgumentInt(0, 0);
+            CallbackManager::getInstance()->postCallback(call);
+            call->release();
         }
     }
     
@@ -37,10 +38,10 @@ public:
     {
         if( sGCCB != NULL )
         {
-            JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
-            jsval ret;
-            jsval arg = JS_NumberValue(1);
-            JS_CallFunction(cx, NULL, sGCCB, 1, &arg, &ret);
+            JSCallback* call = JSCallback::alloc(sGCCB, 1);
+            call->setArgumentInt(0, 1);
+            CallbackManager::getInstance()->postCallback(call);
+            call->release();
         }
     }
 };
@@ -155,8 +156,8 @@ void registerGameCenter(JSContext* cx, JSObject* global)
     jsval vGameCenter = OBJECT_TO_JSVAL(gc);
     JS_SetProperty(cx, global, "gamecenter", &vGameCenter);
     
-    JS_DefineFunction(cx, gc, "setCallback",jsbGameCenterSetCallback, 0, JSPROP_READONLY | JSPROP_PERMANENT);
-    JS_DefineFunction(cx, gc, "authenticateLocalPlayer",jsbGameCenterAuthenticateLocalPlayer, 0, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, gc, "setCallback",jsbGameCenterSetCallback, 1, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, gc, "authenticateLocalPlayer",jsbGameCenterAuthenticateLocalPlayer, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, gc, "isLocalPlayerAuthenticated",jsbGameCenterIsLocalPlayerAuthenticated, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, gc, "queryFriendList",jsbGameCenterQueryFriendList, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, gc, "getFriendList",jsbGameCenterRetriveFriendList, 0, JSPROP_READONLY | JSPROP_PERMANENT);

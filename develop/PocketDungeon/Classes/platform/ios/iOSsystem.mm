@@ -11,7 +11,6 @@
 #import "iOSsystem.h"
 #import "Reachability.h"
 #import <AdSupport/AdSupport.h>
-#import "OpenUDID.h"
 #import "TalkingData.h"
 
 #include "cocos2d.h"
@@ -265,14 +264,10 @@ bool iOSsystem::removeDirectory(string path)
 bool iOSsystem::getPreference(string key, string &out)
 {
     //special values 测试使用的代码
-    if( key == "flag_debug" ){
-        out = string("1");
-        return YES;
-    }
-    if( key == "flag_blackbox" ){
-        out = string("0");
-        return YES;
-    }
+//    if( key == "flag_debug" ){
+//        out = string("1");
+//        return YES;
+//    }
     
     bool ret = true;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -291,6 +286,16 @@ bool iOSsystem::getPreference(string key, string &out)
     [strKey release];
     
     return ret;
+}
+
+void iOSsystem::setPreference(string key, string val)
+{
+    @autoreleasepool {
+        NSString* strKey = [NSString stringWithUTF8String:key.c_str()];
+        NSString* strVal = [NSString stringWithUTF8String:val.c_str()];
+        [[NSUserDefaults standardUserDefaults] setObject:strVal forKey:strKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 bool iOSsystem::isFirstLaunch()

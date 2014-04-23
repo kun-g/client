@@ -29,10 +29,28 @@ void UACJSDelegate::onUACReady()
     call->release();
 }
 
-void UACJSDelegate::onLoggedIn(const string &token)
+void UACJSDelegate::onLoggedIn(const string &token, int accountType)
 {
-    JSCallback* call = JSCallback::alloc(mObject, "onLoggedIn", 1);
+    int argc = 2;
+    if( accountType < 0 ){ argc = 1; }
+    JSCallback* call = JSCallback::alloc(mObject, "onLoggedIn", argc);
     call->setArgumentString(0, token);
+    if( accountType >= 0 ){
+        call->setArgumentInt(1, accountType);
+    }
+    CallbackManager::getInstance()->postCallback(call);
+    call->release();
+}
+
+void UACJSDelegate::onAccountChanged(const string &token, int accountType)
+{
+    int argc = 2;
+    if( accountType < 0 ){ argc = 1; }
+    JSCallback* call = JSCallback::alloc(mObject, "onAccountChanged", argc);
+    call->setArgumentString(0, token);
+    if( accountType >= 0 ){
+        call->setArgumentInt(1, accountType);
+    }
     CallbackManager::getInstance()->postCallback(call);
     call->release();
 }
@@ -75,6 +93,20 @@ JSBool jsbUACSetDelegate(JSContext* cx, unsigned argc, JS::Value* vp)
     JSObject* obj = NULL;
     JS_ValueToObject(cx, argv[0], &obj);
     UACJSDelegate::getInstance()->setCallback(obj);
+    
+    return JS_TRUE;
+}
+
+JSBool jsbUACSetAccountMode(JSContext* cx, unsigned argc, JS::Value* vp)
+{
+    if( argc < 1 ){
+        CCLog("uac.setAccountMode(mode): wrong argument.");
+        return JS_FALSE;
+    }
+    jsval* argv = JS_ARGV(cx, vp);
+    int mode = 0;
+    JS_ValueToInt32(cx, argv[0], &mode);
+    getUAC()->setAccountMode(mode);
     
     return JS_TRUE;
 }
@@ -125,6 +157,7 @@ void registerUAC(JSContext* cx, JSObject* global)
     
     JS_DefineFunction(cx, uac, "init",jsbUACInit, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, uac, "setDelegate",jsbUACSetDelegate, 1, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, uac, "setAccountMode",jsbUACSetAccountMode, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, uac, "presentLoginView",jsbUACPresentLoginView, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, uac, "presentManageView",jsbUACPresentManageView, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, uac, "logout",jsbUACLogout, 0, JSPROP_READONLY | JSPROP_PERMANENT);

@@ -39,6 +39,9 @@ public:
     void retrivePlayerAlias(std::string &out);
     void retrivePlayerDisplayName(std::string &out);
     
+    //view manage
+    void showGameCenterView();
+    
     //constructor
     GameCenter();
 private:

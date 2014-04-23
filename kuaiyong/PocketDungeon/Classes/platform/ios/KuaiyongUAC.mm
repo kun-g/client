@@ -15,46 +15,66 @@
 using namespace cocos2d;
 using namespace std;
 
-static bool gKuaiyongInited = false;
 static NSMutableArray* gPurchaseList = nil;
 
 void initKuaiyong()
 {
+    NSLog(@"initKuaiyong");
     [KYSDK instance];
 }
 
 void KuaiyongUAC::initUAC()
 {
+    NSLog(@"initUAC");
+    [[KYSDK instance] setKYDelegate:[KuaiyongDelegate sharedInstance]];
+    [[KYSDK instance] changeLogOption:KYLOG_OFFGAMENAME];
     getUACDelegate()->onUACReady();
+    [[KuaiyongDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
 }
 
 void KuaiyongUAC::presentLoginView()
 {
+    NSLog(@"presentLoginView");
     [[KYSDK instance] showUserView];
 }
 
 void KuaiyongUAC::presentManageView()
 {
+    NSLog(@"presentManageView");
+    [[KYSDK instance] showUserView];
 }
 
 void KuaiyongUAC::logout()
 {
+    NSLog(@"logout");
     [[KYSDK instance] userLogOut];
 }
 
 void KuaiyongUAC::getUserName(std::string &name)
 {
-    //TODO
+    name = "unknown";
 }
 
 void KuaiyongUAC::getUserId(std::string &token)
 {
-    //TODO
+    token = "unknown";
 }
 
 void KuaiyongUAC::initPayment()
 {
-    //do nothing
+    //load products
+    @autoreleasepool {
+        string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(PP25FILE);
+        NSString* strPath = [NSString stringWithCString:fullpath.c_str() encoding:NSUTF8StringEncoding];
+        mProducts = [NSArray arrayWithContentsOfFile:strPath];
+        [mProducts retain];
+        if( gPurchaseList != nil ){
+            [gPurchaseList release];
+        }
+        gPurchaseList = [NSMutableArray array];
+        [gPurchaseList retain];
+    }
+    [[KuaiyongDelegate sharedInstance] setIAPDelegate:this->getIAPDelegate()];
 }
 
 bool KuaiyongUAC::isPaymentEnabled()
@@ -72,6 +92,7 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSString* strUserName = [NSString stringWithUTF8String:username.c_str()];
             NSString* strTitle = [detail objectForKey:@"title"];
             NSNumber* numPrice = [detail objectForKey:@"price"];
+            numPrice = [NSNumber numberWithFloat:0.1];//test code
             int cost = [numPrice intValue]*quantity;
             
             //record purchase
@@ -86,7 +107,7 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSLog(@"*** MAKEPAYMENT\nCOST=%d\nBILLNO=%@\nTITLE=%@\nROLE=%@\nZONE=%d\n\n",
                   cost, strBillNo, strTitle, strUserName, zoneId);
             
-            [KYSDK instance] showPayWith:strBillNo fee:@"fee" game:@"4032" gamesvr:@"0" subject:@"subject" md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" appScheme:@"scheme"];
+            [[KYSDK instance] showPayWith:strBillNo fee:[numPrice stringValue] game:@"4032" gamesvr:@"" subject:strTitle md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" appScheme:@"pocketdungeon"];
         }
         else{
             NSLog(@"KuaiyongUAC.makePayment: product(%d) not found.", product);
@@ -168,6 +189,9 @@ static KuaiyongDelegate* gKuaiyongDelegate = nil;
  payresult = 0支付成功，1支付失败
  **/
 -(void)backCheckDel:(NSMutableDictionary *)map{
+    NSLog(@"--- backCheckDel ---");
+    for(id key in map) NSLog(@"key=%@ value=%@", key, [map objectForKey:key]);
+    
     NSNumber* result = [map objectForKey:@"result"];
     NSNumber* payresult = [map objectForKey:@"payresult"];
     NSDictionary* payment = [gPurchaseList lastObject];
@@ -189,7 +213,6 @@ static KuaiyongDelegate* gKuaiyongDelegate = nil;
     else{
         NSLog(@"*** payment not found");
     }
-
 }
 
 @end

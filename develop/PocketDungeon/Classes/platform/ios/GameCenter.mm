@@ -16,6 +16,66 @@ using namespace std;
 
 UIViewController* gAuthencationView = NULL;
 
+//**** Game Center UI View Controller ****
+
+@interface GameCenterController : NSObject<GKGameCenterControllerDelegate>
+
+@property(assign) UIViewController* viewController;
+
++(GameCenterController*) sharedGameCenterController;
+
+-(void) showGameCenter;
+
+@end
+
+@implementation GameCenterController
+
+@synthesize viewController;
+
++(GameCenterController*) sharedGameCenterController
+{
+    static GameCenterController* ins = nil;
+    if( ins == nil ){
+        ins = [[GameCenterController alloc] init];
+    }
+    return ins;
+}
+
+-(id) init
+{
+    if( self = [super init] ){
+        viewController = nil;
+    }
+    return self;
+}
+
+-(void) showGameCenter
+{
+    //lazy init
+    if( viewController == nil )
+    {
+        AppController* app = (AppController*)[UIApplication sharedApplication].delegate;
+        viewController = app.viewController;
+    }
+    
+    GKGameCenterViewController *gcc = [[GKGameCenterViewController alloc] init];
+    if (gcc != nil)
+    {
+        gcc.gameCenterDelegate = self;
+        [viewController presentViewController: gcc animated: YES
+                         completion:nil];
+    }
+}
+
+-(void) gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+@end
+
+//******************************************
+
 GameCenter* GameCenter::getInstance()
 {
     static GameCenter ins;
@@ -47,42 +107,63 @@ bool GameCenter::isLocalPlayerAuthenticated()
 
 void GameCenter::authenticateLocalPlayer(bool forceLogin)
 {
+    printf("AuthenticateLocalPlayer\n");
     mForceLogin = forceLogin;
-    [GKLocalPlayer localPlayer].authenticateHandler = ^(UIViewController* viewController, NSError* error)
-    {
-        if( error == nil )
+    if( mForceLogin ){
+        [GKLocalPlayer localPlayer].authenticateHandler = ^(UIViewController* viewController, NSError* error)
         {
-            if( this->isLocalPlayerAuthenticated() )
+            if( error == nil )
             {
-                if( this->mpDelegate != NULL )
+                if( this->isLocalPlayerAuthenticated() )
                 {
-                    this->mpDelegate->localPlayerAuthenticated();
+                    if( this->mpDelegate != NULL )
+                    {
+                        this->mpDelegate->localPlayerAuthenticated();
+                    }
+                }
+                else
+                {
+                    if( this->mForceLogin )
+                    {
+                        if( gAuthencationView != NULL )
+                        {
+                            [gAuthencationView release];
+                        }
+                        gAuthencationView = viewController;
+                        [gAuthencationView retain];
+                        dispatch_async(dispatch_get_main_queue(), ^(void){
+                            AppController* delegate = (AppController*)[UIApplication sharedApplication].delegate;
+                            [delegate.viewController presentModalViewController:gAuthencationView animated:YES];
+                            [gAuthencationView release];
+                            gAuthencationView = NULL;
+                        });
+                    }
                 }
             }
             else
             {
-                if( this->mForceLogin )
+                NSLog(@"GameCenter Auth Error: %@", error);
+            }
+        };
+    }
+    else{
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+            if( error == nil )
+            {
+                if( this->isLocalPlayerAuthenticated() )
                 {
-                    if( gAuthencationView != NULL )
+                    if( this->mpDelegate != NULL )
                     {
-                        [gAuthencationView release];
+                        this->mpDelegate->localPlayerAuthenticated();
                     }
-                    gAuthencationView = viewController;
-                    [gAuthencationView retain];
-                    dispatch_async(dispatch_get_main_queue(), ^(void){
-                        AppController* delegate = (AppController*)[UIApplication sharedApplication].delegate;
-                        [delegate.viewController presentModalViewController:gAuthencationView animated:YES];
-                        [gAuthencationView release];
-                        gAuthencationView = NULL;
-                    });
                 }
             }
-        }
-        else
-        {
-            NSLog(@"GameCenter Auth Error: %@", error);
-        }
-    };
+            else
+            {
+                NSLog(@"GameCenter Auth Error: %@", error);
+            }
+        }];
+    }
 }
 
 void GameCenter::queryFriendList()
@@ -142,3 +223,9 @@ void GameCenter::retrivePlayerDisplayName(string &out)
         out = string([[GKLocalPlayer localPlayer].displayName cStringUsingEncoding:NSUTF8StringEncoding]);
     }
 }
+
+void GameCenter::showGameCenterView()
+{
+    [[GameCenterController sharedGameCenterController] showGameCenter];
+}
+
