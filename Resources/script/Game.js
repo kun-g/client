@@ -86,6 +86,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_TUTORIAL);
     table.loadTable(TABLE_TUTORIAL_CONFIG);
     table.loadTable(TABLE_BAN);
+    table.loadTable(TABLE_FACTION);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();
