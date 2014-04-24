@@ -2001,9 +2001,11 @@
             "action":[
                 {"type":"delay"},
                 {"type":"playAction","motion":1,"pos":"self"},
-                {"type":"delay","delay":1.0},
+                {"type":"delay","delay":0.8},
                 {"type": "damage", "formular": {"src":{"strong":0.5}}},
                 {"type": "playEffect"},
+                {"type": "blink","delay":0.3,"time":0.08},
+                {"type":"shock","delay":0.3,"range":5,"time":0.2},
                 {"type":"delay"},
                 {"type":"kill","self": true}
             ],
@@ -2075,6 +2077,9 @@
         "label":"全体加速",
         "desc":"我方全体攻击加速",
         "config": {
+            "basic" : {
+                 "buffEffect": 37
+            },
                "triggerCondition": [
                 {"type" :"event","event": "onShow"}
             ],
@@ -2214,7 +2219,8 @@
         "skillId": 94,
             "config": {
             "action":[
-                {"type": "damage","damageType":"poison","formular": {"src":{"health":0.1}}}
+                {"type": "damage","damageType":"poison","formular": {"src":{"health":0.1}}},
+                {"type": "playEffect","effect":36,"pos":"target"}
             ],
             "targetSelection":
             { 
