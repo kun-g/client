@@ -179,13 +179,6 @@ Avatar.prototype.doLoad = function(){
 }
 
 Avatar.prototype.addEffect = function(param){
-    var effect = loadModule("effect.js");
-    var mode = effect.EFFECTMODE_AUTO;
-    if (param.serverId != null) {
-        mode = effect.EFFECTMODE_LOOP;
-    }
-    param.node = effect.attachEffect(this.node, cc.p(0, 0), param.effectId, mode);
-
     //include to management
     if( param.serverId != null ){
         if( this.EffectList[param.serverId] != null ){
@@ -194,6 +187,12 @@ Avatar.prototype.addEffect = function(param){
         this.EffectList[param.serverId] = param;
     }
 
+    var effect = loadModule("effect.js");
+    var mode = effect.EFFECTMODE_AUTO;
+    if (param.serverId != null) {
+        mode = effect.EFFECTMODE_LOOP;
+    }
+    param.node = effect.attachEffect(this.node, cc.p(0, 0), param.effectId, mode);
     return param.node;
 }
 

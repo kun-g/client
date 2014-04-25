@@ -2077,10 +2077,8 @@
         "label":"全体加速",
         "desc":"我方全体攻击加速",
         "config": {
-            "basic" : {
-                 "buffEffect": 37
-            },
-               "triggerCondition": [
+
+                 "triggerCondition": [
                 {"type" :"event","event": "onShow"}
             ],
             "targetSelection": {
@@ -2196,7 +2194,8 @@
         "label":"中毒",
         "desc":"我方全体持续掉血",
         "config": {
-           "triggerCondition": [
+
+            "triggerCondition": [
                 {"type" :"event","event": "onShow"}
             ],
             "targetSelection": {
@@ -2218,6 +2217,9 @@
     {
         "skillId": 94,
             "config": {
+                "basic" : {
+                    "buffEffect": 36
+                },
             "action":[
                 {"type": "damage","damageType":"poison","formular": {"src":{"health":0.1}}},
                 {"type": "playEffect","effect":36,"pos":"target"}
@@ -2242,6 +2244,7 @@
         "label":"无敌",
         "desc":"我方全体无敌",
         "config":{
+
             "triggerCondition":[
                 {"type" :"event","event": "onShow"}
             ],
@@ -2263,6 +2266,9 @@
     {
         "skillId": 96,
         "config": {
+            "basic" : {
+                "buffEffect": 39
+            },
             "action":[
                 {"type": "ignoreHurt" }
             ],
@@ -2286,6 +2292,7 @@
         "label":"攻击吸收",
         "desc":"我方全体攻击吸收",
         "config": {
+
              "triggerCondition": [
                 {"type" :"event","event": "onShow"}
             ],
@@ -2308,6 +2315,9 @@
     {
         "skillId": 98,
         "config": {
+            "basic" : {
+                "buffEffect": 40
+            },
            "triggerCondition": [
                    { "type": "event", "event": "onBePhysicalDamage" },
                    { "type": "event", "event": "onBePhysicalRangeDamage" },

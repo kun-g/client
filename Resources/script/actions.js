@@ -1253,7 +1253,7 @@ function makeEffect(pace, act)
         var thiz = this;
         var actDelay = cc.DelayTime.create(delay);
         var actExec = cc.CallFunc.create(function(){
-            if( thiz.rmf === true ){//remove flag
+            if( thiz.isRemove === true ){//remove flag
                 if( thiz.serverId != null ){
                     layer.removeEffect(thiz.serverId);
                 }
@@ -1291,6 +1291,7 @@ function makeEffect(pace, act)
             }
             else{
                 error("Action Effect: Grid not found.");
+                return;
             }
         }
         var parent = layer.effects;
