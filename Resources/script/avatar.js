@@ -149,6 +149,7 @@ function Avatar(role, lazyLoad)
     this.node.thiz = this;
     this.SCALE = 1;
     this.FLIPX = false;
+    this.FLIPFLAG = true;
     this.color = cc.c3b(255, 255, 255);
     this.node.scheduleUpdate();
     this.BOSSFLAG = false;
@@ -390,6 +391,10 @@ Avatar.prototype.update = function(role)
         else{
             this.hideAttack = RoleClass.hideAttack;
         }
+    }
+
+    if( RoleClass.flipFlag != null ){
+        this.FLIPFLAG = RoleClass.flipFlag;
     }
 
     //装备
@@ -715,7 +720,7 @@ Avatar.prototype.getFlipX = function()
 
 Avatar.prototype.setFlipX = function(flag)
 {
-    if( this.BOSSFLAG ) return;//exception
+    if( !this.FLIPFLAG ) return;//exception
 
     if( this.FLIPX != flag ){
         this.FLIPX = flag;

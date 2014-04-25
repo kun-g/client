@@ -253,7 +253,7 @@
       ],
       "targetSelection": {
          "pool": "objects",
-          "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health","reverse":true},{"type":"count","count":1}]
+          "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health"},{"type":"count","count":1}]
       },
       "action": [
         { "type": "heal" }
@@ -285,7 +285,7 @@
       ],
       "targetSelection": {
           "pool": "objects",
-          "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health","reverse":true},{"type":"count","count":1}]
+          "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health"},{"type":"count","count":1}]
       },
       "levelConfig" : [
         { "formular":{"src":{"accuracy":0.1},"c": 3} },
@@ -445,7 +445,7 @@
       ],
       "targetSelection": {
           "pool": "objects",
-          "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health","reverse":true},{"type":"count","count":1}]
+          "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health"},{"type":"count","count":1}]
       },
       "action":[
         {"type": "heal", "formular": {"tar":{"strong":1}, "c":5}},
@@ -1824,7 +1824,7 @@
             ],
             "targetSelection": {
                 "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health","reverse":true},{"type":"count","count":1}]
+                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"sort","by":"health"},{"type":"count","count":1}]
             }
         }
     },
@@ -2256,7 +2256,8 @@
                 {"type":"delay"},
                 {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay","delay":1.0},
-                { "type": "installSpell", "spell": 96}  ,
+                { "type": "installSpell", "spell": 96},
+                { "type": "removeSpell", "spell": 98},
                {"type": "playEffect","effect":39,"pos":"target"},
                 {"type":"delay"},
                 {"type":"kill", "self": true}
@@ -2270,7 +2271,8 @@
                 "buffEffect": 39
             },
             "action":[
-                {"type": "ignoreHurt" }
+                {"type": "ignoreHurt" },
+                {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}}
             ],
             "targetSelection":
             { "pool":"self",
@@ -2305,6 +2307,7 @@
                 {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay","delay":1.0},
                 { "type": "installSpell", "spell": 98}  ,
+                { "type": "removeSpell", "spell": 96},
                {"type": "playEffect","effect":40,"pos":"target"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
@@ -2322,23 +2325,23 @@
                    { "type": "event", "event": "onBePhysicalDamage" },
                    { "type": "event", "event": "onBePhysicalRangeDamage" },
                    { "type": "event", "event": "onBeSpellDamage" },
-                   { "type": "event", "event": "onBeSpellRangeDamage" }
+                   { "type": "event", "event": "onBeSpellRangeDamage" },
+               { "type": "targetMutex", "mutex": "reinforce" }
             ],
             "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"} ]
+                "pool": "self",
+                "filter": [{"type":"alive"}]}
             },
 
             "buffType":"RoleBuff",
             "action": [
                 {"type": "ignoreHurt"},
-                {"type": "heal", "formular": {"environment":{"damage":1}}}
+                {"type": "heal", "formular": {"environment":{"damage":1}}},
+                {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}}
             ],
             "availableCondition": [
                 { "type": "effectCount", "count":1}
            ]
-
-        }
     },
     {
         "skillId": 99,
@@ -2362,9 +2365,7 @@
                 {"type":"delay"},
                 {"type":"kill","self": true}
              ]
-
             }
-
     },
     {
         "skillId": 100,

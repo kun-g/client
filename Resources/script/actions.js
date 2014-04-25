@@ -1270,52 +1270,9 @@ function makeEffect(pace, act)
                     serverId: thiz.serverId
                 });
             }
-
         });
         var actSeq = cc.Sequence.create(actDelay, actExec);
         layer.runAction(actSeq);
-        //---------------------
-        var pos;
-        if( this.target != null ){
-            var actor = layer.getActor(this.target);
-            if( actor == null )
-            {
-                error("Action Effect: Actor not found.");
-                return;
-            }
-            pos = actor.getPosition();
-        }
-        else{
-            if( this.grid != null ){
-                pos = calcPosInGrid(this.grid);
-            }
-            else{
-                error("Action Effect: Grid not found.");
-                return;
-            }
-        }
-        var parent = layer.effects;
-        var effectData = table.queryTable(TABLE_EFFECT, this.effect);
-        if( effectData.onGround === true ){
-            parent = layer.ground;
-        }
-
-        if( this.delay > 0 )
-        {
-            var zffect = this.effect;
-            var act1 = cc.DelayTime.create(this.delay);
-            var act2 = cc.CallFunc.create(function()
-            {
-                effects.attachEffect(parent, pos, zffect);
-
-            }, layer);
-            var seq = cc.Sequence.create(act1, act2);
-            layer.runAction(seq);
-        }
-        else
-        {
-            effects.attachEffect(parent, pos, this.effect);
-        }
     }
     return ret;
 }
@@ -1680,13 +1637,6 @@ function makeEnterLevel(pace, act){
 
                 var actor = layer.addActor(unit);
                 dungeon.HeroCount++;
-
-                //reattach Effects
-                for(var e in unit.effects)
-                {
-                    var eff = Number(e);
-                    effects.attachEffect(layer.effects, actor.getPosition(), eff, actor);
-                }
             }
             else
             {
@@ -1715,6 +1665,19 @@ function makeEnterLevel(pace, act){
         //dump battle state on every level
         engine.user.setData("ddump", engine.box.save());
         engine.user.saveProfile();
+        //--- restore effects ---
+        var retach = [];
+        for(var k in layer.EffectList){
+            var param = layer.EffectList[k];
+            if( param.target != null ){
+                retach.push(param);
+            }
+        }
+        layer.EffectList = {};//clear
+        for(var k in retach){
+            var param = retach[k];
+            layer.addEffect(param);
+        }
     }
     return ret;
 }
