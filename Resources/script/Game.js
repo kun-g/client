@@ -58,6 +58,8 @@ Game.prototype.init = function()
     utils.registerClass(loadModule("quest.js").Quest);
     utils.registerClass(loadModule("quest.js").QuestLog);
     utils.registerClass(loadModule("role.js").FriendList);
+    utils.registerClass(loadModule("bounty.js").Bounty);
+    utils.registerClass(loadModule("bounty.js").BountyLog);
 
     //register pop ups
     engine.pop.registerPop("announce", loadModule("pops.js").invokeAnnouncement);
@@ -86,6 +88,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_TUTORIAL);
     table.loadTable(TABLE_TUTORIAL_CONFIG);
     table.loadTable(TABLE_BAN);
+    table.loadTable(TABLE_BOUNTY);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();
@@ -155,6 +158,7 @@ Game.prototype.processPreference = function(){
     else{
         FLAG_BLACKBOX = true;
     }
+    FLAG_BLACKBOX = false;
 
     this.saveConfig();
     debug("-- SETTINGS --\nDEBUG="+this.config.debug+"\nBLACKBOX="+FLAG_BLACKBOX);

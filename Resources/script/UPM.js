@@ -9,6 +9,7 @@ var util = loadModule("util.js");
 var item = loadModule("xitem.js");
 var stage = loadModule("stage.js");
 var quest = loadModule("quest.js");
+var bounty = loadModule("bounty.js");
 var player = loadModule("player.js");
 var role = loadModule("role.js");
 
@@ -41,6 +42,7 @@ UPM.prototype.initProfile = function(profile)
         this.setData(CACHE_PLAYER, new player.Player());
         this.setData(CACHE_STAGE, new stage.Stage());
         this.setData(CACHE_QUEST, new quest.QuestLog());
+        this.setData(CACHE_BOUNTY, new bounty.BountyLog());
         this.setData(CACHE_FRIEND, new role.FriendList());
         this.setData(CACHE_ACTIVITY, {
             list: [],//活动列表

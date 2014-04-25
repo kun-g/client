@@ -29,6 +29,7 @@ TABLE_TUTORIAL_CONFIG = "tutorialConfig";
 TABLE_BAN = "bans";
 TABLE_LEADBOARD = "leadboard";
 TABLE_FACTION = "faction";
+TABLE_BOUNTY = "bounty";
 
 /*** GAME CONSTANTS ***/
 ItemId_RevivePotion = 540;
@@ -215,6 +216,10 @@ Max_tutorialStage = 3;
 /*** Quest Status ***/
 QUESTSTATUS_ONGOING = 0;
 QUESTSTATUS_COMPLETE = 1;
+
+/*** Bounty Status ***/
+BOUNTYSTATUS_ONGOING = 0;
+BOUNTYSTATUS_COMPLETE = 1;
 
 /*** Prize Type ***/
 PRIZETYPE_ITEM = 0;

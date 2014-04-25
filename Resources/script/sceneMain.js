@@ -7,6 +7,7 @@
 //load libs
 var libRole = loadModule("role.js");
 var libQuest = loadModule("questInfo.js");
+var libBounty = loadModule("sceneBounty.js");
 var libUIC = loadModule("UIComposer.js");
 var libChat = loadModule("chatInfo.js");
 var libMessage = loadModule("MessageInfo.js");
@@ -373,7 +374,8 @@ function onCharge(sender)
 function onQuest(sender)
 {
     startCloseAnimation(function(){
-        libQuest.show();
+        //libQuest.show();
+        libBounty.show();
     });
 }
 

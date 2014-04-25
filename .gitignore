@@ -1,5 +1,9 @@
 */.idea/*
 
+*.xcuserdatad*
+
+*.DS_Store
+
 *.xccheckout
 
 *.xcuserstate
