@@ -1,4 +1,4 @@
-{
+exports.data = {
     "upgrade":{
         "tutorialStage": 3,
         "refuseDialogue": 55
@@ -68,4 +68,4 @@
             "tutorial": 11
         }
     }
-}
+};

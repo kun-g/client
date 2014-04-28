@@ -370,7 +370,6 @@
 		53A3159818FD317E001CE8B0 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158B18FD317E001CE8B0 /* sound */; };
 		53A3159918FD317E001CE8B0 /* sprite in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158C18FD317E001CE8B0 /* sprite */; };
 		53A3159A18FD317E001CE8B0 /* spritesheets in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158D18FD317E001CE8B0 /* spritesheets */; };
-		53A3159B18FD317E001CE8B0 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158E18FD317E001CE8B0 /* table */; };
 		53A3159C18FD317E001CE8B0 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158F18FD317E001CE8B0 /* ui */; };
 		53A315AE18FD3191001CE8B0 /* AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3159D18FD3191001CE8B0 /* AppStore.plist */; };
 		53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */; };
@@ -1242,7 +1241,6 @@
 		53A3158B18FD317E001CE8B0 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
 		53A3158C18FD317E001CE8B0 /* sprite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sprite; sourceTree = "<group>"; };
 		53A3158D18FD317E001CE8B0 /* spritesheets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spritesheets; sourceTree = "<group>"; };
-		53A3158E18FD317E001CE8B0 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		53A3158F18FD317E001CE8B0 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
 		53A3159D18FD3191001CE8B0 /* AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppStore.plist; path = ios/AppStore.plist; sourceTree = "<group>"; };
 		53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "ios/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -2920,7 +2918,6 @@
 				53A3158B18FD317E001CE8B0 /* sound */,
 				53A3158C18FD317E001CE8B0 /* sprite */,
 				53A3158D18FD317E001CE8B0 /* spritesheets */,
-				53A3158E18FD317E001CE8B0 /* table */,
 				53A3158F18FD317E001CE8B0 /* ui */,
 				53A305D718FD3102001CE8B0 /* jsb.jsc */,
 				53A305D818FD3102001CE8B0 /* jsb_chipmunk.jsc */,
@@ -3058,7 +3055,6 @@
 				53A315B918FD3191001CE8B0 /* Icon@2x.png in Resources */,
 				53A315B718FD3191001CE8B0 /* Icon-Small@2x.png in Resources */,
 				53A315BC18FD3191001CE8B0 /* Icon~iphone.png in Resources */,
-				53A3159B18FD317E001CE8B0 /* table in Resources */,
 				53A3159A18FD317E001CE8B0 /* spritesheets in Resources */,
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,

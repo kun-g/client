@@ -1,4 +1,4 @@
-[
+exports.data = [
     {
     "abtest":[
         {
@@ -12973,11 +12973,6 @@
                     {
                         "weight": 2,
                         "item": 528
-                    },
-                    {
-                        "weight": 2,
-                        "id": 149,
-                        "count":2
                     },
                     {
                         "weight": 3,

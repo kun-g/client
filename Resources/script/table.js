@@ -6,29 +6,24 @@
 
 var utils = loadModule("util.js");
 
-var key = "WhyDoingThis";
 var gameTables = {};
 
 function loadTableFile(table){
-    var filename = table+".bad";
-    var encrypted = true;
+    var filename = table+".jsc";
 
     if( !file.exist(filename) )
     {
-        filename = table+".json";
-        encrypted = false;
+        filename = table+".js";
     }
 
-    var data = null;
-    if( encrypted )
-    {
-        data = file.decrypt(key, filename);
+    try{
+        var tab = loadModule(filename);
+        return tab.data;
     }
-    else
-    {
-        data = file.read(filename);
+    catch(e){
+        error("failed to load table("+filename+") with Exception:\n"+ e);
+        return null;
     }
-    return data;
 }
 
 function loadTable(table)
@@ -40,14 +35,8 @@ function loadTable(table)
         delete gameTables[table];
     }
     var data = loadTableFile(table);
-    try
-    {
-        var dicobj = JSON.parse(data);
-        gameTables[table] = dicobj;
-    }
-    catch(e){
-        gameTables[table] = null;
-        error("failed to load table("+table+") with Exception:\n"+ e);
+    if( data != null ){
+        gameTables[table] = data;
     }
 }
 

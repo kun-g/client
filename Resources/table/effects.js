@@ -1,4 +1,4 @@
-[
+exports.data = [
     {
         "effectId": 0,
         "file": "effect-lingting.ccbi"

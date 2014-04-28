@@ -1,4 +1,4 @@
-[
+exports.data = [
     {
         "classId": 0,
         "label": "七色宝石",
@@ -10724,7 +10724,7 @@
 
     },
     {
-        "classId": 353,
+        "classId": 363,
         "label": "圣职权杖（传奇）",
         "rank":8,
         "icon": "epmainweapon8.png",

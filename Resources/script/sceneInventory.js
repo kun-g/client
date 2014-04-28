@@ -154,6 +154,7 @@ function setNormalInventory(group){
 
 function onNormalInventory(sender)
 {
+    debug("onNormalInventory");
     if( isFlying ) return;
 
     if( currentMode < INVENTORY_GAME ){
@@ -217,6 +218,7 @@ function setShopInventory(group){
 
 function onShopInventory(sender)
 {
+    debug("onShopInventory");
     if( isFlying ) return;
 
     if( currentMode < INVENTORY_SHOP ){

@@ -1,4 +1,4 @@
-[
+exports.data = [
     {
         "broadcastId": 0,
         "textFormat": "{N:who}刚刚从{I:src}中翻出了{I:out}！",
@@ -29,4 +29,4 @@
         "textFormat": "{N:who}成功打造出了{I:out}！",
         "repeat": 3
     }
-]
+];
