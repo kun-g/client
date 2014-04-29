@@ -1,4 +1,4 @@
-[    {
+exports.data = [    {
     "tutorialId": 0,
     "actions":[
         {"act": "dialogue", "index": 19},

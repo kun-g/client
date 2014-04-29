@@ -250,6 +250,7 @@ Avatar.prototype.setHealth = function(health, color)
         this.health = cc.Sprite.createWithSpriteFrameName("hpicon.png");
         this.health.setPosition(cc.p(0, LABEL_SINK));
         this.node.addChild(this.health);
+        this.health.state = 0;
     }
     if( this.BOSSHP != null ){
         this.BOSSHP.setHP(health);
@@ -270,9 +271,12 @@ Avatar.prototype.setHealth = function(health, color)
         np.x = LO_GRID/4 - length;
         this.health.setPosition(np);
 
-        if( color != null )
+        if( color != null ){
+            this.health.state = color;
+        }
+        if( this.health.state != null )
         {
-            switch(color)
+            switch(this.health.state)
             {
                 case 1:
                     label.setColor(COLOR_VALUEDOWN);
@@ -298,6 +302,7 @@ Avatar.prototype.setAttack = function(attack, color)
         this.attack = cc.Sprite.createWithSpriteFrameName("attackicon.png");
         this.attack.setPosition(cc.p(0, LABEL_SINK));
         this.node.addChild(this.attack);
+        this.attack.state = 0;
     }
     if( this.BOSSHP != null ){
         return;
@@ -317,9 +322,12 @@ Avatar.prototype.setAttack = function(attack, color)
         np.x = -length - LO_GRID/4;
         this.attack.setPosition(np);
 
-        if( color != null )
+        if( color != null ){
+            this.attack.state = color;
+        }
+        if( this.attack.state != null )
         {
-            switch(color)
+            switch(this.attack.state)
             {
                 case 1:
                     label.setColor(COLOR_VALUEDOWN);
