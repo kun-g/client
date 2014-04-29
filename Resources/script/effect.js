@@ -202,6 +202,7 @@ function attachEffectCCBI(parent, pos, file, mode, z){
 
 function attachEffect(node, offset, effectId, mode)
 {
+    traceStack();//test
     if( mode == null )
     {
         mode = EFFECTMODE_AUTO;

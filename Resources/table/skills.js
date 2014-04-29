@@ -1434,7 +1434,6 @@ exports.data = [
             "targetSelection":{
                 "pool":"objects",
                 "filter": [{"type":"alive"},{"type":"visible"},{"type":"role-id","roleID":19}]
-
             },
             "action": [
                 {"type":"playAction","motion":7,"pos":"self"},
@@ -1470,8 +1469,7 @@ exports.data = [
             ],
             "targetSelection": {
                 "pool": "blocks",
-                "filter": [{"type":"shuffle"},{"type":"count","count":1}],
-                "anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":0,"y":0}]
+                "filter": [{"type":"shuffle"},{"type":"count","count":1},{"type":"anchor", "anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":0,"y":0}]}]
             },
             "action":[
                 {"type":"installSpell", "spell": 60,"delay":{"base":0.3}}
@@ -1514,8 +1512,7 @@ exports.data = [
             ],
             "targetSelection": {
                 "pool": "blocks",
-                "filter": [{"type":"shuffle"},{"type":"count","count":3}],
-                "anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":0,"y":0}]
+                "filter": [{"type":"shuffle"},{"type":"count","count":3},{"type":"anchor", "anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":0,"y":0}]}]
             },
             "action":[
                 {"type":"installSpell", "spell": 60,"delay":{"base":0.3}}
@@ -1668,9 +1665,8 @@ exports.data = [
                 {"type":"visible"}
             ],
             "targetSelection": {
-                "pool": "blocks",
-                "filter": [{"type":"count","count":1}],
-                "anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":1,"y":1},{"x":-1,"y":1},{"x":-1,"y":-1},{"x":1,"y":-1}]
+                "pool": "self",
+                "filter": [{"type":"count","count":1},{"type":"anchor","anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":1,"y":1},{"x":-1,"y":1},{"x":-1,"y":-1},{"x":1,"y":-1}]}]
             },
             "action":[
                 {"type":"installSpell", "spell": 70,"delay":0.3}
@@ -2031,8 +2027,8 @@ exports.data = [
           },
           "action":[
               {"type":"delay"},
-              {"type": "heal", "delay":1.5,"formular": {"src":{"strong":0.5}, "c":5}},
-              {"type": "playEffect","delay":1.5,"effect":19,"pos":"target"} ,
+              {"type": "heal", "delay":1.3,"formular": {"src":{"strong":0.5}, "c":5}},
+              {"type": "playEffect","delay":1.3,"effect":19,"pos":"target"} ,
               {"type":"playAction","motion":1,"pos":"self"},
               {"type":"delay"},
               {"type":"kill","self": true}
@@ -2266,7 +2262,7 @@ exports.data = [
             },
             "action":[
                 {"type": "ignoreHurt" },
-                {"type": "playEffect","effect":1,"pos":"self"},
+                {"type": "playEffect","delay":0.3,"effect":1,"pos":"self"},
                 {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}}
             ],
             "targetSelection":
@@ -2335,7 +2331,7 @@ exports.data = [
             "buffType":"RoleBuff",
             "action": [
                 {"type": "ignoreHurt"},
-                {"type": "heal", "formular": {"environment":{"damage":1}}},
+                {"type": "heal","delay":0.3, "formular": {"environment":{"damage":1}}},
                 {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}}
             ],
             "availableCondition": [

@@ -1246,6 +1246,7 @@ function makeEffect(pace, act)
     ret.grid = act.pos;
     ret.serverId = act.sid;
     ret.isRemove = act.rmf;
+    debug("** makeEffect = "+JSON.stringify(ret));//test
     ret.onStart = function(dungeon, layer)
     {
         var delay = 0;
