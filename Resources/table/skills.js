@@ -50,7 +50,7 @@ exports.data = [
       ],
       "action": [
         { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
-        {"type": "setMyMutex", "mutex": "dunqiang", "count": 1 }
+          {"type": "setMyMutex", "mutex": "reinforce", "count": 1 }
       ],
       "levelConfig": [
         {"count": 1},
@@ -2276,8 +2276,7 @@ exports.data = [
                 { "type": "event", "event": "onBeSpellDamage" },
                 { "type": "event", "event": "onBeSpellRangeDamage" },
                 { "type": "targetMutex", "mutex": "reinforce" },
-                { "type": "targetMutex", "mutex": "lightOfMiracel" },
-                {"type": "targetMutex", "mutex": "dunqiang"}
+                { "type": "targetMutex", "mutex": "lightOfMiracel" }
             ],
                 "availableCondition": [
                 { "type": "effectCount", "count":1}
@@ -2320,9 +2319,8 @@ exports.data = [
                    { "type": "event", "event": "onBeSpellDamage" },
                    { "type": "event", "event": "onBeSpellRangeDamage" },
                { "type": "targetMutex", "mutex": "reinforce" },
-               { "type": "targetMutex", "mutex": "lightOfMiracel" },
-               {"type": "targetMutex", "mutex": "dunqiang"}
-            ],
+               { "type": "targetMutex", "mutex": "lightOfMiracel" }
+           ],
             "targetSelection": {
                 "pool": "self",
                 "filter": [{"type":"alive"}]
@@ -2593,6 +2591,21 @@ exports.data = [
         }
     },
     {
+        "skillId":112,
+        "config": {
+            "installAction":[
+                { "type": "setProperty",  "modifications": {"speed":{"src":{"speed":3},"c":20}} }
+            ],
+            "uninstallAction": [
+                { "type": "resetProperty" }
+            ],
+            "buffType":"RoleBuff",
+            "availableCondition": [
+                { "type": "event", "event": "onEndBattleTurn", "eventCount": 2 }
+            ]
+        }
+    },
+    {
         "skillId":113,
         "config": {
             "installAction":[
@@ -2694,7 +2707,7 @@ exports.data = [
                 {"type":"visible"},
                 {"type" :"event", "event":"onTurnEnd" }
             ],
-            "action": [{"type": "createMonster","objectCount":2,"effect":21,"randomPos":true,"monsterID":7}]
+            "action": [{"type": "createMonster","objectCount":1,"effect":21,"randomPos":true,"monsterID":7}]
         }
     },
     {
@@ -2735,7 +2748,7 @@ exports.data = [
                 { "type": "effectCount", "count":1}
             ],
             "action":[
-                {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":10}},
+                {"type": "damage","damageType":"Physical","isRange":true,"delay":0.4,"formular": {"c":10}},
                 {"type": "playEffect","effect":30,"pos":"self"}
             ]
         }

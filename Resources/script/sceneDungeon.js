@@ -409,7 +409,7 @@ function onPauseHint(sender)
         theLayer.greymask.setVisible(false);
         delete theLayer.pause;
 
-        loadModule("tutorial.js").showHint();
+        loadModule("tutorialx.js").showHint();
     }));
 }
 

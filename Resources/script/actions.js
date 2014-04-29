@@ -1088,7 +1088,7 @@ function makeTutorial(pace, act)
     ret.tid = act.tid;
     ret.onStart = function(dungeon, layer)
     {
-        loadModule("tutorial.js").invokeTutorial(this.tid);
+        loadModule("tutorialx.js").invokeTutorial(this.tid);
     }
 
     return ret;

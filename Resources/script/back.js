@@ -339,6 +339,7 @@ function onEvent(event)
         }
         case Event_TutorialInfo:
         {
+            debug("** TutorialInfo = "+JSON.stringify(event.arg));//test
             //trigger tutorial
             if( engine.user.player.Tutorial != null
                 && engine.user.player.Tutorial != event.arg.tut ){
@@ -346,7 +347,7 @@ function onEvent(event)
                 if( tc.tutorialTriggers != null
                     && tc.tutorialTriggers[event.arg.tut] != null
                     && tc.tutorialTriggers[event.arg.tut].tutorial != null ){
-                    loadModule("tutorial").invokeTutorial(tc.tutorialTriggers[event.arg.tut].tutorial);
+                    loadModule("tutorialx.js").invokeTutorial(tc.tutorialTriggers[event.arg.tut].tutorial);
                 }
             }
             engine.user.player.Tutorial = event.arg.tut;

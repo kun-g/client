@@ -22,11 +22,11 @@
                 <key>frame</key>
                 <string>{{2,2},{70,42}}</string>
                 <key>offset</key>
-                <string>{-2,5}</string>
+                <string>{-1,3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{18,29},{70,42}}</string>
+                <string>{{19,31},{70,42}}</string>
                 <key>sourceSize</key>
                 <string>{110,110}</string>
             </dict>
@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8e06d19e1279f6ac409ef9bc539108b5$</string>
+            <string>$TexturePacker:SmartUpdate:05a65e3f5b87627c77957c5c4fab40c8$</string>
             <key>textureFileName</key>
             <string>rfasion-female5.png</string>
         </dict>

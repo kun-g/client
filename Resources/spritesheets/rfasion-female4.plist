@@ -20,13 +20,13 @@
             <key>ff4-helmet.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,2},{18,18}}</string>
+                <string>{{81,2},{20,20}}</string>
                 <key>offset</key>
-                <string>{12,-7}</string>
+                <string>{11,-9}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{58,53},{18,18}}</string>
+                <string>{{56,54},{20,20}}</string>
                 <key>sourceSize</key>
                 <string>{110,110}</string>
             </dict>
@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:953e4dae17b107aa6d35511e45642fa3$</string>
+            <string>$TexturePacker:SmartUpdate:94edc11e6dc571a62119c1cc90875374$</string>
             <key>textureFileName</key>
             <string>rfasion-female4.png</string>
         </dict>
