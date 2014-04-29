@@ -367,7 +367,7 @@ function onEvent(event)
         }
         case Event_Broadcast:
         {
-            loadModule("broadcast.js").instance.pushBroadcast(event.arg);
+            loadModule("broadcastx.js").instance.pushBroadcast(event.arg);
             return true;
         }
         case Event_ABTestSeed:

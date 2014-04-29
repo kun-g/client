@@ -859,7 +859,7 @@ function onEnter()
     FailReason = "玩家被击败";
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
     
     
 }
@@ -868,7 +868,7 @@ function onExit()
 {
     cc.AudioEngine.getInstance().stopMusic(true);
     //register broadcast
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function onActivate(){
@@ -1279,9 +1279,16 @@ function addActor(unit, boss)
     theLayer.avatars[unit.ref] = actor;
 
     //sync colors
-    if( unit.rs == 1 )
-    {
-        actor.setBlinkColor(COLOR_DEBUFF);
+    switch(unit.rs){
+        case 1:{
+            actor.setBlinkColor(COLOR_DEBUFF);
+        }break;
+        case 2:{
+            actor.setBlinkColor(COLOR_BUFF);
+        }break;
+        case 3:{
+            actor.setBlinkColor(COLOR_BUFF, COLOR_DEBUFF);
+        }break;
     }
 
     return actor;

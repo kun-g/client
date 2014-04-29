@@ -70,7 +70,7 @@ function loadEventList(){
     theLayer.owner.nodeDesc.setVisible(false);
     theListLayer.removeAllChildren();
     theListLayer.setTouchEnabled(true);
-    theLayer.ui.buttonBack.setVisible(false);
+    theLayer.owner.btnBack.setVisible(false);
 
     var size = cc.size(LINE_WIDTH, engine.user.activity.list.length*LINE_HEIGHT);
     theListLayer.setContentSize(size);
@@ -108,7 +108,7 @@ function loadEventDesc(quest){
     theLayer.owner.nodeDesc.setVisible(true);
     theDescLayer.removeAllChildren();
     theListLayer.setTouchEnabled(false);
-    theLayer.ui.buttonBack.setVisible(true);
+    theLayer.owner.btnBack.setVisible(true);
 
     theEvent = quest;
     var dimension = cc.size(theLayer.owner.layerDesc.getContentSize().width, 0);
@@ -182,10 +182,6 @@ function onEnter(){
     this.owner.onBack = onBack;
 
     this.node = libUIC.loadUI(this, "sceneEvent.ccbi", {
-//        nodeTreasure: {
-//            ui: "UITreasure",
-//            id: "treasureDisplay"
-//        },
         layerList: {
             ui: "UIScrollView",
             id: "scrollList",
@@ -195,13 +191,6 @@ function onEnter(){
             ui: "UIScrollView",
             id: "scrollDesc",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
-        },
-        btnBack: {
-            ui: "UIButtonL",
-            id: "buttonBack",
-            menu: "menuRoot",
-            label: "buttontext-back.png",
-            func: onBack
         }
     });
     this.addChild(this.node);
@@ -211,7 +200,7 @@ function onEnter(){
 
     this.owner.nodeList.setVisible(false);
     this.owner.nodeDesc.setVisible(false);
-    this.ui.buttonBack.setVisible(false);
+    this.owner.btnBack.setVisible(false);
 
     theListLayer = cc.Layer.create();
     this.ui.scrollList.setContainer(theListLayer);

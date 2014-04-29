@@ -204,6 +204,10 @@ Inventory.prototype.update = function(event)
             else if( item.ClassId < 0 ) continue;//添加道具/却没有ClassId，错误指令，废弃
 
             var itemData = libTable.queryTable(TABLE_ITEM, item.ClassId);
+            if( itemData == null ){
+                error("Inventory.update: no such item data ("+item.ClassId+")");
+                continue;
+            }
             var isStoreItem = itemData.storeOnly === true ? true : false;
             if( item.StackCount > 0 )
             {//add or modify

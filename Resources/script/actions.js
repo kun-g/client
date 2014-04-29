@@ -1550,19 +1550,25 @@ function makeUnitUpdate(pace, act)
             if( this.rs != null )
             {
                 unit.rs = this.rs;
-                if( unit.rs == 0 )
-                {
-                    actor.resetBlinkColor();
-                    if( isHero(unit.ref) )
-                    {
-                        var role = engine.user.dungeon.party[unit.ref-HERO_TAG];
-                        var haircolor = queryColor(role.HairColor);
-                        actor.setHairColor(haircolor);
-                    }
-                }
-                else if( unit.rs == 1 )
-                {
-                    actor.setBlinkColor(COLOR_DEBUFF);
+                switch(unit.rs){
+                    case 0:{
+                        actor.resetBlinkColor();
+                        if( isHero(unit.ref) )
+                        {
+                            var role = engine.user.dungeon.party[unit.ref-HERO_TAG];
+                            var haircolor = queryColor(role.HairColor);
+                            actor.setHairColor(haircolor);
+                        }
+                    }break;
+                    case 1:{
+                        actor.setBlinkColor(COLOR_DEBUFF);
+                    }break;
+                    case 2:{
+                        actor.setBlinkColor(COLOR_BUFF);
+                    }break;
+                    case 3:{
+                        actor.setBlinkColor(COLOR_BUFF, COLOR_DEBUFF);
+                    }break;
                 }
             }
             //update character order

@@ -388,6 +388,7 @@
 		53A315BC18FD3191001CE8B0 /* Icon~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A315AB18FD3191001CE8B0 /* Icon~iphone.png */; };
 		53A315BE18FD3191001CE8B0 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 53A315AD18FD3191001CE8B0 /* iTunesArtwork */; };
 		53A315C518FD413B001CE8B0 /* libcocos2dx-talkingdata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A315C418FD31C6001CE8B0 /* libcocos2dx-talkingdata.a */; };
+		53C3540C190E28DD00DA4BE8 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 536D4F3E190786E100FC13D3 /* table */; };
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
 		53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F51918FC27AE00C2D3AB /* PPImage.bundle */; };
@@ -3033,6 +3034,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53A3159718FD317E001CE8B0 /* script in Resources */,
+				53C3540C190E28DD00DA4BE8 /* table in Resources */,
 				53A3059618FD30EC001CE8B0 /* README in Resources */,
 				53A315B518FD3191001CE8B0 /* Icon-Small-50.png in Resources */,
 				53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */,
@@ -3061,7 +3064,6 @@
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
 				53A3159018FD317E001CE8B0 /* blackbox in Resources */,
-				53A3159718FD317E001CE8B0 /* script in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,

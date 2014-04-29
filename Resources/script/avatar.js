@@ -562,6 +562,12 @@ Avatar.prototype.tick = function(delta)
     else if( thiz.blink != null )
     {
         thiz.blink.timer += delta;
+        if( thiz.blink.timer >= BLINK_CYCLE ){
+            thiz.blink.colorIndex++;
+            if( thiz.blink.colorIndex >= thiz.blink.colors.length ){
+                thiz.blink.colorIndex = 0;
+            }
+        }
         thiz.blink.timer %= BLINK_CYCLE;
         var alpha = 0;
         if( thiz.blink.timer < BLINK_CYCLE/2 )
@@ -572,7 +578,7 @@ Avatar.prototype.tick = function(delta)
         {
             alpha = 1 - (thiz.blink.timer-BLINK_CYCLE/2)/(BLINK_CYCLE/2);
         }
-        thiz.blendColor(thiz.blink.color, alpha);
+        thiz.blendColor(thiz.blink.colors[thiz.blink.colorIndex], alpha);
     }
     if( thiz.fadeout != null )
     {
@@ -613,8 +619,9 @@ Avatar.prototype.resetBlinkColor = function()
 Avatar.prototype.setBlinkColor = function(color)
 {
     this.blink = {};
-    this.blink.color = color;
+    this.blink.colors = arguments;
     this.blink.timer = 0;
+    this.blink.colorIndex = 0;
 }
 
 Avatar.prototype.flash = function(color)
