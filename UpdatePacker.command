@@ -113,7 +113,7 @@ folder $RES_PATH/dtable/dummy
 CompileJSC $RES_PATH/blackbox $RES_PATH/dblackbox
 CompileJSC $RES_PATH/script $RES_PATH/dscript
 CompileJSC libs/javascript/bindings/js $RES_PATH
-Encrypt $RES_PATH/table $RES_PATH/dtable
+CompileJSC $RES_PATH/table $RES_PATH/dtable
 echo "  compile done."
 
 #5 commit branch
