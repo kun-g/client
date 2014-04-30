@@ -172,7 +172,7 @@ function onAnnounceAnimationCompleted(name){
 }
 
 function popAnnouncement(){
-    var strAnnounce = loadModule("table.js").loadTableFile("announce");
+    var strAnnounce = file.read("announce.txt");
     if( strAnnounce == null ) {
         engine.pop.invokePop();
         return;

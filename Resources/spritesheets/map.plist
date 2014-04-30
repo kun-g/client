@@ -7,7 +7,7 @@
             <key>dungeoniconbg1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{137,843},{124,146}}</string>
+                <string>{{2,435},{124,146}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,11 +20,11 @@
             <key>dungeoniconbg2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{128,569},{124,146}}</string>
+                <string>{{2,588},{124,146}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,146}}</string>
                 <key>sourceSize</key>
@@ -46,7 +46,7 @@
             <key>dungeonname0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{230,991},{85,26}}</string>
+                <string>{{253,603},{85,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>dungeonname1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{142,991},{86,26}}</string>
+                <string>{{254,575},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>dungeonname10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{54,993},{86,26}}</string>
+                <string>{{254,547},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>dungeonname11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,737},{86,26}}</string>
+                <string>{{254,519},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>dungeonname2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,709},{86,26}}</string>
+                <string>{{254,491},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>dungeonname3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,681},{86,26}}</string>
+                <string>{{254,463},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>dungeonname4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{385,990},{65,26}}</string>
+                <string>{{150,619},{65,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>dungeonname5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,653},{86,26}}</string>
+                <string>{{254,435},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,11 +150,11 @@
             <key>dungeonname6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,625},{86,26}}</string>
+                <string>{{858,634},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{86,26}}</string>
                 <key>sourceSize</key>
@@ -163,11 +163,11 @@
             <key>dungeonname7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{317,990},{66,26}}</string>
+                <string>{{449,532},{66,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{66,26}}</string>
                 <key>sourceSize</key>
@@ -176,11 +176,11 @@
             <key>dungeonname8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,597},{86,26}}</string>
+                <string>{{858,546},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{86,26}}</string>
                 <key>sourceSize</key>
@@ -189,11 +189,11 @@
             <key>dungeonname9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,569},{86,26}}</string>
+                <string>{{859,458},{86,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{86,26}}</string>
                 <key>sourceSize</key>
@@ -202,11 +202,11 @@
             <key>dungeonnum1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{147,824},{17,24}}</string>
+                <string>{{650,316},{17,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{17,24}}</string>
                 <key>sourceSize</key>
@@ -215,7 +215,7 @@
             <key>dungeonnum2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{379,821},{20,24}}</string>
+                <string>{{176,647},{20,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,11 +228,11 @@
             <key>dungeonnum3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{28,993},{27,24}}</string>
+                <string>{{859,432},{27,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{27,24}}</string>
                 <key>sourceSize</key>
@@ -254,11 +254,11 @@
             <key>dungeonnum5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{625,718},{22,24}}</string>
+                <string>{{150,647},{22,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{22,24}}</string>
                 <key>sourceSize</key>
@@ -267,11 +267,11 @@
             <key>dungeonnum6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,993},{28,24}}</string>
+                <string>{{859,406},{28,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{28,24}}</string>
                 <key>sourceSize</key>
@@ -280,11 +280,11 @@
             <key>dungeonnum7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{649,725},{35,24}}</string>
+                <string>{{217,619},{35,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{35,24}}</string>
                 <key>sourceSize</key>
@@ -355,127 +355,10 @@
                 <key>sourceSize</key>
                 <string>{184,104}</string>
             </dict>
-            <key>map-dungeon1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{854,548},{123,160}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{123,160}}</string>
-                <key>sourceSize</key>
-                <string>{123,160}</string>
-            </dict>
-            <key>map-dungeon11.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{688,695},{146,152}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,152}}</string>
-                <key>sourceSize</key>
-                <string>{146,152}</string>
-            </dict>
-            <key>map-dungeon2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,718},{123,143}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{123,143}}</string>
-                <key>sourceSize</key>
-                <string>{123,143}</string>
-            </dict>
-            <key>map-dungeon3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{854,673},{157,133}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{157,133}}</string>
-                <key>sourceSize</key>
-                <string>{157,133}</string>
-            </dict>
-            <key>map-dungeon4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,843},{133,148}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{133,148}}</string>
-                <key>sourceSize</key>
-                <string>{133,148}</string>
-            </dict>
-            <key>map-dungeon5.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{343,301},{139,137}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,137}}</string>
-                <key>sourceSize</key>
-                <string>{139,137}</string>
-            </dict>
-            <key>map-dungeon6.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{863,408},{138,159}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{138,159}}</string>
-                <key>sourceSize</key>
-                <string>{138,159}</string>
-            </dict>
-            <key>map-dungeon7.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{342,440},{135,158}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{135,158}}</string>
-                <key>sourceSize</key>
-                <string>{135,158}</string>
-            </dict>
-            <key>map-dungeon9.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{688,540},{153,164}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{153,164}}</string>
-                <key>sourceSize</key>
-                <string>{153,164}</string>
-            </dict>
             <key>map-mission1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{147,717},{105,105}}</string>
+                <string>{{342,532},{105,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +397,7 @@
             <key>map-ranking1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{254,765},{75,123}}</string>
+                <string>{{342,455},{75,123}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -566,11 +449,11 @@
             <key>mapicon1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{479,584},{132,168}}</string>
+                <string>{{2,727},{132,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{132,168}}</string>
                 <key>sourceSize</key>
@@ -579,7 +462,7 @@
             <key>mapicon2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{479,450},{132,168}}</string>
+                <string>{{688,540},{132,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -592,11 +475,11 @@
             <key>mapicon3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{172,435},{132,168}}</string>
+                <string>{{889,408},{132,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{132,168}}</string>
                 <key>sourceSize</key>
@@ -605,7 +488,7 @@
             <key>mapicon4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,435},{132,168}}</string>
+                <string>{{689,406},{132,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,7 +501,7 @@
             <key>mapicon5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{693,406},{132,168}}</string>
+                <string>{{480,450},{132,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -631,7 +514,7 @@
             <key>mapicon6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{484,316},{132,168}}</string>
+                <string>{{480,316},{132,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -657,7 +540,7 @@
             <key>mapiconbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{263,843},{124,145}}</string>
+                <string>{{128,435},{124,145}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -696,11 +579,11 @@
             <key>mapiconselected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,569},{124,146}}</string>
+                <string>{{2,897},{124,146}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{124,146}}</string>
                 <key>sourceSize</key>
@@ -709,7 +592,7 @@
             <key>xdungeonname0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{452,980},{134,36}}</string>
+                <string>{{886,689},{134,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -722,11 +605,11 @@
             <key>xdungeonname1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{649,484},{135,37}}</string>
+                <string>{{343,340},{135,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{135,37}}</string>
                 <key>sourceSize</key>
@@ -735,11 +618,11 @@
             <key>xdungeonname10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{426,843},{135,35}}</string>
+                <string>{{886,652},{135,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{135,35}}</string>
                 <key>sourceSize</key>
@@ -748,11 +631,11 @@
             <key>xdungeonname11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{389,843},{135,35}}</string>
+                <string>{{886,615},{135,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{135,35}}</string>
                 <key>sourceSize</key>
@@ -761,11 +644,11 @@
             <key>xdungeonname2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{342,676},{135,36}}</string>
+                <string>{{650,451},{135,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{135,36}}</string>
                 <key>sourceSize</key>
@@ -774,11 +657,11 @@
             <key>xdungeonname3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{654,347},{135,37}}</string>
+                <string>{{343,301},{135,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{135,37}}</string>
                 <key>sourceSize</key>
@@ -787,11 +670,11 @@
             <key>xdungeonname4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{588,718},{101,35}}</string>
+                <string>{{150,582},{101,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{101,35}}</string>
                 <key>sourceSize</key>
@@ -800,7 +683,7 @@
             <key>xdungeonname5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{342,638},{135,36}}</string>
+                <string>{{343,417},{135,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -826,7 +709,7 @@
             <key>xdungeonname7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{649,621},{102,37}}</string>
+                <string>{{650,347},{102,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -839,7 +722,7 @@
             <key>xdungeonname8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{342,600},{135,36}}</string>
+                <string>{{343,379},{135,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -852,7 +735,7 @@
             <key>xdungeonname9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{342,714},{135,35}}</string>
+                <string>{{886,578},{135,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -872,7 +755,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e91fafc7f7d944f24b6be0340a3ac071$</string>
+            <string>$TexturePacker:SmartUpdate:28742b43d09f40efeb55c10e65d9cb0e$</string>
             <key>textureFileName</key>
             <string>map.png</string>
         </dict>

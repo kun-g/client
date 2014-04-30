@@ -43,6 +43,32 @@
                 <key>sourceSize</key>
                 <string>{282,156}</string>
             </dict>
+            <key>index-btn-bounty1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{318,758},{282,156}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{282,156}}</string>
+                <key>sourceSize</key>
+                <string>{282,156}</string>
+            </dict>
+            <key>index-btn-bounty2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{602,640},{282,156}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{282,156}}</string>
+                <key>sourceSize</key>
+                <string>{282,156}</string>
+            </dict>
             <key>index-btn-changejob3.png</key>
             <dict>
                 <key>frame</key>
@@ -586,7 +612,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e00c55940a378366308792ffee82634a$</string>
+            <string>$TexturePacker:SmartUpdate:9f67a51150f465b771ca1b0dea4c1a8b$</string>
             <key>textureFileName</key>
             <string>index.png</string>
         </dict>

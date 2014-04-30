@@ -64,7 +64,7 @@ Game.prototype.init = function()
     engine.pop.registerPop("level", loadModule("pops.js").invokePopLevelUp);
     engine.pop.registerPop("quest", loadModule("questInfo.js").checkQuestPop);
     engine.pop.registerPop("activity", loadModule("activity.js").invokeActivity);
-    engine.pop.registerPop("tutorial", loadModule("tutorial.js").activateTutorial);
+    engine.pop.registerPop("tutorial", loadModule("tutorialx.js").activateTutorial);
 
     //read game tables
     var table = loadModule("table.js");
@@ -86,6 +86,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_TUTORIAL);
     table.loadTable(TABLE_TUTORIAL_CONFIG);
     table.loadTable(TABLE_BAN);
+    table.loadTable(TABLE_FACTION);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();

@@ -269,6 +269,10 @@ bool iOSsystem::getPreference(string key, string &out)
         out = string("1");
         return YES;
     }
+//    if( key == "flag_blackbox" ){
+//        out = string("1");
+//        return YES;
+//    }
     
     bool ret = true;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

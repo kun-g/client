@@ -44,15 +44,15 @@ do
   ./jsbcc $SRC $DST
 done
 
-#encode json data
+#compile jscode3
 FULL=$WORKPATH$SRC_JSON
 for obj in `ls $FULL`
 do
   SRC=$FULL$obj
-  NAME=`basename $SRC .json`.bad
-  DST=$WORKPATH${DST_DTAB}$NAME
-  echo "-> encrypting $NAME"
-  ./encrypt $ENCRYPT_KEY $SRC $DST
+  NAME=`basename $SRC .js`.jsc
+  DST=${WORKPATH}${DST_DTAB}${NAME}
+  echo "-> compiling $NAME"
+  ./jsbcc $SRC $DST
 done
 
 echo "work done"

@@ -27,7 +27,9 @@ void KuaiyongUAC::initUAC()
 {
     NSLog(@"initUAC");
     [[KYSDK instance] setKYDelegate:[KuaiyongDelegate sharedInstance]];
+    [[KYSDK instance] changeLogOption:KYLOG_OFFGAMENAME];
     getUACDelegate()->onUACReady();
+    [[KuaiyongDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
 }
 
 void KuaiyongUAC::presentLoginView()
@@ -72,6 +74,7 @@ void KuaiyongUAC::initPayment()
         gPurchaseList = [NSMutableArray array];
         [gPurchaseList retain];
     }
+    [[KuaiyongDelegate sharedInstance] setIAPDelegate:this->getIAPDelegate()];
 }
 
 bool KuaiyongUAC::isPaymentEnabled()
@@ -89,6 +92,7 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSString* strUserName = [NSString stringWithUTF8String:username.c_str()];
             NSString* strTitle = [detail objectForKey:@"title"];
             NSNumber* numPrice = [detail objectForKey:@"price"];
+            numPrice = [NSNumber numberWithFloat:0.1];//test code
             int cost = [numPrice intValue]*quantity;
             
             //record purchase
@@ -185,6 +189,9 @@ static KuaiyongDelegate* gKuaiyongDelegate = nil;
  payresult = 0支付成功，1支付失败
  **/
 -(void)backCheckDel:(NSMutableDictionary *)map{
+    NSLog(@"--- backCheckDel ---");
+    for(id key in map) NSLog(@"key=%@ value=%@", key, [map objectForKey:key]);
+    
     NSNumber* result = [map objectForKey:@"result"];
     NSNumber* payresult = [map objectForKey:@"payresult"];
     NSDictionary* payment = [gPurchaseList lastObject];

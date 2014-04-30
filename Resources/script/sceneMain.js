@@ -13,7 +13,7 @@ var libMessage = loadModule("MessageInfo.js");
 var libEvent = loadModule("eventInfo.js");
 var libPops = loadModule("pops.js");
 var libEffect = loadModule("effect.js");
-var libTutorial = loadModule("tutorial.js");
+var libTutorial = loadModule("tutorialx.js");
 
 //local constants
 var ACTIVITY_GAP = 15;
@@ -196,14 +196,14 @@ function onEnter()
     }
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
 
     updateBattlePower();
 }
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
     theLayer = null;
 }
 

@@ -1,7 +1,7 @@
 {
-    "binary_channel" : "PP25",
+    "binary_channel" : "Kuaiyong",
     "resource_version" : 85,
-    "binary_version" : "1.0.4",
-    "account_type" : 2,
+    "binary_version" : "1.0.5",
+    "account_type" : 4,
     "default_user" : ""
 }

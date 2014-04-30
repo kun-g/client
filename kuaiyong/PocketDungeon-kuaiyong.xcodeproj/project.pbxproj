@@ -349,9 +349,6 @@
 		53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */ = {isa = PBXBuildFile; fileRef = 53A305E218FD3102001CE8B0 /* main.debug.jsc */; };
 		53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3086018FD3113001CE8B0 /* PP25Pay.plist */; };
 		53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3089E18FD3113001CE8B0 /* Setup.plist */; };
-		53A3159118FD317E001CE8B0 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158418FD317E001CE8B0 /* dblackbox */; };
-		53A3159218FD317E001CE8B0 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158518FD317E001CE8B0 /* dscript */; };
-		53A3159318FD317E001CE8B0 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158618FD317E001CE8B0 /* dtable */; };
 		53A3159418FD317E001CE8B0 /* font in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158718FD317E001CE8B0 /* font */; };
 		53A3159618FD317E001CE8B0 /* node in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158918FD317E001CE8B0 /* node */; };
 		53A3159818FD317E001CE8B0 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158B18FD317E001CE8B0 /* sound */; };
@@ -395,6 +392,9 @@
 		53DF0757190416F700BF3B75 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF0736190416F600BF3B75 /* SBJsonBase.m */; };
 		53DF0758190416F700BF3B75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF0738190416F600BF3B75 /* SBJsonParser.m */; };
 		53DF0759190416F700BF3B75 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DF073A190416F600BF3B75 /* SBJsonWriter.m */; };
+		53E8135319064CAC0010FD3D /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53E8135019064CAC0010FD3D /* blackbox */; };
+		53E8135419064CAC0010FD3D /* script in Resources */ = {isa = PBXBuildFile; fileRef = 53E8135119064CAC0010FD3D /* script */; };
+		53E8135519064CAC0010FD3D /* table in Resources */ = {isa = PBXBuildFile; fileRef = 53E8135219064CAC0010FD3D /* table */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
 		53FD928D19057AD600137789 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53FD928C19057AD600137789 /* CoreText.framework */; };
 		53FD928F19057DD200137789 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53FD928E19057DD100137789 /* MessageUI.framework */; };
@@ -1218,9 +1218,6 @@
 		53A305E218FD3102001CE8B0 /* main.debug.jsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.debug.jsc; sourceTree = "<group>"; };
 		53A3086018FD3113001CE8B0 /* PP25Pay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PP25Pay.plist; sourceTree = "<group>"; };
 		53A3089E18FD3113001CE8B0 /* Setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
-		53A3158418FD317E001CE8B0 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
-		53A3158518FD317E001CE8B0 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
-		53A3158618FD317E001CE8B0 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		53A3158718FD317E001CE8B0 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		53A3158918FD317E001CE8B0 /* node */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node; sourceTree = "<group>"; };
 		53A3158B18FD317E001CE8B0 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
@@ -1277,6 +1274,9 @@
 		53DF0738190416F600BF3B75 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		53DF0739190416F600BF3B75 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		53DF073A190416F600BF3B75 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		53E8135019064CAC0010FD3D /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
+		53E8135119064CAC0010FD3D /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
+		53E8135219064CAC0010FD3D /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53FD928C19057AD600137789 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		53FD928E19057DD100137789 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -2899,9 +2899,9 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53A3158418FD317E001CE8B0 /* dblackbox */,
-				53A3158518FD317E001CE8B0 /* dscript */,
-				53A3158618FD317E001CE8B0 /* dtable */,
+				53E8135019064CAC0010FD3D /* blackbox */,
+				53E8135119064CAC0010FD3D /* script */,
+				53E8135219064CAC0010FD3D /* table */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
 				53A3158B18FD317E001CE8B0 /* sound */,
@@ -3074,6 +3074,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53E8135419064CAC0010FD3D /* script in Resources */,
 				53A3059618FD30EC001CE8B0 /* README in Resources */,
 				53A315B518FD3191001CE8B0 /* Icon-Small-50.png in Resources */,
 				53DF0752190416F700BF3B75 /* Res.bundle in Resources */,
@@ -3085,7 +3086,6 @@
 				53A315B618FD3191001CE8B0 /* Icon-Small.png in Resources */,
 				53A315B118FD3191001CE8B0 /* Default.png in Resources */,
 				53A304C418FD30EB001CE8B0 /* ChangeLog in Resources */,
-				53A3159118FD317E001CE8B0 /* dblackbox in Resources */,
 				53A315B418FD3191001CE8B0 /* Icon-72.png in Resources */,
 				53A315BB18FD3191001CE8B0 /* Icon~ipad.png in Resources */,
 				53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */,
@@ -3103,8 +3103,8 @@
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
+				53E8135319064CAC0010FD3D /* blackbox in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
-				53A3159318FD317E001CE8B0 /* dtable in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,
@@ -3114,7 +3114,6 @@
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,
 				53DF074D190416F600BF3B75 /* doing.sh in Resources */,
 				53A30DBC18FD3121001CE8B0 /* jsb_chipmunk.jsc in Resources */,
-				53A3159218FD317E001CE8B0 /* dscript in Resources */,
 				53DF074A190416F600BF3B75 /* KY_PayImg.bundle in Resources */,
 				53A3159818FD317E001CE8B0 /* sound in Resources */,
 				53DF074C190416F600BF3B75 /* KY_userImg_iPad.bundle in Resources */,
@@ -3128,6 +3127,7 @@
 				53A315BA18FD3191001CE8B0 /* Icon@2x~ipad.png in Resources */,
 				53A315B318FD3191001CE8B0 /* Default~iphone.png in Resources */,
 				53A304C518FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
+				53E8135519064CAC0010FD3D /* table in Resources */,
 				53A315B818FD3191001CE8B0 /* Icon.png in Resources */,
 				53A3159C18FD317E001CE8B0 /* ui in Resources */,
 			);

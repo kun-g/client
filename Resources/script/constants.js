@@ -114,6 +114,7 @@ var COLOR_HAIR = [
 var COLOR_VALUEUP = cc.c3b(133, 222, 44);
 var COLOR_VALUEDOWN = cc.c3b(232, 55, 55);
 var COLOR_DEBUFF = cc.c3b(203, 84, 224);
+var COLOR_BUFF = cc.c3b(255, 191, 0);
 
 var MSGPOP_COLORS = [
     cc.c3b(60, 206, 30),
