@@ -1115,24 +1115,20 @@ exports.data = [
       "skillId": 42,
       "label":"龙息",
       "config": {
-          "basic" : {
-          "spellAction":2,
-          "targetEffect": 10 ,
-          "targetDelay": 3.6
-      },
           "triggerCondition": [
               {"type": "countDown", "cd": 6 },
               {"type" :"event", "event":"onTurnEnd" }
-
           ],
           "targetSelection": {
               "pool": "objects",
-              "filter": [{"type":"alive"},{"type":"visible"}]
+              "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"}]
           },
           "action":[
               {"type": "damage","damageType":"Spell","isRange":true,"delay":3.6,"formular": {"c":50}},
               {"type": "blink","delay":1.7,"time":0.08},
-              {"type":"shock","delay":1.6,"range":20,"time":2}
+              {"type": "playEffect","effect":10,"pos":"target","delay":3.6} ,
+              {"type":"shock","delay":1.6,"range":20,"time":2},
+              {"type":"playAction","motion":2,"pos":"self"}
           ]
       }
   },
