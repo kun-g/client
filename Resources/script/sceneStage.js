@@ -95,12 +95,12 @@ function onEnter()
     initStage();
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
 }
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function onActivate(){

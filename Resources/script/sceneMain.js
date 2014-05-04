@@ -197,14 +197,14 @@ function onEnter()
     }
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
 
     updateBattlePower();
 }
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
     theLayer = null;
 }
 

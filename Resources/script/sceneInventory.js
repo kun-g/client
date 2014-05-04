@@ -519,7 +519,7 @@ function onEnter()
     engine.ui.regMenu(theCenter.theGridLayer);
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
     
     
 }
@@ -533,7 +533,7 @@ function onActivate(){
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function scene()

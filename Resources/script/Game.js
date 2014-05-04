@@ -58,7 +58,6 @@ Game.prototype.init = function()
     utils.registerClass(loadModule("quest.js").Quest);
     utils.registerClass(loadModule("quest.js").QuestLog);
     utils.registerClass(loadModule("role.js").FriendList);
-    utils.registerClass(loadModule("bounty.js").Bounty);
     utils.registerClass(loadModule("bounty.js").BountyLog);
 
     //register pop ups
@@ -158,7 +157,6 @@ Game.prototype.processPreference = function(){
     else{
         FLAG_BLACKBOX = true;
     }
-    FLAG_BLACKBOX = false;
 
     this.saveConfig();
     debug("-- SETTINGS --\nDEBUG="+this.config.debug+"\nBLACKBOX="+FLAG_BLACKBOX);

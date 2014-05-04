@@ -859,7 +859,7 @@ function onEnter()
     FailReason = "玩家被击败";
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
     
     
 }
@@ -868,7 +868,7 @@ function onExit()
 {
     cc.AudioEngine.getInstance().stopMusic(true);
     //register broadcast
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function onActivate(){

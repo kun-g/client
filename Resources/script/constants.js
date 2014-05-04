@@ -266,6 +266,7 @@ var Event_Broadcast = 25;
 var Event_ABTestSeed = 26;
 var Event_UpdateDailyQuest = 27;
 var Event_UpdatePlayerFlags = 28;
+var Event_BountyUpdate = 30;
 
 var Event_Reconnect = 100;
 var Event_Echo = 101;

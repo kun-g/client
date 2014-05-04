@@ -364,7 +364,7 @@ function onEvent(event)
         }
         case Event_Broadcast:
         {
-            loadModule("broadcast.js").instance.pushBroadcast(event.arg);
+            loadModule("broadcastx.js").instance.pushBroadcast(event.arg);
             return true;
         }
         case Event_ABTestSeed:
@@ -380,6 +380,11 @@ function onEvent(event)
         case Event_UpdatePlayerFlags:
         {
             engine.user.player.Flags = event.arg;
+            return true;
+        }
+        case Event_BountyUpdate:
+        {
+            engine.user.bounty.dataBounty[event.arg.bid] = event.arg;
             return true;
         }
     }

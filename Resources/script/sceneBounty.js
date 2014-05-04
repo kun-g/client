@@ -13,15 +13,13 @@ var theDescLayer;
 var theBounty;
 var thePy;
 var theTime;
-var theSecFlag = true;
+var theLevel = 0;
 
 var MODE_LIST = 0;
 var MODE_DESC = 1;
 var MODE_EXIT = 2;
 
 var theMode;
-
-var dataBounty = [];
 
 var touchPosBegin;
 
@@ -30,41 +28,15 @@ var LINE_WIDTH = 570;
 var LINE_HEIGHT = 180;
 
 var loadList = [
-    "bounty-jjjs.png",
     "bounty-jjjsbg.png",
-    "bounty-jjkq.png",
     "bounty-jjkqbg.png",
-    "bounty-yjjs.png",
     "bounty-yjjsbg.png",
-    "bounty-yiwc.png",
-    "bounty-yiwcbg.png",
-    "bounty-zzjx.png",
+    "bounty-yjwcbg.png",
     "bounty-zzjxbg.png"
 ];
 
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
-
-    //test
-    var event = {};
-    event.NTF = Message_UpdateBounty;
-    event.arg = {
-        "id":301,
-        "bid":1,
-        "sta":1,
-        "lev":[
-            {
-                "cnt":2,
-                "prz":[
-                    {
-                        "type":1,
-                        "count":4000
-                    }
-                ]
-            }
-        ]
-    };
-    engine.event.processNotification(event);
 
     return true;
 }
@@ -108,12 +80,18 @@ function onBack(sender){
 function onSubmit(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var line = theListLayer.getChildByTag(thePy);
+    var libTable = loadModule("table.js");
+    var libStage = loadModule("sceneStage.js");
+    var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
+    var stageData = queryStage(bountyData.level[theLevel].stage);
+    libStage.startStage(bountyData.level[theLevel].stage, stageData.team, stageData.cost);
 }
 
 function onSimple(sender){
     if (theMode == MODE_DESC && thePy != undefined){
         var line = theListLayer.getChildByTag(thePy);
         loadBountyDesc(line.bounty, 0);
+        theLevel = 0;
     }
 }
 
@@ -121,6 +99,7 @@ function onNormal(sender){
     if (theMode == MODE_DESC && thePy != undefined){
         var line = theListLayer.getChildByTag(thePy);
         loadBountyDesc(line.bounty, 1);
+        theLevel = 1;
     }
 }
 
@@ -128,6 +107,7 @@ function onHard(sender){
     if (theMode == MODE_DESC && thePy != undefined){
         var line = theListLayer.getChildByTag(thePy);
         loadBountyDesc(line.bounty, 2);
+        theLevel = 2;
     }
 }
 
@@ -161,34 +141,38 @@ function loadBountyList(){
             var bounty = list[k];
             var owner = {};
             var line = cc.BuilderReader.load("ui-bounty.ccbi", owner);
-            //var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
-            var timediff = engine.user.bounty.cacultime(bounty.BountyId,0,theSecFlag);
-            var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId);
-            //setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess*2]));
+            var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
+            var segmentSel = engine.user.bounty.getProcess(bounty.BountyId);
+            var timediff = engine.user.bounty.cacultime(bounty.BountyId,segmentSel);
+            var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId,segmentSel);
+
             if (chkProcess >= 0 && chkProcess < loadList.length / 2){
-                owner.nodeProc.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess*2]));
-                owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess*2 + 1]));
+                owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
             }
-            debug("line = 172");
+            debug("loadBountyList 152:bounty = "+JSON.stringify(bountyData));
             owner.labPower.setString(timediff);
-            debug("line = 174");
-            debug("timediff = " + timediff);
-//            if( bounty.fixState() ){
+            if (bountyData.titlePic != undefined){
+                owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
+            }
+            if (bountyData.timePic != undefined){
+                owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
+            }
+            if (engine.user.bounty.dataBounty[k] != undefined &&
+                engine.user.bounty.dataBounty[k].cnt != undefined){
+                owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
+            }
+//            if( bounty.fixState() ){timePic
 //                owner.spComplete.setVisible(true);
 //            }
 //            else{
 //                owner.spComplete.setVisible(false);
 //            }
+            line.owner = owner;
             line.setPosition(cc.p(0, size.height - count*LINE_HEIGHT - LINE_HEIGHT));
             line.bounty = bounty;
             line.setTag(count);
-//            if (dataBounty[k] != undefined){
-//                debug("dataBounty[" + k + "].sta = " + dataBounty[k].sta);
-//            }
-//            else{
-//                debug("dataBounty[" + k + "].sta = undefined");
-//            }
-            if (dataBounty[k] == undefined || dataBounty[k].sta == 1){
+
+            if (engine.user.bounty.dataBounty[k] == undefined || engine.user.bounty.dataBounty[k].sta == 1){
                 theListLayer.addChild(line);
             }
 
@@ -223,26 +207,26 @@ function loadBountyDesc(bounty, lev){
         theLayer.owner.btnSimple.setVisible(false);
         theLayer.owner.btnNormal.setVisible(false);
         theLayer.owner.btnHard.setVisible(false);
-        theLayer.owner.nodeSimple.setVisible(false);
-        theLayer.owner.nodeNormal.setVisible(false);
-        theLayer.owner.nodeHard.setVisible(false);
+//        theLayer.owner.nodeSimple.setVisible(false);
+//        theLayer.owner.nodeNormal.setVisible(false);
+//        theLayer.owner.nodeHard.setVisible(false);
         //debug("level btn and node set false");
     }
     else{
         theLayer.owner.btnSimple.setVisible(true);
         theLayer.owner.btnNormal.setVisible(true);
         theLayer.owner.btnHard.setVisible(true);
-        theLayer.owner.nodeSimple.setVisible(true);
-        theLayer.owner.nodeNormal.setVisible(true);
-        theLayer.owner.nodeHard.setVisible(true);
+//        theLayer.owner.nodeSimple.setVisible(true);
+//        theLayer.owner.nodeNormal.setVisible(true);
+//        theLayer.owner.nodeHard.setVisible(true);
         //debug("level btn and node set true");
-        if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length > 0){
+        if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length <= 0){
             theLayer.owner.btnNormal.setEnabled(true);
         }
         else{
             theLayer.owner.btnNormal.setEnabled(false);
         }
-        if (engine.user.bounty.checkLimit(bounty.BountyId, 2).length > 0){
+        if (engine.user.bounty.checkLimit(bounty.BountyId, 2).length <= 0){
             theLayer.owner.btnHard.setEnabled(true);
         }
         else{
@@ -361,8 +345,10 @@ function loadBountyDesc(bounty, lev){
 
     var prize = libItem.ItemPreview.create(tar.prize, dimension);
 
-    if (dataBounty[k] != undefined && dataBounty[k].lev[0].prz != undefined){
-        prize = libItem.ItemPreview.create(dataBounty[k].lev[0].prz, dimension);
+    if (engine.user.bounty.dataBounty[k] != undefined &&
+        engine.user.bounty.dataBounty[k].lev[lev] != undefined &&
+        engine.user.bounty.dataBounty[k].lev[lev].prz != undefined){
+        prize = libItem.ItemPreview.create(engine.user.bounty.dataBounty[k].lev[lev].prz, dimension);
     }
 
     prize.setPosition(cc.p(0, 0));
@@ -372,12 +358,6 @@ function loadBountyDesc(bounty, lev){
     size.height += prize.getContentSize().height;
 
     theDescLayer.setContentSize(size);
-    if( theBounty.State == BOUNTYSTATUS_COMPLETE ){
-        theLayer.owner.btnSubmit.setEnabled(true);
-    }
-    else{
-        theLayer.owner.btnSubmit.setEnabled(false);
-    }
 
     var curroffset = theLayer.ui.scrollDesc.getContentOffset();
     curroffset.y = theLayer.ui.scrollDesc.minContainerOffset().y;
@@ -392,11 +372,11 @@ function onUIAnimationCompleted(name){
 
 function onNotify(event){
     switch(event.NTF){
-        case Message_UpdateBounty:
-        {
-            dataBounty[event.arg.bid] = event.arg;
-            break;
-        }
+//        case Message_UpdateBounty:
+//        {
+//            dataBounty[event.arg.bid] = event.arg;
+//            break;
+//        }
     }
     return false;
 }
@@ -410,11 +390,40 @@ function update(delta)
     var diffMin = comTime.getMinutes() - theTime.getMinutes();
     //var diffSec = comTime.getSeconds() - theTime.getSeconds();
 
-    if(diffMin >= 1){
-        //theSecFlag = !theSecFlag;
-        loadBountyList();
+    if(Math.abs(diffMin) >= 1){
+        updateTime();
         //debug("sceneBounty update");
         theTime = comTime;
+    }
+}
+
+function updateTime()
+{
+    if (theMode == MODE_LIST) {
+        var sfc = cc.SpriteFrameCache.getInstance();
+        var bountyCount = engine.user.bounty.getBountyListCount();
+        if (bountyCount > 0) {
+            var list = engine.user.bounty.getBountyList();
+            for (var k in list) {
+                var bounty = list[k];
+                var line = theListLayer.getChildByTag(k);
+                var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
+                var segmentSel = engine.user.bounty.getProcess(bounty.BountyId);
+                var timediff = engine.user.bounty.cacultime(bounty.BountyId, segmentSel);
+                var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId, segmentSel);
+                //setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess*2]));
+                if (chkProcess >= 0 && chkProcess < loadList.length / 2) {
+                    line.owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
+                }
+                line.owner.labPower.setString(timediff);
+                if (bountyData.titlePic != undefined){
+                    line.owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
+                }
+                if (bountyData.timePic != undefined){
+                    line.owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
+                }
+            }
+        }
     }
 }
 
