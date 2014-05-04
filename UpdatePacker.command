@@ -12,7 +12,7 @@ BLACKLIST=( \
 "/Resources/blackbox/" \
 "/Resources/script/" \
 "/Resources/table/" \
-"/Resources/dtable/drop.bad" \
+"/Resources/dtable/drop.jsc" \
 )
 
 function folder {
