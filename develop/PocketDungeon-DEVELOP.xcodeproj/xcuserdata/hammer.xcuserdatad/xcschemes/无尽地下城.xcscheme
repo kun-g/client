@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
-               BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
+               BuildableName = "&#x6d4b;&#x8bd5;&#x7248;.app"
                BlueprintName = "&#x6d4b;&#x8bd5;&#x7248;"
                ReferencedContainer = "container:PocketDungeon-Develop.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
-            BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
+            BuildableName = "&#x6d4b;&#x8bd5;&#x7248;.app"
             BlueprintName = "&#x6d4b;&#x8bd5;&#x7248;"
             ReferencedContainer = "container:PocketDungeon-Develop.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
-            BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
+            BuildableName = "&#x6d4b;&#x8bd5;&#x7248;.app"
             BlueprintName = "&#x6d4b;&#x8bd5;&#x7248;"
             ReferencedContainer = "container:PocketDungeon-Develop.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "53885E7617E93DE400A3A8B4"
-            BuildableName = "&#x53e3;&#x888b;&#x5730;&#x4e0b;&#x57ce;.app"
+            BuildableName = "&#x6d4b;&#x8bd5;&#x7248;.app"
             BlueprintName = "&#x6d4b;&#x8bd5;&#x7248;"
             ReferencedContainer = "container:PocketDungeon-Develop.xcodeproj">
          </BuildableReference>
