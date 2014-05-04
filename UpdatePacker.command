@@ -9,10 +9,10 @@ cd $WORK_PATH
 RES_PATH="Resources"
 
 BLACKLIST=( \
-"/blackbox/" \
-"/script/" \
-"/table/" \
-"/tutorial.js" \
+"*/blackbox/*" \
+"*/script/*" \
+"*/table/*" \
+"*/tutorialList.js" \
 )
 
 function folder {
@@ -132,7 +132,7 @@ function UpdateFile {
 	_FLAG=1
 	for _BLACK in ${BLACKLIST[*]}
 	do
-		if [[ $1 == *$_BLACK* ]]; then
+		if [[ $1 == $_BLACK ]]; then
 			_FLAG=0
 			break
 		fi
