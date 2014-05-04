@@ -2950,9 +2950,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		53885E7617E93DE400A3A8B4 /* 口袋地下城 */ = {
+		53885E7617E93DE400A3A8B4 /* 测试版 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "口袋地下城" */;
+			buildConfigurationList = 5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "测试版" */;
 			buildPhases = (
 				53885E7317E93DE400A3A8B4 /* Sources */,
 				53885E7417E93DE400A3A8B4 /* Frameworks */,
@@ -2962,7 +2962,7 @@
 			);
 			dependencies = (
 			);
-			name = "口袋地下城";
+			name = "测试版";
 			productName = PocketDungeon;
 			productReference = 53885E7717E93DE400A3A8B4 /* 口袋地下城.app */;
 			productType = "com.apple.product-type.application";
@@ -3007,7 +3007,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				53885E7617E93DE400A3A8B4 /* 口袋地下城 */,
+				53885E7617E93DE400A3A8B4 /* 测试版 */,
 			);
 		};
 /* End PBXProject section */
@@ -3595,7 +3595,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "口袋地下城" */ = {
+		5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "测试版" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5388632417E93DF600A3A8B4 /* Debug */,
