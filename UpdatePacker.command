@@ -114,8 +114,8 @@ CompileJSC $RES_PATH/blackbox $RES_PATH/dblackbox
 CompileJSC $RES_PATH/script $RES_PATH/dscript
 CompileJSC libs/javascript/bindings/js $RES_PATH
 CompileJSC $RES_PATH/table $RES_PATH/dtable
-CompileJSC $RES_PATH/1136 $RES_PATH/1136
-CompileJSC $RES_PATH/960 $RES_PATH/960
+CompileJSC $RES_PATH/ui/1136 $RES_PATH/ui/1136
+CompileJSC $RES_PATH/ui/960 $RES_PATH/ui/960
 echo "  compile done."
 
 #5 commit branch
