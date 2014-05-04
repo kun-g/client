@@ -33,13 +33,52 @@
             <key>forge3-common-piece1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,214},{45,48}}</string>
+                <string>{{174,306},{45,48}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,3},{45,48}}</string>
+                <key>sourceSize</key>
+                <string>{45,52}</string>
+            </dict>
+            <key>forge3-common-piece2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{165,353},{45,42}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,6},{45,42}}</string>
+                <key>sourceSize</key>
+                <string>{45,52}</string>
+            </dict>
+            <key>forge3-common-piece3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{174,261},{43,50}}</string>
+                <key>offset</key>
+                <string>{-1,-1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{43,50}}</string>
+                <key>sourceSize</key>
+                <string>{45,52}</string>
+            </dict>
+            <key>forge3-common-piece4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{174,214},{45,50}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{45,50}}</string>
                 <key>sourceSize</key>
                 <string>{45,52}</string>
             </dict>
@@ -59,7 +98,7 @@
             <key>forge3-common-tabdz2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,350},{113,130}}</string>
+                <string>{{2,353},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
@@ -72,7 +111,7 @@
             <key>forge3-common-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,261},{87,46}}</string>
+                <string>{{117,329},{87,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -92,7 +131,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:da8c6c3603bc35785ab78e0a0f4c4be1$</string>
+            <string>$TexturePacker:SmartUpdate:164e92a4a5bf0e62867e3a36ab7b7723$</string>
             <key>textureFileName</key>
             <string>forge3-common.png</string>
         </dict>
