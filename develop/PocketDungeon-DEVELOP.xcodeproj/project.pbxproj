@@ -484,7 +484,7 @@
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5388185F1894A2B500B1E461 /* TDGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDGA.cpp; sourceTree = "<group>"; };
 		538818601894A2B500B1E461 /* TDGA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDGA.h; sourceTree = "<group>"; };
-		53885E7717E93DE400A3A8B4 /* 口袋地下城.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "口袋地下城.app"; path = "测试版.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53885E7717E93DE400A3A8B4 /* 测试版.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "测试版.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		53885E7C17E93DE400A3A8B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		53885E7E17E93DE400A3A8B4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1417,7 +1417,7 @@
 		53885E7817E93DE400A3A8B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				53885E7717E93DE400A3A8B4 /* 口袋地下城.app */,
+				53885E7717E93DE400A3A8B4 /* 测试版.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2964,7 +2964,7 @@
 			);
 			name = "测试版";
 			productName = PocketDungeon;
-			productReference = 53885E7717E93DE400A3A8B4 /* 口袋地下城.app */;
+			productReference = 53885E7717E93DE400A3A8B4 /* 测试版.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
