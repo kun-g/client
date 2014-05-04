@@ -9,7 +9,7 @@ var util = loadModule("util.js");
 var item = loadModule("xitem.js");
 var stage = loadModule("stage.js");
 var quest = loadModule("quest.js");
-var bounty = loadModule("bounty.js");
+var bounty = loadModule("bountyx.js");
 var player = loadModule("player.js");
 var role = loadModule("role.js");
 

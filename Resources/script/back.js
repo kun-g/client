@@ -11,13 +11,16 @@ var synCount = 0;
 
 var role = loadModule("role.js");
 
-var loginSucessInvokes = [];
-function pushLoginSuccessInvoke(obj, func, args){
-    loginSucessInvokes.push({
+var loginSucessInvokes = {};
+function pushLoginSuccessInvoke(key, obj, func, args){
+    loginSucessInvokes[key] = {
         OBJ: obj,
         FUNC: func,
         ARGS: args
-    });
+    };
+}
+function removeLoginSucessInvoke(key){
+    delete loginSucessInvokes[key];
 }
 function processLoginSucessInvokes(){
     isGameLoggedIn = true;
@@ -25,7 +28,7 @@ function processLoginSucessInvokes(){
         var ivk = loginSucessInvokes[k];
         ivk.FUNC.apply(ivk.OBJ, ivk.ARGS);
     }
-    loginSucessInvokes = [];
+    loginSucessInvokes = {};
 }
 
 function syncEvent(event, key){
@@ -336,6 +339,7 @@ function onEvent(event)
         }
         case Event_TutorialInfo:
         {
+            debug("** TutorialInfo = "+JSON.stringify(event.arg));//test
             //trigger tutorial
             if( engine.user.player.Tutorial != null
                 && engine.user.player.Tutorial != event.arg.tut ){
@@ -343,7 +347,7 @@ function onEvent(event)
                 if( tc.tutorialTriggers != null
                     && tc.tutorialTriggers[event.arg.tut] != null
                     && tc.tutorialTriggers[event.arg.tut].tutorial != null ){
-                    loadModule("tutorial").invokeTutorial(tc.tutorialTriggers[event.arg.tut].tutorial);
+                    loadModule("tutorialx.js").invokeTutorial(tc.tutorialTriggers[event.arg.tut].tutorial);
                 }
             }
             engine.user.player.Tutorial = event.arg.tut;
@@ -403,4 +407,4 @@ function getDungeonFlag()
 exports.onEvent = onEvent;
 exports.getDungeonFlag = getDungeonFlag;
 exports.pushLoginSuccessInvoke = pushLoginSuccessInvoke;
-
+exports.removeLoginSucessInvoke = removeLoginSucessInvoke;

@@ -936,7 +936,7 @@
     };
 
     Dungeon.prototype.nextLevel = function() {
-      var bossPool, cfg, elitePool, lvConfig, quest, soldierPool;
+      var badPool, bossPool, cfg, elitePool, goodPool, lvConfig, normalPool, quest, soldierPool;
       if (this.level != null) {
         this.killingInfo[this.currentLevel] = this.level.getMonsters().filter(function(m) {
           return (m != null ? m.health : void 0) <= 0;
@@ -964,6 +964,9 @@
         soldierPool = cfg.soldierPool != null ? cfg.soldierPool : null;
         elitePool = cfg.elitePool != null ? cfg.elitePool : null;
         bossPool = cfg.bossPool != null ? cfg.bossPool : null;
+        goodPool = cfg.goodPool != null ? cfg.goodPool : null;
+        badPool = cfg.badPool != null ? cfg.badPool : null;
+        normalPool = cfg.normalPool != null ? cfg.normalPool : null;
         this.level = new Level();
         this.level.rand = (function(_this) {
           return function(r) {
@@ -982,7 +985,14 @@
           enumerable: false
         });
         quest = this.quests != null ? this.quests : [];
-        return this.level.init(lvConfig, this.baseRank, this.getHeroes(), quest, soldierPool, elitePool, bossPool);
+        return this.level.init(lvConfig, this.baseRank, this.getHeroes(), quest, {
+          soldier: soldierPool,
+          elite: elitePool,
+          boss: bossPool,
+          good: goodPool,
+          bad: badPool,
+          normal: normalPool
+        });
       }
     };
 
@@ -1051,19 +1061,15 @@
       this.ref = HEROTAG;
     }
 
-    Level.prototype.init = function(lvConfig, baseRank, heroes, quests, soldierPool, elitePool, bossPool) {
+    Level.prototype.init = function(lvConfig, baseRank, heroes, quests, pool) {
+      this.objects = this.objects.concat(heroes);
       this.rank = baseRank;
       if (lvConfig.rank != null) {
         this.rank += lvConfig.rank;
       }
       this.generateBlockLayout(lvConfig);
       this.setupEnterAndExit(lvConfig);
-      this.placeMapObjects(lvConfig, quests, {
-        soldier: soldierPool,
-        elite: elitePool,
-        boss: bossPool
-      });
-      this.objects = this.objects.concat(heroes);
+      this.placeMapObjects(lvConfig, quests, pool);
       return this.entrance;
     };
 
@@ -1292,7 +1298,6 @@
 
     Level.prototype.placeMapObjects = function(config, quests, pool) {
       var c, fillupMonster, monsterConfig, monsterCount, o, objectConfig, that, _i, _j, _k, _len, _len1, _len2, _ref5, _results;
-      this.objects = [];
       if (config == null) {
         return false;
       }
@@ -1333,11 +1338,15 @@
         if (l.soldier != null) {
           r.soldier += count;
         }
+        if (l.normal != null) {
+          r.normal += count;
+        }
         return r;
       }), {
         soldier: 0,
         elite: 0,
-        boss: 0
+        boss: 0,
+        normal: 0
       });
       that = this;
       fillupMonster = function(cfg) {
@@ -1362,6 +1371,21 @@
           counter: 'soldier',
           targetCounter: 'soldierCount',
           pool: 'soldier',
+          keyed: false
+        }, {
+          counter: 'good',
+          targetCounter: 'goodCount',
+          pool: 'good',
+          keyed: false
+        }, {
+          counter: 'bad',
+          targetCounter: 'badCount',
+          pool: 'bad',
+          keyed: false
+        }, {
+          counter: 'normal',
+          targetCounter: 'normalCount',
+          pool: 'normal',
           keyed: false
         }, {
           counter: 'elite',
@@ -1648,8 +1672,11 @@
     };
 
     DungeonEnvironment.prototype.initiateHeroes = function(data) {
-      var _ref5;
-      return (_ref5 = this.dungeon) != null ? _ref5.initiateHeroes(data) : void 0;
+      var heroes, objects;
+      this.dungeon.initiateHeroes(data);
+      heroes = this.dungeon.getAliveHeroes();
+      objects = this.dungeon.level.objects;
+      return this.dungeon.level.objects = heroes.concat(objects.slice(heroes.length, objects.length));
     };
 
     DungeonEnvironment.prototype.incrReviveCount = function() {
@@ -2150,10 +2177,32 @@
     },
     SpellState: {
       output: function(env) {
-        var ret;
+        var actor, bid, effect, ev, ret;
         ret = genUnitInfo(env.variable('wizard'), false, env.variable('state'));
+        if (env.variable('effect') != null) {
+          effect = env.variable('effect');
+          if (ret != null) {
+            ret = [ret];
+          }
+          bid = effect.id;
+          actor = env.variable('wizard');
+          ev = {
+            id: ACT_EFFECT,
+            eff: bid
+          };
+          if (effect.uninstall) {
+            ev.rmf = true;
+          }
+          ev.sid = actor.isBlock ? (actor.pos + 1) * 100 + bid : (actor.ref + 1) * 1000 + bid;
+          if (actor.isBlock) {
+            ev.pos = +actor.pos;
+          } else {
+            ev.act = actor.ref;
+          }
+          ret.push(ev);
+        }
         if (ret != null) {
-          return [ret];
+          return ret;
         } else {
           return [];
         }
@@ -2185,16 +2234,16 @@
         block = env.getBlock(env.variable('block'));
         if (block.getType() === Block_Npc || block.getType() === Block_Enemy) {
           e = block.getRef(-1);
+          this.routine({
+            id: 'UnitInfo',
+            unit: e
+          });
           e.onEvent('onShow', this);
           env.variable('monster', e);
           env.onEvent('onMonsterShow', this);
           if ((e != null ? e.isVisible : void 0) !== true) {
-            e.isVisible = true;
+            return e.isVisible = true;
           }
-          return this.routine({
-            id: 'UnitInfo',
-            unit: e
-          });
         }
       }
     },
@@ -2228,7 +2277,7 @@
       output: function(env) {
         var e, eEv;
         e = env.variable('unit');
-        if (!(e.health > 0)) {
+        if (e.dead) {
           return [];
         }
         eEv = {
@@ -2665,6 +2714,9 @@
     Kill: {
       callback: function(env) {
         env.variable('tar').health = 0;
+        if (!env.variable('tar').isVisible) {
+          env.variable('tar').dead = true;
+        }
         return this.routine({
           id: 'Dead',
           tar: env.variable('tar')
@@ -2966,13 +3018,14 @@
         return env.variable('tar').health += env.variable('hp');
       },
       output: function(env) {
+        var _ref5;
         return [
           {
             act: env.variable('tar').ref,
             id: ACT_POPHP,
             num: env.variable('hp'),
             flg: HP_RESULT_TYPE_HEAL,
-            dey: 0.3
+            dey: (_ref5 = env.variable('delay')) != null ? _ref5 : 0.3
           }
         ];
       }

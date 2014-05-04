@@ -237,7 +237,7 @@ function onShopInventory(sender)
         //just load
         theTransitionGroup = null;
         theCurrentGroup = theCenter;
-        setNormalInventory(theCurrentGroup);
+        setShopInventory(theCurrentGroup);
         isFlying = false;
     }
     currentMode = INVENTORY_SHOP;

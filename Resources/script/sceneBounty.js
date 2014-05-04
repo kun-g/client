@@ -2,7 +2,7 @@
  * Created by tringame on 14-4-23.
  */
 var libUIC = loadModule("UIComposer.js");
-var libBounty = loadModule("bounty.js");
+var libBounty = loadModule("bountyx.js");
 var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
@@ -346,6 +346,7 @@ function loadBountyDesc(bounty, lev){
     var prize = libItem.ItemPreview.create(tar.prize, dimension);
 
     if (engine.user.bounty.dataBounty[k] != undefined &&
+        engine.user.bounty.dataBounty[k].lev != undefined &&
         engine.user.bounty.dataBounty[k].lev[lev] != undefined &&
         engine.user.bounty.dataBounty[k].lev[lev].prz != undefined){
         prize = libItem.ItemPreview.create(engine.user.bounty.dataBounty[k].lev[lev].prz, dimension);

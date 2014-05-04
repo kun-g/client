@@ -1088,7 +1088,7 @@ function makeTutorial(pace, act)
     ret.tid = act.tid;
     ret.onStart = function(dungeon, layer)
     {
-        loadModule("tutorial.js").invokeTutorial(this.tid);
+        loadModule("tutorialx.js").invokeTutorial(this.tid);
     }
 
     return ret;
@@ -1246,6 +1246,7 @@ function makeEffect(pace, act)
     ret.grid = act.pos;
     ret.serverId = act.sid;
     ret.isRemove = act.rmf;
+    debug("** makeEffect = "+JSON.stringify(ret));//test
     ret.onStart = function(dungeon, layer)
     {
         var delay = 0;
@@ -1253,7 +1254,7 @@ function makeEffect(pace, act)
         var thiz = this;
         var actDelay = cc.DelayTime.create(delay);
         var actExec = cc.CallFunc.create(function(){
-            if( thiz.rmf === true ){//remove flag
+            if( thiz.isRemove === true ){//remove flag
                 if( thiz.serverId != null ){
                     layer.removeEffect(thiz.serverId);
                 }
@@ -1270,51 +1271,9 @@ function makeEffect(pace, act)
                     serverId: thiz.serverId
                 });
             }
-
         });
         var actSeq = cc.Sequence.create(actDelay, actExec);
         layer.runAction(actSeq);
-        //---------------------
-        var pos;
-        if( this.target != null ){
-            var actor = layer.getActor(this.target);
-            if( actor == null )
-            {
-                error("Action Effect: Actor not found.");
-                return;
-            }
-            pos = actor.getPosition();
-        }
-        else{
-            if( this.grid != null ){
-                pos = calcPosInGrid(this.grid);
-            }
-            else{
-                error("Action Effect: Grid not found.");
-            }
-        }
-        var parent = layer.effects;
-        var effectData = table.queryTable(TABLE_EFFECT, this.effect);
-        if( effectData.onGround === true ){
-            parent = layer.ground;
-        }
-
-        if( this.delay > 0 )
-        {
-            var zffect = this.effect;
-            var act1 = cc.DelayTime.create(this.delay);
-            var act2 = cc.CallFunc.create(function()
-            {
-                effects.attachEffect(parent, pos, zffect);
-
-            }, layer);
-            var seq = cc.Sequence.create(act1, act2);
-            layer.runAction(seq);
-        }
-        else
-        {
-            effects.attachEffect(parent, pos, this.effect);
-        }
     }
     return ret;
 }
@@ -1592,19 +1551,25 @@ function makeUnitUpdate(pace, act)
             if( this.rs != null )
             {
                 unit.rs = this.rs;
-                if( unit.rs == 0 )
-                {
-                    actor.resetBlinkColor();
-                    if( isHero(unit.ref) )
-                    {
-                        var role = engine.user.dungeon.party[unit.ref-HERO_TAG];
-                        var haircolor = queryColor(role.HairColor);
-                        actor.setHairColor(haircolor);
-                    }
-                }
-                else if( unit.rs == 1 )
-                {
-                    actor.setBlinkColor(COLOR_DEBUFF);
+                switch(unit.rs){
+                    case 0:{
+                        actor.resetBlinkColor();
+                        if( isHero(unit.ref) )
+                        {
+                            var role = engine.user.dungeon.party[unit.ref-HERO_TAG];
+                            var haircolor = queryColor(role.HairColor);
+                            actor.setHairColor(haircolor);
+                        }
+                    }break;
+                    case 1:{
+                        actor.setBlinkColor(COLOR_DEBUFF);
+                    }break;
+                    case 2:{
+                        actor.setBlinkColor(COLOR_BUFF);
+                    }break;
+                    case 3:{
+                        actor.setBlinkColor(COLOR_BUFF, COLOR_DEBUFF);
+                    }break;
                 }
             }
             //update character order
@@ -1679,13 +1644,6 @@ function makeEnterLevel(pace, act){
 
                 var actor = layer.addActor(unit);
                 dungeon.HeroCount++;
-
-                //reattach Effects
-                for(var e in unit.effects)
-                {
-                    var eff = Number(e);
-                    effects.attachEffect(layer.effects, actor.getPosition(), eff, actor);
-                }
             }
             else
             {
@@ -1714,6 +1672,19 @@ function makeEnterLevel(pace, act){
         //dump battle state on every level
         engine.user.setData("ddump", engine.box.save());
         engine.user.saveProfile();
+        //--- restore effects ---
+        var retach = [];
+        for(var k in layer.EffectList){
+            var param = layer.EffectList[k];
+            if( param.target != null ){
+                retach.push(param);
+            }
+        }
+        layer.EffectList = {};//clear
+        for(var k in retach){
+            var param = retach[k];
+            layer.addEffect(param);
+        }
     }
     return ret;
 }

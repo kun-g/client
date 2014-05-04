@@ -14,7 +14,7 @@ var libMessage = loadModule("MessageInfo.js");
 var libEvent = loadModule("eventInfo.js");
 var libPops = loadModule("pops.js");
 var libEffect = loadModule("effect.js");
-var libTutorial = loadModule("tutorial.js");
+var libTutorial = loadModule("tutorialx.js");
 
 //local constants
 var ACTIVITY_GAP = 15;

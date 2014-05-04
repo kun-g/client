@@ -263,6 +263,7 @@ function onEnter()
     this.ui.scroller.setContentOffset(off);
 
     fillPage(0);
+    updatePageNumber(0);
 
     this.update = update;
     this.scheduleUpdate();

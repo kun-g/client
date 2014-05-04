@@ -247,10 +247,12 @@ TutorialManager.prototype.nextAction = function(ui){
 var TutorialSingleton = new TutorialManager();
 
 exports.invokeTutorial = function(index){
+    debug("invokeTutorial = "+index);//test
     TutorialSingleton.startTutorial(index);
     engine.pop.invokePop();
 }
 
 exports.activateTutorial = function(ui){
+    debug("activateTutorial = "+ui);//test
     return TutorialSingleton.nextAction(ui);
 }

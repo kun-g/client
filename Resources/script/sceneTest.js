@@ -6,13 +6,26 @@
 
 var table = loadModule("table.js");
 
+function resp(rsp){
+    //do nothing
+}
+
 function onEnter()
 {
-    var bounty = loadModule("bounty.js");
-    var bb = new bounty.BountyLog();
-    var tp = typeof(bb.getBountyListCount);
-    debug("TYPE = "+tp);
-    bb.getBountyListCount();
+    while(true){
+
+        engine.event.connectServer()
+
+        var arg = {};
+        arg.id = "testdevice";
+        arg.tp = 1;
+        arg.bv = system.getBinaryVersion();
+        arg.rv = engine.game.getConfig().resource_version;
+        arg.ch = engine.game.getConfig().binary_channel;
+        arg.tk = "whatfuck";
+
+        engine.event.sendRPCEvent(Request_AccountLogin, arg, resp, this);
+    }
 }
 
 function onExit()

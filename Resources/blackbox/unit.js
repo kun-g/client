@@ -71,6 +71,7 @@
 
     Unit.prototype.initWithConfig = function(roleConfig) {
       var k, s, v, xproperty, _i, _len, _ref, _ref1, _results;
+      this.roleID = roleConfig.classId;
       if (roleConfig == null) {
         return false;
       }

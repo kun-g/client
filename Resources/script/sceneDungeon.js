@@ -409,7 +409,7 @@ function onPauseHint(sender)
         theLayer.greymask.setVisible(false);
         delete theLayer.pause;
 
-        loadModule("tutorial.js").showHint();
+        loadModule("tutorialx.js").showHint();
     }));
 }
 
@@ -1279,9 +1279,16 @@ function addActor(unit, boss)
     theLayer.avatars[unit.ref] = actor;
 
     //sync colors
-    if( unit.rs == 1 )
-    {
-        actor.setBlinkColor(COLOR_DEBUFF);
+    switch(unit.rs){
+        case 1:{
+            actor.setBlinkColor(COLOR_DEBUFF);
+        }break;
+        case 2:{
+            actor.setBlinkColor(COLOR_BUFF);
+        }break;
+        case 3:{
+            actor.setBlinkColor(COLOR_BUFF, COLOR_DEBUFF);
+        }break;
     }
 
     return actor;
@@ -1326,6 +1333,13 @@ function addEffect(param){
         error("addEffect: No such effect data("+param.effectId+")");
         return;
     }
+    //include to management
+    if( param.serverId != null ){
+        if( theLayer.EffectList[param.serverId] != null ){
+            removeEffect(param.serverId);
+        }
+        theLayer.EffectList[param.serverId] = param;
+    }
     if( param.target != null ){//add to role
         var actor = theLayer.getActor(param.target);
         if( actor != null ){
@@ -1352,14 +1366,6 @@ function addEffect(param){
             error("addEffect: Grid not found.");
         }
     }
-    //include to management
-    if( param.serverId != null ){
-        if( theLayer.EffectList[param.serverId] != null ){
-            removeEffect(param.serverId);
-        }
-        theLayer.EffectList[param.serverId] = param;
-    }
-
     return param.node;
 }
 

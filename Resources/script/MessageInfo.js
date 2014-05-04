@@ -264,21 +264,25 @@ function loadDeliverDetail(data){
         text: /*"    "+*/data.txt,
         size: UI_SIZE_L
     });
-    text.pushText({text: "  "});
-    text.pushText({//push title
-        text: "附件",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
-    });
-    text.pushText({text: "  "});
-    var size = text.getContentSize();
+    var yoffset = 0;
+    if( data.prz != null ){
+        text.pushText({text: "  "});
+        text.pushText({//push title
+            text: "附件",
+            color: cc.c3b(236, 199, 101),
+            size: UI_SIZE_XL
+        });
+        text.pushText({text: "  "});
+        var size = text.getContentSize();
+        var prize = libItem.ItemPreview.create(data.prz, dimension);
+        prize.setPosition(cc.p(0, 0));
+        theCurrentGroup.theContentLayer.addChild(prize);
+        yoffset = prize.getContentSize().height;
+    }
 
-    var prize = libItem.ItemPreview.create(data.prz, dimension);
-    prize.setPosition(cc.p(0, 0));
-    theCurrentGroup.theContentLayer.addChild(prize);
-    text.setPosition(cc.p(0, prize.getContentSize().height));
+    text.setPosition(cc.p(0, yoffset));
     theCurrentGroup.theContentLayer.addChild(text);
-    size.height += prize.getContentSize().height;
+    size.height += yoffset;
     theCurrentGroup.theContentLayer.setContentSize(size);
     resetContentScroll(theCurrentGroup);
 

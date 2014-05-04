@@ -49,27 +49,10 @@ initServer = function () {
   };
 };
 
-logError = function(log) {
-  print('Error', log);
-};
-logInfo = function(log) {
-  if (logLevel < 1)
-    print('Info', log);
-};
-logUser = function(log) {
-  if (logLevel < 1)
-    print('User', log);
-};
-logWarn = function(log) {
-  if (logLevel < 2)
-    print('Warn', log);
-};
-logDungeon = function(log) {
-  print('DebugDungeon', log);
-};
-logCommandStream = function(log) {
-  print('DebugCommandStream', log);
-};
+logError = function(log) { print('Error', log); };
+logInfo = function(log) { print('Info', log); };
+logUser = function(log) { print('User', log); };
+logWarn = function(log) { print('Warn', log); };
 
 rand = function() {
   return Math.floor(Math.random()*1000000);
@@ -147,28 +130,6 @@ getBasicInfo = function (hero) {
 
   return ret;
 };
-
-var gConfigTable = {};
-function readHandlerGenerator(path, item) {
-  return function (cb) {
-    var fs = requires('fs');
-    if (!path) { path = ''; }
-    fs.readFile(path+item.name+'.json', function (err, data) {
-      if (err) return cb(err);
-      try {
-        var tmp = JSON.parse(String(data));
-        if (item.func) tmp = item.func(tmp);
-        tmp = prepareForABtest(tmp);
-        gConfigTable[item.name] = tmp;
-        return cb(null);
-      } catch (error) {
-        console.log('Table Error(' + item.name +'):', error.message);
-        console.log(error.stack);
-        return cb(error);
-      }
-    });
-  };
-}
 
 initStageConfig = function (cfg) {
   var ret = [];
@@ -253,6 +214,13 @@ varifyDungeonConfig = function (cfg) {
   return cfg;
 };
 
+function initShop (data) {
+  for (var k in data) {
+    if (typeof gShop != 'undefined') gShop.addProduct(k, data[k]);
+  }
+}
+
+var gConfigTable = {};
 initGlobalConfig = function (path, callback) {
   queryTable = function (type, index, abIndex) {
     var cfg = gConfigTable[type];
@@ -269,16 +237,20 @@ initGlobalConfig = function (path, callback) {
       return cfg[index];
     }
   };
-  var configTable = [{name:TABLE_LEADBOARD},
+  var configTable = [{name:TABLE_LEADBOARD}, {name: TABLE_STORE, func:initShop},
     {name:TABLE_ROLE}, {name:TABLE_LEVEL}, {name:TABLE_VERSION}, {name:TABLE_FACTION},
     {name:TABLE_ITEM}, {name:TABLE_CARD}, {name:TABLE_DUNGEON, func:varifyDungeonConfig},
     {name:TABLE_STAGE, func: initStageConfig}, {name:TABLE_QUEST},
     {name:TABLE_UPGRADE}, {name:TABLE_ENHANCE}, {name: TABLE_CONFIG}, {name: TABLE_VIP},
     {name:TABLE_SKILL}, {name:TABLE_CAMPAIGN}, {name: TABLE_DROP}, {name: TABLE_TRIGGER}
   ];
-  var jobs = configTable.map(function (j) { return readHandlerGenerator(path, j); });
-  var async = requires('async');
-  async.parallel(jobs, callback);
+  if (!path) path = "./";
+  configTable.forEach(function (e) {
+    gConfigTable[e.name] = requires(path+e.name).data;
+    if (e.func) gConfigTable[e.name] = e.func(gConfigTable[e.name]);
+    gConfigTable[e.name] = prepareForABtest(gConfigTable[e.name]);
+  });
+  callback();
 };
 
 showMeTheStack = function () {try {a = b;} catch (err) {console.log(err.stack);}};
