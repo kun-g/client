@@ -15916,11 +15916,11 @@ exports.data = [
                 "weight":3
             }
         ],
-         
         "collectId":123001,
         "levels" :[
             {
-                 "normalCount":1,"objects" :[
+                "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":3
@@ -15946,7 +15946,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":2
@@ -15972,7 +15973,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                 "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":2
@@ -16009,7 +16011,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                 "normalCount":1,
+                "objects" :[
                     {
                         "id": 111 ,
                         "count":3
@@ -16039,7 +16042,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                 "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":2
@@ -22985,6 +22989,10 @@ exports.data = [
                         "id": 149,
                         "count":2
                     },
+                {
+                    "id": 188,
+                    "count":2
+                },
                     {
                         "id": 4 ,
                         "count":4
@@ -23001,6 +23009,10 @@ exports.data = [
                         "id": 4 ,
                         "count":4
                     },
+                {
+                    "id": 188,
+                    "count":2
+                },
                     {
                         "id": 149,
                         "count":2
@@ -23022,6 +23034,10 @@ exports.data = [
                         "id": 4 ,
                         "count":2
                     },
+                {
+                    "id": 188,
+                    "count":2
+                },
                     {
                         "id": 149,
                         "count":1
@@ -23047,8 +23063,8 @@ exports.data = [
             }
 
         ],
-        "prize":
-            [
+        "dropInfo":
+            [   5
             ],
         "prizeWxp":100,
         "prizeGold": 400,
