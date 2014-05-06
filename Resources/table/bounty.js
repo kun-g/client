@@ -3,14 +3,7 @@ exports.data = [
         "bountyId":0,
         "title":"装备劫匪通缉令",
         "desc":"走过路过不要错过，有个专门抢劫装备的土匪出没，大家抓紧时间黑吃黑啊～",
-        "objects":[
-            {
-                "type":0,
-                "label":"击杀boss过关",
-                "collect":2001,
-                "count":1
-            }
-        ],
+        "count":5,
         "date":{
             "segment":[
                 {
@@ -68,14 +61,7 @@ exports.data = [
         "bountyId":1,
         "title":"土豪哥布林悬赏令",
         "desc":"还有什么好说的，杀了土豪，抢光他们的财产，啊，不是，是劫富济贫（救济我这样的穷人）。",
-        "objects":[
-            {
-                "type":0,
-                "label":"击杀土豪哥布林",
-                "collect":2001,
-                "count":1
-            }
-        ],
+        "count":5,
         "date":{
             "segment":[
                 {
@@ -106,14 +92,7 @@ exports.data = [
         "bountyId":2,
         "title":"BOSS挑战令",
         "desc":"杀！",
-        "objects":[
-            {
-                "type":0,
-                "label":"把boss海扁一顿",
-                "collect":2001,
-                "count":1
-            }
-        ],
+        "count":5,
         "date":{
             "day":[0,1,3,5],
             "segment":[
@@ -144,14 +123,6 @@ exports.data = [
         "bountyId":3,
         "title":"无尽关排行挑战",
         "desc":"杀！杀！杀！",
-        "objects":[
-            {
-                "type":0,
-                "label":"看谁杀得多",
-                "collect":2001,
-                "count":1
-            }
-        ],
         "date":{
             "day":[0,2,4,6],
             "segment":[

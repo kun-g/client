@@ -10,6 +10,7 @@ var libItem = loadModule("xitem.js");
 var theLayer;
 var theListLayer;
 var theDescLayer;
+var theDescLayer2;
 var theBounty;
 var thePy;
 var theTime;
@@ -35,6 +36,15 @@ var loadList = [
     "bounty-zzjxbg.png"
 ];
 
+var levelBtnList = [
+    "bounty-btn-easy1.png",
+    "bounty-btn-easy2.png",
+    "bounty-btn-normal1.png",
+    "bounty-btn-normal2.png",
+    "bounty-btn-hard1.png",
+    "bounty-btn-hard2.png"
+];
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
 
@@ -56,7 +66,6 @@ function onTouchEnded(touch, event){
             var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
             thePy = PY;
             var line = theListLayer.getChildByTag(PY);
-            //debug("PY = " + PY);
             loadBountyDesc(line.bounty);
         }
     }
@@ -90,24 +99,42 @@ function onSubmit(sender){
 function onSimple(sender){
     if (theMode == MODE_DESC && thePy != undefined){
         var line = theListLayer.getChildByTag(thePy);
-        loadBountyDesc(line.bounty, 0);
-        theLevel = 0;
+        var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 0);
+        if (str.length <= 0){
+            loadBountyDesc(line.bounty, 0);
+            theLevel = 0;
+        }
+        else{
+            engine.msg.pop(str, POPTYPE_ERROR);
+        }
     }
 }
 
 function onNormal(sender){
     if (theMode == MODE_DESC && thePy != undefined){
         var line = theListLayer.getChildByTag(thePy);
-        loadBountyDesc(line.bounty, 1);
-        theLevel = 1;
+        var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 1);
+        if (str.length <= 0){
+            loadBountyDesc(line.bounty, 1);
+            theLevel = 1;
+        }
+        else{
+            engine.msg.pop(str, POPTYPE_ERROR);
+        }
     }
 }
 
 function onHard(sender){
     if (theMode == MODE_DESC && thePy != undefined){
         var line = theListLayer.getChildByTag(thePy);
-        loadBountyDesc(line.bounty, 2);
-        theLevel = 2;
+        var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 2);
+        if (str.length <= 0){
+            loadBountyDesc(line.bounty, 2);
+            theLevel = 2;
+        }
+        else{
+            engine.msg.pop(str, POPTYPE_ERROR);
+        }
     }
 }
 
@@ -115,10 +142,12 @@ function loadBountyList(){
     theMode = MODE_LIST;
     theLayer.owner.nodeList.setVisible(true);
     theLayer.owner.nodeDesc.setVisible(false);
+    theLayer.owner.nodeDesc2.setVisible(false);
     theListLayer.removeAllChildren();
     theListLayer.setTouchEnabled(true);
     theLayer.owner.btnBack.setVisible(false);
     theLayer.owner.btnSubmit.setVisible(false);
+    theLayer.owner.labTitle.setVisible(false);
 
     //debug("UPM = "+JSON.stringify(engine.user));
 
@@ -149,7 +178,7 @@ function loadBountyList(){
             if (chkProcess >= 0 && chkProcess < loadList.length / 2){
                 owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
             }
-            debug("loadBountyList 152:bounty = "+JSON.stringify(bountyData));
+            //debug("loadBountyList 152:bounty = "+JSON.stringify(bountyData));
             owner.labPower.setString(timediff);
             if (bountyData.titlePic != undefined){
                 owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
@@ -157,10 +186,18 @@ function loadBountyList(){
             if (bountyData.timePic != undefined){
                 owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
             }
-            if (engine.user.bounty.dataBounty[k] != undefined &&
-                engine.user.bounty.dataBounty[k].cnt != undefined){
-                owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
+
+            var remainFlag = bountyData.count;
+            if (remainFlag != undefined && remainFlag > 0){
+                if (engine.user.bounty.dataBounty[k] != undefined &&
+                    engine.user.bounty.dataBounty[k].cnt != undefined){
+                    owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
+                }
             }
+            else{
+                owner.nodeRemain.setVisible(false);
+            }
+
 //            if( bounty.fixState() ){timePic
 //                owner.spComplete.setVisible(true);
 //            }
@@ -190,16 +227,20 @@ function loadBountyDesc(bounty, lev){
     theMode = MODE_DESC;
     theLayer.owner.nodeList.setVisible(false);
     theLayer.owner.nodeDesc.setVisible(true);
+    theLayer.owner.nodeDesc2.setVisible(true);
     theDescLayer.removeAllChildren();
+    theDescLayer2.removeAllChildren();
     theListLayer.setTouchEnabled(false);
     theLayer.owner.btnBack.setVisible(true);
     theLayer.owner.btnSubmit.setVisible(true);
+    theLayer.owner.labTitle.setVisible(true);
 
     theBounty = bounty;
     //theBounty.fixState();
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
     var dimension = cc.size(theLayer.owner.layerDesc.getContentSize().width, 0);
 
+    var sfc = cc.SpriteFrameCache.getInstance();
     theLayer.owner.labTitle.setString(bountyData.title);
 
     //debug("bountyData.level.length = " + bountyData.level.length);
@@ -220,60 +261,49 @@ function loadBountyDesc(bounty, lev){
 //        theLayer.owner.nodeNormal.setVisible(true);
 //        theLayer.owner.nodeHard.setVisible(true);
         //debug("level btn and node set true");
-        if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length <= 0){
-            theLayer.owner.btnNormal.setEnabled(true);
+        if (engine.user.bounty.checkLimit(bounty.BountyId, 0).length <= 0){
+            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[0]));
         }
         else{
-            theLayer.owner.btnNormal.setEnabled(false);
+            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[1]));
+        }
+        if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length <= 0){
+            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2]));
+        }
+        else{
+            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[3]));
         }
         if (engine.user.bounty.checkLimit(bounty.BountyId, 2).length <= 0){
-            theLayer.owner.btnHard.setEnabled(true);
+            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[4]));
         }
         else{
-            theLayer.owner.btnHard.setEnabled(false);
+            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[5]));
         }
     }
 
     if (bountyData.begin == 1){
         theLayer.owner.btnSubmit.setVisible(true);
+        theLayer.owner.btnBack.setVisible(true);
+        theLayer.owner.btnBack2.setVisible(false);
     }
     else{
         theLayer.owner.btnSubmit.setVisible(false);
+        theLayer.owner.btnBack.setVisible(false);
+        theLayer.owner.btnBack2.setVisible(true);
     }
 
     var text = DCTextArea.create();
     text.setDimension(dimension);
     text.pushText({//push desc
-        text: /*"    "+*/bountyData.desc,
-        size: UI_SIZE_L
-    });
-    text.pushText({text: "  "});
-    text.pushText({//push objectives
-        text: "任务目标",
+        text: "任务描述",
         color: cc.c3b(236, 199, 101),
         size: UI_SIZE_XL
     });
     text.pushText({text: "  "});
-    for(var k in bountyData.objects){
-        var tar = bountyData.objects[k];
-        var cnt = 0;
-        if( cnt == null ){
-            cnt = 0;
-        }
-
-        var color = cc.c3b(255, 255, 255);
-        if( cnt >= tar.count ){
-            cnt = tar.count;
-            color = cc.c3b(95, 187, 38);
-        }
-        var str = /*"    "+*/tar.label;
-
-        text.pushText({//push title
-            text: str,
-            color: color,
-            size: UI_SIZE_L
-        });
-    }
+    text.pushText({//push desc
+        text: /*"    "+*/bountyData.desc,
+        size: UI_SIZE_L
+    });
 
     if (lev == undefined){
         lev = 0;
@@ -319,7 +349,7 @@ function loadBountyDesc(bounty, lev){
 
             }
         }
-        debug("str = " + str);
+        //debug("str = " + str);
         str=str.substring(0,str.length-1);
         str += "职业可以做。";
         text.pushText({//push desc
@@ -353,16 +383,27 @@ function loadBountyDesc(bounty, lev){
     }
 
     prize.setPosition(cc.p(0, 0));
-    theDescLayer.addChild(prize);
+
     text.setPosition(cc.p(0, prize.getContentSize().height));
-    theDescLayer.addChild(text);
+
     size.height += prize.getContentSize().height;
 
-    theDescLayer.setContentSize(size);
-
-    var curroffset = theLayer.ui.scrollDesc.getContentOffset();
-    curroffset.y = theLayer.ui.scrollDesc.minContainerOffset().y;
-    theLayer.ui.scrollDesc.setContentOffset(curroffset);
+    if (bountyData.level.length > 1){
+        theDescLayer.addChild(prize);
+        theDescLayer.addChild(text);
+        theDescLayer.setContentSize(size);
+        var curroffset = theLayer.ui.scrollDesc.getContentOffset();
+        curroffset.y = theLayer.ui.scrollDesc.minContainerOffset().y;
+        theLayer.ui.scrollDesc.setContentOffset(curroffset);
+    }
+    else if (bountyData.level.length == 1){
+        theDescLayer2.addChild(prize);
+        theDescLayer2.addChild(text);
+        theDescLayer2.setContentSize(size);
+        var curroffset2 = theLayer.ui.scrollDesc2.getContentOffset();
+        curroffset2.y = theLayer.ui.scrollDesc2.minContainerOffset().y;
+        theLayer.ui.scrollDesc2.setContentOffset(curroffset2);
+    }
 }
 
 function onUIAnimationCompleted(name){
@@ -373,11 +414,11 @@ function onUIAnimationCompleted(name){
 
 function onNotify(event){
     switch(event.NTF){
-//        case Message_UpdateBounty:
-//        {
-//            dataBounty[event.arg.bid] = event.arg;
-//            break;
-//        }
+        case Message_UpdateBounty:
+        {
+            loadBountyList();
+            break;
+        }
     }
     return false;
 }
@@ -459,6 +500,11 @@ function onEnter(){
             ui: "UIScrollView",
             id: "scrollDesc",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        },
+        layerDesc2: {
+            ui: "UIScrollView",
+            id: "scrollDesc2",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
         }
     });
     this.addChild(this.node);
@@ -469,8 +515,10 @@ function onEnter(){
 
     this.owner.nodeList.setVisible(false);
     this.owner.nodeDesc.setVisible(false);
+    this.owner.nodeDesc2.setVisible(false);
     this.owner.btnBack.setVisible(false);
     this.owner.btnSubmit.setVisible(false);
+    this.owner.labTitle.setVisible(false);
 
     //theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
@@ -478,6 +526,8 @@ function onEnter(){
     this.ui.scrollList.setContainer(theListLayer);
     theDescLayer = cc.Layer.create();
     this.ui.scrollDesc.setContainer(theDescLayer);
+    theDescLayer2 = cc.Layer.create();
+    this.ui.scrollDesc2.setContainer(theDescLayer2);
 
     theListLayer.onTouchBegan = onTouchBegan;
     theListLayer.onTouchMoved = onTouchMoved;
@@ -505,130 +555,3 @@ function show(){
 }
 
 exports.show = show;
-
-
-//--- Quest Complete Popup ---
-var theCompletedQuests;
-var theQCLayer;
-
-function onQCSubmit(sender){
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libUIKit.waitRPC(Request_SubmitQuest, {
-                     qid: theQCLayer.QID
-                     }, function(rsp){
-                     if( rsp.RET == RET_OK ){
-                     var QuestData = libTable.queryTable(TABLE_QUEST, theQCLayer.QID);
-                     delete engine.user.quest.Quests[theQCLayer.QID];
-                     engine.user.quest.CompleteCount--;
-                     
-                     //统计
-                     tdga.questComplete("Q"+QuestData.questId);
-                     
-                     theQCLayer.node.runAction(actionPopOut(function(){
-                                                            engine.ui.removeLayer(theQCLayer);
-                                                            if( QuestData != null && QuestData.endDialogue != null ){
-                                                            engine.dialogue.startDialogue(QuestData.endDialogue);
-                                                            }
-                                                            }));
-                     }
-                     else{
-                     libUIKit.showErrorMessage(rsp);
-                     
-                     theQCLayer.node.runAction(actionPopOut(function(){
-                                                            engine.ui.removeLayer(theQCLayer);
-                                                            }));
-                     }
-                     }, theQCLayer);
-}
-
-function onQCClose(sender){
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    theQCLayer.node.runAction(actionPopOut(function(){
-                                           engine.ui.removeLayer(theQCLayer);
-                                           }));
-}
-
-var QCMODE_NORMAL = 0;
-var QCMODE_DAILY = 1;
-
-function showQuestComplete(qid, mode, prz){
-    engine.user.quest.Quests[qid].Poped = true;
-    var questData = libTable.queryTable(TABLE_QUEST, qid);
-    
-    if( mode == null ) mode = QCMODE_NORMAL;
-    if( mode == QCMODE_NORMAL ){
-        var filename = "ui-questdone.ccbi";
-        var submit = {
-        ui: "UIButtonL",
-        id: "btnSubmit",
-        menu: "menuRoot",
-        label: "buttontext-lqjl.png",
-        func: onQCSubmit,
-        type: BUTTONTYPE_DEFAULT
-        };
-        var pdata = questData.prize;
-    }
-    else{
-        var filename = "ui-questdone2.ccbi";
-        var submit = {
-        ui: "UIButtonL",
-        id: "btnSubmit",
-        menu: "menuRoot",
-        label: "buttontext-confirm.png",
-        func: onQCClose,
-        type: BUTTONTYPE_DEFAULT
-        };
-        var pdata = prz;
-    }
-    
-    theQCLayer = engine.ui.newLayer();
-    var mask = blackMask();
-    theQCLayer.addChild(mask);
-    theQCLayer.owner = {};
-    theQCLayer.node = libUIC.loadUI(theQCLayer, filename, {
-                                    nodeSubmit:submit
-                                    });
-    var winSize = cc.Director.getInstance().getWinSize();
-    theQCLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
-    theQCLayer.addChild(theQCLayer.node);
-    engine.ui.regMenu(theQCLayer.owner.menuRoot);
-    
-    //set panel data
-    theQCLayer.owner.labelTitle.setString(questData.title);
-    var prize = libItem.ItemPreview.create(pdata);
-    var size = prize.getContentSize();
-    prize.setPosition(cc.p(-size.width/2, -size.height/2));
-    theQCLayer.owner.nodePrize.addChild(prize);
-    
-    theQCLayer.node.setScale(0);
-    theQCLayer.node.runAction(actionPopIn());
-    theQCLayer.QID = qid;
-}
-
-function invokeQuestPop(){
-    if( theCompletedQuests != null
-       && theCompletedQuests.length > 0 ){
-        var qstId = theCompletedQuests.shift();
-        showQuestComplete(qstId);
-    }
-}
-
-function checkQuestPop(){
-    var ret = false;
-    theCompletedQuests = [];
-    var list = engine.user.quest.getQuestList();
-    for(var k in list){
-        var qst = list[k];
-        if( qst.fixState() && !qst.Poped ){
-            theCompletedQuests.push(k);
-            ret = true;
-        }
-    }
-    invokeQuestPop();
-    return ret;
-}
-
-exports.checkQuestPop = checkQuestPop;
-exports.showQuestComplete = showQuestComplete;
-exports.QCMODE_NORMAL = QCMODE_NORMAL;
-exports.QCMODE_DAILY = QCMODE_DAILY;

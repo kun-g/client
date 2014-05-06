@@ -87,17 +87,17 @@ BountyLog.prototype.checkClass = function(bountyId, level){
 BountyLog.prototype.checkLimit = function(bountyId, level){
     var str = "";
     if (!engine.user.bounty.checkLevel(bountyId, level)){
-        str += "等级不够";
+        str = "等级不够。";
     }
     if (!engine.user.bounty.checkPower(bountyId, level)){
-        str += "，战力太低";
+        str = "战力太低。";
     }
     if (!engine.user.bounty.checkClass(bountyId, level)){
-        str += "，职业不符合";
+        str = "职业不符合。";
     }
-    if (str.length > 0){
-        str += "。";
-    }
+//    if (str.length > 0){
+//        str += "。";
+//    }
     return str;
 }
 

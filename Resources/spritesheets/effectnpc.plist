@@ -7,11 +7,11 @@
             <key>effectnpc-bomb1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{378,755},{80,88}}</string>
+                <string>{{935,580},{80,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{80,88}}</string>
                 <key>sourceSize</key>
@@ -46,7 +46,7 @@
             <key>effectnpc-bomb4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{469,678},{80,88}}</string>
+                <string>{{845,546},{80,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,11 +59,11 @@
             <key>effectnpc-bz1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{293,536},{76,66}}</string>
+                <string>{{935,738},{76,66}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{76,66}}</string>
                 <key>sourceSize</key>
@@ -72,7 +72,7 @@
             <key>effectnpc-bz10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{161,450},{130,129}}</string>
+                <string>{{295,556},{130,129}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>effectnpc-bz2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{296,929},{80,92}}</string>
+                <string>{{938,486},{80,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>effectnpc-bz9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{875,624},{130,131}}</string>
+                <string>{{162,459},{130,131}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,11 +189,11 @@
             <key>effectnpc-drtt-js.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{134,520},{50,25}}</string>
+                <string>{{496,553},{50,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{50,25}}</string>
                 <key>sourceSize</key>
@@ -202,11 +202,11 @@
             <key>effectnpc-drtt-ll.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{134,468},{50,25}}</string>
+                <string>{{496,526},{50,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{50,25}}</string>
                 <key>sourceSize</key>
@@ -215,7 +215,7 @@
             <key>effectnpc-drtt-wd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,397},{44,25}}</string>
+                <string>{{320,343},{44,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,11 +228,11 @@
             <key>effectnpc-drtt-xr.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,343},{49,25}}</string>
+                <string>{{135,415},{49,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{49,25}}</string>
                 <key>sourceSize</key>
@@ -241,11 +241,11 @@
             <key>effectnpc-drtt-xssh.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{506,555},{81,25}}</string>
+                <string>{{941,365},{81,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{81,25}}</string>
                 <key>sourceSize</key>
@@ -254,7 +254,7 @@
             <key>effectnpc-drtt1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,742},{101,112}}</string>
+                <string>{{2,724},{101,112}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,11 +280,11 @@
             <key>effectnpc-drtt3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,703},{101,112}}</string>
+                <string>{{2,828},{101,112}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{101,112}}</string>
                 <key>sourceSize</key>
@@ -293,7 +293,7 @@
             <key>effectnpc-drtt4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{256,614},{101,112}}</string>
+                <string>{{832,628},{101,112}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>effectnpc-drtt5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{941,340},{79,81}}</string>
+                <string>{{941,257},{79,81}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -319,11 +319,11 @@
             <key>effectnpc-drtt6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{116,806},{105,107}}</string>
+                <string>{{214,716},{105,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{105,107}}</string>
                 <key>sourceSize</key>
@@ -332,7 +332,7 @@
             <key>effectnpc-drtt7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,620},{120,120}}</string>
+                <string>{{616,706},{120,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,11 +384,11 @@
             <key>effectnpc-gasbz1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{293,458},{76,66}}</string>
+                <string>{{935,670},{76,66}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{76,66}}</string>
                 <key>sourceSize</key>
@@ -397,7 +397,7 @@
             <key>effectnpc-gasbz10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,364},{130,129}}</string>
+                <string>{{2,496},{130,129}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -410,7 +410,7 @@
             <key>effectnpc-gasbz2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{296,835},{80,92}}</string>
+                <string>{{941,392},{80,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>effectnpc-gasbz9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{675,572},{130,131}}</string>
+                <string>{{2,364},{130,131}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +514,7 @@
             <key>effectnpc-smzq1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{533,544},{132,140}}</string>
+                <string>{{690,572},{132,140}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -527,7 +527,7 @@
             <key>effectnpc-smzq2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{364,422},{132,140}}</string>
+                <string>{{548,544},{132,140}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -540,7 +540,7 @@
             <key>effectnpc-smzq3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{176,316},{132,140}}</string>
+                <string>{{354,422},{132,140}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -553,7 +553,7 @@
             <key>effectnpc-smzq4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{941,259},{79,81}}</string>
+                <string>{{941,176},{79,81}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -566,11 +566,11 @@
             <key>effectnpc-smzq5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{238,728},{105,107}}</string>
+                <string>{{207,828},{105,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{105,107}}</string>
                 <key>sourceSize</key>
@@ -579,7 +579,7 @@
             <key>effectnpc-smzq6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{134,581},{120,120}}</string>
+                <string>{{494,678},{120,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -592,11 +592,11 @@
             <key>effectnpc-sszg1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{359,653},{100,108}}</string>
+                <string>{{105,828},{100,108}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{100,108}}</string>
                 <key>sourceSize</key>
@@ -605,11 +605,11 @@
             <key>effectnpc-sszg10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{875,564},{142,58}}</string>
+                <string>{{878,402},{142,58}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{10,0},{142,58}}</string>
                 <key>sourceSize</key>
@@ -631,11 +631,11 @@
             <key>effectnpc-sszg12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{875,564},{142,58}}</string>
+                <string>{{878,402},{142,58}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{10,1},{142,58}}</string>
                 <key>sourceSize</key>
@@ -644,7 +644,7 @@
             <key>effectnpc-sszg2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,495},{123,130}}</string>
+                <string>{{134,591},{123,130}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -670,7 +670,7 @@
             <key>effectnpc-sszg4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{361,556},{124,95}}</string>
+                <string>{{2,627},{124,95}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -683,7 +683,7 @@
             <key>effectnpc-sszg5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{845,514},{99,28}}</string>
+                <string>{{320,448},{99,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -735,7 +735,7 @@
             <key>effectnpc-sszg9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{808,615},{128,65}}</string>
+                <string>{{427,556},{128,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -748,11 +748,11 @@
             <key>effectnpc-tt-js.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{134,416},{50,25}}</string>
+                <string>{{496,499},{50,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{50,25}}</string>
                 <key>sourceSize</key>
@@ -761,11 +761,11 @@
             <key>effectnpc-tt-ll.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{134,364},{50,25}}</string>
+                <string>{{496,472},{50,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{50,25}}</string>
                 <key>sourceSize</key>
@@ -774,7 +774,7 @@
             <key>effectnpc-tt-wd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,370},{44,25}}</string>
+                <string>{{320,316},{44,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -787,11 +787,11 @@
             <key>effectnpc-tt-xr.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,316},{49,25}}</string>
+                <string>{{135,364},{49,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{49,25}}</string>
                 <key>sourceSize</key>
@@ -800,11 +800,11 @@
             <key>effectnpc-tt-xssh.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{506,472},{81,25}}</string>
+                <string>{{941,338},{81,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{81,25}}</string>
                 <key>sourceSize</key>
@@ -813,11 +813,11 @@
             <key>effectnpc-tt1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{198,913},{96,100}}</string>
+                <string>{{321,785},{96,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{96,100}}</string>
                 <key>sourceSize</key>
@@ -826,11 +826,11 @@
             <key>effectnpc-tt2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{100,913},{96,100}}</string>
+                <string>{{321,687},{96,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{96,100}}</string>
                 <key>sourceSize</key>
@@ -839,7 +839,7 @@
             <key>effectnpc-tt3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,913},{96,100}}</string>
+                <string>{{116,724},{96,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -852,7 +852,7 @@
             <key>effectnpc-xc1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{701,429},{141,142}}</string>
+                <string>{{176,316},{141,142}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -865,7 +865,7 @@
             <key>effectnpc-xc2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{557,401},{141,142}}</string>
+                <string>{{701,429},{141,142}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -878,7 +878,7 @@
             <key>effectnpc-xc3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{878,421},{141,142}}</string>
+                <string>{{557,401},{141,142}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -891,20 +891,20 @@
             <key>effectnpc-xssh1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{941,176},{81,81}}</string>
+                <string>{{320,370},{42,42}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{81,81}}</string>
+                <string>{{0,0},{42,42}}</string>
                 <key>sourceSize</key>
-                <string>{81,81}</string>
+                <string>{42,42}</string>
             </dict>
             <key>effectnpc-zd1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{675,544},{24,24}}</string>
+                <string>{{845,514},{24,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -917,7 +917,7 @@
             <key>effectnpc-zd2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,424},{32,32}}</string>
+                <string>{{320,414},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -950,7 +950,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:971b1b1df2b7cdc227a17ec78c85d53b$</string>
+            <string>$TexturePacker:SmartUpdate:f4e5830cd04a1427264f54d18a32f954$</string>
             <key>textureFileName</key>
             <string>effectnpc.png</string>
         </dict>
