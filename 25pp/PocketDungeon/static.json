@@ -1,7 +1,7 @@
 {
     "binary_channel" : "PP25",
-    "resource_version" : 85,
-    "binary_version" : "1.0.4",
+    "resource_version" : 86,
+    "binary_version" : "1.0.5",
     "account_type" : 2,
     "default_user" : ""
 }
