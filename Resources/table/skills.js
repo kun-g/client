@@ -2772,7 +2772,28 @@ exports.data = [
     },
     {
         "skillId": 122,
-        "label":"土豪哥布林逃跑",
+        "label":"土豪哥布林现身",
+        "desc":"onshow",
+        "config": {
+
+            "triggerCondition": [
+                {"type" :"event","event": "onShow"}
+            ],
+            "targetSelection": {
+                "pool": "self",
+                "filter": [{"type":"alive"}]
+            },
+            "action":[
+                {"type":"delay"} ,
+                {"type":"playEffect","effect":4,"pos":"self"},
+                {"type": "installSpell", "spell": 123}
+
+            ]
+        }
+    },
+    {
+        "skillId": 123,
+        "label":"土豪哥布林逃跑2",
         "config": {
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":10,"reset":true },
@@ -2784,6 +2805,8 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action":[
+                {"type":"playEffect","effect":4,"pos":"self"},
+                {"type":"delay"} ,
                 {"type":"kill", "cod": 1}
             ]
         }
