@@ -15916,11 +15916,11 @@ exports.data = [
                 "weight":3
             }
         ],
-         
         "collectId":123001,
         "levels" :[
             {
-                 "normalCount":1,"objects" :[
+                "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":3
@@ -15946,7 +15946,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":2
@@ -15972,7 +15973,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                 "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":2
@@ -16009,7 +16011,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                 "normalCount":1,
+                "objects" :[
                     {
                         "id": 111 ,
                         "count":3
@@ -16039,7 +16042,8 @@ exports.data = [
                 ]
             },
             {
-                 "normalCount":1,"objects" :[
+                 "normalCount":1,
+                "objects" :[
                     {
                         "id": 110,
                         "count":2

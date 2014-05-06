@@ -190,7 +190,7 @@ function queryStage(stg){
 
 function onInvokeDailyQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    debug("INVOKE DAILY QUEST");
+    debug("INVOKE DAILY QUEST = "+theDQInvokeAction);
     if( theDQInvokeAction == DQINVOKE_GETPRIZE ){
 
         libUIKit.waitRPC(Request_SubmitDailyQuest, null
@@ -211,6 +211,7 @@ function onInvokeDailyQuest(sender){
         }, theLayer);
     }
     else if( theDQInvokeAction == DQINVOKE_STARTQUEST ){
+
         var dailyQuest = engine.user.activity.dailyQuest;
         var libTable = loadModule("table.js");
         var libStage = loadModule("sceneStage.js");
@@ -324,6 +325,7 @@ function refreshDailyQuest(){
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
         layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
         layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
+        theDQInvokeAction = DQINVOKE_GETPRIZE;
     }
     else{//daily quest is done
         layer.owner.nodeComplete.setVisible(true);
@@ -333,6 +335,7 @@ function refreshDailyQuest(){
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
         layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
         layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
+        theDQInvokeAction = DQINVOKE_NOTHING;
     }
 
     engine.ui.regMenu(layer.owner.menuRoot);
