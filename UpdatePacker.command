@@ -9,10 +9,10 @@ cd $WORK_PATH
 RES_PATH="Resources"
 
 BLACKLIST=( \
-"/Resources/blackbox/" \
-"/Resources/script/" \
-"/Resources/table/" \
-"/Resources/dtable/drop.bad" \
+"*/blackbox/*" \
+"*/script/*" \
+"*/table/*" \
+"*/tutorialList.js" \
 )
 
 function folder {
@@ -114,6 +114,11 @@ CompileJSC $RES_PATH/blackbox $RES_PATH/dblackbox
 CompileJSC $RES_PATH/script $RES_PATH/dscript
 CompileJSC libs/javascript/bindings/js $RES_PATH
 CompileJSC $RES_PATH/table $RES_PATH/dtable
+<<<<<<< HEAD
+=======
+CompileJSC $RES_PATH/ui/1136 $RES_PATH/ui/1136
+CompileJSC $RES_PATH/ui/960 $RES_PATH/ui/960
+>>>>>>> develop
 echo "  compile done."
 
 #5 commit branch
@@ -130,7 +135,7 @@ function UpdateFile {
 	_FLAG=1
 	for _BLACK in ${BLACKLIST[*]}
 	do
-		if [[ $1 == *$_BLACK* ]]; then
+		if [[ $1 == $_BLACK ]]; then
 			_FLAG=0
 			break
 		fi

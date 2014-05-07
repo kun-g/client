@@ -212,7 +212,6 @@ function loadResult(){
         theLayer.ui["equip"+index].showFrame();
         if( theWXPSource[index] != null ){
             var src = theWXPSource[index];
-            debug("SRC = "+JSON.stringify(src));//test
             theLayer.ui["equip"+index].setItem(src.itm);
             if( src.up >= 0 ){
                 var last = src.xp + theWXP;
@@ -231,7 +230,6 @@ function loadResult(){
                         progress: theLayer.ui["progress"+index]
                     };
                     theWXPAnimations.push(anim);
-                    debug("ANIMATION = "+JSON.stringify(anim));//test
                     theLayer.owner["labExp"+index].setVisible(true);
                     theLayer.owner["labExp"+index].setString("+0");
                 }
