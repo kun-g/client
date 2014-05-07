@@ -391,7 +391,7 @@
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
 		53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F51918FC27AE00C2D3AB /* PPImage.bundle */; };
-		D49D73D41915FDAB00A50B9D /* script in Resources */ = {isa = PBXBuildFile; fileRef = D49D73D31915FDAB00A50B9D /* script */; };
+		D4354C621919ED0900B72ADE /* script in Resources */ = {isa = PBXBuildFile; fileRef = 536D4F3D190786E100FC13D3 /* script */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1264,7 +1264,6 @@
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53F9F51918FC27AE00C2D3AB /* PPImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPImage.bundle; sourceTree = "<group>"; };
-		D49D73D31915FDAB00A50B9D /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2984,7 +2983,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-Develop" */;
+			buildConfigurationList = 53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-DEVELOP" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3033,7 +3032,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53A3159718FD317E001CE8B0 /* script in Resources */,
+				D4354C621919ED0900B72ADE /* script in Resources */,
 				53C3540C190E28DD00DA4BE8 /* table in Resources */,
 				53A3059618FD30EC001CE8B0 /* README in Resources */,
 				53A315B518FD3191001CE8B0 /* Icon-Small-50.png in Resources */,
@@ -3076,7 +3075,6 @@
 				53A3159618FD317E001CE8B0 /* node in Resources */,
 				53A315AE18FD3191001CE8B0 /* AppStore.plist in Resources */,
 				53A3159918FD317E001CE8B0 /* sprite in Resources */,
-				D49D73D41915FDAB00A50B9D /* script in Resources */,
 				53A30DC018FD3121001CE8B0 /* jsb_cocos2d_extension.jsc in Resources */,
 				53A305B618FD30EC001CE8B0 /* js.msg in Resources */,
 				53A3159418FD317E001CE8B0 /* font in Resources */,
@@ -3586,7 +3584,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-Develop" */ = {
+		53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-DEVELOP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5388632117E93DF600A3A8B4 /* Debug */,

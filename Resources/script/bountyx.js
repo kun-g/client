@@ -219,7 +219,7 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
         segId = 0;
     }
 
-    var secFlag = "-";
+    var secFlag = ":";
 
     var remainFlag = bountyData.count;
     if ((remainFlag != undefined &&

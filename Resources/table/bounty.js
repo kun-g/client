@@ -1,152 +1,49 @@
 exports.data = [
     {
         "bountyId":0,
-        "title":"装备劫匪通缉令",
-        "desc":"走过路过不要错过，有个专门抢劫装备的土匪出没，大家抓紧时间黑吃黑啊～",
-        "count":5,
+        "title":"捉拿土豪哥布林",
+        "desc":"哥布林中的土豪出现了！趁他们逃跑之前击倒，获得大量金币！",
+        "count":3,
         "date":{
             "segment":[
                 {
-                    "start":"12:00",
-                    "end":"13:00"
+                    "start":"11:00",
+                    "end":"23:59"
                 }
             ]
         },
         "begin":1,
-        "titlePic":"bounty-icon4.png",
-        "timePic":"bounty-time1.png",
-        "level":[
-            {
-                "levelLimit":1,
-                "powerLimit":1,
-                "classLimit":[0,1,2],
-                "stage":0,
-                "prize":[
-                    {
-                        "type":0,
-                        "value":25,
-                        "count":1
-                    }
-                ]
-            },
-            {
-                "levelLimit":2,
-                "powerLimit":200,
-                "classLimit":[0,1,2],
-                "stage":1,
-                "prize":[
-                    {
-                        "type":0,
-                        "value":35,
-                        "count":1
-                    }
-                ]
-            },
-            {
-                "levelLimit":3,
-                "powerLimit":500,
-                "classLimit":[0,1,2],
-                "stage":2,
-                "prize":[
-                    {
-                        "type":0,
-                        "value":39,
-                        "count":1
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "bountyId":1,
-        "title":"土豪哥布林悬赏令",
-        "desc":"还有什么好说的，杀了土豪，抢光他们的财产，啊，不是，是劫富济贫（救济我这样的穷人）。",
-        "count":5,
-        "date":{
-            "segment":[
-                {
-                    "start":"00:00",
-                    "end":"23:59"
-                }
-            ]
-        },
-        "begin":0,
         "titlePic":"bounty-icon3.png",
         "timePic":"bounty-time3.png",
-        "level":[
+         "level":[
             {
-                "levelLimit":1,
-                "powerLimit":1,
-                "classLimit":[0,1],
-                "stage":3,
+                "powerLimit":50,
+                "stage":114,
                 "prize":[
                     {
-                        "type":1,
-                        "count":2000
+                        "type":1
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "bountyId":2,
-        "title":"BOSS挑战令",
-        "desc":"杀！",
-        "count":5,
-        "date":{
-            "day":[0,1,3,5],
-            "segment":[
-                {
-                    "start":"18:00",
-                    "end":"22:00"
-                }
-            ]
-        },
-        "begin":0,
-        "titlePic":"bounty-icon5.png",
-        "timePic":"bounty-time4.png",
-        "level":[
+
+            },
             {
-                "levelLimit":1,
-                "powerLimit":1,
-                "stage":4,
+                "powerLimit":200,
+                "stage":115,
                 "prize":[
                     {
-                        "type":2,
-                        "count":40
+                        "type":1
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "bountyId":3,
-        "title":"无尽关排行挑战",
-        "desc":"杀！杀！杀！",
-        "date":{
-            "day":[0,2,4,6],
-            "segment":[
-                {
-                    "start":"00:00",
-                    "end":"23:59"
-                }
-            ]
-        },
-        "begin":0,
-        "titlePic":"bounty-icon1.png",
-        "timePic":"bounty-time5.png",
-        "level":[
+            },
             {
-                "levelLimit":1,
-                "powerLimit":1,
-                "stage":4,
+                "powerLimit":400,
+                "stage":116,
                 "prize":[
                     {
-                        "type":2,
-                        "count":40
+                        "type":1
                     }
                 ]
             }
         ]
     }
-];
+]

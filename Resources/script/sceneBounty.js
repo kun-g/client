@@ -88,12 +88,31 @@ function onBack(sender){
 
 function onSubmit(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var line = theListLayer.getChildByTag(thePy);
-    var libTable = loadModule("table.js");
-    var libStage = loadModule("sceneStage.js");
-    var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
-    var stageData = queryStage(bountyData.level[theLevel].stage);
-    libStage.startStage(bountyData.level[theLevel].stage, stageData.team, stageData.cost);
+    if (theMode == MODE_DESC && thePy != undefined) {
+        var line = theListLayer.getChildByTag(thePy);
+        var str = engine.user.bounty.checkLimit(line.bounty.BountyId, theLevel);
+        if (str.length <= 0 &&
+            engine.user.bounty.dataBounty[line.bounty.BountyId] != undefined &&
+            engine.user.bounty.dataBounty[line.bounty.BountyId].cnt != undefined &&
+            engine.user.bounty.dataBounty[line.bounty.BountyId].cnt > 0){
+            var libTable = loadModule("table.js");
+            var libStage = loadModule("sceneStage.js");
+            var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
+            var stageData = queryStage(bountyData.level[theLevel].stage);
+//            debug("theLevel = " + theLevel);
+//            debug("stage = " + bountyData.level[theLevel].stage);
+//            debug("stageData = " + JSON.stringify(stageData));
+            libStage.startStage(bountyData.level[theLevel].stage, stageData.team, stageData.cost);
+        }
+        else if (engine.user.bounty.dataBounty[line.bounty.BountyId] != undefined &&
+                engine.user.bounty.dataBounty[line.bounty.BountyId].cnt != undefined &&
+                engine.user.bounty.dataBounty[line.bounty.BountyId].cnt <= 0){
+            engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
+        }
+        else if (str.length > 0){
+            engine.msg.pop(str, POPTYPE_ERROR);
+        }
+    }
 }
 
 function onSimple(sender){
@@ -148,6 +167,7 @@ function loadBountyList(){
     theLayer.owner.btnBack.setVisible(false);
     theLayer.owner.btnSubmit.setVisible(false);
     theLayer.owner.labTitle.setVisible(false);
+    theLayer.owner.labBlueTitle.setVisible(false);
     theLayer.owner.nodelockSim.setVisible(false);
     theLayer.owner.nodelockNor.setVisible(false);
     theLayer.owner.nodelockHar.setVisible(false);
@@ -197,6 +217,11 @@ function loadBountyList(){
                     engine.user.bounty.dataBounty[k].cnt > 0){
                     owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
                 }
+                else if (engine.user.bounty.dataBounty[k] != undefined &&
+                    engine.user.bounty.dataBounty[k].cnt != undefined &&
+                    engine.user.bounty.dataBounty[k].cnt <= 0){
+                    owner.labelRemain.setString(0);
+                }
             }
             else{
                 owner.nodeRemain.setVisible(false);
@@ -238,6 +263,7 @@ function loadBountyDesc(bounty, lev){
     theLayer.owner.btnBack.setVisible(true);
     theLayer.owner.btnSubmit.setVisible(true);
     theLayer.owner.labTitle.setVisible(true);
+    theLayer.owner.labBlueTitle.setVisible(true);
     theLayer.owner.nodelockSim.setVisible(false);
     theLayer.owner.nodelockNor.setVisible(false);
     theLayer.owner.nodelockHar.setVisible(false);
@@ -269,27 +295,27 @@ function loadBountyDesc(bounty, lev){
 //        theLayer.owner.nodeHard.setVisible(true);
         //debug("level btn and node set true");
         if (engine.user.bounty.checkLimit(bounty.BountyId, 0).length <= 0){
-            //theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[0]));
+            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[0]));
             theLayer.owner.nodelockSim.setVisible(false);
         }
         else{
-            //theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[1]));
+            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[1]));
             theLayer.owner.nodelockSim.setVisible(true);
         }
         if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length <= 0){
-            //theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2]));
+            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2]));
             theLayer.owner.nodelockNor.setVisible(false);
         }
         else{
-            //theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[3]));
+            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[3]));
             theLayer.owner.nodelockNor.setVisible(true);
         }
         if (engine.user.bounty.checkLimit(bounty.BountyId, 2).length <= 0){
-            //theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[4]));
+            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[4]));
             theLayer.owner.nodelockHar.setVisible(false);
         }
         else{
-            //theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[5]));
+            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[5]));
             theLayer.owner.nodelockHar.setVisible(true);
         }
     }
@@ -484,6 +510,11 @@ function updateTime()
                         engine.user.bounty.dataBounty[k].cnt > 0){
                         line.owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
                     }
+                    else if (engine.user.bounty.dataBounty[k] != undefined &&
+                        engine.user.bounty.dataBounty[k].cnt != undefined &&
+                        engine.user.bounty.dataBounty[k].cnt <= 0){
+                        line.owner.labelRemain.setString(0);
+                    }
                 }
                 else{
                     line.owner.nodeRemain.setVisible(false);
@@ -543,6 +574,7 @@ function onEnter(){
     this.owner.btnBack.setVisible(false);
     this.owner.btnSubmit.setVisible(false);
     this.owner.labTitle.setVisible(false);
+    this.owner.labBlueTitle.setVisible(false);
 
     //theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
