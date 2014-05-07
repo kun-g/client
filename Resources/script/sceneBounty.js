@@ -148,6 +148,9 @@ function loadBountyList(){
     theLayer.owner.btnBack.setVisible(false);
     theLayer.owner.btnSubmit.setVisible(false);
     theLayer.owner.labTitle.setVisible(false);
+    theLayer.owner.nodelockSim.setVisible(false);
+    theLayer.owner.nodelockNor.setVisible(false);
+    theLayer.owner.nodelockHar.setVisible(false);
 
     //debug("UPM = "+JSON.stringify(engine.user));
 
@@ -190,7 +193,8 @@ function loadBountyList(){
             var remainFlag = bountyData.count;
             if (remainFlag != undefined && remainFlag > 0){
                 if (engine.user.bounty.dataBounty[k] != undefined &&
-                    engine.user.bounty.dataBounty[k].cnt != undefined){
+                    engine.user.bounty.dataBounty[k].cnt != undefined &&
+                    engine.user.bounty.dataBounty[k].cnt > 0){
                     owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
                 }
             }
@@ -234,6 +238,9 @@ function loadBountyDesc(bounty, lev){
     theLayer.owner.btnBack.setVisible(true);
     theLayer.owner.btnSubmit.setVisible(true);
     theLayer.owner.labTitle.setVisible(true);
+    theLayer.owner.nodelockSim.setVisible(false);
+    theLayer.owner.nodelockNor.setVisible(false);
+    theLayer.owner.nodelockHar.setVisible(false);
 
     theBounty = bounty;
     //theBounty.fixState();
@@ -262,22 +269,28 @@ function loadBountyDesc(bounty, lev){
 //        theLayer.owner.nodeHard.setVisible(true);
         //debug("level btn and node set true");
         if (engine.user.bounty.checkLimit(bounty.BountyId, 0).length <= 0){
-            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[0]));
+            //theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[0]));
+            theLayer.owner.nodelockSim.setVisible(false);
         }
         else{
-            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[1]));
+            //theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[1]));
+            theLayer.owner.nodelockSim.setVisible(true);
         }
         if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length <= 0){
-            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2]));
+            //theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2]));
+            theLayer.owner.nodelockNor.setVisible(false);
         }
         else{
-            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[3]));
+            //theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[3]));
+            theLayer.owner.nodelockNor.setVisible(true);
         }
         if (engine.user.bounty.checkLimit(bounty.BountyId, 2).length <= 0){
-            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[4]));
+            //theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[4]));
+            theLayer.owner.nodelockHar.setVisible(false);
         }
         else{
-            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[5]));
+            //theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[5]));
+            theLayer.owner.nodelockHar.setVisible(true);
         }
     }
 
@@ -463,6 +476,17 @@ function updateTime()
                 }
                 if (bountyData.timePic != undefined){
                     line.owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
+                }
+                var remainFlag = bountyData.count;
+                if (remainFlag != undefined && remainFlag > 0){
+                    if (engine.user.bounty.dataBounty[k] != undefined &&
+                        engine.user.bounty.dataBounty[k].cnt != undefined &&
+                        engine.user.bounty.dataBounty[k].cnt > 0){
+                        line.owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
+                    }
+                }
+                else{
+                    line.owner.nodeRemain.setVisible(false);
                 }
             }
         }

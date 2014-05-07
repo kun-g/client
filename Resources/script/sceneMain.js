@@ -81,6 +81,7 @@ function onEnter()
     theLayer.owner.onRank = onRank;
     theLayer.owner.onDailyQuest = onDailyQuest;
     theLayer.owner.onDailyPrize = onDailyPrize;
+    theLayer.owner.onBounty = onBounty;
 
     var node = libUIC.loadUI(theLayer, "sceneIndex.ccbi", {
         nodeEnergy:{
@@ -374,8 +375,7 @@ function onCharge(sender)
 function onQuest(sender)
 {
     startCloseAnimation(function(){
-        //libQuest.show();
-        libBounty.show();
+        libQuest.show();
     });
 }
 
@@ -514,6 +514,12 @@ function onRole(sender)
 
 function updateBattlePower(){
     theLayer.owner.labPower.setString(engine.user.actor.getPower());
+}
+
+function onBounty(){
+    startCloseAnimation(function(){
+        libBounty.show();
+    });
 }
 
 function scene()

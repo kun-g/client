@@ -109,6 +109,16 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
 
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
 
+    var remainFlag = bountyData.count;
+    if ((remainFlag != undefined &&
+        remainFlag > 0) &&
+        (engine.user.bounty.dataBounty[bountyId] == undefined ||
+            engine.user.bounty.dataBounty[bountyId].cnt == undefined ||
+            engine.user.bounty.dataBounty[bountyId].cnt <= 0)){
+        str = 3;
+        return str;
+    }
+
     var nowtime = new Date();
     //////////年/////////////
     if (bountyData.date.year != undefined){
@@ -210,6 +220,16 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     }
 
     var secFlag = "-";
+
+    var remainFlag = bountyData.count;
+    if ((remainFlag != undefined &&
+        remainFlag > 0) &&
+        (engine.user.bounty.dataBounty[bountyId] == undefined ||
+        engine.user.bounty.dataBounty[bountyId].cnt == undefined ||
+        engine.user.bounty.dataBounty[bountyId].cnt <= 0)){
+        ret = "--";
+        return ret;
+    }
 
     var nowtime = new Date();
     //////////年/////////////
