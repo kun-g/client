@@ -12,7 +12,6 @@ function resp(rsp){
 
 function onEnter()
 {
-
     while(true){
 
         engine.event.connectServer()

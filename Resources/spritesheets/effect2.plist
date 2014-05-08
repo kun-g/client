@@ -33,7 +33,7 @@
             <key>effect-enemyattack1-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{414,425},{34,81}}</string>
+                <string>{{421,342},{34,81}}</string>
                 <key>offset</key>
                 <string>{0,39}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>effect-gjxj2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{507,342},{80,23}}</string>
+                <string>{{495,424},{80,23}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>effect-reda3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{510,556},{70,66}}</string>
+                <string>{{511,677},{70,66}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -319,7 +319,7 @@
             <key>effect-reda4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{507,635},{42,42}}</string>
+                <string>{{436,642},{42,42}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,11 +475,11 @@
             <key>effect-sbattack5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{436,635},{69,54}}</string>
+                <string>{{520,424},{69,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{69,54}}</string>
                 <key>sourceSize</key>
@@ -488,7 +488,7 @@
             <key>effect-sbattack6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{450,424},{80,62}}</string>
+                <string>{{436,560},{80,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>effect-sbattack7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{470,506},{41,48}}</string>
+                <string>{{470,510},{41,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -605,7 +605,7 @@
             <key>effect-stone01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{436,558},{75,72}}</string>
+                <string>{{437,686},{75,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -631,7 +631,7 @@
             <key>effect-stone2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{513,506},{33,31}}</string>
+                <string>{{480,642},{33,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -640,6 +640,19 @@
                 <string>{{0,0},{33,31}}</string>
                 <key>sourceSize</key>
                 <string>{33,31}</string>
+            </dict>
+            <key>effect-unable.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{344,342},{83,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{83,75}}</string>
+                <key>sourceSize</key>
+                <string>{83,75}</string>
             </dict>
             <key>effect-warning1.png</key>
             <dict>
@@ -696,7 +709,7 @@
             <key>effect-wolflight3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{425,342},{80,80}}</string>
+                <string>{{457,342},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -722,7 +735,7 @@
             <key>effect-xuli-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{437,691},{70,70}}</string>
+                <string>{{500,560},{70,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -774,7 +787,7 @@
             <key>effect-yanjia1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{479,899},{79,81}}</string>
+                <string>{{414,427},{79,81}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -787,7 +800,7 @@
             <key>effect-yanjia2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{414,508},{48,54}}</string>
+                <string>{{414,510},{48,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -800,7 +813,7 @@
             <key>effect-yanjia3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{344,342},{79,81}}</string>
+                <string>{{479,899},{79,81}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -885,7 +898,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:459d910887ee6049db56eb995177237e$</string>
+            <string>$TexturePacker:SmartUpdate:f3635947eecb73151e810e119a973293$</string>
             <key>textureFileName</key>
             <string>effect2.png</string>
         </dict>
