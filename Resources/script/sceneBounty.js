@@ -91,7 +91,16 @@ function onSubmit(sender){
     if (theMode == MODE_DESC && thePy != undefined) {
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, theLevel);
-        if (str.length <= 0 &&
+
+        var segmentSel = engine.user.bounty.getProcess(line.bounty.BountyId);
+        var chkProcess = engine.user.bounty.checkProcess(line.bounty.BountyId,segmentSel);
+        debug("onSubmit:segmentSel = " + segmentSel + "   chkProcess = " + chkProcess);
+        if (chkProcess == 1){
+            engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
+        }else if (chkProcess == 2){
+            engine.msg.pop("任务已经结束了。", POPTYPE_ERROR);
+        }
+        else if (str.length <= 0 &&
             engine.user.bounty.dataBounty[line.bounty.BountyId] != undefined &&
             engine.user.bounty.dataBounty[line.bounty.BountyId].cnt != undefined &&
             engine.user.bounty.dataBounty[line.bounty.BountyId].cnt > 0){
@@ -112,6 +121,8 @@ function onSubmit(sender){
         else if (str.length > 0){
             engine.msg.pop(str, POPTYPE_ERROR);
         }
+
+
     }
 }
 
@@ -198,7 +209,7 @@ function loadBountyList(){
             var timediff = engine.user.bounty.cacultime(bounty.BountyId,segmentSel);
             var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId,segmentSel);
 
-            if (chkProcess >= 0 && chkProcess < loadList.length / 2){
+            if (chkProcess >= 0 && chkProcess < loadList.length){
                 owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
             }
             //debug("loadBountyList 152:bounty = "+JSON.stringify(bountyData));
