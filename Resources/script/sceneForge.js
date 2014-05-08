@@ -610,6 +610,7 @@ function setEnhanceStone(info){
             cid: info.ClassId,
             stc: info.StackCount
         });
+        debug("** info = "+JSON.stringify(info, null, "\t"));
         theContent.ui.stone.setItem(dummyItem);
         var StoneClass = libTable.queryTable(TABLE_ITEM, info.ClassId);
         theContent.owner.labStoneName.setString(StoneClass.label);
