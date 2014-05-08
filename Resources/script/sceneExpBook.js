@@ -315,7 +315,7 @@ function update(delta)
 {
     //装备经验增长动画
     if (animFlag == true){
-        theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+        //theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
         var step = Math.ceil(delta*EXP_SPEED);
         var item = engine.user.actor.queryArmor(itemPart,true);
         var upgreadeXp = 1;
@@ -333,23 +333,23 @@ function update(delta)
             animItem = 0;
             addExp = 100;
             itemPart = EquipSlot_MainHand;
-            cc.AudioEngine.getInstance().stopEffect(theWXPSound);
-            debug("stopEffect:theWXPSound = " + theWXPSound);
+            //cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+            //debug("stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
         if (theLayer.ui["progress" + animItem] != undefined){
             theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
             var sub = Math.ceil(currExp - curXp);
-            theLayer.ui["labExp" + animItem].setVisible(true);
-            theLayer.ui["labExp" + animItem].setString("+" + sub);
+            theLayer.owner["labExp" + animItem].setVisible(true);
+            theLayer.owner["labExp" + animItem].setString("+" + sub);
         }
         if (addExp <= 0){
             animFlag = false;
             animItem = 0;
             addExp = 100;
             itemPart = EquipSlot_MainHand;
-            cc.AudioEngine.getInstance().stopEffect(theWXPSound);
-            debug("stopEffect:theWXPSound = " + theWXPSound);
+            //cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+            //debug("stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
     }
@@ -527,12 +527,12 @@ function onEnter(){
     theLayer.ui.equip5.setItem(theRole.queryArmor(EquipSlot_Finger), theRole);
     theLayer.ui.equip6.setItem(theRole.queryArmor(EquipSlot_Neck), theRole);
     //set label
-    theLayer.ui.labExp1.setVisible(true);
-    theLayer.ui.labExp2.setVisible(true);
-    theLayer.ui.labExp3.setVisible(false);
-    theLayer.ui.labExp4.setVisible(false);
-    theLayer.ui.labExp5.setVisible(false);
-    theLayer.ui.labExp6.setVisible(false);
+    theLayer.owner.labExp1.setVisible(false);
+    theLayer.owner.labExp2.setVisible(false);
+    theLayer.owner.labExp3.setVisible(false);
+    theLayer.owner.labExp4.setVisible(false);
+    theLayer.owner.labExp5.setVisible(false);
+    theLayer.owner.labExp6.setVisible(false);
     //set progress
     initProgress();
     var winSize = cc.Director.getInstance().getWinSize();
