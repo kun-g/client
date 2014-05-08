@@ -41,7 +41,7 @@ function isActionAlive(action, actor){
 //tar, path
 function makeMoveTo(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.path = act.path;
     ret.target = act.target;
 
@@ -198,7 +198,7 @@ function makeMoveTo(pace, act)
 //tar, path
 function makeMoveOver(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.path = act.path;
 
     ret.onStart = function(dungeon, layer)
@@ -359,7 +359,8 @@ function makeMoveOver(pace, act)
 //act, spl
 function makeSpell(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.tar = act.act;
     ret.spl = act.spl;
 
@@ -441,7 +442,8 @@ function makeMusic(pace, act)
 //act, ref, res(0=miss, 1=hit 2=critical 3=block 4=heal)
 function makeAttack(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.act = act.act;
     ret.tar = act.ref;
     ret.res = act.res;
@@ -643,7 +645,8 @@ function makeHurt(pace, act)
 //
 function makeDead(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.act = act.act;
 
     ret.onStart = function(dungeon, layer)
@@ -691,7 +694,8 @@ function makeDead(pace, act)
 //act, dey
 function makeEvade(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.delay = act.dey;
     ret.act = act.act;
 
@@ -758,7 +762,7 @@ function makeEvade(pace, act)
 //...
 function makeShiftOrder(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
 
     ret.onStart = function(dungeon, layer)
     {
@@ -1084,7 +1088,7 @@ function makeBlink(pace, act)
 //tid
 function makeTutorial(pace, act)
 {
-    var ret= new action.Action(pace);
+    var ret= new action.Action(pace, true);
     ret.tid = act.tid;
     ret.onStart = function(dungeon, layer)
     {
@@ -1097,7 +1101,7 @@ function makeTutorial(pace, act)
 //did
 function makeDialogue(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.dialogueId = act.did;
     ret.onStart = function(dungeon, layer){
         engine.dialogue.startDialogue(this.dialogueId);
@@ -1335,7 +1339,7 @@ function makeSkillCd(pace, act)
 
 function makeDungeonEvent(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.type = act.typ;
     ret.pos = act.pos;
 
@@ -1354,7 +1358,7 @@ function makeDungeonEvent(pace, act)
 //pos, pas, typ 更新角色
 function makeDungeonBlock(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.pos = act.pos;
     ret.pas = act.pas;
     ret.typ = act.typ;
@@ -1589,7 +1593,7 @@ function makeUnitUpdate(pace, act)
 }
 
 function makeDungeonResult(pace, act){
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.win = act.win;
 
     ret.onStart = function(dungeon, layer){
@@ -1599,7 +1603,7 @@ function makeDungeonResult(pace, act){
 }
 
 function makeEnterLevel(pace, act){
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.pos = act.pos;
     ret.pos1 = act.pos1;
     ret.pos2 = act.pos2;
@@ -1691,7 +1695,7 @@ function makeEnterLevel(pace, act){
 
 function makeAllDead(pace, act)
 {
-    var ret= new action.Action(pace);
+    var ret= new action.Action(pace, true);
     ret.count = act.cnt;
     ret.onStart = function(dungeon, layer)
     {
@@ -1704,7 +1708,7 @@ function makeAllDead(pace, act)
 //event
 function makeEventAction(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.event = act.event;
 
     ret.onStart = function(dungeon, layer)

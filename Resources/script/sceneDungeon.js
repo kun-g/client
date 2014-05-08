@@ -120,6 +120,7 @@ function onEvent(event)
         case Message_TouchGrid:
         {
             var pos = event.arg.pos;
+            var rpos = calcPosInGrid(pos);
             var block = theDungeon.Blocks[pos];
             if( block.trans != null ){
                 pos = block.trans;
@@ -167,7 +168,8 @@ function onEvent(event)
                                     }));
                                 }
                                 else{
-                                    thePopMsg.pushMsg("那个出口被挡住了", POPTYPE_ERROR);
+                                    //thePopMsg.pushMsg("那个出口被挡住了", POPTYPE_ERROR);
+                                    effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                                 }
                             }
                             else if( theDungeon.Blocks[pos].type == BLOCK_ENEMY )
@@ -178,7 +180,8 @@ function onEvent(event)
                                     command = Request_DungeonAttack;
                                 }
                                 else{
-                                    thePopMsg.pushMsg("够不到这个怪物", POPTYPE_ERROR);
+                                    //thePopMsg.pushMsg("够不到这个怪物", POPTYPE_ERROR);
+                                    effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                                 }
                             }
                             else if( theDungeon.Blocks[pos].type == BLOCK_NPC )
@@ -188,7 +191,8 @@ function onEvent(event)
                                     command = Request_DungeonActivate;
                                 }
                                 else{
-                                    thePopMsg.pushMsg("到不了那个地方", POPTYPE_ERROR);
+                                    //thePopMsg.pushMsg("到不了那个地方", POPTYPE_ERROR);
+                                    effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                                 }
                             }
                         }
@@ -214,7 +218,8 @@ function onEvent(event)
                         }
                     }
                     else{
-                        thePopMsg.pushMsg("还去不了这个地方", POPTYPE_ERROR);
+                        //thePopMsg.pushMsg("还去不了这个地方", POPTYPE_ERROR);
+                        effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                     }
                 }
             }
@@ -912,7 +917,7 @@ function update(delta)
         theLayer.mask.setOpacity(curAlpha);
     }
     theLayer.actions.updateActions(delta);
-    if( theLayer.actions.isAllActionDone() )
+    if( theLayer.actions.isAllKeyActionsDone() )
     {
         theLayer.waitAction = false;
         if( theDungeon.UpdateAccessFlag )

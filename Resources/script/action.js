@@ -6,8 +6,11 @@
 
 var AGUID = 0;
 
-function Action(pace)
+function Action(pace, isKey)
 {
+    if( isKey == null ){
+        isKey = false;
+    }
     if( pace != null )
     {
         this.pace = pace;
@@ -17,6 +20,7 @@ function Action(pace)
         this.pace = 0;
     }
     this.AGUID = AGUID++;
+    this.KACT = isKey;
 }
 
 Action.prototype.onStart = function(dungeon, layer)
@@ -35,6 +39,7 @@ function Actions()
 {
     this.pending = [];
     this.running = [];
+    this.keyList = [];
     this.working = false;
     this.pace = 0;
     this.batchIndex = 0;
@@ -77,6 +82,9 @@ Actions.prototype.batch = function()
 Actions.prototype.pushAction = function(action)
 {
     action.pace += this.batchIndex;
+    if( action.KACT ){
+        this.keyList.push(action.AGUID);
+    }
     //debug("push -> "+JSON.stringify(action));
     if( action.pace <= this.pace )
     {
@@ -100,9 +108,10 @@ Action.prototype.startAction = function(action)
     this.working = true;
 }
 
-Actions.prototype.isAllActionDone = function()
+Actions.prototype.isAllKeyActionsDone = function()
 {
-    return !this.working;
+    //return !this.working;
+    return (this.keyList.length == 0);
 }
 
 Actions.prototype.updateActions = function(delta)
@@ -116,6 +125,9 @@ Actions.prototype.updateActions = function(delta)
 //            if( ret == false ){
 //                debug("end -> ID="+JSON.stringify(action.ID)+" ACT="+action.act+" NAME="+action.NAME);
 //            }
+            if( ret == false && action.KACT ){
+                thiz.keyList.splice(thiz.keyList.indexOf(action.AGUID), 1);
+            }
             return ret;
         });
     }
