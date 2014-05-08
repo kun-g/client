@@ -386,6 +386,14 @@ function onEvent(event)
             engine.user.player.Flags = event.arg;
             return true;
         }
+        case Event_BountyUpdate:
+        {
+            engine.user.bounty.dataBounty[event.arg.bid] = event.arg;
+            var event = {};
+            event.NTF = Message_UpdateBounty;
+            engine.event.processNotification(event);
+            return true;
+        }
     }
 
     if( event.NTF < 1000 ){
