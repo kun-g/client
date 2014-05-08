@@ -64,6 +64,9 @@ function onItem1(){
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
+                if (theWXPSound < 0) {
+                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+                }
             }
             else{
                 animFlag = false;
@@ -110,6 +113,9 @@ function onItem2(){
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
+                if (theWXPSound < 0) {
+                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+                }
             }
             else{
                 animFlag = false;
@@ -156,6 +162,9 @@ function onItem3(){
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
+                if (theWXPSound < 0) {
+                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+                }
             }
             else{
                 animFlag = false;
@@ -202,6 +211,9 @@ function onItem4(){
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
+                if (theWXPSound < 0) {
+                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+                }
             }
             else{
                 animFlag = false;
@@ -248,6 +260,9 @@ function onItem5(){
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
+                if (theWXPSound < 0) {
+                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+                }
             }
             else{
                 animFlag = false;
@@ -294,6 +309,9 @@ function onItem6(){
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
+                if (theWXPSound < 0) {
+                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
+                }
             }
             else{
                 animFlag = false;
@@ -315,7 +333,6 @@ function update(delta)
 {
     //装备经验增长动画
     if (animFlag == true){
-        //theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
         var step = Math.ceil(delta*EXP_SPEED);
         var item = engine.user.actor.queryArmor(itemPart,true);
         var upgreadeXp = 1;
@@ -333,13 +350,18 @@ function update(delta)
             animItem = 0;
             addExp = 100;
             itemPart = EquipSlot_MainHand;
-            //cc.AudioEngine.getInstance().stopEffect(theWXPSound);
-            //debug("stopEffect:theWXPSound = " + theWXPSound);
+            if (theWXPSound >= 0) {
+                cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+            }
+            debug("356 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
         if (theLayer.ui["progress" + animItem] != undefined){
             theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
             var sub = Math.ceil(currExp - curXp);
+            if (sub >= addExp){
+                sub = addExp;
+            }
             theLayer.owner["labExp" + animItem].setVisible(true);
             theLayer.owner["labExp" + animItem].setString("+" + sub);
         }
@@ -348,8 +370,10 @@ function update(delta)
             animItem = 0;
             addExp = 100;
             itemPart = EquipSlot_MainHand;
-            //cc.AudioEngine.getInstance().stopEffect(theWXPSound);
-            //debug("stopEffect:theWXPSound = " + theWXPSound);
+            if (theWXPSound >= 0) {
+                cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+            }
+            debug("373 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
     }
