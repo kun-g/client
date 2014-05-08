@@ -15,6 +15,7 @@ exports.data = [
         "begin":1,
         "titlePic":"bounty-icon3.png",
         "timePic":"bounty-time3.png",
+        "notify":0,
          "level":[
             {
                 "powerLimit":100,

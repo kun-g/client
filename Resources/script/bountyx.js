@@ -86,18 +86,32 @@ BountyLog.prototype.checkClass = function(bountyId, level){
 
 BountyLog.prototype.checkLimit = function(bountyId, level){
     var str = "";
+    var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
     if (!engine.user.bounty.checkLevel(bountyId, level)){
-        str = "等级不够。";
-    }
+        str = "需要等级" + bountyData.level[level].powerLimit + "。";
+    };
     if (!engine.user.bounty.checkPower(bountyId, level)){
-        str = "战力太低。";
+        str = "需要战斗力" + bountyData.level[level].powerLimit + "。";
     }
     if (!engine.user.bounty.checkClass(bountyId, level)){
-        str = "职业不符合。";
+        str = "只有";
+        for (var k in bountyData.level[level].classLimit) {
+            switch (bountyData.level[level].classLimit[k]) {
+                case 0:
+                    str += "战士、";
+                    break;
+                case 1:
+                    str += "法师、";
+                    break;
+                case 2:
+                    str += "牧师、";
+                    break;
+
+            }
+        }
+        str=str.substring(0,str.length-1);
+        str += "职业可以做。";
     }
-//    if (str.length > 0){
-//        str += "。";
-//    }
     return str;
 }
 
@@ -110,6 +124,8 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
 
     var remainFlag = bountyData.count;
+    debug("113: remainFlag = " + remainFlag);
+    debug("114: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
     if ((remainFlag != undefined &&
         remainFlag > 0) &&
         (engine.user.bounty.dataBounty[bountyId] == undefined ||
@@ -222,6 +238,8 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     var secFlag = ":";
 
     var remainFlag = bountyData.count;
+    debug("227: remainFlag = " + remainFlag);
+    debug("228: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
     if ((remainFlag != undefined &&
         remainFlag > 0) &&
         (engine.user.bounty.dataBounty[bountyId] == undefined ||
@@ -399,6 +417,65 @@ BountyLog.prototype.getProcess = function(bountyId){
 
 
     return selProc;
+}
+
+BountyLog.prototype.getLimStartTimeHour = function(bountyId, segId){
+    var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
+    if (segId == undefined){
+        segId = 0;
+    }
+
+    var starttime = bountyData.date.segment[segId].start.split(":");
+
+    var sthour = 0;
+    if (starttime[0] != undefined){
+        sthour = starttime[0];
+    }
+    return sthour;
+}
+
+BountyLog.prototype.getLimStartTimeMin = function(bountyId, segId){
+    var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
+    if (segId == undefined){
+        segId = 0;
+    }
+
+    var starttime = bountyData.date.segment[segId].start.split(":");
+
+    var stmin = 0;
+    if (starttime[1] != undefined){
+        stmin = starttime[1];
+    }
+    return stmin
+}
+
+BountyLog.prototype.getScheduleLocalNotificationTime = function(bountyId, segId){
+    var nowtime = new Date();
+    var timebounty = new Date(nowtime.getFullYear(), nowtime.getMonth(), nowtime.getDate(),
+        engine.user.bounty.getLimStartTimeHour(bountyId, segId),
+        engine.user.bounty.getLimStartTimeMin(bountyId, segId), 0, 0);
+    return timebounty;
+}
+
+BountyLog.prototype.setScheduleLocalNotification = function(){
+    var bountyCount = engine.user.bounty.getBountyListCount();
+    if( bountyCount > 0 ){
+        var list = engine.user.bounty.getBountyList();
+        for (var k in list){
+            var bountyData = libTable.queryTable(TABLE_BOUNTY, k);
+            if (bountyData.notify != undefined && bountyData.notify >= 1){
+                var segmentSel = engine.user.bounty.getProcess(k);
+
+                system.unscheduleLocalNotification("bounty" + k);
+                var timebounty = engine.user.bounty.getScheduleLocalNotificationTime(k, segmentSel);
+                system.scheduleLocalNotification(
+                        "bounty" + k,
+                    timebounty,
+                    bountyData.desc,
+                    "马上出征");
+            }
+        }
+    }
 }
 
 exports.BountyLog = BountyLog;
