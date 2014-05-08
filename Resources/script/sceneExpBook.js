@@ -17,6 +17,7 @@ var theWXPSound = -1;
 var currExp = 0;
 var addExp = 100;
 var EXP_SPEED = 75;
+var addExpConst = 100;
 
 var argItem = [EquipSlot_MainHand,EquipSlot_SecondHand,EquipSlot_Chest,EquipSlot_Legs,EquipSlot_Finger,EquipSlot_Neck];
 
@@ -359,8 +360,8 @@ function update(delta)
         if (theLayer.ui["progress" + animItem] != undefined){
             theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
             var sub = Math.ceil(currExp - curXp);
-            if (sub >= addExp){
-                sub = addExp;
+            if (sub > addExpConst){
+                sub = addExpConst;
             }
             theLayer.owner["labExp" + animItem].setVisible(true);
             theLayer.owner["labExp" + animItem].setString("+" + sub);
