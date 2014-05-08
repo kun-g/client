@@ -7,7 +7,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"11:00",
+                    "start":"12:00",
                     "end":"23:59"
                 }
             ]
@@ -15,7 +15,6 @@ exports.data = [
         "begin":1,
         "titlePic":"bounty-icon3.png",
         "timePic":"bounty-time3.png",
-        "notify":0,
          "level":[
             {
                 "powerLimit":100,
