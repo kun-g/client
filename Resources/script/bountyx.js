@@ -480,24 +480,64 @@ BountyLog.prototype.checkAllLevelLimit = function(bountyId){
     return ret;
 }
 
+BountyLog.prototype.getNextActiveTime = function(bountyId){
+    var ret = null;
+    var boundyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
+    //load segments
+    var segments = [];
+    for(var k in boundyData.date.segment){
+        var strTime = boundyData.date.segment[k].start;
+        var strTimeParts = strTime.split(":");
+        segments.push({
+            hour: Number(strTimeParts[0]),
+            minute: Number(strTimeParts[1])
+        });
+    }
+    segments = segments.sort(function(a, b){
+        var va = a.hour*60 + a.minute;
+        var vb = b.hour*60 + b.minute;
+        return va - vb;
+    });
+
+    var now = new Date();
+    var oneDay = 1000*60*60*24;
+    var found = false;
+    for(var k = 0; k<=7; ++k){
+        if( found ) break;
+        var thatDate = new Date(now.valueOf() + k*oneDay);
+        if( matchDate(boundyData.date, thatDate) ){
+            for(var l in segments){
+                thatDate.setHours(segments[l].hour);
+                thatDate.setMinutes(segments[l].minute);
+                if( now.valueOf() < thatDate.valueOf() ){
+                    ret = thatDate;
+                    found = true;
+                    break;
+                }
+            }
+        }
+    }
+    return ret;
+}
+
 BountyLog.prototype.setScheduleLocalNotification = function(){
     var bountyCount = engine.user.bounty.getBountyListCount();
-    if( bountyCount > 0 ){
+    if (bountyCount > 0) {
         var list = engine.user.bounty.getBountyList();
-        for (var k in list){
+        for (var k in list) {
             var bountyData = libTable.queryTable(TABLE_BOUNTY, k);
             if (bountyData.notify != undefined &&
                 bountyData.notify >= 1 &&
-                engine.user.bounty.checkAllLevelLimit(k)){
-                var segmentSel = engine.user.bounty.getProcess(k);
+                engine.user.bounty.checkAllLevelLimit(k)) {
 
-                system.unscheduleLocalNotification("bounty" + k);
-                var timebounty = engine.user.bounty.getScheduleLocalNotificationTime(k, segmentSel);
-                system.scheduleLocalNotification(
-                    "bounty" + k,
-                    timebounty,
-                    bountyData.notifyText,
-                    bountyData.notifyButton);
+                var nextActiveTime = this.getNextActiveTime(k);
+                if( nextActiveTime != null ){
+                    system.scheduleLocalNotification(
+                        "bounty" + k,
+                        nextActiveTime,
+                        bountyData.notifyText,
+                        bountyData.notifyButton);
+                }
             }
         }
     }

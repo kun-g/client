@@ -97,6 +97,7 @@ function main()
     //global init
     //feedback.init();
     system.setAppBadgeNumber(0);
+    system.unscheduleAllLocalNotifications();
 
     //start the game
     initEngine();
