@@ -58,6 +58,7 @@ Game.prototype.init = function()
     utils.registerClass(loadModule("quest.js").Quest);
     utils.registerClass(loadModule("quest.js").QuestLog);
     utils.registerClass(loadModule("role.js").FriendList);
+    utils.registerClass(loadModule("bountyx.js").BountyLog);
 
     //register pop ups
     engine.pop.registerPop("announce", loadModule("pops.js").invokeAnnouncement);
@@ -86,6 +87,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_TUTORIAL);
     table.loadTable(TABLE_TUTORIAL_CONFIG);
     table.loadTable(TABLE_BAN);
+    table.loadTable(TABLE_BOUNTY);
     table.loadTable(TABLE_FACTION);
 
     //init global resources

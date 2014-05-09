@@ -395,15 +395,16 @@ function onEnterBackground()
         singleton.processNotification(Message_OnEnterBackground);
         engine.user.saveProfile();
 
-        system.unscheduleLocalNotification("energyRecover");
         if( engine.user.player.Energy <= 50 ){
             var time = engine.user.player.estimateEnergyRecoverTimer();
             system.scheduleLocalNotification(
                 "energyRecover",
                 time,
-                "你的勇士已经完全恢复了精力。赶紧去把外面嚣张的怪物都砍翻吧，世界和平就靠你啦。",
-                "马上出征");
+                "老大我已经完全恢复了精力。赶紧去把外面嚣张的怪物都砍翻吧，世界和平就靠你啦。",
+                "出征");
         }
+
+        engine.user.bounty.setScheduleLocalNotification();
     }
 }
 

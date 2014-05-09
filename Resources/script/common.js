@@ -1115,3 +1115,29 @@ function filterUserInput(str){
     }
     return ret;
 }
+
+function queryStage(stg){
+    var chapters = loadModule("table.js").readTable(TABLE_STAGE);
+    for(var k in chapters){
+        for(var m in chapters[k].stage){
+            if( chapters[k].stage[m].stageId == stg ) return chapters[k].stage[m];
+        }
+    }
+    return null;
+}
+
+function matchDate(scheme, date){
+    if( scheme.year != null ){
+        if( date.getFullYear() != scheme.year ) return false;
+    }
+    if( scheme.month != null ){
+        if( date.getMonth() != scheme.month ) return false;
+    }
+    if( scheme.week != null ){
+        if( date.getDay() != scheme.week ) return false;
+    }
+    if( scheme.day != null ){
+        if( date.getDate() != scheme.day ) return false;
+    }
+    return true;
+}

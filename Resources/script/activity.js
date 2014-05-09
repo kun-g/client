@@ -315,6 +315,7 @@ function refreshDailyQuest(){
             layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setEnabled(false);
+            theDQInvokeAction = DQINVOKE_NOTHING;
         }
     }
     else if( dailyQuest.step == 4 ){//take to prize

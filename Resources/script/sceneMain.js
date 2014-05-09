@@ -7,6 +7,7 @@
 //load libs
 var libRole = loadModule("role.js");
 var libQuest = loadModule("questInfo.js");
+var libBounty = loadModule("sceneBounty.js");
 var libUIC = loadModule("UIComposer.js");
 var libChat = loadModule("chatInfo.js");
 var libMessage = loadModule("MessageInfo.js");
@@ -80,6 +81,7 @@ function onEnter()
     theLayer.owner.onRank = onRank;
     theLayer.owner.onDailyQuest = onDailyQuest;
     theLayer.owner.onDailyPrize = onDailyPrize;
+    theLayer.owner.onBounty = onBounty;
 
     var node = libUIC.loadUI(theLayer, "sceneIndex.ccbi", {
         nodeEnergy:{
@@ -512,6 +514,12 @@ function onRole(sender)
 
 function updateBattlePower(){
     theLayer.owner.labPower.setString(engine.user.actor.getPower());
+}
+
+function onBounty(){
+    startCloseAnimation(function(){
+        libBounty.show();
+    });
 }
 
 function scene()

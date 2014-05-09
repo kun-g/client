@@ -422,7 +422,9 @@ var UIItem = cc.Node.extend({
                 {
                     var icon = cc.Sprite.create(ItemClass.icon);
                 }
-                this.addChild(icon, 0);
+                if( icon != null ){
+                    this.addChild(icon, 0);
+                }
                 this.icon = icon;
                 if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED )
                 {
@@ -608,19 +610,39 @@ function queryPrize(pit){
         }break;
         case PRIZETYPE_GOLD:{//gold
             strIcon = "mission-coin.png";
-            strLabel = pit.count+"金币";
+            if( pit.count != null ){
+                strLabel = pit.count+"金币";
+            }
+            else{
+                strLabel = "金币";
+            }
         }break;
         case PRIZETYPE_DIAMOND:{//diamond
             strIcon = "mission-jewel.png";
-            strLabel = pit.count+"宝石";
+            if ( pit.count != null ){
+                strLabel = pit.count+"宝石";
+            }
+            else{
+                strLabel = "宝石";
+            }
         }break;
         case PRIZETYPE_EXP:{//exp
             strIcon = "mission-xp.png";
-            strLabel = pit.count+"经验";
+            if ( pit.count != null ){
+                strLabel = pit.count+"经验";
+            }
+            else{
+                strLabel = "经验";
+            }
         }break;
         case PRIZETYPE_WXP:{//wxp
             strIcon = "mission-sld.png";
-            strLabel = pit.count+"熟练";
+            if ( pit.count != null ){
+                strLabel = pit.count+"熟练";
+            }
+            else{
+                strLabel = "熟练";
+            }
         }break;
         default : return null;
     }
