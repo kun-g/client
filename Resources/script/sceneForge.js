@@ -598,10 +598,10 @@ function setEnhanceEquip(item){
     }
 
     //update stone number
-    if( EnhanceArgs != null
-        && EnhanceArgs.sto != null ){
-        setEnhanceStone(EnhanceArgs.sto);
-    }
+//    if( EnhanceArgs != null
+//        && EnhanceArgs.sto != null ){
+//        setEnhanceStone(EnhanceArgs.sto);
+//    }
 }
 
 function setEnhanceStone(info){

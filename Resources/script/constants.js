@@ -54,6 +54,7 @@ var CACHE_INVENTORY = "inventory";
 var CACHE_PLAYER = "player";
 var CACHE_STAGE = "stage";
 var CACHE_QUEST = "quest";
+var CACHE_BOUNTY = "bounty";
 var CACHE_FRIEND = "friend";
 var CACHE_ACTIVITY = "activity";
 var CACHE_DUNGEON = "dungeon";
@@ -266,6 +267,7 @@ var Event_Broadcast = 25;
 var Event_ABTestSeed = 26;
 var Event_UpdateDailyQuest = 27;
 var Event_UpdatePlayerFlags = 28;
+var Event_BountyUpdate = 30;
 
 var Event_Reconnect = 100;
 var Event_Echo = 101;
@@ -309,6 +311,7 @@ var Message_UpdateVIPLevel = 1027;
 var Message_About2Reboot = 1028;
 var Message_ResetDungeon = 1029;
 var Message_UpdateDailyQuest = 1030;
+var Message_UpdateBounty = 1031;
 
 var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;
