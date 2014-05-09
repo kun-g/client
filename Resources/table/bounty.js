@@ -7,7 +7,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"12:00",
+                    "start":"15:30",
                     "end":"23:59"
                 }
             ]
@@ -20,7 +20,7 @@ exports.data = [
         "notifyText":"哥布林中的土豪出现了！趁他们逃跑之前抢他们的钱！",
          "level":[
             {
-                "powerLimit":100,
+                "powerLimit":500,
                 "stage":114,
                 "prize":[
                     {

@@ -468,19 +468,33 @@ BountyLog.prototype.getScheduleLocalNotificationTime = function(bountyId, segId)
     return timebounty;
 }
 
+BountyLog.prototype.checkAllLevelLimit = function(bountyId){
+    var ret = false;
+    var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
+    for (var k in bountyData.level){
+        if (engine.user.bounty.checkLimit(bountyId, k).length <= 0){
+            ret = true;
+            break;
+        }
+    }
+    return ret;
+}
+
 BountyLog.prototype.setScheduleLocalNotification = function(){
     var bountyCount = engine.user.bounty.getBountyListCount();
     if( bountyCount > 0 ){
         var list = engine.user.bounty.getBountyList();
         for (var k in list){
             var bountyData = libTable.queryTable(TABLE_BOUNTY, k);
-            if (bountyData.notify != undefined && bountyData.notify >= 1){
+            if (bountyData.notify != undefined &&
+                bountyData.notify >= 1 &&
+                engine.user.bounty.checkAllLevelLimit(k)){
                 var segmentSel = engine.user.bounty.getProcess(k);
 
                 system.unscheduleLocalNotification("bounty" + k);
                 var timebounty = engine.user.bounty.getScheduleLocalNotificationTime(k, segmentSel);
                 system.scheduleLocalNotification(
-                        "bounty" + k,
+                    "bounty" + k,
                     timebounty,
                     bountyData.notifyText,
                     bountyData.notifyButton);
