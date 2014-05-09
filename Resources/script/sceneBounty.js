@@ -336,10 +336,12 @@ function loadBountyDesc(bounty, lev){
 
     ajustPostion(bounty.BountyId);
 
-    debug("nodeEffList[" + lev + "] = " + nodeEffList[lev]);
-    theLayer.owner[nodeEffList[lev]].setVisible(true);
-    theLayer.owner[nodeEffList[lev]].removeAllChildren();
-    libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
+    //debug("nodeEffList[" + lev + "] = " + nodeEffList[lev]);
+    if (engine.user.bounty.checkLimit(bounty.BountyId, lev).length <= 0){
+        theLayer.owner[nodeEffList[lev]].setVisible(true);
+        theLayer.owner[nodeEffList[lev]].removeAllChildren();
+        libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
+    }
 
     if (bountyData.begin == 1){
         theLayer.owner.btnSubmit.setVisible(true);
