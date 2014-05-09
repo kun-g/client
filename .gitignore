@@ -9,3 +9,15 @@
 *.xcuserstate
 
 Resources/script/.DS_Store
+
+.DS_Store
+
+Resources/sound/.DS_Store
+
+Resources/table/.DS_Store
+
+Resources/ui/.DS_Store
+
+Resources/ui/1136/.DS_Store
+
+Resources/ui/960/.DS_Store
