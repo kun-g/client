@@ -534,7 +534,7 @@ BountyLog.prototype.setScheduleLocalNotification = function(){
                 if( nextActiveTime != null ){
                     system.scheduleLocalNotification(
                         "bounty" + k,
-                        timebounty,
+                        nextActiveTime,
                         bountyData.notifyText,
                         bountyData.notifyButton);
                 }
