@@ -2805,7 +2805,7 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action":[
-                {"type":"playAction","motion":1,"pos":"self"},,
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"} ,
                 {"type":"kill", "cod": 1}
             ]
