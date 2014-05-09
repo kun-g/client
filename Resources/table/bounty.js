@@ -15,6 +15,9 @@ exports.data = [
         "begin":1,
         "titlePic":"bounty-icon3.png",
         "timePic":"bounty-time3.png",
+        "notify":1,
+        "notifyButton":"马上出征",
+        "notifyText":"哥布林中的土豪出现了！趁他们逃跑之前抢他们的钱！",
          "level":[
             {
                 "powerLimit":100,
