@@ -94,7 +94,6 @@ Actions.prototype.pushAction = function(action)
     }
     else
     {
-
         this.pending.push(action);
     }
     this.working = true;
@@ -110,8 +109,8 @@ Action.prototype.startAction = function(action)
 
 Actions.prototype.isAllKeyActionsDone = function()
 {
-    //return !this.working;
-    return (this.keyList.length == 0);
+    return !this.working;
+    //return (this.keyList.length == 0);//暂时关闭关键节拍控制
 }
 
 Actions.prototype.updateActions = function(delta)

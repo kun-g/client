@@ -1358,7 +1358,7 @@ function makeDungeonEvent(pace, act)
 //pos, pas, typ 更新角色
 function makeDungeonBlock(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new action.Action(pace);
     ret.pos = act.pos;
     ret.pas = act.pas;
     ret.typ = act.typ;

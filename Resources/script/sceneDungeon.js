@@ -420,6 +420,8 @@ function onPauseHint(sender)
 
 function onPause(sender)
 {
+    if( theLayer.waitResult ) return;
+
     var thiz = theLayer;
     var newLayer = engine.ui.newLayer();
 
@@ -596,6 +598,7 @@ function showRevive(potionNeedCount){
 
 function doDungeonResult(win){
     theLayer.waitResponse = true;
+    theLayer.waitResult = true;
     theLayer.updateMode();
     var winSize = cc.Director.getInstance().getWinSize();
     cc.AudioEngine.getInstance().stopMusic(true);
@@ -739,6 +742,7 @@ function onEnter()
     //init layer mode
     theLayer.waitAction = false;
     theLayer.waitResponse = false;
+    theLayer.waitResult = false;
     theLayer.updateMode();
     //-----------------
 
@@ -962,9 +966,9 @@ function update(delta)
 
 function updateMode()
 {
-    var before = theLayer.canControl;
+    //var before = theLayer.canControl;
 
-    if( theLayer.waitAction || theLayer.waitResponse )
+    if( theLayer.waitAction || theLayer.waitResponse || theLayer.waitResult )
     {
         theLayer.canControl = false;
     }
@@ -1054,59 +1058,6 @@ function resetBlocks()
         mask.setAnchorPoint(cc.p(0,1));
         mask.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(mask, 30, 300+i);
-
-        /*
-        var shadow = null;
-        for(var k=0; k<8; ++k){
-            var rpos;
-            switch(k){
-                case 0:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd3.png");
-                    shadow.setAnchorPoint(cc.p(0, 1));
-                    rpos = cc.p(0, 0);
-                }break;
-                case 1:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc1.png");
-                    shadow.setAnchorPoint(cc.p(0, 1));
-                    rpos = cc.p(LO_CORNER, 0);
-                }break;
-                case 2:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd4.png");
-                    shadow.setAnchorPoint(cc.p(1, 1));
-                    rpos = cc.p(LO_GRID, 0);
-                }break;
-                case 3:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc2.png");
-                    shadow.setAnchorPoint(cc.p(1, 1));
-                    rpos = cc.p(LO_GRID, -LO_CORNER);
-                }break;
-                case 4:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd1.png");
-                    shadow.setAnchorPoint(cc.p(1, 0));
-                    rpos = cc.p(LO_GRID, -LO_GRID);
-                }break;
-                case 5:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc3.png");
-                    shadow.setAnchorPoint(cc.p(0, 0));
-                    rpos = cc.p(LO_CORNER, -LO_GRID);
-                }break;
-                case 6:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd2.png");
-                    shadow.setAnchorPoint(cc.p(0, 0));
-                    rpos = cc.p(0, -LO_GRID);
-                }break;
-                case 7:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc4.png");
-                    shadow.setAnchorPoint(cc.p(0, 1));
-                    rpos = cc.p(0, -LO_CORNER);
-                }break;
-            }
-            shadow.getTexture().setAliasTexParameters();
-            shadow.setPosition(cc.pAdd(rpos, pos));
-            var stag = 500+i*8+k;
-            theLayer.blocks.addChild(shadow, 12, stag);
-        }
-        */
     }
 
     //create walls=100+pos

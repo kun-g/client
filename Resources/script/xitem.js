@@ -422,7 +422,9 @@ var UIItem = cc.Node.extend({
                 {
                     var icon = cc.Sprite.create(ItemClass.icon);
                 }
-                this.addChild(icon, 0);
+                if( icon != null ){
+                    this.addChild(icon, 0);
+                }
                 this.icon = icon;
                 if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED )
                 {

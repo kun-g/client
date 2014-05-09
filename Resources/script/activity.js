@@ -314,6 +314,7 @@ function refreshDailyQuest(){
             layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setEnabled(false);
+            theDQInvokeAction = DQINVOKE_NOTHING;
         }
     }
     else if( dailyQuest.step == 4 ){//take to prize
@@ -324,6 +325,7 @@ function refreshDailyQuest(){
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
         layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
         layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
+        theDQInvokeAction = DQINVOKE_GETPRIZE;
     }
     else{//daily quest is done
         layer.owner.nodeComplete.setVisible(true);
@@ -333,6 +335,7 @@ function refreshDailyQuest(){
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
         layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
         layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
+        theDQInvokeAction = DQINVOKE_NOTHING;
     }
 
     engine.ui.regMenu(layer.owner.menuRoot);
