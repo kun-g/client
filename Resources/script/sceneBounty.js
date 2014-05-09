@@ -6,6 +6,7 @@ var libBounty = loadModule("bountyx.js");
 var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
+var libEffect = loadModule("effect.js");
 
 var theLayer;
 var theListLayer;
@@ -19,6 +20,10 @@ var theLevel = 0;
 var MODE_LIST = 0;
 var MODE_DESC = 1;
 var MODE_EXIT = 2;
+
+var theOffset = 34;
+var lockOffset = 25;
+var effOffset = 43;
 
 var theMode;
 
@@ -42,8 +47,16 @@ var levelBtnList = [
     "bounty-btn-normal1.png",
     "bounty-btn-normal2.png",
     "bounty-btn-hard1.png",
-    "bounty-btn-hard2.png"
+    "bounty-btn-hard2.png",
+    "bounty-btn-hell1.png",
+    "bounty-btn-hell2.png",
+    "bounty-btn-nightmare1.png",
+    "bounty-btn-nightmare2.png"
 ];
+
+var btnList = ["btnSimple","btnNormal","btnHard","btnHell","btnNightmare"];
+var nodelockList = ["nodelockSim","nodelockNor","nodelockHar","nodelockHel","nodelockNig"];
+var nodeEffList = ["nodeEffSim","nodeEffNor","nodeEffHar","nodeEffHel","nodeEffNig"];
 
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
@@ -66,7 +79,7 @@ function onTouchEnded(touch, event){
             var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
             thePy = PY;
             var line = theListLayer.getChildByTag(PY);
-            loadBountyDesc(line.bounty);
+            loadBountyDesc(line.bounty, 0);
         }
     }
 }
@@ -168,6 +181,34 @@ function onHard(sender){
     }
 }
 
+function onHell(sender){
+    if (theMode == MODE_DESC && thePy != undefined){
+        var line = theListLayer.getChildByTag(thePy);
+        var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 3);
+        if (str.length <= 0){
+            loadBountyDesc(line.bounty, 3);
+            theLevel = 3;
+        }
+        else{
+            engine.msg.pop(str, POPTYPE_ERROR);
+        }
+    }
+}
+
+function onNightmare(sender){
+    if (theMode == MODE_DESC && thePy != undefined){
+        var line = theListLayer.getChildByTag(thePy);
+        var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 4);
+        if (str.length <= 0){
+            loadBountyDesc(line.bounty, 4);
+            theLevel = 4;
+        }
+        else{
+            engine.msg.pop(str, POPTYPE_ERROR);
+        }
+    }
+}
+
 function loadBountyList(){
     theMode = MODE_LIST;
     theLayer.owner.nodeList.setVisible(true);
@@ -182,6 +223,8 @@ function loadBountyList(){
     theLayer.owner.nodelockSim.setVisible(false);
     theLayer.owner.nodelockNor.setVisible(false);
     theLayer.owner.nodelockHar.setVisible(false);
+    theLayer.owner.nodelockHel.setVisible(false);
+    theLayer.owner.nodelockNig.setVisible(false);
 
     //debug("UPM = "+JSON.stringify(engine.user));
 
@@ -233,6 +276,9 @@ function loadBountyList(){
                     engine.user.bounty.dataBounty[k].cnt <= 0){
                     owner.labelRemain.setString(0);
                 }
+                else{
+                    owner.labelRemain.setString(0);
+                }
             }
             else{
                 owner.nodeRemain.setVisible(false);
@@ -278,58 +324,22 @@ function loadBountyDesc(bounty, lev){
     theLayer.owner.nodelockSim.setVisible(false);
     theLayer.owner.nodelockNor.setVisible(false);
     theLayer.owner.nodelockHar.setVisible(false);
+    theLayer.owner.nodelockHel.setVisible(false);
+    theLayer.owner.nodelockNig.setVisible(false);
 
     theBounty = bounty;
     //theBounty.fixState();
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
     var dimension = cc.size(theLayer.owner.layerDesc.getContentSize().width, 0);
 
-    var sfc = cc.SpriteFrameCache.getInstance();
     theLayer.owner.labTitle.setString(bountyData.title);
 
-    //debug("bountyData.level.length = " + bountyData.level.length);
-    if (bountyData.level.length == 1){
-        theLayer.owner.btnSimple.setVisible(false);
-        theLayer.owner.btnNormal.setVisible(false);
-        theLayer.owner.btnHard.setVisible(false);
-//        theLayer.owner.nodeSimple.setVisible(false);
-//        theLayer.owner.nodeNormal.setVisible(false);
-//        theLayer.owner.nodeHard.setVisible(false);
-        //debug("level btn and node set false");
-    }
-    else{
-        theLayer.owner.btnSimple.setVisible(true);
-        theLayer.owner.btnNormal.setVisible(true);
-        theLayer.owner.btnHard.setVisible(true);
-//        theLayer.owner.nodeSimple.setVisible(true);
-//        theLayer.owner.nodeNormal.setVisible(true);
-//        theLayer.owner.nodeHard.setVisible(true);
-        //debug("level btn and node set true");
-        if (engine.user.bounty.checkLimit(bounty.BountyId, 0).length <= 0){
-            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[0]));
-            theLayer.owner.nodelockSim.setVisible(false);
-        }
-        else{
-            theLayer.owner.btnSimple.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[1]));
-            theLayer.owner.nodelockSim.setVisible(true);
-        }
-        if (engine.user.bounty.checkLimit(bounty.BountyId, 1).length <= 0){
-            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2]));
-            theLayer.owner.nodelockNor.setVisible(false);
-        }
-        else{
-            theLayer.owner.btnNormal.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[3]));
-            theLayer.owner.nodelockNor.setVisible(true);
-        }
-        if (engine.user.bounty.checkLimit(bounty.BountyId, 2).length <= 0){
-            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[4]));
-            theLayer.owner.nodelockHar.setVisible(false);
-        }
-        else{
-            theLayer.owner.btnHard.setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[5]));
-            theLayer.owner.nodelockHar.setVisible(true);
-        }
-    }
+    ajustPostion(bounty.BountyId);
+
+    debug("nodeEffList[" + lev + "] = " + nodeEffList[lev]);
+    theLayer.owner[nodeEffList[lev]].setVisible(true);
+    theLayer.owner[nodeEffList[lev]].removeAllChildren();
+    libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
 
     if (bountyData.begin == 1){
         theLayer.owner.btnSubmit.setVisible(true);
@@ -369,14 +379,14 @@ function loadBountyDesc(bounty, lev){
     var limitFlag = false;
     if (tar.levelLimit != undefined){
         text.pushText({//push desc
-            text: "要求等级"+tar.levelLimit+"以上。",
+            text: "要求等级达到"+tar.levelLimit+"级。",
             size: UI_SIZE_L
         });
         limitFlag = true;
     }
     if (tar.powerLimit != undefined){
         text.pushText({//push desc
-            text: "要求战力"+tar.powerLimit+"以上。",
+            text: "要求战斗力达到"+tar.powerLimit+"。",
             size: UI_SIZE_L
         });
         limitFlag = true;
@@ -535,6 +545,114 @@ function updateTime()
     }
 }
 
+function ajustPostion(bountyId){
+    var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
+    var levCount = bountyData.level.length;
+    var sfc = cc.SpriteFrameCache.getInstance();
+    for (var k = 0;k < 5;k++){
+        theLayer.owner[nodeEffList[k]].setVisible(false);
+    }
+    if (levCount > 0){
+        var winSize = cc.Director.getInstance().getWinSize();
+        var postion = (winSize.width - 2 * theOffset) / levCount;
+        var btnPos = theLayer.owner[btnList[0]].getPosition();
+        var nodelockPos = theLayer.owner[btnList[0]].getPosition();
+        var nodeEffPos = theLayer.owner[nodeEffList[0]].getPosition();
+        var centerOffset = postion/2 - theLayer.owner[btnList[0]].getContentSize().width/2;
+        debug("centerOffset = "+centerOffset+"   postion = "+postion+"   theLayer.owner[btnList[0]].getContentSize().width = "+
+            theLayer.owner[btnList[0]].getContentSize().width);
+        switch (levCount) {
+            case 1:
+                theLayer.owner.btnSimple.setVisible(false);
+                theLayer.owner.btnNormal.setVisible(false);
+                theLayer.owner.btnHard.setVisible(false);
+                theLayer.owner.btnHell.setVisible(false);
+                theLayer.owner.btnNightmare.setVisible(false);
+                break;
+            case 2:
+                theLayer.owner.btnSimple.setVisible(true);
+                theLayer.owner.btnNormal.setVisible(true);
+                theLayer.owner.btnHard.setVisible(false);
+                theLayer.owner.btnHell.setVisible(false);
+                theLayer.owner.btnNightmare.setVisible(false);
+                for (var k = 0;k < levCount;k++){
+                    theLayer.owner[btnList[k]].setPosition(cc.p(theOffset + k * postion + centerOffset, btnPos.y));
+                    theLayer.owner[nodelockList[k]].setPosition(cc.p(lockOffset + theOffset + k * postion + centerOffset, nodelockPos.y));
+                    theLayer.owner[nodeEffList[k]].setPosition(cc.p(effOffset + theOffset + k * postion + centerOffset, nodeEffPos.y));
+                    if (engine.user.bounty.checkLimit(bountyId, k).length <= 0){
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k]));
+                        theLayer.owner[nodelockList[k]].setVisible(false);
+                    }
+                    else{
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k+1]));
+                        theLayer.owner[nodelockList[k]].setVisible(true);
+                    }
+                }
+                break;
+            case 3:
+                theLayer.owner.btnSimple.setVisible(true);
+                theLayer.owner.btnNormal.setVisible(true);
+                theLayer.owner.btnHard.setVisible(true);
+                theLayer.owner.btnHell.setVisible(false);
+                theLayer.owner.btnNightmare.setVisible(false);
+                for (var k = 0;k < levCount;k++){
+                    theLayer.owner[btnList[k]].setPosition(cc.p(theOffset + k * postion + centerOffset, btnPos.y));
+                    theLayer.owner[nodelockList[k]].setPosition(cc.p(lockOffset + theOffset + k * postion + centerOffset, nodelockPos.y));
+                    theLayer.owner[nodeEffList[k]].setPosition(cc.p(effOffset + theOffset + k * postion + centerOffset, nodeEffPos.y));
+                    if (engine.user.bounty.checkLimit(bountyId, k).length <= 0){
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k]));
+                        theLayer.owner[nodelockList[k]].setVisible(false);
+                    }
+                    else{
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k+1]));
+                        theLayer.owner[nodelockList[k]].setVisible(true);
+                    }
+                }
+                break;
+            case 4:
+                theLayer.owner.btnSimple.setVisible(true);
+                theLayer.owner.btnNormal.setVisible(true);
+                theLayer.owner.btnHard.setVisible(true);
+                theLayer.owner.btnHell.setVisible(true);
+                theLayer.owner.btnNightmare.setVisible(false);
+                for (var k = 0;k < levCount;k++){
+                    theLayer.owner[btnList[k]].setPosition(cc.p(theOffset + k * postion + centerOffset, btnPos.y));
+                    theLayer.owner[nodelockList[k]].setPosition(cc.p(lockOffset + theOffset + k * postion + centerOffset, nodelockPos.y));
+                    theLayer.owner[nodeEffList[k]].setPosition(cc.p(effOffset + theOffset + k * postion + centerOffset, nodeEffPos.y));
+                    if (engine.user.bounty.checkLimit(bountyId, k).length <= 0){
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k]));
+                        theLayer.owner[nodelockList[k]].setVisible(false);
+                    }
+                    else{
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k+1]));
+                        theLayer.owner[nodelockList[k]].setVisible(true);
+                    }
+                }
+                break;
+            case 5:
+                theLayer.owner.btnSimple.setVisible(true);
+                theLayer.owner.btnNormal.setVisible(true);
+                theLayer.owner.btnHard.setVisible(true);
+                theLayer.owner.btnHell.setVisible(true);
+                theLayer.owner.btnNightmare.setVisible(true);
+                for (var k = 0;k < levCount;k++){
+                    theLayer.owner[btnList[k]].setPosition(cc.p(theOffset + k * postion + centerOffset, btnPos.y));
+                    theLayer.owner[nodelockList[k]].setPosition(cc.p(lockOffset + theOffset + k * postion + centerOffset, nodelockPos.y));
+                    theLayer.owner[nodeEffList[k]].setPosition(cc.p(effOffset + theOffset + k * postion + centerOffset, nodeEffPos.y));
+                    if (engine.user.bounty.checkLimit(bountyId, k).length <= 0){
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k]));
+                        theLayer.owner[nodelockList[k]].setVisible(false);
+                    }
+                    else{
+                        theLayer.owner[btnList[k]].setNormalSpriteFrame(sfc.getSpriteFrame(levelBtnList[2*k+1]));
+                        theLayer.owner[nodelockList[k]].setVisible(true);
+                    }
+                }
+                break;
+        }
+    }
+}
+
 function onEnter(){
     //load resource
 //    for(var k in loadList){
@@ -554,6 +672,8 @@ function onEnter(){
     this.owner.onSimple = onSimple;
     this.owner.onNormal = onNormal;
     this.owner.onHard = onHard;
+    this.owner.onHell = onHell;
+    this.owner.onNightmare = onNightmare;
     this.update = update;
 
     this.node = libUIC.loadUI(this, "sceneBounty.ccbi", {

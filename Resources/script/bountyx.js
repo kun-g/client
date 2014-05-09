@@ -124,8 +124,8 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
 
     var remainFlag = bountyData.count;
-    debug("113: remainFlag = " + remainFlag);
-    debug("114: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
+//    debug("113: remainFlag = " + remainFlag);
+//    debug("114: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
     if ((remainFlag != undefined &&
         remainFlag > 0) &&
         (engine.user.bounty.dataBounty[bountyId] == undefined ||
@@ -220,7 +220,12 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
         str = 1;
     }
     else if(edtime - nowtime >= 0){
-        str = 0;
+        var datetime = edtime.getTime() / 60000 - nowtime.getTime() / 60000;
+        datetime = Math.ceil(datetime);
+        if (Math.floor(datetime / 60) < 1)
+            str = 0;
+        else
+            str = 4;
     }
     else{
         str = 2;
@@ -238,14 +243,14 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     var secFlag = ":";
 
     var remainFlag = bountyData.count;
-    debug("227: remainFlag = " + remainFlag);
-    debug("228: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
+//    debug("227: remainFlag = " + remainFlag);
+//    debug("228: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
     if ((remainFlag != undefined &&
         remainFlag > 0) &&
         (engine.user.bounty.dataBounty[bountyId] == undefined ||
         engine.user.bounty.dataBounty[bountyId].cnt == undefined ||
         engine.user.bounty.dataBounty[bountyId].cnt <= 0)){
-        ret = "--";
+        ret = "";
         return ret;
     }
 
@@ -260,7 +265,7 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
             }
         }
         if (boolflag == false){
-            ret = "--";
+            ret = "";
             return ret;
         }
     }
@@ -274,7 +279,7 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
             }
         }
         if (boolflag == false){
-            ret = "--";
+            ret = "";
             return ret;
         }
     }
@@ -288,7 +293,7 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
             }
         }
         if (boolflag == false){
-            ret = "--";
+            ret = "";
             return ret;
         }
     }
@@ -302,7 +307,7 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
             }
         }
         if (boolflag == false){
-            ret = "--";
+            ret = "";
             return ret;
         }
     }
@@ -357,22 +362,28 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
         datetime = edtime.getTime() / 60000 - nowtime.getTime() / 60000;
         datetime = Math.ceil(datetime);
         //debug("2datetime = " + datetime);
-        if (Math.floor(datetime / 60) < 10){
-            min = "0" + Math.floor(datetime / 60);
+        if (Math.floor(datetime / 60) < 1){
+            if (Math.floor(datetime / 60) < 10){
+                min = "0" + Math.floor(datetime / 60);
+            }
+            else{
+                min = Math.floor(datetime / 60);
+            }
+            if (datetime % 60 < 10){
+                sec = "0" + datetime % 60;
+            }
+            else{
+                sec = datetime % 60;
+            }
+            ret = min + secFlag + sec;
         }
         else{
-            min = Math.floor(datetime / 60);
+            ret = "";
         }
-        if (datetime % 60 < 10){
-            sec = "0" + datetime % 60;
-        }
-        else{
-            sec = datetime % 60;
-        }
-        ret = min + secFlag + sec;
+
     }
     else{
-        ret = "--";
+        ret = "";
     }
     //debug("ret = " + ret);
     return ret;
@@ -471,8 +482,8 @@ BountyLog.prototype.setScheduleLocalNotification = function(){
                 system.scheduleLocalNotification(
                         "bounty" + k,
                     timebounty,
-                    bountyData.desc,
-                    "马上出征");
+                    bountyData.notifyText,
+                    bountyData.notifyButton);
             }
         }
     }
