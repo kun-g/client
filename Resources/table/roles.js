@@ -7140,7 +7140,7 @@ exports.data = [
         "soundAttack": "shouren.mp3",
         "soundDie":   "gebulindie.mp3",
         "effectAttack": 9 ,
-        "dropInfo":[5]
+        "dropInfo":[6]
     },
     {
         "classId": 190,
@@ -7191,7 +7191,7 @@ exports.data = [
         "soundAttack": "shouren.mp3",
         "soundDie":   "gebulindie.mp3",
         "effectAttack": 9 ,
-        "dropInfo":[5]
+        "dropInfo":[7]
     }
 ]
 
