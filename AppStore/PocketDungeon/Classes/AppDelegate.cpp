@@ -200,10 +200,10 @@ void handle_signal(int signal) {
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground()
 {
-    CCDirector::sharedDirector()->stopAnimation();
-    //SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
-    //SimpleAudioEngine::sharedEngine()->pauseAllEffects();
-    
+    CCDirector::sharedDirector()->pause();
+
+    // if you use SimpleAudioEngine, it must be pause
+    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     triggerEnterBackground();
     onPauseApp();
 }
@@ -211,9 +211,7 @@ void AppDelegate::applicationDidEnterBackground()
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
-    CCDirector::sharedDirector()->startAnimation();
-    //SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
-    //SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+    CCDirector::sharedDirector()->resume();
     
     triggerEnterForeground();
     onResumeApp();
