@@ -1,6 +1,6 @@
 {
     "binary_channel" : "APP111",
-    "resource_version" : 104,
+    "resource_version" : 105,
     "binary_version" : "1.0.5",
     "account_type" : 2,
     "default_user" : ""
