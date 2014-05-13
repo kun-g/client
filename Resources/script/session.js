@@ -23,6 +23,8 @@ function Session(){
     this.zoneId = 0;
 
     this.roleCache = {};
+
+    this.dataBounty = [];
 }
 
 Session.prototype.pushFriendApply = function(msg){

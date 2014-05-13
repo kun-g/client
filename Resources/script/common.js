@@ -1127,17 +1127,60 @@ function queryStage(stg){
 }
 
 function matchDate(scheme, date){
-    if( scheme.year != null ){
-        if( date.getFullYear() != scheme.year ) return false;
+    var boolflag = false;
+    //////////年/////////////
+    if (scheme.year != undefined){
+        for (var k in scheme.year){
+            if (scheme.year[k] == date.getFullYear()){
+                boolflag = true;
+                break;
+            }
+        }
     }
-    if( scheme.month != null ){
-        if( date.getMonth() != scheme.month ) return false;
+    if (boolflag == false){
+        return false;
     }
-    if( scheme.week != null ){
-        if( date.getDay() != scheme.week ) return false;
+    else{
+        boolflag = false;
     }
-    if( scheme.day != null ){
-        if( date.getDate() != scheme.day ) return false;
+    //////////月/////////////
+    if (scheme.month != undefined){
+        for (var k in scheme.month){
+            if (scheme.month[k] == date.getMonth()){
+                boolflag = true;
+                break;
+            }
+        }
     }
-    return true;
+    if (boolflag == false){
+        return false;
+    }
+    else{
+        boolflag = false;
+    }
+    //////////日/////////////
+    if (scheme.date != undefined){
+        for (var k in scheme.date){
+            if (scheme.date[k] == date.getDate()){
+                boolflag = true;
+                break;
+            }
+        }
+    }
+    if (boolflag == false){
+        return false;
+    }
+    else{
+        boolflag = false;
+    }
+    //////////周/////////////
+    if (scheme.day != undefined){
+        for (var k in scheme.day){
+            if (scheme.day[k] == date.getDay()){
+                boolflag = true;
+                break;
+            }
+        }
+    }
+    return boolflag;
 }
