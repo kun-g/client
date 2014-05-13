@@ -10,10 +10,10 @@ RES_PATH="Clients/PocketDungeon/PocketDungeon/Resources"
 CLI_PATH="Clients/PocketDungeon/PocketDungeon"
 
 BLACKLIST=( \
-"/Resources/blackbox/" \
-"/Resources/script/" \
-"/Resources/table/" \
-"/Resources/dtable/drop.bad" \
+"*/blackbox/*" \
+"*/script/*" \
+"*/table/*" \
+"*/tutorialList.js" \
 )
 
 function folder {
@@ -58,7 +58,7 @@ function UpdateFile {
 	_FLAG=1
 	for _BLACK in ${BLACKLIST[*]}
 	do
-		if [[ $1 == *$_BLACK* ]]; then
+		if [[ $1 == $_BLACK ]]; then
 			_FLAG=0
 			break
 		fi
