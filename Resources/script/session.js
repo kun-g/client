@@ -42,7 +42,7 @@ Session.prototype.pushFriendApply = function(msg){
 Session.prototype.pushSystemDeliver = function(msg){
     for(var k in this.deliver){
         var obj = this.deliver[k];
-        if( obj.sid == msg.sid ){
+        if( obj.sid == msg.sid || (msg.typ == 0 && obj.typ == msg.typ) ){
             this.deliver.splice(k, 1);
             this.MessageCount--;
         }

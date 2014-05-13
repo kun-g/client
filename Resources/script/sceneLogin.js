@@ -242,6 +242,7 @@ function updateCallback(status, dlnow, dltotal)
 
 function updateLoading(title, percentage, instant)
 {
+    debug("title = "+title+";percentage = "+percentage+";instant = "+instant);
     theLayer.TargetPercentage = percentage;
     theLayer.BeginPercentage = theLayer.CurrentPercentage;
     theLayer.CatchTimer = 0;

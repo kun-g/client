@@ -13,6 +13,7 @@ var theLayer;
 var theItem;
 var theOperate;
 var theItemClass;
+var theRole;
 
 /******* OPEN CHEST *********/
 var theOpenLayer;
@@ -391,7 +392,7 @@ function onEnter(){
     engine.ui.regMenu(this.owner.menuRoot);
 
     //assign values
-    this.ui.icon.setItem(theItem);
+    this.ui.icon.setItem(theItem,theRole);
     this.owner.labelName.setString(theItemClass.label);
     //sell button
     if( theItemClass.sellprice != null && theOperate ){
@@ -483,14 +484,15 @@ function onEnter(){
     
 }
 
-//pass the item and if can operate, default is false
-function show(item, operate){
+//pass the item and if can operate
+function show(item, operate, role){
     theItem = item;
     theOperate = operate;
     if( theOperate == null )
     {
         theOperate = false;
     }
+    theRole = role;
     theItemClass = libTable.queryTable(TABLE_ITEM, theItem.ClassId);
     if( theItemClass.label == null ){
         return;//do not show hidden items
