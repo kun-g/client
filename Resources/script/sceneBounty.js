@@ -106,6 +106,7 @@ function onSubmit(sender){
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, theLevel);
 
         var segmentSel = engine.user.bounty.getProcess(line.bounty.BountyId);
+        var chkProcess = engine.user.bounty.checkProcess(line.bounty.BountyId,segmentSel);
         if (chkProcess == 1){
             engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
         }else if (chkProcess == 2){
