@@ -311,44 +311,112 @@ function onChallenge(){
     engine.session.set("stage", theStageClass);
 }
 
+function onWorldTask(){
+
+}
+
+//gonna modify here for World Task stage scene
 function showStages(chId)
 {
     var stage = engine.ui.newLayer();
     var mask = blackMask();
-    stage.addChild(mask);
+    stage.addChild(mask); //weaken the map to highlight the choose-stage scene
     var winSize = cc.Director.getInstance().getWinSize();
-    theLayer.stageLayer = stage;
-    theLayer.stage = {};
-    theLayer.stage.owner = {};
-    theLayer.stage.owner.onStage = onSelectStage;
-    theLayer.stage.owner.onMode = onMode;
-    theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
-    theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
-    stage.addChild(theLayer.stage.node);
-    engine.ui.regMenu(theLayer.stage.owner.menu);
 
-    //set values
-    theLayer.CHID = chId;
-    theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
-    var chClass = theLayer.CHCLASS;
-    theChapterClass = theLayer.CHCLASS;
-    var sfc = cc.SpriteFrameCache.getInstance();
+    //judge the flag of World Task
+//    var worldTask = null;
+//    if (table.queryTable(TABLE_STAGE, chId) != null){
+//        worldTask = table.queryTable(TABLE_STAGE, chId).stageWorldTask;
+//    }
+    var worldTaskRequirement = 0;
+//    worldTaskRequirement = worldTask.requirement;
+    var worldTaskProgress = Infinity;
+//    if( worldTask.hasTask === true ) {
+//        libUIKit.waitRPC(Request_WorldTaskProgress, {}, function (rsp) {
+//            if (rsp.RET == RET_OK) {
+//                worldTaskProgress = rsp.prg;
+//            }
+//            else{
+//                libUIKit.showErrorMessage(rsp);
+//            }
+//        }, theLayer);
+//    }
+    if( worldTaskProgress < worldTaskRequirement )
+    {
+        //load World Task stage
+        theLayer.stageLayer = stage;
+        theLayer.stage = {};
+        theLayer.stage.owner = {};
+        theLayer.stage.node = ui.loadUI(theLayer.stage.owner, "ui-stageWorldTask.ccbi", {
+            nodeProgress: {
+                ui: "UIProgress",
+                id: "prg",
+                length: 475,
+                begin: "index-jy1.png",
+                middle: "index-jy2.png",
+                end: "index-jy3.png"
+            }
+        });
+        theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+        stage.addChild(theLayer.stage.node);
+        engine.ui.regMenu(theLayer.stage.owner.menu);
 
-    theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
-    theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
-    theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
-    theLayer.stage.owner.labelDesc.setString(chClass.desc);
-    var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
-    btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
-    theLayer.stage.owner.menu.addChild(btnOK);
-    var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
-    btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
-    theLayer.stage.owner.menu.addChild(btnCancel);
+        //Progress Bar
+        theLayer.stage.owner.labProgess.setString("任务进度 "+worldTaskProgress+"/"+worldTaskRequirement);
+        theLayer.stage.ui.xp.setProgress(worldTaskProgress/worldTaskRequirement);
 
-    onNormal();
+        theLayer.CHID = chId;
+        theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
+        var chClass = theLayer.CHCLASS;
+        theChapterClass = theLayer.CHCLASS;
+        var sfc = cc.SpriteFrameCache.getInstance();
 
-    theLayer.stage.node.setScale(0);
-    theLayer.stage.node.runAction(actionPopIn());
+
+        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK_WT, BUTTONTYPE_DEFAULT);
+        btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
+        theLayer.stage.owner.menu.addChild(btnOK);
+        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
+        btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
+        theLayer.stage.owner.menu.addChild(btnCancel);
+
+        onWorldTask();
+
+    }
+    else //load normal stages
+    {
+        theLayer.stageLayer = stage;
+        theLayer.stage = {};
+        theLayer.stage.owner = {};
+        theLayer.stage.owner.onStage = onSelectStage;
+        theLayer.stage.owner.onMode = onMode;
+        theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
+        theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+        stage.addChild(theLayer.stage.node);
+        engine.ui.regMenu(theLayer.stage.owner.menu);
+
+        //set values
+        theLayer.CHID = chId;
+        theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
+        var chClass = theLayer.CHCLASS;
+        theChapterClass = theLayer.CHCLASS;
+        var sfc = cc.SpriteFrameCache.getInstance();
+
+        theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
+        theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
+        theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
+        theLayer.stage.owner.labelDesc.setString(chClass.desc);
+        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
+        btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
+        theLayer.stage.owner.menu.addChild(btnOK);
+        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
+        btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
+        theLayer.stage.owner.menu.addChild(btnCancel);
+
+        onNormal();
+
+        theLayer.stage.node.setScale(0);
+        theLayer.stage.node.runAction(actionPopIn());
+    }
 }
 
 function hideStages()

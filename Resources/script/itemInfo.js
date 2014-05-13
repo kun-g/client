@@ -163,26 +163,33 @@ function contentEquip(){
     mergeRoleProperties(properties, theItemClass.basic_properties);
 
     //enhance
-    for(var i=0; i<4; ++i){
-        var enhance = null;
-        if( theItem.Enhance != null ){
-            enhance = theItem.Enhance[i];
+    var enhance = 0;
+    if( theItem.Enhance[0].lv != null ){
+        enhance = parseInt(theItem.Enhance[0].lv);
+    }
+    var starLv = enhance / 8;
+    var barLv = ((enhance == 40)? 8:(enhance%8));
+    for(var i=1; i<6; ++i){
+        var starName = "ehStar"+i;
+        if( i <= starLv){
+            owner[starName].runAction(cc.FadeIn.create(0.3));
         }
-        var keyName = "nodeQh"+(i+1);
-        var keyLevel = "labEhValue"+(i+1);
-        if( enhance != null ){
-            var EnhanceClass = libTable.queryTable(TABLE_ENHANCE, enhance.id);
-            var icon = cc.Sprite.create(EnhanceClass.icon);
-            owner[keyName].addChild(icon);
-            owner[keyLevel].setString("Lv."+(enhance.lv+1));
-
-            mergeRoleProperties(properties, EnhanceClass.property[enhance.lv]);
-        }
-        else
-        {
-            owner[keyLevel].setString("");
+        else {
+            owner[starName].setOpacity(0);
         }
     }
+    for(var i=1; i<9; ++i){
+        var barName = "ehBar"+i;
+        if( i <= barLv){
+            owner[barName].runAction(cc.FadeIn.create(0.3));
+        }
+        else {
+            owner[barName].setOpacity(0);
+        }
+    }
+
+    //mergeRoleProperties(properties, EnhanceClass.property[enhance.lv]);
+
 
     //show property
     owner.labelProperty.setString(propertyString(properties));

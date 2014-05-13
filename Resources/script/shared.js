@@ -30,6 +30,7 @@ TABLE_BAN = "bans";
 TABLE_LEADBOARD = "leadboard";
 TABLE_FACTION = "faction";
 TABLE_BOUNTY = "bounty";
+TABLE_COST = "costs";
 
 /*** GAME CONSTANTS ***/
 ItemId_RevivePotion = 540;
