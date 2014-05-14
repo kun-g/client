@@ -22,7 +22,7 @@ function Item(source)
     this.StackCount = 1;
     this.Status = 0;
     this.Xp = 0;
-//    this.Enhance = [{id:null, lv:0}];
+    this.Enhance = [{id:null, lv:0}];
 
     if( source != null )
     {
@@ -454,7 +454,6 @@ var UIItem = cc.Node.extend({
                 }
                 //add enhance mark
                 if( this.ITEM.Enhance[0] != null){
-                    this.ITEM.Enhance[0].lv = 1; //debug
                     var starLv = parseInt(this.ITEM.Enhance[0].lv / 8) % 6;
                     if( starLv >0){
                         var fileStar = "itemstar"+starLv+".png";
@@ -542,7 +541,6 @@ var UIItem = cc.Node.extend({
                 }
                 //add enhance mark
                 if( this.ITEM.Enhance[0] != null){
-                    this.ITEM.Enhance[0].lv = 1; //debug
                     var starLv = parseInt(this.ITEM.Enhance[0].lv / 8) % 6;
                     if( starLv >0){
                         var fileStar = "itemstar"+starLv+".png";

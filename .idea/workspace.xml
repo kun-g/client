@@ -2,13 +2,627 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e16712af-39d0-4547-9327-253b30a0087f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/constants.js" afterPath="$PROJECT_DIR$/Resources/script/constants.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Resources/sprite/stone10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Resources/sprite/stone11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Resources/sprite/stone6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Resources/sprite/stone7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Resources/sprite/stone8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Resources/sprite/stone9.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-1-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-1-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-1-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-1-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-1-hair2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-1-hair2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-2-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-2-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-2-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-2-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-3-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-3-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-3-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-3-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-3-hair3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-3-hair3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-4-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-4-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-4-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-4-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-5-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-5-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-5-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-5-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-5-hair3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-5-hair3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-6-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-6-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-6-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-6-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-6-hair3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-6-hair3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-7-hair-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-7-hair-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-7-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-7-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-7-hair3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-7-hair3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-8-hair.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-8-hair.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-8-hair3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-8-hair3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-face.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-face.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-archerbossarrow.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-archerbossarrow.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-attack1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-attack1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-attack2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-attack2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-attack3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-attack3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-bj.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-bj.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-bosso.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-bosso.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-cardskill.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-cardskill.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-door.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-door.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-enemyattack1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-enemyattack1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-enemycard.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-enemycard.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-floor.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-floor.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-floorboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-floorboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-gjts.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-gjts.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-goblinbossspear.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-goblinbossspear.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-healing.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-healing.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-healing2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-healing2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-hf.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-hf.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-lingting2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-lingting2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-locker.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-locker.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-lose.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-lose.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-magegz.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-magegz.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-mzts.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-mzts.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-openChest8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-openChest8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-priestrevie.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-priestrevie.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-revie.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-revie.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-revie2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-revie2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-sbattack.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-sbattack.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-sdts.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-sdts.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-sdxj.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-sdxj.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-smoke.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-smoke.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-smoke2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-smoke2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-stone.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-stone.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-transfer.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-transfer.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-warning.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-warning.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-win.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-win.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-winlight.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-winlight.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-yanjia.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-yanjia.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/effect-znz.ccbi" afterPath="$PROJECT_DIR$/Resources/node/effect-znz.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archerboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archerboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-dragon.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-dragon.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblinboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblinboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogreboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogreboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber32.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber32.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber33.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber33.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber34.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber34.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slime24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slime24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-slimeboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-slimeboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-spider1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-spider1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-spider12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-spider12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-spider13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-spider13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-spider14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-spider14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-sword24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-sword24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-swordboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-swordboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-treasurebox.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-treasurebox.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolfboss.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolfboss.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff1-chest.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff1-chest.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff1-lefthand.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff1-lefthand.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff1-leftleg.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff1-leftleg.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff1-righthand.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff1-righthand.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff1-rightleg.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff1-rightleg.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff2-chest.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff2-chest.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff2-lefthand.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff2-lefthand.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff2-leftleg.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff2-leftleg.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff2-righthand.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff2-righthand.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff2-rightleg.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff2-rightleg.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/fm1-chest.ccbi" afterPath="$PROJECT_DIR$/Resources/node/fm1-chest.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/fm1-lefthand.ccbi" afterPath="$PROJECT_DIR$/Resources/node/fm1-lefthand.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/fm1-leftleg.ccbi" afterPath="$PROJECT_DIR$/Resources/node/fm1-leftleg.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/fm1-righthand.ccbi" afterPath="$PROJECT_DIR$/Resources/node/fm1-righthand.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/fm1-rightleg.ccbi" afterPath="$PROJECT_DIR$/Resources/node/fm1-rightleg.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-960.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-960.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-common.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-common.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-common.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-common.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-960.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-960.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-common.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-common.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/sprite/iteminfo-qhbg.png" afterPath="$PROJECT_DIR$/Resources/sprite/iteminfo-qhbg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-chest9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-chest9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-lefthand9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-lefthand9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-leftleg9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-leftleg9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-mainweapon9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-mainweapon9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-righthand9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-righthand9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-rightleg9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-rightleg9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon20.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon20.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon21.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon21.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon210.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon210.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon25.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon25.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon26.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon26.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon27.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon27.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon28.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon28.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/mage-weapon29.ccbi" afterPath="$PROJECT_DIR$/Resources/node/mage-weapon29.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-archaeologist.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-archaeologist.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-crystal1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-crystal1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-crystal2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-crystal2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-crystal3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-crystal3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-crystal4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-crystal4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-herbs1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-herbs1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-herbs2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-herbs2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-herbs3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-herbs3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-herbs4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-herbs4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-mage.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-mage.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-man.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-man.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-man2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-man2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-priest.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-priest.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-treasurebox.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-treasurebox.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-warrior.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-warrior.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-woman.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-woman.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-woman2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-woman2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-woman3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-woman3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npc-woman4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npc-woman4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-magnifier1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-magnifier1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman2-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman2-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman2-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman2-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman2-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman2-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman2-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman2-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman2-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman2-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman2-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman2-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman2-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman2-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman2-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman2-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman2-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman2-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman2-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman2-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman3-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman3-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman3-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman3-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman3-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman3-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman3-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman3-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman3-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman3-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman4-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman4-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman4-face1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman4-face1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman4-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman4-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman4-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman4-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman4-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman4-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pAvatarLight.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pAvatarLight.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pBossLight1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pBossLight1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pBossLight2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pBossLight2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pBossLight3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pBossLight3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pDragonFire.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pDragonFire.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pFrogeLight.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pFrogeLight.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pHpSpit.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pHpSpit.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pLevelUp.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pLevelUp.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pRevieLight.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pRevieLight.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pStoneFire.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pStoneFire.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/pSummonLight.ccbi" afterPath="$PROJECT_DIR$/Resources/node/pSummonLight.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-chest9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-chest9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-lefthand9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-lefthand9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-leftleg9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-leftleg9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-mainweapon9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-mainweapon9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-righthand9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-righthand9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg10-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg10-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg5-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg5-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg6-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg6-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg7-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg7-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg8-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg8-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg9-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg9-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-rightleg9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-rightleg9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon20.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon20.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon21.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon21.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon210.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon210.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon25.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon25.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon26.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon26.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon27.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon27.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon28.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon28.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/priest-weapon29.ccbi" afterPath="$PROJECT_DIR$/Resources/node/priest-weapon29.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/sceneForge.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/sceneForge.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/sceneForge.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/sceneForge.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/sceneJiesuan.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/sceneJiesuan.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/sceneSelect.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/sceneSelect.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/sceneShop2.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/sceneShop2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/sceneShop2.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/sceneShop2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/sceneThank.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/sceneThank.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/sceneTutorial.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/sceneTutorial.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/sceneTutorial.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/sceneTutorial.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/sprite/stone2.png" afterPath="$PROJECT_DIR$/Resources/sprite/stone2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/sprite/stone3.png" afterPath="$PROJECT_DIR$/Resources/sprite/stone3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/sprite/stone4.png" afterPath="$PROJECT_DIR$/Resources/sprite/stone4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/sprite/stone5.png" afterPath="$PROJECT_DIR$/Resources/sprite/stone5.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/testParticle.ccbi" afterPath="$PROJECT_DIR$/Resources/node/testParticle.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-bosshp.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-bosshp.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-dialogue.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-dialogue.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-equipdesc.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-equipdesc.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/ui-forge.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/ui-forge.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/ui-forge2.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/ui-forge2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge2.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/1136/ui-forge3.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/1136/ui-forge3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge3.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge4x.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge4x.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-forgeqh.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-forgeqh.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-friend2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-friend2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-friendadd.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-friendadd.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-friendadd2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-friendadd2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-levelup.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-levelup.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-loginprize.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-loginprize.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-mail.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-mail.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-message.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-message.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-messagebox.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-messagebox.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-misson.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-misson.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-open1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-open1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-open2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-open2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-open3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-open3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-open4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-open4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-open5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-open5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-ranking.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-ranking.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-shop.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-shop.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-shopdesc.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-shopdesc.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-skill.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-skill.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-talkMenu.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-talkMenu.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-vip.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-vip.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ui-wait.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ui-wait.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-chest9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-chest9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-lefthand9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-lefthand9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-leftleg9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-leftleg9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-mainweapon9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-mainweapon9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-righthand9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-righthand9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg0.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg0.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg10.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg10.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg4.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg4.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg5.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg5.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg6.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg6.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg7.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg7.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg8.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg8.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-rightleg9.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-rightleg9.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/Game.js" afterPath="$PROJECT_DIR$/Resources/script/Game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-2-brow-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-2-brow-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-2-brow.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-2-brow.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-2-eye-blue.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-2-eye-blue.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-2-eye-green-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-2-eye-green-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-brow-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-brow-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-brow.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-brow.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-eye-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-eye-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-eye.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-eye.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/avatar-helmet.ccbi" afterPath="$PROJECT_DIR$/Resources/node/avatar-helmet.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/proj.android/assets/script/constants.js" afterPath="$PROJECT_DIR$/android/proj.android/assets/script/constants.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/costs.js" afterPath="$PROJECT_DIR$/Resources/table/costs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/enhance.js" afterPath="$PROJECT_DIR$/Resources/table/enhance.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/itemInfo.js" afterPath="$PROJECT_DIR$/Resources/script/itemInfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff1-helmet.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff1-helmet.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/ff2-helmet.ccbi" afterPath="$PROJECT_DIR$/Resources/node/ff2-helmet.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge1-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge1-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge1-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge1-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge1-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge1-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-common.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/items.js" afterPath="$PROJECT_DIR$/Resources/table/items.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcarchaeologist-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcarchaeologist-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcman2-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcman2-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman2-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman2-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman3-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman3-righthand1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/npcwoman4-righthand1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/npcwoman4-righthand1.ccbi" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/sceneForge.js" afterPath="$PROJECT_DIR$/Resources/script/sceneForge.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/sceneStage.js" afterPath="$PROJECT_DIR$/Resources/script/sceneStage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/shared.js" afterPath="$PROJECT_DIR$/Resources/script/shared.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/proj.android/assets/script/sceneForge.js" afterPath="$PROJECT_DIR$/android/proj.android/assets/script/sceneForge.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/develop/PocketDungeon/static.json" afterPath="$PROJECT_DIR$/develop/PocketDungeon/static.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/tutorialConfig.js" afterPath="$PROJECT_DIR$/Resources/table/tutorialConfig.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon20.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon20.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon21.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon21.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon210.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon210.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon25-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon25-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon25.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon25.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon26-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon26-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon26.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon26.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon27-2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon27-2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon27.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon27.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon28.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon28.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/warrior-weapon29.ccbi" afterPath="$PROJECT_DIR$/Resources/node/warrior-weapon29.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/xitem.js" afterPath="$PROJECT_DIR$/Resources/script/xitem.js" />
     </list>
     <ignored path="client.iws" />
@@ -31,50 +645,106 @@
     <favorites_list name="client" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="constants.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resources/script/constants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4745" max-vertical-offset="5595">
-              <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="itemInfo.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2403" max-vertical-offset="7755">
-              <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="190" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sceneForge.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19815">
-              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="items.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1211765" vertical-offset="18923" max-vertical-offset="232950">
-              <caret line="1198" column="20" selection-start-line="1198" selection-start-column="20" selection-end-line="1198" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="itemInfo.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="2190" max-vertical-offset="7755">
+                  <caret line="166" column="36" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sceneForge.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.4362336" vertical-offset="12759" max-vertical-offset="20055">
+                  <caret line="875" column="47" selection-start-line="875" selection-start-column="47" selection-end-line="875" selection-end-column="47" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="gadgets.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/gadgets.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="2073" max-vertical-offset="3270">
+                  <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="table.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/table.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="309" max-vertical-offset="1545">
+                  <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sceneMain.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="8115">
+                  <caret line="441" column="38" selection-start-line="441" selection-start-column="27" selection-end-line="441" selection-end-column="38" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tutorialConfig.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
+                  <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="sceneForge.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="8410" max-vertical-offset="20055">
+                  <caret line="589" column="1" selection-start-line="589" selection-start-column="1" selection-end-line="589" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="xitem.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="9119" max-vertical-offset="14250">
+                  <caret line="640" column="9" selection-start-line="640" selection-start-column="9" selection-end-line="640" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="items.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="5.2112675" vertical-offset="12240" max-vertical-offset="232950">
+                  <caret line="1112" column="20" selection-start-line="1112" selection-start-column="20" selection-end-line="1112" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -89,12 +759,16 @@
       <list>
         <option value="$PROJECT_DIR$/Resources/script/constants.js" />
         <option value="$PROJECT_DIR$/Resources/script/itemInfo.js" />
-        <option value="$PROJECT_DIR$/Resources/script/sceneForge.js" />
         <option value="$PROJECT_DIR$/Resources/script/sceneStage.js" />
         <option value="$PROJECT_DIR$/Resources/script/shared.js" />
+        <option value="$PROJECT_DIR$/Resources/table/tutorialConfig.js" />
+        <option value="$PROJECT_DIR$/android/proj.android/assets/script/constants.js" />
         <option value="$PROJECT_DIR$/Resources/script/xitem.js" />
+        <option value="$PROJECT_DIR$/Resources/script/Game.js" />
         <option value="$PROJECT_DIR$/Resources/table/enhance.js" />
+        <option value="$PROJECT_DIR$/Resources/table/costs.js" />
         <option value="$PROJECT_DIR$/Resources/table/items.js" />
+        <option value="$PROJECT_DIR$/Resources/script/sceneForge.js" />
       </list>
     </option>
   </component>
@@ -179,6 +853,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="script" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -189,6 +881,47 @@
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/JoviResources" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="name" value="Dart" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -202,25 +935,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="970" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13006845" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12848867" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -243,10 +976,144 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2190" max-vertical-offset="7755">
+          <caret line="146" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="166" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6225" max-vertical-offset="8115">
+          <caret line="441" column="38" selection-start-line="441" selection-start-column="27" selection-end-line="441" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="1215">
+          <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15390" max-vertical-offset="232950">
+          <caret line="1204" column="17" selection-start-line="1204" selection-start-column="17" selection-end-line="1204" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3435" max-vertical-offset="19815">
+          <caret line="187" column="33" selection-start-line="187" selection-start-column="33" selection-end-line="187" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="14280">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5595">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2190" max-vertical-offset="7755">
+          <caret line="146" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="166" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3435" max-vertical-offset="19815">
+          <caret line="187" column="33" selection-start-line="187" selection-start-column="33" selection-end-line="187" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6225" max-vertical-offset="8115">
+          <caret line="441" column="38" selection-start-line="441" selection-start-column="27" selection-end-line="441" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="1215">
+          <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15390" max-vertical-offset="232950">
+          <caret line="1204" column="17" selection-start-line="1204" selection-start-column="17" selection-end-line="1204" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5580">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2475" max-vertical-offset="8025">
+          <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="190" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19800">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="17970" max-vertical-offset="232860">
+          <caret line="1198" column="17" selection-start-line="1198" selection-start-column="17" selection-end-line="1198" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -255,7 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -263,7 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="195">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -271,7 +1136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="826">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -279,25 +1143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="826">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4745" max-vertical-offset="5595">
-          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2403" max-vertical-offset="7755">
-          <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="190" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -313,56 +1158,209 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.1469536" vertical-offset="4308" max-vertical-offset="5145">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/roles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108060">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/role.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4507043" vertical-offset="2940" max-vertical-offset="5910">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.03521127" vertical-offset="30" max-vertical-offset="1725">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/bans.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="852">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/faction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="852">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/levels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5955">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/quests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="82020">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/spells.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2850">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/triggers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7992957" vertical-offset="2385" max-vertical-offset="26310">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/upgrade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="1215">
+          <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20465687" vertical-offset="748" max-vertical-offset="17220">
+          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8094089" vertical-offset="2006" max-vertical-offset="2835">
+          <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/script/shared.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22352941" vertical-offset="3365" max-vertical-offset="4215">
-          <caret line="237" column="23" selection-start-line="237" selection-start-column="23" selection-end-line="237" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.5066345" vertical-offset="0" max-vertical-offset="4155">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
+    <entry file="file://$PROJECT_DIR$/Resources/script/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.921147" vertical-offset="9243" max-vertical-offset="14280">
-          <caret line="509" column="39" selection-start-line="509" selection-start-column="39" selection-end-line="509" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17865">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/table/costs.js">
+    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="945">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33293125" vertical-offset="924" max-vertical-offset="5535">
+          <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/gadgets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2073" max-vertical-offset="3270">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6225" max-vertical-offset="8115">
+          <caret line="441" column="38" selection-start-line="441" selection-start-column="27" selection-end-line="441" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="309" max-vertical-offset="1545">
+          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14084508" vertical-offset="3990" max-vertical-offset="5535">
+          <caret line="278" column="32" selection-start-line="278" selection-start-column="32" selection-end-line="278" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/table/enhance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03529412" vertical-offset="0" max-vertical-offset="1065">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.123239435" vertical-offset="0" max-vertical-offset="1065">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+    <entry file="file://$PROJECT_DIR$/Resources/table/costs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19815">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.20774648" vertical-offset="93" max-vertical-offset="945">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9119" max-vertical-offset="14250">
+          <caret line="640" column="9" selection-start-line="640" selection-start-column="9" selection-end-line="640" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2190" max-vertical-offset="7755">
+          <caret line="166" column="36" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1211765" vertical-offset="18923" max-vertical-offset="232950">
-          <caret line="1198" column="20" selection-start-line="1198" selection-start-column="20" selection-end-line="1198" selection-end-column="20" />
+        <state vertical-scroll-proportion="5.2112675" vertical-offset="12240" max-vertical-offset="232950">
+          <caret line="1112" column="20" selection-start-line="1112" selection-start-column="20" selection-end-line="1112" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4362336" vertical-offset="12759" max-vertical-offset="20055">
+          <caret line="875" column="47" selection-start-line="875" selection-start-column="47" selection-end-line="875" selection-end-column="47" />
           <folding />
         </state>
       </provider>

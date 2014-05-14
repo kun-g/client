@@ -1110,7 +1110,7 @@ exports.data = [
             },
         "sellprice": 150,
         "enhanceId": 0,
-        "forgeId": 1
+        "forgeId": 0
 
     },
     {
@@ -1137,7 +1137,7 @@ exports.data = [
             },
         "sellprice": 150,
         "enhanceId": 0,
-        "forgeId": 1
+        "forgeId": 0
 
     },
     {
@@ -1165,7 +1165,7 @@ exports.data = [
             },
         "sellprice": 150,
         "enhanceId": 0,
-        "forgeId": 1
+        "forgeId": 0
 
     },
     {
@@ -1196,7 +1196,7 @@ exports.data = [
             },
         "sellprice": 500,
         "enhanceId": 0,
-        "forgeId": 1
+        "forgeId": 0
 
     },
     {

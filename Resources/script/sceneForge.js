@@ -183,7 +183,7 @@ function onStartUpgrade(sender){
             if( rsp.RET == RET_OK ){
                 pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
                     libUIKit.showAlert("装备升级成功", function(){
-                        theContent = {};
+                        theContentNode.removeAllChildren();
                         onUpgrade();
                     }, theLayer);
 
@@ -469,8 +469,11 @@ function setEnhanceEquip(item){
 
         //load equip enhance state
         var enhance = 0;
-        if( item.Enhance[0].lv != null ){
-            enhance = parseInt(item.Enhance[0].lv);
+        if( item.Enhance[0] != null && item.Enhance[0].lv != null ){
+            enhance = item.Enhance[0].lv;
+        }else{
+            item.Enhance[0] = {id:null, lv:0};
+            enhance = 0;
         }
         var starLv = enhance / 8;
         var barLv = ((enhance == 40)? 8:(enhance%8));
@@ -531,40 +534,51 @@ function setEnhanceEquip(item){
 
 function setEnhanceStone(itemClass){
     if( itemClass != null ){
-        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceId);
-        var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[
-            (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : 0 ]);
-        for( var k in enhanceCost.material){
-            switch(enhanceCost.material[k].type){
-                case 0: {
-                    EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).stoneLv;
-                    EnhanceStoneCost = enhanceCost.material[k].count;
-                    theContent.ui.stone.removeAllChildren();
-                    var iconStone = cc.Sprite.create("stone"+EnhanceStoneLevel+".png");
-                    theContent.ui.stone.addChild(iconStone);
+        var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : 0;
+        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
+        if( enhanceInfo != null ){
+            var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance]);
+            if( enhanceCost != null ){
+                for( var k in enhanceCost.material){
+                    switch(enhanceCost.material[k].type){
+                        case 0: {
+                            EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).stoneLv;
+                            EnhanceStoneCost = enhanceCost.material[k].count;
+                            theContent.ui.stone.removeAllChildren();
+                            var iconStone = cc.Sprite.create("stone"+EnhanceStoneLevel+".png");
+                            theContent.ui.stone.addChild(iconStone);
 
-                    EnhanceStoneSid = engine.user.inventory.getServerId(EnhanceStoneCid[EnhanceStoneLevel-1]);
-                    var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid[EnhanceStoneLevel-1]);
-                    theContent.owner.labCount.setString(stoneCount+"/"+EnhanceStoneCost);
-                    if (stoneCount < EnhanceStoneCost){
-                        theContent.owner.labCount.setColor(cc.c3b(255,0,0));
-                        theContent.owner.btnPlus.setVisible(true);
-                        EnhanceArgs = null;
+                            EnhanceStoneSid = engine.user.inventory.getServerId(EnhanceStoneCid[EnhanceStoneLevel-1]);
+                            var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid[EnhanceStoneLevel-1]);
+                            theContent.owner.labCount.setString(stoneCount+"/"+EnhanceStoneCost);
+                            if (stoneCount < EnhanceStoneCost){
+                                theContent.owner.labCount.setColor(cc.c3b(255,0,0));
+                                theContent.owner.btnPlus.setVisible(true);
+                                EnhanceArgs = null;
+                            }
+                            else {
+                                theContent.owner.labCount.setColor(cc.c3b(0,150,0));
+                                theContent.owner.btnPlus.setVisible(false);
+                            }
+                        }break;
+                        case 1: {
+                            theContent.ui.cost.setPrice({
+                                gold: enhanceCost.material[k].count
+                            });
+                        }break;
+                        default: break;
                     }
-                    else {
-                        theContent.owner.labCount.setColor(cc.c3b(0,255,0));
-                        theContent.owner.btnPlus.setVisible(false);
-                    }
-                }break;
-                case 1: {
-                    theContent.ui.cost.setPrice({
-                        gold: enhanceCost.material[k].count
-                    });
-                }break;
-                default: break;
+
+                }
+                return;
             }
 
         }
+        theContent.ui.stone.removeAllChildren();
+        theContent.owner.labCount.setString("0/0");
+        theContent.owner.labCount.setColor(cc.c3b(33,22,13));
+        EnhanceStoneCost = 0;
+        EnhanceStoneLevel = 0;
     }
     else{
         theContent.ui.stone.setItem(null);
@@ -856,7 +870,7 @@ function setForgeEquip(item){
 
 function loadForgeMaterial(equipClass){
     if( equipClass != null) {
-        var forgeCost = libTable.queryTable(TABLE_COST, equipClass.forgeId);
+        var forgeCost = libTable.queryTable(TABLE_COST, equipClass.forgeID);
         if (forgeCost != null) {
             var i = 1;
             for (var k in forgeCost.material) {
@@ -974,7 +988,6 @@ function setSynthesizeStone(sto1Class, sto2Class){
     if( sto1Class != null && sto2Class != null){
         var stone1Count = engine.user.inventory.countItem(sto1Class.classId);
         var stone1Sid = engine.user.inventory.getServerId(sto1Class.classId);
-        debug(sto2Class.synthesizeId);
         var costInfo = libTable.queryTable(TABLE_COST, sto2Class.synthesizeId);
         var stoneCost, moneyCost;
         theForgeItem = engine.user.inventory.getItem(stone1Sid);
@@ -995,6 +1008,9 @@ function setSynthesizeStone(sto1Class, sto2Class){
         theContent.owner.nameTo.setString(sto2Class.label);
         SynthesizeArgs = {};
         SynthesizeArgs.sid = stone1Sid;
+        if(SynthesizeSlider != null){
+            theContent.owner.nodeX.removeChild(SynthesizeSlider);
+        }
         if( stone1Count < stoneCost){
             SynthesizeSlider = libGadget.UISlider.create({
                 start: theContent.owner.nodeStart.getPosition(),
@@ -1043,8 +1059,8 @@ function onSynthesizeStone(sender){
     var id = sender.getTag();
     upItem(id);
     SynthesizeStoneFrom = ( (id == 1)? 1:(id - 1) );
-    var sto1Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[id-1]);
-    var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[id]);
+    var sto1Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom-1]);
+    var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom]);
     setSynthesizeStone(sto1Class, sto2Class);
 }
 
