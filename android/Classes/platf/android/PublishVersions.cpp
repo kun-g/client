@@ -8,11 +8,11 @@
 
 #include "PublishVersions.h"
 
-#import "ISystem.h"
+#import "../../utility/ISystem.h"
 #import "AndroidSystem.h"
-#import "IIAP.h"
+#import "../../utility/IIAP.h"
 #import "AndroidIAP.h"
-#import "IUAC.h"
+#import "../../utility/IUAC.h"
 #import "AndroidUAC.h"
 
 void preInitAPI()

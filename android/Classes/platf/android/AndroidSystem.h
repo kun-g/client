@@ -10,7 +10,7 @@
 #define __DungeonRaiders__AndroidSystem__
 
 #include <iostream>
-#include "ISystem.h"
+#include "../../utility/ISystem.h"
 
 class AndroidSystem : public ISystem
 {

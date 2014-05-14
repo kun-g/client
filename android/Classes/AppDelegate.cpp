@@ -18,7 +18,7 @@
 #include "js/CallbackManager.h"
 #include "js/System.h"
 #include "curl/curl.h"
-//#include "platform/android/PublishVersions.h"
+#include "platf/android/PublishVersions.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -39,7 +39,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    //preInitAPI();//android hold
+    preInitAPI();
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
@@ -166,7 +166,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     sc->start();
     
-    //postInitAPI();//android hold
+    postInitAPI();
     
     CCScriptEngineProtocol *pEngine = ScriptingCore::getInstance();
     CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
@@ -206,7 +206,7 @@ void AppDelegate::applicationDidEnterBackground()
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     triggerEnterBackground();
-    //onPauseApp();//android hold
+    onPauseApp();
 }
 
 // this function will be called when the app is active again
@@ -215,5 +215,5 @@ void AppDelegate::applicationWillEnterForeground()
     CCDirector::sharedDirector()->resume();
     
     triggerEnterForeground();
-    //onResumeApp();//android hold
+    onResumeApp();
 }

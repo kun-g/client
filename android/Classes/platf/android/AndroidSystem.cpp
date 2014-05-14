@@ -24,20 +24,6 @@ void AndroidSystem::getResourcePath(string &out)
 
 SystemLanguage AndroidSystem::getSystemLanguage()
 {
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    //NSLog(@"Language = %@", language);
-    if( [language compare:@"zh-Hans"] == NSOrderedSame )
-    {
-        return Language_SimplifiedChinese;
-    }
-    if( [language compare:@"zh-Hant"] == NSOrderedSame )
-    {
-        return Language_SimplifiedChinese;
-    }
-    if( [language compare:@"en"] == NSOrderedSame )
-    {
-        return Language_English;
-    }
     return Language_Other;
 }
 
@@ -102,7 +88,7 @@ bool AndroidSystem::isPirated()
 NetStatus AndroidSystem::checkNetworkStatus()
 {
     // TODO
-    return 2;
+    return NetStatus_WIFI;
 }
 
 bool AndroidSystem::isPathExist(string file)

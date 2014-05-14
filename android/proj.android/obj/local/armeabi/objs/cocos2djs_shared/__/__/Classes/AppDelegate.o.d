@@ -421,7 +421,8 @@ obj/local/armeabi/objs/cocos2djs_shared/__/__/Classes/AppDelegate.o: \
  /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/curlrules.h \
  /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/easy.h \
  /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/multi.h \
- /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/curl.h
+ /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/curl.h \
+ jni/../../Classes/platf/android/PublishVersions.h
 
 jni/../../Classes/AppDelegate.h:
 
@@ -1272,3 +1273,5 @@ jni/../../Classes/utility/ISystem.h:
 /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/multi.h:
 
 /Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt/libcurl/include/curl/curl.h:
+
+jni/../../Classes/platf/android/PublishVersions.h:

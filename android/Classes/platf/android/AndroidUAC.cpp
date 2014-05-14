@@ -7,7 +7,7 @@
 //
 
 #include "AndroidUAC.h"
-#include "ISystem.h"
+#include "../../utility/ISystem.h"
 
 using namespace std;
 
@@ -44,10 +44,10 @@ void AndroidUAC::logout()
 
 void AndroidUAC::getUserName(string &name)
 {
-    name = "HelloAndroidName";
+    name = string("HelloAndroidName");
 }
 
 void AndroidUAC::getUserId(string &token)
 {
-    name = "HelloAndroidId";
+    token = string("HelloAndroidId");
 }

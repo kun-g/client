@@ -9,7 +9,7 @@
 #ifndef __DungeonJS__AppStoreIAP__
 #define __DungeonJS__AppStoreIAP__
 
-#include "IIAP.h"
+#include "../../utility/IIAP.h"
 
 class AndroidIAP:
 public IIAP

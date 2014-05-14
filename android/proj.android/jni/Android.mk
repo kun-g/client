@@ -25,7 +25,11 @@ LOCAL_SRC_FILES := start/main.cpp \
                    ../../Classes/utility/TCPSocket.cpp \
                    ../../Classes/utility/IIAP.cpp \
                    ../../Classes/utility/IUAC.cpp \
-                   ../../Classes/utility/aes.cpp
+                   ../../Classes/utility/aes.cpp \
+                   ../../Classes/platf/android/AndroidIAP.cpp \
+                   ../../Classes/platf/android/AndroidSystem.cpp \
+                   ../../Classes/platf/android/AndroidUAC.cpp \
+                   ../../Classes/platf/android/PublishVersions.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes/ \
                   cocos2dx/platform/third_party/android/prebuilt/libcurl/include/            

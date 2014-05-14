@@ -9,8 +9,8 @@
 #ifndef __PocketDungeon_AppStore__AndroidUAC__
 #define __PocketDungeon_AppStore__AndroidUAC__
 
-#include "IUAC.h"
-#include "IIAP.h"
+#include "../../utility/IUAC.h"
+#include "../../utility/IIAP.h"
 
 class AndroidUAC : public IUAC
 {
