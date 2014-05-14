@@ -142,6 +142,7 @@ function onEnter()
     theLayer.nodeTeam1 = cc.Node.create();
     normal.addChild(theLayer.nodeTeam1);
     {
+        debug("EMBLEM = "+emblem);//test
         var spEmblem1 = cc.Sprite.create(emblem);
         spEmblem1.setScale(0.5);
         spEmblem1.setPosition(cc.p(normal.getContentSize().width/2, normal.getContentSize().height/2+10));

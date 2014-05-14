@@ -5,7 +5,7 @@ exports.data = [
 		"faction": "hero",
 		"classType": 0,
 		"avatar": "avatar.ccbi",
-		"emblem": "emblem-warrior2.png",
+		"emblem": ["emblem-warrior2.png", "emblem-warrior2.png"],
 		"property": {
 			"health": 35,
 			"attack": 3,
@@ -25,7 +25,7 @@ exports.data = [
 		"faction": "hero",
 		"classType": 0,
 		"avatar": "avatar.ccbi",
-		"emblem": "emblem-mage2.png",
+		"emblem": ["emblem-mage2.png", "emblem-mage2.png"],
 		"property": {
 			"health": 21,
 			"attack": 5,
@@ -45,7 +45,7 @@ exports.data = [
 		"faction": "hero",
 		"classType": 0,
 		"avatar": "avatar.ccbi",
-		"emblem": "emblem-priest2.png",
+		"emblem": ["emblem-priest2.png", "emblem-priest2.png"],
 		"property": {
 			"health": 25,
 			"attack": 2,
