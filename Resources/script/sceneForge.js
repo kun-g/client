@@ -960,16 +960,14 @@ function onStartForge(sender){
         libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
             if( rsp.RET == RET_OK ){
                 pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
-                    libUIKit.showAlert("锻造成功", function(){
+                    libUIKit.showAlert("升阶成功", function(){
+                        theContentNode.removeAllChildren();
+                        onForge();
                     }, theLayer);
-
-                    setForgeEquip(theForgeItem);
-
                     //execute result
                     if( rsp.RES != null ){
                         engine.event.processResponses(rsp.RES);
                     }
-
                 }, theLayer);
             }
             else{
