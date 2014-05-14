@@ -429,8 +429,8 @@ function onStartEnhance(sender){
             libUIKit.waitRPC(Request_InventoryUseItem, EnhanceArgs, function(rsp){
                 if( rsp.RET == RET_OK || rsp.RET == RET_EnhanceFailed ){
                     if( rsp.RET == RET_OK) {
-                        libEffect.attachEffectCCBI(theContent.ui.equip, cc.p(0, 0),
-                            "effect-forgeEh.ccbi", libEffect.EFFECTMODE_AUTO);
+//                        libEffect.attachEffectCCBI(theContent.ui.equip, cc.p(0, 0),
+//                            "effect-forgeEh.ccbi", libEffect.EFFECTMODE_AUTO);
                     }
                     else{
                         libUIKit.showErrorMessage(rsp);
