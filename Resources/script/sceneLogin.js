@@ -214,9 +214,13 @@ function updateCallback(status, dlnow, dltotal)
             break;
         case 0:
         {//更新进度
-            var step = segment*dlnow/dltotal;
-            var progress = update_process + step;
-            updateLoading("正在下载更新", progress, true);
+            if (dltotal != 0){
+                //debug("status = 0"+";segment = "+segment+";dlnow = "+dlnow+";dltotal = "+dltotal);
+                var step = segment*dlnow/dltotal;
+                var progress = update_process + step;
+                //debug("step = "+step+";progress = "+progress+";update_cnt = "+update_cnt);
+                updateLoading("正在下载更新", progress, true);
+            }
         }
             break;
         case 1:
@@ -242,7 +246,6 @@ function updateCallback(status, dlnow, dltotal)
 
 function updateLoading(title, percentage, instant)
 {
-    debug("title = "+title+";percentage = "+percentage+";instant = "+instant);
     theLayer.TargetPercentage = percentage;
     theLayer.BeginPercentage = theLayer.CurrentPercentage;
     theLayer.CatchTimer = 0;

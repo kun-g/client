@@ -130,6 +130,7 @@ function updateVIP(){
     var sfc = cc.SpriteFrameCache.getInstance();
     if( curVipLevel > 0 ){
         //theLayer.owner.vipBgNow.setDisplayFrame(sfc.getSpriteFrame("jewel-vipbg.png"));
+        theLayer.owner.vipTitleNow.setDisplayFrame(sfc.getSpriteFrame("jewel-gradebg3.png"));
         theLayer.owner.vipTxtNow.setString(vipInfo.VIP.levels[curVipLevel].desc);
         theLayer.owner.vipLvNow.removeAllChildren();
         var lv = "jewel-vip"+curVipLevel+".png";
@@ -138,6 +139,7 @@ function updateVIP(){
     }
     else{
         //theLayer.owner.vipBgNow.setDisplayFrame(sfc.getSpriteFrame("jewel-novipbg.png"));
+        theLayer.owner.vipTitleNow.setDisplayFrame(sfc.getSpriteFrame("jewel-gradebg1.png"));
         theLayer.owner.vipTxtNow.setString("您还不是VIP");
         theLayer.owner.vipLvNow.removeAllChildren();
     }
