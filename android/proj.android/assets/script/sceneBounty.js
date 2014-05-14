@@ -101,34 +101,31 @@ function onBack(sender){
 
 function onSubmit(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if (theMode == MODE_DESC && thePy != undefined) {
+    if (theMode == MODE_DESC && thePy != null) {
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, theLevel);
 
         var segmentSel = engine.user.bounty.getProcess(line.bounty.BountyId);
         var chkProcess = engine.user.bounty.checkProcess(line.bounty.BountyId,segmentSel);
-        debug("onSubmit:segmentSel = " + segmentSel + "   chkProcess = " + chkProcess);
         if (chkProcess == 1){
             engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
         }else if (chkProcess == 2){
             engine.msg.pop("任务已经结束了。", POPTYPE_ERROR);
         }
         else if (str.length <= 0 &&
-            engine.user.bounty.dataBounty[line.bounty.BountyId] != undefined &&
-            engine.user.bounty.dataBounty[line.bounty.BountyId].cnt != undefined &&
-            engine.user.bounty.dataBounty[line.bounty.BountyId].cnt > 0){
+            engine.session.dataBounty[line.bounty.BountyId] != null &&
+            engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
+            engine.session.dataBounty[line.bounty.BountyId].cnt > 0){
             var libTable = loadModule("table.js");
             var libStage = loadModule("sceneStage.js");
             var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
             var stageData = queryStage(bountyData.level[theLevel].stage);
-//            debug("theLevel = " + theLevel);
-//            debug("stage = " + bountyData.level[theLevel].stage);
-//            debug("stageData = " + JSON.stringify(stageData));
+
             libStage.startStage(bountyData.level[theLevel].stage, stageData.team, stageData.cost);
         }
-        else if (engine.user.bounty.dataBounty[line.bounty.BountyId] != undefined &&
-                engine.user.bounty.dataBounty[line.bounty.BountyId].cnt != undefined &&
-                engine.user.bounty.dataBounty[line.bounty.BountyId].cnt <= 0){
+        else if (engine.session.dataBounty[line.bounty.BountyId] != null &&
+                engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
+                engine.session.dataBounty[line.bounty.BountyId].cnt <= 0){
             engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
         }
         else if (str.length > 0){
@@ -140,7 +137,7 @@ function onSubmit(sender){
 }
 
 function onSimple(sender){
-    if (theMode == MODE_DESC && thePy != undefined){
+    if (theMode == MODE_DESC && thePy != null){
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 0);
         if (str.length <= 0){
@@ -154,7 +151,7 @@ function onSimple(sender){
 }
 
 function onNormal(sender){
-    if (theMode == MODE_DESC && thePy != undefined){
+    if (theMode == MODE_DESC && thePy != null){
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 1);
         if (str.length <= 0){
@@ -168,7 +165,7 @@ function onNormal(sender){
 }
 
 function onHard(sender){
-    if (theMode == MODE_DESC && thePy != undefined){
+    if (theMode == MODE_DESC && thePy != null){
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 2);
         if (str.length <= 0){
@@ -182,7 +179,7 @@ function onHard(sender){
 }
 
 function onHell(sender){
-    if (theMode == MODE_DESC && thePy != undefined){
+    if (theMode == MODE_DESC && thePy != null){
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 3);
         if (str.length <= 0){
@@ -196,7 +193,7 @@ function onHell(sender){
 }
 
 function onNightmare(sender){
-    if (theMode == MODE_DESC && thePy != undefined){
+    if (theMode == MODE_DESC && thePy != null){
         var line = theListLayer.getChildByTag(thePy);
         var str = engine.user.bounty.checkLimit(line.bounty.BountyId, 4);
         if (str.length <= 0){
@@ -226,15 +223,14 @@ function loadBountyList(){
     theLayer.owner.nodelockHel.setVisible(false);
     theLayer.owner.nodelockNig.setVisible(false);
 
-    //debug("UPM = "+JSON.stringify(engine.user));
-
     var bountyCount = engine.user.bounty.getBountyListCount();//
+
     var sfc = cc.SpriteFrameCache.getInstance();
 
     var size = cc.size(LINE_WIDTH, bountyCount*LINE_HEIGHT);//engine.user.bounty.Count
     theListLayer.setContentSize(size);
 
-    if(  bountyCount== 0 ){//engine.user.bounty.Count
+    if(  bountyCount == 0 ){//engine.user.bounty.Count
         var label = cc.LabelTTF.create("暂无任务", UI_FONT, UI_SIZE_XL);
         var viewSize = theLayer.ui.scrollList.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -viewSize.height/3));
@@ -255,25 +251,24 @@ function loadBountyList(){
             if (chkProcess >= 0 && chkProcess < loadList.length){
                 owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
             }
-            //debug("loadBountyList 152:bounty = "+JSON.stringify(bountyData));
             owner.labPower.setString(timediff);
-            if (bountyData.titlePic != undefined){
+            if (bountyData.titlePic != null){
                 owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
             }
-            if (bountyData.timePic != undefined){
+            if (bountyData.timePic != null){
                 owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
             }
 
             var remainFlag = bountyData.count;
-            if (remainFlag != undefined && remainFlag > 0){
-                if (engine.user.bounty.dataBounty[k] != undefined &&
-                    engine.user.bounty.dataBounty[k].cnt != undefined &&
-                    engine.user.bounty.dataBounty[k].cnt > 0){
-                    owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
+            if (remainFlag != null && remainFlag > 0){
+                if (engine.session.dataBounty[k] != null &&
+                    engine.session.dataBounty[k].cnt != null &&
+                    engine.session.dataBounty[k].cnt > 0){
+                    owner.labelRemain.setString(engine.session.dataBounty[k].cnt);
                 }
-                else if (engine.user.bounty.dataBounty[k] != undefined &&
-                    engine.user.bounty.dataBounty[k].cnt != undefined &&
-                    engine.user.bounty.dataBounty[k].cnt <= 0){
+                else if (engine.session.dataBounty[k] != null &&
+                    engine.session.dataBounty[k].cnt != null &&
+                    engine.session.dataBounty[k].cnt <= 0){
                     owner.labelRemain.setString(0);
                 }
                 else{
@@ -295,7 +290,7 @@ function loadBountyList(){
             line.bounty = bounty;
             line.setTag(count);
 
-            if (engine.user.bounty.dataBounty[k] == undefined || engine.user.bounty.dataBounty[k].sta == 1){
+            if (engine.session.dataBounty[k] == null || engine.session.dataBounty[k].sta == 1){
                 theListLayer.addChild(line);
             }
 
@@ -336,7 +331,6 @@ function loadBountyDesc(bounty, lev){
 
     ajustPostion(bounty.BountyId);
 
-    //debug("nodeEffList[" + lev + "] = " + nodeEffList[lev]);
     if (engine.user.bounty.checkLimit(bounty.BountyId, lev).length <= 0){
         theLayer.owner[nodeEffList[lev]].setVisible(true);
         theLayer.owner[nodeEffList[lev]].removeAllChildren();
@@ -367,7 +361,7 @@ function loadBountyDesc(bounty, lev){
         size: UI_SIZE_L
     });
 
-    if (lev == undefined){
+    if (lev == null){
         lev = 0;
     }
     var tar = bountyData.level[lev];
@@ -379,39 +373,26 @@ function loadBountyDesc(bounty, lev){
         size: UI_SIZE_XL
     });
     var limitFlag = false;
-    if (tar.levelLimit != undefined){
+    if (tar.levelLimit != null){
         text.pushText({//push desc
             text: "要求等级达到"+tar.levelLimit+"级。",
             size: UI_SIZE_L
         });
         limitFlag = true;
     }
-    if (tar.powerLimit != undefined){
+    if (tar.powerLimit != null){
         text.pushText({//push desc
             text: "要求战斗力达到"+tar.powerLimit+"。",
             size: UI_SIZE_L
         });
         limitFlag = true;
     }
-    if (tar.classLimit != undefined && tar.classLimit.length >= 1){
+    if (tar.classLimit != null && tar.classLimit.length >= 1){
         var str = "";
         for (var k in tar.classLimit) {
-            //debug("k = " + k);
-            //debug("tar.classLimit[k] = " + tar.classLimit[k]);
-            switch (tar.classLimit[k]) {
-                case 0:
-                    str += "战士、";
-                    break;
-                case 1:
-                    str += "法师、";
-                    break;
-                case 2:
-                    str += "牧师、";
-                    break;
-
-            }
+            var roleClass = libTable.queryTable(TABLE_ROLE, tar.classLimit[k]);
+            str += roleClass.className + "、";
         }
-        //debug("str = " + str);
         str=str.substring(0,str.length-1);
         str += "职业可以做。";
         text.pushText({//push desc
@@ -437,11 +418,11 @@ function loadBountyDesc(bounty, lev){
 
     var prize = libItem.ItemPreview.create(tar.prize, dimension);
 
-    if (engine.user.bounty.dataBounty[k] != undefined &&
-        engine.user.bounty.dataBounty[k].lev != undefined &&
-        engine.user.bounty.dataBounty[k].lev[lev] != undefined &&
-        engine.user.bounty.dataBounty[k].lev[lev].prz != undefined){
-        prize = libItem.ItemPreview.create(engine.user.bounty.dataBounty[k].lev[lev].prz, dimension);
+    if (engine.session.dataBounty[k] != null &&
+        engine.session.dataBounty[k].lev != null &&
+        engine.session.dataBounty[k].lev[lev] != null &&
+        engine.session.dataBounty[k].lev[lev].prz != null){
+        prize = libItem.ItemPreview.create(engine.session.dataBounty[k].lev[lev].prz, dimension);
     }
 
     prize.setPosition(cc.p(0, 0));
@@ -496,7 +477,6 @@ function update(delta)
 
     if(Math.abs(diffMin) >= 1){
         updateTime();
-        //debug("sceneBounty update");
         theTime = comTime;
     }
 }
@@ -520,22 +500,22 @@ function updateTime()
                     line.owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
                 }
                 line.owner.labPower.setString(timediff);
-                if (bountyData.titlePic != undefined){
+                if (bountyData.titlePic != null){
                     line.owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
                 }
-                if (bountyData.timePic != undefined){
+                if (bountyData.timePic != null){
                     line.owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
                 }
                 var remainFlag = bountyData.count;
-                if (remainFlag != undefined && remainFlag > 0){
-                    if (engine.user.bounty.dataBounty[k] != undefined &&
-                        engine.user.bounty.dataBounty[k].cnt != undefined &&
-                        engine.user.bounty.dataBounty[k].cnt > 0){
-                        line.owner.labelRemain.setString(engine.user.bounty.dataBounty[k].cnt);
+                if (remainFlag != null && remainFlag > 0){
+                    if (engine.session.dataBounty[k] != null &&
+                        engine.session.dataBounty[k].cnt != null &&
+                        engine.session.dataBounty[k].cnt > 0){
+                        line.owner.labelRemain.setString(engine.session.dataBounty[k].cnt);
                     }
-                    else if (engine.user.bounty.dataBounty[k] != undefined &&
-                        engine.user.bounty.dataBounty[k].cnt != undefined &&
-                        engine.user.bounty.dataBounty[k].cnt <= 0){
+                    else if (engine.session.dataBounty[k] != null &&
+                        engine.session.dataBounty[k].cnt != null &&
+                        engine.session.dataBounty[k].cnt <= 0){
                         line.owner.labelRemain.setString(0);
                     }
                 }
@@ -561,8 +541,6 @@ function ajustPostion(bountyId){
         var nodelockPos = theLayer.owner[btnList[0]].getPosition();
         var nodeEffPos = theLayer.owner[nodeEffList[0]].getPosition();
         var centerOffset = postion/2 - theLayer.owner[btnList[0]].getContentSize().width/2;
-        debug("centerOffset = "+centerOffset+"   postion = "+postion+"   theLayer.owner[btnList[0]].getContentSize().width = "+
-            theLayer.owner[btnList[0]].getContentSize().width);
         switch (levCount) {
             case 1:
                 theLayer.owner.btnSimple.setVisible(false);
@@ -732,7 +710,6 @@ function onEnter(){
     engine.ui.regMenu(this.owner.menuRoot);
 
     loadBountyList();
-
 }
 
 function show(){

@@ -20,7 +20,6 @@ LOCAL_SRC_FILES := start/main.cpp \
                    ../../Classes/js/File.cpp \
                    ../../Classes/js/TCP.cpp \
                    ../../Classes/js/Http.cpp \
-                   ../../Classes/js/TDGA.cpp \
                    ../../Classes/utility/IFeedback.cpp \
                    ../../Classes/utility/ISystem.cpp \
                    ../../Classes/utility/TCPSocket.cpp \
@@ -28,7 +27,8 @@ LOCAL_SRC_FILES := start/main.cpp \
                    ../../Classes/utility/IUAC.cpp \
                    ../../Classes/utility/aes.cpp
                    
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes/ \
+                  cocos2dx/platform/third_party/android/prebuilt/libcurl/include/            
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

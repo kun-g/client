@@ -16,8 +16,8 @@
 #include "utility/ISystem.h"
 #include "js/NativeAPI.h"
 #include "js/CallbackManager.h"
-#include "utility/ISystem.h"
-//#include "curl.h"
+#include "js/System.h"
+#include "curl/curl.h"
 //#include "platform/android/PublishVersions.h"
 
 USING_NS_CC;
@@ -166,7 +166,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     sc->start();
     
-    postInitAPI();
+    //postInitAPI();//android hold
     
     CCScriptEngineProtocol *pEngine = ScriptingCore::getInstance();
     CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);

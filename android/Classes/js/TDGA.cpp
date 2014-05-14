@@ -7,7 +7,7 @@
 //
 
 #include "TDGA.h"
-#include "TalkingData.h"
+#include "platf/android/TalkingData.h"
 
 using namespace std;
 

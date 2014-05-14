@@ -12,7 +12,7 @@
 #include "ScriptingCore.h"
 #include "jsapi.h"
 #include "jsfriendapi.h"
-#include "IUAC.h"
+#include "utility/IUAC.h"
 #include <string>
 
 class UACJSDelegate :

@@ -53,3 +53,7 @@ develop/PocketDungeon/Classes/platform/ios/.DS_Store
 Resources/spritesheets/.DS_Store
 
 Resources/node/.DS_Store
+
+*.o
+
+*.d

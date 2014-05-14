@@ -38,6 +38,9 @@ set -e
 
 # paths
 
+NDK_ROOT="/Users/hammer/Develop/android-ndk-r8d"
+COCOS2DX_ROOT="/Users/hammer/Develop/cocos2d-x-2.1.5"
+
 if [ -z "${NDK_ROOT+aaa}" ];then
 echo "please define NDK_ROOT"
 exit 1
