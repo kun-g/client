@@ -24111,7 +24111,7 @@ exports.data =[
 	{
 		"classId": 805,
 		"label": "碎木头",
-		"icon": "item-sjw4",
+		"icon": "item-sjw4.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24121,7 +24121,7 @@ exports.data =[
 	{
 		"classId": 806,
 		"label": "魔力粉末",
-		"icon": "item-sjw5",
+		"icon": "item-sjw5.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24131,7 +24131,7 @@ exports.data =[
 	{
 		"classId": 807,
 		"label": "破碎布料",
-		"icon": "item-sjw6",
+		"icon": "item-sjw6.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24141,7 +24141,7 @@ exports.data =[
 	{
 		"classId": 808,
 		"label": "残旧麻绳",
-		"icon": "item-sjw7",
+		"icon": "item-sjw7.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24151,7 +24151,7 @@ exports.data =[
 	{
 		"classId": 809,
 		"label": "银叶草",
-		"icon": "item-sjw8",
+		"icon": "item-sjw8.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24161,7 +24161,7 @@ exports.data =[
 	{
 		"classId": 810,
 		"label": "破旧金属",
-		"icon": "item-sjw9",
+		"icon": "item-sjw9.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24171,7 +24171,7 @@ exports.data =[
 	{
 		"classId": 811,
 		"label": "水晶碎石",
-		"icon": "item-sjw10",
+		"icon": "item-sjw10.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24231,7 +24231,7 @@ exports.data =[
 	{
 		"classId": 817,
 		"label": "亚麻绳",
-		"icon": "item-sjg5",
+		"icon": "item-sjg5.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,

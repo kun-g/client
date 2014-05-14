@@ -163,12 +163,12 @@ function contentEquip(){
     mergeRoleProperties(properties, theItemClass.basic_properties);
 
     //enhance
-    var enhance = 0;
+    var enhance = -1;
     if( theItem.Enhance[0].lv != null ){
         enhance = parseInt(theItem.Enhance[0].lv);
     }
-    var starLv = enhance / 8;
-    var barLv = ((enhance == 40)? 8:(enhance%8));
+    var starLv = parseInt((enhance+1) / 8) % 6;
+    var barLv = (((enhance+1) == 40)? 8:parseInt(((enhance+1)%8)));
     for(var i=1; i<6; ++i){
         var starName = "ehStar"+i;
         if( i <= starLv){

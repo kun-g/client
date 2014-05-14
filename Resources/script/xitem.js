@@ -22,7 +22,7 @@ function Item(source)
     this.StackCount = 1;
     this.Status = 0;
     this.Xp = 0;
-    this.Enhance = [{id:null, lv:0}];
+    this.Enhance = [{id:null, lv:-1}];
 
     if( source != null )
     {
@@ -454,8 +454,8 @@ var UIItem = cc.Node.extend({
                 }
                 //add enhance mark
                 if( this.ITEM.Enhance[0] != null){
-                    var starLv = parseInt(this.ITEM.Enhance[0].lv / 8) % 6;
-                    if( starLv >0){
+                    var starLv = parseInt((this.ITEM.Enhance[0].lv+1) / 8) % 6;
+                    if( starLv >0 ){
                         var fileStar = "itemstar"+starLv+".png";
                         var enhanceMark = cc.Sprite.create(fileStar);
                         enhanceMark.setAnchorPoint(cc.p(0.5, 0));

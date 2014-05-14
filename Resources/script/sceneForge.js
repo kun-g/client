@@ -27,7 +27,7 @@ var EnhanceStoneLevel = 0;//type 1,2,3,4,5
 var EnhanceStoneCost = 0;//quantity
 var EnhanceStoneCid = [5];//cid array
 var EnhanceStoneSid = 0;//sid
-var EnhanceMaxLv = 40;
+var EnhanceMaxLv = 39;
 
 var MODE_UPGRADE = 0;
 var MODE_ENHANCE = 1;
@@ -431,11 +431,11 @@ function onStartEnhance(sender){
                     if( rsp.RET == RET_OK) {
 //                        libEffect.attachEffectCCBI(theContent.ui.equip, cc.p(0, 0),
 //                            "effect-forgeEh.ccbi", libEffect.EFFECTMODE_AUTO);
+                        setEnhanceEquip(theForgeItem);
                     }
                     else{
                         libUIKit.showErrorMessage(rsp);
                     }
-                    setEnhanceEquip(theForgeItem);
 
                     //execute result
                     if( rsp.RES != null ){
@@ -472,11 +472,12 @@ function setEnhanceEquip(item){
         if( item.Enhance[0] != null && item.Enhance[0].lv != null ){
             enhance = item.Enhance[0].lv;
         }else{
-            item.Enhance[0] = {id:null, lv:0};
-            enhance = 0;
+            item.Enhance[0] = {id:null, lv:-1};
+            enhance = item.Enhance[0].lv;
         }
-        var starLv = enhance / 8;
-        var barLv = ((enhance == 40)? 8:(enhance%8));
+        var starLv = parseInt((enhance+1) / 8) % 6;
+        var barLv = ((enhance == EnhanceMaxLv)? 8:parseInt(((enhance+1)%8)));
+        debug("barLv="+barLv);
         for(var i=1; i<6; ++i){
             var starName = "ehStar"+i;
             if( i <= starLv){
