@@ -181,7 +181,7 @@ var BLOCK_LOCKEDEXIT = 4;
 
 var ACTION_DELAY = 0.3;
 
-var RUN_SPEED = 512;
+var RUN_SPEED = 700;
 var HERO_TAG = 0;
 var UNIT_TAG = 100;
 
