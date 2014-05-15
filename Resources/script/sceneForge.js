@@ -1080,7 +1080,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
                 start: theContent.owner.nodeStart.getPosition(),
                 end: theContent.owner.nodeEnd.getPosition(),
                 sthumb: "forge4-common-btn.png",
-                min: stoneCost,
+                min: 1,
                 max: parseInt(stone1Count/stoneCost),
                 def: 1,
                 callback: function(val){
@@ -1168,16 +1168,6 @@ function loadSynthesize(){
         });
         ret.ui["stone"+i].setItemSmall(dummyStone);
     }
-
-    SynthesizeSlider = libGadget.UISlider.create({
-        start: ret.owner.nodeStart.getPosition(),
-        end: ret.owner.nodeEnd.getPosition(),
-        sthumb: "forge4-common-btn.png",
-        min: 0,
-        max: 0,
-        def: 0
-    });
-    ret.owner.nodeX.addChild(SynthesizeSlider);
     return ret;
 }
 
@@ -1291,7 +1281,6 @@ function onNotify(ntf){
         {
             switch(theMode){
                 case MODE_ENHANCE:{
-//                    setEnhanceEquip(theContent.ui.equip.getItem());
                     // TODO: ?
                 }break;
                 case MODE_SYNTHESIZE:{

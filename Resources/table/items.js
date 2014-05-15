@@ -26971,7 +26971,8 @@ exports.data = [
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 0
+		"quality": 0,
+        "synthesizeID": 41
 	},
 	{
 		"classId": 854,
@@ -26981,7 +26982,8 @@ exports.data = [
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 1
+		"quality": 1,
+        "synthesizeID": 42
 	},
 	{
 		"classId": 855,
@@ -26991,7 +26993,8 @@ exports.data = [
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 2
+		"quality": 2,
+        "synthesizeID": 43
 	},
 	{
 		"classId": 856,
@@ -27001,7 +27004,8 @@ exports.data = [
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 3
+		"quality": 3,
+        "synthesizeID": 44
 	},
 	{
 		"classId": 857,
@@ -27011,6 +27015,6 @@ exports.data = [
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 4
+		"quality": 4,
 	}
 ]
