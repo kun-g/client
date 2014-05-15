@@ -66,6 +66,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     string display;
     {//set display
         CCSize winSize = pDirector->getWinSize();
+        CCLog("winSize = %fx%f", winSize.width, winSize.height);
         float aspectRatio = winSize.height/winSize.width;
         
         CCArray *pResolutions = (CCArray*)pSetup->objectForKey("Resolutions");
@@ -148,7 +149,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         }
         CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
     }
-    
+
     //init js script core
     ScriptingCore* sc = ScriptingCore::getInstance();
     sc->addRegisterCallback(register_all_cocos2dx);

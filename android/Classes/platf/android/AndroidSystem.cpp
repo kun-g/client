@@ -6,20 +6,21 @@
 //  Copyright (c) 2013年 Trin Game. All rights reserved.
 //
 
-#import "AndroidSystem.h"
+#include "AndroidSystem.h"
 #include "cocos2d.h"
+#include "platform/android/jni/JniHelper.h"
 using namespace cocos2d;
 
 using namespace std;
 
 void AndroidSystem::getDocumentPath(string &out)
 {
-    out = string("/");
+    out = CCFileUtils::sharedFileUtils()->getWritablePath();
 }
 
 void AndroidSystem::getResourcePath(string &out)
 {
-    out = string("/");
+    out = string("");
 }
 
 SystemLanguage AndroidSystem::getSystemLanguage()
@@ -93,8 +94,7 @@ NetStatus AndroidSystem::checkNetworkStatus()
 
 bool AndroidSystem::isPathExist(string file)
 {
-    // TODO
-    return false;
+    return CCFileUtils::sharedFileUtils()->isFileExist(file.c_str());
 }
 
 bool AndroidSystem::createDirectoryAtPath(string path)
@@ -111,17 +111,25 @@ bool AndroidSystem::removeDirectory(string path)
 
 bool AndroidSystem::getPreference(string key, string &out)
 {
-    // TODO
-    return false;
+    out = CCUserDefault::sharedUserDefault()->getStringForKey(key.c_str());
+    return true;
 }
 
 void AndroidSystem::setPreference(string key, string val)
 {
-    // TODO
+    CCUserDefault::sharedUserDefault()->setStringForKey(key.c_str(), val);
+    CCUserDefault::sharedUserDefault()->flush();
 }
 
 bool AndroidSystem::isFirstLaunch()
 {
-    // TODO
-    return true;
+    string launchFlag;
+    getPreference("LAUNCH_FLAG", launchFlag);
+    if( launchFlag != "" ){
+        return false;
+    }
+    else{
+        setPreference("LAUNCH_FLAG", "1");
+        return true;
+    }
 }

@@ -33,12 +33,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1413805376" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/client/android/proj.android/jni"/>
 									<listOptionValue builtIn="false" value="/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
-									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx"/>
-									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/system/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
 									<listOptionValue builtIn="false" value="/platforms/android-8/arch-arm/usr/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
@@ -50,12 +52,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.898748423" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/client/android/proj.android/jni"/>
 									<listOptionValue builtIn="false" value="/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
-									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx"/>
-									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/system/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
 									<listOptionValue builtIn="false" value="/platforms/android-8/arch-arm/usr/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
@@ -67,12 +71,14 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1548475709" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/client/android/proj.android/jni"/>
 									<listOptionValue builtIn="false" value="/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
-									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx"/>
-									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/system/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
 									<listOptionValue builtIn="false" value="/platforms/android-8/arch-arm/usr/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx/include"/>
+									<listOptionValue builtIn="false" value="/Users/hammer/Develop/DungeonRaidersOnGithub/cocos2dx"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
@@ -83,7 +89,8 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="scripting|extensions|cocos2dx|Classes" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="extensions|scripting|cocos2dx|Classes|cocos2d-x-2.1.5" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Classes"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cocos2dx"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="extensions"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="scripting"/>
@@ -102,8 +109,10 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="refreshScope" versionNumber="1">
-		<resource resourceType="PROJECT" workspacePath="/HelloJavascript"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/HelloJavascript"/>
+		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>

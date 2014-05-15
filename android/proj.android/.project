@@ -100,9 +100,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Classes</name>
+			<type>2</type>
+			<locationURI>COCOS2DX/projects/PocketDungeon/Classes</locationURI>
+		</link>
+		<link>
 			<name>cocos2dx</name>
 			<type>2</type>
-			<locationURI>COCOS2DX/cocos2dx</locationURI>
+			<location>/Users/hammer/Develop/cocos2d-x-2.1.5/cocos2dx</location>
 		</link>
 		<link>
 			<name>extensions</name>
