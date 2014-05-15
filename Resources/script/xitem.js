@@ -357,7 +357,9 @@ Inventory.prototype.checkUpgradable = function(){
         EquipSlot_MainHand,
         EquipSlot_SecondHand,
         EquipSlot_Chest,
-        EquipSlot_Legs
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
     ];
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
@@ -541,7 +543,7 @@ var UIItem = cc.Node.extend({
                 }
                 //add enhance mark
                 if( this.ITEM.Enhance[0] != null){
-                    var starLv = parseInt(this.ITEM.Enhance[0].lv / 8) % 6;
+                    var starLv = parseInt((this.ITEM.Enhance[0].lv+1) / 8) % 6;
                     if( starLv >0){
                         var fileStar = "itemstar"+starLv+".png";
                         var enhanceMark = cc.Sprite.create(fileStar);

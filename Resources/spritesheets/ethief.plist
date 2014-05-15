@@ -7,17 +7,30 @@
             <key>enemy-thief-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,103},{31,26}}</string>
+                <string>{{2,197},{31,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{31,26}}</string>
                 <key>sourceSize</key>
                 <string>{31,26}</string>
             </dict>
             <key>enemy-thief-1-head.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,68},{69,64}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{69,64}}</string>
+                <key>sourceSize</key>
+                <string>{69,64}</string>
+            </dict>
+            <key>enemy-thief-1-head2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{69,64}}</string>
@@ -59,11 +72,11 @@
             <key>enemy-thief-1-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,68},{33,68}}</string>
+                <string>{{73,127},{33,68}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{33,68}}</string>
                 <key>sourceSize</key>
@@ -85,7 +98,7 @@
             <key>enemy-thief-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,90},{35,35}}</string>
+                <string>{{73,90},{35,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -105,7 +118,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4fcf810d82d3d119ba92b3373a803eff$</string>
+            <string>$TexturePacker:SmartUpdate:428d5fb4a2f53bc8a107479dc45eda1d$</string>
             <key>textureFileName</key>
             <string>ethief.png</string>
         </dict>

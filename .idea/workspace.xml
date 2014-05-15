@@ -1,10 +1,316 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/Resources/script/back.js" line="214" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e16712af-39d0-4547-9327-253b30a0087f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/commonui.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/commonui.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-22.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-22.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-23.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-23.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-24.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-24.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-archer14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-archer14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-bat14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-bat14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-goblin24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-goblin24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-ogre14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-ogre14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs22.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs22.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-orcs24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-orcs24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber3.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber32.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber32.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber33.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber33.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-robber34.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-robber34.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-skeleton14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-skeleton14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-thief14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-thief14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf1.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf1.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf12.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf12.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf13.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf13.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf14.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf14.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf2.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf23.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf23.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/node/enemy-wolf24.ccbi" afterPath="$PROJECT_DIR$/Resources/node/enemy-wolf24.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-22.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-22.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-23.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-23.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-24.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-24.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-32.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-32.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-33.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-33.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-34.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-34.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword-2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword-2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf2.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf3.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf4.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/index.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/index.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/map.png" afterPath="$PROJECT_DIR$/Resources/spritesheets/map.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge2.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge2.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/ui/960/ui-forge3.ccbi" afterPath="$PROJECT_DIR$/Resources/ui/960/ui-forge3.ccbi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/avatar.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/avatar.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/bag.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/bag.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/battle.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/battle.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/bossA.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/bossA.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/bossL.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/bossL.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/bossR.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/bossR.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/bounty.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/bounty.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/campaign.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/campaign.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/cards.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/cards.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/character.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/character.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/commonui.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/commonui.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/costs.js" afterPath="$PROJECT_DIR$/Resources/table/costs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dailymission-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dailymission-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dailymission-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dailymission-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dailymission-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dailymission-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dailyprize-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dailyprize-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dailyprize-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dailyprize-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dailyprize-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dailyprize-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/dressup.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/dressup.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/dungeons.js" afterPath="$PROJECT_DIR$/Resources/table/dungeons.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcher4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcher4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/earcherboss.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/earcherboss.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ebat4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ebat4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/effect.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/effect.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/effect2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/effect2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/effectnpc.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/effectnpc.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/effectnpc2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/effectnpc2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-22.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-22.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-23.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-23.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin-24.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin-24.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblin4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblin4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/egoblinboss.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/egoblinboss.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/emage10.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/emage10.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogre4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogre4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eogreboss.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eogreboss.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-22.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-22.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-23.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-23.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs-24.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs-24.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eorcs4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eorcs4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-22.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-22.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-23.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-23.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-24.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-24.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-32.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-32.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-33.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-33.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber-34.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber-34.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/erobber4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/erobber4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eskeleton4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eskeleton4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime-2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime-2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime-22.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime-22.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime-23.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime-23.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime-24.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime-24.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslime4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslime4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eslimeboss.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eslimeboss.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/espider.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/espider.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/espider2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/espider2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/espider3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/espider3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/espider4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/espider4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword-2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword-2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword-22.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword-22.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword-23.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword-23.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword-24.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword-24.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/esword4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/esword4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/eswordboss.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/eswordboss.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethgoblin1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethgoblin1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethgoblin2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethgoblin2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethgoblin3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethgoblin3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ethief4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ethief4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/event.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/event.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf-2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf-2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolf4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolf4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ewolfboss.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ewolfboss.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge1-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge1-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge1-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge1-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge1-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge1-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge2-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge2-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge3-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge3-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-1136.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-1136.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-960.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-960.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/forge4-common.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/forge4-common.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/friend.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/friend.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/index.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/index.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/itemInfo.js" afterPath="$PROJECT_DIR$/Resources/script/itemInfo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/items.js" afterPath="$PROJECT_DIR$/Resources/table/items.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/jewel.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/jewel.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/jiesuan.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/jiesuan.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/login.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/login.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/mail.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/mail.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/map.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/map.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/map2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/map2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/mission.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/mission.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/newuser.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/newuser.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/notice.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/notice.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcarchaeologist.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcarchaeologist.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcman.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcman.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcman2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcman2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcvillage.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcvillage.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcwoman.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcwoman.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcwoman2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcwoman2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcwoman3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcwoman3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/npcwoman4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/npcwoman4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/popnum.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/popnum.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/ranking.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/ranking.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rankingwj.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rankingwj.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/reward.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/reward.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female1-c.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female1-c.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female5.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-female5.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-helmet1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-helmet1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-helmet2-female.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-helmet2-female.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-helmet2-male.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-helmet2-male.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male1-c.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male1-c.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male5.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rfasion-male5.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage0.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage0.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage10.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage10.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage5.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage5.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage6.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage6.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage7.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage7.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage8.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage8.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rmage9.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rmage9.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/roles.js" afterPath="$PROJECT_DIR$/Resources/table/roles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest0.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest0.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest10.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest10.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest5.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest5.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest6.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest6.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest7.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest7.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest8.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest8.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rpriest9.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rpriest9.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior0.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior0.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior1.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior1.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior10.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior10.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior2.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior2.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior3.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior3.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior4.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior4.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior5.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior5.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior6.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior6.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior7.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior7.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior8.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior8.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/rwarrior9.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/rwarrior9.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/sceneForge.js" afterPath="$PROJECT_DIR$/Resources/script/sceneForge.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/selectf.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/selectf.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/setting.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/setting.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/shop.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/shop.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/talk.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/talk.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/table/vip.js" afterPath="$PROJECT_DIR$/Resources/table/vip.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/spritesheets/wing.plist" afterPath="$PROJECT_DIR$/Resources/spritesheets/wing.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/script/xitem.js" afterPath="$PROJECT_DIR$/Resources/script/xitem.js" />
     </list>
@@ -34,28 +340,28 @@
           <file leaf-file-name="sceneForge.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.43382353" vertical-offset="6831" max-vertical-offset="20040">
-                  <caret line="479" column="30" selection-start-line="479" selection-start-column="30" selection-end-line="479" selection-end-column="30" />
+                <state vertical-scroll-proportion="0.38259834" vertical-offset="7734" max-vertical-offset="20820">
+                  <caret line="537" column="28" selection-start-line="537" selection-start-column="28" selection-end-line="537" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="uiKit.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Resources/script/uiKit.js">
+          <file leaf-file-name="common.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/common.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1307" max-vertical-offset="4395">
-                  <caret line="122" column="21" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="17865">
+                  <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="UI.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Resources/script/UI.js">
+          <file leaf-file-name="debug.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/debug.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="931" max-vertical-offset="3540">
-                  <caret line="85" column="33" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1380">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -64,18 +370,8 @@
           <file leaf-file-name="Event.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/Event.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="3834" max-vertical-offset="6540">
-                  <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="309" selection-end-column="16" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="gadgets.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Resources/script/gadgets.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="2073" max-vertical-offset="3270">
-                  <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="3934" max-vertical-offset="6540">
+                  <caret line="294" column="1" selection-start-line="294" selection-start-column="1" selection-end-line="294" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -94,18 +390,8 @@
           <file leaf-file-name="sceneMain.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="8115">
-                  <caret line="441" column="38" selection-start-line="441" selection-start-column="27" selection-end-line="441" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tutorialConfig.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
-                  <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="6000" max-vertical-offset="8115">
+                  <caret line="422" column="44" selection-start-line="422" selection-start-column="44" selection-end-line="422" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -118,8 +404,8 @@
           <file leaf-file-name="sceneForge.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7330155" vertical-offset="2175" max-vertical-offset="20040">
-                  <caret line="186" column="36" selection-start-line="186" selection-start-column="36" selection-end-line="186" selection-end-column="36" />
+                <state vertical-scroll-proportion="-0.025029797" vertical-offset="3096" max-vertical-offset="20820">
+                  <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -128,19 +414,23 @@
           <file leaf-file-name="xitem.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="6270" max-vertical-offset="14250">
-                  <caret line="454" column="34" selection-start-line="454" selection-start-column="34" selection-end-line="454" selection-end-column="34" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="13441" max-vertical-offset="14280">
+                  <caret line="248" column="95" selection-start-line="248" selection-start-column="95" selection-end-line="248" selection-end-column="95" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="costs.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Resources/table/costs.js">
+          <file leaf-file-name="itemInfo.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1893" max-vertical-offset="6570">
-                  <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
-                  <folding />
+                <state vertical-scroll-proportion="0.0" vertical-offset="2268" max-vertical-offset="7140">
+                  <caret line="196" column="9" selection-start-line="196" selection-start-column="9" selection-end-line="196" selection-end-column="9" />
+                  <folding>
+                    <element signature="n#!!block;n#onClose#0" expanded="false" />
+                    <element signature="n#!!block;n#onSell#0" expanded="false" />
+                    <element signature="n#!!block;n#canDissolve#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -168,15 +458,14 @@
         <option value="$PROJECT_DIR$/Resources/script/Game.js" />
         <option value="$PROJECT_DIR$/Resources/table/enhance.js" />
         <option value="$PROJECT_DIR$/Resources/table/costs.js" />
-        <option value="$PROJECT_DIR$/Resources/table/items.js" />
-        <option value="$PROJECT_DIR$/Resources/script/itemInfo.js" />
         <option value="$PROJECT_DIR$/Resources/script/xitem.js" />
+        <option value="$PROJECT_DIR$/Resources/script/itemInfo.js" />
+        <option value="$PROJECT_DIR$/Resources/table/items.js" />
         <option value="$PROJECT_DIR$/Resources/script/sceneForge.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
     <option name="y" value="22" />
     <option name="width" value="1920" />
     <option name="height" value="970" />
@@ -283,8 +572,17 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/JoviResources" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -295,12 +593,14 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
       <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -308,16 +608,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
-      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -329,6 +619,9 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e16712af-39d0-4547-9327-253b30a0087f" name="Default" comment="" />
@@ -338,13 +631,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1920" height="970" extended-state="7" />
+    <frame x="0" y="22" width="1920" height="970" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1721959" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12848867" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -380,53 +673,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="15390" max-vertical-offset="232950">
-          <caret line="1204" column="17" selection-start-line="1204" selection-start-column="17" selection-end-line="1204" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3435" max-vertical-offset="19815">
-          <caret line="187" column="33" selection-start-line="187" selection-start-column="33" selection-end-line="187" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="14280">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5595">
-          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2190" max-vertical-offset="7755">
-          <caret line="146" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="166" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3435" max-vertical-offset="19815">
@@ -454,7 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
           <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -477,7 +722,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2475" max-vertical-offset="8025">
           <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="190" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="n#!!block;n#onClose#0" expanded="false" />
+            <element signature="n#!!block;n#onSell#0" expanded="false" />
+            <element signature="n#!!block;n#canDissolve#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -630,33 +879,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17865">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33293125" vertical-offset="924" max-vertical-offset="5535">
           <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1140">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6225" max-vertical-offset="8115">
-          <caret line="441" column="38" selection-start-line="441" selection-start-column="27" selection-end-line="441" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -667,10 +893,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/table/enhance.js">
+    <entry file="file://$PROJECT_DIR$/Resources/script/gadgets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123239435" vertical-offset="0" max-vertical-offset="1065">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2073" max-vertical-offset="3270">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/Event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6357055" vertical-offset="5501" max-vertical-offset="6540">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/uiKit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1307" max-vertical-offset="4395">
+          <caret line="122" column="21" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/UI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="3540">
+          <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneInventory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.779499" vertical-offset="7591" max-vertical-offset="8430">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneRole.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="3675">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/Event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4159" max-vertical-offset="6540">
+          <caret line="294" column="1" selection-start-line="294" selection-start-column="1" selection-end-line="294" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -682,82 +952,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/table/costs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1893" max-vertical-offset="6570">
-          <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6065375" vertical-offset="362094" max-vertical-offset="369765">
-          <caret line="24173" column="31" selection-start-line="24173" selection-start-column="31" selection-end-line="24173" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0661764" vertical-offset="0" max-vertical-offset="17220">
-          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.488677" vertical-offset="2170" max-vertical-offset="7755">
-          <caret line="172" column="34" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="73" max-vertical-offset="17220">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/script/xitem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6270" max-vertical-offset="14250">
-          <caret line="454" column="34" selection-start-line="454" selection-start-column="34" selection-end-line="454" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="35" max-vertical-offset="14280">
+          <caret line="248" column="95" selection-start-line="248" selection-start-column="95" selection-end-line="248" selection-end-column="95" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/gadgets.js">
+    <entry file="file://$PROJECT_DIR$/libs/javascript/bindings/generated/jsb_cocos2dx_auto_api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2073" max-vertical-offset="3270">
-          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33293125" vertical-offset="92859" max-vertical-offset="172275">
+          <caret line="6209" column="0" selection-start-line="6209" selection-start-column="0" selection-end-line="6209" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/tutorialConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28950542" vertical-offset="0" max-vertical-offset="1140">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/sceneMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6000" max-vertical-offset="8115">
+          <caret line="422" column="44" selection-start-line="422" selection-start-column="44" selection-end-line="422" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/uiKit.js">
+    <entry file="file://$PROJECT_DIR$/Resources/script/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1307" max-vertical-offset="4395">
-          <caret line="122" column="21" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17865">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/script/UI.js">
+    <entry file="file://$PROJECT_DIR$/Resources/script/back.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="931" max-vertical-offset="3540">
-          <caret line="85" column="33" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="33" />
+        <state vertical-scroll-proportion="1.2181168" vertical-offset="673" max-vertical-offset="6300">
+          <caret line="113" column="32" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/proj.android/assets/script/Event.js">
+    <entry file="file://$PROJECT_DIR$/Resources/script/debug.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3834" max-vertical-offset="6540">
-          <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="309" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1380">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/items.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12832929" vertical-offset="404354" max-vertical-offset="405315">
+          <caret line="26964" column="6" selection-start-line="26964" selection-start-column="6" selection-end-line="26964" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/enhance.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11737089" vertical-offset="4805" max-vertical-offset="16260">
+          <caret line="327" column="14" selection-start-line="327" selection-start-column="14" selection-end-line="327" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/table/costs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.232394" vertical-offset="5268" max-vertical-offset="6570">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/script/itemInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2268" max-vertical-offset="7140">
+          <caret line="196" column="9" selection-start-line="196" selection-start-column="9" selection-end-line="196" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!block;n#onClose#0" expanded="false" />
+            <element signature="n#!!block;n#onSell#0" expanded="false" />
+            <element signature="n#!!block;n#canDissolve#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/script/sceneForge.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43382353" vertical-offset="6831" max-vertical-offset="20040">
-          <caret line="479" column="30" selection-start-line="479" selection-start-column="30" selection-end-line="479" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.38259834" vertical-offset="7734" max-vertical-offset="20820">
+          <caret line="537" column="28" selection-start-line="537" selection-start-column="28" selection-end-line="537" selection-end-column="28" />
           <folding />
         </state>
       </provider>

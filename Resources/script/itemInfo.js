@@ -168,7 +168,7 @@ function contentEquip(){
         enhance = parseInt(theItem.Enhance[0].lv);
     }
     var starLv = parseInt((enhance+1) / 8) % 6;
-    var barLv = (((enhance+1) == 40)? 8:parseInt(((enhance+1)%8)));
+    var barLv = ((enhance == 39)? 8:parseInt(((enhance+1)%8)));
     for(var i=1; i<6; ++i){
         var starName = "ehStar"+i;
         if( i <= starLv){
@@ -188,7 +188,14 @@ function contentEquip(){
         }
     }
 
-    //mergeRoleProperties(properties, EnhanceClass.property[enhance.lv]);
+    var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, theItemClass.enhanceID);
+    if( enhanceInfo != null ){
+        for ( var i=0; i<=enhance; i++ ){
+            if( enhanceInfo.property[i] != null){
+                mergeRoleProperties(properties, enhanceInfo.property[i]);
+            }
+        }
+    }
 
 
     //show property
@@ -220,6 +227,8 @@ function contentEquip(){
     }
 }
 
+
+//dissolve module is gonna be removed
 function onDissolve(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( !engine.user.player.checkUnlock("dissolve") ) return;
@@ -289,6 +298,7 @@ function onUse(sender){
     }, theLayer);
 }
 
+//equip/unequip module is gonna be removed
 function onEquip(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_InventoryUseItem, {
@@ -355,11 +365,11 @@ function onSell(sender){
 }
 
 function canDissolve(){
-    if( theItemClass.category == ITEM_EQUIPMENT ){
-        if( theItemClass.subcategory >= EquipSlot_MainHand
-            && theItemClass.subcategory < EquipSlot_StoreMainHand )
-            return true;
-    }
+//    if( theItemClass.category == ITEM_EQUIPMENT ){
+//        if( theItemClass.subcategory >= EquipSlot_MainHand
+//            && theItemClass.subcategory < EquipSlot_StoreMainHand )
+//            return true;
+//    }
     return false;
 }
 
@@ -374,7 +384,7 @@ function onEnter(){
 
     this.owner = {};
     this.owner.onSell = onSell;
-    this.owner.onDissolve = onDissolve;
+//    this.owner.onDissolve = onDissolve;
 
     var filename = "ui-iteminfo.ccbi";
     if( theItemClass.category != ITEM_EQUIPMENT ){
@@ -441,11 +451,11 @@ function onEnter(){
                 break;
             case ITEM_EQUIPMENT:
                 if( theItem.Status == ITEMSTATUS_EQUIPED ){
-                    operates.push({
-                        label: "buttontext-unequip.png",
-                        func: onEquip,
-                        obj: theLayer
-                    });
+//                    operates.push({
+//                        label: "buttontext-unequip.png",
+//                        func: onEquip,
+//                        obj: theLayer
+//                    });
                 }
                 else{
                     operates.push({

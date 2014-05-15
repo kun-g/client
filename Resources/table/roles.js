@@ -5,7 +5,10 @@ exports.data = [
 		"faction": "hero",
 		"classType": 0,
 		"avatar": "avatar.ccbi",
-		"emblem": "emblem-warrior2.png",
+		"emblem": [
+			"emblem-warrior.png",
+			"emblem-warrior2.png"
+		],
 		"property": {
 			"health": 35,
 			"attack": 3,
@@ -16,7 +19,15 @@ exports.data = [
 			"speed": 2,
 			"activeSpell": 0
 		},
-		"defaultArmors": 20,
+		"defaultArmors": [
+			6,
+			10,
+			11,
+			21,
+			22,
+			23,
+			20
+		],
 		"levelId": 0
 	},
 	{
@@ -25,7 +36,10 @@ exports.data = [
 		"faction": "hero",
 		"classType": 0,
 		"avatar": "avatar.ccbi",
-		"emblem": "emblem-mage2.png",
+		"emblem": [
+			"emblem-mage.png",
+			"emblem-mage2.png"
+		],
 		"property": {
 			"health": 21,
 			"attack": 5,
@@ -36,7 +50,15 @@ exports.data = [
 			"speed": 2,
 			"activeSpell": 5
 		},
-		"defaultArmors": 15,
+		"defaultArmors": [
+			6,
+			10,
+			11,
+			12,
+			13,
+			14,
+			15
+		],
 		"levelId": 1
 	},
 	{
@@ -45,7 +67,10 @@ exports.data = [
 		"faction": "hero",
 		"classType": 0,
 		"avatar": "avatar.ccbi",
-		"emblem": "emblem-priest2.png",
+		"emblem": [
+			"emblem-priest.png",
+			"emblem-priest2.png"
+		],
 		"property": {
 			"health": 25,
 			"attack": 2,
@@ -56,7 +81,15 @@ exports.data = [
 			"speed": 6,
 			"activeSpell": 8
 		},
-		"defaultArmors": 19,
+		"defaultArmors": [
+			6,
+			10,
+			11,
+			16,
+			17,
+			18,
+			19
+		],
 		"levelId": 2
 	},
 	{
@@ -4857,7 +4890,19 @@ exports.data = [
 			"speed": 65,
 			"activeSpell": "WallOfSheild"
 		},
-		"defaultArmors": 611,
+		"defaultArmors": [
+			6,
+			10,
+			11,
+			388,
+			389,
+			390,
+			391,
+			547,
+			548,
+			549,
+			611
+		],
 		"skill": {
 			"id": 13,
 			"level": 1
@@ -4879,7 +4924,18 @@ exports.data = [
 			"speed": 24,
 			"activeSpell": "Lightning"
 		},
-		"defaultArmors": 611,
+		"defaultArmors": [
+			6,
+			10,
+			11,
+			541,
+			544,
+			545,
+			546,
+			382,
+			383,
+			611
+		],
 		"skill": {
 			"id": 6,
 			"level": 1
@@ -5595,7 +5651,14 @@ exports.data = [
 			"health": 50,
 			"hairColor": 15
 		},
-		"defaultArmors": 11,
+		"defaultArmors": [
+			6,
+			554,
+			555,
+			556,
+			557,
+			11
+		],
 		"skill": [
 			{
 				"id": 74,
@@ -5618,7 +5681,16 @@ exports.data = [
 			"reactivity": 1,
 			"speed": 24
 		},
-		"defaultArmors": 11,
+		"defaultArmors": [
+			6,
+			554,
+			555,
+			556,
+			557,
+			98,
+			99,
+			11
+		],
 		"skill": [
 			{
 				"id": 77,

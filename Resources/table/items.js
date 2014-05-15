@@ -1,4 +1,4 @@
-exports.data =[
+exports.data = [
 	{
 		"classId": 0,
 		"label": "七色宝石",
@@ -128,10 +128,16 @@ exports.data =[
 				"file": "avatar-1-hair-2.ccbi"
 			}
 		],
-		"effectf": {
-			"part": "hair2",
-			"file": "avatar-1-hair2.ccbi"
-		}
+		"effectf": [
+			{
+				"part": "hair",
+				"file": "avatar-1-hair.ccbi"
+			},
+			{
+				"part": "hair2",
+				"file": "avatar-1-hair2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 8,
@@ -160,10 +166,16 @@ exports.data =[
 				"file": "avatar-3-hair-2.ccbi"
 			}
 		],
-		"effectf": {
-			"part": "hair3",
-			"file": "avatar-3-hair3.ccbi"
-		}
+		"effectf": [
+			{
+				"part": "hair",
+				"file": "avatar-3-hair.ccbi"
+			},
+			{
+				"part": "hair3",
+				"file": "avatar-3-hair3.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 10,
@@ -197,19 +209,35 @@ exports.data =[
 		"classId": 12,
 		"category": 1,
 		"subcategory": 4,
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg0.ccbi"
-		}
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg0.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg0.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 13,
 		"category": 1,
 		"subcategory": 2,
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand0.ccbi"
-		}
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest0.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand0.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand0.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 14,
@@ -239,19 +267,35 @@ exports.data =[
 		"classId": 16,
 		"category": 1,
 		"subcategory": 4,
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg0.ccbi"
-		}
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg0.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg0.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 17,
 		"category": 1,
 		"subcategory": 2,
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand0.ccbi"
-		}
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest0.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand0.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand0.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 18,
@@ -287,10 +331,16 @@ exports.data =[
 		"classId": 20,
 		"category": 1,
 		"subcategory": 4,
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg0.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg0.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg0.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		]
@@ -299,10 +349,20 @@ exports.data =[
 		"classId": 21,
 		"category": 1,
 		"subcategory": 2,
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand0.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest0.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand0.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand0.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		]
@@ -354,11 +414,37 @@ exports.data =[
 		"subcategory": 0,
 		"description": "欢迎来到地下城！这是为勇者们准备的礼物，点击领取。",
 		"quality": 1,
-		"prize": {
-			"type": 0,
-			"value": 535,
-			"count": 1
-		}
+		"prize": [
+			{
+				"type": 0,
+				"value": 0,
+				"count": 5
+			},
+			{
+				"type": 0,
+				"value": 540,
+				"count": 3
+			},
+			{
+				"type": 0,
+				"value": 455,
+				"count": 1
+			},
+			{
+				"type": 1,
+				"count": 2000
+			},
+			{
+				"type": 0,
+				"value": 538,
+				"count": 1
+			},
+			{
+				"type": 0,
+				"value": 535,
+				"count": 1
+			}
+		]
 	},
 	{
 		"classId": 26,
@@ -432,10 +518,16 @@ exports.data =[
 				"file": "avatar-5-hair-2.ccbi"
 			}
 		],
-		"effectf": {
-			"part": "hair3",
-			"file": "avatar-5-hair3.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "hair",
+				"file": "avatar-5-hair.ccbi"
+			},
+			{
+				"part": "hair3",
+				"file": "avatar-5-hair3.ccbi"
+			}
+		],
 		"quality": 0
 	},
 	{
@@ -448,10 +540,16 @@ exports.data =[
 				"file": "avatar-6-hair-2.ccbi"
 			}
 		],
-		"effectf": {
-			"part": "hair3",
-			"file": "avatar-6-hair3.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "hair",
+				"file": "avatar-6-hair.ccbi"
+			},
+			{
+				"part": "hair3",
+				"file": "avatar-6-hair3.ccbi"
+			}
+		],
 		"quality": 0
 	},
 	{
@@ -467,10 +565,16 @@ exports.data =[
 				"count": 5
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg1.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg1.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -503,10 +607,20 @@ exports.data =[
 				"count": 5
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest1.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand1.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand1.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -613,10 +727,16 @@ exports.data =[
 				"count": 5
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg1.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg1.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -648,10 +768,20 @@ exports.data =[
 				"count": 5
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest1.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand1.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand1.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -758,10 +888,16 @@ exports.data =[
 				"count": 5
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg1.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg1.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -794,10 +930,20 @@ exports.data =[
 				"count": 5
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest1.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand1.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand1.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -902,10 +1048,16 @@ exports.data =[
 				"count": 10
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg2.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -940,10 +1092,20 @@ exports.data =[
 				"count": 10
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand2.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -1053,10 +1215,16 @@ exports.data =[
 				"count": 10
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg2.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -1089,10 +1257,20 @@ exports.data =[
 				"count": 10
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand2.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -1203,10 +1381,16 @@ exports.data =[
 				"count": 10
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg2.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -1240,10 +1424,20 @@ exports.data =[
 				"count": 10
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand2.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -1353,10 +1547,16 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -1391,10 +1591,20 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -1505,10 +1715,16 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -1541,10 +1757,20 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -1656,10 +1882,16 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -1693,10 +1925,20 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -1806,10 +2048,16 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -1844,10 +2092,20 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -1958,10 +2216,16 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -1994,10 +2258,20 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -2109,10 +2383,16 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -2146,10 +2426,20 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -2261,10 +2551,16 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -2284,11 +2580,17 @@ exports.data =[
 		"sellGem": 25,
 		"enhanceID": 1,
 		"forgeID": 17,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 140
+		"forgeTarget": 140,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 81,
@@ -2302,10 +2604,20 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -2324,13 +2636,23 @@ exports.data =[
 		"sellGem": 25,
 		"enhanceID": 1,
 		"forgeID": 18,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"forgeTarget": 141,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"iconf": "emchest5.png",
-		"iconm": "emchest5-2.png",
-		"forgeTarget": 141
+		"iconm": "emchest5-2.png"
 	},
 	{
 		"classId": 82,
@@ -2422,10 +2744,16 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -2443,11 +2771,17 @@ exports.data =[
 		"sellGem": 25,
 		"enhanceID": 2,
 		"forgeID": 17,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 144
+		"forgeTarget": 144,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 85,
@@ -2461,10 +2795,20 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -2483,13 +2827,23 @@ exports.data =[
 		"sellGem": 25,
 		"enhanceID": 2,
 		"forgeID": 18,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand5-2.ccbi"
-		},
+		"forgeTarget": 145,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5-2.ccbi"
+			}
+		],
 		"iconf": "epchest5.png",
-		"iconm": "epchest5-2.png",
-		"forgeTarget": 145
+		"iconm": "epchest5-2.png"
 	},
 	{
 		"classId": 86,
@@ -2582,10 +2936,16 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -2619,10 +2979,20 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -2684,9 +3054,9 @@ exports.data =[
 		"sellGem": 25,
 		"enhanceID": 0,
 		"forgeID": 19,
+		"forgeTarget": 150,
 		"iconf": "ewsubweapon5.png",
-		"iconm": "ewsubweapon5-2.png",
-		"forgeTarget": 150
+		"iconm": "ewsubweapon5-2.png"
 	},
 	{
 		"classId": 91,
@@ -2741,10 +3111,16 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -2763,11 +3139,17 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 1,
 		"forgeID": 17,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 152
+		"forgeTarget": 152,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 93,
@@ -2781,10 +3163,20 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -2802,13 +3194,23 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 1,
 		"forgeID": 18,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"forgeTarget": 153,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"iconf": "emchest6.png",
-		"iconm": "emchest6-2.png",
-		"forgeTarget": 153
+		"iconm": "emchest6-2.png"
 	},
 	{
 		"classId": 94,
@@ -2898,10 +3300,16 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -2918,11 +3326,17 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 2,
 		"forgeID": 17,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 156
+		"forgeTarget": 156,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 97,
@@ -2936,10 +3350,20 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -2957,13 +3381,23 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 2,
 		"forgeID": 18,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand6-2.ccbi"
-		},
+		"forgeTarget": 157,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6-2.ccbi"
+			}
+		],
 		"iconf": "epchest6.png",
-		"iconm": "epchest6-2.png",
-		"forgeTarget": 157
+		"iconm": "epchest6-2.png"
 	},
 	{
 		"classId": 98,
@@ -3054,10 +3488,16 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -3090,10 +3530,20 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -3153,9 +3603,9 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 0,
 		"forgeID": 19,
+		"forgeTarget": 162,
 		"iconf": "ewsubweapon6.png",
-		"iconm": "ewsubweapon6-2.png",
-		"forgeTarget": 162
+		"iconm": "ewsubweapon6-2.png"
 	},
 	{
 		"classId": 103,
@@ -3209,10 +3659,16 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg2.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -3246,10 +3702,20 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand2.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -3357,10 +3823,16 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg2.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -3392,10 +3864,20 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand2.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -3504,10 +3986,16 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg2.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -3540,10 +4028,20 @@ exports.data =[
 				"count": 15
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand2.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand2.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -3650,10 +4148,16 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -3688,10 +4192,20 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -3802,10 +4316,16 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -3838,10 +4358,20 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -3953,10 +4483,16 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -3990,10 +4526,20 @@ exports.data =[
 				"count": 20
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -4105,10 +4651,16 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -4143,10 +4695,20 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -4257,10 +4819,16 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -4293,10 +4861,20 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -4408,10 +4986,16 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -4445,10 +5029,20 @@ exports.data =[
 				"count": 25
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -4560,10 +5154,16 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -4583,11 +5183,17 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 1,
 		"forgeID": 23,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 200
+		"forgeTarget": 200,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 141,
@@ -4601,10 +5207,20 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -4623,13 +5239,23 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 1,
 		"forgeID": 24,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"forgeTarget": 201,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"iconf": "emchest5.png",
-		"iconm": "emchest5-2.png",
-		"forgeTarget": 201
+		"iconm": "emchest5-2.png"
 	},
 	{
 		"classId": 142,
@@ -4721,10 +5347,16 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -4742,11 +5374,17 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 2,
 		"forgeID": 23,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 204
+		"forgeTarget": 204,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 145,
@@ -4760,10 +5398,20 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -4782,13 +5430,23 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 2,
 		"forgeID": 24,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand5-2.ccbi"
-		},
+		"forgeTarget": 205,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5-2.ccbi"
+			}
+		],
 		"iconf": "epchest5.png",
-		"iconm": "epchest5-2.png",
-		"forgeTarget": 205
+		"iconm": "epchest5-2.png"
 	},
 	{
 		"classId": 146,
@@ -4881,10 +5539,16 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -4918,10 +5582,20 @@ exports.data =[
 				"count": 30
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -4983,9 +5657,9 @@ exports.data =[
 		"sellGem": 30,
 		"enhanceID": 0,
 		"forgeID": 25,
+		"forgeTarget": 210,
 		"iconf": "ewsubweapon5.png",
-		"iconm": "ewsubweapon5-2.png",
-		"forgeTarget": 210
+		"iconm": "ewsubweapon5-2.png"
 	},
 	{
 		"classId": 151,
@@ -5040,10 +5714,16 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -5063,11 +5743,17 @@ exports.data =[
 		"sellGem": 35,
 		"enhanceID": 1,
 		"forgeID": 23,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 212
+		"forgeTarget": 212,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 153,
@@ -5081,10 +5767,20 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -5103,13 +5799,23 @@ exports.data =[
 		"sellGem": 35,
 		"enhanceID": 1,
 		"forgeID": 24,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"forgeTarget": 213,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"iconf": "emchest6.png",
-		"iconm": "emchest6-2.png",
-		"forgeTarget": 213
+		"iconm": "emchest6-2.png"
 	},
 	{
 		"classId": 154,
@@ -5199,10 +5905,16 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -5220,11 +5932,17 @@ exports.data =[
 		"sellGem": 35,
 		"enhanceID": 2,
 		"forgeID": 23,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 216
+		"forgeTarget": 216,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 157,
@@ -5238,10 +5956,20 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -5260,13 +5988,23 @@ exports.data =[
 		"sellGem": 35,
 		"enhanceID": 2,
 		"forgeID": 24,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand6-2.ccbi"
-		},
+		"forgeTarget": 217,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6-2.ccbi"
+			}
+		],
 		"iconf": "epchest6.png",
-		"iconm": "epchest6-2.png",
-		"forgeTarget": 217
+		"iconm": "epchest6-2.png"
 	},
 	{
 		"classId": 158,
@@ -5359,10 +6097,16 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -5396,10 +6140,20 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -5461,9 +6215,9 @@ exports.data =[
 		"sellGem": 35,
 		"enhanceID": 0,
 		"forgeID": 25,
+		"forgeTarget": 222,
 		"iconf": "ewsubweapon6.png",
-		"iconm": "ewsubweapon6-2.png",
-		"forgeTarget": 222
+		"iconm": "ewsubweapon6-2.png"
 	},
 	{
 		"classId": 163,
@@ -5518,10 +6272,16 @@ exports.data =[
 				"count": 40
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -5540,11 +6300,17 @@ exports.data =[
 		"sellGem": 40,
 		"enhanceID": 1,
 		"forgeID": 23,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg7-2.ccbi"
-		},
-		"forgeTarget": 224
+		"forgeTarget": 224,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 165,
@@ -5558,10 +6324,20 @@ exports.data =[
 				"count": 40
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -5579,13 +6355,23 @@ exports.data =[
 		"sellGem": 40,
 		"enhanceID": 1,
 		"forgeID": 24,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand7-2.ccbi"
-		},
+		"forgeTarget": 225,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "emchest7.png",
-		"iconm": "emchest7-2.png",
-		"forgeTarget": 225
+		"iconm": "emchest7-2.png"
 	},
 	{
 		"classId": 166,
@@ -5675,10 +6461,16 @@ exports.data =[
 				"count": 40
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -5695,11 +6487,17 @@ exports.data =[
 		"sellGem": 40,
 		"enhanceID": 2,
 		"forgeID": 23,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg7-2.ccbi"
-		},
-		"forgeTarget": 228
+		"forgeTarget": 228,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 169,
@@ -5713,10 +6511,20 @@ exports.data =[
 				"count": 40
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -5734,13 +6542,23 @@ exports.data =[
 		"sellGem": 40,
 		"enhanceID": 2,
 		"forgeID": 24,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand7-2.ccbi"
-		},
+		"forgeTarget": 229,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "epchest7.png",
-		"iconm": "epchest7-2.png",
-		"forgeTarget": 229
+		"iconm": "epchest7-2.png"
 	},
 	{
 		"classId": 170,
@@ -5831,10 +6649,16 @@ exports.data =[
 				"count": 40
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -5867,10 +6691,20 @@ exports.data =[
 				"count": 40
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -5930,9 +6764,9 @@ exports.data =[
 		"sellGem": 40,
 		"enhanceID": 0,
 		"forgeID": 25,
+		"forgeTarget": 234,
 		"iconf": "ewsubweapon7.png",
-		"iconm": "ewsubweapon7-2.png",
-		"forgeTarget": 234
+		"iconm": "ewsubweapon7-2.png"
 	},
 	{
 		"classId": 175,
@@ -5986,10 +6820,16 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -6023,10 +6863,20 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -6134,10 +6984,16 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -6169,10 +7025,20 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -6281,10 +7147,16 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg3.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg3.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -6317,10 +7189,20 @@ exports.data =[
 				"count": 35
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand3.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest3.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand3.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand3.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -6429,10 +7311,16 @@ exports.data =[
 				"count": 50
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -6467,10 +7355,20 @@ exports.data =[
 				"count": 50
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -6581,10 +7479,16 @@ exports.data =[
 				"count": 50
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -6617,10 +7521,20 @@ exports.data =[
 				"count": 50
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -6732,10 +7646,16 @@ exports.data =[
 				"count": 50
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -6769,10 +7689,20 @@ exports.data =[
 				"count": 50
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -6884,10 +7814,16 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -6907,11 +7843,17 @@ exports.data =[
 		"sellGem": 60,
 		"enhanceID": 1,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 260
+		"forgeTarget": 260,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 201,
@@ -6925,10 +7867,20 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -6947,13 +7899,23 @@ exports.data =[
 		"sellGem": 60,
 		"enhanceID": 1,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"forgeTarget": 261,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"iconf": "emchest5.png",
-		"iconm": "emchest5-2.png",
-		"forgeTarget": 261
+		"iconm": "emchest5-2.png"
 	},
 	{
 		"classId": 202,
@@ -7045,10 +8007,16 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -7066,11 +8034,17 @@ exports.data =[
 		"sellGem": 60,
 		"enhanceID": 2,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 264
+		"forgeTarget": 264,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 205,
@@ -7084,10 +8058,20 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -7106,13 +8090,23 @@ exports.data =[
 		"sellGem": 60,
 		"enhanceID": 2,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand5-2.ccbi"
-		},
+		"forgeTarget": 265,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5-2.ccbi"
+			}
+		],
 		"iconf": "epchest5.png",
-		"iconm": "epchest5-2.png",
-		"forgeTarget": 265
+		"iconm": "epchest5-2.png"
 	},
 	{
 		"classId": 206,
@@ -7205,10 +8199,16 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -7242,10 +8242,20 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -7307,9 +8317,9 @@ exports.data =[
 		"sellGem": 60,
 		"enhanceID": 0,
 		"forgeID": 31,
+		"forgeTarget": 270,
 		"iconf": "ewsubweapon5.png",
-		"iconm": "ewsubweapon5-2.png",
-		"forgeTarget": 270
+		"iconm": "ewsubweapon5-2.png"
 	},
 	{
 		"classId": 211,
@@ -7364,10 +8374,16 @@ exports.data =[
 				"count": 75
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -7387,11 +8403,17 @@ exports.data =[
 		"sellGem": 75,
 		"enhanceID": 1,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 272
+		"forgeTarget": 272,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 213,
@@ -7405,10 +8427,20 @@ exports.data =[
 				"count": 75
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -7427,13 +8459,23 @@ exports.data =[
 		"sellGem": 75,
 		"enhanceID": 1,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"forgeTarget": 273,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"iconf": "emchest6.png",
-		"iconm": "emchest6-2.png",
-		"forgeTarget": 273
+		"iconm": "emchest6-2.png"
 	},
 	{
 		"classId": 214,
@@ -7525,10 +8567,16 @@ exports.data =[
 				"count": 75
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -7546,11 +8594,17 @@ exports.data =[
 		"sellGem": 75,
 		"enhanceID": 2,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 276
+		"forgeTarget": 276,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 217,
@@ -7564,10 +8618,20 @@ exports.data =[
 				"count": 75
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -7586,13 +8650,23 @@ exports.data =[
 		"sellGem": 75,
 		"enhanceID": 2,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand6-2.ccbi"
-		},
+		"forgeTarget": 277,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6-2.ccbi"
+			}
+		],
 		"iconf": "epchest6.png",
-		"iconm": "epchest6-2.png",
-		"forgeTarget": 277
+		"iconm": "epchest6-2.png"
 	},
 	{
 		"classId": 218,
@@ -7685,10 +8759,16 @@ exports.data =[
 				"count": 75
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -7722,10 +8802,20 @@ exports.data =[
 				"count": 75
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -7787,9 +8877,9 @@ exports.data =[
 		"sellGem": 75,
 		"enhanceID": 0,
 		"forgeID": 31,
+		"forgeTarget": 282,
 		"iconf": "ewsubweapon6.png",
-		"iconm": "ewsubweapon6-2.png",
-		"forgeTarget": 282
+		"iconm": "ewsubweapon6-2.png"
 	},
 	{
 		"classId": 223,
@@ -7844,10 +8934,16 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -7867,11 +8963,17 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 1,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg7-2.ccbi"
-		},
-		"forgeTarget": 284
+		"forgeTarget": 284,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 225,
@@ -7885,10 +8987,20 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -7907,13 +9019,23 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 1,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand7-2.ccbi"
-		},
+		"forgeTarget": 285,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "emchest7.png",
-		"iconm": "emchest7-2.png",
-		"forgeTarget": 285
+		"iconm": "emchest7-2.png"
 	},
 	{
 		"classId": 226,
@@ -8005,10 +9127,16 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -8026,11 +9154,17 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 2,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg7-2.ccbi"
-		},
-		"forgeTarget": 288
+		"forgeTarget": 288,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 229,
@@ -8044,10 +9178,20 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -8066,13 +9210,23 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 2,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand7-2.ccbi"
-		},
+		"forgeTarget": 289,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "epchest7.png",
-		"iconm": "epchest7-2.png",
-		"forgeTarget": 289
+		"iconm": "epchest7-2.png"
 	},
 	{
 		"classId": 230,
@@ -8165,10 +9319,16 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -8202,10 +9362,20 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -8267,9 +9437,9 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 0,
 		"forgeID": 31,
+		"forgeTarget": 294,
 		"iconf": "ewsubweapon7.png",
-		"iconm": "ewsubweapon7-2.png",
-		"forgeTarget": 294
+		"iconm": "ewsubweapon7-2.png"
 	},
 	{
 		"classId": 235,
@@ -8324,10 +9494,16 @@ exports.data =[
 				"count": 110
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -8346,11 +9522,17 @@ exports.data =[
 		"sellGem": 110,
 		"enhanceID": 1,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg8-2.ccbi"
-		},
-		"forgeTarget": 296
+		"forgeTarget": 296,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg8-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg8-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 237,
@@ -8364,10 +9546,20 @@ exports.data =[
 				"count": 110
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -8385,13 +9577,23 @@ exports.data =[
 		"sellGem": 110,
 		"enhanceID": 1,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand8-2.ccbi"
-		},
+		"forgeTarget": 297,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest8-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand8-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand8-2.ccbi"
+			}
+		],
 		"iconf": "emchest8.png",
-		"iconm": "emchest8-2.png",
-		"forgeTarget": 297
+		"iconm": "emchest8-2.png"
 	},
 	{
 		"classId": 238,
@@ -8481,10 +9683,16 @@ exports.data =[
 				"count": 110
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -8501,11 +9709,17 @@ exports.data =[
 		"sellGem": 110,
 		"enhanceID": 2,
 		"forgeID": 29,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg8-2.ccbi"
-		},
-		"forgeTarget": 300
+		"forgeTarget": 300,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg8-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg8-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 241,
@@ -8519,10 +9733,20 @@ exports.data =[
 				"count": 110
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -8540,13 +9764,23 @@ exports.data =[
 		"sellGem": 110,
 		"enhanceID": 2,
 		"forgeID": 30,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand8-2.ccbi"
-		},
+		"forgeTarget": 301,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest8-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand8-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand8-2.ccbi"
+			}
+		],
 		"iconf": "epchest8.png",
-		"iconm": "epchest8-2.png",
-		"forgeTarget": 301
+		"iconm": "epchest8-2.png"
 	},
 	{
 		"classId": 242,
@@ -8637,10 +9871,16 @@ exports.data =[
 				"count": 110
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg8.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -8673,10 +9913,20 @@ exports.data =[
 				"count": 110
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand8.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -8785,10 +10035,16 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "mage-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -8822,10 +10078,20 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "mage-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "mage-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -8933,10 +10199,16 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "priest-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -8968,10 +10240,20 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "priest-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "priest-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -9080,10 +10362,16 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg4.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -9116,10 +10404,20 @@ exports.data =[
 				"count": 60
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand4.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest4.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand4.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand4.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -9228,10 +10526,16 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -9251,11 +10555,17 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 1,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 320
+		"forgeTarget": 320,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 261,
@@ -9269,10 +10579,20 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -9291,13 +10611,23 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 1,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"forgeTarget": 321,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"iconf": "emchest5.png",
-		"iconm": "emchest5-2.png",
-		"forgeTarget": 321
+		"iconm": "emchest5-2.png"
 	},
 	{
 		"classId": 262,
@@ -9389,10 +10719,16 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -9410,11 +10746,17 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 2,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg5-2.ccbi"
-		},
-		"forgeTarget": 324
+		"forgeTarget": 324,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 265,
@@ -9428,10 +10770,20 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -9450,13 +10802,23 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 2,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand5-2.ccbi"
-		},
+		"forgeTarget": 325,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5-2.ccbi"
+			}
+		],
 		"iconf": "epchest5.png",
-		"iconm": "epchest5-2.png",
-		"forgeTarget": 325
+		"iconm": "epchest5-2.png"
 	},
 	{
 		"classId": 266,
@@ -9549,10 +10911,16 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -9586,10 +10954,20 @@ exports.data =[
 				"count": 90
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -9651,9 +11029,9 @@ exports.data =[
 		"sellGem": 90,
 		"enhanceID": 0,
 		"forgeID": 37,
+		"forgeTarget": 330,
 		"iconf": "ewsubweapon5.png",
-		"iconm": "ewsubweapon5-2.png",
-		"forgeTarget": 330
+		"iconm": "ewsubweapon5-2.png"
 	},
 	{
 		"classId": 271,
@@ -9708,10 +11086,16 @@ exports.data =[
 				"count": 120
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -9731,11 +11115,17 @@ exports.data =[
 		"sellGem": 120,
 		"enhanceID": 1,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 332
+		"forgeTarget": 332,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 273,
@@ -9749,10 +11139,20 @@ exports.data =[
 				"count": 120
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -9771,13 +11171,23 @@ exports.data =[
 		"sellGem": 120,
 		"enhanceID": 1,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"forgeTarget": 333,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"iconf": "emchest6.png",
-		"iconm": "emchest6-2.png",
-		"forgeTarget": 333
+		"iconm": "emchest6-2.png"
 	},
 	{
 		"classId": 274,
@@ -9869,10 +11279,16 @@ exports.data =[
 				"count": 120
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -9890,11 +11306,17 @@ exports.data =[
 		"sellGem": 120,
 		"enhanceID": 2,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg6-2.ccbi"
-		},
-		"forgeTarget": 336
+		"forgeTarget": 336,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 277,
@@ -9908,10 +11330,20 @@ exports.data =[
 				"count": 120
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -9930,13 +11362,23 @@ exports.data =[
 		"sellGem": 120,
 		"enhanceID": 2,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand6-2.ccbi"
-		},
+		"forgeTarget": 337,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6-2.ccbi"
+			}
+		],
 		"iconf": "epchest6.png",
-		"iconm": "epchest6-2.png",
-		"forgeTarget": 337
+		"iconm": "epchest6-2.png"
 	},
 	{
 		"classId": 278,
@@ -10029,10 +11471,16 @@ exports.data =[
 				"count": 120
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -10066,10 +11514,20 @@ exports.data =[
 				"count": 120
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -10131,9 +11589,9 @@ exports.data =[
 		"sellGem": 120,
 		"enhanceID": 0,
 		"forgeID": 37,
+		"forgeTarget": 342,
 		"iconf": "ewsubweapon6.png",
-		"iconm": "ewsubweapon6-2.png",
-		"forgeTarget": 342
+		"iconm": "ewsubweapon6-2.png"
 	},
 	{
 		"classId": 283,
@@ -10188,10 +11646,16 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -10211,11 +11675,17 @@ exports.data =[
 		"sellGem": 150,
 		"enhanceID": 1,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg7-2.ccbi"
-		},
-		"forgeTarget": 344
+		"forgeTarget": 344,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 285,
@@ -10229,10 +11699,20 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -10251,13 +11731,23 @@ exports.data =[
 		"sellGem": 150,
 		"enhanceID": 1,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand7-2.ccbi"
-		},
+		"forgeTarget": 345,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "emchest7.png",
-		"iconm": "emchest7-2.png",
-		"forgeTarget": 345
+		"iconm": "emchest7-2.png"
 	},
 	{
 		"classId": 286,
@@ -10349,10 +11839,16 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -10370,11 +11866,17 @@ exports.data =[
 		"sellGem": 150,
 		"enhanceID": 2,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg7-2.ccbi"
-		},
-		"forgeTarget": 348
+		"forgeTarget": 348,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 289,
@@ -10388,10 +11890,20 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -10410,13 +11922,23 @@ exports.data =[
 		"sellGem": 150,
 		"enhanceID": 2,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand7-2.ccbi"
-		},
+		"forgeTarget": 349,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "epchest7.png",
-		"iconm": "epchest7-2.png",
-		"forgeTarget": 349
+		"iconm": "epchest7-2.png"
 	},
 	{
 		"classId": 290,
@@ -10509,10 +12031,16 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -10546,10 +12074,20 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -10611,9 +12149,9 @@ exports.data =[
 		"sellGem": 150,
 		"enhanceID": 0,
 		"forgeID": 37,
+		"forgeTarget": 354,
 		"iconf": "ewsubweapon7.png",
-		"iconm": "ewsubweapon7-2.png",
-		"forgeTarget": 354
+		"iconm": "ewsubweapon7-2.png"
 	},
 	{
 		"classId": 295,
@@ -10668,10 +12206,16 @@ exports.data =[
 				"count": 180
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -10691,11 +12235,17 @@ exports.data =[
 		"sellGem": 180,
 		"enhanceID": 1,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg8-2.ccbi"
-		},
-		"forgeTarget": 356
+		"forgeTarget": 356,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg8-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg8-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 297,
@@ -10709,10 +12259,20 @@ exports.data =[
 				"count": 180
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -10731,13 +12291,23 @@ exports.data =[
 		"sellGem": 180,
 		"enhanceID": 1,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand8-2.ccbi"
-		},
+		"forgeTarget": 357,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest8-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand8-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand8-2.ccbi"
+			}
+		],
 		"iconf": "emchest8.png",
-		"iconm": "emchest8-2.png",
-		"forgeTarget": 357
+		"iconm": "emchest8-2.png"
 	},
 	{
 		"classId": 298,
@@ -10829,10 +12399,16 @@ exports.data =[
 				"count": 180
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -10850,11 +12426,17 @@ exports.data =[
 		"sellGem": 180,
 		"enhanceID": 2,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg8-2.ccbi"
-		},
-		"forgeTarget": 360
+		"forgeTarget": 360,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg8-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg8-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 301,
@@ -10868,10 +12450,20 @@ exports.data =[
 				"count": 180
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -10890,13 +12482,23 @@ exports.data =[
 		"sellGem": 180,
 		"enhanceID": 2,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand8-2.ccbi"
-		},
+		"forgeTarget": 361,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest8-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand8-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand8-2.ccbi"
+			}
+		],
 		"iconf": "epchest8.png",
-		"iconm": "epchest8-2.png",
-		"forgeTarget": 361
+		"iconm": "epchest8-2.png"
 	},
 	{
 		"classId": 302,
@@ -10989,10 +12591,16 @@ exports.data =[
 				"count": 180
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg8.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -11026,10 +12634,20 @@ exports.data =[
 				"count": 180
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand8.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -11141,10 +12759,16 @@ exports.data =[
 				"count": 210
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg9.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg9.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -11163,11 +12787,17 @@ exports.data =[
 		"sellGem": 210,
 		"enhanceID": 1,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg9-2.ccbi"
-		},
-		"forgeTarget": 368
+		"forgeTarget": 368,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg9-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg9-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 309,
@@ -11181,10 +12811,20 @@ exports.data =[
 				"count": 210
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest9.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand9.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand9.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -11202,13 +12842,23 @@ exports.data =[
 		"sellGem": 210,
 		"enhanceID": 1,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand9-2.ccbi"
-		},
+		"forgeTarget": 369,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest9-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand9-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand9-2.ccbi"
+			}
+		],
 		"iconf": "emchest9.png",
-		"iconm": "emchest9-2.png",
-		"forgeTarget": 369
+		"iconm": "emchest9-2.png"
 	},
 	{
 		"classId": 310,
@@ -11298,10 +12948,16 @@ exports.data =[
 				"count": 210
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg9.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg9.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -11318,11 +12974,17 @@ exports.data =[
 		"sellGem": 210,
 		"enhanceID": 2,
 		"forgeID": 35,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg9-2.ccbi"
-		},
-		"forgeTarget": 372
+		"forgeTarget": 372,
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg9-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg9-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 313,
@@ -11336,10 +12998,20 @@ exports.data =[
 				"count": 210
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest9.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand9.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand9.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -11357,13 +13029,23 @@ exports.data =[
 		"sellGem": 210,
 		"enhanceID": 2,
 		"forgeID": 36,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand9-2.ccbi"
-		},
+		"forgeTarget": 373,
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest9-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand9-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand9-2.ccbi"
+			}
+		],
 		"iconf": "epchest9.png",
-		"iconm": "epchest9-2.png",
-		"forgeTarget": 373
+		"iconm": "epchest9-2.png"
 	},
 	{
 		"classId": 314,
@@ -11453,10 +13135,16 @@ exports.data =[
 				"count": 210
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg9.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg9.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg9.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -11489,10 +13177,20 @@ exports.data =[
 				"count": 210
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand9.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest9.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand9.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand9.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -11601,10 +13299,16 @@ exports.data =[
 				"count": 100
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -11623,10 +13327,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 100,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg5-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 321,
@@ -11640,10 +13350,20 @@ exports.data =[
 				"count": 100
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -11661,10 +13381,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 100,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand5.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand5.ccbi"
+			}
+		],
 		"iconf": "emchest5.png",
 		"iconm": "emchest5-2.png"
 	},
@@ -11754,10 +13484,16 @@ exports.data =[
 				"count": 100
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -11774,10 +13510,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 100,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg5-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg5-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg5-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 325,
@@ -11791,10 +13533,20 @@ exports.data =[
 				"count": 100
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand5.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -11812,10 +13564,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 100,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand5-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest5-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand5-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand5-2.ccbi"
+			}
+		],
 		"iconf": "epchest5.png",
 		"iconm": "epchest5-2.png"
 	},
@@ -11906,10 +13668,16 @@ exports.data =[
 				"count": 100
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg5.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -11941,10 +13709,20 @@ exports.data =[
 				"count": 100
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand5.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest5.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand5.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand5.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -12057,10 +13835,16 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -12079,10 +13863,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 150,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg6-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 333,
@@ -12096,10 +13886,20 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -12117,10 +13917,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 150,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand6.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand6.ccbi"
+			}
+		],
 		"iconf": "emchest6.png",
 		"iconm": "emchest6-2.png"
 	},
@@ -12210,10 +14020,16 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -12230,10 +14046,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 150,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg6-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg6-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg6-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 337,
@@ -12247,10 +14069,20 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand6.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -12268,10 +14100,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 150,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand6-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest6-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand6-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand6-2.ccbi"
+			}
+		],
 		"iconf": "epchest6.png",
 		"iconm": "epchest6-2.png"
 	},
@@ -12362,10 +14204,16 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg6.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -12397,10 +14245,20 @@ exports.data =[
 				"count": 150
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand6.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest6.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand6.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand6.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -12513,10 +14371,16 @@ exports.data =[
 				"count": 200
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -12535,10 +14399,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 200,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg7-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 345,
@@ -12552,10 +14422,20 @@ exports.data =[
 				"count": 200
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -12573,10 +14453,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 200,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand7-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "emchest7.png",
 		"iconm": "emchest7-2.png"
 	},
@@ -12666,10 +14556,16 @@ exports.data =[
 				"count": 200
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -12686,10 +14582,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 200,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg7-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg7-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg7-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 349,
@@ -12703,10 +14605,20 @@ exports.data =[
 				"count": 200
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand7.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -12724,10 +14636,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 200,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand7-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest7-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand7-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand7-2.ccbi"
+			}
+		],
 		"iconf": "epchest7.png",
 		"iconm": "epchest7-2.png"
 	},
@@ -12818,10 +14740,16 @@ exports.data =[
 				"count": 200
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg7.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -12853,10 +14781,20 @@ exports.data =[
 				"count": 200
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand7.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest7.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand7.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand7.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -12969,10 +14907,16 @@ exports.data =[
 				"count": 250
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -12991,10 +14935,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 250,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg8-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg8-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg8-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 357,
@@ -13008,10 +14958,20 @@ exports.data =[
 				"count": 250
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -13029,10 +14989,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 250,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand8-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest8-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand8-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand8-2.ccbi"
+			}
+		],
 		"iconf": "emchest8.png",
 		"iconm": "emchest8-2.png"
 	},
@@ -13122,10 +15092,16 @@ exports.data =[
 				"count": 250
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -13142,10 +15118,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 250,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg8-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg8-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg8-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 361,
@@ -13159,10 +15141,20 @@ exports.data =[
 				"count": 250
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand8.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -13180,10 +15172,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 250,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand8-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest8-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand8-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand8-2.ccbi"
+			}
+		],
 		"iconf": "epchest8.png",
 		"iconm": "epchest8-2.png"
 	},
@@ -13274,10 +15276,16 @@ exports.data =[
 				"count": 250
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg8.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg8.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg8.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -13309,10 +15317,20 @@ exports.data =[
 				"count": 250
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand8.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest8.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand8.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand8.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -13418,10 +15436,16 @@ exports.data =[
 				"count": 300
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg9.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg9.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -13440,10 +15464,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 300,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg9-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg9-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg9-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 369,
@@ -13457,10 +15487,20 @@ exports.data =[
 				"count": 300
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest9.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand9.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand9.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -13478,10 +15518,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 300,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand9-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest9-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand9-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand9-2.ccbi"
+			}
+		],
 		"iconf": "emchest9.png",
 		"iconm": "emchest9-2.png"
 	},
@@ -13571,10 +15621,16 @@ exports.data =[
 				"count": 300
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg9.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg9.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -13591,10 +15647,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 300,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg9-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg9-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg9-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 373,
@@ -13608,10 +15670,20 @@ exports.data =[
 				"count": 300
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand9.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest9.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand9.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand9.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -13629,10 +15701,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 300,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand9-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest9-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand9-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand9-2.ccbi"
+			}
+		],
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
 	},
@@ -13723,10 +15805,16 @@ exports.data =[
 				"count": 300
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg9.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg9.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg9.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -13758,10 +15846,20 @@ exports.data =[
 				"count": 300
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand9.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest9.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand9.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand9.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -13866,10 +15964,16 @@ exports.data =[
 				"count": 400
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "mage-rightleg10.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg10.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg10.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -13887,10 +15991,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 400,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "rightleg",
-			"file": "mage-rightleg10-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "mage-leftleg10-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "mage-rightleg10-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 381,
@@ -13904,10 +16014,20 @@ exports.data =[
 				"count": 400
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "mage-lefthand10.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "mage-chest10.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand10.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand10.ccbi"
+			}
+		],
 		"classLimit": [
 			1
 		],
@@ -13924,10 +16044,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 400,
 		"enhanceID": 1,
-		"effectm": {
-			"part": "lefthand",
-			"file": "mage-lefthand10-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "mage-chest10-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "mage-righthand10-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "mage-lefthand10-2.ccbi"
+			}
+		],
 		"iconf": "emchest10.png",
 		"iconm": "emchest10-2.png"
 	},
@@ -14015,10 +16145,16 @@ exports.data =[
 				"count": 400
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "priest-rightleg10.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg10.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg10.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -14034,10 +16170,16 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 400,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "rightleg",
-			"file": "priest-rightleg10-2.ccbi"
-		}
+		"effectm": [
+			{
+				"part": "leftleg",
+				"file": "priest-leftleg10-2.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "priest-rightleg10-2.ccbi"
+			}
+		]
 	},
 	{
 		"classId": 385,
@@ -14051,10 +16193,20 @@ exports.data =[
 				"count": 400
 			}
 		],
-		"effectf": {
-			"part": "lefthand",
-			"file": "priest-lefthand10.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "priest-chest10.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand10.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand10.ccbi"
+			}
+		],
 		"classLimit": [
 			2
 		],
@@ -14071,10 +16223,20 @@ exports.data =[
 		"autoUse": true,
 		"sellGem": 400,
 		"enhanceID": 2,
-		"effectm": {
-			"part": "lefthand",
-			"file": "priest-lefthand10-2.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "priest-chest10-2.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "priest-righthand10-2.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "priest-lefthand10-2.ccbi"
+			}
+		],
 		"iconf": "epchest10.png",
 		"iconm": "epchest10-2.png"
 	},
@@ -14163,10 +16325,16 @@ exports.data =[
 				"count": 400
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "warrior-rightleg10.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "leftleg",
+				"file": "warrior-leftleg10.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "warrior-rightleg10.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -14197,10 +16365,20 @@ exports.data =[
 				"count": 400
 			}
 		],
-		"effecta": {
-			"part": "lefthand",
-			"file": "warrior-lefthand10.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "chest",
+				"file": "warrior-chest10.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "warrior-righthand10.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "warrior-lefthand10.ccbi"
+			}
+		],
 		"classLimit": [
 			0
 		],
@@ -17493,11 +19671,6 @@ exports.data =[
 		"description": "饮用后可以立即恢复50点精力值。",
 		"stack": 10,
 		"sellprice": 450,
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"storeOnly": true,
 		"autoUse": true,
 		"function": "recoverEnergy",
@@ -17512,11 +19685,6 @@ exports.data =[
 		"description": "饮用后可以立即恢复100点精力值，斗志满满！",
 		"stack": 10,
 		"sellprice": 800,
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"storeOnly": true,
 		"autoUse": true,
 		"function": "recoverEnergy",
@@ -17530,11 +19698,6 @@ exports.data =[
 		"description": "在战斗中可以使全队复活的神奇药水。",
 		"stack": 25,
 		"sellprice": 300,
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"storeOnly": true
 	},
 	{
@@ -17543,15 +19706,28 @@ exports.data =[
 		"category": 1,
 		"subcategory": 12,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "chest",
+				"file": "ff1-chest-c.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff1-righthand-c.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff1-lefthand-c.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff1-leftleg-c.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff1-rightleg-c.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "ff1-rightleg-c.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17563,11 +19739,6 @@ exports.data =[
 		"category": 1,
 		"subcategory": 11,
 		"description": "寄宿着光明之神力量的传奇十字架",
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"effecta": [
 			{
 				"part": "secondaryweapon2",
@@ -17582,11 +19753,6 @@ exports.data =[
 		"icon": "epmainweapon9.png",
 		"category": 1,
 		"subcategory": 10,
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"effecta": [
 			{
 				"part": "mainweapon",
@@ -17603,11 +19769,6 @@ exports.data =[
 		"category": 1,
 		"subcategory": 13,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"effecta": [
 			{
 				"part": "helmet",
@@ -17624,15 +19785,16 @@ exports.data =[
 		"category": 1,
 		"subcategory": 14,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "hair",
+				"file": "avatar-7-hair.ccbi"
+			},
+			{
+				"part": "hair3",
+				"file": "avatar-7-hair3.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "hair3",
-			"file": "avatar-7-hair3.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17643,15 +19805,16 @@ exports.data =[
 		"category": 1,
 		"subcategory": 15,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "eye",
+				"file": "avatar-2-eye-yellow.ccbi"
+			},
+			{
+				"part": "brow",
+				"file": "avatar-2-brow.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "brow",
-			"file": "avatar-2-brow.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17662,15 +19825,28 @@ exports.data =[
 		"category": 1,
 		"subcategory": 12,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "chest",
+				"file": "fm1-chest-c.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "fm1-righthand-c.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "fm1-lefthand-c.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "fm1-leftleg-c.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "fm1-rightleg-c.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "fm1-rightleg-c.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17681,11 +19857,6 @@ exports.data =[
 		"category": 1,
 		"subcategory": 14,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"effecta": [
 			{
 				"part": "hair",
@@ -17702,15 +19873,16 @@ exports.data =[
 		"category": 1,
 		"subcategory": 15,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "eye",
+				"file": "avatar-2-eye-green-2.ccbi"
+			},
+			{
+				"part": "brow",
+				"file": "avatar-2-brow-2.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "brow",
-			"file": "avatar-2-brow-2.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17721,19 +19893,21 @@ exports.data =[
 		"icon": "item-vipbox1.png",
 		"category": 0,
 		"subcategory": 0,
-		"description": "内含金块X3，七色宝石X10，小瓶活力药剂X1（每日限购1个）",
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
+		"description": "内含金块X3，小瓶活力药剂X1（每日限购1个）",
 		"quality": 1,
-		"prize": {
-			"type": 0,
-			"value": 28,
-			"count": 3
-		},
-		"storeOnly": true
+		"storeOnly": true,
+		"prize": [
+			{
+				"type": 0,
+				"value": 28,
+				"count": 3
+			},
+			{
+				"type": 0,
+				"value": 538,
+				"count": 1
+			}
+		]
 	},
 	{
 		"classId": 551,
@@ -17742,24 +19916,55 @@ exports.data =[
 		"subcategory": 12,
 		"description": "兼顾外形与力量，是荣誉的象征。",
 		"sellprice": 1500,
-		"transPrize": [
+		"effectf": [
 			{
-				"type": 2
+				"part": "chest",
+				"file": "ff1-chest-c.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff1-righthand-c.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff1-lefthand-c.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff1-leftleg-c.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff1-rightleg-c.ccbi"
 			}
 		],
-		"effectf": {
-			"part": "rightleg",
-			"file": "ff1-rightleg-c.ccbi"
-		},
 		"basic_properties": {
 			"health": 30,
 			"attack": 8
 		},
 		"storeOnly": true,
-		"effectm": {
-			"part": "rightleg",
-			"file": "fm1-rightleg-c.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "fm1-chest-c.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "fm1-righthand-c.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "fm1-lefthand-c.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "fm1-leftleg-c.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "fm1-rightleg-c.ccbi"
+			}
+		],
 		"iconf": "rfasion-female1-cloth.png",
 		"iconm": "rfasion-male1-cloth.png"
 	},
@@ -17770,11 +19975,6 @@ exports.data =[
 		"subcategory": 13,
 		"description": "荣誉的象征，并且拥有专注力量的祝福。",
 		"sellprice": 500,
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"effectf": [
 			{
 				"part": "helmet",
@@ -17801,11 +20001,6 @@ exports.data =[
 		"category": 0,
 		"subcategory": 0,
 		"description": "内含金块X10（每日限购1个）",
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"quality": 1,
 		"storeOnly": true,
 		"prize": [
@@ -17822,15 +20017,28 @@ exports.data =[
 		"category": 1,
 		"subcategory": 12,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "chest",
+				"file": "ff2-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff2-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff2-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff2-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff2-rightleg.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "rightleg",
-			"file": "ff2-rightleg.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17841,11 +20049,6 @@ exports.data =[
 		"category": 1,
 		"subcategory": 13,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
-			{
-				"type": 2
-			}
-		],
 		"effecta": [
 			{
 				"part": "helmet",
@@ -17862,15 +20065,16 @@ exports.data =[
 		"category": 1,
 		"subcategory": 14,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "hair",
+				"file": "avatar-8-hair.ccbi"
+			},
+			{
+				"part": "hair3",
+				"file": "avatar-8-hair3.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "hair3",
-			"file": "avatar-8-hair3.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -17881,15 +20085,16 @@ exports.data =[
 		"category": 1,
 		"subcategory": 15,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"transPrize": [
+		"effecta": [
 			{
-				"type": 2
+				"part": "eye",
+				"file": "avatar-2-eye-blue.ccbi"
+			},
+			{
+				"part": "brow",
+				"file": "avatar-2-brow.ccbi"
 			}
 		],
-		"effecta": {
-			"part": "brow",
-			"file": "avatar-2-brow.ccbi"
-		},
 		"storeOnly": true,
 		"iconf": "epchest9.png",
 		"iconm": "epchest9-2.png"
@@ -19136,10 +21341,36 @@ exports.data =[
 		"category": 1,
 		"subcategory": 16,
 		"description": "光明的意思是会发光的，不是透明的的⋯⋯",
-		"effecta": {
-			"part": "avatar-wing2",
-			"file": "wing1.ccbi"
-		},
+		"effecta": [
+			{
+				"part": "avatar-wing-1",
+				"file": "wing1-1.ccbi"
+			},
+			{
+				"part": "avatar-wing-2",
+				"file": "wing1-1.ccbi"
+			},
+			{
+				"part": "avatar-wing-3",
+				"file": "wing1-1.ccbi"
+			},
+			{
+				"part": "avatar-wing-4",
+				"file": "wing1-1.ccbi"
+			},
+			{
+				"part": "avatar-wing-5",
+				"file": "wing1-1.ccbi"
+			},
+			{
+				"part": "avatar-wing1",
+				"file": "wing1.ccbi"
+			},
+			{
+				"part": "avatar-wing2",
+				"file": "wing1.ccbi"
+			}
+		],
 		"storeOnly": true
 	},
 	{
@@ -19186,15 +21417,51 @@ exports.data =[
 		"subcategory": 12,
 		"description": "兼顾外形与力量，是荣誉的象征。",
 		"sellprice": 1500,
-		"effectf": {
-			"part": "rightleg",
-			"file": "ff1-rightleg.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "ff1-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff1-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff1-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff1-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff1-rightleg.ccbi"
+			}
+		],
 		"storeOnly": true,
-		"effectm": {
-			"part": "rightleg",
-			"file": "fm1-rightleg.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "fm1-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "fm1-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "fm1-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "fm1-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "fm1-rightleg.ccbi"
+			}
+		],
 		"iconf": "rfasion-female1-cloth.png",
 		"iconm": "rfasion-male1-cloth.png"
 	},
@@ -19228,15 +21495,51 @@ exports.data =[
 		"subcategory": 12,
 		"description": "注重礼仪的服饰，能够给人舒心的感觉。",
 		"sellprice": 1500,
-		"effectf": {
-			"part": "rightleg",
-			"file": "ff3-rightleg.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "ff3-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff3-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff3-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff3-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff3-rightleg.ccbi"
+			}
+		],
 		"storeOnly": true,
-		"effectm": {
-			"part": "rightleg",
-			"file": "fm3-rightleg.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "fm3-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "fm3-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "fm3-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "fm3-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "fm3-rightleg.ccbi"
+			}
+		],
 		"iconf": "rfasion-female3-cloth.png",
 		"iconm": "rfasion-male3-cloth.png"
 	},
@@ -19270,15 +21573,51 @@ exports.data =[
 		"subcategory": 12,
 		"description": "和风的气息扑面而来。",
 		"sellprice": 1500,
-		"effectf": {
-			"part": "rightleg",
-			"file": "ff4-rightleg.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "ff4-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff4-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff4-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff4-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff4-rightleg.ccbi"
+			}
+		],
 		"storeOnly": true,
-		"effectm": {
-			"part": "rightleg",
-			"file": "fm4-rightleg.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "fm4-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "fm4-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "fm4-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "fm4-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "fm4-rightleg.ccbi"
+			}
+		],
 		"iconf": "rfasion-female4-cloth.png",
 		"iconm": "rfasion-male4-cloth.png"
 	},
@@ -19312,15 +21651,51 @@ exports.data =[
 		"subcategory": 12,
 		"description": "懒洋洋套装，软软肉球招人喜爱。",
 		"sellprice": 1500,
-		"effectf": {
-			"part": "rightleg",
-			"file": "ff5-rightleg.ccbi"
-		},
+		"effectf": [
+			{
+				"part": "chest",
+				"file": "ff5-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "ff5-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "ff5-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "ff5-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "ff5-rightleg.ccbi"
+			}
+		],
 		"storeOnly": true,
-		"effectm": {
-			"part": "rightleg",
-			"file": "fm5-rightleg.ccbi"
-		},
+		"effectm": [
+			{
+				"part": "chest",
+				"file": "fm5-chest.ccbi"
+			},
+			{
+				"part": "righthand",
+				"file": "fm5-righthand.ccbi"
+			},
+			{
+				"part": "lefthand",
+				"file": "fm5-lefthand.ccbi"
+			},
+			{
+				"part": "leftleg",
+				"file": "fm5-leftleg.ccbi"
+			},
+			{
+				"part": "rightleg",
+				"file": "fm5-rightleg.ccbi"
+			}
+		],
 		"iconf": "rfasion-female5-cloth.png",
 		"iconm": "rfasion-male5-cloth.png"
 	},
@@ -24081,7 +26456,7 @@ exports.data =[
 	{
 		"classId": 802,
 		"label": "猫眼石粉末",
-		"icon": "item-sjw1",
+		"icon": "item-sjw1.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24091,7 +26466,7 @@ exports.data =[
 	{
 		"classId": 803,
 		"label": "碎铜块",
-		"icon": "item-sjw2",
+		"icon": "item-sjw2.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24101,7 +26476,7 @@ exports.data =[
 	{
 		"classId": 804,
 		"label": "羊皮纸残骸",
-		"icon": "item-sjw3",
+		"icon": "item-sjw3.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24181,7 +26556,7 @@ exports.data =[
 	{
 		"classId": 812,
 		"label": "残破战旗",
-		"icon": "item-sjw11",
+		"icon": "item-sjw11.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24191,7 +26566,7 @@ exports.data =[
 	{
 		"classId": 813,
 		"label": "铁矿石",
-		"icon": "item-sjg1",
+		"icon": "item-sjg1.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24201,7 +26576,7 @@ exports.data =[
 	{
 		"classId": 814,
 		"label": "绿水晶",
-		"icon": "item-sjg2",
+		"icon": "item-sjg2.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24211,7 +26586,7 @@ exports.data =[
 	{
 		"classId": 815,
 		"label": "魔法碎块",
-		"icon": "item-sjg3",
+		"icon": "item-sjg3.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24221,7 +26596,7 @@ exports.data =[
 	{
 		"classId": 816,
 		"label": "羊皮卷轴",
-		"icon": "item-sjg4",
+		"icon": "item-sjg4.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24241,7 +26616,7 @@ exports.data =[
 	{
 		"classId": 818,
 		"label": "木块",
-		"icon": "item-sjg6",
+		"icon": "item-sjg6.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24251,7 +26626,7 @@ exports.data =[
 	{
 		"classId": 819,
 		"label": "兽皮",
-		"icon": "item-sjg7",
+		"icon": "item-sjg7.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24261,7 +26636,7 @@ exports.data =[
 	{
 		"classId": 820,
 		"label": "锈蚀金属块",
-		"icon": "item-sjg8",
+		"icon": "item-sjg8.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24271,7 +26646,7 @@ exports.data =[
 	{
 		"classId": 821,
 		"label": "魔法书残页",
-		"icon": "item-sjg9",
+		"icon": "item-sjg9.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24281,7 +26656,7 @@ exports.data =[
 	{
 		"classId": 822,
 		"label": "玻璃瓶",
-		"icon": "item-sjg10",
+		"icon": "item-sjg10.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24291,7 +26666,7 @@ exports.data =[
 	{
 		"classId": 823,
 		"label": "秘银吊坠",
-		"icon": "item-sjg11",
+		"icon": "item-sjg11.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24301,7 +26676,7 @@ exports.data =[
 	{
 		"classId": 824,
 		"label": "精巧胸针",
-		"icon": "item-sjb1",
+		"icon": "item-sjb1.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24311,7 +26686,7 @@ exports.data =[
 	{
 		"classId": 825,
 		"label": "天蚕丝",
-		"icon": "item-sjb2",
+		"icon": "item-sjb2.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24321,7 +26696,7 @@ exports.data =[
 	{
 		"classId": 826,
 		"label": "精钢",
-		"icon": "item-sjb3",
+		"icon": "item-sjb3.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24331,7 +26706,7 @@ exports.data =[
 	{
 		"classId": 827,
 		"label": "神秘卷轴",
-		"icon": "item-sjb4",
+		"icon": "item-sjb4.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24341,7 +26716,7 @@ exports.data =[
 	{
 		"classId": 828,
 		"label": "星辰结晶",
-		"icon": "item-sjb5",
+		"icon": "item-sjb5.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24351,7 +26726,7 @@ exports.data =[
 	{
 		"classId": 829,
 		"label": "魔法宝石",
-		"icon": "item-sjb6",
+		"icon": "item-sjb6.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24361,7 +26736,7 @@ exports.data =[
 	{
 		"classId": 830,
 		"label": "红衫木",
-		"icon": "item-sjb7",
+		"icon": "item-sjb7.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24371,7 +26746,7 @@ exports.data =[
 	{
 		"classId": 831,
 		"label": "古树之根",
-		"icon": "item-sjb8",
+		"icon": "item-sjb8.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24381,7 +26756,7 @@ exports.data =[
 	{
 		"classId": 832,
 		"label": "火焰花",
-		"icon": "item-sjb9",
+		"icon": "item-sjb9.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24391,7 +26766,7 @@ exports.data =[
 	{
 		"classId": 833,
 		"label": "魔力金块",
-		"icon": "item-sjb10",
+		"icon": "item-sjb10.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24401,7 +26776,7 @@ exports.data =[
 	{
 		"classId": 834,
 		"label": "七色宝珠",
-		"icon": "item-sjb11",
+		"icon": "item-sjb11.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24411,7 +26786,7 @@ exports.data =[
 	{
 		"classId": 835,
 		"label": "神圣之书",
-		"icon": "item-sjb12",
+		"icon": "item-sjb12.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24421,7 +26796,7 @@ exports.data =[
 	{
 		"classId": 836,
 		"label": "光之羽毛",
-		"icon": "item-sjb13",
+		"icon": "item-sjb13.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24431,7 +26806,7 @@ exports.data =[
 	{
 		"classId": 837,
 		"label": "帝王石",
-		"icon": "item-sjp1",
+		"icon": "item-sjp1.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24441,7 +26816,7 @@ exports.data =[
 	{
 		"classId": 838,
 		"label": "辉煌勋章",
-		"icon": "item-sjp2",
+		"icon": "item-sjp2.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24451,7 +26826,7 @@ exports.data =[
 	{
 		"classId": 839,
 		"label": "王者之书",
-		"icon": "item-sjp3",
+		"icon": "item-sjp3.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24461,7 +26836,7 @@ exports.data =[
 	{
 		"classId": 840,
 		"label": "君主皇冠",
-		"icon": "item-sjp4",
+		"icon": "item-sjp4.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24471,7 +26846,7 @@ exports.data =[
 	{
 		"classId": 841,
 		"label": "封印魔盒",
-		"icon": "item-sjp5",
+		"icon": "item-sjp5.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24481,7 +26856,7 @@ exports.data =[
 	{
 		"classId": 842,
 		"label": "罪恶之心",
-		"icon": "item-sjp6",
+		"icon": "item-sjp6.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24491,7 +26866,7 @@ exports.data =[
 	{
 		"classId": 843,
 		"label": "王者印记",
-		"icon": "item-sjp7",
+		"icon": "item-sjp7.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24501,7 +26876,7 @@ exports.data =[
 	{
 		"classId": 844,
 		"label": "地狱之石",
-		"icon": "item-sjp8",
+		"icon": "item-sjp8.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24511,7 +26886,7 @@ exports.data =[
 	{
 		"classId": 845,
 		"label": "战争之灵",
-		"icon": "item-sjp9",
+		"icon": "item-sjp9.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24521,7 +26896,7 @@ exports.data =[
 	{
 		"classId": 846,
 		"label": "灵魂宝石",
-		"icon": "item-sjp10",
+		"icon": "item-sjp10.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24531,7 +26906,7 @@ exports.data =[
 	{
 		"classId": 847,
 		"label": "神秘缎带",
-		"icon": "item-sjp11",
+		"icon": "item-sjp11.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24541,7 +26916,7 @@ exports.data =[
 	{
 		"classId": 848,
 		"label": "圣灵头冠",
-		"icon": "item-sjp12",
+		"icon": "item-sjp12.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24551,7 +26926,7 @@ exports.data =[
 	{
 		"classId": 849,
 		"label": "恶魔之牙",
-		"icon": "item-sjp13",
+		"icon": "item-sjp13.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24561,7 +26936,7 @@ exports.data =[
 	{
 		"classId": 850,
 		"label": "嗜血利刃",
-		"icon": "item-sjp14",
+		"icon": "item-sjp14.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24571,7 +26946,7 @@ exports.data =[
 	{
 		"classId": 851,
 		"label": "雷霆宝珠",
-		"icon": "item-sjp15",
+		"icon": "item-sjp15.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24581,7 +26956,7 @@ exports.data =[
 	{
 		"classId": 852,
 		"label": "魔法精华",
-		"icon": "item-sjp16",
+		"icon": "item-sjp16.png",
 		"category": 2,
 		"subcategory": 0,
 		"stack": 99,
@@ -24596,8 +26971,7 @@ exports.data =[
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 0,
-        "stoneLv": 1
+		"quality": 0
 	},
 	{
 		"classId": 854,
@@ -24607,8 +26981,7 @@ exports.data =[
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 1,
-        "stoneLv": 2
+		"quality": 1
 	},
 	{
 		"classId": 855,
@@ -24618,9 +26991,8 @@ exports.data =[
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 2,
-        "stoneLv": 3
-    },
+		"quality": 2
+	},
 	{
 		"classId": 856,
 		"label": "进阶强化结晶",
@@ -24629,9 +27001,8 @@ exports.data =[
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 3,
-        "stoneLv": 4
-    },
+		"quality": 3
+	},
 	{
 		"classId": 857,
 		"label": "强化宝珠",
@@ -24640,7 +27011,6 @@ exports.data =[
 		"subcategory": 1,
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 4,
-        "stoneLv": 5
-    }
+		"quality": 4
+	}
 ]

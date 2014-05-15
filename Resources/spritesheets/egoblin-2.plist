@@ -7,106 +7,119 @@
             <key>enemy-goblin-2-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,179},{51,67}}</string>
+                <string>{{149,2},{41,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{51,67}}</string>
+                <string>{{0,0},{41,53}}</string>
                 <key>sourceSize</key>
-                <string>{51,67}</string>
+                <string>{41,53}</string>
             </dict>
             <key>enemy-goblin-2-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,2},{112,87}}</string>
+                <string>{{75,2},{92,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{112,87}}</string>
+                <string>{{0,0},{92,72}}</string>
                 <key>sourceSize</key>
-                <string>{112,87}</string>
+                <string>{92,72}</string>
+            </dict>
+            <key>enemy-goblin-2-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,142},{93,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{93,72}}</string>
+                <key>sourceSize</key>
+                <string>{93,72}</string>
             </dict>
             <key>enemy-goblin-2-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{55,171},{39,59}}</string>
+                <string>{{204,2},{30,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{39,59}}</string>
+                <string>{{0,0},{30,46}}</string>
                 <key>sourceSize</key>
-                <string>{39,59}</string>
+                <string>{30,46}</string>
             </dict>
             <key>enemy-goblin-2-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{210,38},{39,40}}</string>
+                <string>{{149,45},{31,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{39,40}}</string>
+                <string>{{0,0},{31,31}}</string>
                 <key>sourceSize</key>
-                <string>{39,40}</string>
+                <string>{31,31}</string>
             </dict>
             <key>enemy-goblin-2-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{33,2},{57,167}}</string>
+                <string>{{27,2},{46,133}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{57,167}}</string>
+                <string>{{0,0},{46,133}}</string>
                 <key>sourceSize</key>
-                <string>{57,167}</string>
+                <string>{46,133}</string>
             </dict>
             <key>enemy-goblin-2-mainweapon2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{29,175}}</string>
+                <string>{{2,2},{23,138}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{29,175}}</string>
+                <string>{{0,0},{23,138}}</string>
                 <key>sourceSize</key>
-                <string>{29,175}</string>
+                <string>{23,138}</string>
             </dict>
             <key>enemy-goblin-2-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{210,79},{55,33}}</string>
+                <string>{{75,96},{43,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,33}}</string>
+                <string>{{0,0},{43,26}}</string>
                 <key>sourceSize</key>
-                <string>{55,33}</string>
+                <string>{43,26}</string>
             </dict>
             <key>enemy-goblin-2-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{210,2},{42,34}}</string>
+                <string>{{204,34},{33,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,34}}</string>
+                <string>{{0,0},{33,28}}</string>
                 <key>sourceSize</key>
-                <string>{42,34}</string>
+                <string>{33,28}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -118,7 +131,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:11c734ba64e49daca2d05cecf5fc5716$</string>
+            <string>$TexturePacker:SmartUpdate:dbfd3734097801f40db14fe170b4b292$</string>
             <key>textureFileName</key>
             <string>egoblin-2.png</string>
         </dict>

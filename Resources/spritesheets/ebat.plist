@@ -7,7 +7,7 @@
             <key>enemy-bat-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,98},{47,50}}</string>
+                <string>{{2,117},{47,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>enemy-bat-1-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,2},{39,45}}</string>
+                <string>{{80,45},{39,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -29,6 +29,19 @@
                 <string>{{0,0},{39,45}}</string>
                 <key>sourceSize</key>
                 <string>{39,45}</string>
+            </dict>
+            <key>enemy-bat-1-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{80,2},{41,45}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{41,45}}</string>
+                <key>sourceSize</key>
+                <string>{41,45}</string>
             </dict>
             <key>enemy-bat-1-lefthand.png</key>
             <dict>
@@ -59,11 +72,11 @@
             <key>enemy-bat-1-tail.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,43},{53,30}}</string>
+                <string>{{73,86},{53,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{53,30}}</string>
                 <key>sourceSize</key>
@@ -79,7 +92,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5d1dd87bea3880d3915a3c6527dd74ce$</string>
+            <string>$TexturePacker:SmartUpdate:06d411ae6dd3299bb456402a548840ac$</string>
             <key>textureFileName</key>
             <string>ebat.png</string>
         </dict>

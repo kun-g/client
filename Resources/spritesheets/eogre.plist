@@ -20,6 +20,19 @@
             <key>enemy-ogre-1-head.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{62,2},{70,77}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{70,77}}</string>
+                <key>sourceSize</key>
+                <string>{70,77}</string>
+            </dict>
+            <key>enemy-ogre-1-head2.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{2,184},{70,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -33,7 +46,7 @@
             <key>enemy-ogre-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,2},{39,59}}</string>
+                <string>{{77,81},{39,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +59,7 @@
             <key>enemy-ogre-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{77,102},{48,47}}</string>
+                <string>{{118,81},{48,47}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +85,7 @@
             <key>enemy-ogre-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,63},{57,37}}</string>
+                <string>{{77,142},{57,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +98,7 @@
             <key>enemy-ogre-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,152},{47,43}}</string>
+                <string>{{81,181},{47,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -103,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>eogre.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9e68d9b0b5a7fba44b0f0a0b47d7eea4$</string>
+            <string>$TexturePacker:SmartUpdate:b04fc4b90872ff85e0dc229a4274f9e3$</string>
             <key>textureFileName</key>
             <string>eogre.png</string>
         </dict>

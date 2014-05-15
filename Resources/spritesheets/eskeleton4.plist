@@ -7,33 +7,46 @@
             <key>enemy-skeleton-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,88},{32,36}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{32,36}}</string>
-                <key>sourceSize</key>
-                <string>{32,36}</string>
-            </dict>
-            <key>enemy-skeleton-1-head.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{68,2},{54,58}}</string>
+                <string>{{88,2},{32,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{54,58}}</string>
+                <string>{{0,0},{32,37}}</string>
                 <key>sourceSize</key>
-                <string>{54,58}</string>
+                <string>{32,37}</string>
+            </dict>
+            <key>enemy-skeleton-1-head.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{65,87},{55,58}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{55,58}}</string>
+                <key>sourceSize</key>
+                <string>{55,58}</string>
+            </dict>
+            <key>enemy-skeleton-1-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,54},{61,58}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,58}}</string>
+                <key>sourceSize</key>
+                <string>{61,58}</string>
             </dict>
             <key>enemy-skeleton-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{54,58},{22,39}}</string>
+                <string>{{2,114},{22,39}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,11 +59,11 @@
             <key>enemy-skeleton-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,58},{21,31}}</string>
+                <string>{{65,54},{21,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{21,31}}</string>
                 <key>sourceSize</key>
@@ -63,7 +76,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{50,84}}</string>
                 <key>sourceSize</key>
@@ -72,11 +85,11 @@
             <key>enemy-skeleton-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,88},{35,30}}</string>
+                <string>{{88,36},{35,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{35,30}}</string>
                 <key>sourceSize</key>
@@ -85,7 +98,7 @@
             <key>enemy-skeleton-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,81},{21,29}}</string>
+                <string>{{2,138},{21,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -103,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>eskeleton4.png</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ffdec0d6347dfe1ee26a56842126bdb8$</string>
+            <string>$TexturePacker:SmartUpdate:c8a44d96bbaab2e1f8e73fc7358f9955$</string>
             <key>textureFileName</key>
             <string>eskeleton4.png</string>
         </dict>
