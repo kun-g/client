@@ -57,6 +57,7 @@ public class PocketDungeon extends Cocos2dxActivity{
     }
     
     //--- System Invokes ---
+    public static native void invokeAlertCallback(int button);
     
     //query bundle version
   	public String getBundleVersion() {
@@ -108,8 +109,7 @@ public class PocketDungeon extends Cocos2dxActivity{
   		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO Do something
-				
+				invokeAlertCallback(which);
 			}
 		};
   		for(String s : buttons){
