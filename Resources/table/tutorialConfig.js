@@ -1,20 +1,20 @@
 exports.data = {
-//    "upgrade":{
-//        "tutorialStage": 3,
-//        "refuseDialogue": 55
-//    },
-//    "forge":{
-//        "tutorialStage": 9,
-//        "refuseDialogue": 56
-//    },
-//    "enhance":{
-//        "tutorialStage": 5,
-//        "refuseDialogue": 57
-//    },
-//    "synthesize":{
-//        "tutorialStage": 7,
-//        "refuseDialogue": 58
-//    },
+    "upgrade":{
+        "tutorialStage": 3,
+        "refuseDialogue": 55
+    },
+    "forge":{
+        "tutorialStage": 9,
+        "refuseDialogue": 56
+    },
+    "enhance":{
+        "tutorialStage": 5,
+        "refuseDialogue": 57
+    },
+    "extract":{
+        "tutorialStage": 7,
+        "refuseDialogue": 58
+    },
     "friend":{
         "tutorialStage": 6,
         "refuseDialogue": 59

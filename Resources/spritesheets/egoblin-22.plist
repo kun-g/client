@@ -4,10 +4,23 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>enemy-goblin2-2-chest(MIRA-PC--MiRa--2014-05-15-17,35,04).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,171},{51,67}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{51,67}}</string>
+                <key>sourceSize</key>
+                <string>{51,67}</string>
+            </dict>
             <key>enemy-goblin2-2-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{77,131},{41,53}}</string>
+                <string>{{156,96},{41,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,10 +30,23 @@
                 <key>sourceSize</key>
                 <string>{41,53}</string>
             </dict>
+            <key>enemy-goblin2-2-head(MIRA-PC--MiRa--2014-05-15-17,35,04).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{61,2},{112,87}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{112,87}}</string>
+                <key>sourceSize</key>
+                <string>{112,87}</string>
+            </dict>
             <key>enemy-goblin2-2-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,2},{92,73}}</string>
+                <string>{{175,2},{92,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,20 +59,33 @@
             <key>enemy-goblin2-2-head2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,137},{93,73}}</string>
+                <string>{{61,91},{93,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{93,73}}</string>
                 <key>sourceSize</key>
                 <string>{93,73}</string>
             </dict>
+            <key>enemy-goblin2-2-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,04).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,214},{39,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{39,59}}</string>
+                <key>sourceSize</key>
+                <string>{39,59}</string>
+            </dict>
             <key>enemy-goblin2-2-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,96},{30,46}}</string>
+                <string>{{199,131},{30,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -56,10 +95,23 @@
                 <key>sourceSize</key>
                 <string>{30,46}</string>
             </dict>
+            <key>enemy-goblin2-2-leftleg(MIRA-PC--MiRa--2014-05-15-17,35,04).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{55,214},{39,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{39,40}}</string>
+                <key>sourceSize</key>
+                <string>{39,40}</string>
+            </dict>
             <key>enemy-goblin2-2-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,96},{31,31}}</string>
+                <string>{{201,191},{31,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,40 +121,79 @@
                 <key>sourceSize</key>
                 <string>{31,31}</string>
             </dict>
-            <key>enemy-goblin2-2-mainweapon.png</key>
+            <key>enemy-goblin2-2-mainweapon(MIRA-PC--MiRa--2014-05-15-17,35,05).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{46,133}}</string>
+                <string>{{2,2},{57,167}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{46,133}}</string>
+                <string>{{0,0},{57,167}}</string>
                 <key>sourceSize</key>
-                <string>{46,133}</string>
+                <string>{57,167}</string>
             </dict>
-            <key>enemy-goblin2-2-righthand.png</key>
+            <key>enemy-goblin2-2-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{77,186},{43,26}}</string>
+                <string>{{61,166},{46,133}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{46,133}}</string>
+                <key>sourceSize</key>
+                <string>{46,133}</string>
+            </dict>
+            <key>enemy-goblin2-2-righthand(MIRA-PC--MiRa--2014-05-15-17,35,05).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{199,96},{55,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{55,33}}</string>
+                <key>sourceSize</key>
+                <string>{55,33}</string>
+            </dict>
+            <key>enemy-goblin2-2-righthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{196,163},{43,26}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{43,26}}</string>
                 <key>sourceSize</key>
                 <string>{43,26}</string>
             </dict>
-            <key>enemy-goblin2-2-rightleg.png</key>
+            <key>enemy-goblin2-2-rightleg(MIRA-PC--MiRa--2014-05-15-17,35,05).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,96},{33,28}}</string>
+                <string>{{157,214},{42,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{42,34}}</string>
+                <key>sourceSize</key>
+                <string>{42,34}</string>
+            </dict>
+            <key>enemy-goblin2-2-rightleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{201,224},{33,28}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{33,28}}</string>
                 <key>sourceSize</key>
@@ -118,7 +209,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3be28566f44597b50f2296dcd721803c$</string>
+            <string>$TexturePacker:SmartUpdate:2787da024af5e7e92d2acfbacccf1f7a$</string>
             <key>textureFileName</key>
             <string>egoblin-22.png</string>
         </dict>

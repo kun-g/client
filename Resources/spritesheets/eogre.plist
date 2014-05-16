@@ -17,6 +17,19 @@
                 <key>sourceSize</key>
                 <string>{73,78}</string>
             </dict>
+            <key>enemy-ogre-1-head(MIRA-PC--MiRa--2014-05-15-17,35,15).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{77,81},{70,77}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{70,77}}</string>
+                <key>sourceSize</key>
+                <string>{70,77}</string>
+            </dict>
             <key>enemy-ogre-1-head.png</key>
             <dict>
                 <key>frame</key>
@@ -46,7 +59,7 @@
             <key>enemy-ogre-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{77,81},{39,59}}</string>
+                <string>{{134,2},{39,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,11 +72,11 @@
             <key>enemy-ogre-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{118,81},{48,47}}</string>
+                <string>{{175,41},{48,47}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{48,47}}</string>
                 <key>sourceSize</key>
@@ -85,7 +98,7 @@
             <key>enemy-ogre-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{77,142},{57,37}}</string>
+                <string>{{175,2},{57,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +111,7 @@
             <key>enemy-ogre-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,181},{47,43}}</string>
+                <string>{{81,160},{47,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -118,7 +131,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b04fc4b90872ff85e0dc229a4274f9e3$</string>
+            <string>$TexturePacker:SmartUpdate:d27e01c4cc5109d3d7e0888daedc9f94$</string>
             <key>textureFileName</key>
             <string>eogre.png</string>
         </dict>

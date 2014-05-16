@@ -7,7 +7,7 @@
             <key>enemy-wolf2-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{190,2},{61,48}}</string>
+                <string>{{193,2},{61,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -16,6 +16,19 @@
                 <string>{{0,0},{61,48}}</string>
                 <key>sourceSize</key>
                 <string>{61,48}</string>
+            </dict>
+            <key>enemy-wolf2-1-chest2(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{98,2},{93,88}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{93,88}}</string>
+                <key>sourceSize</key>
+                <string>{93,88}</string>
             </dict>
             <key>enemy-wolf2-1-chest2.png</key>
             <dict>
@@ -33,7 +46,7 @@
             <key>enemy-wolf2-1-chest3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{190,52},{60,73}}</string>
+                <string>{{193,52},{60,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -43,10 +56,23 @@
                 <key>sourceSize</key>
                 <string>{60,73}</string>
             </dict>
+            <key>enemy-wolf2-1-head(MIRA-PC--MiRa--2014-05-15-17,35,47).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{92,167},{88,73}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{88,73}}</string>
+                <key>sourceSize</key>
+                <string>{88,73}</string>
+            </dict>
             <key>enemy-wolf2-1-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{98,77},{88,73}}</string>
+                <string>{{2,94},{88,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +85,7 @@
             <key>enemy-wolf2-1-head2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{98,2},{90,73}}</string>
+                <string>{{98,92},{90,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,11 +98,11 @@
             <key>enemy-wolf2-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,94},{55,56}}</string>
+                <string>{{182,182},{55,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{55,56}}</string>
                 <key>sourceSize</key>
@@ -85,7 +111,7 @@
             <key>enemy-wolf2-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,151},{37,50}}</string>
+                <string>{{40,169},{37,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +124,7 @@
             <key>enemy-wolf2-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{188,127},{57,53}}</string>
+                <string>{{190,127},{57,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,11 +137,11 @@
             <key>enemy-wolf2-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,190},{38,49}}</string>
+                <string>{{40,208},{38,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{38,49}}</string>
                 <key>sourceSize</key>
@@ -144,7 +170,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:04b00b037df3d8cfeec816fd75ac4efd$</string>
+            <string>$TexturePacker:SmartUpdate:45c210310a51e64b8b8424a91350dca1$</string>
             <key>textureFileName</key>
             <string>ewolf2.png</string>
         </dict>
