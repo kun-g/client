@@ -7,11 +7,11 @@
             <key>enemy-thief-2-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,103},{31,26}}</string>
+                <string>{{2,197},{31,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{31,26}}</string>
                 <key>sourceSize</key>
@@ -20,20 +20,33 @@
             <key>enemy-thief-2-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{69,64}}</string>
+                <string>{{2,69},{71,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{69,64}}</string>
+                <string>{{0,0},{71,65}}</string>
                 <key>sourceSize</key>
-                <string>{69,64}</string>
+                <string>{71,65}</string>
+            </dict>
+            <key>enemy-thief-2-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{71,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{71,65}}</string>
+                <key>sourceSize</key>
+                <string>{71,65}</string>
             </dict>
             <key>enemy-thief-2-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,65},{23,37}}</string>
+                <string>{{75,65},{23,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +59,7 @@
             <key>enemy-thief-2-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,29},{34,37}}</string>
+                <string>{{75,29},{34,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,11 +72,11 @@
             <key>enemy-thief-2-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,68},{33,68}}</string>
+                <string>{{75,127},{33,68}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{33,68}}</string>
                 <key>sourceSize</key>
@@ -72,7 +85,7 @@
             <key>enemy-thief-2-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,2},{38,25}}</string>
+                <string>{{75,2},{38,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +98,7 @@
             <key>enemy-thief-2-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,90},{35,35}}</string>
+                <string>{{75,90},{35,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -105,7 +118,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dcdada0ca1ea042e1a80bba2ebafbb74$</string>
+            <string>$TexturePacker:SmartUpdate:3b3548ccbb9e755a3d5700a0e9503d84$</string>
             <key>textureFileName</key>
             <string>ethief2.png</string>
         </dict>

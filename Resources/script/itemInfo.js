@@ -163,26 +163,40 @@ function contentEquip(){
     mergeRoleProperties(properties, theItemClass.basic_properties);
 
     //enhance
-    for(var i=0; i<4; ++i){
-        var enhance = null;
-        if( theItem.Enhance != null ){
-            enhance = theItem.Enhance[i];
+    var enhance = -1;
+    if( theItem.Enhance[0].lv != null ){
+        enhance = parseInt(theItem.Enhance[0].lv);
+    }
+    var starLv = parseInt((enhance+1) / 8) % 6;
+    var barLv = ((enhance == 39)? 8:parseInt(((enhance+1)%8)));
+    for(var i=1; i<6; ++i){
+        var starName = "ehStar"+i;
+        if( i <= starLv){
+            owner[starName].runAction(cc.FadeIn.create(0.3));
         }
-        var keyName = "nodeQh"+(i+1);
-        var keyLevel = "labEhValue"+(i+1);
-        if( enhance != null ){
-            var EnhanceClass = libTable.queryTable(TABLE_ENHANCE, enhance.id);
-            var icon = cc.Sprite.create(EnhanceClass.icon);
-            owner[keyName].addChild(icon);
-            owner[keyLevel].setString("Lv."+(enhance.lv+1));
-
-            mergeRoleProperties(properties, EnhanceClass.property[enhance.lv]);
-        }
-        else
-        {
-            owner[keyLevel].setString("");
+        else {
+            owner[starName].setOpacity(0);
         }
     }
+    for(var i=1; i<9; ++i){
+        var barName = "ehBar"+i;
+        if( i <= barLv){
+            owner[barName].runAction(cc.FadeIn.create(0.3));
+        }
+        else {
+            owner[barName].setOpacity(0);
+        }
+    }
+
+    var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, theItemClass.enhanceID);
+    if( enhanceInfo != null ){
+        for ( var i=0; i<=enhance; i++ ){
+            if( enhanceInfo.property[i] != null){
+                mergeRoleProperties(properties, enhanceInfo.property[i]);
+            }
+        }
+    }
+
 
     //show property
     owner.labelProperty.setString(propertyString(properties));
@@ -213,6 +227,8 @@ function contentEquip(){
     }
 }
 
+
+//dissolve module is gonna be removed
 function onDissolve(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( !engine.user.player.checkUnlock("dissolve") ) return;
@@ -282,6 +298,7 @@ function onUse(sender){
     }, theLayer);
 }
 
+//equip/unequip module is gonna be removed
 function onEquip(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_InventoryUseItem, {
@@ -348,11 +365,11 @@ function onSell(sender){
 }
 
 function canDissolve(){
-    if( theItemClass.category == ITEM_EQUIPMENT ){
-        if( theItemClass.subcategory >= EquipSlot_MainHand
-            && theItemClass.subcategory < EquipSlot_StoreMainHand )
-            return true;
-    }
+//    if( theItemClass.category == ITEM_EQUIPMENT ){
+//        if( theItemClass.subcategory >= EquipSlot_MainHand
+//            && theItemClass.subcategory < EquipSlot_StoreMainHand )
+//            return true;
+//    }
     return false;
 }
 
@@ -367,7 +384,7 @@ function onEnter(){
 
     this.owner = {};
     this.owner.onSell = onSell;
-    this.owner.onDissolve = onDissolve;
+//    this.owner.onDissolve = onDissolve;
 
     var filename = "ui-iteminfo.ccbi";
     if( theItemClass.category != ITEM_EQUIPMENT ){
@@ -434,11 +451,11 @@ function onEnter(){
                 break;
             case ITEM_EQUIPMENT:
                 if( theItem.Status == ITEMSTATUS_EQUIPED ){
-                    operates.push({
-                        label: "buttontext-unequip.png",
-                        func: onEquip,
-                        obj: theLayer
-                    });
+//                    operates.push({
+//                        label: "buttontext-unequip.png",
+//                        func: onEquip,
+//                        obj: theLayer
+//                    });
                 }
                 else{
                     operates.push({

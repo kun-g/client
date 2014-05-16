@@ -1216,7 +1216,7 @@ function loadExtractItems(content){
                     gold: ExtractCostRate*count
                 });
                 ExtractArgs = {
-                    opn: ITMOP_EXTRACT,
+                    opn: ITMOP_SYNTHESIZE,
                     opc: count
                 }
             }

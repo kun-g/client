@@ -7,46 +7,59 @@
             <key>enemy-goblin4-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,80},{33,43}}</string>
+                <string>{{84,2},{33,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{33,41}}</string>
+                <key>sourceSize</key>
+                <string>{33,41}</string>
+            </dict>
+            <key>enemy-goblin4-1-head.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,110},{71,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{33,43}}</string>
+                <string>{{0,0},{71,67}}</string>
                 <key>sourceSize</key>
-                <string>{33,43}</string>
+                <string>{71,67}</string>
             </dict>
-            <key>enemy-goblin4-1-head.png</key>
+            <key>enemy-goblin4-1-head2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,2},{67,51}}</string>
+                <string>{{2,41},{76,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{67,51}}</string>
+                <string>{{0,0},{76,67}}</string>
                 <key>sourceSize</key>
-                <string>{67,51}</string>
+                <string>{76,67}</string>
             </dict>
             <key>enemy-goblin4-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{89,26},{21,34}}</string>
+                <string>{{84,37},{26,39}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{21,34}}</string>
+                <string>{{0,0},{26,39}}</string>
                 <key>sourceSize</key>
-                <string>{21,34}</string>
+                <string>{26,39}</string>
             </dict>
             <key>enemy-goblin4-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{37,71},{29,29}}</string>
+                <string>{{75,116},{29,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,20 +72,20 @@
             <key>enemy-goblin4-1-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{32,76}}</string>
+                <string>{{2,2},{37,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{32,76}}</string>
+                <string>{{0,0},{37,80}}</string>
                 <key>sourceSize</key>
-                <string>{32,76}</string>
+                <string>{37,80}</string>
             </dict>
             <key>enemy-goblin4-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{89,2},{36,22}}</string>
+                <string>{{80,65},{36,22}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,15 +98,15 @@
             <key>enemy-goblin4-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{89,49},{30,25}}</string>
+                <string>{{80,89},{31,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{30,25}}</string>
+                <string>{{0,0},{31,25}}</string>
                 <key>sourceSize</key>
-                <string>{30,25}</string>
+                <string>{31,25}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -103,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>egoblin4.png</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1e946c98f02674f1430c8baed60680f1$</string>
+            <string>$TexturePacker:SmartUpdate:47818d14158da3e7841913f38d971db9$</string>
             <key>textureFileName</key>
             <string>egoblin4.png</string>
         </dict>
