@@ -1,4 +1,4 @@
-exports.data =[
+exports.data = [
 	{
 		"enhanceId": 0,
 		"costList": [
@@ -45,22 +45,21 @@ exports.data =[
 		],
 		"property": [
 			{
-				"health": 3,
+				"health": 2,
 				"critical": 1,
 				"accuracy": 1,
 				"speed": 1
 			},
 			{
-				"health": 2,
+				"health": 1,
 				"strong": 1
 			},
 			{
-				"health": 3,
+				"health": 2,
 				"accuracy": 1,
 				"speed": 1
 			},
 			{
-				"health": 1,
 				"attack": 1,
 				"strong": 1,
 				"reactivity": 1
@@ -71,46 +70,46 @@ exports.data =[
 				"accuracy": 1
 			},
 			{
-				"health": 2,
+				"health": 1,
 				"reactivity": 1
 			},
 			{
-				"health": 2,
+				"health": 4,
 				"critical": 1,
 				"speed": 1
 			},
 			{
-				"health": 2,
+				"health": 5,
 				"strong": 1,
 				"reactivity": 1
 			},
 			{
-				"health": 9,
+				"health": 6,
 				"attack": 1,
 				"critical": 2,
 				"accuracy": 2,
 				"speed": 2
 			},
 			{
-				"health": 9,
+				"health": 12,
 				"strong": 2,
 				"reactivity": 2
 			},
 			{
-				"health": 9,
+				"health": 6,
 				"attack": 1,
 				"critical": 2,
 				"accuracy": 2,
 				"speed": 2
 			},
 			{
-				"health": 9,
+				"health": 12,
 				"strong": 2,
 				"reactivity": 2,
 				"speed": 2
 			},
 			{
-				"health": 9,
+				"health": 6,
 				"attack": 1,
 				"critical": 2,
 				"accuracy": 2,
@@ -118,13 +117,13 @@ exports.data =[
 				"speed": 2
 			},
 			{
-				"health": 9,
+				"health": 12,
 				"strong": 2,
 				"accuracy": 2,
 				"reactivity": 2
 			},
 			{
-				"health": 9,
+				"health": 6,
 				"attack": 1,
 				"critical": 2,
 				"strong": 2,
@@ -132,13 +131,13 @@ exports.data =[
 				"speed": 2
 			},
 			{
-				"health": 9,
+				"health": 12,
 				"critical": 2,
 				"strong": 2,
 				"reactivity": 2
 			},
 			{
-				"health": 11,
+				"health": 8,
 				"attack": 1,
 				"critical": 3,
 				"strong": 1,
@@ -147,7 +146,7 @@ exports.data =[
 				"speed": 3
 			},
 			{
-				"health": 11,
+				"health": 14,
 				"attack": 1,
 				"critical": 1,
 				"strong": 3,
@@ -156,7 +155,7 @@ exports.data =[
 				"speed": 1
 			},
 			{
-				"health": 11,
+				"health": 8,
 				"attack": 1,
 				"critical": 3,
 				"strong": 1,
@@ -165,7 +164,7 @@ exports.data =[
 				"speed": 3
 			},
 			{
-				"health": 11,
+				"health": 14,
 				"attack": 1,
 				"critical": 1,
 				"strong": 3,
@@ -174,7 +173,7 @@ exports.data =[
 				"speed": 1
 			},
 			{
-				"health": 11,
+				"health": 8,
 				"attack": 1,
 				"critical": 3,
 				"strong": 1,
@@ -183,7 +182,7 @@ exports.data =[
 				"speed": 3
 			},
 			{
-				"health": 11,
+				"health": 14,
 				"attack": 1,
 				"critical": 1,
 				"strong": 3,
@@ -192,7 +191,7 @@ exports.data =[
 				"speed": 1
 			},
 			{
-				"health": 11,
+				"health": 8,
 				"attack": 1,
 				"critical": 3,
 				"strong": 1,
@@ -201,7 +200,7 @@ exports.data =[
 				"speed": 3
 			},
 			{
-				"health": 11,
+				"health": 14,
 				"attack": 1,
 				"critical": 1,
 				"strong": 3,
@@ -210,7 +209,7 @@ exports.data =[
 				"speed": 1
 			},
 			{
-				"health": 15,
+				"health": 18,
 				"attack": 1,
 				"critical": 4,
 				"strong": 1,
@@ -228,7 +227,7 @@ exports.data =[
 				"speed": 1
 			},
 			{
-				"health": 15,
+				"health": 18,
 				"attack": 1,
 				"critical": 4,
 				"strong": 1,
@@ -246,7 +245,7 @@ exports.data =[
 				"speed": 2
 			},
 			{
-				"health": 15,
+				"health": 12,
 				"attack": 2,
 				"critical": 4,
 				"strong": 2,
@@ -264,7 +263,7 @@ exports.data =[
 				"speed": 2
 			},
 			{
-				"health": 15,
+				"health": 12,
 				"attack": 2,
 				"critical": 4,
 				"strong": 2,
@@ -401,17 +400,15 @@ exports.data =[
 		],
 		"property": [
 			{
-				"attack": 1,
 				"critical": 1,
-				"accuracy": 1,
-				"speed": 1
+				"attack": 1
 			},
 			{
 				"health": 1,
 				"strong": 1
 			},
 			{
-				"health": 1,
+				"health": 2,
 				"accuracy": 1,
 				"speed": 1
 			},
@@ -422,155 +419,160 @@ exports.data =[
 			},
 			{
 				"critical": 1,
+				"accuracy": 1,
+				"speed": 1
+			},
+			{
+				"health": 1,
+				"reactivity": 1
+			},
+			{
+				"health": 2,
+				"critical": 1,
+				"speed": 1,
 				"accuracy": 1
 			},
 			{
 				"health": 1,
-				"reactivity": 1
+				"reactivity": 1,
+				"attack": 1
 			},
 			{
-				"health": 1,
-				"critical": 1,
-				"speed": 1
-			},
-			{
-				"health": 1,
-				"attack": 1,
-				"strong": 1,
-				"reactivity": 1
-			},
-			{
-				"health": 3,
+				"health": 2,
 				"attack": 2,
 				"critical": 2,
-				"accuracy": 2,
+				"accuracy": 1,
 				"speed": 2
 			},
 			{
-				"health": 3,
-				"attack": 1,
+				"health": 4,
 				"strong": 2,
-				"reactivity": 2
+				"reactivity": 2,
+				"attack": 1,
+				"accuracy": 1
 			},
 			{
-				"health": 3,
+				"health": 2,
 				"attack": 2,
 				"critical": 2,
-				"accuracy": 2,
+				"accuracy": 1,
 				"speed": 2
 			},
 			{
-				"health": 3,
-				"attack": 1,
+				"health": 4,
 				"strong": 2,
+				"reactivity": 2,
+				"speed": 2,
+				"attack": 1,
+				"accuracy": 1
+			},
+			{
+				"health": 2,
+				"attack": 2,
+				"critical": 2,
+				"accuracy": 1,
 				"reactivity": 2,
 				"speed": 2
 			},
 			{
-				"health": 3,
-				"attack": 2,
-				"critical": 2,
+				"health": 4,
+				"strong": 2,
 				"accuracy": 2,
 				"reactivity": 2,
-				"speed": 2
-			},
-			{
-				"health": 3,
 				"attack": 1,
-				"strong": 2,
-				"accuracy": 2,
-				"reactivity": 2
+				"speed": 1
 			},
 			{
-				"health": 3,
+				"health": 2,
 				"attack": 2,
 				"critical": 2,
 				"strong": 2,
-				"accuracy": 2,
+				"accuracy": 1,
 				"speed": 2
 			},
 			{
-				"health": 3,
-				"attack": 1,
+				"health": 4,
 				"critical": 2,
 				"strong": 2,
-				"reactivity": 2
+				"reactivity": 2,
+				"attack": 1,
+				"accuracy": 1
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 2,
 				"critical": 3,
 				"strong": 1,
 				"accuracy": 3,
 				"reactivity": 1,
-				"speed": 3
+				"speed": 2
 			},
 			{
-				"health": 5,
+				"health": 6,
 				"attack": 2,
 				"critical": 1,
 				"strong": 3,
-				"accuracy": 1,
+				"accuracy": 2,
 				"reactivity": 3,
 				"speed": 1
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 2,
 				"critical": 3,
 				"strong": 1,
-				"accuracy": 3,
+				"accuracy": 2,
 				"reactivity": 1,
 				"speed": 3
 			},
 			{
-				"health": 5,
+				"health": 6,
 				"attack": 2,
 				"critical": 1,
 				"strong": 3,
-				"accuracy": 1,
+				"accuracy": 2,
 				"reactivity": 3,
 				"speed": 1
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 2,
 				"critical": 3,
 				"strong": 1,
-				"accuracy": 3,
+				"accuracy": 2,
 				"reactivity": 1,
 				"speed": 3
 			},
 			{
-				"health": 5,
+				"health": 6,
 				"attack": 2,
 				"critical": 1,
 				"strong": 3,
-				"accuracy": 1,
+				"accuracy": 2,
 				"reactivity": 3,
 				"speed": 1
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 2,
 				"critical": 3,
 				"strong": 1,
-				"accuracy": 3,
+				"accuracy": 2,
 				"reactivity": 1,
 				"speed": 3
 			},
 			{
-				"health": 5,
+				"health": 6,
 				"attack": 2,
 				"critical": 1,
 				"strong": 3,
-				"accuracy": 1,
+				"accuracy": 2,
 				"reactivity": 3,
 				"speed": 1
 			},
 			{
 				"health": 6,
-				"attack": 2,
+				"attack": 3,
 				"critical": 4,
 				"strong": 1,
 				"accuracy": 4,
@@ -578,9 +580,8 @@ exports.data =[
 				"speed": 4
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 3,
-				"critical": 1,
 				"strong": 4,
 				"accuracy": 1,
 				"reactivity": 4,
@@ -588,7 +589,7 @@ exports.data =[
 			},
 			{
 				"health": 6,
-				"attack": 2,
+				"attack": 3,
 				"critical": 4,
 				"strong": 1,
 				"accuracy": 4,
@@ -596,11 +597,11 @@ exports.data =[
 				"speed": 4
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 3,
 				"critical": 2,
 				"strong": 4,
-				"accuracy": 2,
+				"accuracy": 1,
 				"reactivity": 4,
 				"speed": 2
 			},
@@ -614,11 +615,11 @@ exports.data =[
 				"speed": 4
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 3,
 				"critical": 1,
 				"strong": 4,
-				"accuracy": 2,
+				"accuracy": 1,
 				"reactivity": 4,
 				"speed": 2
 			},
@@ -632,12 +633,12 @@ exports.data =[
 				"speed": 4
 			},
 			{
-				"health": 5,
+				"health": 4,
 				"attack": 3,
 				"critical": 2,
 				"strong": 4,
 				"accuracy": 1,
-				"reactivity": 4,
+				"reactivity": 3,
 				"speed": 1
 			},
 			{
@@ -791,14 +792,14 @@ exports.data =[
 			{
 				"health": 2,
 				"critical": 1,
-				"accuracy": 1,
-				"speed": 1
+				"speed": 1,
+				"accuracy": 1
 			},
 			{
 				"health": 1,
 				"strong": 1,
-				"accuracy": 1,
 				"reactivity": 1,
+				"accuracy": 1,
 				"speed": 1
 			},
 			{
@@ -810,9 +811,9 @@ exports.data =[
 			},
 			{
 				"health": 6,
-				"attack": 1,
 				"strong": 2,
-				"reactivity": 2
+				"reactivity": 2,
+				"attack": 1
 			},
 			{
 				"health": 6,
@@ -823,25 +824,25 @@ exports.data =[
 			},
 			{
 				"health": 6,
-				"attack": 1,
 				"strong": 2,
+				"reactivity": 2,
+				"speed": 2,
+				"attack": 1
+			},
+			{
+				"health": 6,
+				"attack": 1,
+				"critical": 2,
+				"accuracy": 2,
 				"reactivity": 2,
 				"speed": 2
 			},
 			{
 				"health": 6,
-				"attack": 1,
-				"critical": 2,
+				"strong": 2,
 				"accuracy": 2,
 				"reactivity": 2,
-				"speed": 2
-			},
-			{
-				"health": 6,
-				"attack": 1,
-				"strong": 2,
-				"accuracy": 2,
-				"reactivity": 2
+				"attack": 1
 			},
 			{
 				"health": 6,
@@ -853,10 +854,10 @@ exports.data =[
 			},
 			{
 				"health": 6,
-				"attack": 1,
 				"critical": 2,
 				"strong": 2,
-				"reactivity": 2
+				"reactivity": 2,
+				"attack": 1
 			},
 			{
 				"health": 8,
