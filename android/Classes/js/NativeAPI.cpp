@@ -7,7 +7,6 @@
 //
 
 #include "NativeAPI.h"
-#include "CCPlatformConfig.h"
 
 #include "loadModule.h"
 #include "Http.h"
@@ -18,10 +17,6 @@
 #include "Feedback.h"
 #include "UAC.h"
 #include "TDGA.h"
-
-#if defined(CC_TARGET_OS_IPHONE)
-    #include "jsGameCenter.h"
-#endif
 
 void registerNativeAPI(JSContext* cx, JSObject* global)
 {
@@ -35,8 +30,4 @@ void registerNativeAPI(JSContext* cx, JSObject* global)
     registerTcp(cx, global);
     registerFeedback(cx, global);
     registerUAC(cx, global);
-    if( CC_TARGET_PLATFORM == CC_PLATFORM_IOS )
-    {
-        registerGameCenter(cx, global);
-    }
 }

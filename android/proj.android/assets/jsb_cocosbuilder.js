@@ -71,7 +71,8 @@ cc.BuilderReader.load = function(file, owner, parentSize)
         if (!documentControllerName) continue;
 
         // Create a document controller
-        var controller = new _ccbGlobalContext[documentControllerName]();
+        //var controller = new _ccbGlobalContext[documentControllerName]();
+        var controller = {};//test code
         controller.controllerName = documentControllerName;
 
         innerNode.controller = controller;
@@ -114,7 +115,7 @@ cc.BuilderReader.load = function(file, owner, parentSize)
             var callbackSplit = keyframeCallbacks[j].split(":");
             var callbackType = callbackSplit[0];
             var callbackName = callbackSplit[1];
-            
+
             if (callbackType == 1) // Document callback
             {
                 var callfunc = cc.CallFunc.create(controller[callbackName], controller);

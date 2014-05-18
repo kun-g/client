@@ -14,7 +14,7 @@
 #include "ScriptingCore.h"
 #include "jsapi.h"
 #include "jsfriendapi.h"
-#include "ISystem.h"
+#include "utility/ISystem.h"
 
 void clearAllTCPConnections();
 

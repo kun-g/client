@@ -20,5 +20,4 @@ bool createDirectory(const char* path);
 bool removeFile(const char* file);
 bool renameFile(const char* src, const char* dst);
 bool unzip(const char* dest, const char* pack);
-void utf8ToUnicode(const std::string& src, std::wstring& dst);
 #endif /* defined(__DungeonJS__tools__) */
