@@ -585,7 +585,7 @@ function setEnhanceStone(itemClass){
                                     ableToForge = false;
                                 }
                                 else {
-                                    theContent.owner.labCount.setColor(cc.c3b(0,80,0));
+                                    theContent.owner.labCount.setColor(cc.c3b(0,255,0));
                                     theContent.owner.btnPlus.setVisible(false);
                                     ableToForge = true;
                                 }

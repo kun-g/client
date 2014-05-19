@@ -420,7 +420,7 @@ function onEnter(){
         nodeExp1:{
             ui: "UIProgress",
             id: "progress1",
-            length: 90,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -428,7 +428,7 @@ function onEnter(){
         nodeExp2:{
             ui: "UIProgress",
             id: "progress2",
-            length: 90,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -436,7 +436,7 @@ function onEnter(){
         nodeExp3:{
             ui: "UIProgress",
             id: "progress3",
-            length: 90,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -444,7 +444,7 @@ function onEnter(){
         nodeExp4:{
             ui: "UIProgress",
             id: "progress4",
-            length: 90,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -452,7 +452,7 @@ function onEnter(){
         nodeExp5:{
             ui: "UIProgress",
             id: "progress5",
-            length: 90,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -460,7 +460,7 @@ function onEnter(){
         nodeExp6:{
             ui: "UIProgress",
             id: "progress6",
-            length: 90,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -495,12 +495,12 @@ function onEnter(){
         },
         item5:{
             ui: "UIItem",
-            id: "equip4",
+            id: "equip5",
             def: "equipmentbg5.png"
         },
         item6:{
             ui: "UIItem",
-            id: "equip4",
+            id: "equip6",
             def: "equipmentbg6.png"
         }
     });
