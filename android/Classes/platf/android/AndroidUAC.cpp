@@ -46,10 +46,10 @@ void AndroidUAC::logout()
 
 void AndroidUAC::getUserName(string &name)
 {
-    name = string("HelloAndroidName");
+    getSystem()->getDeviceId(name);
 }
 
 void AndroidUAC::getUserId(string &token)
 {
-    token = string("HelloAndroidId");
+    getSystem()->getDeviceId(token);
 }

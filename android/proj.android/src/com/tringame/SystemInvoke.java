@@ -61,7 +61,7 @@ public class SystemInvoke {
 			} catch (FileNotFoundException e) {
 				id = UUID.randomUUID().toString();
 				try {
-					FileOutputStream outStream = mActivity.openFileOutput("com-tringame-pocketdungeon-uuid", Context.MODE_WORLD_READABLE);
+					FileOutputStream outStream = mActivity.openFileOutput("com-tringame-pocketdungeon-uuid", Context.MODE_PRIVATE);
 					try {
 						ObjectOutputStream ooutStream = new ObjectOutputStream(outStream);
 						ooutStream.writeUTF(id);
