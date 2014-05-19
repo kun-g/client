@@ -57,3 +57,5 @@ Resources/node/.DS_Store
 *.o
 
 *.d
+
+.idea/workspace.xml

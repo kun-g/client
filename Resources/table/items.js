@@ -27007,7 +27007,8 @@ exports.data = [
 		"description": "能够强化白色普通装备的石头",
 		"stack": 99,
 		"sellprice": 50,
-		"quality": 0
+		"quality": 0,
+        "synthesizeID": 41
 	},
 	{
 		"classId": 854,
@@ -27019,7 +27020,7 @@ exports.data = [
 		"stack": 99,
 		"sellprice": 100,
 		"quality": 1,
-		"synthesizeID": 41
+        "synthesizeID": 42
 	},
 	{
 		"classId": 855,
@@ -27031,7 +27032,7 @@ exports.data = [
 		"stack": 99,
 		"sellprice": 150,
 		"quality": 2,
-		"synthesizeID": 42
+        "synthesizeID": 43
 	},
 	{
 		"classId": 856,
@@ -27043,7 +27044,7 @@ exports.data = [
 		"stack": 99,
 		"sellprice": 200,
 		"quality": 3,
-		"synthesizeID": 43
+        "synthesizeID": 44
 	},
 	{
 		"classId": 857,
@@ -27054,7 +27055,6 @@ exports.data = [
 		"description": "能够强化橙色传奇装备的宝珠",
 		"stack": 99,
 		"sellprice": 250,
-		"quality": 4,
-		"synthesizeID": 44
+		"quality": 4
 	}
 ]

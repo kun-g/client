@@ -176,25 +176,30 @@ function getStoneCid(stoneLv){
 //--- 升级 ---
 function onStartUpgrade(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( UpgradeArgs != null ){
-        libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function(rsp){
-            if( rsp.RET == RET_OK ){
-                pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
-                    libUIKit.showAlert("装备升级成功", function(){
-                    }, theLayer);
+    if( ableToForge ){
+        if( UpgradeArgs != null ){
+            libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function(rsp){
+                if( rsp.RET == RET_OK ){
+                    pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
+                        libUIKit.showAlert("装备升级成功", function(){
+                        }, theLayer);
 
-                    //execute result
-                    if( rsp.RES != null ){
-                        engine.event.processResponses(rsp.RES);
-                        theContentNode.removeAllChildren();
-                        onUpgrade();
-                    }
-                }, theLayer);
-            }
-            else{
-                libUIKit.showErrorMessage(rsp);
-            }
-        }, theLayer);
+                        //execute result
+                        if( rsp.RES != null ){
+                            engine.event.processResponses(rsp.RES);
+                            theContentNode.removeAllChildren();
+                            onUpgrade();
+                        }
+                    }, theLayer);
+                }
+                else{
+                    libUIKit.showErrorMessage(rsp);
+                }
+            }, theLayer);
+        }
+    }
+    else{
+        libUIKit.showAlert("条件不足无法升级");
     }
 }
 
@@ -252,9 +257,11 @@ function setUpgradeItem(item){
             });
 
             var xp = item.Xp;
-            if( xp > upgradeXp )
-            {
+            if( xp >= upgradeXp ){
                 xp = upgradeXp;
+                ableToForge = true;
+            }else{
+                ableToForge = false;
             }
 
             if( itemClass.rank != null && itemClass.rank < engine.user.actor.Level ){
@@ -281,7 +288,7 @@ function setUpgradeItem(item){
             theContent.ui.cost.setPrice(null);
             theContent.owner.labXp.setString("该装备无法升级");
             theContent.ui.xp.setProgress(0);
-
+            ableToForge = false;
             UpgradeArgs = null;
         }
     }
@@ -296,6 +303,7 @@ function setUpgradeItem(item){
         theContent.ui.cost.setPrice(null);
         theContent.owner.labXp.setString("");
         theContent.ui.xp.setProgress(0);
+        ableToForge = false;
     }
 }
 
