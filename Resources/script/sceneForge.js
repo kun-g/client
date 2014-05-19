@@ -458,7 +458,6 @@ function onStartEnhance(sender){
                         engine.event.processResponses(rsp.RES);
                         setEnhanceEquip(theContent.ui.equip.getItem());
                     }
-
                 }
                 else{
                     libUIKit.showErrorMessage(rsp);
@@ -520,6 +519,8 @@ function setEnhanceEquip(item){
             EnhanceArgs = {};
         }
         EnhanceArgs.sid = item.ServerId;
+        debug(JSON.stringify(item));
+        debug("EnhanceArgs.sid="+EnhanceArgs.sid)
         EnhanceArgs.opn = ITMOP_ENHANCE;
 
         ableToForge = true;
@@ -584,7 +585,7 @@ function setEnhanceStone(itemClass){
                                     ableToForge = false;
                                 }
                                 else {
-                                    theContent.owner.labCount.setColor(cc.c3b(0,150,0));
+                                    theContent.owner.labCount.setColor(cc.c3b(0,80,0));
                                     theContent.owner.btnPlus.setVisible(false);
                                     ableToForge = true;
                                 }
@@ -1041,7 +1042,8 @@ function setSynthesizeStone(sto1Class, sto2Class){
     if( sto1Class != null && sto2Class != null){
         var stone1Count = engine.user.inventory.countItem(sto1Class.classId);
         var stone1Sid = engine.user.inventory.getServerId(sto1Class.classId);
-        var costInfo = libTable.queryTable(TABLE_COST, sto1Class.synthesizeID);
+        var costInfo = libTable.queryTable(TABLE_COST, sto2Class.synthesizeID);
+//        var costInfo = libTable.queryTable(TABLE_COST, sto1Class.synthesizeID);
         var stoneCost, moneyCost;
         theForgeItem = engine.user.inventory.getItem(stone1Sid);
         for( var k in costInfo.material){
