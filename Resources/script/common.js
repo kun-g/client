@@ -36,7 +36,6 @@ function mergeRoleProperties(dst, src){
 
 function propertyString(properties){
     var strProperty = "";
-    var flag = false;
     for(var k in properties){
         var value = properties[k];
         if( value > 0 ){

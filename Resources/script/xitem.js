@@ -339,7 +339,8 @@ Inventory.prototype.getNormalItems = function()
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
         if( itemData.storeOnly === true ) return false;
-        else return true;
+        if( itemData.hide === true ) return false;
+        return true;
     });
 }
 
@@ -347,8 +348,9 @@ Inventory.prototype.getShopItems = function()
 {
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
+        if( itemData.hide === true ) return false;
         if( itemData.storeOnly === true ) return true;
-        else return false;
+        return false;
     });
 }
 
@@ -455,8 +457,8 @@ var UIItem = cc.Node.extend({
                     this.addChild(qualityTag, 20);
                 }
                 //add enhance mark
-                if( this.ITEM.Enhance[0] != null){
-                    var starLv = parseInt((this.ITEM.Enhance[0].lv+1) / 8) % 6;
+                if( this.ITEM.Enhance != null && this.ITEM.Enhance[0] != null){
+                    var starLv = Math.floor((this.ITEM.Enhance[0].lv+1) / 8);
                     if( starLv >0 ){
                         var fileStar = "itemstar"+starLv+".png";
                         var enhanceMark = cc.Sprite.create(fileStar);
