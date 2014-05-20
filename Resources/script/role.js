@@ -149,7 +149,6 @@ Role.prototype.getPower = function()
 
 Role.prototype.setArmor = function(item)
 {
-    //debug("* setArmor");
     if( this.Armors == null )
     {
         this.Armors = [];

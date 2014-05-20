@@ -215,6 +215,7 @@ function loadResult(){
         if( theWXPSource[index] != null ){
             var src = theWXPSource[index];
             theLayer.ui["equip"+index].setItem(src.itm);
+            debug("setEquip("+index+") = "+JSON.stringify(src.itm));//test
             if( src.up >= 0 ){
                 var last = src.xp + theWXP;
                 if( last > src.up ){
@@ -318,25 +319,23 @@ function initResult(){
 
     theWXPSource = {};
     var theRole = engine.user.actor;
-    if( theWXP > 0 ){
-        for(var k in UIArgs){
-            var args = UIArgs[k];
-            var index = +k+1;
-            var item = theRole.queryArmor(args.slot, true);
-            if( item != null ){
-                var CurrXp = 0;
-                if( item.Xp != null ) CurrXp = item.Xp;
-                var UpgradeXp = item.equipUpgradeXp();
-                if( CurrXp > UpgradeXp ){
-                    CurrXp = UpgradeXp;
-                }
-                var src = {
-                    itm: item,
-                    xp: CurrXp,
-                    up: UpgradeXp
-                };
-                theWXPSource[index] = src;
+    for(var k in UIArgs){
+        var args = UIArgs[k];
+        var index = +k+1;
+        var item = theRole.queryArmor(args.slot, true);
+        if( item != null ){
+            var CurrXp = 0;
+            if( item.Xp != null ) CurrXp = item.Xp;
+            var UpgradeXp = item.equipUpgradeXp();
+            if( CurrXp > UpgradeXp ){
+                CurrXp = UpgradeXp;
             }
+            var src = {
+                itm: item,
+                xp: CurrXp,
+                up: UpgradeXp
+            };
+            theWXPSource[index] = src;
         }
     }
     //create dummy role

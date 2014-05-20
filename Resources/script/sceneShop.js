@@ -560,4 +560,12 @@ function scene()
     };
 }
 
+function purchaseItem(cid, count, callback, thiz){
+    //find store sid
+    //precheck cost
+    //send request
+    //process callback
+}
+
 exports.scene = scene;
+exports.purchaseItem = purchaseItem;
