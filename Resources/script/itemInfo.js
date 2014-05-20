@@ -164,7 +164,7 @@ function contentEquip(){
 
     //enhance
     var enhance = -1;
-    if( theItem.Enhance[0].lv != null ){
+    if( theItem.Enhance[0] != null && theItem.Enhance[0].lv != null ){
         enhance = parseInt(theItem.Enhance[0].lv);
     }
     var starLv = parseInt((enhance+1) / 8) % 6;

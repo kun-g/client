@@ -10,6 +10,7 @@ var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
 var libEffect = loadModule("effect.js");
 var libGadget = loadModule("gadgets.js");
+var libShop = loadModule("sceneShop.js");
 
 var theLayer = null;
 
@@ -52,6 +53,8 @@ var theForgeItem;
 var theForgeAnimationNode;
 var TouchId;
 var ableToForge = false;
+
+var Delta = [];
 
 var ITEM_POSITION = cc.p(45,45);
 
@@ -187,8 +190,7 @@ function onStartUpgrade(sender){
                         //execute result
                         if( rsp.RES != null ){
                             engine.event.processResponses(rsp.RES);
-                            theContentNode.removeAllChildren();
-                            onUpgrade();
+                            setUpgradeItem(theForgeItem);
                         }
                     }, theLayer);
                 }
@@ -218,12 +220,8 @@ function setUpgradeItem(item){
         theContent.owner.oldName.setString(itemClass.label);
         var srcProperties = {};
         mergeRoleProperties(srcProperties, itemClass.basic_properties);
-        if( enhanceInfo != null ) {
-            for (var i = 0; i <= enhance; i++) {
-                if (enhanceInfo.property[i] != null) {
-                    mergeRoleProperties(srcProperties, enhanceInfo.property[i]);
-                }
-            }
+        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+            mergeRoleProperties(srcProperties, enhanceInfo.property[enhance]);
         }
         theContent.owner.labOldProperty.setString(propertyString(srcProperties));
 
@@ -244,12 +242,8 @@ function setUpgradeItem(item){
 
             var dstProperties = {};
             mergeRoleProperties(dstProperties, targetClass.basic_properties);
-            if( enhanceInfo != null ) {
-                for (var i = 0; i <= enhance; i++) {
-                    if (enhanceInfo.property[i] != null) {
-                        mergeRoleProperties(dstProperties, enhanceInfo.property[i]);
-                    }
-                }
+            if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+                mergeRoleProperties(dstProperties, enhanceInfo.property[enhance]);
             }
             theContent.owner.labNewProperty.setString(propertyString(dstProperties));
             theContent.ui.cost.setPrice({
@@ -465,11 +459,11 @@ function onStartEnhance(sender){
             }, theLayer);
         }
         else{
-            libUIKit.showAlert("强化宝石的数量不足");
+            libUIKit.showAlert("该装备无法再强化");
         }
     }
     else{
-        libUIKit.showAlert("该装备无法再强化");
+        libUIKit.showAlert("强化宝石的数量不足");
     }
 
 }
@@ -492,8 +486,8 @@ function setEnhanceEquip(item){
             item.Enhance[0] = {id:null, lv:-1};
             enhance = item.Enhance[0].lv;
         }
-        var starLv = parseInt((enhance+1) / 8) % 6;
-        var barLv = ((enhance == EnhanceMaxLv)? 8:parseInt(((enhance+1)%8)));
+        var starLv = Math.floor((enhance+1) / 8);
+        var barLv = ((enhance == EnhanceMaxLv)? 8:Math.floor(((enhance+1)%8)));
         for(var i=1; i<6; ++i){
             var starName = "ehStar"+i;
             if( i <= starLv){
@@ -519,8 +513,6 @@ function setEnhanceEquip(item){
             EnhanceArgs = {};
         }
         EnhanceArgs.sid = item.ServerId;
-        debug(JSON.stringify(item));
-        debug("EnhanceArgs.sid="+EnhanceArgs.sid)
         EnhanceArgs.opn = ITMOP_ENHANCE;
 
         ableToForge = true;
@@ -544,7 +536,7 @@ function setEnhanceEquip(item){
             EnhanceArgs = null;
         }
         setEnhanceStone(null);
-        ableToForge = false;
+        ableToForge = true;
 
     }
 }
@@ -557,10 +549,8 @@ function setEnhanceStone(itemClass){
         var theProperties = {};
         mergeRoleProperties(theProperties, itemClass.basic_properties);
         if( enhanceInfo != null ){
-            for ( var i=0; i<=enhance; i++ ){
-                if( enhanceInfo.property[i] != null){
-                    mergeRoleProperties(theProperties, enhanceInfo.property[i]);
-                }
+            if (enhance > -1 && enhanceInfo.property[enhance] != null) {
+                mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
             }
             theContent.owner.labProperty.setString(propertyString(theProperties));
             if( enhance < EnhanceMaxLv ) {
@@ -579,12 +569,14 @@ function setEnhanceStone(itemClass){
                                 var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid[EnhanceStoneLevel]);
                                 theContent.owner.labCount.setString(stoneCount+"/"+EnhanceStoneCost);
                                 if (stoneCount < EnhanceStoneCost){
+                                    Delta[0] = EnhanceStoneCost - stoneCount;
                                     theContent.owner.labCount.setColor(cc.c3b(255,0,0));
                                     theContent.owner.btnPlus.setVisible(true);
                                     EnhanceArgs = null;
                                     ableToForge = false;
                                 }
                                 else {
+                                    Delta[0] = 0;
                                     theContent.owner.labCount.setColor(cc.c3b(0,255,0));
                                     theContent.owner.btnPlus.setVisible(false);
                                     ableToForge = true;
@@ -602,7 +594,7 @@ function setEnhanceStone(itemClass){
                 }
             }
             else{ //enhance >= EnhanceMaxLv
-                ableToForge = false;
+                EnhanceArgs = null;
             }
         }
         theContent.ui.stone.removeAllChildren();
@@ -625,8 +617,42 @@ function setEnhanceStone(itemClass){
     }
 }
 
-function onAddStone(){
-    onSynthesize();
+function onAddStone(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var alert = libUIKit.alert();
+    alert.setContent("强化石不足\n是否立即购买"+Delta[0]+"颗？");
+    alert.setCloseCallback(function(){
+        setEnhanceEquip(theForgeItem);
+    }, theLayer);
+    alert.setButton([
+        {
+            label: "buttontext-qx.png",
+            func: function(sender){
+                this.setCloseCallback(function(){}, theLayer);
+                this.onClose();
+            },
+            obj: alert
+        },
+        {
+            label: "buttontext-confirm.png",
+            func: function(sender){
+                libShop.purchaseItem(EnhanceStoneCid[EnhanceStoneLevel], Delta[0], function(rsp){
+                    if( rsp.RET == RET_OK ){
+                        cc.AudioEngine.getInstance().playEffect("buy.mp3");
+                        alert.onClose();
+                    }else{
+                        libUIKit.showErrorMessage(rsp);
+                        alert.setCloseCallback(function(){
+                            libUIKit.showAlert(ErrorMsgs[rsp.RET], function(){}, theLayer);
+                        }, alert);
+                        alert.onClose();
+                    }
+                }, theLayer);
+            },
+            obj: alert,
+            type: BUTTONTYPE_DEFAULT
+        }
+    ]);
 }
 
 function onEnhanceEquip(sender){
@@ -765,7 +791,6 @@ function loadForge(){
     ret.owner.onForgeEquip = onForgeEquip;
     ret.owner.onStartForge = onStartForge;
     ret.owner.onAddMaterials = onAddMaterials;
-
     var bind = {
         item1:{
             ui: "UIItem",
@@ -846,12 +871,47 @@ function loadForge(){
     for( var i=1; i<7; ++i){
         ret.ui["mtrl"+i].setItemSmall(dummyMtrl);
     }
-
     return ret;
 }
 
 function onAddMaterials(sender){
-
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var id = sender.getTag();
+    var itemCid = theContent.ui["mtrl" + id].getItem().ClassId;
+    var alert = libUIKit.alert();
+    alert.setContent("材料不足\n是否立即购买"+Delta[id]+"个？");
+    alert.setCloseCallback(function(){
+        setForgeEquip(theForgeItem);
+    }, theLayer);
+    alert.setButton([
+        {
+            label: "buttontext-qx.png",
+            func: function(sender){
+                this.setCloseCallback(function(){}, theLayer);
+                this.onClose();
+            },
+            obj: alert
+        },
+        {
+            label: "buttontext-confirm.png",
+            func: function(sender){
+                libShop.purchaseItem(itemCid, Delta[id], function(rsp){
+                    if( rsp.RET == RET_OK ){
+                        cc.AudioEngine.getInstance().playEffect("buy.mp3");
+                        alert.onClose();
+                    }else{
+                        libUIKit.showErrorMessage(rsp);
+                        alert.setCloseCallback(function(){
+                            libUIKit.showAlert(ErrorMsgs[rsp.RET], function(){}, theLayer);
+                        }, alert);
+                        alert.onClose();
+                    }
+                }, theLayer);
+            },
+            obj: alert,
+            type: BUTTONTYPE_DEFAULT
+        }
+    ]);
 }
 
 function onForgeEquip(sender){
@@ -889,12 +949,8 @@ function setForgeEquip(item){
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
         var theProperties = {};
         mergeRoleProperties(theProperties, itemClass.basic_properties);
-        if( enhanceInfo != null ) {
-            for (var i = 0; i <= enhance; i++) {
-                if (enhanceInfo.property[i] != null) {
-                    mergeRoleProperties(theProperties, enhanceInfo.property[i]);
-                }
-            }
+        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+            mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
         }
         theContent.owner.labProperty.setString(propertyString(theProperties));
         if( ForgeArgs == null ){
@@ -934,12 +990,16 @@ function loadForgeMaterial(equipClass){
                             theContent.ui["mtrl" + i].setItemSmall(dummyMtrl);
                             theContent.owner["labCount" + i].setString(mtrlCount + "/" + mtrlCost);
                             if (mtrlCount >= mtrlCost) {
+                                Delta[i] = 0;
                                 theContent.owner["labCount" + i].setColor(cc.c3b(0, 255, 0));
                                 theContent.owner["btnAdd" + i].setVisible(false);
+                                theContent.owner["itemMtrl" + i].setEnabled(false);
                             }
                             else {
+                                Delta[i] = mtrlCost - mtrlCount;
                                 theContent.owner["labCount" + i].setColor(cc.c3b(255, 0, 0));
                                 theContent.owner["btnAdd" + i].setVisible(true);
+                                theContent.owner["itemMtrl" + i].setEnabled(true);
                                 ableToForge = false;
                             }
                             i++;
@@ -958,6 +1018,7 @@ function loadForgeMaterial(equipClass){
                 theContent.owner["labCount"+i].setString("0/0");
                 theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
                 theContent.owner["btnAdd"+i].setVisible(false);
+                theContent.owner["itemMtrl" + i].setEnabled(false);
             }
             ableToForge = false;
         }
@@ -1064,7 +1125,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
         SynthesizeArgs = {};
         SynthesizeArgs.sid = stone1Sid;
         if(SynthesizeSlider != null){
-            theContent.owner.nodeX.removeChild(SynthesizeSlider);
+            theContent.owner.nodeX.removeChildByTag(10);
         }
         if( stone1Count < stoneCost){
             SynthesizeSlider = libGadget.UISlider.create({
@@ -1091,7 +1152,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
                 end: theContent.owner.nodeEnd.getPosition(),
                 sthumb: "forge4-common-btn.png",
                 min: 1,
-                max: parseInt(stone1Count/stoneCost),
+                max: Math.floor(stone1Count/stoneCost),
                 def: 1,
                 callback: function(val){
                     var count = Math.floor(val);
@@ -1106,7 +1167,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
             });
             ableToForge = true;
         }
-        theContent.owner.nodeX.addChild(SynthesizeSlider);
+        theContent.owner.nodeX.addChild(SynthesizeSlider, null, 10);
     }
 }
 

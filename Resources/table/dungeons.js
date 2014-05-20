@@ -22369,8 +22369,7 @@ exports.data = [
         "dungeonId": 104,
         "rank": 250,
         "levelCount" : 6,
-        pool: {
-          normalTrap:[
+        "normalPool":[
               { "id":170, "weight":3 },
               { "id":171, "weight":3 },
               { "id":172, "weight":3 },
@@ -22381,53 +22380,64 @@ exports.data = [
               { "id":177, "weight":3 },
               { "id":178, "weight":3 },
               { "id":179, "weight":3 }
-          ]
-        },
-        global: [
-          {id: 190, count: 10},
-          {pool: 'normalTrap', from: 2, to: 5} 
-        ],
-        levels: [
-          [
+          ],
+        "levels": [
+            {"normalCount":1,
+                "objects" :
+            [
               { "id": 49 , "count":2 },
               { "id": 42, "count":1 }, { "id": 43, "count":1 },
               { "id": 12, "count":2 },
               { "id": 69, "count":1 },
-              { "id": 45, "count":1 }
-          ],
-          [
+              { "id": 45, "count":1 },
+              {"id": 190, "count":1 }
+          ]},
+            {"normalCount":1,
+                "objects" :
+                    [
               { "id": 42, "count":1 }, { "id": 43, "count":1 },
               { "id": 149 , "count":2 },
               { "id": 12, "count":2 },
               { "id": 69, "count":1 },
-              { "id": 45, "count":1 }
-          ],
+              { "id": 45, "count":1 },
+              {"id": 190, "count":1 }
+          ]},
+            {"normalCount":1,
+                "objects" :
           [
-              { "id": 49 , "count":2 },
+                  { "id": 49 , "count":2 },
               { "id": 42, "count":1 }, { "id": 43, "count":1 },
               { "id": 149, "count":3 },
               { "id": 12, "count":2 },
-              { "id":63, "count":1 }
-          ],
+              { "id":63, "count":1 },
+              {"id": 190, "count":2 }
+          ]}, {"normalCount":1,
+                "objects":
           [
               { "id": 42, "count":2 }, { "id": 43, "count":1 },
               { "id": 47 , "count":1 },
               { "id": 12, "count":2 },
               { "id": 69, "count":1 }
-          ],
-          [
+          ]},
+{"normalCount":1,
+    "objects" :
+        [
               { "id": 42, "count":2 }, { "id": 43, "count":1 },
               { "id": 47 , "count":1 },
               { "id": 12, "count":2 },
-              { "id": 69, "count":1 }
-          ],
+              { "id": 69, "count":1 },
+              {"id": 190, "count":1 }
+          ]},
+            {"normalCount":1,
+                "objects" :
           [
               { "id": 42, "count":2 }, { "id": 43, "count":1 },
               { "id": 47 , "count":1 },
               { "id": 12, "count":1 },
               { "id": 149, "count":3 },
-              { "id": 69, "count":1 }
-          ]
+              { "id": 69, "count":1 },
+              {"id": 190, "count":2 }
+          ]}
         ],
         "dropID":[ ],
         "prizeWxp":0,"prizeGold":0, "prizeXp":0,
