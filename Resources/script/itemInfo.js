@@ -189,14 +189,9 @@ function contentEquip(){
     }
 
     var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, theItemClass.enhanceID);
-    if( enhanceInfo != null ){
-        for ( var i=0; i<=enhance; i++ ){
-            if( enhanceInfo.property[i] != null){
-                mergeRoleProperties(properties, enhanceInfo.property[i]);
-            }
-        }
+    if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+        mergeRoleProperties(properties, enhanceInfo.property[enhance]);
     }
-
 
     //show property
     owner.labelProperty.setString(propertyString(properties));
