@@ -339,7 +339,8 @@ Inventory.prototype.getNormalItems = function()
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
         if( itemData.storeOnly === true ) return false;
-        else return true;
+        if( itemData.hide === true ) return false;
+        return true;
     });
 }
 
@@ -347,8 +348,9 @@ Inventory.prototype.getShopItems = function()
 {
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
+        if( itemData.hide === true ) return false;
         if( itemData.storeOnly === true ) return true;
-        else return false;
+        return false;
     });
 }
 
