@@ -451,7 +451,7 @@ function selectStage(sId)
     if( theLayer.stage.spriteSelect == null)
     {
         theLayer.stage.spriteSelect = cc.Sprite.createWithSpriteFrameName("mapicon-selected.png");
-        theLayer.stage.node.addChild(theLayer.stage.spriteSelect);
+        theLayer.stage.owner["nodeNormal"].addChild(theLayer.stage.spriteSelect);
     }
     else{
         theLayer.stage.spriteSelect.setVisible(true);

@@ -215,13 +215,12 @@ function loadResult(){
         if( theWXPSource[index] != null ){
             var src = theWXPSource[index];
             theLayer.ui["equip"+index].setItem(src.itm);
-            debug("setEquip("+index+") = "+JSON.stringify(src.itm));//test
             if( src.up >= 0 ){
                 var last = src.xp + theWXP;
                 if( last > src.up ){
                     last = src.up;
                 }
-                if( last != src.xp ){
+                if( last != src.xp && theWXP > 0 ){
                     var anim = {
                         base: src.xp,
                         last: last,
