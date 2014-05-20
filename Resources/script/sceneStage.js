@@ -442,6 +442,44 @@ function onBtnCancel(sender)
     hideStages();
 }
 
+function grabLootInfo(dungeonId){
+    var dData = table.queryTable(TABLE_DUNGEON, dungeonId);
+    if( dData != null && dData.dropID != null ){
+        var ret = [];
+        for(var k in dData.dropID){
+            var dIndex = dData.dropID[k];
+            var dropList = table.queryTable(TABLE_DROP, dIndex);
+            for(var m in dropList){
+                var dropInfo = dropList[m];
+                for(var n in dropInfo.prize){
+                    var itemInfo = dropInfo.prize[n];
+                    if( itemInfo.type == 0 ){
+                        var exist = false;
+                        for(var o in ret){
+                            if( ret[o] == itemInfo.value ){
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if( !exist ){
+                            ret.push(itemInfo.value);
+                        }
+                    }
+                }
+            }
+        }
+        if( ret.length > 0 ){
+            return ret;
+        }
+        else{
+            return null;
+        }
+    }
+    else{
+        return null;
+    }
+}
+
 function selectStage(sId)
 {
     var num = sId+1;
@@ -469,6 +507,29 @@ function selectStage(sId)
 
     //set current stage data
     engine.session.set("stage", stg);
+
+    //grab loot info
+    var loot = grabLootInfo(theStageClass.dungeon);
+    if( loot != null ){
+        // display loot
+        var lootNode = cc.Node.create();
+        var offset = 0;
+        for(var k in loot){
+            var icon = libItem.UIItem.create({
+                ClassId: loot[k]
+            });
+            icon.setPosition(cc.p(offset, 0));
+            lootNode.addChild(icon);
+            offset += 120;
+        }
+        lootNode.setScale(0.7);
+        var length = loot.length*100 + (loot.length-1)*20;
+        length*= 0.7;
+        length /= 2;
+        lootNode.setPosition(cc.p(-length+50*0.7, 0));
+        theLayer.stage.owner["loot"].removeAllChildren();
+        theLayer.stage.owner["loot"].addChild(lootNode);
+    }
 }
 
 function onSelectStage(sender)
