@@ -31,6 +31,9 @@ var BAR_WIDTH = 580;
 var BAR_HEIGHT = 150;
 var BAR_OFFSET = 80;
 
+var nodeTopList = ["nodeZdlbg1","nodeZdlbg2","nodeZdlbg3","nodeZdlbg4"];
+var topNum = [3,10,20,30];
+
 function onRoleInfo(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var layer = sender.LAYER;
@@ -64,6 +67,14 @@ function createRoleBar(role, rank){
     //--- vip panel ---
     if( role.vip != null && role.vip > 0 ){
         layer.owner.nodeVip.setVisible(true);
+    }
+
+    //--- top panel ---
+    for (var k in topNum){
+        if (rank <= topNum[k]){
+            layer.owner[nodeTopList[k]].setVisible(true);
+            break;
+        }
     }
 
     layer.owner.btnRoleInfo.LAYER = layer;

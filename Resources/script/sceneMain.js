@@ -251,6 +251,11 @@ function onNotify(ntf)
             }
             return false;
         }
+        case Message_UpdateEnergy:
+        {
+            updateEnergy();
+            return false;
+        }
     }
 }
 

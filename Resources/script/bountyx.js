@@ -113,16 +113,6 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
 
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
 
-    var remainFlag = bountyData.count;
-    if ((remainFlag != null &&
-        remainFlag > 0) &&
-        (engine.session.dataBounty[bountyId] == null ||
-            engine.session.dataBounty[bountyId].cnt == null ||
-            engine.session.dataBounty[bountyId].cnt <= 0)){
-        str = 3;
-        return str;
-    }
-
     var nowtime = new Date();
     if(!matchDate(bountyData.date, nowtime)){
         str = 2;
@@ -158,10 +148,22 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
     else if(edtime - nowtime >= 0){
         var datetime = edtime.getTime() / 60000 - nowtime.getTime() / 60000;
         datetime = Math.ceil(datetime);
-        if (Math.floor(datetime / 60) < 1)
+        if (Math.floor(datetime / 60) < 1){
             str = 0;
-        else
+        }
+        else{
             str = 4;
+        }
+        //任务进行中，若次数使用完则显示已经完成
+        var remainFlag = bountyData.count;
+        if ((remainFlag != null &&
+            remainFlag > 0) &&
+            (engine.session.dataBounty[bountyId] == null ||
+                engine.session.dataBounty[bountyId].cnt == null ||
+                engine.session.dataBounty[bountyId].cnt <= 0)){
+            str = 3;
+            return str;
+        }
     }
     else{
         str = 2;
@@ -177,16 +179,6 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     }
 
     var secFlag = ":";
-
-    var remainFlag = bountyData.count;
-    if ((remainFlag != null &&
-        remainFlag > 0) &&
-        (engine.session.dataBounty[bountyId] == null ||
-        engine.session.dataBounty[bountyId].cnt == null ||
-        engine.session.dataBounty[bountyId].cnt <= 0)){
-        ret = "";
-        return ret;
-    }
 
     var nowtime = new Date();
     if(!matchDate(bountyData.date, nowtime)){
@@ -259,7 +251,16 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
         else{
             ret = "";
         }
-
+        //任务进行中，若次数使用完则显示已经完成
+        var remainFlag = bountyData.count;
+        if ((remainFlag != null &&
+            remainFlag > 0) &&
+            (engine.session.dataBounty[bountyId] == null ||
+                engine.session.dataBounty[bountyId].cnt == null ||
+                engine.session.dataBounty[bountyId].cnt <= 0)){
+            ret = "";
+            return ret;
+        }
     }
     else{
         ret = "";
