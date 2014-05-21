@@ -495,6 +495,7 @@ function onStartEnhance(sender){
                 libUIKit.waitRPC(Request_InventoryUseItem, EnhanceArgs, function(rsp){
                     if( rsp.RET == RET_OK || rsp.RET == RET_EnhanceFailed ){
                         if( rsp.RET == RET_OK) {
+                            libEffect.attachEffectCCBI(theContent.owner.itemEquip, cc.p(0,0), "effect-forgeqh.ccbi");
                             EnoughMtrls = false;
                         }
                         else{
@@ -503,20 +504,8 @@ function onStartEnhance(sender){
                         //execute result
                         if( rsp.RES != null ){
                             engine.event.processResponses(rsp.RES);
-                            var slot = EquipSlot_MainHand;
-                            switch(TouchId){
-                                case 1: slot = EquipSlot_MainHand; break;
-                                case 2: slot = EquipSlot_SecondHand; break;
-                                case 3: slot = EquipSlot_Chest; break;
-                                case 4: slot = EquipSlot_Legs; break;
-                                case 5: slot = EquipSlot_Finger; break;
-                                case 6: slot = EquipSlot_Neck; break;
-                            }
-                            var newItem = engine.user.actor.queryArmor(slot);
-                            if( newItem != null){
-                                theContent.ui["equip"+TouchId].setItemSmall(newItem);
-                                setEnhanceEquip(newItem);
-                            }
+                            theContent.ui["equip"+TouchId].setItemSmall(theForgeItem);
+                            setEnhanceEquip(theForgeItem);
                         }
                     }
                     else{
@@ -919,8 +908,8 @@ function loadForge(){
     var dummyMtrl = new libItem.Item();
     for( var i=1; i<7; ++i){
         ret.ui["mtrl"+i].setItemSmall(dummyMtrl);
-        ret.owner["btnAdd" + j].setVisible(false);
-        ret.owner["itemMtrl" + j].setEnabled(false);
+        ret.owner["btnAdd" + i].setVisible(false);
+        ret.owner["itemMtrl" + i].setEnabled(false);
     }
     return ret;
 }
