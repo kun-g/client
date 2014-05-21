@@ -41,6 +41,7 @@
 		535EF28917E9444D00D0D61D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28817E9444C00D0D61D /* libz.dylib */; };
 		535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28A17E9445800D0D61D /* SystemConfiguration.framework */; };
 		535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28E17E9447100D0D61D /* libiconv.dylib */; };
+		5371A1FB192CAFFD0033411F /* misc in Resources */ = {isa = PBXBuildFile; fileRef = 5371A1FA192CAFFD0033411F /* misc */; };
 		53744E3618891EFF0096A891 /* PublishVersions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53744E3418891EFF0096A891 /* PublishVersions.mm */; };
 		5386046918FE658100A08149 /* 91UAC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5386046818FE658100A08149 /* 91UAC.mm */; };
 		5386047418FE668900A08149 /* ATSMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5386046C18FE668900A08149 /* ATSMS.framework */; };
@@ -471,6 +472,7 @@
 		535EF28817E9444C00D0D61D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		535EF28A17E9445800D0D61D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		535EF28E17E9447100D0D61D /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		5371A1FA192CAFFD0033411F /* misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = misc; sourceTree = "<group>"; };
 		53744E3418891EFF0096A891 /* PublishVersions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PublishVersions.mm; sourceTree = "<group>"; };
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5386046718FE658100A08149 /* 91UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 91UAC.h; sourceTree = "<group>"; };
@@ -2900,6 +2902,7 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5371A1FA192CAFFD0033411F /* misc */,
 				53D027281906C71D007DC2A2 /* blackbox */,
 				53D027291906C71D007DC2A2 /* script */,
 				53D0272A1906C71D007DC2A2 /* table */,
@@ -3051,6 +3054,7 @@
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
+				5371A1FB192CAFFD0033411F /* misc in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,
 				53A3048018FD30EB001CE8B0 /* README.txt in Resources */,

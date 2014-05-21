@@ -523,10 +523,7 @@ function selectStage(sId)
             offset += 120;
         }
         lootNode.setScale(0.7);
-        var length = loot.length*100 + (loot.length-1)*20;
-        length*= 0.7;
-        length /= 2;
-        lootNode.setPosition(cc.p(-length+50*0.7, 0));
+        lootNode.setPosition(cc.p(0, 0));
         theLayer.stage.owner["loot"].removeAllChildren();
         theLayer.stage.owner["loot"].addChild(lootNode);
     }
