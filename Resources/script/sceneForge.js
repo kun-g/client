@@ -35,6 +35,7 @@ var MODE_FORGE = 2;
 var MODE_SYNTHESIZE = 3;
 var MODE_EXIT = 4;
 var theMode = MODE_UPGRADE;
+var goldCost = 0;
 
 //equipment variables
 var chosenItem = null;
@@ -178,28 +179,54 @@ function onStartUpgrade(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( ableToForge ){
         if( UpgradeArgs != null ){
-            libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function(rsp){
-                if( rsp.RET == RET_OK ){
-                    pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
-                        libUIKit.showAlert("装备升级成功", function(){
-                        }, theLayer);
+            debug("金币 = "+goldCost);
+            if (checkGold(goldCost)){
+                libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function(rsp){
+                    if( rsp.RET == RET_OK ){
+                        pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
+                            libUIKit.showAlert("装备升级成功", function(){
+                            }, theLayer);
 
-                        //execute result
-                        if( rsp.RES != null ){
-                            engine.event.processResponses(rsp.RES);
-                            theContentNode.removeAllChildren();
-                            onUpgrade();
-                        }
-                    }, theLayer);
-                }
-                else{
-                    libUIKit.showErrorMessage(rsp);
-                }
-            }, theLayer);
+                            //execute result
+                            if( rsp.RES != null ){
+                                engine.event.processResponses(rsp.RES);
+                                theContentNode.removeAllChildren();
+                                onUpgrade();
+                            }
+                        }, theLayer);
+                    }
+                    else{
+                        libUIKit.showErrorMessage(rsp);
+                    }
+                }, theLayer);
+            }
         }
     }
     else{
         libUIKit.showAlert("条件不足无法升级");
+    }
+}
+
+function checkGold(gold){
+    if (engine.user.inventory.Gold < gold){
+        var needgold = gold - engine.user.inventory.Gold;
+        var needdia = Math.ceil(needgold / 10);
+        var str1 = "金币不足\n升级还需要"+needgold+"金币\n需要使用"+needdia+"宝石来兑换吗?";
+        var str2 = "宝石不足，无法兑换\n需要充值吗?";
+        debug("宝石 = "+needdia);
+        libUIKit.confirmPurchase(Request_BuyFeature, {
+            typ: 3,
+            tar: needdia
+        }, str1, str2, needdia, function(rsp){
+            if( rsp.RET == RET_OK ){
+                //统计
+                tdga.itemPurchase("兑金币", needgold, 0.1);
+            }
+        });
+        return false;
+    }
+    else{
+        return true;
     }
 }
 
@@ -255,6 +282,8 @@ function setUpgradeItem(item){
             theContent.ui.cost.setPrice({
                 gold: upgradeCost
             });
+
+            goldCost = upgradeCost;
 
             var xp = item.Xp;
             if( xp >= upgradeXp ){

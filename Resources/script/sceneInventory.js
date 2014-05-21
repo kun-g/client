@@ -86,18 +86,16 @@ function onTouchEnded(touch, event)
         var id = calcPosId(localPos);
         //debug("CLICK ID = "+id);
         var item = theCenter.inventoryData[id];
-        if( item != null )
-        {
-            //经验书
-//            if ( item.ClassId != 538 ){
-//                cc.AudioEngine.getInstance().playEffect("card2.mp3");
-//                libItemInfo.show(item, true);
-//            }
-//            else{
-//                loadModule("sceneExpBook.js").show();
-//            }
+        if( item != null ) {
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
-            libItemInfo.show(item, true);
+            debug("item = "+JSON.stringify(item));
+            var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+            if (itemA.category == 0 && itemA.subcategory == 3){
+                loadModule("sceneExpBook.js").show(itemA);
+            }
+            else{
+                libItemInfo.show(item, true);
+            }
         }
     }
 }

@@ -19,6 +19,8 @@ var addExp = 100;
 var EXP_SPEED = 75;
 var addExpConst = 100;
 
+var theItem = null;
+
 var argItem = [EquipSlot_MainHand,EquipSlot_SecondHand,EquipSlot_Chest,EquipSlot_Legs,EquipSlot_Finger,EquipSlot_Neck];
 
 function onBack(){
@@ -300,7 +302,7 @@ function onItem6(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -342,19 +344,24 @@ function update(delta)
             curXp = item.Xp;
             currExp += step;
             upgreadeXp = item.equipUpgradeXp();
-            if (currExp > upgreadeXp)
+            if (currExp > upgreadeXp){
                 currExp = upgreadeXp;
+            }
             addExp -= step;
         }
         else{
+            if (currExp > upgreadeXp){
+                currExp = upgreadeXp;
+            }
             animFlag = false;
             animItem = 0;
-            addExp = 100;
+            addExp = theItem.wxp;
+            addExpConst = theItem.wxp;
             itemPart = EquipSlot_MainHand;
             if (theWXPSound >= 0) {
                 cc.AudioEngine.getInstance().stopEffect(theWXPSound);
             }
-            debug("356 stopEffect:theWXPSound = " + theWXPSound);
+            //debug("356 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
         if (theLayer.ui["progress" + animItem] != undefined){
@@ -369,12 +376,13 @@ function update(delta)
         if (addExp <= 0){
             animFlag = false;
             animItem = 0;
-            addExp = 100;
+            addExp = theItem.wxp;
+            addExpConst = theItem.wxp;
             itemPart = EquipSlot_MainHand;
             if (theWXPSound >= 0) {
                 cc.AudioEngine.getInstance().stopEffect(theWXPSound);
             }
-            debug("373 stopEffect:theWXPSound = " + theWXPSound);
+            //debug("373 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
     }
@@ -425,7 +433,7 @@ function initProgress(){
         var item = engine.user.actor.queryArmor(argItem[k],true);
         var curXp = 0;
         var upgreadeXp = 1;
-        debug(k + ":" + "item = " + JSON.stringify(item));
+        //debug(k + ":" + "item = " + JSON.stringify(item));
         if (item != null){
             curXp = item.Xp;
             upgreadeXp = item.equipUpgradeXp();
@@ -434,7 +442,7 @@ function initProgress(){
                 upgreadeXp = 1;
             }
         }
-        debug("curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
+        //debug("curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
         var proId = +k+1;
         theLayer.ui["progress" + proId].setProgress(curXp/upgreadeXp);
     }
@@ -565,7 +573,10 @@ function onEnter(){
     this.addChild(this.node);
 }
 
-function show(){
+function show(item){
+    theItem = item;
+    addExp = theItem.wxp;
+    addExpConst = theItem.wxp;
     engine.ui.newLayer({
         onNotify: onNotify,
         onEnter: onEnter,
