@@ -5,6 +5,7 @@ var libUIC = loadModule("UIComposer.js");
 var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
+var libEffect = loadModule("effect.js");
 
 var theLayer;
 var animFlag = false;
@@ -24,6 +25,7 @@ var theBtnId = -1;
 var theRes = null;
 
 var argItem = [EquipSlot_MainHand,EquipSlot_SecondHand,EquipSlot_Chest,EquipSlot_Legs,EquipSlot_Finger,EquipSlot_Neck];
+var effectSj = "effect-forgesj.ccbi";
 
 function onBack(){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
@@ -82,6 +84,7 @@ function onItem1(){
                     theBtnId = 0;
                     //initOneProgress(0);
                 }
+                libEffect.attachEffectCCBI(theLayer.ui["equip1"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -138,6 +141,7 @@ function onItem2(){
                     theBtnId = 1;
                     //initOneProgress(1);
                 }
+                libEffect.attachEffectCCBI(theLayer.ui["equip2"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -194,6 +198,7 @@ function onItem3(){
                     theBtnId = 2;
                     //initOneProgress(2);
                 }
+                libEffect.attachEffectCCBI(theLayer.ui["equip3"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -250,6 +255,7 @@ function onItem4(){
                     theBtnId = 4;
                     //initOneProgress(4);
                 }
+                libEffect.attachEffectCCBI(theLayer.ui["equip4"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -306,6 +312,7 @@ function onItem5(){
                     theBtnId = 3;
                     //initOneProgress(3);
                 }
+                libEffect.attachEffectCCBI(theLayer.ui["equip5"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -362,6 +369,7 @@ function onItem6(){
                     theBtnId = 5;
                     //initOneProgress(5);
                 }
+                libEffect.attachEffectCCBI(theLayer.ui["equip6"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;

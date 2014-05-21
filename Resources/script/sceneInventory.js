@@ -88,14 +88,15 @@ function onTouchEnded(touch, event)
         var item = theCenter.inventoryData[id];
         if( item != null ) {
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
-            debug("item = "+JSON.stringify(item));
-            var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-            if (itemA.category == 0 && itemA.subcategory == 3){
-                loadModule("sceneExpBook.js").show(itemA);
-            }
-            else{
-                libItemInfo.show(item, true);
-            }
+//            debug("item = "+JSON.stringify(item));
+//            var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+//            if (itemA.category == 0 && itemA.subcategory == 3){
+//                loadModule("sceneExpBook.js").show(itemA);
+//            }
+//            else{
+//                libItemInfo.show(item, true);
+//            }
+            libItemInfo.show(item, true);
         }
     }
 }

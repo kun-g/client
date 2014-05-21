@@ -276,22 +276,28 @@ function onDissolve(sender){
 
 function onUse(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libUIKit.waitRPC(Request_InventoryUseItem, {
-        sid: theItem.ServerId,
-        opn: ITMOP_USE
-    }, function(rsp){
-        if( rsp.RET == RET_OK )
-        {
-            engine.ui.popLayer();
-            tdga.itemUse(theItemClass.label, 1);
-            //处理开箱子的特效
-            processOpenChest(theItem, rsp);
-        }
-        else
-        {
-            libUIKit.showErrorMessage(rsp);
-        }
-    }, theLayer);
+    if (theItemClass.category == 0 && theItemClass.subcategory == 3){
+        loadModule("sceneExpBook.js").show(theItemClass);
+    }
+    else{
+        libUIKit.waitRPC(Request_InventoryUseItem, {
+            sid: theItem.ServerId,
+            opn: ITMOP_USE
+        }, function(rsp){
+            if( rsp.RET == RET_OK )
+            {
+                engine.ui.popLayer();
+                tdga.itemUse(theItemClass.label, 1);
+                //处理开箱子的特效
+                processOpenChest(theItem, rsp);
+            }
+            else
+            {
+                libUIKit.showErrorMessage(rsp);
+            }
+        }, theLayer);
+    }
+
 }
 
 //equip/unequip module is gonna be removed

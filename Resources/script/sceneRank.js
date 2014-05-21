@@ -71,6 +71,7 @@ function createRoleBar(role, rank){
 
     //--- top panel ---
     for (var k in topNum){
+        layer.owner[nodeTopList[k]].setVisible(false);
         if (rank <= topNum[k]){
             layer.owner[nodeTopList[k]].setVisible(true);
             break;
