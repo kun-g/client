@@ -307,6 +307,7 @@ exports.show = show;
 
 //--- Quest Complete Popup ---
 var theCompletedQuests;
+var theQCPopFlag = false;
 var theQCLayer;
 
 function onQCSubmit(sender){
@@ -324,6 +325,7 @@ function onQCSubmit(sender){
 
             theQCLayer.node.runAction(actionPopOut(function(){
                 engine.ui.removeLayer(theQCLayer);
+                theQCPopFlag = false;
                 if( QuestData != null && QuestData.endDialogue != null ){
                     engine.dialogue.startDialogue(QuestData.endDialogue);
                 }
@@ -334,6 +336,7 @@ function onQCSubmit(sender){
 
             theQCLayer.node.runAction(actionPopOut(function(){
                 engine.ui.removeLayer(theQCLayer);
+                theQCPopFlag = false;
             }));
         }
     }, theQCLayer);
@@ -343,6 +346,7 @@ function onQCClose(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     theQCLayer.node.runAction(actionPopOut(function(){
         engine.ui.removeLayer(theQCLayer);
+        theQCPopFlag = false;
     }));
 }
 
@@ -401,11 +405,13 @@ function showQuestComplete(qid, mode, prz){
     theQCLayer.node.setScale(0);
     theQCLayer.node.runAction(actionPopIn());
     theQCLayer.QID = qid;
+    theQCPopFlag = true;
 }
 
 function invokeQuestPop(){
     if( theCompletedQuests != null
-        && theCompletedQuests.length > 0 ){
+        && theCompletedQuests.length > 0
+        && theQCPopFlag == false ){
         var qstId = theCompletedQuests.shift();
         showQuestComplete(qstId);
     }
