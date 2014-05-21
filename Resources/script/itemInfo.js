@@ -164,10 +164,10 @@ function contentEquip(){
 
     //enhance
     var enhance = -1;
-    if( theItem.Enhance[0].lv != null ){
-        enhance = parseInt(theItem.Enhance[0].lv);
+    if( theItem.Enhance != null && theItem.Enhance[0] != null && theItem.Enhance[0].lv != null ){
+        enhance = Math.floor(theItem.Enhance[0].lv);
     }
-    var starLv = parseInt((enhance+1) / 8) % 6;
+    var starLv = Math.floor((enhance+1) / 8) % 6;
     var barLv = ((enhance == 39)? 8:parseInt(((enhance+1)%8)));
     for(var i=1; i<6; ++i){
         var starName = "ehStar"+i;
@@ -189,14 +189,9 @@ function contentEquip(){
     }
 
     var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, theItemClass.enhanceID);
-    if( enhanceInfo != null ){
-        for ( var i=0; i<=enhance; i++ ){
-            if( enhanceInfo.property[i] != null){
-                mergeRoleProperties(properties, enhanceInfo.property[i]);
-            }
-        }
+    if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+        mergeRoleProperties(properties, enhanceInfo.property[enhance]);
     }
-
 
     //show property
     owner.labelProperty.setString(propertyString(properties));

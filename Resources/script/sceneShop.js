@@ -78,7 +78,9 @@ function onConfirmPurchase(sender){
         if( rsp.RET == RET_OK ){
             cc.AudioEngine.getInstance().playEffect("buy.mp3");
             if( theConfirmShopItem.cost.diamond != null ){
-                tdga.itemPurchase(theConfirmItemClass.label, Number(theConfirmCount.getString()), theConfirmShopItem.cost.diamond);
+                tdga.itemPurchase(theConfirmItemClass.label,
+                Number(theConfirmCount.getString()),
+                theConfirmShopItem.cost.diamond);
             }
         }
         else{
@@ -560,4 +562,37 @@ function scene()
     };
 }
 
+function purchaseItem(cid, count, callback, thiz){
+    //find store sid
+    var item = engine.session.queryStore(cid);
+    if( item != null ){
+        for( var k in item.cost ){
+            switch(k){
+                case "gold":{
+                    if( engine.user.inventory.Gold < item.cost[k] ){
+                        libUIKit.showAlert(ErrorMsgs[1]);
+                        //callback({RET: RET_NotEnoughGold});
+                        return;
+                    }
+                }break;
+                case "diamond":{
+                    if( engine.user.inventory.Diamond < item.cost[k] ){
+                        libUIKit.showAlert(ErrorMsgs[2]);
+                        //callback({RET: RET_NotEnoughDiamond});
+                        return;
+                    }
+                }break;
+            }
+        }
+
+        libUIKit.waitRPC(Request_StoreBuyItem, {
+            sid: item.sid,
+            cnt: count,
+            ver: engine.session.shop.version
+        }, callback, thiz);
+    }
+
+}
+
 exports.scene = scene;
+exports.purchaseItem = purchaseItem;

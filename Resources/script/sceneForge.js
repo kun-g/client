@@ -10,6 +10,7 @@ var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
 var libEffect = loadModule("effect.js");
 var libGadget = loadModule("gadgets.js");
+var libShop = loadModule("sceneShop.js");
 
 var theLayer = null;
 
@@ -52,7 +53,9 @@ var SynthesizeSlider;
 var theForgeItem;
 var theForgeAnimationNode;
 var TouchId;
-var ableToForge = false;
+var EnoughMtrls = false;
+
+var Delta = [];
 
 var ITEM_POSITION = cc.p(45,45);
 
@@ -177,25 +180,48 @@ function getStoneCid(stoneLv){
 //--- 升级 ---
 function onStartUpgrade(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( ableToForge ){
-        if( UpgradeArgs != null ){
-            debug("金币 = "+goldCost);
-            if (checkGold(goldCost)){
-                libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function(rsp){
-                    if( rsp.RET == RET_OK ){
-                        pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
-                            libUIKit.showAlert("装备升级成功", function(){
+    if( EnoughMtrls ){
+        if( UpgradeArgs != null ) {
+            debug("金币 = " + goldCost);
+            if (checkGold(goldCost)) {
+                libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function (rsp) {
+                    if (rsp.RET == RET_OK) {
+                        pushForgeAnimation("effect-forge.ccbi", {nodeItem: theForgeItem}, function () {
+                            libUIKit.showAlert("装备升级成功", function () {
                             }, theLayer);
-
                             //execute result
-                            if( rsp.RES != null ){
+                            if (rsp.RES != null) {
                                 engine.event.processResponses(rsp.RES);
-                                theContentNode.removeAllChildren();
-                                onUpgrade();
+                                var slot = EquipSlot_MainHand;
+                                switch (TouchId) {
+                                    case 1:
+                                        slot = EquipSlot_MainHand;
+                                        break;
+                                    case 2:
+                                        slot = EquipSlot_SecondHand;
+                                        break;
+                                    case 3:
+                                        slot = EquipSlot_Chest;
+                                        break;
+                                    case 4:
+                                        slot = EquipSlot_Legs;
+                                        break;
+                                    case 5:
+                                        slot = EquipSlot_Finger;
+                                        break;
+                                    case 6:
+                                        slot = EquipSlot_Neck;
+                                        break;
+                                }
+                                var newItem = engine.user.actor.queryArmor(slot);
+                                if (newItem != null) {
+                                    theContent.ui["equip" + TouchId].setItemSmall(newItem);
+                                    setUpgradeItem(newItem);
+                                }
                             }
                         }, theLayer);
                     }
-                    else{
+                    else {
                         libUIKit.showErrorMessage(rsp);
                     }
                 }, theLayer);
@@ -206,6 +232,7 @@ function onStartUpgrade(sender){
         libUIKit.showAlert("条件不足无法升级");
     }
 }
+
 
 function checkGold(gold){
     if (engine.user.inventory.Gold < gold){
@@ -245,12 +272,8 @@ function setUpgradeItem(item){
         theContent.owner.oldName.setString(itemClass.label);
         var srcProperties = {};
         mergeRoleProperties(srcProperties, itemClass.basic_properties);
-        if( enhanceInfo != null ) {
-            for (var i = 0; i <= enhance; i++) {
-                if (enhanceInfo.property[i] != null) {
-                    mergeRoleProperties(srcProperties, enhanceInfo.property[i]);
-                }
-            }
+        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+            mergeRoleProperties(srcProperties, enhanceInfo.property[enhance]);
         }
         theContent.owner.labOldProperty.setString(propertyString(srcProperties));
 
@@ -271,12 +294,8 @@ function setUpgradeItem(item){
 
             var dstProperties = {};
             mergeRoleProperties(dstProperties, targetClass.basic_properties);
-            if( enhanceInfo != null ) {
-                for (var i = 0; i <= enhance; i++) {
-                    if (enhanceInfo.property[i] != null) {
-                        mergeRoleProperties(dstProperties, enhanceInfo.property[i]);
-                    }
-                }
+            if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+                mergeRoleProperties(dstProperties, enhanceInfo.property[enhance]);
             }
             theContent.owner.labNewProperty.setString(propertyString(dstProperties));
             theContent.ui.cost.setPrice({
@@ -288,9 +307,9 @@ function setUpgradeItem(item){
             var xp = item.Xp;
             if( xp >= upgradeXp ){
                 xp = upgradeXp;
-                ableToForge = true;
+                EnoughMtrls = true;
             }else{
-                ableToForge = false;
+                EnoughMtrls = false;
             }
 
             if( itemClass.rank != null && itemClass.rank < engine.user.actor.Level ){
@@ -317,7 +336,7 @@ function setUpgradeItem(item){
             theContent.ui.cost.setPrice(null);
             theContent.owner.labXp.setString("该装备无法升级");
             theContent.ui.xp.setProgress(0);
-            ableToForge = false;
+            EnoughMtrls = false;
             UpgradeArgs = null;
         }
     }
@@ -332,7 +351,7 @@ function setUpgradeItem(item){
         theContent.ui.cost.setPrice(null);
         theContent.owner.labXp.setString("");
         theContent.ui.xp.setProgress(0);
-        ableToForge = false;
+        EnoughMtrls = false;
     }
 }
 
@@ -472,12 +491,12 @@ function onUpgrade(sender){
 
 function onStartEnhance(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( ableToForge ){
+    if( EnoughMtrls ){
         if( EnhanceArgs != null){
             libUIKit.waitRPC(Request_InventoryUseItem, EnhanceArgs, function(rsp){
                 if( rsp.RET == RET_OK || rsp.RET == RET_EnhanceFailed ){
                     if( rsp.RET == RET_OK) {
-                        ableToForge = false;
+                        EnoughMtrls = false;
                     }
                     else{
                         libUIKit.showErrorMessage(rsp);
@@ -494,11 +513,11 @@ function onStartEnhance(sender){
             }, theLayer);
         }
         else{
-            libUIKit.showAlert("强化宝石的数量不足");
+            libUIKit.showAlert("该装备无法再强化");
         }
     }
     else{
-        libUIKit.showAlert("该装备无法再强化");
+        libUIKit.showAlert("强化宝石的数量不足");
     }
 
 }
@@ -521,8 +540,8 @@ function setEnhanceEquip(item){
             item.Enhance[0] = {id:null, lv:-1};
             enhance = item.Enhance[0].lv;
         }
-        var starLv = parseInt((enhance+1) / 8) % 6;
-        var barLv = ((enhance == EnhanceMaxLv)? 8:parseInt(((enhance+1)%8)));
+        var starLv = Math.floor((enhance+1) / 8);
+        var barLv = ((enhance == EnhanceMaxLv)? 8:Math.floor(((enhance+1)%8)));
         for(var i=1; i<6; ++i){
             var starName = "ehStar"+i;
             if( i <= starLv){
@@ -548,11 +567,9 @@ function setEnhanceEquip(item){
             EnhanceArgs = {};
         }
         EnhanceArgs.sid = item.ServerId;
-        debug(JSON.stringify(item));
-        debug("EnhanceArgs.sid="+EnhanceArgs.sid)
         EnhanceArgs.opn = ITMOP_ENHANCE;
 
-        ableToForge = true;
+        EnoughMtrls = true;
         setEnhanceStone(itemClass);
 
     }
@@ -573,7 +590,6 @@ function setEnhanceEquip(item){
             EnhanceArgs = null;
         }
         setEnhanceStone(null);
-        ableToForge = false;
 
     }
 }
@@ -586,13 +602,11 @@ function setEnhanceStone(itemClass){
         var theProperties = {};
         mergeRoleProperties(theProperties, itemClass.basic_properties);
         if( enhanceInfo != null ){
-            for ( var i=0; i<=enhance; i++ ){
-                if( enhanceInfo.property[i] != null){
-                    mergeRoleProperties(theProperties, enhanceInfo.property[i]);
-                }
+            if (enhance > -1 && enhanceInfo.property[enhance] != null) {
+                mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
             }
             theContent.owner.labProperty.setString(propertyString(theProperties));
-            if( enhance < EnhanceMaxLv ) {
+            if( enhance < 8*(itemClass.quality+1)-1 ) {
                 var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance+1]);
                 if( enhanceCost != null ){
                     for( var k in enhanceCost.material){
@@ -608,15 +622,17 @@ function setEnhanceStone(itemClass){
                                 var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid[EnhanceStoneLevel]);
                                 theContent.owner.labCount.setString(stoneCount+"/"+EnhanceStoneCost);
                                 if (stoneCount < EnhanceStoneCost){
+                                    Delta[0] = EnhanceStoneCost - stoneCount;
                                     theContent.owner.labCount.setColor(cc.c3b(255,0,0));
                                     theContent.owner.btnPlus.setVisible(true);
                                     EnhanceArgs = null;
-                                    ableToForge = false;
+                                    EnoughMtrls = false;
                                 }
                                 else {
+                                    Delta[0] = 0;
                                     theContent.owner.labCount.setColor(cc.c3b(0,255,0));
                                     theContent.owner.btnPlus.setVisible(false);
-                                    ableToForge = true;
+                                    EnoughMtrls = true;
                                 }
                             }break;
                             case 1: {
@@ -630,9 +646,6 @@ function setEnhanceStone(itemClass){
                     return;
                 }
             }
-            else{ //enhance >= EnhanceMaxLv
-                ableToForge = false;
-            }
         }
         theContent.ui.stone.removeAllChildren();
         theContent.owner.labCount.setString("0/0");
@@ -640,7 +653,8 @@ function setEnhanceStone(itemClass){
         theContent.ui.cost.setPrice(null);
         EnhanceStoneCost = 0;
         EnhanceStoneLevel = -1;
-        ableToForge = false;
+        EnhanceArgs = null;
+        EnoughMtrls = true;
     }
     else{
         theContent.ui.stone.removeAllChildren();
@@ -650,12 +664,46 @@ function setEnhanceStone(itemClass){
         theContent.ui.cost.setPrice(null);
         EnhanceStoneCost = 0;
         EnhanceStoneLevel = -1;
-        ableToForge = false;
+        EnoughMtrls = true;
     }
 }
 
-function onAddStone(){
-    onSynthesize();
+function onAddStone(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var alert = libUIKit.alert();
+    alert.setContent("强化石不足\n是否立即购买"+Delta[0]+"颗？");
+    alert.setCloseCallback(function(){
+        setEnhanceEquip(theForgeItem);
+    }, theLayer);
+    alert.setButton([
+        {
+            label: "buttontext-qx.png",
+            func: function(sender){
+                this.setCloseCallback(function(){}, theLayer);
+                this.onClose();
+            },
+            obj: alert
+        },
+        {
+            label: "buttontext-confirm.png",
+            func: function(sender){
+                libShop.purchaseItem(EnhanceStoneCid[EnhanceStoneLevel], Delta[0], function(rsp){
+                    if( rsp.RET == RET_OK ){
+                        cc.AudioEngine.getInstance().playEffect("buy.mp3");
+                        alert.onClose();
+                    }else{
+                        libUIKit.showErrorMessage(rsp);
+                        alert.setCloseCallback(function(){
+                            libUIKit.showAlert(ErrorMsgs[rsp.RET], function(){}, theLayer);
+                        }, alert);
+                        alert.onClose();
+                    }
+                }, theLayer);
+            },
+            obj: alert,
+            type: BUTTONTYPE_DEFAULT
+        }
+    ]);
 }
 
 function onEnhanceEquip(sender){
@@ -794,7 +842,6 @@ function loadForge(){
     ret.owner.onForgeEquip = onForgeEquip;
     ret.owner.onStartForge = onStartForge;
     ret.owner.onAddMaterials = onAddMaterials;
-
     var bind = {
         item1:{
             ui: "UIItem",
@@ -875,12 +922,47 @@ function loadForge(){
     for( var i=1; i<7; ++i){
         ret.ui["mtrl"+i].setItemSmall(dummyMtrl);
     }
-
     return ret;
 }
 
 function onAddMaterials(sender){
-
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var id = sender.getTag();
+    var itemCid = theContent.ui["mtrl" + id].getItem().ClassId;
+    var alert = libUIKit.alert();
+    alert.setContent("材料不足\n是否立即购买"+Delta[id]+"个？");
+    alert.setCloseCallback(function(){
+        setForgeEquip(theForgeItem);
+    }, theLayer);
+    alert.setButton([
+        {
+            label: "buttontext-qx.png",
+            func: function(sender){
+                this.setCloseCallback(function(){}, theLayer);
+                this.onClose();
+            },
+            obj: alert
+        },
+        {
+            label: "buttontext-confirm.png",
+            func: function(sender){
+                libShop.purchaseItem(itemCid, Delta[id], function(rsp){
+                    if( rsp.RET == RET_OK ){
+                        cc.AudioEngine.getInstance().playEffect("buy.mp3");
+                        alert.onClose();
+                    }else{
+                        libUIKit.showErrorMessage(rsp);
+                        alert.setCloseCallback(function(){
+                            libUIKit.showAlert(ErrorMsgs[rsp.RET], function(){}, theLayer);
+                        }, alert);
+                        alert.onClose();
+                    }
+                }, theLayer);
+            },
+            obj: alert,
+            type: BUTTONTYPE_DEFAULT
+        }
+    ]);
 }
 
 function onForgeEquip(sender){
@@ -918,12 +1000,8 @@ function setForgeEquip(item){
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
         var theProperties = {};
         mergeRoleProperties(theProperties, itemClass.basic_properties);
-        if( enhanceInfo != null ) {
-            for (var i = 0; i <= enhance; i++) {
-                if (enhanceInfo.property[i] != null) {
-                    mergeRoleProperties(theProperties, enhanceInfo.property[i]);
-                }
-            }
+        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+            mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
         }
         theContent.owner.labProperty.setString(propertyString(theProperties));
         if( ForgeArgs == null ){
@@ -932,7 +1010,7 @@ function setForgeEquip(item){
         ForgeArgs.sid = item.ServerId;
         ForgeArgs.opn = ITMOP_FORGE;
 
-        ableToForge = true;
+        EnoughMtrls = true;
         loadForgeMaterial(itemClass);
     }
     else {
@@ -941,7 +1019,7 @@ function setForgeEquip(item){
         if( ForgeArgs != null ){
             delete ForgeArgs.sid;
         }
-        ableToForge = false;
+        EnoughMtrls = false;
         loadForgeMaterial(null);
     }
 }
@@ -963,13 +1041,17 @@ function loadForgeMaterial(equipClass){
                             theContent.ui["mtrl" + i].setItemSmall(dummyMtrl);
                             theContent.owner["labCount" + i].setString(mtrlCount + "/" + mtrlCost);
                             if (mtrlCount >= mtrlCost) {
+                                Delta[i] = 0;
                                 theContent.owner["labCount" + i].setColor(cc.c3b(0, 255, 0));
                                 theContent.owner["btnAdd" + i].setVisible(false);
+                                theContent.owner["itemMtrl" + i].setEnabled(false);
                             }
                             else {
+                                Delta[i] = mtrlCost - mtrlCount;
                                 theContent.owner["labCount" + i].setColor(cc.c3b(255, 0, 0));
                                 theContent.owner["btnAdd" + i].setVisible(true);
-                                ableToForge = false;
+                                theContent.owner["itemMtrl" + i].setEnabled(true);
+                                EnoughMtrls = false;
                             }
                             i++;
                         }
@@ -987,8 +1069,9 @@ function loadForgeMaterial(equipClass){
                 theContent.owner["labCount"+i].setString("0/0");
                 theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
                 theContent.owner["btnAdd"+i].setVisible(false);
+                theContent.owner["itemMtrl" + i].setEnabled(false);
             }
-            ableToForge = false;
+            EnoughMtrls = false;
         }
     }
 }
@@ -1036,19 +1119,31 @@ function onForge(sender){
 
 function onStartForge(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( ableToForge ){
+    if( EnoughMtrls ){
         if( ForgeArgs != null ){
             libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
                 if( rsp.RET == RET_OK ){
                     pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
                         libUIKit.showAlert("升阶成功", function(){
-                            ableToForge = false;
+                            EnoughMtrls = false;
                         }, theLayer);
                         //execute result
                         if( rsp.RES != null ){
                             engine.event.processResponses(rsp.RES);
-                            theContentNode.removeAllChildren();
-                            onForge();
+                            var slot = EquipSlot_MainHand;
+                            switch(TouchId){
+                                case 1: slot = EquipSlot_MainHand; break;
+                                case 2: slot = EquipSlot_SecondHand; break;
+                                case 3: slot = EquipSlot_Chest; break;
+                                case 4: slot = EquipSlot_Legs; break;
+                                case 5: slot = EquipSlot_Finger; break;
+                                case 6: slot = EquipSlot_Neck; break;
+                            }
+                            var newItem = engine.user.actor.queryArmor(slot);
+                            if( newItem != null){
+                                theContent.ui["equip"+TouchId].setItemSmall(newItem);
+                                setUpgradeItem(newItem);
+                            }
                         }
                     }, theLayer);
                 }
@@ -1093,7 +1188,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
         SynthesizeArgs = {};
         SynthesizeArgs.sid = stone1Sid;
         if(SynthesizeSlider != null){
-            theContent.owner.nodeX.removeChild(SynthesizeSlider);
+            theContent.owner.nodeX.removeChildByTag(10);
         }
         if( stone1Count < stoneCost){
             SynthesizeSlider = libGadget.UISlider.create({
@@ -1112,7 +1207,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
                     })
                 }
             });
-            ableToForge = false;
+            EnoughMtrls = false;
         }
         else{
             SynthesizeSlider = libGadget.UISlider.create({
@@ -1120,7 +1215,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
                 end: theContent.owner.nodeEnd.getPosition(),
                 sthumb: "forge4-common-btn.png",
                 min: 1,
-                max: parseInt(stone1Count/stoneCost),
+                max: Math.floor(stone1Count/stoneCost),
                 def: 1,
                 callback: function(val){
                     var count = Math.floor(val);
@@ -1133,9 +1228,9 @@ function setSynthesizeStone(sto1Class, sto2Class){
                     SynthesizeArgs.opc = count;
                 }
             });
-            ableToForge = true;
+            EnoughMtrls = true;
         }
-        theContent.owner.nodeX.addChild(SynthesizeSlider);
+        theContent.owner.nodeX.addChild(SynthesizeSlider, null, 10);
     }
 }
 
@@ -1211,9 +1306,10 @@ function loadSynthesize(){
 }
 
 function onSynthesize(sender){
-    if( !engine.user.player.checkUnlock("synthesize") ){
+    if( !engine.user.player.checkUnlock("extract") ){
         return;
     }
+
     chosenItem = null;
     if( isFlying ) return;
 
@@ -1253,13 +1349,13 @@ function onSynthesize(sender){
 
 function onStartSynthesize(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( ableToForge ){
+    if( EnoughMtrls ){
         if (SynthesizeArgs != null){
             libUIKit.waitRPC(Request_InventoryUseItem, SynthesizeArgs, function(rsp){
                 if ( rsp.RET == RET_OK ){
                     pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
                         libUIKit.showAlert("合成成功", function(){
-                            ableToForge = false;
+                            EnoughMtrls = false;
                         }, theLayer);
                         if ( rsp.RES != null){
                             engine.event.processResponses(rsp.RES);
@@ -1380,7 +1476,7 @@ function onEnter(){
     for( var i=0; i<5; i++){
         EnhanceStoneCid[i] = getStoneCid(i);
     }
-    ableToForge = false;
+    EnoughMtrls = false;
     onUpgrade();
 
     //register broadcast

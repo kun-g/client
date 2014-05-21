@@ -39,20 +39,27 @@ function Role(source)
     }
 }
 
-Role.prototype.parse = function(source)
+Role.prototype.parse = function(source, withArmor)
 {
+    if( withArmor == null ){
+        withArmor = true;
+    }
+
     loadModule("util.js").applyScheme(this, RoleScheme, source);
     //apply Armors
-    if( source.itm != null )
-    {
-        var item = loadModule("xitem.js");
-        this.Armors = [];
-        for( var i in source.itm )
+    if( withArmor ){
+        if( source.itm != null )
         {
-            var itm = new item.Item(source.itm[i]);
-            this.setArmor(itm);
+            var item = loadModule("xitem.js");
+            this.Armors = [];
+            for( var i in source.itm )
+            {
+                var itm = new item.Item(source.itm[i]);
+                this.setArmor(itm);
+            }
         }
     }
+
     //apply Skills
     if( source.ski != null )
     {
@@ -79,7 +86,7 @@ Role.prototype.update = function(event)
     if( this.Level != null ){
         oldLevel = this.Level;
     }
-    this.parse(event.act);
+    this.parse(event.act, false);
     if( this.ClassId >= 0 ){//有可能只更新vip数据后更新完整的角色数据
         this.fix();
         var newLevel = this.calcExp().level;
@@ -149,7 +156,6 @@ Role.prototype.getPower = function()
 
 Role.prototype.setArmor = function(item)
 {
-    //debug("* setArmor");
     if( this.Armors == null )
     {
         this.Armors = [];

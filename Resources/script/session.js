@@ -72,7 +72,8 @@ Session.prototype.queryStore = function(cid, stc){
             if( itm.cnt == null ){
                 itm.cnt = 1;
             }
-            if( itm.cid == cid && itm.cnt == stc ){
+            if( itm.cid == cid &&
+                ( (stc != null && itm.cnt == stc) || (stc == null) ) ){
                 ret = itm;
                 break;
             }
