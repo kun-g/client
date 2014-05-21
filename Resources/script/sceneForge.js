@@ -597,6 +597,7 @@ function setEnhanceEquip(item){
 
 function setEnhanceStone(itemClass){
     theContent.owner.labProperty.setString("");
+    theContent.owner.btnPlus.setVisible(false);
     if( itemClass != null ){
         var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
@@ -1026,6 +1027,7 @@ function setForgeEquip(item){
 }
 
 function loadForgeMaterial(equipClass){
+    for(var j=1; j<7; j++){theContent.owner["btnAdd" + j].setVisible(false);}
     if( equipClass != null) {
         var forgeCost = libTable.queryTable(TABLE_COST, equipClass.forgeID);
         if (forgeCost != null) {
@@ -1240,10 +1242,22 @@ function onSynthesizeStone(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     TouchId = sender.getTag();
     upItem(TouchId);
-    SynthesizeStoneFrom = ( (TouchId == 1)? 1:(TouchId - 1) );
-    var sto1Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom-1]);
-    var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom]);
-    setSynthesizeStone(sto1Class, sto2Class);
+    SynthesizeStoneFrom = TouchId - 1;
+    if( SynthesizeStoneFrom > 0){
+        var sto1Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom-1]);
+        var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom]);
+        setSynthesizeStone(sto1Class, sto2Class);
+    }
+    else{
+        if(SynthesizeSlider != null){
+            theContent.owner.nodeX.removeChildByTag(10);
+        }
+        theContent.owner.nodeTo.addChild(cc.Sprite.create("stone1.png"));
+        theContent.owner.nameFrom.setString("初级强化石");
+        theContent.owner.labCost.setString("不需要合成");
+        theContent.owner.nameTo.setString(libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[0]).label);
+        EnoughMtrls = false;
+    }
 }
 
 function loadSynthesize(){
@@ -1368,6 +1382,8 @@ function onStartSynthesize(sender){
                     libUIKit.showErrorMessage(rsp);
                 }
             }, theLayer);
+        }else{
+            libUIKit.showAlert("无法合成强化石");
         }
     }else{
         libUIKit.showAlert("无法合成强化石");
