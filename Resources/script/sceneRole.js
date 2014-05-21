@@ -93,8 +93,9 @@ function onArmor(sender){
     var tag = sender.getTag();
     var uikey = "equip"+(tag+1);
     var item = theLayer.ui[uikey].getItem();
+    debug("sceneRole onArmor:item = "+JSON.stringify(item));
     if( item != null ){
-        libItemInfo.show(item);
+        libItemInfo.show(item, false, theRole);
     }
 }
 

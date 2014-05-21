@@ -34,11 +34,11 @@ var LINE_WIDTH = 570;
 var LINE_HEIGHT = 180;
 
 var loadList = [
-    "bounty-jjjsbg.png",
-    "bounty-jjkqbg.png",
-    "bounty-yjjsbg.png",
-    "bounty-yjwcbg.png",
-    "bounty-zzjxbg.png"
+    "bounty-jjjsbg.png",//0 即将结束
+    "bounty-jjkqbg.png",//1 即将开启
+    "bounty-yjjsbg.png",//2 已经结束
+    "bounty-yjwcbg.png",//3 已经完成
+    "bounty-zzjxbg.png" //4 正在进行
 ];
 
 var levelBtnList = [
@@ -260,7 +260,7 @@ function loadBountyList(){
             }
 
             var remainFlag = bountyData.count;
-            if (remainFlag != null && remainFlag > 0){
+            if (chkProcess != 1 && chkProcess != 2 && remainFlag != null && remainFlag > 0){
                 if (engine.session.dataBounty[k] != null &&
                     engine.session.dataBounty[k].cnt != null &&
                     engine.session.dataBounty[k].cnt > 0){

@@ -36,7 +36,6 @@ function mergeRoleProperties(dst, src){
 
 function propertyString(properties){
     var strProperty = "";
-    var flag = false;
     for(var k in properties){
         var value = properties[k];
         if( value > 0 ){
@@ -1129,13 +1128,16 @@ function queryStage(stg){
 function matchDate(scheme, date){
     var boolflag = false;
     //////////年/////////////
-    if (scheme.year != undefined){
+    if (scheme.year != null){
         for (var k in scheme.year){
             if (scheme.year[k] == date.getFullYear()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     if (boolflag == false){
         return false;
@@ -1144,13 +1146,16 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////月/////////////
-    if (scheme.month != undefined){
+    if (scheme.month != null){
         for (var k in scheme.month){
             if (scheme.month[k] == date.getMonth()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     if (boolflag == false){
         return false;
@@ -1159,13 +1164,16 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////日/////////////
-    if (scheme.date != undefined){
+    if (scheme.date != null){
         for (var k in scheme.date){
             if (scheme.date[k] == date.getDate()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     if (boolflag == false){
         return false;
@@ -1174,13 +1182,16 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////周/////////////
-    if (scheme.day != undefined){
+    if (scheme.day != null){
         for (var k in scheme.day){
             if (scheme.day[k] == date.getDay()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     return boolflag;
 }

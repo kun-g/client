@@ -191,7 +191,9 @@ var UIArgs = [
     {icon:"equipmentbg1.png", slot:EquipSlot_MainHand},
     {icon:"equipmentbg2.png", slot:EquipSlot_SecondHand},
     {icon:"equipmentbg3.png", slot:EquipSlot_Chest},
-    {icon:"equipmentbg4.png", slot:EquipSlot_Legs}
+    {icon:"equipmentbg4.png", slot:EquipSlot_Legs},
+    {icon:"equipmentbg5.png", slot:EquipSlot_Finger},
+    {icon:"equipmentbg6.png", slot:EquipSlot_Neck}
 ];
 
 function loadResult(){
@@ -218,7 +220,7 @@ function loadResult(){
                 if( last > src.up ){
                     last = src.up;
                 }
-                if( last != src.xp ){
+                if( last != src.xp && theWXP > 0 ){
                     var anim = {
                         base: src.xp,
                         last: last,
@@ -253,22 +255,22 @@ function loadResult(){
     //init exp animation
     var exp = theDummyRole.calcExp();
     if( exp.max ){
-        theLayer.owner.labExp5.setVisible(false);
-        theLayer.ui.progress5.setProgress(1);
+        theLayer.owner.labExp7.setVisible(false);
+        theLayer.ui.progress7.setProgress(1);
         theEXPFlag = false;
     }
     else{
         if( theEXP > 0 ){
-            theLayer.owner.labExp5.setVisible(true);
-            theLayer.owner.labExp5.setString("+0");
-            theLayer.ui.progress5.setProgress(exp.now/exp.total);
+            theLayer.owner.labExp7.setVisible(true);
+            theLayer.owner.labExp7.setString("+0");
+            theLayer.ui.progress7.setProgress(exp.now/exp.total);
             theExpAdded = 0;
             theEXPFlag = true;
             theEXPLeft = theEXP;
         }
         else{
-            theLayer.owner.labExp5.setVisible(false);
-            theLayer.ui.progress5.setProgress(exp.now/exp.total);
+            theLayer.owner.labExp7.setVisible(false);
+            theLayer.ui.progress7.setProgress(exp.now/exp.total);
             theEXPFlag = false;
         }
     }
@@ -316,25 +318,23 @@ function initResult(){
 
     theWXPSource = {};
     var theRole = engine.user.actor;
-    if( theWXP > 0 ){
-        for(var k in UIArgs){
-            var args = UIArgs[k];
-            var index = +k+1;
-            var item = theRole.queryArmor(args.slot, true);
-            if( item != null ){
-                var CurrXp = 0;
-                if( item.Xp != null ) CurrXp = item.Xp;
-                var UpgradeXp = item.equipUpgradeXp();
-                if( CurrXp > UpgradeXp ){
-                    CurrXp = UpgradeXp;
-                }
-                var src = {
-                    itm: item,
-                    xp: CurrXp,
-                    up: UpgradeXp
-                };
-                theWXPSource[index] = src;
+    for(var k in UIArgs){
+        var args = UIArgs[k];
+        var index = +k+1;
+        var item = theRole.queryArmor(args.slot, true);
+        if( item != null ){
+            var CurrXp = 0;
+            if( item.Xp != null ) CurrXp = item.Xp;
+            var UpgradeXp = item.equipUpgradeXp();
+            if( CurrXp > UpgradeXp ){
+                CurrXp = UpgradeXp;
             }
+            var src = {
+                itm: item,
+                xp: CurrXp,
+                up: UpgradeXp
+            };
+            theWXPSource[index] = src;
         }
     }
     //create dummy role
@@ -377,9 +377,9 @@ function update(delta){
                     theEXPFlag = false;//used up
                 }
                 theExpAdded += step;
-                theLayer.owner.labExp5.setString("+"+theExpAdded);
+                theLayer.owner.labExp7.setString("+"+theExpAdded);
                 theDummyRole.Experience += step;
-                theLayer.ui.progress5.setProgress((exp.now+step)/exp.total);
+                theLayer.ui.progress7.setProgress((exp.now+step)/exp.total);
                 if( theExpAdded >= theEXP ){
                     theEXPFlag = false;
                 }
@@ -418,7 +418,7 @@ function onEnter(){
         nodeExp1:{
             ui: "UIProgress",
             id: "progress1",
-            length: 105,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -426,7 +426,7 @@ function onEnter(){
         nodeExp2:{
             ui: "UIProgress",
             id: "progress2",
-            length: 105,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -434,7 +434,7 @@ function onEnter(){
         nodeExp3:{
             ui: "UIProgress",
             id: "progress3",
-            length: 105,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -442,7 +442,7 @@ function onEnter(){
         nodeExp4:{
             ui: "UIProgress",
             id: "progress4",
-            length: 105,
+            length: 88,
             begin: "jiesuan-sld1.png",
             middle: "jiesuan-sld2.png",
             end: "jiesuan-sld3.png"
@@ -450,6 +450,22 @@ function onEnter(){
         nodeExp5:{
             ui: "UIProgress",
             id: "progress5",
+            length: 88,
+            begin: "jiesuan-sld1.png",
+            middle: "jiesuan-sld2.png",
+            end: "jiesuan-sld3.png"
+        },
+        nodeExp6:{
+            ui: "UIProgress",
+            id: "progress6",
+            length: 88,
+            begin: "jiesuan-sld1.png",
+            middle: "jiesuan-sld2.png",
+            end: "jiesuan-sld3.png"
+        },
+        nodeExp7:{
+            ui: "UIProgress",
+            id: "progress7",
             length: 253,
             begin: "jiesuan-jyz1.png",
             middle: "jiesuan-jyz2.png",
@@ -474,6 +490,16 @@ function onEnter(){
             ui: "UIItem",
             id: "equip4",
             def: "equipmentbg4.png"
+        },
+        item5:{
+            ui: "UIItem",
+            id: "equip5",
+            def: "equipmentbg5.png"
+        },
+        item6:{
+            ui: "UIItem",
+            id: "equip6",
+            def: "equipmentbg6.png"
         }
     });
     this.addChild(this.node);

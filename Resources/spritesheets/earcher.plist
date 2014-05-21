@@ -20,6 +20,19 @@
             <key>enemy-archer-1-head.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{2,149},{69,63}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{69,63}}</string>
+                <key>sourceSize</key>
+                <string>{69,63}</string>
+            </dict>
+            <key>enemy-archer-1-head2.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{2,84},{69,63}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -118,7 +131,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:34ffb50c18982fe140f33f67e84dd7c8$</string>
+            <string>$TexturePacker:SmartUpdate:533b87e0941760e61f718859b95ec82e$</string>
             <key>textureFileName</key>
             <string>earcher.png</string>
         </dict>

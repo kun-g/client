@@ -30,7 +30,7 @@ exports.data = [
 
             },
             {
-                "powerLimit":1000,
+                "powerLimit":1400,
                 "stage":115,
                 "prize":[
                     {
@@ -39,7 +39,7 @@ exports.data = [
                 ]
             },
             {
-                "powerLimit":3000,
+                "powerLimit":5000,
                 "stage":116,
                 "prize":[
                     {
