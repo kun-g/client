@@ -504,7 +504,8 @@ function onStartEnhance(sender){
                     //execute result
                     if( rsp.RES != null ){
                         engine.event.processResponses(rsp.RES);
-                        setEnhanceEquip(theContent.ui.equip.getItem());
+                        theContent.ui["equip"+TouchId].setItemSmall(theForgeItem);
+                        setEnhanceEquip(theForgeItem);
                     }
                 }
                 else{
