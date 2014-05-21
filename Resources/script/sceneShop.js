@@ -564,29 +564,30 @@ function scene()
 
 function purchaseItem(cid, count, callback, thiz){
     //find store sid
-    var item = engine.session.queryStore(cid);
-    if( item != null ){
-        for( var k in item.cost ){
+    var shopItem = engine.session.queryStore(cid);
+    if( shopItem != null ){
+        for( var k in shopItem.cost ){
             switch(k){
                 case "gold":{
-                    if( engine.user.inventory.Gold < item.cost[k] ){
+                    if( engine.user.inventory.Gold < shopItem.cost[k] ){
                         libUIKit.showAlert(ErrorMsgs[1]);
                         //callback({RET: RET_NotEnoughGold});
                         return;
                     }
                 }break;
                 case "diamond":{
-                    if( engine.user.inventory.Diamond < item.cost[k] ){
+                    if( engine.user.inventory.Diamond < shopItem.cost[k] ){
                         libUIKit.showAlert(ErrorMsgs[2]);
                         //callback({RET: RET_NotEnoughDiamond});
                         return;
                     }
                 }break;
+                default: return;
             }
         }
 
         libUIKit.waitRPC(Request_StoreBuyItem, {
-            sid: item.sid,
+            sid: shopItem.sid,
             cnt: count,
             ver: engine.session.shop.version
         }, callback, thiz);
