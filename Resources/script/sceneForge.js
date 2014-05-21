@@ -619,7 +619,7 @@ function setEnhanceStone(itemClass){
                             case 0: {
                                 EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).quality;
                                 EnhanceStoneCost = enhanceCost.material[k].count;
-                                theContent.ui.stone.removeAllChildren();
+                                theContent.ui.stone.setItem(null);
                                 var iconStone = cc.Sprite.create("stone"+(EnhanceStoneLevel+1)+".png");
                                 theContent.ui.stone.addChild(iconStone);
 
@@ -654,7 +654,7 @@ function setEnhanceStone(itemClass){
                 }
             }
         }
-        theContent.ui.stone.removeAllChildren();
+        theContent.ui.stone.setItem(null);
         theContent.owner.labCount.setString("0/0");
         theContent.owner.labCount.setColor(cc.c3b(33,22,13));
         theContent.ui.cost.setPrice(null);
@@ -664,7 +664,7 @@ function setEnhanceStone(itemClass){
         EnoughMtrls = true;
     }
     else{
-        theContent.ui.stone.removeAllChildren();
+        theContent.ui.stone.setItem(null);
         theContent.owner.labProperty.setString("");
         theContent.owner.labCount.setString("0/0");
         theContent.owner.labCount.setColor(cc.c3b(33,22,13));
@@ -954,6 +954,23 @@ function onForgeEquip(sender){
     }
 }
 
+var ableToForge = 0; // 0:可升阶 1:顶级 2:装备等级不足
+function checkForgeTarget(itemClass){
+    var target = itemClass.forgeTarget;
+    var quality = itemClass.quality;
+    if ( target != null ){
+        ableToForge = 0;
+        return true;
+    }else{
+        if( quality == 4){
+            ableToForge = 1;
+        }else{
+            ableToForge = 2;
+        }
+        return false;
+    }
+}
+
 function setForgeEquip(item){
     if( item != null ){
         item = syncItemData(item);
@@ -978,8 +995,13 @@ function setForgeEquip(item){
         ForgeArgs.sid = item.ServerId;
         ForgeArgs.opn = ITMOP_FORGE;
 
-        EnoughMtrls = true;
-        loadForgeMaterial(itemClass);
+        if( checkForgeTarget(itemClass) ){
+            EnoughMtrls = true;
+            loadForgeMaterial(itemClass);
+        }else{
+            loadForgeMaterial(null);
+        }
+
     }
     else {
         theContent.ui.equipTarget.setItem(null);
@@ -1035,7 +1057,7 @@ function loadForgeMaterial(equipClass){
         }
         else{
             for( var i=1; i<7; ++i){
-                theContent.ui["mtrl"+i].removeAllChildren();
+                theContent.ui["mtrl"+i].setItemSmall(null);
                 theContent.owner["labCount"+i].setString("0/0");
                 theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
                 theContent.owner["btnAdd"+i].setVisible(false);
@@ -1043,6 +1065,16 @@ function loadForgeMaterial(equipClass){
             }
             EnoughMtrls = false;
         }
+    }
+    else{
+        for( var i=1; i<7; ++i){
+            theContent.ui["mtrl"+i].setItemSmall(null);
+            theContent.owner["labCount"+i].setString("0/0");
+            theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
+            theContent.owner["btnAdd"+i].setVisible(false);
+            theContent.owner["itemMtrl" + i].setEnabled(false);
+        }
+        EnoughMtrls = false;
     }
 }
 
@@ -1089,51 +1121,62 @@ function onForge(sender){
 
 function onStartForge(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( EnoughMtrls ){
-        if( ForgeArgs != null ){
-            if( checkGold(goldCost) ){
-                libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
-                    if( rsp.RET == RET_OK ){
-                        pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
-                            libUIKit.showAlert("升阶成功", function(){
-                                EnoughMtrls = false;
-                            }, theLayer);
-                            //execute result
-                            if( rsp.RES != null ){
-                                engine.event.processResponses(rsp.RES);
-                                var slot = EquipSlot_MainHand;
-                                switch(TouchId){
-                                    case 1: slot = EquipSlot_MainHand; break;
-                                    case 2: slot = EquipSlot_SecondHand; break;
-                                    case 3: slot = EquipSlot_Chest; break;
-                                    case 4: slot = EquipSlot_Legs; break;
-                                    case 5: slot = EquipSlot_Finger; break;
-                                    case 6: slot = EquipSlot_Neck; break;
-                                }
-                                var newItem = engine.user.actor.queryArmor(slot);
-                                if( newItem != null){
-                                    theContent.ui["equip"+TouchId].setItemSmall(newItem);
-                                    setForgeEquip(newItem);
-                                }
+    switch(ableToForge){
+        case 0:{
+            if( EnoughMtrls ){
+                if( ForgeArgs != null ){
+                    if( checkGold(goldCost) ){
+                        libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
+                            if( rsp.RET == RET_OK ){
+                                pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
+                                    libUIKit.showAlert("升阶成功！", function(){
+                                        EnoughMtrls = false;
+                                    }, theLayer);
+                                    //execute result
+                                    if( rsp.RES != null ){
+                                        engine.event.processResponses(rsp.RES);
+                                        var slot = EquipSlot_MainHand;
+                                        switch(TouchId){
+                                            case 1: slot = EquipSlot_MainHand; break;
+                                            case 2: slot = EquipSlot_SecondHand; break;
+                                            case 3: slot = EquipSlot_Chest; break;
+                                            case 4: slot = EquipSlot_Legs; break;
+                                            case 5: slot = EquipSlot_Finger; break;
+                                            case 6: slot = EquipSlot_Neck; break;
+                                        }
+                                        var newItem = engine.user.actor.queryArmor(slot);
+                                        if( newItem != null){
+                                            theContent.ui["equip"+TouchId].setItemSmall(newItem);
+                                            setForgeEquip(newItem);
+                                        }
+                                    }
+                                }, theLayer);
+                            }
+                            else{
+                                libUIKit.showErrorMessage(rsp);
                             }
                         }, theLayer);
                     }
-                    else{
-                        libUIKit.showErrorMessage(rsp);
-                    }
-                }, theLayer);
+                }
+            }else{
+                libUIKit.showAlert("材料不足！");
             }
-        }
-    }else{
-        libUIKit.showAlert("材料不足");
+        }break;
+        case 1:{
+            libUIKit.showAlert("装备已是最高品质！");
+        }break;
+        case 2:{
+            libUIKit.showAlert("装备等级不足\n无法升阶！");
+        }break;
     }
+
 }
 
 //--- 合成 ---
 
 function setSynthesizeStone(sto1Class, sto2Class){
-    theContent.owner.nodeFrom.removeAllChildren();
-    theContent.owner.nodeTo.removeAllChildren();
+    theContent.owner.nodeFrom.setItem(null);
+    theContent.owner.nodeTo.setItem(null);
     theContent.owner.labCost.setString("");
     if( sto1Class != null && sto2Class != null){
         var stone1Count = engine.user.inventory.countItem(sto1Class.classId);
