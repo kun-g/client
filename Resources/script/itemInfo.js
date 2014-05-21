@@ -453,11 +453,11 @@ function onEnter(){
                 break;
             case ITEM_EQUIPMENT:
                 if( theItem.Status == ITEMSTATUS_EQUIPED ){
-//                    operates.push({
-//                        label: "buttontext-unequip.png",
-//                        func: onEquip,
-//                        obj: theLayer
-//                    });
+                    operates.push({
+                        label: "buttontext-unequip.png",
+                        func: onEquip,
+                        obj: theLayer
+                    });
                 }
                 else{
                     operates.push({
