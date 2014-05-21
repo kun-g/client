@@ -38,12 +38,12 @@ exports.data = {
         "2":{
             "tutorial": 5,
             "stage":105,
-            "powerLimit": 155,
+            "powerLimit": 1,
             "refuseDialogue":62
         },
         "3":{
             "tutorial": 6,
-            "powerLimit": 175,
+            "powerLimit": 1,
             "refuseDialogue":62
 
         },
@@ -52,7 +52,7 @@ exports.data = {
         },
         "6":{
             "tutorial": 10,
-            "powerLimit":220 ,
+            "powerLimit":2 ,
             "refuseDialogue":62
         },
         "7":{
@@ -61,7 +61,7 @@ exports.data = {
         },
         "4":{
             "stage":106,
-            "powerLimit":205,
+            "powerLimit":2,
             "refuseDialogue":62
         },
         "9":{

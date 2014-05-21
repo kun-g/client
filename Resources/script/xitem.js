@@ -22,6 +22,7 @@ function Item(source)
     this.StackCount = 1;
     this.Status = 0;
     this.Xp = 0;
+    this.Enhance = [{id:null, lv:-1}];
 
     if( source != null )
     {
@@ -295,6 +296,15 @@ Inventory.prototype.countItem = function(cid){
     return ret;
 }
 
+Inventory.prototype.getServerId = function(cid){
+    for(var k in this.Items){
+        var item = this.Items[k];
+        if( item.ClassId == cid ){
+            return item.ServerId;
+        }
+    }
+}
+
 Inventory.prototype.syncArmors = function(){
     engine.user.actor.Armors = [];
     for(var k in this.Items){
@@ -329,7 +339,8 @@ Inventory.prototype.getNormalItems = function()
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
         if( itemData.storeOnly === true ) return false;
-        else return true;
+        if( itemData.hide === true ) return false;
+        return true;
     });
 }
 
@@ -337,8 +348,9 @@ Inventory.prototype.getShopItems = function()
 {
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
+        if( itemData.hide === true ) return false;
         if( itemData.storeOnly === true ) return true;
-        else return false;
+        return false;
     });
 }
 
@@ -347,7 +359,9 @@ Inventory.prototype.checkUpgradable = function(){
         EquipSlot_MainHand,
         EquipSlot_SecondHand,
         EquipSlot_Chest,
-        EquipSlot_Legs
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
     ];
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
@@ -442,6 +456,17 @@ var UIItem = cc.Node.extend({
                     qualityTag.setPosition(cc.p(-50, -50));
                     this.addChild(qualityTag, 20);
                 }
+                //add enhance mark
+                if( this.ITEM.Enhance != null && this.ITEM.Enhance[0] != null){
+                    var starLv = Math.floor((this.ITEM.Enhance[0].lv+1) / 8);
+                    if( starLv >0 ){
+                        var fileStar = "itemstar"+starLv+".png";
+                        var enhanceMark = cc.Sprite.create(fileStar);
+                        enhanceMark.setAnchorPoint(cc.p(0.5, 0));
+                        enhanceMark.setPosition(cc.p(0, -44));
+                        this.addChild(enhanceMark, 50);
+                    }
+                }
             }
             else
             {
@@ -453,6 +478,98 @@ var UIItem = cc.Node.extend({
         else
         {
             var sp = cc.Sprite.create(this.DEF);
+            this.addChild(sp, 0);
+        }
+    },
+    setItemSmall: function(item, owner){
+        var ITEM_SCALE = 0.77; //缩放比例
+        var ITEM_DELTA_POS = cc.p(45, 45);
+        if( owner == null ) owner = engine.user.actor;
+        this.ITEM = item;
+        this.removeAllChildren();
+        this.icon = null;
+        this.dot = null;
+        this.num = null;
+        this.frameAvailable = null;
+
+        if( this.ITEM != null )
+        {
+            var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
+
+            if( ItemClass == null || ItemClass.label == null ){
+                var sp = cc.Sprite.create(this.DEF);
+                sp.setScale(ITEM_SCALE);
+                sp.setPosition(ITEM_DELTA_POS);
+                this.addChild(sp);
+                return;
+            }
+
+            if( ItemClass != null )
+            {
+                //var tbg = cc.Sprite.create(ItemTypeImages[ItemClass.category]);
+                //this.addChild(tbg);
+                if( ItemClass.iconm != null && ItemClass.iconf != null )
+                {
+                    if( owner != null )
+                    {
+                        if( owner.Gender == 0 )
+                        {//female icon
+                            var icon = cc.Sprite.create(ItemClass.iconf);
+                        }
+                        else
+                        {//male icon
+                            var icon = cc.Sprite.create(ItemClass.iconm);
+                        }
+                    }
+                    else
+                    {//if no user, use male
+                        var icon = cc.Sprite.create(ItemClass.iconm);
+                    }
+                }
+                else
+                {
+                    var icon = cc.Sprite.create(ItemClass.icon);
+                }
+                icon.setScale(ITEM_SCALE);
+                icon.setPosition(ITEM_DELTA_POS);
+                this.addChild(icon, 0);
+                this.icon = icon;
+                this.setStackCount(this.ITEM.StackCount);
+                //add quality tag
+                if( ItemClass.quality != null){
+                    var fileName = "itemquality"+(ItemClass.quality+1)+".png";
+                    var qualityTag = cc.Sprite.create(fileName);
+                    qualityTag.setScale(ITEM_SCALE);
+                    qualityTag.setPosition(ITEM_DELTA_POS);
+                    this.addChild(qualityTag, 20);
+                }
+                //add enhance mark
+                if( this.ITEM.Enhance[0] != null){
+                    var starLv = parseInt((this.ITEM.Enhance[0].lv+1) / 8) % 6;
+                    if( starLv >0){
+                        var fileStar = "itemstar"+starLv+".png";
+                        var enhanceMark = cc.Sprite.create(fileStar);
+                        enhanceMark.setScale(ITEM_SCALE);
+                        enhanceMark.setPosition(cc.p(45, 14));
+                        this.addChild(enhanceMark, 52);
+                    }
+                }
+
+            }
+            else
+            {
+                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
+                var sp = cc.Sprite.create("wenhao.png");
+                sp.setScale(ITEM_SCALE);
+                sp.setPosition(ITEM_DELTA_POS);
+                this.addChild(sp, 0);
+            }
+        }
+        else
+        {
+            var sp = cc.Sprite.create(this.DEF);
+            sp.setScale(ITEM_SCALE);
+            sp.setPosition(ITEM_DELTA_POS);
             this.addChild(sp, 0);
         }
     },

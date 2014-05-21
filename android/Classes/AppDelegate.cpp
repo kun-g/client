@@ -16,9 +16,9 @@
 #include "utility/ISystem.h"
 #include "js/NativeAPI.h"
 #include "js/CallbackManager.h"
-#include "utility/ISystem.h"
-//#include "curl.h"
-//#include "platform/android/PublishVersions.h"
+#include "js/System.h"
+#include "curl/curl.h"
+#include "platf/android/PublishVersions.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -39,7 +39,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    //preInitAPI();//android hold
+    preInitAPI();
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
@@ -66,6 +66,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     string display;
     {//set display
         CCSize winSize = pDirector->getWinSize();
+        CCLog("winSize = %fx%f", winSize.width, winSize.height);
         float aspectRatio = winSize.height/winSize.width;
         
         CCArray *pResolutions = (CCArray*)pSetup->objectForKey("Resolutions");
@@ -148,7 +149,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         }
         CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
     }
-    
+
     //init js script core
     ScriptingCore* sc = ScriptingCore::getInstance();
     sc->addRegisterCallback(register_all_cocos2dx);
@@ -206,7 +207,7 @@ void AppDelegate::applicationDidEnterBackground()
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     triggerEnterBackground();
-    //onPauseApp();//android hold
+    onPauseApp();
 }
 
 // this function will be called when the app is active again
@@ -215,5 +216,5 @@ void AppDelegate::applicationWillEnterForeground()
     CCDirector::sharedDirector()->resume();
     
     triggerEnterForeground();
-    //onResumeApp();//android hold
+    onResumeApp();
 }

@@ -12,7 +12,7 @@
 #include "ScriptingCore.h"
 #include "jsapi.h"
 #include "jsfriendapi.h"
-#include "IIAP.h"
+#include "utility/IIAP.h"
 #include <string>
 
 class IAPJSDelegate :

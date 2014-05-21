@@ -7,20 +7,20 @@
             <key>enemy-goblin2-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,80},{33,43}}</string>
+                <string>{{80,2},{33,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{33,43}}</string>
                 <key>sourceSize</key>
                 <string>{33,43}</string>
             </dict>
-            <key>enemy-goblin2-1-head.png</key>
+            <key>enemy-goblin2-1-head(MIRA-PC--MiRa--2014-05-15-17,35,09).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,2},{67,51}}</string>
+                <string>{{72,111},{67,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,10 +30,36 @@
                 <key>sourceSize</key>
                 <string>{67,51}</string>
             </dict>
+            <key>enemy-goblin2-1-head.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,91},{68,53}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{68,53}}</string>
+                <key>sourceSize</key>
+                <string>{68,53}</string>
+            </dict>
+            <key>enemy-goblin2-1-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,36},{73,53}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{73,53}}</string>
+                <key>sourceSize</key>
+                <string>{73,53}</string>
+            </dict>
             <key>enemy-goblin2-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{89,26},{21,34}}</string>
+                <string>{{77,61},{21,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +72,7 @@
             <key>enemy-goblin2-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{37,71},{29,29}}</string>
+                <string>{{2,146},{29,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -63,7 +89,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{32,76}}</string>
                 <key>sourceSize</key>
@@ -72,7 +98,7 @@
             <key>enemy-goblin2-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{89,2},{36,22}}</string>
+                <string>{{77,37},{36,22}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +111,7 @@
             <key>enemy-goblin2-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{89,49},{30,25}}</string>
+                <string>{{77,84},{30,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -103,9 +129,9 @@
             <key>realTextureFileName</key>
             <string>egoblin2.png</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:184f71859b10543859fe3d2cefdae200$</string>
+            <string>$TexturePacker:SmartUpdate:0b6f769f0620368b5f1d6dea711dcbcc$</string>
             <key>textureFileName</key>
             <string>egoblin2.png</string>
         </dict>

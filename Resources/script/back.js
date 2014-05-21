@@ -195,6 +195,9 @@ function onEvent(event)
         case Event_EnergyUpdate:
         {
             engine.user.player.setEnergy(event.arg.eng, event.arg.tim);
+            var event = {};
+            event.NTF = Message_UpdateEnergy;
+            engine.event.processNotification(event);
             //debug("Energy Update! = "+engine.user.player.Energy);
             return true;
         }

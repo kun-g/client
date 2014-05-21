@@ -4,40 +4,92 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>enemy-orcs2-2-chest.png</key>
+            <key>enemy-orcs2-2-chest(MIRA-PC--MiRa--2014-05-15-17,35,15).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,100},{41,39}}</string>
+                <string>{{129,189},{41,39}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{41,39}}</string>
                 <key>sourceSize</key>
                 <string>{41,39}</string>
             </dict>
-            <key>enemy-orcs2-2-head.png</key>
+            <key>enemy-orcs2-2-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,42},{72,66}}</string>
+                <string>{{88,189},{42,39}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{42,39}}</string>
+                <key>sourceSize</key>
+                <string>{42,39}</string>
+            </dict>
+            <key>enemy-orcs2-2-head(MIRA-PC--MiRa--2014-05-15-17,35,15).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,77},{72,66}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{72,66}}</string>
                 <key>sourceSize</key>
                 <string>{72,66}</string>
             </dict>
-            <key>enemy-orcs2-2-lefthand.png</key>
+            <key>enemy-orcs2-2-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,42},{26,45}}</string>
+                <string>{{42,2},{73,66}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{73,66}}</string>
+                <key>sourceSize</key>
+                <string>{73,66}</string>
+            </dict>
+            <key>enemy-orcs2-2-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,113},{74,66}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{74,66}}</string>
+                <key>sourceSize</key>
+                <string>{74,66}</string>
+            </dict>
+            <key>enemy-orcs2-2-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,15).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{30,189},{26,45}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{26,45}}</string>
+                <key>sourceSize</key>
+                <string>{26,45}</string>
+            </dict>
+            <key>enemy-orcs2-2-lefthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,189},{26,45}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{26,45}}</string>
                 <key>sourceSize</key>
@@ -46,7 +98,7 @@
             <key>enemy-orcs2-2-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,110},{36,37}}</string>
+                <string>{{70,151},{36,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -63,7 +115,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{38,109}}</string>
                 <key>sourceSize</key>
@@ -72,11 +124,11 @@
             <key>enemy-orcs2-2-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,70},{43,28}}</string>
+                <string>{{58,189},{43,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{43,28}}</string>
                 <key>sourceSize</key>
@@ -85,11 +137,11 @@
             <key>enemy-orcs2-2-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{41,141},{36,35}}</string>
+                <string>{{109,151},{36,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{36,35}}</string>
                 <key>sourceSize</key>
@@ -103,9 +155,9 @@
             <key>realTextureFileName</key>
             <string>eorcs-22.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:654379c09ced2906ebc9ff295203c291$</string>
+            <string>$TexturePacker:SmartUpdate:3210c4db2e635ce73bb0893e9248cb06$</string>
             <key>textureFileName</key>
             <string>eorcs-22.png</string>
         </dict>

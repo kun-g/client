@@ -5,7 +5,6 @@
 var libTable = loadModule("table.js");
 
 function BountyLog(){
-    this.dataBounty = [];
 }
 
 BountyLog.prototype.getBountyList = function(){
@@ -43,7 +42,7 @@ BountyLog.prototype.checkLevel = function(bountyId, level){
 
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
     if( bountyData != null){
-        if (bountyData.level[level].levelLimit == undefined || bountyData.level[level].levelLimit <= engine.user.actor.Level){
+        if (bountyData.level[level].levelLimit == null || bountyData.level[level].levelLimit <= engine.user.actor.Level){
             ret = true;
         }
     }
@@ -56,7 +55,7 @@ BountyLog.prototype.checkPower = function(bountyId, level){
 
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
     if( bountyData != null){
-        if (bountyData.level[level].powerLimit == undefined || bountyData.level[level].powerLimit <= engine.user.actor.getPower()){
+        if (bountyData.level[level].powerLimit == null || bountyData.level[level].powerLimit <= engine.user.actor.getPower()){
             ret = true;
         }
     }
@@ -69,12 +68,12 @@ BountyLog.prototype.checkClass = function(bountyId, level){
 
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
     if( bountyData != null){
-        if (bountyData.level[level].classLimit == undefined){
+        if (bountyData.level[level].classLimit == null){
             ret = true;
         }
         else{
             for (var k in bountyData.level[level].classLimit){
-                if (bountyData.level[level].classLimit[k] == engine.user.actor.Level){
+                if (bountyData.level[level].classLimit[k] == engine.user.actor.ClassId){
                     ret = true;
                 }
             }
@@ -94,122 +93,59 @@ BountyLog.prototype.checkLimit = function(bountyId, level){
         str = "需要战斗力" + bountyData.level[level].powerLimit + "。";
     }
     if (!engine.user.bounty.checkClass(bountyId, level)){
-        str = "只有";
         for (var k in bountyData.level[level].classLimit) {
-            switch (bountyData.level[level].classLimit[k]) {
-                case 0:
-                    str += "战士、";
-                    break;
-                case 1:
-                    str += "法师、";
-                    break;
-                case 2:
-                    str += "牧师、";
-                    break;
-
-            }
+            var roleClass = libTable.queryTable(TABLE_ROLE, bountyData.level[level].classLimit[k]);
+            str += roleClass.className + "、";
         }
-        str=str.substring(0,str.length-1);
-        str += "职业可以做。";
+        if (str.length > 0){
+            str=str.substring(0,str.length-1);
+            str += "职业可以做。";
+        }
     }
     return str;
 }
 
 BountyLog.prototype.checkProcess = function(bountyId, segId){
     var str = -1;
-    if (segId == undefined){
+    if (segId == null){
         segId = 0;
     }
 
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
 
     var remainFlag = bountyData.count;
-//    debug("113: remainFlag = " + remainFlag);
-//    debug("114: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
-    if ((remainFlag != undefined &&
+    if ((remainFlag != null &&
         remainFlag > 0) &&
-        (engine.user.bounty.dataBounty[bountyId] == undefined ||
-            engine.user.bounty.dataBounty[bountyId].cnt == undefined ||
-            engine.user.bounty.dataBounty[bountyId].cnt <= 0)){
+        (engine.session.dataBounty[bountyId] == null ||
+            engine.session.dataBounty[bountyId].cnt == null ||
+            engine.session.dataBounty[bountyId].cnt <= 0)){
         str = 3;
         return str;
     }
 
     var nowtime = new Date();
-    //////////年/////////////
-    if (bountyData.date.year != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.year){
-            if (bountyData.date.year[k] == nowtime.getFullYear()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            str = 2;
-            return str;
-        }
-    }
-    //////////月/////////////
-    if (bountyData.date.month != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.month){
-            if (bountyData.date.month[k] == nowtime.getMonth()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            str = 2;
-            return str;
-        }
-    }
-    //////////日/////////////
-    if (bountyData.date.date != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.date){
-            if (bountyData.date.date[k] == nowtime.getDate()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            str = 2;
-            return str;
-        }
-    }
-    //////////周/////////////
-    if (bountyData.date.day != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.day){
-            if (bountyData.date.day[k] == nowtime.getDay()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            str = 2;
-            return str;
-        }
+    if(!matchDate(bountyData.date, nowtime)){
+        str = 2;
+        return str;
     }
 
     var starttime = bountyData.date.segment[segId].start.split(":");
     var endtime = bountyData.date.segment[segId].end.split(":");
 
     var sthour = 0;
-    if (starttime[0] != undefined){
+    if (starttime[0] != null){
         sthour = starttime[0];
     }
     var stmin = 0;
-    if (starttime[1] != undefined){
+    if (starttime[1] != null){
         stmin = starttime[1];
     }
     var endhour = 0;
-    if (endtime[0] != undefined){
+    if (endtime[0] != null){
         endhour = endtime[0];
     }
     var endmin = 0;
-    if (endtime[1] != undefined){
+    if (endtime[1] != null){
         endmin = endtime[1];
     }
 
@@ -236,99 +172,45 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
 
 BountyLog.prototype.cacultime = function(bountyId, segId){
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
-    if (segId == undefined){
+    if (segId == null){
         segId = 0;
     }
 
     var secFlag = ":";
 
     var remainFlag = bountyData.count;
-//    debug("227: remainFlag = " + remainFlag);
-//    debug("228: engine.user.bounty.dataBounty[" + bountyId + "] = " + JSON.stringify(engine.user.bounty.dataBounty[bountyId]));
-    if ((remainFlag != undefined &&
+    if ((remainFlag != null &&
         remainFlag > 0) &&
-        (engine.user.bounty.dataBounty[bountyId] == undefined ||
-        engine.user.bounty.dataBounty[bountyId].cnt == undefined ||
-        engine.user.bounty.dataBounty[bountyId].cnt <= 0)){
+        (engine.session.dataBounty[bountyId] == null ||
+        engine.session.dataBounty[bountyId].cnt == null ||
+        engine.session.dataBounty[bountyId].cnt <= 0)){
         ret = "";
         return ret;
     }
 
     var nowtime = new Date();
-    //////////年/////////////
-    if (bountyData.date.year != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.year){
-            if (bountyData.date.year[k] == nowtime.getFullYear()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            ret = "";
-            return ret;
-        }
-    }
-    //////////月/////////////
-    if (bountyData.date.month != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.month){
-            if (bountyData.date.month[k] == nowtime.getMonth()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            ret = "";
-            return ret;
-        }
-    }
-    //////////日/////////////
-    if (bountyData.date.date != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.date){
-            if (bountyData.date.date[k] == nowtime.getDate()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            ret = "";
-            return ret;
-        }
-    }
-    //////////周/////////////
-    if (bountyData.date.day != undefined){
-        var boolflag = false;
-        for (var k in bountyData.date.day){
-            if (bountyData.date.day[k] == nowtime.getDay()){
-                boolflag = true;
-                break;
-            }
-        }
-        if (boolflag == false){
-            ret = "";
-            return ret;
-        }
+    if(!matchDate(bountyData.date, nowtime)){
+        ret = "";
+        return ret;
     }
 
     var starttime = bountyData.date.segment[segId].start.split(":");
     var endtime = bountyData.date.segment[segId].end.split(":");
 
     var sthour = 0;
-    if (starttime[0] != undefined){
+    if (starttime[0] != null){
         sthour = starttime[0];
     }
     var stmin = 0;
-    if (starttime[1] != undefined){
+    if (starttime[1] != null){
         stmin = starttime[1];
     }
     var endhour = 0;
-    if (endtime[0] != undefined){
+    if (endtime[0] != null){
         endhour = endtime[0];
     }
     var endmin = 0;
-    if (endtime[1] != undefined){
+    if (endtime[1] != null){
         endmin = endtime[1];
     }
 
@@ -339,11 +221,9 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     var ret = "";
     var min = "";
     var sec = "";
-    //debug("sttime.getTime() = " + sttime.getTime());
     if (sttime - nowtime >= 0){
         datetime = sttime.getTime() / 60000 - nowtime.getTime() / 60000;
         datetime = Math.ceil(datetime);
-        //debug("1datetime = " + datetime);
         if (Math.floor(datetime / 60) < 10){
             min = "0" + Math.floor(datetime / 60);
         }
@@ -361,7 +241,6 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     else if(edtime - nowtime >= 0){
         datetime = edtime.getTime() / 60000 - nowtime.getTime() / 60000;
         datetime = Math.ceil(datetime);
-        //debug("2datetime = " + datetime);
         if (Math.floor(datetime / 60) < 1){
             if (Math.floor(datetime / 60) < 10){
                 min = "0" + Math.floor(datetime / 60);
@@ -385,7 +264,6 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     else{
         ret = "";
     }
-    //debug("ret = " + ret);
     return ret;
 }
 
@@ -401,19 +279,19 @@ BountyLog.prototype.getProcess = function(bountyId){
         var endtime = bountyData.date.segment[k].end.split(":");
 
         var sthour = 0;
-        if (starttime[0] != undefined){
+        if (starttime[0] != null){
             sthour = starttime[0];
         }
         var stmin = 0;
-        if (starttime[1] != undefined){
+        if (starttime[1] != null){
             stmin = starttime[1];
         }
         var endhour = 0;
-        if (endtime[0] != undefined){
+        if (endtime[0] != null){
             endhour = endtime[0];
         }
         var endmin = 0;
-        if (endtime[1] != undefined){
+        if (endtime[1] != null){
             endmin = endtime[1];
         }
 
@@ -432,14 +310,14 @@ BountyLog.prototype.getProcess = function(bountyId){
 
 BountyLog.prototype.getLimStartTimeHour = function(bountyId, segId){
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
-    if (segId == undefined){
+    if (segId == null){
         segId = 0;
     }
 
     var starttime = bountyData.date.segment[segId].start.split(":");
 
     var sthour = 0;
-    if (starttime[0] != undefined){
+    if (starttime[0] != null){
         sthour = starttime[0];
     }
     return sthour;
@@ -447,14 +325,14 @@ BountyLog.prototype.getLimStartTimeHour = function(bountyId, segId){
 
 BountyLog.prototype.getLimStartTimeMin = function(bountyId, segId){
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
-    if (segId == undefined){
+    if (segId == null){
         segId = 0;
     }
 
     var starttime = bountyData.date.segment[segId].start.split(":");
 
     var stmin = 0;
-    if (starttime[1] != undefined){
+    if (starttime[1] != null){
         stmin = starttime[1];
     }
     return stmin
@@ -526,7 +404,7 @@ BountyLog.prototype.setScheduleLocalNotification = function(){
         var list = engine.user.bounty.getBountyList();
         for (var k in list) {
             var bountyData = libTable.queryTable(TABLE_BOUNTY, k);
-            if (bountyData.notify != undefined &&
+            if (bountyData.notify != null &&
                 bountyData.notify >= 1 &&
                 engine.user.bounty.checkAllLevelLimit(k)) {
 

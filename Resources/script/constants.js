@@ -84,8 +84,8 @@ var ITMOP_EQUIP = 1;
 var ITMOP_ENHANCE = 2;
 var ITMOP_UPGRADE = 3;
 var ITMOP_FORGE = 4;
-var ITMOP_EXTRACT = 5;
-var ITMOP_RESEVED3 = 6;
+var ITMOP_SYNTHESIZE = 5;
+var ITMOP_USEEXPBOOK = 6;
 var ITMOP_DISSOLVE = 7;
 var ITMOP_SELL = 8;
 
@@ -181,7 +181,7 @@ var BLOCK_LOCKEDEXIT = 4;
 
 var ACTION_DELAY = 0.3;
 
-var RUN_SPEED = 512;
+var RUN_SPEED = 700;
 var HERO_TAG = 0;
 var UNIT_TAG = 100;
 
@@ -312,6 +312,7 @@ var Message_About2Reboot = 1028;
 var Message_ResetDungeon = 1029;
 var Message_UpdateDailyQuest = 1030;
 var Message_UpdateBounty = 1031;
+var Message_UpdateEnergy = 1032;
 
 var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;

@@ -205,7 +205,9 @@ exports.CONFIRM_NEUTRAL = CONFIRM_NEUTRAL;
 function confirmPurchase(command, args, text1, text2, cost, callback){
     if( engine.user.inventory.Diamond >= cost ){
         //ask to confirm the purchase
+        debug("text1 var alt = alert();");
         var alt = alert();
+        debug("text1 alt.setContent("+text1+");");
         alt.setContent(text1);
         alt.setButton([
                 {
@@ -233,7 +235,9 @@ function confirmPurchase(command, args, text1, text2, cost, callback){
     }
     else{
         //ask to confirm charge
+        debug("text2 var alt = alert();");
         var alt = alert();
+        debug("text2 alt.setContent("+text2+");");
         alt.setContent(text2);
         alt.setButton([
             {

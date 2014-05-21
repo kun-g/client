@@ -5,6 +5,7 @@ var libUIC = loadModule("UIComposer.js");
 var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
+var libEffect = loadModule("effect.js");
 
 var theLayer;
 var animFlag = false;
@@ -19,17 +20,26 @@ var addExp = 100;
 var EXP_SPEED = 75;
 var addExpConst = 100;
 
+var theItem = null;
+var theBtnId = -1;
+var theRes = null;
+
 var argItem = [EquipSlot_MainHand,EquipSlot_SecondHand,EquipSlot_Chest,EquipSlot_Legs,EquipSlot_Finger,EquipSlot_Neck];
+var effectSj = "effect-forgesj.ccbi";
 
 function onBack(){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
     if (theWXPSound >= 0){
         cc.AudioEngine.getInstance().stopEffect(theWXPSound);
     }
-    engine.ui.popLayer();
+    theLayer.node.runAction(actionPopOut(function(){
+        engine.ui.popLayer();
+    }, theLayer));
+
 }
 
 function onItem1(){
+    initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip1"].getItem();
 
@@ -38,7 +48,8 @@ function onItem1(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        if( item.ClassId == 538 ){
+        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if( itemA.category == 0 && itemA.subcategory == 3 ){
             itemarry[countk] = item;
             countk++;
         }
@@ -55,7 +66,7 @@ function onItem1(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -68,6 +79,12 @@ function onItem1(){
                 if (theWXPSound < 0) {
                     theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
                 }
+                if (rsp.RES != null){
+                    theRes = rsp.RES;
+                    theBtnId = 0;
+                    //initOneProgress(0);
+                }
+                libEffect.attachEffectCCBI(theLayer.ui["equip1"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -79,6 +96,7 @@ function onItem1(){
 }
 
 function onItem2(){
+    initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip2"].getItem();//adapt
 
@@ -87,7 +105,8 @@ function onItem2(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        if( item.ClassId == 538 ){
+        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if( itemA.category == 0 && itemA.subcategory == 3 ){
             itemarry[countk] = item;
             countk++;
         }
@@ -104,7 +123,7 @@ function onItem2(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -117,6 +136,12 @@ function onItem2(){
                 if (theWXPSound < 0) {
                     theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
                 }
+                if (rsp.RES != null){
+                    theRes = rsp.RES;
+                    theBtnId = 1;
+                    //initOneProgress(1);
+                }
+                libEffect.attachEffectCCBI(theLayer.ui["equip2"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -128,6 +153,7 @@ function onItem2(){
 }
 
 function onItem3(){
+    initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip3"].getItem();//adapt
 
@@ -136,7 +162,8 @@ function onItem3(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        if( item.ClassId == 538 ){
+        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if( itemA.category == 0 && itemA.subcategory == 3 ){
             itemarry[countk] = item;
             countk++;
         }
@@ -153,7 +180,7 @@ function onItem3(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -166,6 +193,12 @@ function onItem3(){
                 if (theWXPSound < 0) {
                     theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
                 }
+                if (rsp.RES != null){
+                    theRes = rsp.RES;
+                    theBtnId = 2;
+                    //initOneProgress(2);
+                }
+                libEffect.attachEffectCCBI(theLayer.ui["equip3"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -177,6 +210,7 @@ function onItem3(){
 }
 
 function onItem4(){
+    initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip4"].getItem();//adapt
 
@@ -185,7 +219,8 @@ function onItem4(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        if( item.ClassId == 538 ){
+        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if( itemA.category == 0 && itemA.subcategory == 3 ){
             itemarry[countk] = item;
             countk++;
         }
@@ -202,7 +237,7 @@ function onItem4(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -215,6 +250,12 @@ function onItem4(){
                 if (theWXPSound < 0) {
                     theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
                 }
+                if (rsp.RES != null){
+                    theRes = rsp.RES;
+                    theBtnId = 4;
+                    //initOneProgress(4);
+                }
+                libEffect.attachEffectCCBI(theLayer.ui["equip4"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -226,6 +267,7 @@ function onItem4(){
 }
 
 function onItem5(){
+    initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip5"].getItem();//adapt
 
@@ -234,7 +276,8 @@ function onItem5(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        if( item.ClassId == 538 ){
+        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if( itemA.category == 0 && itemA.subcategory == 3 ){
             itemarry[countk] = item;
             countk++;
         }
@@ -251,7 +294,7 @@ function onItem5(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -264,6 +307,12 @@ function onItem5(){
                 if (theWXPSound < 0) {
                     theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
                 }
+                if (rsp.RES != null){
+                    theRes = rsp.RES;
+                    theBtnId = 3;
+                    //initOneProgress(3);
+                }
+                libEffect.attachEffectCCBI(theLayer.ui["equip5"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -275,6 +324,7 @@ function onItem5(){
 }
 
 function onItem6(){
+    initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip6"].getItem();//adapt
 
@@ -283,7 +333,8 @@ function onItem6(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        if( item.ClassId == 538 ){
+        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if( itemA.category == 0 && itemA.subcategory == 3 ){
             itemarry[countk] = item;
             countk++;
         }
@@ -300,7 +351,7 @@ function onItem6(){
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
             sid:itemarry[0].ServerId,
-            opn:ITMOP_USE,
+            opn:ITMOP_USEEXPBOOK,
             opd:itemequip.ServerId
         }, function(rsp){
             if( rsp.RET == RET_OK ){
@@ -313,6 +364,12 @@ function onItem6(){
                 if (theWXPSound < 0) {
                     theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
                 }
+                if (rsp.RES != null){
+                    theRes = rsp.RES;
+                    theBtnId = 5;
+                    //initOneProgress(5);
+                }
+                libEffect.attachEffectCCBI(theLayer.ui["equip6"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
@@ -342,19 +399,24 @@ function update(delta)
             curXp = item.Xp;
             currExp += step;
             upgreadeXp = item.equipUpgradeXp();
-            if (currExp > upgreadeXp)
+            if (currExp > upgreadeXp){
                 currExp = upgreadeXp;
+            }
             addExp -= step;
         }
         else{
+            if (currExp > upgreadeXp){
+                currExp = upgreadeXp;
+            }
             animFlag = false;
             animItem = 0;
-            addExp = 100;
+            addExp = theItem.wxp;
+            addExpConst = theItem.wxp;
             itemPart = EquipSlot_MainHand;
             if (theWXPSound >= 0) {
                 cc.AudioEngine.getInstance().stopEffect(theWXPSound);
             }
-            debug("356 stopEffect:theWXPSound = " + theWXPSound);
+            //debug("356 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
         if (theLayer.ui["progress" + animItem] != undefined){
@@ -369,14 +431,21 @@ function update(delta)
         if (addExp <= 0){
             animFlag = false;
             animItem = 0;
-            addExp = 100;
+            addExp = theItem.wxp;
+            addExpConst = theItem.wxp;
             itemPart = EquipSlot_MainHand;
             if (theWXPSound >= 0) {
                 cc.AudioEngine.getInstance().stopEffect(theWXPSound);
             }
-            debug("373 stopEffect:theWXPSound = " + theWXPSound);
+            //debug("373 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
+    }
+    else if (theBtnId >= 0 && theRes != null){
+        engine.event.processResponses(theRes);
+        initOneProgress(theBtnId);
+        theBtnId = -1;
+        theRes = null;
     }
 }
 
@@ -394,6 +463,58 @@ function seletMin(){
             var item = itemarry[minId];
             itemarry[minId] = itemarry[0];
             itemarry[0] = item;
+        }
+    }
+}
+
+function initExpAnim(){
+    if (animFlag == true){
+        var item = engine.user.actor.queryArmor(itemPart,true);
+        var upgreadeXp = 1;
+        var curXp = 0;
+        if (item != null){
+            curXp = item.Xp;
+            currExp += addExp;
+            upgreadeXp = item.equipUpgradeXp();
+            if (currExp > upgreadeXp){
+                currExp = upgreadeXp;
+            }
+            addExp = 0;
+        }
+        else{
+            if (currExp > upgreadeXp){
+                currExp = upgreadeXp;
+            }
+            animFlag = false;
+            animItem = 0;
+            addExp = theItem.wxp;
+            addExpConst = theItem.wxp;
+            itemPart = EquipSlot_MainHand;
+            if (theWXPSound >= 0) {
+                cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+            }
+            theWXPSound = -1;
+        }
+        if (theLayer.ui["progress" + animItem] != undefined){
+            theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
+            var sub = Math.ceil(currExp - curXp);
+            if (sub > addExpConst){
+                sub = addExpConst;
+            }
+            theLayer.owner["labExp" + animItem].setVisible(true);
+            theLayer.owner["labExp" + animItem].setString("+" + sub);
+        }
+        if (addExp <= 0){
+            animFlag = false;
+            animItem = 0;
+            addExp = theItem.wxp;
+            addExpConst = theItem.wxp;
+            itemPart = EquipSlot_MainHand;
+            if (theWXPSound >= 0) {
+                cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+            }
+            //debug("373 stopEffect:theWXPSound = " + theWXPSound);
+            theWXPSound = -1;
         }
     }
 }
@@ -425,7 +546,7 @@ function initProgress(){
         var item = engine.user.actor.queryArmor(argItem[k],true);
         var curXp = 0;
         var upgreadeXp = 1;
-        debug(k + ":" + "item = " + JSON.stringify(item));
+        //debug(k + ":" + "item = " + JSON.stringify(item));
         if (item != null){
             curXp = item.Xp;
             upgreadeXp = item.equipUpgradeXp();
@@ -434,10 +555,30 @@ function initProgress(){
                 upgreadeXp = 1;
             }
         }
-        debug("curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
+        //debug("curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
         var proId = +k+1;
         theLayer.ui["progress" + proId].setProgress(curXp/upgreadeXp);
     }
+}
+
+function initOneProgress(id){
+    //debug("items = "+JSON.stringify(engine.user.inventory.getItems()));
+    engine.user.inventory.syncArmors();
+    var item = engine.user.actor.queryArmor(argItem[id],true);
+    var curXp = 0;
+    var upgreadeXp = 1;
+    //debug("initOneProgress:id = " + "id" + "item = " + JSON.stringify(item));
+    if (item != null){
+        curXp = item.Xp;
+        upgreadeXp = item.equipUpgradeXp();
+        if (upgreadeXp <= 0){
+            curXp = 0;
+            upgreadeXp = 1;
+        }
+    }
+    debug("initOneProgress:" + "curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
+    var proId = +id+1;
+    theLayer.ui["progress" + proId].setProgress(curXp/upgreadeXp);
 }
 
 function onEnter(){
@@ -560,12 +701,23 @@ function onEnter(){
     theLayer.owner.labExp6.setVisible(false);
     //set progress
     initProgress();
+    var mask = blackMask();
+    this.addChild(mask);
+
     var winSize = cc.Director.getInstance().getWinSize();
     this.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     this.addChild(this.node);
+
+    this.node.setScale(0);
+    this.node.runAction(actionPopIn());
+
 }
 
-function show(){
+function show(item){
+    theItem = item;
+    addExp = theItem.wxp;
+    addExpConst = theItem.wxp;
+    EXP_SPEED = theItem.wxp / 2;
     engine.ui.newLayer({
         onNotify: onNotify,
         onEnter: onEnter,

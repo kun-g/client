@@ -9,7 +9,7 @@
 #include "Http.h"
 #include "HttpClient.h"
 #include "ScriptingCore.h"
-#include "ISystem.h"
+#include "utility/ISystem.h"
 
 using namespace std;
 using namespace cocos2d;

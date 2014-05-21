@@ -7,7 +7,7 @@
 //
 
 #include "Download.h"
-#include "curl.h"
+#include "curl/curl.h"
 #include "CallbackManager.h"
 
 using namespace cocos2d;

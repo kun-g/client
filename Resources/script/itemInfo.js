@@ -13,6 +13,7 @@ var theLayer;
 var theItem;
 var theOperate;
 var theItemClass;
+var theRole;
 
 /******* OPEN CHEST *********/
 var theOpenLayer;
@@ -163,25 +164,34 @@ function contentEquip(){
     mergeRoleProperties(properties, theItemClass.basic_properties);
 
     //enhance
-    for(var i=0; i<4; ++i){
-        var enhance = null;
-        if( theItem.Enhance != null ){
-            enhance = theItem.Enhance[i];
+    var enhance = -1;
+    if( theItem.Enhance != null && theItem.Enhance[0] != null && theItem.Enhance[0].lv != null ){
+        enhance = Math.floor(theItem.Enhance[0].lv);
+    }
+    var starLv = Math.floor((enhance+1) / 8) % 6;
+    var barLv = ((enhance == 39)? 8:parseInt(((enhance+1)%8)));
+    for(var i=1; i<6; ++i){
+        var starName = "ehStar"+i;
+        if( i <= starLv){
+            owner[starName].runAction(cc.FadeIn.create(0.3));
         }
-        var keyName = "nodeQh"+(i+1);
-        var keyLevel = "labEhValue"+(i+1);
-        if( enhance != null ){
-            var EnhanceClass = libTable.queryTable(TABLE_ENHANCE, enhance.id);
-            var icon = cc.Sprite.create(EnhanceClass.icon);
-            owner[keyName].addChild(icon);
-            owner[keyLevel].setString("Lv."+(enhance.lv+1));
+        else {
+            owner[starName].setOpacity(0);
+        }
+    }
+    for(var i=1; i<9; ++i){
+        var barName = "ehBar"+i;
+        if( i <= barLv){
+            owner[barName].runAction(cc.FadeIn.create(0.3));
+        }
+        else {
+            owner[barName].setOpacity(0);
+        }
+    }
 
-            mergeRoleProperties(properties, EnhanceClass.property[enhance.lv]);
-        }
-        else
-        {
-            owner[keyLevel].setString("");
-        }
+    var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, theItemClass.enhanceID);
+    if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+        mergeRoleProperties(properties, enhanceInfo.property[enhance]);
     }
 
     //show property
@@ -213,6 +223,8 @@ function contentEquip(){
     }
 }
 
+
+//dissolve module is gonna be removed
 function onDissolve(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( !engine.user.player.checkUnlock("dissolve") ) return;
@@ -264,24 +276,31 @@ function onDissolve(sender){
 
 function onUse(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libUIKit.waitRPC(Request_InventoryUseItem, {
-        sid: theItem.ServerId,
-        opn: ITMOP_USE
-    }, function(rsp){
-        if( rsp.RET == RET_OK )
-        {
-            engine.ui.popLayer();
-            tdga.itemUse(theItemClass.label, 1);
-            //处理开箱子的特效
-            processOpenChest(theItem, rsp);
-        }
-        else
-        {
-            libUIKit.showErrorMessage(rsp);
-        }
-    }, theLayer);
+    if (theItemClass.category == 0 && theItemClass.subcategory == 3){
+        loadModule("sceneExpBook.js").show(theItemClass);
+    }
+    else{
+        libUIKit.waitRPC(Request_InventoryUseItem, {
+            sid: theItem.ServerId,
+            opn: ITMOP_USE
+        }, function(rsp){
+            if( rsp.RET == RET_OK )
+            {
+                engine.ui.popLayer();
+                tdga.itemUse(theItemClass.label, 1);
+                //处理开箱子的特效
+                processOpenChest(theItem, rsp);
+            }
+            else
+            {
+                libUIKit.showErrorMessage(rsp);
+            }
+        }, theLayer);
+    }
+
 }
 
+//equip/unequip module is gonna be removed
 function onEquip(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_InventoryUseItem, {
@@ -348,11 +367,11 @@ function onSell(sender){
 }
 
 function canDissolve(){
-    if( theItemClass.category == ITEM_EQUIPMENT ){
-        if( theItemClass.subcategory >= EquipSlot_MainHand
-            && theItemClass.subcategory < EquipSlot_StoreMainHand )
-            return true;
-    }
+//    if( theItemClass.category == ITEM_EQUIPMENT ){
+//        if( theItemClass.subcategory >= EquipSlot_MainHand
+//            && theItemClass.subcategory < EquipSlot_StoreMainHand )
+//            return true;
+//    }
     return false;
 }
 
@@ -367,7 +386,7 @@ function onEnter(){
 
     this.owner = {};
     this.owner.onSell = onSell;
-    this.owner.onDissolve = onDissolve;
+//    this.owner.onDissolve = onDissolve;
 
     var filename = "ui-iteminfo.ccbi";
     if( theItemClass.category != ITEM_EQUIPMENT ){
@@ -391,7 +410,7 @@ function onEnter(){
     engine.ui.regMenu(this.owner.menuRoot);
 
     //assign values
-    this.ui.icon.setItem(theItem);
+    this.ui.icon.setItem(theItem,theRole);
     this.owner.labelName.setString(theItemClass.label);
     //sell button
     if( theItemClass.sellprice != null && theOperate ){
@@ -434,11 +453,11 @@ function onEnter(){
                 break;
             case ITEM_EQUIPMENT:
                 if( theItem.Status == ITEMSTATUS_EQUIPED ){
-                    operates.push({
-                        label: "buttontext-unequip.png",
-                        func: onEquip,
-                        obj: theLayer
-                    });
+//                    operates.push({
+//                        label: "buttontext-unequip.png",
+//                        func: onEquip,
+//                        obj: theLayer
+//                    });
                 }
                 else{
                     operates.push({
@@ -483,14 +502,15 @@ function onEnter(){
     
 }
 
-//pass the item and if can operate, default is false
-function show(item, operate){
+//pass the item and if can operate
+function show(item, operate, role){
     theItem = item;
     theOperate = operate;
     if( theOperate == null )
     {
         theOperate = false;
     }
+    theRole = role;
     theItemClass = libTable.queryTable(TABLE_ITEM, theItem.ClassId);
     if( theItemClass.label == null ){
         return;//do not show hidden items

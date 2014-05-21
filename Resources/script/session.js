@@ -42,7 +42,7 @@ Session.prototype.pushFriendApply = function(msg){
 Session.prototype.pushSystemDeliver = function(msg){
     for(var k in this.deliver){
         var obj = this.deliver[k];
-        if( obj.sid == msg.sid ){
+        if( obj.sid == msg.sid || (msg.typ == 0 && obj.typ == msg.typ) ){
             this.deliver.splice(k, 1);
             this.MessageCount--;
         }
@@ -72,7 +72,8 @@ Session.prototype.queryStore = function(cid, stc){
             if( itm.cnt == null ){
                 itm.cnt = 1;
             }
-            if( itm.cid == cid && itm.cnt == stc ){
+            if( itm.cid == cid &&
+                ( (stc != null && itm.cnt == stc) || (stc == null) ) ){
                 ret = itm;
                 break;
             }

@@ -7,7 +7,7 @@
             <key>enemy-archer-2-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,41},{66,46}}</string>
+                <string>{{75,41},{66,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,10 +17,10 @@
                 <key>sourceSize</key>
                 <string>{66,46}</string>
             </dict>
-            <key>enemy-archer-2-head.png</key>
+            <key>enemy-archer-2-head(MIRA-PC--MiRa--2014-05-15-17,34,58).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,66},{69,63}}</string>
+                <string>{{2,152},{69,63}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -29,6 +29,32 @@
                 <string>{{0,0},{69,63}}</string>
                 <key>sourceSize</key>
                 <string>{69,63}</string>
+            </dict>
+            <key>enemy-archer-2-head.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,86},{71,64}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{71,64}}</string>
+                <key>sourceSize</key>
+                <string>{71,64}</string>
+            </dict>
+            <key>enemy-archer-2-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,20},{71,64}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{71,64}}</string>
+                <key>sourceSize</key>
+                <string>{71,64}</string>
             </dict>
             <key>enemy-archer-2-lefthand.png</key>
             <dict>
@@ -43,18 +69,31 @@
                 <key>sourceSize</key>
                 <string>{23,37}</string>
             </dict>
-            <key>enemy-archer-2-leftleg.png</key>
+            <key>enemy-archer-2-leftleg(MIRA-PC--MiRa--2014-05-15-17,34,58).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,109},{34,37}}</string>
+                <string>{{2,217},{34,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{34,37}}</string>
                 <key>sourceSize</key>
                 <string>{34,37}</string>
+            </dict>
+            <key>enemy-archer-2-leftleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{38,217},{33,37}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{33,37}}</string>
+                <key>sourceSize</key>
+                <string>{33,37}</string>
             </dict>
             <key>enemy-archer-2-mainweapon.png</key>
             <dict>
@@ -72,20 +111,33 @@
             <key>enemy-archer-2-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,20},{44,70}}</string>
+                <string>{{75,109},{44,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{44,70}}</string>
                 <key>sourceSize</key>
                 <string>{44,70}</string>
             </dict>
+            <key>enemy-archer-2-rightleg(MIRA-PC--MiRa--2014-05-15-17,34,58).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{73,218},{35,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,35}}</string>
+                <key>sourceSize</key>
+                <string>{35,35}</string>
+            </dict>
             <key>enemy-archer-2-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,131},{35,35}}</string>
+                <string>{{73,181},{35,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -105,7 +157,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9e0325d1bbba7b2a3f9283ca0068eea8$</string>
+            <string>$TexturePacker:SmartUpdate:246a5b608df1815758143c9159517ff3$</string>
             <key>textureFileName</key>
             <string>earcher2.png</string>
         </dict>
