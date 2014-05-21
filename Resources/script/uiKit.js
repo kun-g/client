@@ -220,7 +220,7 @@ function confirmPurchase(command, args, text1, text2, cost, callback){
                     func: function(sender){
                         engine.ui.popLayer();
                         waitRPC(command, args, function(rsp){
-                            if( rsp != RET_OK ){
+                            if( rsp.RET != RET_OK ){
                                 showErrorMessage(rsp);
                             }
                             if( callback != null ){

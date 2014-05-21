@@ -954,6 +954,23 @@ function onForgeEquip(sender){
     }
 }
 
+var ableToForge = 0; // 0:可升阶 1:顶级 2:装备等级不足
+function checkForgeTarget(itemClass){
+    var target = itemClass.forgeTarget;
+    var quality = itemClass.quality;
+    if ( target != null ){
+        ableToForge = 0;
+        return true;
+    }else{
+        if( quality == 4){
+            ableToForge = 1;
+        }else{
+            ableToForge = 2;
+        }
+        return false;
+    }
+}
+
 function setForgeEquip(item){
     if( item != null ){
         item = syncItemData(item);
@@ -978,8 +995,13 @@ function setForgeEquip(item){
         ForgeArgs.sid = item.ServerId;
         ForgeArgs.opn = ITMOP_FORGE;
 
-        EnoughMtrls = true;
-        loadForgeMaterial(itemClass);
+        if( checkForgeTarget(itemClass) ){
+            EnoughMtrls = true;
+            loadForgeMaterial(itemClass);
+        }else{
+            loadForgeMaterial(null);
+        }
+
     }
     else {
         theContent.ui.equipTarget.setItem(null);
@@ -1089,44 +1111,55 @@ function onForge(sender){
 
 function onStartForge(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( EnoughMtrls ){
-        if( ForgeArgs != null ){
-            if( checkGold(goldCost) ){
-                libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
-                    if( rsp.RET == RET_OK ){
-                        pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
-                            libUIKit.showAlert("升阶成功", function(){
-                                EnoughMtrls = false;
-                            }, theLayer);
-                            //execute result
-                            if( rsp.RES != null ){
-                                engine.event.processResponses(rsp.RES);
-                                var slot = EquipSlot_MainHand;
-                                switch(TouchId){
-                                    case 1: slot = EquipSlot_MainHand; break;
-                                    case 2: slot = EquipSlot_SecondHand; break;
-                                    case 3: slot = EquipSlot_Chest; break;
-                                    case 4: slot = EquipSlot_Legs; break;
-                                    case 5: slot = EquipSlot_Finger; break;
-                                    case 6: slot = EquipSlot_Neck; break;
-                                }
-                                var newItem = engine.user.actor.queryArmor(slot);
-                                if( newItem != null){
-                                    theContent.ui["equip"+TouchId].setItemSmall(newItem);
-                                    setForgeEquip(newItem);
-                                }
+    switch(ableToForge){
+        case 0:{
+            if( EnoughMtrls ){
+                if( ForgeArgs != null ){
+                    if( checkGold(goldCost) ){
+                        libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
+                            if( rsp.RET == RET_OK ){
+                                pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
+                                    libUIKit.showAlert("升阶成功！", function(){
+                                        EnoughMtrls = false;
+                                    }, theLayer);
+                                    //execute result
+                                    if( rsp.RES != null ){
+                                        engine.event.processResponses(rsp.RES);
+                                        var slot = EquipSlot_MainHand;
+                                        switch(TouchId){
+                                            case 1: slot = EquipSlot_MainHand; break;
+                                            case 2: slot = EquipSlot_SecondHand; break;
+                                            case 3: slot = EquipSlot_Chest; break;
+                                            case 4: slot = EquipSlot_Legs; break;
+                                            case 5: slot = EquipSlot_Finger; break;
+                                            case 6: slot = EquipSlot_Neck; break;
+                                        }
+                                        var newItem = engine.user.actor.queryArmor(slot);
+                                        if( newItem != null){
+                                            theContent.ui["equip"+TouchId].setItemSmall(newItem);
+                                            setForgeEquip(newItem);
+                                        }
+                                    }
+                                }, theLayer);
+                            }
+                            else{
+                                libUIKit.showErrorMessage(rsp);
                             }
                         }, theLayer);
                     }
-                    else{
-                        libUIKit.showErrorMessage(rsp);
-                    }
-                }, theLayer);
+                }
+            }else{
+                libUIKit.showAlert("材料不足！");
             }
-        }
-    }else{
-        libUIKit.showAlert("材料不足");
+        }break;
+        case 1:{
+            libUIC.showAlert("装备已是最高品质！");
+        }break;
+        case 2:{
+            libUIC.showAlert("装备等级不足\n无法升阶！");
+        }break;
     }
+
 }
 
 //--- 合成 ---
