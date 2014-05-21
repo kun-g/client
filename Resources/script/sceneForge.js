@@ -1182,9 +1182,10 @@ function loadSynthesize(){
 }
 
 function onSynthesize(sender){
-    if( !engine.user.player.checkUnlock("synthesize") ){
+    if( !engine.user.player.checkUnlock("extract") ){
         return;
     }
+
     chosenItem = null;
     if( isFlying ) return;
 
