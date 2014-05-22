@@ -160,8 +160,8 @@ function setPrizeSize(group,day,curDays)
         //var itemData = libTable.queryTable(TABLE_ITEM, prizeData.itemCld);
         group.itemList[k].setItem(prizeData);
         if (prizeData.vip == 1){
-            var icon = cc.Sprite.create(prizeIconList[2]);
-            group.itemList[k].addChild(icon, 0);
+//            var icon = cc.Sprite.create(prizeIconList[2]);
+//            group.itemList[k].addChild(icon, 0);
         }
     }
 }
