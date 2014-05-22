@@ -6,6 +6,8 @@
 
 var libUIC = loadModule("UIComposer.js");
 var libUIKit = loadModule("uiKit.js");
+var libItem = loadModule("xitem.js");
+var libTable = loadModule("table.js");
 
 var MODE_DAILYPRIZE = 0;
 var MODE_DAILYQUEST = 1;
@@ -13,6 +15,19 @@ var MODE_DAILYEXIT = 2;
 
 var theLayer;
 var theLayerMode = null;
+
+//contants
+var GRID_SIZE = UI_ITEM_SIZE + 5;
+var GRID_GAP = UI_ITEM_GAP;
+var LINE_COUNT = 4;
+var MARGIN_TOP = 30;
+var MARGIN_BUTTOM = 70;
+
+var theCenter = {};
+
+var prizeIconList = ["dailyprize-common-get.png",
+    "dailyprize-common-light.png",
+    "dailyprize-common-vip1.png"];
 
 //common used close function
 function onClose(sender){
@@ -44,6 +59,113 @@ function onGetDailyPrize(sender){
 function onDailyPrizeActivate(){
 }
 
+function calcPosId(lpos)
+{
+    var rpos = cc.p(lpos.x, theCenter.theGridLayer.getContentSize().height - lpos.y);
+    var PY = Math.floor((rpos.y - MARGIN_TOP)/(GRID_SIZE+GRID_GAP));
+    var PX = Math.floor(rpos.x/(GRID_GAP+GRID_SIZE));
+    var PYoff = rpos.y - MARGIN_TOP - PY*(GRID_SIZE+GRID_GAP);
+    var PXoff = rpos.x - PX*(GRID_SIZE+GRID_GAP);
+    if( PXoff < 100 && PYoff < 100 )
+    {
+        var ret = PX + PY*LINE_COUNT;
+        if( PX >= LINE_COUNT || ret >= theCenter.inventorySize )
+        {
+            ret = -1;
+        }
+        return ret;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+function onTouchBegan(touch, event)
+{
+    touchPosBeginWorld = touch.getLocation();
+    var localPos = theCenter.contentScroller.convertToNodeSpace(touchPosBeginWorld);
+    var localSize = theCenter.contentScroller.getViewSize();
+    if( localPos.x >= 0 && localPos.y >= 0
+        && localPos.x <= localSize.width
+        && localPos.y <= localSize.height ) return true;
+    else return false;
+}
+
+function onTouchMoved(touch, event)
+{
+    //theCenter.theScrollBar.updateScrollBar();
+}
+
+function onTouchEnded(touch, event)
+{
+    var pos = touch.getLocation();
+    var dis = cc.pSub(pos, touchPosBeginWorld);
+    if( cc.pLengthSQ(dis) < CLICK_RANGESQ )
+    {//as click
+        var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
+        var id = calcPosId(localPos);
+        //debug("CLICK ID = "+id);
+        var item = theCenter.inventoryData[id];
+        if( item != null ) {
+            debug("you toouched "+JSON.stringify(item));
+//            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+//            libItemInfo.show(item, true);
+        }
+    }
+}
+
+function setNormalPrize(group,day,curDays){
+    var sfc = cc.SpriteFrameCache.getInstance();
+//    group.labTitle.setDisplayFrame(sfc.getSpriteFrame("bag-titleyxdj.png"));
+//    group.btnExtend.setVisible(true);
+//    group.labelSpace.setVisible(true);
+
+    //set size
+    group.itemList = [];
+    group.theGridLayer.removeAllChildren();
+    group.inventoryData = engine.user.inventory.getNormalItems();
+    setPrizeSize(group,day,curDays);
+
+    var curroffset = group.contentScroller.getContentOffset();
+    curroffset.y = group.contentScroller.minContainerOffset().y;
+    group.contentScroller.setContentOffset(curroffset);
+}
+
+function setPrizeSize(group,day,curDays)
+{
+    //update inventory size
+    var lineCount = Math.ceil(curDays/LINE_COUNT);
+    group.theGridLayer.setContentSize(cc.size((LINE_COUNT-1)*(GRID_SIZE+GRID_GAP) + GRID_SIZE, MARGIN_TOP+MARGIN_BUTTOM+lineCount*(GRID_SIZE+GRID_GAP)));
+    //debug("GridLayerSize = "+JSON.stringify(theGridLayer.getContentSize()));
+
+    group.theGridLayer.removeAllChildren();
+    group.itemList = [];
+    group.inventorySize = curDays;
+
+    for(var k = 0; k<group.inventorySize; ++k) {
+        //add slot
+        var slot = libItem.UIItem.create(null, true, "itembg2.png");
+        slot.setTag(k);
+        var PX = Math.floor(k%LINE_COUNT);
+        var PY = Math.floor(k/LINE_COUNT);
+        var pos = cc.p(PX*(GRID_SIZE+GRID_GAP)+GRID_SIZE/2, MARGIN_TOP+PY*(GRID_GAP+GRID_SIZE)+GRID_SIZE/2);
+        pos.y = group.theGridLayer.getContentSize().height - pos.y;//reverse
+        slot.setPosition(pos);
+        group.theGridLayer.addChild(slot);
+        group.itemList[k] = slot;
+        //set item
+        var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
+        prizeData.ClassId = prizeData.itemCld;
+        //var itemData = libTable.queryTable(TABLE_ITEM, prizeData.itemCld);
+        group.itemList[k].setItem(prizeData);
+        if (prizeData.vip == 1){
+            var icon = cc.Sprite.create(prizeIconList[2]);
+            group.itemList[k].addChild(icon, 0);
+        }
+    }
+}
+
 function showDailyPrize(day){
     debug("showDailyPrize("+day+")");
     theLayer = engine.ui.newLayer({
@@ -56,7 +178,13 @@ function showDailyPrize(day){
     theLayer.owner = {};
     theLayer.owner.onGetDailyPrize = onGetDailyPrize;
     theLayer.owner.onClose = onClose;
-    theLayer.NODE = cc.BuilderReader.load("sceneDailyprize.ccbi", theLayer.owner);
+    theLayer.NODE = libUIC.loadUI(theLayer, "sceneDailyprize.ccbi", {
+        nodeContent: {
+            ui: "UIScrollView",
+            id: "contentScroller",
+            dir: 1
+        }
+    });
     theLayer.NODE.setPosition(cc.p(0, 0));
     theLayer.addChild(theLayer.NODE);
 
@@ -69,53 +197,26 @@ function showDailyPrize(day){
 
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
-    switch(day){
-        case 0:
-        {
-            theLayer.owner.pop1.setVisible(true);
-            theLayer.owner.g1.setVisible(true);
-            theLayer.owner.w2.setVisible(true);
-            theLayer.owner.w3.setVisible(true);
-            theLayer.owner.w4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 1:
-        {
-            theLayer.owner.pop2.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.g2.setVisible(true);
-            theLayer.owner.w3.setVisible(true);
-            theLayer.owner.w4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 2:
-        {
-            theLayer.owner.pop3.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.y2.setVisible(true);
-            theLayer.owner.g3.setVisible(true);
-            theLayer.owner.w4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 3:
-        {
-            theLayer.owner.pop4.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.y2.setVisible(true);
-            theLayer.owner.y3.setVisible(true);
-            theLayer.owner.g4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 4:
-        {
-            theLayer.owner.pop5.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.y2.setVisible(true);
-            theLayer.owner.y3.setVisible(true);
-            theLayer.owner.y4.setVisible(true);
-            theLayer.owner.g5.setVisible(true);
-        }break;
-    }
+    var nowtime = new Date();
+    var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
+    debug("curDays = "+curDays+"天");
+
+    theCenter.theGridLayer = cc.Layer.create();
+
+    theCenter.contentScroller = theLayer.ui.contentScroller;
+    theCenter.contentScroller.setContainer(theCenter.theGridLayer);
+//    theCenter.theScrollBar = UIScrollBar.create(theLayer.owner.scrollTop, theLayer.owner.scrollBottom, "scroll.png",
+//        theLayer.ui.contentScroller);
+    theCenter.theGridLayer.onTouchBegan = onTouchBegan;
+    theCenter.theGridLayer.onTouchMoved = onTouchMoved;
+    theCenter.theGridLayer.onTouchEnded = onTouchEnded;
+    theCenter.theGridLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theCenter.theGridLayer.setTouchPriority(1);
+    theCenter.theGridLayer.setTouchEnabled(true);
+    //根据day和curDays设置contentScroller
+    setNormalPrize(theCenter,day,curDays);
+
+    engine.ui.regMenu(theCenter.theGridLayer);
 }
 
 //---------- activity --------------
