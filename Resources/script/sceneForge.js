@@ -1175,8 +1175,8 @@ function onStartForge(sender){
 //--- 合成 ---
 
 function setSynthesizeStone(sto1Class, sto2Class){
-    theContent.owner.nodeFrom.setItem(null);
-    theContent.owner.nodeTo.setItem(null);
+    theContent.owner.nodeFrom.removeAllChildren();
+    theContent.owner.nodeTo.removeAllChildren();
     theContent.owner.labCost.setString("");
     if( sto1Class != null && sto2Class != null){
         var stone1Count = engine.user.inventory.countItem(sto1Class.classId);
