@@ -73,7 +73,8 @@ mkdir "$APP_ANDROID_ROOT"/assets
 mkdir "$APP_ANDROID_ROOT"/assets/res
 
 # copy Resources/* into assets' root
-cp -rf "$APP_ROOT"/../Resources/* "$APP_ANDROID_ROOT"/assets
+#cp -rf "$APP_ROOT"/../Resources/* "$APP_ANDROID_ROOT"/assets
+rsync -av --exclude='script' --exclude='blackbox' --exclude='table' "$APP_ROOT"/../Resources/ "$APP_ANDROID_ROOT"/assets/
 
 
 # copy bindings/*.js into assets' root
