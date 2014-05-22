@@ -422,7 +422,7 @@ int tcpCreate(const char* ip, int port)
     s->id = gFdIndex;
     gFdIndex++;
     s->sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    //CCLog("*** |%d|-> claim socket(%d)", s->id, s->sock);//debug
+    CCLog("*** |%d|-> claim socket(%d)", s->id, s->sock);//debug
     if( s->sock >= 0 )
     {
         memset(&s->address, 0, sizeof(s->address));
@@ -439,7 +439,7 @@ int tcpCreate(const char* ip, int port)
         gTcpSocketList.insert(make_pair(s->id, s));
         
         //dumpTcpSocket(*s);//debug
-        //CCLog("*** {%d} CREATE = %p", s->id, s);//debug
+        CCLog("*** {%d} CREATE = %p", s->id, s);//debug
         
         return s->id;
     }

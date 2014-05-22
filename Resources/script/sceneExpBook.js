@@ -39,6 +39,7 @@ function onBack(){
 }
 
 function onItem1(){
+    theLayer.owner.btnItem1.setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip1"].getItem();
@@ -48,8 +49,7 @@ function onItem1(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemA.category == 0 && itemA.subcategory == 3 ){
+        if( item.ClassId == theItem.classId ){
             itemarry[countk] = item;
             countk++;
         }
@@ -61,6 +61,7 @@ function onItem1(){
         itemarry[0] != null){
         //检查装备能否升级
         if (!bookUseFlag(EquipSlot_MainHand)){
+            theLayer.owner.btnItem1.setEnabled(true);
             return false;
         }
 
@@ -91,11 +92,13 @@ function onItem1(){
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
+            theLayer.owner.btnItem1.setEnabled(true);
         }, theLayer);
     }
 }
 
 function onItem2(){
+    theLayer.owner.btnItem2.setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip2"].getItem();//adapt
@@ -105,8 +108,7 @@ function onItem2(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemA.category == 0 && itemA.subcategory == 3 ){
+        if( item.ClassId == theItem.classId ){
             itemarry[countk] = item;
             countk++;
         }
@@ -118,6 +120,7 @@ function onItem2(){
         itemarry[0] != null){
         //检查装备能否升级
         if (!bookUseFlag(EquipSlot_SecondHand)){
+            theLayer.owner.btnItem2.setEnabled(true);
             return false;
         }
 
@@ -148,11 +151,13 @@ function onItem2(){
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
+            theLayer.owner.btnItem2.setEnabled(true);
         }, theLayer);
     }
 }
 
 function onItem3(){
+    theLayer.owner.btnItem3.setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip3"].getItem();//adapt
@@ -162,8 +167,7 @@ function onItem3(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemA.category == 0 && itemA.subcategory == 3 ){
+        if( item.ClassId == theItem.classId ){
             itemarry[countk] = item;
             countk++;
         }
@@ -175,6 +179,7 @@ function onItem3(){
         itemarry[0] != null){
         //检查装备能否升级
         if (!bookUseFlag(EquipSlot_Chest)){
+            theLayer.owner.btnItem3.setEnabled(true);
             return false;
         }
 
@@ -205,11 +210,13 @@ function onItem3(){
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
+            theLayer.owner.btnItem3.setEnabled(true);
         }, theLayer);
     }
 }
 
 function onItem4(){
+    theLayer.owner.btnItem4.setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip4"].getItem();//adapt
@@ -219,8 +226,7 @@ function onItem4(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemA.category == 0 && itemA.subcategory == 3 ){
+        if( item.ClassId == theItem.classId ){
             itemarry[countk] = item;
             countk++;
         }
@@ -232,6 +238,7 @@ function onItem4(){
         itemarry[0] != null){
         //检查装备能否升级
         if (!bookUseFlag(EquipSlot_Legs)){
+            theLayer.owner.btnItem4.setEnabled(true);
             return false;
         }
 
@@ -262,11 +269,13 @@ function onItem4(){
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
+            theLayer.owner.btnItem4.setEnabled(true);
         }, theLayer);
     }
 }
 
 function onItem5(){
+    theLayer.owner.btnItem5.setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip5"].getItem();//adapt
@@ -276,8 +285,7 @@ function onItem5(){
     //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
-        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemA.category == 0 && itemA.subcategory == 3 ){
+        if( item.ClassId == theItem.classId ){
             itemarry[countk] = item;
             countk++;
         }
@@ -289,6 +297,7 @@ function onItem5(){
         itemarry[0] != null){
         //检查装备能否升级
         if (!bookUseFlag(EquipSlot_Finger)){
+            theLayer.owner.btnItem5.setEnabled(true);
             return false;
         }
 
@@ -319,11 +328,13 @@ function onItem5(){
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
+            theLayer.owner.btnItem5.setEnabled(true);
         }, theLayer);
     }
 }
 
 function onItem6(){
+    theLayer.owner.btnItem6.setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var itemequip = theLayer.ui["equip6"].getItem();//adapt
@@ -331,10 +342,10 @@ function onItem6(){
     var countk = 0;
     var inventoryData = engine.user.inventory.Items;
     //debug("inventoryData = " + JSON.stringify(inventoryData));
+    //debug("theItem.classId = "+theItem.classId);
     for(var k in inventoryData){
         var item = inventoryData[k];
-        var itemA = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemA.category == 0 && itemA.subcategory == 3 ){
+        if( item.ClassId == theItem.classId ){
             itemarry[countk] = item;
             countk++;
         }
@@ -346,6 +357,7 @@ function onItem6(){
         itemarry[0] != null){
         //检查装备能否升级
         if (!bookUseFlag(EquipSlot_Neck)){
+            theLayer.owner.btnItem6.setEnabled(true);
             return false;
         }
 
@@ -376,6 +388,7 @@ function onItem6(){
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
+            theLayer.owner.btnItem6.setEnabled(true);
         }, theLayer);
     }
 }
@@ -399,15 +412,12 @@ function update(delta)
             curXp = item.Xp;
             currExp += step;
             upgreadeXp = item.equipUpgradeXp();
-            if (currExp > upgreadeXp){
-                currExp = upgreadeXp;
+            if (curXp > upgreadeXp){
+                curXp = upgreadeXp;
             }
             addExp -= step;
         }
         else{
-            if (currExp > upgreadeXp){
-                currExp = upgreadeXp;
-            }
             animFlag = false;
             animItem = 0;
             addExp = theItem.wxp;
@@ -419,14 +429,21 @@ function update(delta)
             //debug("356 stopEffect:theWXPSound = " + theWXPSound);
             theWXPSound = -1;
         }
+        if (currExp >= upgreadeXp){
+            currExp = upgreadeXp;
+            addExp = 0;
+        }
         if (theLayer.ui["progress" + animItem] != undefined){
             theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
+            //debug("currExp = "+currExp+";curXp = "+curXp+";upgreadeXp = "+upgreadeXp);
             var sub = Math.ceil(currExp - curXp);
             if (sub > addExpConst){
                 sub = addExpConst;
             }
-            theLayer.owner["labExp" + animItem].setVisible(true);
-            theLayer.owner["labExp" + animItem].setString("+" + sub);
+            if (sub > 0){
+                theLayer.owner["labExp" + animItem].setVisible(true);
+                theLayer.owner["labExp" + animItem].setString("+" + sub);
+            }
         }
         if (addExp <= 0){
             animFlag = false;
@@ -476,15 +493,12 @@ function initExpAnim(){
             curXp = item.Xp;
             currExp += addExp;
             upgreadeXp = item.equipUpgradeXp();
-            if (currExp > upgreadeXp){
-                currExp = upgreadeXp;
+            if (curXp >= upgreadeXp){
+                curXp = upgreadeXp;
             }
             addExp = 0;
         }
         else{
-            if (currExp > upgreadeXp){
-                currExp = upgreadeXp;
-            }
             animFlag = false;
             animItem = 0;
             addExp = theItem.wxp;
@@ -495,14 +509,20 @@ function initExpAnim(){
             }
             theWXPSound = -1;
         }
+        if (currExp >= upgreadeXp){
+            currExp = upgreadeXp;
+            addExp = 0;
+        }
         if (theLayer.ui["progress" + animItem] != undefined){
             theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
             var sub = Math.ceil(currExp - curXp);
             if (sub > addExpConst){
                 sub = addExpConst;
             }
-            theLayer.owner["labExp" + animItem].setVisible(true);
-            theLayer.owner["labExp" + animItem].setString("+" + sub);
+            if (sub > 0){
+                theLayer.owner["labExp" + animItem].setVisible(true);
+                theLayer.owner["labExp" + animItem].setString("+" + sub);
+            }
         }
         if (addExp <= 0){
             animFlag = false;
@@ -554,6 +574,9 @@ function initProgress(){
                 curXp = 0;
                 upgreadeXp = 1;
             }
+            if (curXp >= upgreadeXp){
+                curXp = upgreadeXp;
+            }
         }
         //debug("curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
         var proId = +k+1;
@@ -574,6 +597,9 @@ function initOneProgress(id){
         if (upgreadeXp <= 0){
             curXp = 0;
             upgreadeXp = 1;
+        }
+        if (curXp >= upgreadeXp){
+            curXp = upgreadeXp;
         }
     }
     debug("initOneProgress:" + "curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);

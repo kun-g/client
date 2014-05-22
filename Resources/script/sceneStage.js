@@ -295,6 +295,7 @@ function onChallenge(){
     }
     theLayer.TEAM = team;
     theLayer.stage.owner.labelTeam.setString("队伍人数："+team+"人");
+    theLayer.stage.owner.labelTeam2.setString("队伍人数："+team+"人");
     theLayer.stage.owner.labelLevel.setString(chInst.Stages[theLayer.INFIKEY].Level);
 
     theStageClass = theLayer.CHCLASS.stage[theLayer.INFIKEY];
@@ -306,6 +307,7 @@ function onChallenge(){
     theLayer.stage.owner.labNext.setString("打通第"+prize.level+"关可以获得额外奖励：");
     theLayer.stage.owner.nodePrize.addChild(preview);
     theLayer.stage.owner.labelEnergy.setString("精力消耗："+theLayer.COST+"点");
+    theLayer.stage.owner.labelEnergy2.setString("精力消耗："+theLayer.COST+"点");
 
     theEnergyCost = theLayer.COST;
     engine.session.set("stage", theStageClass);
@@ -405,6 +407,7 @@ function showStages(chId)
         theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
         theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
         theLayer.stage.owner.labelDesc.setString(chClass.desc);
+        theLayer.stage.owner.labelDesc2.setString(chClass.desc);
         var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
         btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
         theLayer.stage.owner.menu.addChild(btnOK);
@@ -502,7 +505,9 @@ function selectStage(sId)
     theLayer.stageSelected = stg.stageId;
     theLayer.TEAM = stg.team;
     theLayer.stage.owner.labelTeam.setString("队伍人数："+stg.team+"人");
+    theLayer.stage.owner.labelTeam2.setString("队伍人数："+stg.team+"人");
     theLayer.stage.owner.labelEnergy.setString("精力消耗："+stg.cost+"点");
+    theLayer.stage.owner.labelEnergy2.setString("精力消耗："+stg.cost+"点");
     theEnergyCost = stg.cost;
 
     //set current stage data
