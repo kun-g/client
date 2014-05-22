@@ -24,7 +24,9 @@ void AndroidUAC::initUAC()
 
 void AndroidUAC::presentLoginView()
 {
-    getUACDelegate()->onLoggedIn("HelloAndroid", 0);
+	string deviceId;
+	getSystem()->getDeviceId(deviceId);
+    getUACDelegate()->onLoggedIn(deviceId, 1);
 }
 
 void AndroidUAC::presentManageView()
@@ -44,10 +46,10 @@ void AndroidUAC::logout()
 
 void AndroidUAC::getUserName(string &name)
 {
-    name = string("HelloAndroidName");
+    getSystem()->getDeviceId(name);
 }
 
 void AndroidUAC::getUserId(string &token)
 {
-    token = string("HelloAndroidId");
+    getSystem()->getDeviceId(token);
 }

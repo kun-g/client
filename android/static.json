@@ -1,7 +1,7 @@
 {
-    "binary_channel" : "ND91",
+    "binary_channel" : "Android",
     "resource_version" : 89,
     "binary_version" : "1.0.5",
-    "account_type" : 3,
+    "account_type" : 1,
     "default_user" : ""
 }
