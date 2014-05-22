@@ -21,6 +21,7 @@ LOCAL_SRC_FILES := start/main.cpp \
                    ../../Classes/js/File.cpp \
                    ../../Classes/js/TCP.cpp \
                    ../../Classes/js/Http.cpp \
+                   ../../Classes/js/TDGA.cpp \
                    ../../Classes/utility/IFeedback.cpp \
                    ../../Classes/utility/ISystem.cpp \
                    ../../Classes/utility/TCPSocket.cpp \
