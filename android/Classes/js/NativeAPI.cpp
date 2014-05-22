@@ -16,7 +16,7 @@
 #include "TCP.h"
 #include "Feedback.h"
 #include "UAC.h"
-//#include "TDGA.h"
+#include "TDGA.h"
 
 void registerNativeAPI(JSContext* cx, JSObject* global)
 {
@@ -25,7 +25,7 @@ void registerNativeAPI(JSContext* cx, JSObject* global)
     registerHttp(cx, global);
     registerSys(cx, global);
     registerFile(cx, global);
-    //registerTDGA(cx, global);
+    registerTDGA(cx, global);
     registerIAP(cx, global);
     registerTcp(cx, global);
     registerFeedback(cx, global);

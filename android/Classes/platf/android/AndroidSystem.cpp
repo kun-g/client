@@ -9,6 +9,7 @@
 #include "AndroidSystem.h"
 #include "cocos2d.h"
 #include "platform/android/jni/JniHelper.h"
+
 using namespace cocos2d;
 
 using namespace std;
@@ -30,12 +31,30 @@ SystemLanguage AndroidSystem::getSystemLanguage()
 
 void AndroidSystem::getVersion(string &out)
 {
-    out = string("1.0.5");
+    JniMethodInfo t;
+    jstring ret;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "getBundleVersion", "()Ljava/lang/String;") ){
+        ret = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+        out = JniHelper::jstring2string(ret);
+    }
+    else{
+        out = string("undefined");
+    }
 }
 
 void AndroidSystem::getDeviceId(string &out)
 {
-    out = string("AndroidDeviceId");
+    JniMethodInfo t;
+    jstring ret;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "getDeviceId", "()Ljava/lang/String;") ){
+        ret = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+        out = JniHelper::jstring2string(ret);
+    }
+    else{
+        out = string("undefined");
+    }
 }
 
 void AndroidSystem::alert(string title, string message, AlertDelegate *pCallback, string cancel, string button1, string button2, string button3)
@@ -72,8 +91,12 @@ void AndroidSystem::setAppBadgeNumber(int number)
 
 void AndroidSystem::openURL(string url)
 {
-    // TODO
-    CCLog(":: openURL:%s", url.c_str());
+    JniMethodInfo t;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "openURL", "(Ljava/lang/String;)V") ){
+        jstring jurl = t.env->NewStringUTF(url.c_str());
+        t.env->CallStaticVoidMethod(t.classID, t.methodID, jurl);
+        t.env->DeleteLocalRef(t.classID);
+    }
 }
 
 bool AndroidSystem::isJailbroken()
@@ -88,8 +111,18 @@ bool AndroidSystem::isPirated()
 
 NetStatus AndroidSystem::checkNetworkStatus()
 {
-    // TODO
-    return NetStatus_WIFI;
+    JniMethodInfo t;
+    int ret = 0;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "checkNetworkStatus", "()I") ){
+        ret = t.env->CallStaticIntMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+    }
+    if( ret == 0 ){
+        return NetStatus_NotConnected;
+    }
+    else{
+        return NetStatus_WIFI;
+    }
 }
 
 bool AndroidSystem::isPathExist(string file)
@@ -99,14 +132,28 @@ bool AndroidSystem::isPathExist(string file)
 
 bool AndroidSystem::createDirectoryAtPath(string path)
 {
-    // TODO
-    return false;
+    JniMethodInfo t;
+    bool ret = false;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "createDirectoryAtPath", "(Ljava/lang/String;)Z") ){
+        jstring jpath = t.env->NewStringUTF(path.c_str());
+        ret = t.env->CallStaticBooleanMethod(t.classID, t.methodID, jpath);
+        t.env->DeleteLocalRef(t.classID);
+        t.env->DeleteLocalRef(jpath);
+    }
+    return ret;
 }
 
 bool AndroidSystem::removeDirectory(string path)
 {
-    // TODO
-    return false;
+    JniMethodInfo t;
+    bool ret = false;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "removeDirectory", "(Ljava/lang/String;)Z") ){
+        jstring jpath = t.env->NewStringUTF(path.c_str());
+        ret = t.env->CallStaticBooleanMethod(t.classID, t.methodID, jpath);
+        t.env->DeleteLocalRef(t.classID);
+        t.env->DeleteLocalRef(jpath);
+    }
+    return ret;
 }
 
 bool AndroidSystem::getPreference(string key, string &out)
