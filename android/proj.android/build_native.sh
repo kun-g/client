@@ -76,6 +76,8 @@ mkdir "$APP_ANDROID_ROOT"/assets/res
 #cp -rf "$APP_ROOT"/../Resources/* "$APP_ANDROID_ROOT"/assets
 rsync -av --exclude='script' --exclude='blackbox' --exclude='table' "$APP_ROOT"/../Resources/ "$APP_ANDROID_ROOT"/assets/
 
+# copy static.json hammer
+cp "$APP_ROOT"/static.json "$APP_ANDROID_ROOT"/assets
 
 # copy bindings/*.js into assets' root
 cp -f "$BINDINGS_JS_ROOT"/* "$APP_ANDROID_ROOT"/assets

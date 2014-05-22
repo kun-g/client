@@ -11,7 +11,7 @@
 
 using namespace std;
 
-TDCCAccount* gTDGAAccount = NULL;
+//TDCCAccount* gTDGAAccount = NULL;
 
 //account
 JSBool jsbTDGASetAccountId(JSContext* cx, unsigned argc, JS::Value* vp)
@@ -323,6 +323,7 @@ JSBool jsbTDGAEvent(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strEvent(arg0);
     string event = strEvent;
     
+    /*
     if( argc > 1 )
     {
         EventParamMap map;
@@ -361,6 +362,7 @@ JSBool jsbTDGAEvent(JSContext* cx, unsigned argc, JS::Value* vp)
         CCLOG("- TDGA onEvent(%s)", event.c_str());
         //TDCCTalkingDataGA::onEvent(event.c_str());
     }
+    */
     
     return JS_TRUE;
 }

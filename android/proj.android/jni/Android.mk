@@ -7,6 +7,7 @@ LOCAL_MODULE := cocos2djs_shared
 LOCAL_MODULE_FILENAME := libcocos2djs
 
 LOCAL_SRC_FILES := start/main.cpp \
+                   start/invokeCallback.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/js/CallbackManager.cpp \
                    ../../Classes/js/IAP.cpp \
