@@ -17,13 +17,14 @@ var theLayer;
 var theLayerMode = null;
 
 //contants
-var GRID_SIZE = UI_ITEM_SIZE + 5;
+var GRID_SIZE = UI_ITEM_SIZE;
 var GRID_GAP = UI_ITEM_GAP;
 var LINE_COUNT = 4;
 var MARGIN_TOP = 30;
 var MARGIN_BUTTOM = 70;
 
 var theCenter = {};
+var theDay = 0;
 
 var prizeIconList = ["dailyprize-common-get.png",
     "dailyprize-common-light.png",
@@ -43,12 +44,12 @@ function onDailyAnimationCompleted(name){
     }
 }
 
-function onGetDailyPrize(sender){
-    debug("ON GET PRIZE");
+function getDailyPrize(id){
     libUIKit.waitRPC(Request_GetDailyPrize, null, function(rsp){
         if( rsp.RET == RET_OK )
         {
             engine.user.activity.dailyPrize = false;
+            //成功后改变奖励图标
         }
         theLayer.NODE.runAction(actionPopOut(function(){
             engine.ui.popLayer();
@@ -105,26 +106,25 @@ function onTouchEnded(touch, event)
     {//as click
         var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
         var id = calcPosId(localPos);
-        //debug("CLICK ID = "+id);
-        var item = theCenter.inventoryData[id];
-        if( item != null ) {
-            debug("you toouched "+JSON.stringify(item));
-//            cc.AudioEngine.getInstance().playEffect("card2.mp3");
-//            libItemInfo.show(item, true);
+        //debug("CLICK ID = "+id+"theDay = "+theDay);
+        if (theDay == id && engine.user.activity.dailyPrize == false){
+            var item = theCenter.inventoryData[id];
+            if( item != null ) {
+                //debug("you touched "+JSON.stringify(item));
+                cc.AudioEngine.getInstance().playEffect("card2.mp3");
+                //向服务器发送消息，若成功改变奖励图标
+                getDailyPrize(id);
+            }
         }
     }
 }
 
 function setNormalPrize(group,day,curDays){
     var sfc = cc.SpriteFrameCache.getInstance();
-//    group.labTitle.setDisplayFrame(sfc.getSpriteFrame("bag-titleyxdj.png"));
-//    group.btnExtend.setVisible(true);
-//    group.labelSpace.setVisible(true);
-
     //set size
     group.itemList = [];
     group.theGridLayer.removeAllChildren();
-    group.inventoryData = engine.user.inventory.getNormalItems();
+    group.inventoryData = [];
     setPrizeSize(group,day,curDays);
 
     var curroffset = group.contentScroller.getContentOffset();
@@ -135,9 +135,10 @@ function setNormalPrize(group,day,curDays){
 function setPrizeSize(group,day,curDays)
 {
     //update inventory size
+    var sfc = cc.SpriteFrameCache.getInstance();
     var lineCount = Math.ceil(curDays/LINE_COUNT);
-    group.theGridLayer.setContentSize(cc.size((LINE_COUNT-1)*(GRID_SIZE+GRID_GAP) + GRID_SIZE, MARGIN_TOP+MARGIN_BUTTOM+lineCount*(GRID_SIZE+GRID_GAP)));
-    //debug("GridLayerSize = "+JSON.stringify(theGridLayer.getContentSize()));
+    group.theGridLayer.setContentSize(cc.size((LINE_COUNT-1)*(GRID_SIZE+GRID_GAP) + GRID_SIZE,
+            MARGIN_TOP+MARGIN_BUTTOM+lineCount*(GRID_SIZE+GRID_GAP)));
 
     group.theGridLayer.removeAllChildren();
     group.itemList = [];
@@ -152,17 +153,52 @@ function setPrizeSize(group,day,curDays)
         var pos = cc.p(PX*(GRID_SIZE+GRID_GAP)+GRID_SIZE/2, MARGIN_TOP+PY*(GRID_GAP+GRID_SIZE)+GRID_SIZE/2);
         pos.y = group.theGridLayer.getContentSize().height - pos.y;//reverse
         slot.setPosition(pos);
+        if (k == day){
+            slot.showFrame();
+        }
         group.theGridLayer.addChild(slot);
         group.itemList[k] = slot;
+        //set item bg light
+        if (k == day && engine.user.activity.dailyPrize == true){
+            var iconBgLight = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[1]));
+            iconBgLight.setPosition(pos);
+            group.theGridLayer.addChild(iconBgLight);
+        }
         //set item
         var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
-        prizeData.ClassId = prizeData.itemCld;
-        //var itemData = libTable.queryTable(TABLE_ITEM, prizeData.itemCld);
-        group.itemList[k].setItem(prizeData);
-        if (prizeData.vip == 1){
-//            var icon = cc.Sprite.create(prizeIconList[2]);
-//            group.itemList[k].addChild(icon, 0);
+        var prize = libItem.queryPrize(prizeData.prize[0]);
+        prize.icon.setPosition(pos);
+        group.theGridLayer.addChild(prize.icon);
+        //debug("daily:prize = "+JSON.stringify(prize));
+        //set item count
+        var labelCount = "x ";
+        //debug("daily:labelCount = "+labelCount);
+        if (prize.count >= 1){
+            labelCount += prize.count;
+            var prizeLabel = cc.LabelBMFont.create(labelCount, "font26.fnt");
+            prizeLabel.setPosition(prize.icon.getPosition());
+            group.theGridLayer.addChild(prizeLabel);
         }
+        //set vip
+        if (prizeData.prize.length == 2 && prizeData.prize[1].vip >= 1){
+            var iconVip = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[2]));
+            iconVip.setAnchorPoint(cc.p(0, 1));
+            iconVip.setPosition(pos);
+            group.theGridLayer.addChild(iconVip);
+        }
+        //debug("k = "+k+";day = "+day);
+        //set get flag
+        if (k < day){
+            var iconGet = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[0]));
+            iconGet.setPosition(pos);
+            group.theGridLayer.addChild(iconGet);
+        }
+        else if (k == day && engine.user.activity.dailyPrize == false){
+            var iconGet = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[0]));
+            iconGet.setPosition(pos);
+            group.theGridLayer.addChild(iconGet);
+        }
+        group.inventoryData[k] = prize;
     }
 }
 
@@ -171,12 +207,17 @@ function showDailyPrize(day){
     theLayer = engine.ui.newLayer({
         onActivate: onDailyPrizeActivate
     });
+    if (engine.user.activity.dailyPrize == true){
+        theDay = day;
+    }
+    else{
+        theDay = day - 1;
+    }
     theLayerMode = MODE_DAILYPRIZE;
     var mask = blackMask();
     theLayer.addChild(mask);
 
     theLayer.owner = {};
-    theLayer.owner.onGetDailyPrize = onGetDailyPrize;
     theLayer.owner.onClose = onClose;
     theLayer.NODE = libUIC.loadUI(theLayer, "sceneDailyprize.ccbi", {
         nodeContent: {
@@ -191,15 +232,22 @@ function showDailyPrize(day){
     theLayer.NODE.animationManager.setCompletedAnimationCallback(theLayer, onDailyAnimationCompleted);
     theLayer.NODE.animationManager.runAnimationsForSequenceNamed("open");
 
-    if( !engine.user.activity.dailyPrize ){
-        theLayer.owner.btnGet.setEnabled(false);
-    }
+//    if( !engine.user.activity.dailyPrize ){
+//        theLayer.owner.btnGet.setEnabled(false);
+//    }
+    theLayer.owner.btnGet.setVisible(false);
 
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     var nowtime = new Date();
     var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
-    debug("curDays = "+curDays+"天");
+    if (theDay <= 0){
+        theDay = curDays - 1;
+    }
+    theLayer.owner.labelMonth.setString(nowtime.getMonth() + 1);
+    var countDays = +theDay + 1;
+    theLayer.owner.labDay.setString("累计签到" + countDays + "天");
+    //debug("curDays = "+curDays+"天");
 
     theCenter.theGridLayer = cc.Layer.create();
 
@@ -214,7 +262,7 @@ function showDailyPrize(day){
     theCenter.theGridLayer.setTouchPriority(1);
     theCenter.theGridLayer.setTouchEnabled(true);
     //根据day和curDays设置contentScroller
-    setNormalPrize(theCenter,day,curDays);
+    setNormalPrize(theCenter,theDay,curDays);
 
     engine.ui.regMenu(theCenter.theGridLayer);
 }

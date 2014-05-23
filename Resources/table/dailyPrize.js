@@ -1,130 +1,332 @@
 exports.data = [
     {
-        "prizeId":0,
-        "itemCld":830
+        "prizeId": 0,
+        "prize": [
+            {
+                "type": 0,
+                "value":830,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":1,
-        "itemCld":831
+        "prize": [
+            {
+                "type": 0,
+                "value":831,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":2,
-        "itemCld":832
+        "prize": [
+            {
+                "type": 0,
+                "value":832,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":3,
-        "itemCld":833
+        "prize": [
+            {
+                "type": 0,
+                "value":833,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":4,
-        "itemCld":834
+        "prize": [
+            {
+                "type": 0,
+                "value":834,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":5,
-        "itemCld":835
+        "prize": [
+            {
+                "type": 1,
+                "count":1000
+            }
+        ]
     },
     {
         "prizeId":6,
-        "itemCld":836,
-        "vip":1
+        "prize": [
+            {
+                "type": 2,
+                "count":1000
+            },
+            {
+                "type": 2,
+                "count":1000,
+                "vip":1
+            }
+        ]
     },
     {
         "prizeId":7,
-        "itemCld":837
+        "prize": [
+            {
+                "type": 3,
+                "count":1000
+            }
+        ]
     },
     {
         "prizeId":8,
-        "itemCld":838
+        "prize": [
+            {
+                "type": 0,
+                "value":838,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":9,
-        "itemCld":839
+        "prize": [
+            {
+                "type": 0,
+                "value":839,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":10,
-        "itemCld":840
+        "prize": [
+            {
+                "type": 0,
+                "value":840,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":11,
-        "itemCld":841
+        "prize": [
+            {
+                "type": 0,
+                "value":841,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":12,
-        "itemCld":842
+        "prize": [
+            {
+                "type": 0,
+                "value":842,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":13,
-        "itemCld":843,
-        "vip":1
+        "prize": [
+            {
+                "type": 0,
+                "value":843,
+                "count":1
+            },
+            {
+                "type": 0,
+                "value":843,
+                "count":1,
+                "vip":2
+            }
+        ]
     },
     {
         "prizeId":14,
-        "itemCld":844
+        "prize": [
+            {
+                "type": 0,
+                "value":844,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":15,
-        "itemCld":845
+        "prize": [
+            {
+                "type": 0,
+                "value":845,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":16,
-        "itemCld":846
+        "prize": [
+            {
+                "type": 0,
+                "value":846,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":17,
-        "itemCld":847
+        "prize": [
+            {
+                "type": 0,
+                "value":847,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":18,
-        "itemCld":848
+        "prize": [
+            {
+                "type": 0,
+                "value":848,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":19,
-        "itemCld":849
+        "prize": [
+            {
+                "type": 0,
+                "value":849,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":20,
-        "itemCld":850,
-        "vip":1
+        "prize": [
+            {
+                "type": 0,
+                "value":850,
+                "count":1
+            },
+            {
+                "type": 0,
+                "value":850,
+                "count":1,
+                "vip":3
+            }
+        ]
     },
     {
         "prizeId":21,
-        "itemCld":851
+        "prize": [
+            {
+                "type": 0,
+                "value":851,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":22,
-        "itemCld":852
+        "prize": [
+            {
+                "type": 0,
+                "value":852,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":23,
-        "itemCld":853
+        "prize": [
+            {
+                "type": 0,
+                "value":853,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":24,
-        "itemCld":854
+        "prize": [
+            {
+                "type": 0,
+                "value":854,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":25,
-        "itemCld":855
+        "prize": [
+            {
+                "type": 0,
+                "value":855,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":26,
-        "itemCld":856
+        "prize": [
+            {
+                "type": 0,
+                "value":856,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":27,
-        "itemCld":857,
-        "vip":1
+        "prize": [
+            {
+                "type": 0,
+                "value":857,
+                "count":1
+            },
+            {
+                "type": 0,
+                "value":857,
+                "count":1,
+                "vip":4
+            }
+        ]
     },
     {
         "prizeId":28,
-        "itemCld":858
+        "prize": [
+            {
+                "type": 0,
+                "value":858,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":29,
-        "itemCld":859
+        "prize": [
+            {
+                "type": 0,
+                "value":859,
+                "count":1
+            }
+        ]
     },
     {
         "prizeId":30,
-        "itemCld":860
+        "prize": [
+            {
+                "type": 0,
+                "value":860,
+                "count":1
+            }
+        ]
     }
 ]
