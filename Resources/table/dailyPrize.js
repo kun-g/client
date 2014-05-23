@@ -4,7 +4,7 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":830,
+                "value":538,
                 "count":1
             }
         ]
@@ -14,8 +14,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":831,
-                "count":1
+                "value":853,
+                "count":6,
+                "vip":1
             }
         ]
     },
@@ -24,7 +25,7 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":832,
+                "value":540,
                 "count":1
             }
         ]
@@ -34,8 +35,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":833,
-                "count":1
+                "value":858,
+                "count":3,
+                "vip":1
             }
         ]
     },
@@ -43,9 +45,8 @@ exports.data = [
         "prizeId":4,
         "prize": [
             {
-                "type": 0,
-                "value":834,
-                "count":1
+                "type": 2,
+                "count":20
             }
         ]
     },
@@ -53,8 +54,9 @@ exports.data = [
         "prizeId":5,
         "prize": [
             {
-                "type": 1,
-                "count":1000
+                "type": 0,
+                "value":538,
+                "count":1
             }
         ]
     },
@@ -62,12 +64,9 @@ exports.data = [
         "prizeId":6,
         "prize": [
             {
-                "type": 2,
-                "count":1000
-            },
-            {
-                "type": 2,
-                "count":1000,
+                "type": 0,
+                "value":854,
+                "count":10,
                 "vip":1
             }
         ]
@@ -76,8 +75,9 @@ exports.data = [
         "prizeId":7,
         "prize": [
             {
-                "type": 3,
-                "count":1000
+                "type": 0,
+                "value":540,
+                "count":1
             }
         ]
     },
@@ -86,8 +86,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":838,
-                "count":1
+                "value":858,
+                "count":8,
+                "vip":1
             }
         ]
     },
@@ -95,9 +96,8 @@ exports.data = [
         "prizeId":9,
         "prize": [
             {
-                "type": 0,
-                "value":839,
-                "count":1
+                "type": 2,
+                "count":30
             }
         ]
     },
@@ -106,8 +106,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":840,
-                "count":1
+                "value":538,
+                "count":2
             }
         ]
     },
@@ -116,8 +116,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":841,
-                "count":1
+                "value":855,
+                "count":6,
+                "vip":1
             }
         ]
     },
@@ -126,8 +127,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":842,
-                "count":1
+                "value":840,
+                "count":2
             }
         ]
     },
@@ -136,14 +137,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":843,
-                "count":1
-            },
-            {
-                "type": 0,
-                "value":843,
-                "count":1,
-                "vip":2
+                "value":859,
+                "count":4,
+                "vip":1
             }
         ]
     },
@@ -151,9 +147,8 @@ exports.data = [
         "prizeId":14,
         "prize": [
             {
-                "type": 0,
-                "value":844,
-                "count":1
+                "type": 2,
+                "count":40
             }
         ]
     },
@@ -162,8 +157,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":845,
-                "count":1
+                "value":538,
+                "count":2
             }
         ]
     },
@@ -172,8 +167,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":846,
-                "count":1
+                "value":855,
+                "count":10,
+                "vip":2
             }
         ]
     },
@@ -182,8 +178,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":847,
-                "count":1
+                "value":840,
+                "count":2
             }
         ]
     },
@@ -192,8 +188,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":848,
-                "count":1
+                "value":859,
+                "count":8,
+                "vip":2
             }
         ]
     },
@@ -201,9 +198,8 @@ exports.data = [
         "prizeId":19,
         "prize": [
             {
-                "type": 0,
-                "value":849,
-                "count":1
+                "type": 2,
+                "count":50
             }
         ]
     },
@@ -212,14 +208,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":850,
-                "count":1
-            },
-            {
-                "type": 0,
-                "value":850,
-                "count":1,
-                "vip":3
+                "value":538,
+                "count":3
             }
         ]
     },
@@ -228,8 +218,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":851,
-                "count":1
+                "value":856,
+                "count":6,
+                "vip":2
             }
         ]
     },
@@ -238,8 +229,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":852,
-                "count":1
+                "value":840,
+                "count":3
             }
         ]
     },
@@ -248,8 +239,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":853,
-                "count":1
+                "value":860,
+                "count":5,
+                "vip":2
             }
         ]
     },
@@ -257,9 +249,8 @@ exports.data = [
         "prizeId":24,
         "prize": [
             {
-                "type": 0,
-                "value":854,
-                "count":1
+                "type": 2,
+                "count":60
             }
         ]
     },
@@ -268,8 +259,8 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":855,
-                "count":1
+                "value":539,
+                "count":2
             }
         ]
     },
@@ -278,8 +269,9 @@ exports.data = [
         "prize": [
             {
                 "type": 0,
-                "value":856,
-                "count":1
+                "value":857,
+                "count":6,
+                "vip":2
             }
         ]
     },
@@ -287,15 +279,8 @@ exports.data = [
         "prizeId":27,
         "prize": [
             {
-                "type": 0,
-                "value":857,
-                "count":1
-            },
-            {
-                "type": 0,
-                "value":857,
-                "count":1,
-                "vip":4
+                "type": 2,
+                "count":20
             }
         ]
     },
@@ -303,9 +288,9 @@ exports.data = [
         "prizeId":28,
         "prize": [
             {
-                "type": 0,
-                "value":858,
-                "count":1
+                "type": 2,
+                "count":150,
+                "vip":2
             }
         ]
     },
@@ -313,9 +298,8 @@ exports.data = [
         "prizeId":29,
         "prize": [
             {
-                "type": 0,
-                "value":859,
-                "count":1
+                "type": 2,
+                "count":200
             }
         ]
     },
@@ -323,9 +307,8 @@ exports.data = [
         "prizeId":30,
         "prize": [
             {
-                "type": 0,
-                "value":860,
-                "count":1
+                "type": 2,
+                "count":400
             }
         ]
     }

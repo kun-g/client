@@ -17,7 +17,8 @@ var theLayer;
 var theLayerMode = null;
 
 //contants
-var GRID_SIZE = UI_ITEM_SIZE;
+var theScal = 1;
+var GRID_SIZE = UI_ITEM_SIZE * theScal;
 var GRID_GAP = UI_ITEM_GAP;
 var LINE_COUNT = 4;
 var MARGIN_TOP = 30;
@@ -153,6 +154,7 @@ function setPrizeSize(group,day,curDays)
         var pos = cc.p(PX*(GRID_SIZE+GRID_GAP)+GRID_SIZE/2, MARGIN_TOP+PY*(GRID_GAP+GRID_SIZE)+GRID_SIZE/2);
         pos.y = group.theGridLayer.getContentSize().height - pos.y;//reverse
         slot.setPosition(pos);
+        slot.setScale(theScal);
         if (k == day){
             slot.showFrame();
         }
@@ -168,23 +170,18 @@ function setPrizeSize(group,day,curDays)
         var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
         var prize = libItem.queryPrize(prizeData.prize[0]);
         prize.icon.setPosition(pos);
+        prize.icon.setScale(theScal);
         group.theGridLayer.addChild(prize.icon);
         //debug("daily:prize = "+JSON.stringify(prize));
         //set item count
-        var labelCount = "x ";
+        var labelCount = "";
         //debug("daily:labelCount = "+labelCount);
-        if (prize.count >= 1){
-            labelCount += prize.count;
+        if (prizeData.prize[0].count > 1){
+            labelCount = prizeData.prize[0].count;
             var prizeLabel = cc.LabelBMFont.create(labelCount, "font26.fnt");
-            prizeLabel.setPosition(prize.icon.getPosition());
+            //prizeLabel.setAnchorPoint(cc.p(0.5, 1));
+            prizeLabel.setPosition(cc.p(pos.x,pos.y - GRID_SIZE/2));
             group.theGridLayer.addChild(prizeLabel);
-        }
-        //set vip
-        if (prizeData.prize.length == 2 && prizeData.prize[1].vip >= 1){
-            var iconVip = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[2]));
-            iconVip.setAnchorPoint(cc.p(0, 1));
-            iconVip.setPosition(pos);
-            group.theGridLayer.addChild(iconVip);
         }
         //debug("k = "+k+";day = "+day);
         //set get flag
@@ -197,6 +194,13 @@ function setPrizeSize(group,day,curDays)
             var iconGet = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[0]));
             iconGet.setPosition(pos);
             group.theGridLayer.addChild(iconGet);
+        }
+        //set vip
+        if (prizeData.prize.length == 2 && prizeData.prize[1].vip >= 1){
+            var iconVip = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[2]));
+            iconVip.setAnchorPoint(cc.p(1, 0));
+            iconVip.setPosition(pos);
+            group.theGridLayer.addChild(iconVip);
         }
         group.inventoryData[k] = prize;
     }
