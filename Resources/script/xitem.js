@@ -481,9 +481,14 @@ var UIItem = cc.Node.extend({
             this.addChild(sp, 0);
         }
     },
-    setItemSmall: function(item, owner){
+    setItemSmall: function(item, owner, isNode){
         var ITEM_SCALE = 0.77; //缩放比例
-        var ITEM_DELTA_POS = cc.p(45, 45);
+        var ITEM_DELTA_POS;
+        if (isNode != null && isNode ){
+            ITEM_DELTA_POS = cc.p(0, 0);
+        }else{
+            ITEM_DELTA_POS = cc.p(45, 45);
+        }
         if( owner == null ) owner = engine.user.actor;
         this.ITEM = item;
         this.removeAllChildren();
