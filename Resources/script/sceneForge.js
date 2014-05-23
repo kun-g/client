@@ -10,7 +10,6 @@ var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
 var libEffect = loadModule("effect.js");
 var libGadget = loadModule("gadgets.js");
-var libShop = loadModule("sceneShop.js");
 
 var theLayer = null;
 

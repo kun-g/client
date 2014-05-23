@@ -34,6 +34,24 @@ function mergeRoleProperties(dst, src){
     }
 }
 
+function compareRoleProperties(rst, src1, src2){ //src2 is greater than src1
+    if( src1 != null && src2 != null){
+        for(var k in src2){
+            if( src1[k] == null ){
+                rst[k] = src2[k];
+            }
+            else{
+                rst[k] = src2[k] - src1[k];
+            }
+        }
+        for(var k in src1){
+            if( src2[k] == null ){
+                rst[k] = -src1[k];
+            }
+        }
+    }
+}
+
 function propertyString(properties){
     var strProperty = "";
     for(var k in properties){
@@ -584,6 +602,127 @@ UIPrice.make = function(thiz, args)
 {
     var ret = {};
     ret.id = UIPrice.create(args);
+    ret.node = ret.id;
+    return ret;
+}
+
+//--- Properties: 1.health 2.attack 3.speed 4.critical 5.strong 6.accuracy 7.reactivity
+var PropertiesName = ["health", "attack", "speed", "critical", "strong", "accuracy", "reactivity"];
+var UIProperties = cc.Node.extend({
+    init: function () {
+        if (!this._super()) return false;
+        //init code here
+        return true;
+    },
+    setProperties: function (item, parent, mode) { //mode: normal, enhance, forge
+        if( !(item != null) ) {
+            debug("UIProperties Error: item is null");
+            return false;
+        }
+        if( !(parent != null)) {
+            debug("UIProperties Error: parent is null");
+            return false;
+        }
+        if( !(mode != null) ) mode = "normal";
+        var node = [];
+        for( var j=0; j<7; j++){
+            node[j] = parent.getChildByTag(j+1);
+        }
+        var libTable = loadModule("table.js");
+        var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        var itemProperties = itemClass.basic_properties;
+        var enhanceProperties = {};
+        var originProperties = {};
+        mergeRoleProperties(originProperties, itemProperties);
+        var enhance = -1;
+        if( item.Enhance != null && item.Enhance[0] != null && item.Enhance[0].lv != null){
+            enhance = item.Enhance[0].lv;
+            if( enhance > -1 ){
+                enhanceProperties = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance];
+                mergeRoleProperties(originProperties, enhanceProperties);
+            }
+        }
+        if( mode == "forge" ){
+            var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
+            var fItemProperties = fItemClass.basic_properties;
+            var fEnhanceProperties = {};
+            var fOriginProperties = {};
+            mergeRoleProperties(fOriginProperties, fItemProperties);
+            if( enhance > -1 ){
+                fEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, fItemClass.enhanceID).property[enhance];
+                mergeRoleProperties(fOriginProperties, fEnhanceProperties);
+            }
+            var comparedProperties = {};
+            compareRoleProperties(comparedProperties, fOriginProperties, originProperties);
+        }
+        for( var i=0; i<7; i++){
+            node[i].removeAllChildren();
+            var curProperty = (originProperties[PropertiesName[i]] != null)? originProperties[PropertiesName[i]] : 0;
+            var labOrigin = cc.LabelTTF.create(curProperty, null, 24);
+            labOrigin.setAnchorPoint(c.pp(0,0));
+            labOrigin.setColor(cc.c3b(255,255,255));
+            node[i].addChild(labOrigin, null, 0);
+            if( mode == "normal" ){
+                return true;
+            }
+            if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
+                var plusProperty = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1][PropertiesName[i]];
+                if (plusProperty == null){
+                    plusProperty = 0;
+                }
+                if( plusProperty > 0){
+                    var labPlus = cc.LabelTTF.create("+"+plusProperty, null, 24);
+                    labPlus.setAnchorPoint(c.pp(0,0));
+                    labPlus.setColor(cc.c3b(0,255,0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+1 ,0));
+                    node[i].addChild(labPlus, null, 1);
+                }
+                else if(plusProperty < 0) {
+                    labPlus = cc.LabelTTF.create(plusProperty, null, 24);
+                    labPlus.setAnchorPoint(c.pp(0, 0));
+                    labPlus.setColor(cc.c3b(255, 0, 0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width + 1, 0));
+                    node[i].addChild(labPlus, null, 1);
+                }
+                return true;
+            }
+            if( mode == "forge" ){
+                var plusProperty = comparedProperties[PropertiesName[i]];
+                if (plusProperty == null){
+                    plusProperty = 0;
+                }
+                var labPlus;
+                if (plusProperty > 0){
+                    labPlus = cc.LabelTTF.create("+"+plusProperty, null, 24);
+                    labPlus.setAnchorPoint(c.pp(0,0));
+                    labPlus.setColor(cc.c3b(0,255,0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+1 ,0));
+                    node[i].addChild(labPlus, null, 1);
+                }
+                else if(plusProperty < 0){
+                    labPlus = cc.LabelTTF.create(plusProperty, null, 24);
+                    labPlus.setAnchorPoint(c.pp(0,0));
+                    labPlus.setColor(cc.c3b(255,0,0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+1 ,0));
+                    node[i].addChild(labPlus, null, 1);
+                }
+                return true;
+            }
+        }
+
+    }
+});
+
+UIProperties.create = function (item, parent, mode) {
+    var ret = new UIProperties();
+    ret.init();
+    ret.setProperties(item, parent, mode);
+    return ret;
+}
+
+UIProperties.make = function (thiz, args) {
+    var ret = {};
+    ret.id = UIProperties.create(args);
     ret.node = ret.id;
     return ret;
 }
