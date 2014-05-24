@@ -9,10 +9,16 @@
 #include "AndroidSystem.h"
 #include "cocos2d.h"
 #include "platform/android/jni/JniHelper.h"
+#include <vector>
 
 using namespace cocos2d;
-
 using namespace std;
+
+AlertDelegate* gpAlertDelegate = NULL;
+
+void onAlertCallback(int which){
+    gpAlertDelegate->onAlertResult(which);
+}
 
 void AndroidSystem::getDocumentPath(string &out)
 {
@@ -59,8 +65,41 @@ void AndroidSystem::getDeviceId(string &out)
 
 void AndroidSystem::alert(string title, string message, AlertDelegate *pCallback, string cancel, string button1, string button2, string button3)
 {
-    // TODO
-    CCLog(":: alert:%s: %s",title.c_str(), message.c_str());
+    JniMethodInfo t;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "alert", "(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)V") ){
+        gpAlertDelegate = pCallback;
+
+        int argc = 0;
+        vector<string> strings;
+        if( cancel != "" ){
+            strings.push_back(cancel);
+            argc++;
+        }
+        if( button1 != "" ){
+            strings.push_back(button1);
+            argc++;
+        }
+        if( button2 != "" ){
+            strings.push_back(button2);
+            argc++;
+        }
+        if( button3 != "" ){
+            strings.push_back(button3);
+            argc++;
+        }
+
+        jstring jtitle = t.env->NewStringUTF(title.c_str());
+        jstring jmessage = t.env->NewStringUTF(message.c_str());
+        jclass jcString = t.env->FindClass("java/lang/String");
+        jobjectArray jarray = t.env->NewObjectArray(argc, jcString, 0);
+        for(int i=0; i<strings.size(); ++i){
+            jstring jparam = t.env->NewStringUTF(strings[i].c_str());
+            t.env->SetObjectArrayElement(jarray, i, jparam);
+        }
+
+        t.env->CallStaticObjectMethod(t.classID, t.methodID, jtitle, jmessage, jarray);
+        t.env->DeleteLocalRef(t.classID);
+    }
 }
 
 void AndroidSystem::scheduleLocalNotification(std::string key, double time, std::string message, std::string button)

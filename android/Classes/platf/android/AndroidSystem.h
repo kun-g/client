@@ -64,4 +64,6 @@ public:
     bool isFirstLaunch();
 };
 
+void onAlertCallback(int which);
+
 #endif /* defined(__DungeonRaiders__AndroidSystem__) */

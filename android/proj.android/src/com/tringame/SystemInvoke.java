@@ -24,6 +24,10 @@ import android.util.Log;
 
 public class SystemInvoke {
 	
+	static {
+        System.loadLibrary("cocos2djs");
+    }
+	
 	private static Activity mActivity;
 	
 	public static void setActivity(Activity act){
@@ -76,20 +80,27 @@ public class SystemInvoke {
   	}
   	
   	//alert
-  	public static void alert(String title, String message, String... buttons){
-  		AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-  		builder.setTitle(title);
-  		builder.setMessage(message);
-  		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				invokeAlertCallback(which);
-			}
-		};
-  		for(String s : buttons){
-  			builder.setNeutralButton(s, listener);
-  		}
-  		builder.show();
+  	public static void alert(final String title, final String message, final String... buttons){
+  		mActivity.runOnUiThread(new Runnable(){
+  			public void run()
+  			{
+  				AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+  		  		builder.setTitle(title);
+  		  		builder.setMessage(message);
+  		  		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+  					@Override
+  					public void onClick(DialogInterface dialog, int which) {
+  						Log.d("debug", "which = "+which);
+  						invokeAlertCallback(which);
+  					}
+  				};
+  				for(int i=0; i<buttons.length; ++i){
+  					builder.setButton(i, buttons[i], listener);
+  				}
+
+  		  		builder.show();
+  			}
+  		});
   	}
   	
   	//open URL

@@ -63,6 +63,11 @@ function onLoggedIn(token, type){
     engine.session.accountType = arg.tp;
 
     engine.event.sendRPCEvent(Request_AccountLogin, arg, LoginResp, theLayer);
+
+    //test code
+    system.alert("测试测试", uacDelegate, function(btn){
+                       debug("onAlertCallback("+btn+")");
+                  }, "不切换", "现在切换", "哈哈", "最大");
 }
 
 function onAccountChanged(token, type){
