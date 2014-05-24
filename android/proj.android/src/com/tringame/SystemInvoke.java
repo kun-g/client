@@ -85,20 +85,31 @@ public class SystemInvoke {
   			public void run()
   			{
   				AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-  		  		builder.setTitle(title);
-  		  		builder.setMessage(message);
+  				builder.setTitle(title);
+  				builder.setMessage(message);
   		  		DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
   					@Override
   					public void onClick(DialogInterface dialog, int which) {
-  						Log.d("debug", "which = "+which);
-  						invokeAlertCallback(which);
+  						int select = 0;
+  						switch(which){
+  						case DialogInterface.BUTTON_NEGATIVE: select = 0; break;
+  						case DialogInterface.BUTTON_NEUTRAL: select = 1; break;
+  						case DialogInterface.BUTTON_POSITIVE: select = 2; break;
+  						}
+  						invokeAlertCallback(select);
   					}
   				};
-  				for(int i=0; i<buttons.length; ++i){
-  					builder.setButton(i, buttons[i], listener);
+  				if( buttons.length > 0 ){
+  					builder.setNegativeButton(buttons[0], listener);
+  				}
+  				if( buttons.length > 1 ){
+  					builder.setNeutralButton(buttons[1], listener);
+  				}
+  				if( buttons.length > 2 ){
+  					builder.setPositiveButton(buttons[2], listener);
   				}
 
-  		  		builder.show();
+  				builder.show();
   			}
   		});
   	}
