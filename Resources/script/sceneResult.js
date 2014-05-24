@@ -214,7 +214,7 @@ function loadResult(){
         theLayer.ui["equip"+index].showFrame();
         if( theWXPSource[index] != null ){
             var src = theWXPSource[index];
-            theLayer.ui["equip"+index].setItemSmall(src.itm);
+            theLayer.ui["equip"+index].setItemSmall(src.itm, null, true);
             if( src.up >= 0 ){
                 var last = src.xp + theWXP;
                 if( last > src.up ){
