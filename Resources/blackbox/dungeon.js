@@ -725,6 +725,7 @@
       }
       switch (action) {
         case DUNGEON_ACTION_ENTER_DUNGEON:
+            traceStack();//test
           ret.push({
             NTF: Event_DungeonEnter,
             arg: this.getInitialInfo()
@@ -862,6 +863,7 @@
       var actions, _i, _len;
       this.replayMode = true;
       actionLog = actionLog != null ? actionLog : [];
+        console.log(JSON.stringify(actionLog))
       for (_i = 0, _len = actionLog.length; _i < _len; _i++) {
         actions = actionLog[_i];
         if (actions != null) {
@@ -1818,6 +1820,7 @@
   dungeonCSConfig = {
     EnterDungeon: {
       callback: function(env) {
+          console.log('XXXXXFFFF')
         this.routine({
           id: 'EnterLevel'
         });
@@ -1858,6 +1861,7 @@
             }
           }
         } else {
+            console.log("XXXXXXXXX");
           if (Array.isArray(entrance)) {
             for (_j = 0, _len = entrance.length; _j < _len; _j++) {
               e = entrance[_j];
@@ -1908,6 +1912,7 @@
           }
           return _results;
         })();
+          console.log(env.getHeroes()[0].health, env.getHeroes()[0].pos)
         if (((_ref5 = env.getHeroes()[0]) != null ? _ref5.health : void 0) > 0) {
           ev.pos = positions[0];
         }

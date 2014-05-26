@@ -37,6 +37,7 @@ function Event()
     this.CONN_STATE = CONN_UNDEFINED;
     this.AWAKE_SENT = false;
 
+    this.SENDQUEUE = [];
     this.RPC_INSECURE_LIST = [];
 }
 
