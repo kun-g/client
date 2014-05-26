@@ -91,6 +91,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_FACTION);
     table.loadTable(TABLE_COST);
     table.loadTable(TABLE_DROP);
+    table.loadTable(TABLE_DAILYPRIZE);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();

@@ -31,6 +31,7 @@ TABLE_LEADBOARD = "leadboard";
 TABLE_FACTION = "faction";
 TABLE_BOUNTY = "bounty";
 TABLE_COST = "costs";
+TABLE_DAILYPRIZE = "dailyPrize";
 
 /*** GAME CONSTANTS ***/
 ItemId_RevivePotion = 540;

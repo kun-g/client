@@ -348,7 +348,7 @@ Inventory.prototype.getShopItems = function()
 {
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
-        //if( itemData.hide === true ) return false;
+        if( itemData.hide === true ) return false;
         if( itemData.storeOnly === true ) return true;
         return false;
     });
