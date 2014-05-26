@@ -7,15 +7,15 @@
             <key>dailyprize-960-bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{550,552}}</string>
+                <string>{{2,2},{577,688}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{550,552}}</string>
+                <string>{{0,0},{577,688}}</string>
                 <key>sourceSize</key>
-                <string>{550,552}</string>
+                <string>{577,688}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,7 +27,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:df06294d176eb7aaaf121312c9a9736d$</string>
+            <string>$TexturePacker:SmartUpdate:9c43f5831ca7062ac2ba86e83157a78e$</string>
             <key>textureFileName</key>
             <string>dailyprize-960.png</string>
         </dict>
