@@ -555,7 +555,7 @@ var UIItem = cc.Node.extend({
                         var fileStar = "itemstar"+starLv+".png";
                         var enhanceMark = cc.Sprite.create(fileStar);
                         enhanceMark.setScale(ITEM_SCALE);
-                        enhanceMark.setPosition(cc.p(45, 14));
+                        enhanceMark.setPosition(cc.p(ITEM_DELTA_POS.width, ITEM_DELTA_POS.height-31));
                         this.addChild(enhanceMark, 52);
                     }
                 }

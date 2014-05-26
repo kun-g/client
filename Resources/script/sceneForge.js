@@ -215,24 +215,12 @@ function onStartUpgrade(sender){
                                 engine.event.processResponses(rsp.RES);
                                 var slot = EquipSlot_MainHand;
                                 switch (TouchId) {
-                                    case 1:
-                                        slot = EquipSlot_MainHand;
-                                        break;
-                                    case 2:
-                                        slot = EquipSlot_SecondHand;
-                                        break;
-                                    case 3:
-                                        slot = EquipSlot_Chest;
-                                        break;
-                                    case 4:
-                                        slot = EquipSlot_Legs;
-                                        break;
-                                    case 5:
-                                        slot = EquipSlot_Finger;
-                                        break;
-                                    case 6:
-                                        slot = EquipSlot_Neck;
-                                        break;
+                                    case 1: slot = EquipSlot_MainHand; break;
+                                    case 2: slot = EquipSlot_SecondHand; break;
+                                    case 3: slot = EquipSlot_Chest; break;
+                                    case 4: slot = EquipSlot_Legs; break;
+                                    case 5: slot = EquipSlot_Finger; break;
+                                    case 6: slot = EquipSlot_Neck; break;
                                 }
                                 var newItem = engine.user.actor.queryArmor(slot);
                                 if (newItem != null) {
@@ -267,12 +255,13 @@ function setUpgradeItem(item){
         var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
         theContent.owner.oldName.setString(itemClass.label);
-        var srcProperties = {};
-        mergeRoleProperties(srcProperties, itemClass.basic_properties);
-        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
-            mergeRoleProperties(srcProperties, enhanceInfo.property[enhance]);
-        }
-        theContent.owner.labOldProperty.setString(propertyString(srcProperties));
+//        var srcProperties = {};
+//        mergeRoleProperties(srcProperties, itemClass.basic_properties);
+//        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+//            mergeRoleProperties(srcProperties, enhanceInfo.property[enhance]);
+//        }
+//        theContent.owner.labOldProperty.setString(propertyString(srcProperties));
+        theContent.ui.properties1.setProperties(item);
 
         if( itemClass.upgradeTarget != null )
         {//can upgrade
@@ -289,12 +278,14 @@ function setUpgradeItem(item){
             theContent.ui.newItem.setItem(dummyTarget);
             theContent.owner.newName.setString(targetClass.label);
 
-            var dstProperties = {};
-            mergeRoleProperties(dstProperties, targetClass.basic_properties);
-            if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
-                mergeRoleProperties(dstProperties, enhanceInfo.property[enhance]);
-            }
-            theContent.owner.labNewProperty.setString(propertyString(dstProperties));
+//            var dstProperties = {};
+//            mergeRoleProperties(dstProperties, targetClass.basic_properties);
+//            if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+//                mergeRoleProperties(dstProperties, enhanceInfo.property[enhance]);
+//            }
+//            theContent.owner.labNewProperty.setString(propertyString(dstProperties));
+            theContent.ui.properties2.setProperties(dummyTarget);
+
             theContent.ui.cost.setPrice({
                 gold: upgradeCost
             });
@@ -422,6 +413,14 @@ function loadUpgrade(){
             ui: "UIPrice",
             id: "cost"
         },
+        nodeProperties1: {
+            ui: "UIProperties",
+            id: "properties1"
+        },
+        nodeProperties2: {
+            ui: "UIProperties",
+            id: "properties2"
+        },
         nodeExp: {
             ui: "UIProgress",
             id: "xp",
@@ -524,6 +523,7 @@ function onStartEnhance(sender){
 }
 
 function setEnhanceEquip(item){
+    theContent.ui.properties.setProperties(null);
     if( item != null ){
         item = syncItemData(item);
         var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
@@ -564,8 +564,8 @@ function setEnhanceEquip(item){
             }
         }
 
-        //show property is moves to setEnhanceStone()
-
+        theContent.ui.properties.setProperties(item, "enhance");
+        
         if( EnhanceArgs == null ){
             EnhanceArgs = {};
         }
@@ -579,7 +579,7 @@ function setEnhanceEquip(item){
     else{
         theContent.ui.equip.setItem(null);
         theContent.owner.labEquipName.setString("请选择装备");
-        theContent.owner.labProperty.setString("");
+        theContent.ui.properties.setProperties(null);
         //load equip enhance state
         for(var i=0; i<5; ++i){
             var starName = "ehStar"+(i+1);
@@ -598,18 +598,18 @@ function setEnhanceEquip(item){
 }
 
 function setEnhanceStone(itemClass){
-    theContent.owner.labProperty.setString("");
     theContent.owner.btnPlus.setVisible(false);
     if( itemClass != null ){
         var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
-        var theProperties = {};
-        mergeRoleProperties(theProperties, itemClass.basic_properties);
+//        var theProperties = {};
+//        mergeRoleProperties(theProperties, itemClass.basic_properties);
         if( enhanceInfo != null ){
-            if (enhance > -1 && enhanceInfo.property[enhance] != null) {
-                mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
-            }
-            theContent.owner.labProperty.setString(propertyString(theProperties));
+//            if (enhance > -1 && enhanceInfo.property[enhance] != null) {
+//                mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
+//            }
+//            theContent.owner.labProperty.setString(propertyString(theProperties));
+            
             if( enhance < 8*(itemClass.quality+1)-1 ) {
                 var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance+1]);
                 if( enhanceCost != null ){
@@ -664,7 +664,7 @@ function setEnhanceStone(itemClass){
     }
     else{
         theContent.ui.stone.setItem(null);
-        theContent.owner.labProperty.setString("");
+        theContent.ui.properties.setProperties(null);
         theContent.owner.labCount.setString("0/0");
         theContent.owner.labCount.setColor(cc.c3b(33,22,13));
         theContent.ui.cost.setPrice(null);
@@ -758,6 +758,10 @@ function loadEnhance(){
             ui: "UIItem",
             id: "stone",
             def: "stonebg.png"
+        },
+        nodeProperties: {
+            ui: "UIProperties",
+            id: "properties"
         },
         nodeCost: {
             ui: "UIPrice",
@@ -888,6 +892,10 @@ function loadForge(){
             id: "equipTarget",
             def: "wenhao.png"
         },
+        nodeProperties: {
+            ui: "UIProperties",
+            id: "properties"
+        },
         nodeCost: {
             ui: "UIPrice",
             id: "cost"
@@ -982,12 +990,13 @@ function setForgeEquip(item){
         theForgeItem = item;
         var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
-        var theProperties = {};
-        mergeRoleProperties(theProperties, itemClass.basic_properties);
-        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
-            mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
-        }
-        theContent.owner.labProperty.setString(propertyString(theProperties));
+//        var theProperties = {};
+//        mergeRoleProperties(theProperties, itemClass.basic_properties);
+//        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
+//            mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
+//        }
+//        theContent.owner.labProperty.setString(propertyString(theProperties));
+        theContent.ui.properties.setProperties(item, "forge");
         if( ForgeArgs == null ){
             ForgeArgs = {};
         }
@@ -1005,6 +1014,7 @@ function setForgeEquip(item){
     else {
         theContent.ui.equipTarget.setItem(null);
         theContent.owner.labName.setString("请选择装备");
+        theContent.ui.properties.setProperties(null);
         if( ForgeArgs != null ){
             delete ForgeArgs.sid;
         }
