@@ -36,7 +36,8 @@ function Event()
     this.SENDMODE = 0;
     this.CONN_STATE = CONN_UNDEFINED;
     this.AWAKE_SENT = false;
-    this.SENDQUEUE = [];
+
+    this.RPC_INSECURE_LIST = [];
 }
 
 Event.prototype.start = function()
@@ -152,7 +153,11 @@ Event.prototype.sendRPCEvent = function(cmd, args, callback, thiz, data)
     var force = false;
     if( cmd == Request_Awake ) force = true;
     //copyProperties(pkg, rpc.arg);
-    this.sendPackage(this.TCPFD, JSON.stringify(pkg), this.SENDMODE, force);
+    var strData  = JSON.stringify(pkg);
+    if( cmd != Request_Awake ){
+        this.RPC_INSECURE_LIST.push(strData);
+    }
+    this.sendPackage(this.TCPFD, strData, this.SENDMODE, force);
 }
 
 //send a notification event to server
@@ -193,24 +198,36 @@ Event.prototype.sendPackage = function(fd, pkg, mode, force){
             pkg: pkg,
             mode: mode
         });
-        if( !this.AWAKE_SENT ){
-            this.sendRPCEvent(Request_Awake, {
-                PID: this.SERVER_PID
-            }, function(rsp){
-                for( var k in singleton.SENDQUEUE ){
-                    var pak = singleton.SENDQUEUE[k];
-                    tcp.send(pak.fd, pak.pkg, pak.mode);
-                }
-                singleton.SENDQUEUE = [];
-                singleton.CONN_STATE = CONN_ESTABLISHED;
-                singleton.AWAKE_SENT = false;
-            }, singleton);
-            this.AWAKE_SENT = true;
-        }
+        this.invokeAwake();
     }
     else{
         tcp.send(this.TCPFD, pkg, mode);
     }
+}
+
+Event.prototype.invokeAwake = function(){
+    if( !this.AWAKE_SENT ){
+        this.sendRPCEvent(Request_Awake, {
+            PID: this.SERVER_PID
+        }, function(rsp){
+            singleton.flushSendQueueAndInsecureRPC();
+            singleton.CONN_STATE = CONN_ESTABLISHED;
+            singleton.AWAKE_SENT = false;
+        }, singleton);
+        this.AWAKE_SENT = true;
+    }
+}
+
+Event.prototype.flushSendQueueAndInsecureRPC = function(){
+    for( var k in this.SENDQUEUE ){
+        var pak = this.SENDQUEUE[k];
+        tcp.send(pak.fd, pak.pkg, pak.mode);
+    }
+    this.SENDQUEUE = [];
+    for(var k in this.RPC_INSECURE_LIST){
+        tcp.send(this.TCPFD, this.RPC_INSECURE_LIST[k], this.SENDMODE);
+    }
+    this.RPC_INSECURE_LIST = [];
 }
 
 Event.prototype.processNotification = function(snf, args, force)
@@ -282,6 +299,8 @@ Event.prototype.postResponse = function(resp)
             var rpc = this.RPCSENT[resp.REQ];
             rpc.callback.apply(rpc.thiz, [resp, rpc.data]);
             delete this.RPCSENT[resp.REQ];
+
+            this.RPC_INSECURE_LIST = [];//empity insecure list
         }
         else
         {
@@ -379,11 +398,13 @@ function onRecvCallback(fd, data, state)
     {
         warn("Network: ("+state+")FD("+fd+")"+data);
         if( singleton.CONN_STATE > CONN_UNDEFINED
-            && fd == singleton.TCPFD
-            && state == TCP_DISCONNECTED ){
+            && fd == singleton.TCPFD ){
             debug("** DISCONNECTED");
             singleton.CONN_STATE = CONN_DISCONNECTED;
             singleton.AWAKE_SENT = false;
+            if( state != TCP_DISCONNECTED ){
+                singleton.invokeAwake();
+            }
         }
     }
 }
