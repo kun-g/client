@@ -414,14 +414,6 @@ function loadUpgrade(){
             ui: "UIPrice",
             id: "cost"
         },
-        nodeProperties1: {
-            ui: "UIProperties",
-            id: "properties1"
-        },
-        nodeProperties2: {
-            ui: "UIProperties",
-            id: "properties2"
-        },
         nodeExp: {
             ui: "UIProgress",
             id: "xp",
@@ -429,9 +421,18 @@ function loadUpgrade(){
             begin: "index-jy1.png",
             middle: "index-jy2.png",
             end: "index-jy3.png"
+        },
+        nodeProperties1: {
+            ui: "UIProperties",
+            id: "properties1"
+        },
+        nodeProperties2: {
+            ui: "UIProperties",
+            id: "properties2"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge.ccbi", bind);
+    debug(JSON.stringify(ret.owner));
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 

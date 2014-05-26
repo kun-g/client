@@ -614,10 +614,10 @@ var UIProperties = cc.Node.extend({
         //init code here
         return true;
     },
-    setProperties: function (item, mode) { //mode: normal, enhance, forge
+    setProperties: function (item, mode, parent) { //mode: normal, enhance, forge
         this.nodeProperty = [];
         for( var j=0; j<7; j++){
-            this.nodeProperty[j] = this.getParent().getChildByTag(j+1);
+            this.nodeProperty[j] = parent.getChildByTag(j+1);
         }
         if( !(item != null) ) {
             for( var i=0; i<7; i++) {
@@ -628,6 +628,7 @@ var UIProperties = cc.Node.extend({
         if( !(mode != null) ) mode = "normal";
         var libTable = loadModule("table.js");
         var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        if ( !(itemClass != null) ) return false;
         var itemProperties = itemClass.basic_properties;
         var enhanceProperties = {};
         var originProperties = {};
@@ -723,10 +724,10 @@ var UIProperties = cc.Node.extend({
     }
 });
 
-UIProperties.create = function (item, mode) {
+UIProperties.create = function (item, mode, parent) {
     var ret = new UIProperties();
     ret.init();
-    ret.setProperties(item, mode);
+    ret.setProperties(item, mode, parent);
     return ret;
 }
 
