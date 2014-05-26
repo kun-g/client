@@ -143,18 +143,68 @@ Item.prototype.isUpgradable = function(){
     return false;
 }
 
-//--- query functions ---
-Item.prototype.getMaxEnhanceLevel = function(){
-    var mel = 0;
-    if( this.Enhance != null ){
-        for(var k in this.Enhance){
-            var level = this.Enhance[k].lv + 1;
-            if( level > mel ){
-                mel = level;
+Item.prototype.isEnhancable = function () {
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass != null && ItemClass.label != null )
+    {//set value
+        var enhance = (this.Enhance[0] != null)? this.Enhance[0].lv : -1;
+        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, ItemClass.enhanceID);
+        if( enhanceInfo != null ){
+            if( enhance < 8*(ItemClass.quality+1)-1 ) {
+                var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance+1]);
+                if( enhanceCost != null ){
+                    for( var k in enhanceCost.material){
+                        switch(enhanceCost.material[k].type){
+                            case 0: {
+                                var EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).quality;
+                                var EnhanceStoneCost = enhanceCost.material[k].count;
+                                var EnhanceStoneCid = loadModule("sceneForge.js").getEnhanceStoneCid(EnhanceStoneLevel);
+                                var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid);
+                                if (stoneCount >= EnhanceStoneCost) {
+                                    return true;
+                                }
+                            }break;
+                            default: break;
+                        }
+                    }
+                }
             }
         }
     }
-    return mel;
+    return false;
+}
+
+Item.prototype.isForgable = function () {
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass != null && ItemClass.label != null )
+    {//set value
+        if( ItemClass.forgeTarget != null )
+        {//can forge
+            var forgeCost = libTable.queryTable(TABLE_COST, ItemClass.forgeID);
+            if (forgeCost != null) {
+                for (var k in forgeCost.material) {
+                    switch (forgeCost.material[k].type) {
+                        case 0:{
+                            var mtrlClass = libTable.queryTable(TABLE_ITEM, forgeCost.material[k].value);
+                            var mtrlCount = engine.user.inventory.countItem(mtrlClass.classId);
+                            var mtrlCost = forgeCost.material[k].count;
+                            if ( mtrlCount < mtrlCost ) {
+                                return false;
+                            }
+                        }break;
+                        default: break;
+                    }
+                }
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//--- query functions ---
+Item.prototype.getMaxEnhanceLevel = function(){
+
 }
 
 function Inventory()
@@ -367,6 +417,40 @@ Inventory.prototype.checkUpgradable = function(){
         var item = engine.user.actor.queryArmor(slots[k]);
         item = syncItemData(item);
         if( item.isUpgradable() ) return true;
+    }
+    return false;
+}
+
+Inventory.prototype.checkEnhancable = function(){
+    var slots = [
+        EquipSlot_MainHand,
+        EquipSlot_SecondHand,
+        EquipSlot_Chest,
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
+    ];
+    for(var k in slots){
+        var item = engine.user.actor.queryArmor(slots[k]);
+        item = syncItemData(item);
+        if( item.isEnhancable() ) return true;
+    }
+    return false;
+}
+
+Inventory.prototype.checkForgable = function(){
+    var slots = [
+        EquipSlot_MainHand,
+        EquipSlot_SecondHand,
+        EquipSlot_Chest,
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
+    ];
+    for(var k in slots){
+        var item = engine.user.actor.queryArmor(slots[k]);
+        item = syncItemData(item);
+        if( item.isForgable() ) return true;
     }
     return false;
 }

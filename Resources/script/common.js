@@ -647,17 +647,22 @@ var UIProperties = cc.Node.extend({
             }
         }
         if( mode == "forge" ){
-            var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
-            var fItemProperties = fItemClass.basic_properties;
-            var fEnhanceProperties = {};
-            var fOriginProperties = {};
-            mergeRoleProperties(fOriginProperties, fItemProperties);
-            if( enhance > -1 ){
-                fEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, fItemClass.enhanceID).property[enhance];
-                mergeRoleProperties(fOriginProperties, fEnhanceProperties);
+            if(itemClass.forgeTarget != null){
+                var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
+                var fItemProperties = fItemClass.basic_properties;
+                var fEnhanceProperties = {};
+                var fOriginProperties = {};
+                mergeRoleProperties(fOriginProperties, fItemProperties);
+                if( enhance > -1 ){
+                    fEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, fItemClass.enhanceID).property[enhance];
+                    mergeRoleProperties(fOriginProperties, fEnhanceProperties);
+                }
+                var comparedProperties = {};
+                compareRoleProperties(comparedProperties, fOriginProperties, originProperties);
+            }else{
+                mode = "normal";
+                debug("UIProperties: forgeTarget is null");
             }
-            var comparedProperties = {};
-            compareRoleProperties(comparedProperties, fOriginProperties, originProperties);
         }
         var FONT_SIZE = 24;
         for( var i=0; i<7; i++){

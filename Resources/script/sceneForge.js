@@ -163,7 +163,7 @@ function upItem(senderTag){
     chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
 }
 
-function getStoneCid(stoneLv){
+function getEnhanceStoneCid(stoneLv){
     for( var cid=0; ; cid++){
         var item = libTable.queryTable(TABLE_ITEM, cid);
         if( item != null ){
@@ -174,6 +174,7 @@ function getStoneCid(stoneLv){
         else return null;
     }
 }
+exports.getEnhanceStoneCid = getEnhanceStoneCid;
 
 function checkGold(gold){
     if (engine.user.inventory.Gold < gold){
@@ -534,7 +535,7 @@ function setEnhanceEquip(item){
         theContent.owner.labEquipName.setString(itemClass.label);
 
         //load equip enhance state
-        var enhance = 0;
+        var enhance = -1;
         if( item.Enhance[0] != null && item.Enhance[0].lv != null ){
             enhance = item.Enhance[0].lv;
         }else{
@@ -988,8 +989,8 @@ function setForgeEquip(item){
         theContent.ui.equipTarget.setItem(item);
         theContent.owner.labName.setString(itemClass.label);
         theForgeItem = item;
-        var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
-        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
+//        var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
+//        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
 //        var theProperties = {};
 //        mergeRoleProperties(theProperties, itemClass.basic_properties);
 //        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
@@ -1517,7 +1518,7 @@ function onEnter(){
     this.ui.treasureDisplayR.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
     for( var i=0; i<5; i++){
-        EnhanceStoneCid[i] = getStoneCid(i);
+        EnhanceStoneCid[i] = getEnhanceStoneCid(i);
     }
     EnoughMtrls = false;
     onUpgrade();
