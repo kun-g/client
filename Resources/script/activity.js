@@ -8,6 +8,7 @@ var libUIC = loadModule("UIComposer.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
 var libTable = loadModule("table.js");
+var libEffect = loadModule("effect.js");
 
 var MODE_DAILYPRIZE = 0;
 var MODE_DAILYQUEST = 1;
@@ -19,17 +20,20 @@ var theLayerMode = null;
 //contants
 var theScal = 1;
 var GRID_SIZE = UI_ITEM_SIZE * theScal;
-var GRID_GAP = UI_ITEM_GAP;
+var GRID_GAP = UI_ITEM_GAP + 12;
 var LINE_COUNT = 4;
 var MARGIN_TOP = 30;
 var MARGIN_BUTTOM = 70;
+var lineOffset = 22;
 
 var theCenter = {};
 var theDay = 0;
 
-var prizeIconList = ["dailyprize-common-get.png",
+var prizeIconList = ["dailyprize-common-lq.png",
     "dailyprize-common-light.png",
     "dailyprize-common-vip1.png"];
+
+var prizePosXList = [];
 
 //common used close function
 function onClose(sender){
@@ -49,12 +53,20 @@ function getDailyPrize(id){
     libUIKit.waitRPC(Request_GetDailyPrize, null, function(rsp){
         if( rsp.RET == RET_OK )
         {
+            var winSize = cc.Director.getInstance().getWinSize();
             engine.user.activity.dailyPrize = false;
             //成功后改变奖励图标
+            //var item = theCenter.inventoryData[id];
+            //libEffect.attachEffectCCBI(theLayer,cc.p(winSize.width/2, winSize.height/2), "effect-dplight.ccbi",libEffect.EFFECTMODE_AUTO);
+
+            var nowtime = new Date();
+            var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
+
+            var getDay = +theDay + 1;
+            theLayer.owner.labDay.setString("累计签到" + getDay + "天");
+            //根据day和curDays设置contentScroller
+            setNormalPrize(theCenter,theDay,curDays);
         }
-        theLayer.NODE.runAction(actionPopOut(function(){
-            engine.ui.popLayer();
-        }));
     }, theLayer);
 }
 
@@ -65,12 +77,22 @@ function calcPosId(lpos)
 {
     var rpos = cc.p(lpos.x, theCenter.theGridLayer.getContentSize().height - lpos.y);
     var PY = Math.floor((rpos.y - MARGIN_TOP)/(GRID_SIZE+GRID_GAP));
-    var PX = Math.floor(rpos.x/(GRID_GAP+GRID_SIZE));
+    debug("rpos.x = "+rpos.x+";rpos.y = "+rpos.y);
+    var PX = 0;
+    debug("prizePosXList = "+JSON.stringify(prizePosXList));
+    for (var k in prizePosXList){
+        if (rpos.x <= prizePosXList[k] + 100 && rpos.x >= prizePosXList[k]){
+            PX = k;
+            break;
+        }
+    }
+    debug("PX = "+PX+";PY = "+PY);
     var PYoff = rpos.y - MARGIN_TOP - PY*(GRID_SIZE+GRID_GAP);
-    var PXoff = rpos.x - PX*(GRID_SIZE+GRID_GAP);
+    var PXoff = rpos.x - PX*(GRID_SIZE+GRID_GAP) - GRID_SIZE/2 - lineOffset;
     if( PXoff < 100 && PYoff < 100 )
     {
-        var ret = PX + PY*LINE_COUNT;
+        var ret = +PX + PY*LINE_COUNT;
+        debug("ret = "+ret);
         if( PX >= LINE_COUNT || ret >= theCenter.inventorySize )
         {
             ret = -1;
@@ -107,11 +129,11 @@ function onTouchEnded(touch, event)
     {//as click
         var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
         var id = calcPosId(localPos);
-        //debug("CLICK ID = "+id+"theDay = "+theDay);
-        if (theDay == id && engine.user.activity.dailyPrize == false){
+        debug("id = "+id);
+        if (theDay == id && engine.user.activity.dailyPrize == true){
             var item = theCenter.inventoryData[id];
             if( item != null ) {
-                //debug("you touched "+JSON.stringify(item));
+                debug("you touched "+JSON.stringify(item));
                 cc.AudioEngine.getInstance().playEffect("card2.mp3");
                 //向服务器发送消息，若成功改变奖励图标
                 getDailyPrize(id);
@@ -146,13 +168,26 @@ function setPrizeSize(group,day,curDays)
     group.inventorySize = curDays;
 
     for(var k = 0; k<group.inventorySize; ++k) {
+        //cal pos
+        var PX = Math.floor(k%LINE_COUNT);
+        var PY = Math.floor(k/LINE_COUNT);
+        var pos = cc.p(PX*(GRID_SIZE+GRID_GAP)+GRID_SIZE/2 + lineOffset, MARGIN_TOP+PY*(GRID_GAP+GRID_SIZE)+GRID_SIZE/2);
+        pos.y = group.theGridLayer.getContentSize().height - pos.y;//reverse
+        if (k < LINE_COUNT){
+            prizePosXList[k] = pos.x;
+        }
+        //set item bg light
+        if (k == day && engine.user.activity.dailyPrize == true){
+            var iconBgLight = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[1]));
+            iconBgLight.setPosition(pos);
+            group.theGridLayer.addChild(iconBgLight);
+            var rotate = cc.RotateBy.create(1, 120);
+            var repeat = cc.RepeatForever.create(rotate);
+            iconBgLight.runAction(repeat);
+        }
         //add slot
         var slot = libItem.UIItem.create(null, true, "itembg2.png");
         slot.setTag(k);
-        var PX = Math.floor(k%LINE_COUNT);
-        var PY = Math.floor(k/LINE_COUNT);
-        var pos = cc.p(PX*(GRID_SIZE+GRID_GAP)+GRID_SIZE/2, MARGIN_TOP+PY*(GRID_GAP+GRID_SIZE)+GRID_SIZE/2);
-        pos.y = group.theGridLayer.getContentSize().height - pos.y;//reverse
         slot.setPosition(pos);
         slot.setScale(theScal);
         if (k == day){
@@ -160,12 +195,6 @@ function setPrizeSize(group,day,curDays)
         }
         group.theGridLayer.addChild(slot);
         group.itemList[k] = slot;
-        //set item bg light
-        if (k == day && engine.user.activity.dailyPrize == true){
-            var iconBgLight = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[1]));
-            iconBgLight.setPosition(pos);
-            group.theGridLayer.addChild(iconBgLight);
-        }
         //set item
         var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
         var prize = libItem.queryPrize(prizeData.prize[0]);
@@ -174,10 +203,10 @@ function setPrizeSize(group,day,curDays)
         group.theGridLayer.addChild(prize.icon);
         //debug("daily:prize = "+JSON.stringify(prize));
         //set item count
-        var labelCount = "";
+        var labelCount = "x";
         //debug("daily:labelCount = "+labelCount);
         if (prizeData.prize[0].count > 1){
-            labelCount = prizeData.prize[0].count;
+            labelCount += prizeData.prize[0].count;
             var prizeLabel = cc.LabelBMFont.create(labelCount, "font26.fnt");
             //prizeLabel.setAnchorPoint(cc.p(0.5, 1));
             prizeLabel.setPosition(cc.p(pos.x,pos.y - GRID_SIZE/2));
@@ -211,12 +240,7 @@ function showDailyPrize(day){
     theLayer = engine.ui.newLayer({
         onActivate: onDailyPrizeActivate
     });
-    if (engine.user.activity.dailyPrize == true){
-        theDay = day;
-    }
-    else{
-        theDay = day - 1;
-    }
+    theDay = day;
     theLayerMode = MODE_DAILYPRIZE;
     var mask = blackMask();
     theLayer.addChild(mask);
@@ -236,21 +260,20 @@ function showDailyPrize(day){
     theLayer.NODE.animationManager.setCompletedAnimationCallback(theLayer, onDailyAnimationCompleted);
     theLayer.NODE.animationManager.runAnimationsForSequenceNamed("open");
 
-//    if( !engine.user.activity.dailyPrize ){
-//        theLayer.owner.btnGet.setEnabled(false);
-//    }
-    theLayer.owner.btnGet.setVisible(false);
-
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     var nowtime = new Date();
     var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
-    if (theDay <= 0){
-        theDay = curDays - 1;
-    }
     theLayer.owner.labelMonth.setString(nowtime.getMonth() + 1);
-    var countDays = +theDay + 1;
-    theLayer.owner.labDay.setString("累计签到" + countDays + "天");
+
+    if (engine.user.activity.dailyPrize == true){
+        theLayer.owner.labDay.setString("累计签到" + day + "天");
+    }
+    else{
+        var getDay = +day + 1;
+        theLayer.owner.labDay.setString("累计签到" + getDay + "天");
+    }
+
     //debug("curDays = "+curDays+"天");
 
     theCenter.theGridLayer = cc.Layer.create();
