@@ -547,11 +547,11 @@ var UIPrice = cc.Node.extend({
                     {
                         offset.x += PRICE_GAP;
                     }
-                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
-                    sp.setAnchorPoint(cc.p(0, 0.5));
-                    sp.setPosition(offset);
-                    this.addChild(sp);
-                    offset.x += sp.getContentSize().width;
+//                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
+//                    sp.setAnchorPoint(cc.p(0, 0.5));
+//                    sp.setPosition(offset);
+//                    this.addChild(sp);
+//                    offset.x += sp.getContentSize().width;
                     var lb = cc.LabelBMFont.create(price[k], "font1.fnt");
                     lb.setAnchorPoint(cc.p(0, 0.5));
                     lb.setPosition(offset);
@@ -612,17 +612,19 @@ var UIProperties = cc.Node.extend({
     init: function () {
         if (!this._super()) return false;
         //init code here
+        this.nodeProperty = [];
         return true;
     },
-    setProperties: function (item, mode, parent) { //mode: normal, enhance, forge
+    setProperties: function (item, mode) { //mode: normal, upgrade, enhance, forge
         this.nodeProperty = [];
         for( var j=0; j<7; j++){
-            this.nodeProperty[j] = parent.getChildByTag(j+1);
+            this.nodeProperty[j] = this.getParent().getChildByTag(j+1);
         }
         if( !(item != null) ) {
-            for( var i=0; i<7; i++) {
-                this.nodeProperty[i].removeAllChildren();
+            for( var j=0; j<7; j++) {
+                this.nodeProperty[j].removeAllChildren();
             }
+            debug("UIProperties: item is null");
             return false;
         }
         if( !(mode != null) ) mode = "normal";
@@ -647,6 +649,24 @@ var UIProperties = cc.Node.extend({
                 }
             }
         }
+        if( mode == "upgrade" ){
+            if(itemClass.upgradeTarget != null){
+                var uItemClass = libTable.queryTable(TABLE_ITEM, itemClass.upgradeTarget);
+                var uItemProperties = uItemClass.basic_properties;
+                var uEnhanceProperties = {};
+                var uOriginProperties = {};
+                mergeRoleProperties(uOriginProperties, uItemProperties);
+                if( enhance > -1 ){
+                    uEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, uItemClass.enhanceID).property[enhance];
+                    mergeRoleProperties(uOriginProperties, uEnhanceProperties);
+                }
+                var comparedProperties = {};
+                compareRoleProperties(comparedProperties, originProperties, uOriginProperties);
+            }else{
+                mode = "normal";
+                debug("UIProperties: upgradeTarget is null");
+            }
+        }
         if( mode == "forge" ){
             if(itemClass.forgeTarget != null){
                 var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
@@ -659,13 +679,13 @@ var UIProperties = cc.Node.extend({
                     mergeRoleProperties(fOriginProperties, fEnhanceProperties);
                 }
                 var comparedProperties = {};
-                compareRoleProperties(comparedProperties, fOriginProperties, originProperties);
+                compareRoleProperties(comparedProperties, originProperties, fOriginProperties);
             }else{
                 mode = "normal";
                 debug("UIProperties: forgeTarget is null");
             }
         }
-        var FONT_SIZE = 24;
+        var FONT_SIZE = 21;
         for( var i=0; i<7; i++){
             this.nodeProperty[i].removeAllChildren();
             var curProperty = (originProperties[PropertiesName[i]] != null)? originProperties[PropertiesName[i]] : 0;
@@ -673,9 +693,6 @@ var UIProperties = cc.Node.extend({
             labOrigin.setAnchorPoint(cc.p(0,0));
             labOrigin.setColor(cc.c3b(255,255,255));
             this.nodeProperty[i].addChild(labOrigin, null, 0);
-            if( mode == "normal" ){
-                return true;
-            }
             if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
                 var plusProperty = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1][PropertiesName[i]];
                 if (plusProperty == null){
@@ -685,19 +702,18 @@ var UIProperties = cc.Node.extend({
                     var labPlus = cc.LabelTTF.create("+"+plusProperty, null, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0,0));
                     labPlus.setColor(cc.c3b(0,255,0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+1 ,0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
                 else if(plusProperty < 0) {
                     labPlus = cc.LabelTTF.create(plusProperty, null, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0, 0));
                     labPlus.setColor(cc.c3b(255, 0, 0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width + 1, 0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3, 0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
-                return true;
             }
-            if( mode == "forge" ){
+            if( mode == "upgrade" || mode == "forge" ){
                 var plusProperty = comparedProperties[PropertiesName[i]];
                 if (plusProperty == null){
                     plusProperty = 0;
@@ -707,27 +723,25 @@ var UIProperties = cc.Node.extend({
                     labPlus = cc.LabelTTF.create("+"+plusProperty, null, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0,0));
                     labPlus.setColor(cc.c3b(0,255,0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+1 ,0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
                 else if(plusProperty < 0){
                     labPlus = cc.LabelTTF.create(plusProperty, null, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0,0));
                     labPlus.setColor(cc.c3b(255,0,0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+1 ,0));
+                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
-                return true;
             }
         }
 
     }
 });
 
-UIProperties.create = function (item, mode, parent) {
+UIProperties.create = function () {
     var ret = new UIProperties();
     ret.init();
-    ret.setProperties(item, mode, parent);
     return ret;
 }
 

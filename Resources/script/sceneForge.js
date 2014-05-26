@@ -256,13 +256,14 @@ function setUpgradeItem(item){
         var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
         theContent.owner.oldName.setString(itemClass.label);
+        theContent.owner.labLvOld.setString(itemClass.rank);
 //        var srcProperties = {};
 //        mergeRoleProperties(srcProperties, itemClass.basic_properties);
 //        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
 //            mergeRoleProperties(srcProperties, enhanceInfo.property[enhance]);
 //        }
 //        theContent.owner.labOldProperty.setString(propertyString(srcProperties));
-        theContent.ui.properties1.setProperties(item);
+        theContent.ui.properties1.setProperties(item, "upgrade");
 
         if( itemClass.upgradeTarget != null )
         {//can upgrade
@@ -278,7 +279,7 @@ function setUpgradeItem(item){
             var dummyTarget = new libItem.Item({cid:itemClass.upgradeTarget, eh:item.Enhance});
             theContent.ui.newItem.setItem(dummyTarget);
             theContent.owner.newName.setString(targetClass.label);
-
+            theContent.owner.labLvNew.setString(targetClass.rank);
 //            var dstProperties = {};
 //            mergeRoleProperties(dstProperties, targetClass.basic_properties);
 //            if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
@@ -432,7 +433,6 @@ function loadUpgrade(){
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge.ccbi", bind);
-    debug(JSON.stringify(ret.owner));
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 
