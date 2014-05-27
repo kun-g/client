@@ -30,62 +30,153 @@
                 <key>sourceSize</key>
                 <string>{242,104}</string>
             </dict>
-            <key>forge2-common-star1.png</key>
+            <key>forge2-common-buy1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,404},{32,30}}</string>
+                <string>{{2,307},{44,66}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{32,30}}</string>
+                <string>{{0,0},{44,66}}</string>
                 <key>sourceSize</key>
-                <string>{32,30}</string>
+                <string>{44,66}</string>
+            </dict>
+            <key>forge2-common-buy2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,261},{44,66}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{44,66}}</string>
+                <key>sourceSize</key>
+                <string>{44,66}</string>
+            </dict>
+            <key>forge2-common-cost.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{158,433},{42,37}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{42,37}}</string>
+                <key>sourceSize</key>
+                <string>{42,37}</string>
+            </dict>
+            <key>forge2-common-star1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{192,477},{32,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,33}}</string>
+                <key>sourceSize</key>
+                <string>{32,33}</string>
             </dict>
             <key>forge2-common-star2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,461},{32,30}}</string>
+                <string>{{158,477},{32,33}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{32,30}}</string>
+                <string>{{0,0},{32,33}}</string>
                 <key>sourceSize</key>
-                <string>{32,30}</string>
+                <string>{32,33}</string>
             </dict>
             <key>forge2-common-star3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{249,289},{33,4}}</string>
+                <string>{{232,214},{44,5}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{33,4}}</string>
+                <string>{{0,0},{44,5}}</string>
                 <key>sourceSize</key>
-                <string>{33,4}</string>
+                <string>{44,5}</string>
             </dict>
             <key>forge2-common-star3bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{246,2},{285,4}}</string>
+                <string>{{246,2},{373,5}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{285,4}}</string>
+                <string>{{0,0},{373,5}}</string>
                 <key>sourceSize</key>
-                <string>{285,4}</string>
+                <string>{373,5}</string>
+            </dict>
+            <key>forge2-common-stone1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{117,386},{45,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,40}}</string>
+                <key>sourceSize</key>
+                <string>{45,40}</string>
+            </dict>
+            <key>forge2-common-stone2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,261},{45,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,41}}</string>
+                <key>sourceSize</key>
+                <string>{45,41}</string>
+            </dict>
+            <key>forge2-common-stone3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,304},{45,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,40}}</string>
+                <key>sourceSize</key>
+                <string>{45,40}</string>
+            </dict>
+            <key>forge2-common-stone4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{117,433},{45,39}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,39}}</string>
+                <key>sourceSize</key>
+                <string>{45,39}</string>
             </dict>
             <key>forge2-common-tabqh1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,289},{113,170}}</string>
+                <string>{{117,214},{113,170}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,11 +189,11 @@
             <key>forge2-common-tabqh2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,289},{113,130}}</string>
+                <string>{{2,377},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,130}}</string>
                 <key>sourceSize</key>
@@ -111,7 +202,7 @@
             <key>forge2-common-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,461},{86,45}}</string>
+                <string>{{2,214},{86,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -131,7 +222,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ed2b73fbdb26a035bb1d605c4ab44230$</string>
+            <string>$TexturePacker:SmartUpdate:af2ba7e02ef39b21fdecc040579011bd$</string>
             <key>textureFileName</key>
             <string>forge2-common.png</string>
         </dict>
