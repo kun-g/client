@@ -650,21 +650,28 @@ var UIProperties = cc.Node.extend({
             }
         }
         if( mode == "upgrade" ){
-            if(itemClass.upgradeTarget != null){
-                var uItemClass = libTable.queryTable(TABLE_ITEM, itemClass.upgradeTarget);
-                var uItemProperties = uItemClass.basic_properties;
-                var uEnhanceProperties = {};
-                var uOriginProperties = {};
-                mergeRoleProperties(uOriginProperties, uItemProperties);
-                if( enhance > -1 ){
-                    uEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, uItemClass.enhanceID).property[enhance];
-                    mergeRoleProperties(uOriginProperties, uEnhanceProperties);
+            for( var cid = 0; ; cid++){
+                var uItemClass = libTable.queryTable(TABLE_ITEM, cid);
+                if( uItemClass != null ){
+                    if( uItemClass.upgradeTarget == itemClass.classId){
+                        var uItemProperties = uItemClass.basic_properties;
+                        var uEnhanceProperties = {};
+                        var uOriginProperties = {};
+                        mergeRoleProperties(uOriginProperties, uItemProperties);
+                        if( enhance > -1 ){
+                            uEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, uItemClass.enhanceID).property[enhance];
+                            mergeRoleProperties(uOriginProperties, uEnhanceProperties);
+                        }
+                        var comparedProperties = {};
+                        compareRoleProperties(comparedProperties, uOriginProperties, originProperties);
+                        break;
+                    }
                 }
-                var comparedProperties = {};
-                compareRoleProperties(comparedProperties, originProperties, uOriginProperties);
-            }else{
-                mode = "normal";
-                debug("UIProperties: upgradeTarget is null");
+                else {
+                    mode = "normal";
+                    debug("UIProperties: upgradeOrigin is null");
+                    break;
+                }
             }
         }
         if( mode == "forge" ){
@@ -698,6 +705,8 @@ var UIProperties = cc.Node.extend({
                     labOrigin.setColor(cc.c3b(0,255,0));
                 }else if( comparedProperties[PropertiesName[i]] < 0 ){
                     labOrigin.setColor(cc.c3b(255,0,0));
+                }else{
+                    labOrigin.setColor(cc.c3b(255,255,255));
                 }
             }
             if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
@@ -1371,7 +1380,3 @@ function dayNumOfMonth(year,month)
 {
     return 32-new Date(year,month,32).getDate();
 }
-
-var ShadowLabel = cc.LabelTTF.extend({
-
-})

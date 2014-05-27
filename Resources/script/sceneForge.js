@@ -248,25 +248,18 @@ function setUpgradeItem(item){
         item = syncItemData(item);
         var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
     }
-
     if( item != null && itemClass.label != null )
     {//set value
-        theContent.ui.oldItem.setItem(item);
-        theForgeItem = item;
-        var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
-        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
-        theContent.owner.oldName.setString(itemClass.label);
-        theContent.owner.labLvOld.setString(itemClass.rank);
-//        var srcProperties = {};
-//        mergeRoleProperties(srcProperties, itemClass.basic_properties);
-//        if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
-//            mergeRoleProperties(srcProperties, enhanceInfo.property[enhance]);
-//        }
-//        theContent.owner.labOldProperty.setString(propertyString(srcProperties));
-        theContent.ui.properties1.setProperties(item, "upgrade");
-
         if( itemClass.upgradeTarget != null )
         {//can upgrade
+            theContent.owner.content1.setVisible(true);
+            theContent.owner.content2.setVisible(false);
+            theContent.owner.btnStartUpgrade.setEnabled(true);
+            theContent.ui.oldItem.setItem(item);
+            theForgeItem = item;
+            theContent.owner.oldName.setString(itemClass.label);
+            theContent.owner.labLvOld.setString(itemClass.rank);
+            theContent.ui.properties1.setProperties(item);
             var upgradeXp = itemClass.upgradeXp;
             var upgradeCost = itemClass.upgradeCost;
             if( upgradeXp == null ){
@@ -280,14 +273,7 @@ function setUpgradeItem(item){
             theContent.ui.newItem.setItem(dummyTarget);
             theContent.owner.newName.setString(targetClass.label);
             theContent.owner.labLvNew.setString(targetClass.rank);
-//            var dstProperties = {};
-//            mergeRoleProperties(dstProperties, targetClass.basic_properties);
-//            if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
-//                mergeRoleProperties(dstProperties, enhanceInfo.property[enhance]);
-//            }
-//            theContent.owner.labNewProperty.setString(propertyString(dstProperties));
-            theContent.ui.properties2.setProperties(dummyTarget);
-
+            theContent.ui.properties2.setProperties(dummyTarget, "upgrade");
             theContent.ui.cost.setPrice({
                 gold: upgradeCost
             });
@@ -320,12 +306,26 @@ function setUpgradeItem(item){
         }
         else
         {//can't upgrade
-            theContent.ui.newItem.setItem(null);
-            theContent.owner.newName.setString("");
-            theContent.owner.labNewProperty.setString("");
-            theContent.ui.cost.setPrice(null);
-            theContent.owner.labXp.setString("该装备无法升级");
-            theContent.ui.xp.setProgress(0);
+            theContent.owner.content1.setVisible(true);
+            theContent.owner.content2.setVisible(false);
+            theContent.owner.btnStartUpgrade.setEnabled(false);
+            theContent.owner.labLv.setString(itemClass.rank);
+            theContent.owner.theName.setString(itemClass.label);
+            theContent.ui.theItem.setItem(item);
+            theContent.ui.properties3.setProperties(item);
+            if( itemClass.rank == 10 ){
+                theContent.owner.tipLvMax.setVisible(true);
+                theContent.owner.tipToForge.setVisible(false);
+            }else{
+                theContent.owner.tipLvMax.setVisible(false);
+                theContent.owner.tipToForge.setVisible(true);
+            }
+//            theContent.ui.newItem.setItem(null);
+//            theContent.owner.newName.setString("");
+//            theContent.owner.labNewProperty.setString("");
+//            theContent.ui.cost.setPrice(null);
+//            theContent.owner.labXp.setString("该装备无法升级");
+//            theContent.ui.xp.setProgress(0);
             EnoughMtrls = false;
             UpgradeArgs = null;
         }
@@ -404,7 +404,8 @@ function loadUpgrade(){
         },
         itemOld: {
             ui: "UIItem",
-            id: "oldItem"
+            id: "oldItem",
+            def: "wenhao.png"
         },
         itemNew: {
             ui: "UIItem",
@@ -430,6 +431,15 @@ function loadUpgrade(){
         nodeProperties2: {
             ui: "UIProperties",
             id: "properties2"
+        },
+        theItem: {
+            ui: "UIItem",
+            id: "theItem",
+            def: "wenhao.png"
+        },
+        nodeProperties3: {
+            ui: "UIProperties",
+            id: "properties3"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge.ccbi", bind);
