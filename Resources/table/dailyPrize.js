@@ -21,7 +21,7 @@ exports.data = [
                 "type": 0,
                 "value":853,
                 "count":6,
-                "vip":1
+                "vip":2
             }
         ]
     },
