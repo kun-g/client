@@ -624,6 +624,7 @@ var UIProperties = cc.Node.extend({
             for( var j=0; j<7; j++) {
                 this.nodeProperty[j].removeAllChildren();
             }
+            traceStack();
             debug("UIProperties: item is null");
             return false;
         }

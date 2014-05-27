@@ -306,8 +306,9 @@ function setUpgradeItem(item){
         }
         else
         {//can't upgrade
-            theContent.owner.content1.setVisible(true);
-            theContent.owner.content2.setVisible(false);
+            theContent.owner.content1.runAction(cc.FadeOut.create(0.1));
+            theContent.owner.content1.setVisible(false);
+            theContent.owner.content2.setVisible(true);
             theContent.owner.btnStartUpgrade.setEnabled(false);
             theContent.owner.labLv.setString(itemClass.rank);
             theContent.owner.theName.setString(itemClass.label);
@@ -328,6 +329,7 @@ function setUpgradeItem(item){
 //            theContent.ui.xp.setProgress(0);
             EnoughMtrls = false;
             UpgradeArgs = null;
+            theContent.owner.content2.runAction(cc.FadeIn.create(0.1));
         }
     }
     else
@@ -577,6 +579,7 @@ function setEnhanceEquip(item){
         }
 
         theContent.ui.properties.setProperties(item, "enhance");
+        theContent.owner.labLv.setString(itemClass.rank);
         
         if( EnhanceArgs == null ){
             EnhanceArgs = {};
@@ -592,6 +595,7 @@ function setEnhanceEquip(item){
         theContent.ui.equip.setItem(null);
         theContent.owner.labEquipName.setString("请选择装备");
         theContent.ui.properties.setProperties(null);
+        theContent.owner.labLv.setString("0");
         //load equip enhance state
         for(var i=0; i<5; ++i){
             var starName = "ehStar"+(i+1);
@@ -614,15 +618,11 @@ function setEnhanceStone(itemClass){
     if( itemClass != null ){
         var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
         var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
-//        var theProperties = {};
-//        mergeRoleProperties(theProperties, itemClass.basic_properties);
         if( enhanceInfo != null ){
-//            if (enhance > -1 && enhanceInfo.property[enhance] != null) {
-//                mergeRoleProperties(theProperties, enhanceInfo.property[enhance]);
-//            }
-//            theContent.owner.labProperty.setString(propertyString(theProperties));
-            
             if( enhance < 8*(itemClass.quality+1)-1 ) {
+                theContent.owner.btnStartEnhance.setEnabled(true);
+                theContent.owner.tipLvMax.setVisible(false);
+                theContent.owner.tipToForge.setVisible(false);
                 var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance+1]);
                 if( enhanceCost != null ){
                     for( var k in enhanceCost.material){
@@ -630,32 +630,29 @@ function setEnhanceStone(itemClass){
                             case 0: {
                                 EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).quality;
                                 EnhanceStoneCost = enhanceCost.material[k].count;
-                                theContent.ui.stone.setItem(null);
-                                var iconStone = cc.Sprite.create("stone"+(EnhanceStoneLevel+1)+".png");
-                                theContent.ui.stone.addChild(iconStone);
-
+                                for(var i=1; i<6; i++){
+                                    theContent.owner["stone"+i].setVisible( (EnhanceStoneLevel+1) == i );
+                                }
                                 EnhanceStoneSid = engine.user.inventory.getServerId(EnhanceStoneCid[EnhanceStoneLevel]);
                                 var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid[EnhanceStoneLevel]);
-                                theContent.owner.labCount.setString(stoneCount+"/"+EnhanceStoneCost);
+                                theContent.owner.labStoneCost.setString(EnhanceStoneCost);
                                 if (stoneCount < EnhanceStoneCost){
                                     Delta[0] = EnhanceStoneCost - stoneCount;
-                                    theContent.owner.labCount.setColor(cc.c3b(255,0,0));
+                                    theContent.owner.labStoneCost.setColor(cc.c3b(255,0,0));
                                     theContent.owner.btnPlus.setVisible(true);
                                     EnhanceArgs = null;
                                     EnoughMtrls = false;
                                 }
                                 else {
                                     Delta[0] = 0;
-                                    theContent.owner.labCount.setColor(cc.c3b(0,255,0));
+                                    theContent.owner.labStoneCost.setColor(cc.c3b(0,255,0));
                                     theContent.owner.btnPlus.setVisible(false);
                                     EnoughMtrls = true;
                                 }
                             }break;
                             case 1: {
                                 var moneyCost = enhanceCost.material[k].count;
-                                theContent.ui.cost.setPrice({
-                                    gold: moneyCost
-                                });
+                                theContent.owner.labGoldCost.setString(moneyCost);
                                 goldCost = moneyCost;
                             }break;
                             default: break;
@@ -664,22 +661,36 @@ function setEnhanceStone(itemClass){
                     return;
                 }
             }
+            else{
+                theContent.owner.btnStartEnhance.setEnabled(false);
+                if( enhance == EnhanceMaxLv ){
+                    theContent.owner.tipLvMax.setVisible(true);
+                    theContent.owner.tipToForge.setVisible(false);
+                }else{
+                    theContent.owner.tipLvMax.setVisible(false);
+                    theContent.owner.tipToForge.setVisible(true);
+                }
+            }
         }
-        theContent.ui.stone.setItem(null);
-        theContent.owner.labCount.setString("0/0");
-        theContent.owner.labCount.setColor(cc.c3b(33,22,13));
-        theContent.ui.cost.setPrice(null);
+        theContent.owner.labStoneCost.setString("0");
+        theContent.owner.labStoneCost.setColor(cc.c3b(33,22,13));
+        theContent.owner.labGoldCost.setString("0");
+        for(var i=1; i<6; i++){
+            theContent.owner["stone"+i].setVisible( i==1 );
+        }
         EnhanceStoneCost = 0;
         EnhanceStoneLevel = -1;
         EnhanceArgs = null;
         EnoughMtrls = true;
     }
     else{
-        theContent.ui.stone.setItem(null);
+        theContent.owner.labStoneCost.setString("0");
+        theContent.owner.labStoneCost.setColor(cc.c3b(33,22,13));
+        for(var i=1; i<6; i++){
+            theContent.owner["stone"+i].setVisible( i==1 );
+        }
         theContent.ui.properties.setProperties(null);
-        theContent.owner.labCount.setString("0/0");
-        theContent.owner.labCount.setColor(cc.c3b(33,22,13));
-        theContent.ui.cost.setPrice(null);
+        theContent.owner.labGoldCost.setString("0");
         EnhanceStoneCost = 0;
         EnhanceStoneLevel = -1;
         EnoughMtrls = true;
@@ -766,18 +777,9 @@ function loadEnhance(){
             ui: "UIItem",
             id: "equip"
         },
-        itemStone: {
-            ui: "UIItem",
-            id: "stone",
-            def: "stonebg.png"
-        },
         nodeProperties: {
             ui: "UIProperties",
             id: "properties"
-        },
-        nodeCost: {
-            ui: "UIPrice",
-            id: "cost"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge2.ccbi", bind);
