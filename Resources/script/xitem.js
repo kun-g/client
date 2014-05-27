@@ -634,7 +634,7 @@ var UIItem = cc.Node.extend({
                 }
                 //add enhance mark
                 if( this.ITEM.Enhance[0] != null){
-                    var starLv = parseInt((this.ITEM.Enhance[0].lv+1) / 8) % 6;
+                    var starLv = Math.floor((this.ITEM.Enhance[0].lv+1) / 8) % 6;
                     if( starLv >0){
                         var fileStar = "itemstar"+starLv+".png";
                         var enhanceMark = cc.Sprite.create(fileStar);

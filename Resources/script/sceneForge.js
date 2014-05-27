@@ -963,7 +963,7 @@ function onForgeEquip(sender){
     }
 }
 
-var ableToForge = 0; // 0:可升阶 1:顶级 2:装备等级不足
+var ableToForge = -1; // 0:可升阶 1:顶级 2:装备等级不足
 function checkForgeTarget(itemClass){
     var target = itemClass.forgeTarget;
     var quality = itemClass.quality;
@@ -1133,6 +1133,7 @@ function onForge(sender){
 function onStartForge(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     switch(ableToForge){
+        case -1: libUIKit.showAlert("请选择装备"); break;
         case 0:{
             if( EnoughMtrls ){
                 if( ForgeArgs != null ){

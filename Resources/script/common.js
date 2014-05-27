@@ -689,31 +689,38 @@ var UIProperties = cc.Node.extend({
         for( var i=0; i<7; i++){
             this.nodeProperty[i].removeAllChildren();
             var curProperty = (originProperties[PropertiesName[i]] != null)? originProperties[PropertiesName[i]] : 0;
-            var labOrigin = cc.LabelTTF.create(curProperty, null, FONT_SIZE);
+            var labOrigin = cc.LabelTTF.create(curProperty, UI_FONT, FONT_SIZE);
             labOrigin.setAnchorPoint(cc.p(0,0));
             labOrigin.setColor(cc.c3b(255,255,255));
             this.nodeProperty[i].addChild(labOrigin, null, 0);
+            if( mode == "upgrade" ){
+                if( comparedProperties[PropertiesName[i]] > 0 ){
+                    labOrigin.setColor(cc.c3b(0,255,0));
+                }else if( comparedProperties[PropertiesName[i]] < 0 ){
+                    labOrigin.setColor(cc.c3b(255,0,0));
+                }
+            }
             if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
                 var plusProperty = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1][PropertiesName[i]];
                 if (plusProperty == null){
                     plusProperty = 0;
                 }
                 if( plusProperty > 0){
-                    var labPlus = cc.LabelTTF.create("+"+plusProperty, null, FONT_SIZE);
+                    var labPlus = cc.LabelTTF.create("+"+plusProperty, UI_FONT, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0,0));
                     labPlus.setColor(cc.c3b(0,255,0));
                     labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
                 else if(plusProperty < 0) {
-                    labPlus = cc.LabelTTF.create(plusProperty, null, FONT_SIZE);
+                    labPlus = cc.LabelTTF.create(plusProperty, UI_FONT, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0, 0));
                     labPlus.setColor(cc.c3b(255, 0, 0));
                     labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3, 0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
             }
-            if( mode == "upgrade" || mode == "forge" ){
+            if( mode == "forge" ){
                 var plusProperty = comparedProperties[PropertiesName[i]];
                 if (plusProperty == null){
                     plusProperty = 0;
@@ -1364,3 +1371,7 @@ function dayNumOfMonth(year,month)
 {
     return 32-new Date(year,month,32).getDate();
 }
+
+var ShadowLabel = cc.LabelTTF.extend({
+
+})
