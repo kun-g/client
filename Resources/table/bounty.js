@@ -48,5 +48,80 @@ exports.data = [
                 ]
             }
         ]
+    } ,
+    {
+        "bountyId":1,
+        "title":"邪恶头领讨伐令",
+        "desc":"邪恶头领聚集起来，讨伐它们获得大量强化石！",
+        "count":13,
+        "date":{
+            "day":[0,2,3,6],
+            "segment":[
+                {
+                    "start":"10:00",
+                    "end":"23:59"
+                }
+            ]
+        },
+        "begin":1,
+        "titlePic":"bounty-icon5.png",
+        "timePic":"bounty-time5.png",
+        "notify":1,
+        "notifyButton":"挑战",
+        "notifyText":"邪恶头领又出没了，够胆你就来！",
+        "level":[
+            {
+                "powerLimit":100,
+                "stage":114,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":853
+                    }
+                ]
+
+            },
+            {
+                "powerLimit":400,
+                "stage":115,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":854
+                    }
+                ]
+            },
+            {
+                "powerLimit":1700,
+                "stage":116,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":855
+                    }
+                ]
+            },{
+                "powerLimit":3800,
+                "stage":114,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":856
+                    }
+                ]
+
+            },
+            {
+                "powerLimit":5300,
+                "stage":115,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":857
+                    }
+                ]
+            }
+        ]
     }
+
 ]
