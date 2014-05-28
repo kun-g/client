@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>forge4-1136-bg1136.png</key>
+            <key>forge1-1136-bg11362.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{577,596}}</string>
@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>forge4-1136.png</string>
+            <string>forge1-11362.png</string>
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:40ba4bd248765c91577249cb22df15ed$</string>
+            <string>$TexturePacker:SmartUpdate:760297de0979c26502f77e9caa1e710c$</string>
             <key>textureFileName</key>
-            <string>forge4-1136.png</string>
+            <string>forge1-11362.png</string>
         </dict>
     </dict>
 </plist>
