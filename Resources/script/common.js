@@ -624,8 +624,6 @@ var UIProperties = cc.Node.extend({
             for( var j=0; j<7; j++) {
                 this.nodeProperty[j].removeAllChildren();
             }
-            traceStack();
-            debug("UIProperties: item is null");
             return false;
         }
         if( !(mode != null) ) mode = "normal";
@@ -675,6 +673,17 @@ var UIProperties = cc.Node.extend({
                 }
             }
         }
+        if( mode == "enhance" ){
+            var eEnhanceProperties = {};
+            var eOriginProperties = {};
+            mergeRoleProperties(eOriginProperties, itemProperties);
+            if( enhance > -1 ){
+                eEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1];
+                mergeRoleProperties(eOriginProperties, eEnhanceProperties);
+            }
+            var comparedProperties = {};
+            compareRoleProperties(comparedProperties, originProperties, eOriginProperties);
+        }
         if( mode == "forge" ){
             if(itemClass.forgeTarget != null){
                 var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
@@ -711,7 +720,7 @@ var UIProperties = cc.Node.extend({
                 }
             }
             if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
-                var plusProperty = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1][PropertiesName[i]];
+                var plusProperty = comparedProperties[PropertiesName[i]];
                 if (plusProperty == null){
                     plusProperty = 0;
                 }
@@ -737,14 +746,14 @@ var UIProperties = cc.Node.extend({
                 }
                 var labPlus;
                 if (plusProperty > 0){
-                    labPlus = cc.LabelTTF.create("+"+plusProperty, null, FONT_SIZE);
+                    labPlus = cc.LabelTTF.create("+"+plusProperty, UI_FONT, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0,0));
                     labPlus.setColor(cc.c3b(0,255,0));
                     labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
                     this.nodeProperty[i].addChild(labPlus, null, 1);
                 }
                 else if(plusProperty < 0){
-                    labPlus = cc.LabelTTF.create(plusProperty, null, FONT_SIZE);
+                    labPlus = cc.LabelTTF.create(plusProperty, UI_FONT, FONT_SIZE);
                     labPlus.setAnchorPoint(cc.p(0,0));
                     labPlus.setColor(cc.c3b(255,0,0));
                     labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
