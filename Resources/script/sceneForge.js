@@ -1345,7 +1345,7 @@ function loadSynthesize(){
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 
-    for( var i=1; i<6; i++){
+    for( var i=2; i<6; i++){
         var dummyStone = new libItem.Item({
             cid: EnhanceStoneCid[i-1]
         });
