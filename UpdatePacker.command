@@ -156,7 +156,6 @@ for TAR in $CHANGES
 do
 	UpdateFile $TAR
 done
-CleanDFolders
 echo "------ end of list ------"
 
 echo "NOTICE: The update content is about to be packed. You may manually interfere with the update content by now."

@@ -7,7 +7,7 @@
             <key>dailyprize-common-bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{181,75},{579,65}}</string>
+                <string>{{181,148},{579,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>dailyprize-common-lq.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,656},{100,100}}</string>
+                <string>{{102,729},{100,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,6 +111,19 @@
             <key>dailyprize-common-vip1.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{181,75},{71,71}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{71,71}}</string>
+                <key>sourceSize</key>
+                <string>{71,71}</string>
+            </dict>
+            <key>dailyprize-common-vip2.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{181,2},{71,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -131,7 +144,7 @@
             <key>size</key>
             <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:779e0ed7036e5357cd43315deed9db1a$</string>
+            <string>$TexturePacker:SmartUpdate:11c0054ad35910bc731f021e12ed512a$</string>
             <key>textureFileName</key>
             <string>dailyprize-common.png</string>
         </dict>

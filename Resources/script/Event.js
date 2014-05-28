@@ -158,7 +158,7 @@ Event.prototype.sendRPCEvent = function(cmd, args, callback, thiz, data)
     if( cmd != Request_Awake ){
         this.RPC_INSECURE_LIST.push(strData);
     }
-    this.sendPackage(this.TCPFD, strData, this.SENDMODE, force);
+    this.sendPackage(this.TCPFD, strData, true, this.SENDMODE, force);
 }
 
 //send a notification event to server
@@ -187,18 +187,20 @@ Event.prototype.sendNTFEvent = function(cnf, args)
     }
     else{
         //send to original server
-        this.sendPackage(this.TCPFD, JSON.stringify(pkg), this.SENDMODE, false);
+        this.sendPackage(this.TCPFD, JSON.stringify(pkg), false, this.SENDMODE, false);
     }
 }
 
-Event.prototype.sendPackage = function(fd, pkg, mode, force){
+Event.prototype.sendPackage = function(fd, pkg, isRPC, mode, force){
     debug("sendPackage = "+JSON.stringify(pkg));
     if( this.CONN_STATE == CONN_DISCONNECTED && !force && this.SERVER_PID != null ){
-        this.SENDQUEUE.push({
-            fd: fd,
-            pkg: pkg,
-            mode: mode
-        });
+        if( !isRPC ){
+            this.SENDQUEUE.push({
+                fd: fd,
+                pkg: pkg,
+                mode: mode
+            });
+        }
         this.invokeAwake();
     }
     else{
