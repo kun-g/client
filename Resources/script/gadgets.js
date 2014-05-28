@@ -295,10 +295,8 @@ function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, for
         var eEnhanceProperties = {};
         var eOriginProperties = {};
         mergeRoleProperties(eOriginProperties, itemProperties);
-        if( enhance > -1 ){
-            eEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1];
-            mergeRoleProperties(eOriginProperties, eEnhanceProperties);
-        }
+        eEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1];
+        mergeRoleProperties(eOriginProperties, eEnhanceProperties);
         var comparedProperties = {};
         compareRoleProperties(comparedProperties, originProperties, eOriginProperties);
     }

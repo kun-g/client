@@ -770,7 +770,7 @@ function loadEnhance(){
     ret.ui.equip4.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Legs));
     ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
     ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
-
+    libGadget.setProperties(null, ret.owner.nodeProperties);
     return ret;
 }
 
@@ -882,10 +882,6 @@ function loadForge(){
             ui: "UIItem",
             id: "equipTarget",
             def: "wenhao.png"
-        },
-        nodeCost: {
-            ui: "UIPrice",
-            id: "cost"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge3.ccbi", bind);
@@ -899,6 +895,7 @@ function loadForge(){
     ret.ui.equip4.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Legs));
     ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
     ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
+    libGadget.setProperties(null, ret.owner.nodeProperties);
     var dummyMtrl = new libItem.Item();
     for( var i=1; i<7; ++i){
         ret.ui["mtrl"+i].setItemSmall(dummyMtrl);
@@ -986,17 +983,17 @@ function setForgeEquip(item){
         if( checkForgeTarget(itemClass)){
             EnoughMtrls = true;
             loadForgeMaterial(itemClass);
-//            theContent.owner.tipLvMax.setVisible(flase);
-//            theContent.owner.tipToForge.setVisible(false);
+            theContent.owner.tipLvMax.setVisible(false);
+            theContent.owner.tipToForge.setVisible(false);
 
         }else{
             loadForgeMaterial(null);
             if( ableToForge == 1 ){
-//                theContent.owner.tipLvMax.setVisible(true);
-//                theContent.owner.tipToForge.setVisible(false);
+                theContent.owner.tipLvMax.setVisible(true);
+                theContent.owner.tipToForge.setVisible(false);
             }else if( ableToForge == 2 ){
-//                theContent.owner.tipLvMax.setVisible(false);
-//                theContent.owner.tipToForge.setVisible(true);
+                theContent.owner.tipLvMax.setVisible(false);
+                theContent.owner.tipToForge.setVisible(true);
             }
         }
 
@@ -1174,7 +1171,7 @@ function onStartForge(sender){
 
 }
 
-//--- 合成 ---
+//--- 提炼 ---
 
 function setSynthesizeStone(sto1Class, sto2Class){
     theContent.owner.nodeFrom.removeAllChildren();
@@ -1244,9 +1241,9 @@ function setSynthesizeStone(sto1Class, sto2Class){
                     goldCost = moneyCost * count;
                     SynthesizeArgs.opn = ITMOP_SYNTHESIZE;
                     SynthesizeArgs.opc = count;
+                    EnoughMtrls = true;
                 }
             });
-            EnoughMtrls = true;
         }
         theContent.owner.nodeX.addChild(SynthesizeSlider, null, 10);
     }
@@ -1270,7 +1267,7 @@ function onSynthesizeStone(sender){
 //        theContent.owner.nodeFrom.addChild(cc.Sprite.create("wenhao.png"));
 //        theContent.owner.nodeTo.addChild(cc.Sprite.create("stone1.png"));
 //        theContent.owner.nameFrom.setString("初级强化石");
-//        theContent.owner.labCost.setString("不需要合成");
+//        theContent.owner.labCost.setString("不需要提炼");
 //        theContent.owner.nameTo.setString(libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[0]).label);
 //        EnoughMtrls = false;
 //    }
@@ -1387,7 +1384,7 @@ function onStartSynthesize(sender){
                     if ( rsp.RET == RET_OK ){
                         var dummyStone = new libItem.Item({cid: EnhanceStoneCid[SynthesizeStoneFrom-1]});
                         pushForgeAnimation("effect-forge.ccbi", {nodeItem:dummyStone}, function(){
-                            libUIKit.showAlert("合成成功", function(){
+                            libUIKit.showAlert("提炼成功", function(){
                                 EnoughMtrls = false;
                             }, theLayer);
                             if ( rsp.RES != null){
@@ -1404,10 +1401,10 @@ function onStartSynthesize(sender){
                 }, theLayer);
             }
         }else{
-            libUIKit.showAlert("无法合成强化石");
+            libUIKit.showAlert("无法提炼强化石");
         }
     }else{
-        libUIKit.showAlert("无法合成强化石");
+        libUIKit.showAlert("无法提炼强化石");
     }
 }
 
