@@ -73,6 +73,7 @@ function initUI()
     registerUIComponent("UITextArea", DCTextArea.make);
     registerUIComponent("UIPrice", UIPrice.make);
     registerUIComponent("UIInput", makeInput);
+    registerUIComponent("UIProperties", UIProperties.make);
 }
 
 exports.initUI = initUI;

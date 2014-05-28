@@ -194,7 +194,9 @@ function onEnter()
     this.scheduleUpdate();
 
     //attach effects
-    if( engine.user.inventory.checkUpgradable() ){
+    if( engine.user.inventory.checkUpgradable()
+        || engine.user.inventory.checkEnhancable()
+        || engine.user.inventory.checkForgable() ){
         libEffect.attachEffectCCBI(theLayer.owner.tipUpgrade, cc.p(0, 0), "tips-forge.ccbi", libEffect.EFFECTMODE_LOOP);
     }
 
