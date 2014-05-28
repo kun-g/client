@@ -8,6 +8,7 @@ var libUIC = loadModule("UIComposer.js");
 var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
+var libGadget = loadModule("gadgets.js");
 
 var theLayer;
 var theItem;
@@ -159,10 +160,6 @@ function contentEquip(){
         owner.labelLevel.setString(theItemClass.rank+"级")
     }
 
-    //calc property
-    var properties = {};
-    mergeRoleProperties(properties, theItemClass.basic_properties);
-
     //enhance
     var enhance = -1;
     if( theItem.Enhance != null && theItem.Enhance[0] != null && theItem.Enhance[0].lv != null ){
@@ -189,13 +186,8 @@ function contentEquip(){
         }
     }
 
-    var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, theItemClass.enhanceID);
-    if (enhanceInfo != null && enhance > -1 && enhanceInfo.property[enhance] != null) {
-        mergeRoleProperties(properties, enhanceInfo.property[enhance]);
-    }
-
     //show property
-    owner.labelProperty.setString(propertyString(properties));
+    libGadget.setProperties(theItem, owner.nodeProperties);
 
     //desc
     if( theItemClass.description != null && theItemClass.description != "" ){

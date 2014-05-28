@@ -259,7 +259,7 @@ function setUpgradeItem(item){
             theForgeItem = item;
             theContent.owner.oldName.setString(itemClass.label);
             theContent.owner.labLvOld.setString(itemClass.rank);
-            theContent.ui.properties1.setProperties(item);
+            libGadget.setProperties(item, theContent.owner.nodeProperties1);
             var upgradeXp = itemClass.upgradeXp;
             var upgradeCost = itemClass.upgradeCost;
             if( upgradeXp == null ){
@@ -273,7 +273,7 @@ function setUpgradeItem(item){
             theContent.ui.newItem.setItem(dummyTarget);
             theContent.owner.newName.setString(targetClass.label);
             theContent.owner.labLvNew.setString(targetClass.rank);
-            theContent.ui.properties2.setProperties(dummyTarget, "upgrade");
+            libGadget.setProperties(dummyTarget, theContent.owner.nodeProperties2, "upgrade");
             theContent.ui.cost.setPrice({
                 gold: upgradeCost
             });
@@ -312,7 +312,7 @@ function setUpgradeItem(item){
             theContent.owner.labLv.setString(itemClass.rank);
             theContent.owner.theName.setString(itemClass.label);
             theContent.ui.theItem.setItem(item);
-            theContent.ui.properties3.setProperties(item);
+            libGadget.setProperties(item, theContent.owner.nodeProperties3);
             if( itemClass.rank == 10 ){
                 theContent.owner.tipLvMax.setVisible(true);
                 theContent.owner.tipToForge.setVisible(false);
@@ -418,22 +418,10 @@ function loadUpgrade(){
             middle: "index-jy2.png",
             end: "index-jy3.png"
         },
-        nodeProperties1: {
-            ui: "UIProperties",
-            id: "properties1"
-        },
-        nodeProperties2: {
-            ui: "UIProperties",
-            id: "properties2"
-        },
         theItem: {
             ui: "UIItem",
             id: "theItem",
             def: "wenhao.png"
-        },
-        nodeProperties3: {
-            ui: "UIProperties",
-            id: "properties3"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge.ccbi", bind);
@@ -448,7 +436,8 @@ function loadUpgrade(){
     ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
     ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
     ret.ui.xp.setProgress(0);
-
+    libGadget.setProperties(null, ret.owner.nodeProperties1);
+    libGadget.setProperties(null, ret.owner.nodeProperties2);
     return ret;
 }
 
@@ -529,7 +518,7 @@ function onStartEnhance(sender){
 }
 
 function setEnhanceEquip(item){
-    theContent.ui.properties.setProperties(null);
+    libGadget.setProperties(null, theContent.owner.nodeProperties);
     if( item != null ){
         item = syncItemData(item);
         var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
@@ -570,7 +559,7 @@ function setEnhanceEquip(item){
             }
         }
 
-        theContent.ui.properties.setProperties(item, "enhance");
+        libGadget.setProperties(item, theContent.owner.nodeProperties, "enhance");
         theContent.owner.labLv.setString(itemClass.rank);
         
         if( EnhanceArgs == null ){
@@ -586,7 +575,7 @@ function setEnhanceEquip(item){
     else{
         theContent.ui.equip.setItem(null);
         theContent.owner.labEquipName.setString("请选择装备");
-        theContent.ui.properties.setProperties(null);
+        libGadget.setProperties(null, theContent.owner.nodeProperties);
         theContent.owner.labLv.setString("0");
         //load equip enhance state
         for(var i=0; i<5; ++i){
@@ -681,7 +670,7 @@ function setEnhanceStone(itemClass){
         for(var i=1; i<6; i++){
             theContent.owner["stone"+i].setVisible( i==1 );
         }
-        theContent.ui.properties.setProperties(null);
+        libGadget.setProperties(null, theContent.owner.nodeProperties);
         theContent.owner.labGoldCost.setString("0");
         EnhanceStoneCost = 0;
         EnhanceStoneLevel = -1;
@@ -768,10 +757,6 @@ function loadEnhance(){
         itemEquip: {
             ui: "UIItem",
             id: "equip"
-        },
-        nodeProperties: {
-            ui: "UIProperties",
-            id: "properties"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge2.ccbi", bind);
@@ -898,10 +883,6 @@ function loadForge(){
             id: "equipTarget",
             def: "wenhao.png"
         },
-        nodeProperties: {
-            ui: "UIProperties",
-            id: "properties"
-        },
         nodeCost: {
             ui: "UIPrice",
             id: "cost"
@@ -995,7 +976,7 @@ function setForgeEquip(item){
         theContent.owner.labName.setString(itemClass.label);
         theContent.owner.labLv.setString(itemClass.rank);
         theForgeItem = item;
-        theContent.ui.properties.setProperties(item, "forge");
+        libGadget.setProperties(item, theContent.owner.nodeProperties, "forge");
         if( ForgeArgs == null ){
             ForgeArgs = {};
         }
@@ -1023,7 +1004,7 @@ function setForgeEquip(item){
     else {
         theContent.ui.equipTarget.setItem(null);
         theContent.owner.labName.setString("请选择装备");
-        theContent.ui.properties.setProperties(null);
+        libGadget.setProperties(null, theContent.owner.nodeProperties);
         if( ForgeArgs != null ){
             delete ForgeArgs.sid;
         }
@@ -1199,6 +1180,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
     theContent.owner.nodeFrom.removeAllChildren();
     theContent.owner.nodeTo.removeAllChildren();
     theContent.owner.labCost.setString("");
+    theContent.owner.labelCount.setString("0");
     if( sto1Class != null && sto2Class != null){
         var stone1Count = engine.user.inventory.countItem(sto1Class.classId);
         var stone1Sid = engine.user.inventory.getServerId(sto1Class.classId);

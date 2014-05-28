@@ -215,177 +215,159 @@ exports.UISlider = UISlider;
 
 //--- Properties: 1.health 2.attack 3.speed 4.critical 5.strong 6.accuracy 7.reactivity
 var PropertiesName = ["health", "attack", "speed", "critical", "strong", "accuracy", "reactivity"];
-var UIProperties = cc.Node.extend({
-    init: function () {
-        if (!this._super()) return false;
-        //init code here
-        this.nodeProperty = [];
-        return true;
-    },
-    setProperties: function (item, mode) { //mode: normal, upgrade, enhance, forge
-        this.nodeProperty = [];
-        for( var j=0; j<7; j++){
-            this.nodeProperty[j] = this.getParent().getChildByTag(j+1);
+function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, forge
+    if( node == null ){
+        debug("setProperties Error: node is null");
+        return false;
+    }
+    var FONT_SIZE = 21;
+    var libTable = loadModule("table.js");
+    this.nodeProperty = [];
+    var labOrigin = [];
+    var labPlus = [];
+    for( var j=0; j<7; j++){
+        this.nodeProperty[j] = node.getChildByTag(j+1);
+        this.nodeProperty[j].removeAllChildren();
+        labOrigin[j] = cc.LabelTTF.create("--", UI_FONT, FONT_SIZE);
+        labOrigin[j].setAnchorPoint(cc.p(0,0));
+        labOrigin[j].setColor(cc.c3b(255,255,255));
+        this.nodeProperty[j].addChild(labOrigin[j], null, 0);
+        labPlus[j] = cc.LabelTTF.create("", UI_FONT, FONT_SIZE);
+        labPlus[j].setAnchorPoint(cc.p(0,0));
+        labPlus[j].setColor(cc.c3b(0,255,0));
+        labPlus[j].setPosition(cc.p(labOrigin[j].getContentSize().width+3 ,0));
+        this.nodeProperty[j].addChild(labPlus[j], null, 1);
+    }
+    if( !(item != null) ) {
+        for( var j=0; j<7; j++) {
+            labOrigin[j].setString("--");
+            labPlus[j].setString("");
         }
-        if( !(item != null) ) {
-            for( var j=0; j<7; j++) {
-                this.nodeProperty[j].removeAllChildren();
+        return false;
+    }
+    if( !(mode != null) ) mode = "normal";
+    var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
+    if ( !(itemClass != null) ) return false;
+    var itemProperties = itemClass.basic_properties;
+    var enhanceProperties = {};
+    var originProperties = {};
+    mergeRoleProperties(originProperties, itemProperties);
+    var enhance = -1;
+    if( item.Enhance != null && item.Enhance[0] != null && item.Enhance[0].lv != null){
+        enhance = item.Enhance[0].lv;
+        if( enhance > -1 ){
+            var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
+            if( enhanceInfo != null ){
+                enhanceProperties = enhanceInfo.property[enhance];
+                mergeRoleProperties(originProperties, enhanceProperties);
+            }else{
+                mode = "normal";
+                debug("UIProperties: enhanceInfo is null");
             }
-            return false;
         }
-        if( !(mode != null) ) mode = "normal";
-        var libTable = loadModule("table.js");
-        var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if ( !(itemClass != null) ) return false;
-        var itemProperties = itemClass.basic_properties;
-        var enhanceProperties = {};
-        var originProperties = {};
-        mergeRoleProperties(originProperties, itemProperties);
-        var enhance = -1;
-        if( item.Enhance != null && item.Enhance[0] != null && item.Enhance[0].lv != null){
-            enhance = item.Enhance[0].lv;
-            if( enhance > -1 ){
-                var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
-                if( enhanceInfo != null ){
-                    enhanceProperties = enhanceInfo.property[enhance];
-                    mergeRoleProperties(originProperties, enhanceProperties);
-                }else{
-                    mode = "normal";
-                    debug("UIProperties: enhanceInfo is null");
-                }
-            }
-        }
-        if( mode == "upgrade" ){
-            for( var cid = 0; ; cid++){
-                var uItemClass = libTable.queryTable(TABLE_ITEM, cid);
-                if( uItemClass != null ){
-                    if( uItemClass.upgradeTarget == itemClass.classId){
-                        var uItemProperties = uItemClass.basic_properties;
-                        var uEnhanceProperties = {};
-                        var uOriginProperties = {};
-                        mergeRoleProperties(uOriginProperties, uItemProperties);
-                        if( enhance > -1 ){
-                            uEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, uItemClass.enhanceID).property[enhance];
-                            mergeRoleProperties(uOriginProperties, uEnhanceProperties);
-                        }
-                        var comparedProperties = {};
-                        compareRoleProperties(comparedProperties, uOriginProperties, originProperties);
-                        break;
+    }
+    if( mode == "upgrade" ){
+        for( var cid = 0; ; cid++){
+            var uItemClass = libTable.queryTable(TABLE_ITEM, cid);
+            if( uItemClass != null ){
+                if( uItemClass.upgradeTarget == itemClass.classId){
+                    var uItemProperties = uItemClass.basic_properties;
+                    var uEnhanceProperties = {};
+                    var uOriginProperties = {};
+                    mergeRoleProperties(uOriginProperties, uItemProperties);
+                    if( enhance > -1 ){
+                        uEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, uItemClass.enhanceID).property[enhance];
+                        mergeRoleProperties(uOriginProperties, uEnhanceProperties);
                     }
-                }
-                else {
-                    mode = "normal";
-                    debug("UIProperties: upgradeOrigin is null");
+                    var comparedProperties = {};
+                    compareRoleProperties(comparedProperties, uOriginProperties, originProperties);
                     break;
                 }
             }
+            else {
+                mode = "normal";
+                debug("UIProperties: upgradeOrigin is null");
+                break;
+            }
         }
-        if( mode == "enhance" ){
-            var eEnhanceProperties = {};
-            var eOriginProperties = {};
-            mergeRoleProperties(eOriginProperties, itemProperties);
+    }
+    if( mode == "enhance" ){
+        var eEnhanceProperties = {};
+        var eOriginProperties = {};
+        mergeRoleProperties(eOriginProperties, itemProperties);
+        if( enhance > -1 ){
+            eEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1];
+            mergeRoleProperties(eOriginProperties, eEnhanceProperties);
+        }
+        var comparedProperties = {};
+        compareRoleProperties(comparedProperties, originProperties, eOriginProperties);
+    }
+    if( mode == "forge" ){
+        if(itemClass.forgeTarget != null){
+            var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
+            var fItemProperties = fItemClass.basic_properties;
+            var fEnhanceProperties = {};
+            var fOriginProperties = {};
+            mergeRoleProperties(fOriginProperties, fItemProperties);
             if( enhance > -1 ){
-                eEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID).property[enhance+1];
-                mergeRoleProperties(eOriginProperties, eEnhanceProperties);
+                fEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, fItemClass.enhanceID).property[enhance];
+                mergeRoleProperties(fOriginProperties, fEnhanceProperties);
             }
             var comparedProperties = {};
-            compareRoleProperties(comparedProperties, originProperties, eOriginProperties);
+            compareRoleProperties(comparedProperties, originProperties, fOriginProperties);
+        }else{
+            mode = "normal";
+            debug("UIProperties: forgeTarget is null");
+        }
+    }
+
+    for( var i=0; i<7; i++){
+        var curProperty = (originProperties[PropertiesName[i]] != null)? originProperties[PropertiesName[i]] : 0;
+        if( curProperty == 0){
+            labOrigin[i].setString("--");
+        }else{
+            labOrigin[i].setString(curProperty);
+        }
+        if( mode == "upgrade" ){
+            if( comparedProperties[PropertiesName[i]] > 0 ){
+                labOrigin[i].setColor(cc.c3b(0,255,0));
+            }else if( comparedProperties[PropertiesName[i]] < 0 ){
+                labOrigin[i].setColor(cc.c3b(255,0,0));
+            }else{
+                labOrigin[i].setColor(cc.c3b(255,255,255));
+            }
+        }
+        if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
+            var plusProperty = comparedProperties[PropertiesName[i]];
+            if (plusProperty == null){
+                plusProperty = 0;
+            }
+            if( plusProperty > 0){
+                if( curProperty == 0){
+                    labOrigin[i].setString("0");
+                }
+                labPlus[i].setString("+"+plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3 ,0));
+            }
+            else if(plusProperty < 0) {
+                labPlus[i].setString(plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3, 0));
+            }
         }
         if( mode == "forge" ){
-            if(itemClass.forgeTarget != null){
-                var fItemClass = libTable.queryTable(TABLE_ITEM, itemClass.forgeTarget);
-                var fItemProperties = fItemClass.basic_properties;
-                var fEnhanceProperties = {};
-                var fOriginProperties = {};
-                mergeRoleProperties(fOriginProperties, fItemProperties);
-                if( enhance > -1 ){
-                    fEnhanceProperties = libTable.queryTable(TABLE_ENHANCE, fItemClass.enhanceID).property[enhance];
-                    mergeRoleProperties(fOriginProperties, fEnhanceProperties);
-                }
-                var comparedProperties = {};
-                compareRoleProperties(comparedProperties, originProperties, fOriginProperties);
-            }else{
-                mode = "normal";
-                debug("UIProperties: forgeTarget is null");
+            var plusProperty = comparedProperties[PropertiesName[i]];
+            if (plusProperty == null){
+                plusProperty = 0;
+            }
+            if (plusProperty > 0){
+                labPlus[i].setString("+"+plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3 ,0));
+            }
+            else if(plusProperty < 0){
+                labPlus[i].setString(plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3, 0));
             }
         }
-        var FONT_SIZE = 21;
-        for( var i=0; i<7; i++){
-            this.nodeProperty[i].removeAllChildren();
-            var curProperty = (originProperties[PropertiesName[i]] != null)? originProperties[PropertiesName[i]] : 0;
-            if( curProperty == 0){
-                curProperty = "--";
-            }
-            var labOrigin = cc.LabelTTF.create(curProperty, UI_FONT, FONT_SIZE);
-            labOrigin.setAnchorPoint(cc.p(0,0));
-            labOrigin.setColor(cc.c3b(255,255,255));
-            this.nodeProperty[i].addChild(labOrigin, null, 0);
-            if( mode == "upgrade" ){
-                if( comparedProperties[PropertiesName[i]] > 0 ){
-                    labOrigin.setColor(cc.c3b(0,255,0));
-                }else if( comparedProperties[PropertiesName[i]] < 0 ){
-                    labOrigin.setColor(cc.c3b(255,0,0));
-                }else{
-                    labOrigin.setColor(cc.c3b(255,255,255));
-                }
-            }
-            if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
-                var plusProperty = comparedProperties[PropertiesName[i]];
-                if (plusProperty == null){
-                    plusProperty = 0;
-                }
-                if( plusProperty > 0){
-                    var labPlus = cc.LabelTTF.create("+"+plusProperty, UI_FONT, FONT_SIZE);
-                    labPlus.setAnchorPoint(cc.p(0,0));
-                    labPlus.setColor(cc.c3b(0,255,0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
-                    this.nodeProperty[i].addChild(labPlus, null, 1);
-                }
-                else if(plusProperty < 0) {
-                    labPlus = cc.LabelTTF.create(plusProperty, UI_FONT, FONT_SIZE);
-                    labPlus.setAnchorPoint(cc.p(0, 0));
-                    labPlus.setColor(cc.c3b(255, 0, 0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3, 0));
-                    this.nodeProperty[i].addChild(labPlus, null, 1);
-                }
-            }
-            if( mode == "forge" ){
-                var plusProperty = comparedProperties[PropertiesName[i]];
-                if (plusProperty == null){
-                    plusProperty = 0;
-                }
-                var labPlus;
-                if (plusProperty > 0){
-                    labPlus = cc.LabelTTF.create("+"+plusProperty, UI_FONT, FONT_SIZE);
-                    labPlus.setAnchorPoint(cc.p(0,0));
-                    labPlus.setColor(cc.c3b(0,255,0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
-                    this.nodeProperty[i].addChild(labPlus, null, 1);
-                }
-                else if(plusProperty < 0){
-                    labPlus = cc.LabelTTF.create(plusProperty, UI_FONT, FONT_SIZE);
-                    labPlus.setAnchorPoint(cc.p(0,0));
-                    labPlus.setColor(cc.c3b(255,0,0));
-                    labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
-                    this.nodeProperty[i].addChild(labPlus, null, 1);
-                }
-            }
-        }
-
     }
-});
-
-UIProperties.create = function () {
-    var ret = new UIProperties();
-    ret.init();
-    return ret;
 }
-
-UIProperties.make = function (thiz, args) {
-    var ret = {};
-    ret.id = UIProperties.create(args);
-    ret.node = ret.id;
-    return ret;
-}
-
-exports.UIProperties = UIProperties;
+exports.setProperties = setProperties;
