@@ -436,7 +436,8 @@ function loadUpgrade(){
     ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
     ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
     ret.ui.xp.setProgress(0);
-
+    libGadget.setProperties(null, ret.owner.nodeProperties1);
+    libGadget.setProperties(null, ret.owner.nodeProperties2);
     return ret;
 }
 

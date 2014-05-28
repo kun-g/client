@@ -216,25 +216,32 @@ exports.UISlider = UISlider;
 //--- Properties: 1.health 2.attack 3.speed 4.critical 5.strong 6.accuracy 7.reactivity
 var PropertiesName = ["health", "attack", "speed", "critical", "strong", "accuracy", "reactivity"];
 function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, forge
+    if( node == null ){
+        debug("setProperties Error: node is null");
+        return false;
+    }
     var FONT_SIZE = 21;
     var libTable = loadModule("table.js");
     this.nodeProperty = [];
+    var labOrigin = [];
+    var labPlus = [];
     for( var j=0; j<7; j++){
         this.nodeProperty[j] = node.getChildByTag(j+1);
-        var labOrigin = cc.LabelTTF.create("--", UI_FONT, FONT_SIZE);
-        labOrigin.setAnchorPoint(cc.p(0,0));
-        labOrigin.setColor(cc.c3b(255,255,255));
-        this.nodeProperty[j].addChild(labOrigin, null, 0);
-        var labPlus = cc.LabelTTF.create("", UI_FONT, FONT_SIZE);
-        labPlus.setAnchorPoint(cc.p(0,0));
-        labPlus.setColor(cc.c3b(0,255,0));
-        labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
-        this.nodeProperty[j].addChild(labPlus, null, 1);
+        this.nodeProperty[j].removeAllChildren();
+        labOrigin[j] = cc.LabelTTF.create("--", UI_FONT, FONT_SIZE);
+        labOrigin[j].setAnchorPoint(cc.p(0,0));
+        labOrigin[j].setColor(cc.c3b(255,255,255));
+        this.nodeProperty[j].addChild(labOrigin[j], null, 0);
+        labPlus[j] = cc.LabelTTF.create("", UI_FONT, FONT_SIZE);
+        labPlus[j].setAnchorPoint(cc.p(0,0));
+        labPlus[j].setColor(cc.c3b(0,255,0));
+        labPlus[j].setPosition(cc.p(labOrigin[j].getContentSize().width+3 ,0));
+        this.nodeProperty[j].addChild(labPlus[j], null, 1);
     }
     if( !(item != null) ) {
         for( var j=0; j<7; j++) {
-            this.nodeProperty[j].getChildByTag(0).setString("--");
-            this.nodeProperty[j].getChildByTag(1).setString("--");
+            labOrigin[j].setString("--");
+            labPlus[j].setString("");
         }
         return false;
     }
@@ -315,20 +322,19 @@ function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, for
     }
 
     for( var i=0; i<7; i++){
-        this.nodeProperty[i].removeAllChildren();
         var curProperty = (originProperties[PropertiesName[i]] != null)? originProperties[PropertiesName[i]] : 0;
         if( curProperty == 0){
-            labOrigin.setString("--");
+            labOrigin[i].setString("--");
         }else{
-            labOrigin.setString(curProperty);
+            labOrigin[i].setString(curProperty);
         }
         if( mode == "upgrade" ){
             if( comparedProperties[PropertiesName[i]] > 0 ){
-                labOrigin.setColor(cc.c3b(0,255,0));
+                labOrigin[i].setColor(cc.c3b(0,255,0));
             }else if( comparedProperties[PropertiesName[i]] < 0 ){
-                labOrigin.setColor(cc.c3b(255,0,0));
+                labOrigin[i].setColor(cc.c3b(255,0,0));
             }else{
-                labOrigin.setColor(cc.c3b(255,255,255));
+                labOrigin[i].setColor(cc.c3b(255,255,255));
             }
         }
         if( mode == "enhance" && item.Enhance[0].lv < 8*(itemClass.quality+1)-1){
@@ -337,12 +343,15 @@ function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, for
                 plusProperty = 0;
             }
             if( plusProperty > 0){
-                labPlus.setString("+"+plusProperty);
-                labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
+                if( curProperty == 0){
+                    labOrigin[i].setString("0");
+                }
+                labPlus[i].setString("+"+plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3 ,0));
             }
             else if(plusProperty < 0) {
-                labPlus.setString(plusProperty);
-                labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3, 0));
+                labPlus[i].setString(plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3, 0));
             }
         }
         if( mode == "forge" ){
@@ -351,12 +360,12 @@ function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, for
                 plusProperty = 0;
             }
             if (plusProperty > 0){
-                labPlus.setString("+"+plusProperty);
-                labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3 ,0));
+                labPlus[i].setString("+"+plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3 ,0));
             }
             else if(plusProperty < 0){
-                labPlus.setString(plusProperty);
-                labPlus.setPosition(cc.p(labOrigin.getContentSize().width+3, 0));
+                labPlus[i].setString(plusProperty);
+                labPlus[i].setPosition(cc.p(labOrigin[i].getContentSize().width+3, 0));
             }
         }
     }
