@@ -21,6 +21,9 @@
 		534BEFE717F535E00078CD45 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 534BEFE617F535E00078CD45 /* StoreKit.framework */; };
 		534DC5AC1884D6560084E703 /* jsGameCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534DC5AA1884D6560084E703 /* jsGameCenter.cpp */; };
 		535615CB18113104008298BF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535615CA18113104008298BF /* AdSupport.framework */; };
+		535891F6193730B10068BC96 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 535891F3193730B10068BC96 /* dblackbox */; };
+		535891F7193730B10068BC96 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 535891F4193730B10068BC96 /* dscript */; };
+		535891F8193730B10068BC96 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 535891F5193730B10068BC96 /* dtable */; };
 		535EF25617E942B400D0D61D /* CallbackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22417E942B400D0D61D /* CallbackManager.cpp */; };
 		535EF25717E942B400D0D61D /* Download.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22617E942B400D0D61D /* Download.cpp */; };
 		535EF25817E942B400D0D61D /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 535EF22817E942B400D0D61D /* File.cpp */; };
@@ -69,9 +72,6 @@
 		53885EA917E93DE500A3A8B4 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53885EA817E93DE500A3A8B4 /* RootViewController.mm */; };
 		53885EAB17E93DE500A3A8B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53885EAA17E93DE500A3A8B4 /* main.m */; };
 		538862DB17E93DF500A3A8B4 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 538862DA17E93DF500A3A8B4 /* AppDelegate.cpp */; };
-		539A40A3192D985600E78F70 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 539A40A0192D985600E78F70 /* dblackbox */; };
-		539A40A4192D985600E78F70 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 539A40A1192D985600E78F70 /* dscript */; };
-		539A40A5192D985600E78F70 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 539A40A2192D985600E78F70 /* dtable */; };
 		53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */ = {isa = PBXBuildFile; fileRef = 53A3014C18FD30EA001CE8B0 /* chipmunk-docs.html */; };
 		53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53A3016918FD30EA001CE8B0 /* LICENSE.txt */; };
 		53A3048018FD30EB001CE8B0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53A3016A18FD30EA001CE8B0 /* README.txt */; };
@@ -434,6 +434,9 @@
 		534DC5AA1884D6560084E703 /* jsGameCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsGameCenter.cpp; sourceTree = "<group>"; };
 		534DC5AB1884D6560084E703 /* jsGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsGameCenter.h; sourceTree = "<group>"; };
 		535615CA18113104008298BF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		535891F3193730B10068BC96 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
+		535891F4193730B10068BC96 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
+		535891F5193730B10068BC96 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		535EF22417E942B400D0D61D /* CallbackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CallbackManager.cpp; sourceTree = "<group>"; };
 		535EF22517E942B400D0D61D /* CallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackManager.h; sourceTree = "<group>"; };
 		535EF22617E942B400D0D61D /* Download.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Download.cpp; sourceTree = "<group>"; };
@@ -508,9 +511,6 @@
 		538862D717E93DF500A3A8B4 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		538862D917E93DF500A3A8B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		538862DA17E93DF500A3A8B4 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
-		539A40A0192D985600E78F70 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
-		539A40A1192D985600E78F70 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
-		539A40A2192D985600E78F70 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		53A3014C18FD30EA001CE8B0 /* chipmunk-docs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "chipmunk-docs.html"; sourceTree = "<group>"; };
 		53A3014F18FD30EA001CE8B0 /* chipmunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chipmunk.h; sourceTree = "<group>"; };
 		53A3015018FD30EA001CE8B0 /* chipmunk_ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chipmunk_ffi.h; sourceTree = "<group>"; };
@@ -2902,9 +2902,9 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				539A40A0192D985600E78F70 /* dblackbox */,
-				539A40A1192D985600E78F70 /* dscript */,
-				539A40A2192D985600E78F70 /* dtable */,
+				535891F3193730B10068BC96 /* dblackbox */,
+				535891F4193730B10068BC96 /* dscript */,
+				535891F5193730B10068BC96 /* dtable */,
 				5371A1FA192CAFFD0033411F /* misc */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
@@ -3052,7 +3052,7 @@
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
-				539A40A5192D985600E78F70 /* dtable in Resources */,
+				535891F8193730B10068BC96 /* dtable in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				5371A1FB192CAFFD0033411F /* misc in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
@@ -3074,8 +3074,8 @@
 				53A315B318FD3191001CE8B0 /* Default~iphone.png in Resources */,
 				53A304C518FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A315B818FD3191001CE8B0 /* Icon.png in Resources */,
-				539A40A3192D985600E78F70 /* dblackbox in Resources */,
-				539A40A4192D985600E78F70 /* dscript in Resources */,
+				535891F6193730B10068BC96 /* dblackbox in Resources */,
+				535891F7193730B10068BC96 /* dscript in Resources */,
 				53A3159C18FD317E001CE8B0 /* ui in Resources */,
 				5386047D18FE66BD00A08149 /* NdComPlatform_SNS_Resources.bundle in Resources */,
 			);

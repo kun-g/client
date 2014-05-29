@@ -83,7 +83,7 @@ function processOpenChest(item, rsp){
     return false;
 }
 
-exports.showOpenEffect = function(prize){
+function showOpenEffect(prize){
     var fileName = "ui-dailymission-prize.ccbi";
     theOpenLayer = engine.ui.newLayer();
     var mask = blackMask();
@@ -117,9 +117,11 @@ exports.showOpenEffect = function(prize){
     theOpenLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
     theOpenLayer.setTouchPriority(1);
     theOpenLayer.setTouchEnabled(true);
-};
+}
 
-/****************************/
+exports.showOpenEffect = showOpenEffect;
+
+    /****************************/
 
 function contentNormal(){
     if( theItemClass.description != null && theItemClass.description != "" ){
@@ -281,7 +283,7 @@ function onUse(sender){
                 engine.ui.popLayer();
                 tdga.itemUse(theItemClass.label, 1);
                 //处理开箱子的特效
-                if (theItem.category == 0 && theItem.subcategory == 2){
+                if (theItemClass.category == 0 && theItemClass.subcategory == 2){
                     showOpenEffect(rsp.prz);
                 }
                 else{

@@ -420,10 +420,13 @@ function refreshDailyQuest(){
     layer.owner.nodePrize.addChild(pit.icon);
     layer.owner.labPrize.setString(pit.label);
     layer.owner.layerDesc.removeAllChildren();
+    layer.owner.layerPrize.removeAllChildren();
     layer.owner.labTitle.setString("");
     //quest & buttons
     if( dailyQuest.step < 4 ){
         layer.owner.nodeComplete.setVisible(false);
+        var fileIndex = "dailymission-common-"+(dailyQuest.step+1)+".png";
+        layer.owner.spIndex.setDisplayFrame(sfc.getSpriteFrame(fileIndex));
         var questData = libTable.queryTable(TABLE_QUEST, dailyQuest.quest);
         if( questData != null ){
             layer.owner.labTitle.setString(questData.title);
@@ -431,6 +434,7 @@ function refreshDailyQuest(){
             theQuest = engine.user.quest.Quests[dailyQuest.quest];
             theQuest.fixState();
             var dimension = cc.size(layer.owner.layerDesc.getContentSize().width, 0);
+            var dimensionPrize = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
 
             var text = DCTextArea.create();
             text.setDimension(dimension);
@@ -457,12 +461,12 @@ function refreshDailyQuest(){
             }
             var size = text.getContentSize();
 
-            var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimension);
+            var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimensionPrize);
             prize.setPosition(cc.p(0, 0));
             var psz = prize.getContentSize();
-            prize.setPosition(cc.p((dimension.width - psz.width)/2, 0));
-            layer.owner.layerDesc.addChild(prize);
-            text.setPosition(cc.p(0, prize.getContentSize().height));
+            prize.setPosition(cc.p(0, 0));
+            layer.owner.layerPrize.addChild(prize);
+            text.setPosition(cc.p(0, 0));
             layer.owner.layerDesc.addChild(text);
             size.height += prize.getContentSize().height;
 
