@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>forge2-1136-bg1136.png</key>
+            <key>forge1-1136-bg11362.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{577,598}}</string>
+                <string>{{2,2},{577,596}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{577,598}}</string>
+                <string>{{0,0},{577,596}}</string>
                 <key>sourceSize</key>
-                <string>{577,598}</string>
+                <string>{577,596}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>forge2-1136.png</string>
+            <string>forge1-11362.png</string>
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1a5a552959a3ffa8ad2b15cd202a4d5e$</string>
+            <string>$TexturePacker:SmartUpdate:c8449dcc811a4d9c3517558352492761$</string>
             <key>textureFileName</key>
-            <string>forge2-1136.png</string>
+            <string>forge1-11362.png</string>
         </dict>
     </dict>
 </plist>

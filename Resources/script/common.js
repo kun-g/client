@@ -34,6 +34,24 @@ function mergeRoleProperties(dst, src){
     }
 }
 
+function compareRoleProperties(rst, src1, src2){ //src2 is greater than src1
+    if( src1 != null && src2 != null){
+        for(var k in src2){
+            if( src1[k] == null ){
+                rst[k] = src2[k];
+            }
+            else{
+                rst[k] = src2[k] - src1[k];
+            }
+        }
+        for(var k in src1){
+            if( src2[k] == null ){
+                rst[k] = -src1[k];
+            }
+        }
+    }
+}
+
 function propertyString(properties){
     var strProperty = "";
     for(var k in properties){
@@ -529,11 +547,11 @@ var UIPrice = cc.Node.extend({
                     {
                         offset.x += PRICE_GAP;
                     }
-                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
-                    sp.setAnchorPoint(cc.p(0, 0.5));
-                    sp.setPosition(offset);
-                    this.addChild(sp);
-                    offset.x += sp.getContentSize().width;
+//                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
+//                    sp.setAnchorPoint(cc.p(0, 0.5));
+//                    sp.setPosition(offset);
+//                    this.addChild(sp);
+//                    offset.x += sp.getContentSize().width;
                     var lb = cc.LabelBMFont.create(price[k], "font1.fnt");
                     lb.setAnchorPoint(cc.p(0, 0.5));
                     lb.setPosition(offset);
