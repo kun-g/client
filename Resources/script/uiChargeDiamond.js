@@ -21,7 +21,7 @@ var closeCBOBJ;
 
 var payStr = [
     {str:"6元", cost:6, dm:60 },
-    {str:"18元", cost:18, dm:130 },
+    {str:"12元", cost:12, dm:130 },
     {str:"30元", cost:30, dm:330 },
     {str:"68元", cost:68, dm:760 },
     {str:"128元", cost:128, dm:1460 },
