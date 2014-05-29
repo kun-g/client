@@ -412,7 +412,7 @@ function refreshDailyQuest(){
         else{
             layer.owner[pk].setVisible(false);
         }
-        layer.owner["num"+(s+1)].setVisible(dailyQuest.step == s);
+        //layer.owner["num"+(s+1)].setVisible(dailyQuest.step == s);
     }
     //prize
     var pit = libItem.queryPrize(dailyQuest.prize[0]);
