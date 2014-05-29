@@ -159,7 +159,7 @@ function contentEquip(){
 
     //level
     if( theItemClass.rank != null ){
-        owner.labelLevel.setString(theItemClass.rank+"级")
+        owner.labelLevel.setString(theItemClass.rank)
     }
 
     //enhance

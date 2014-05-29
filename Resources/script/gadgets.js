@@ -220,7 +220,7 @@ function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, for
         debug("setProperties Error: node is null");
         return false;
     }
-    var FONT_SIZE = 21;
+    var FONT_SIZE = 23;
     var libTable = loadModule("table.js");
     this.nodeProperty = [];
     var labOrigin = [];
