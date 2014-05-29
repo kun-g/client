@@ -7,20 +7,20 @@
             <key>dailymission-960-bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{550,552}}</string>
+                <string>{{2,2},{579,574}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{550,552}}</string>
+                <string>{{0,0},{579,574}}</string>
                 <key>sourceSize</key>
-                <string>{550,552}</string>
+                <string>{579,574}</string>
             </dict>
             <key>dailymission-960-light.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,868},{50,50}}</string>
+                <string>{{895,2},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,11 +33,11 @@
             <key>dailymission-960-light1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,800},{66,49}}</string>
+                <string>{{827,2},{66,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{66,49}}</string>
                 <key>sourceSize</key>
@@ -46,11 +46,11 @@
             <key>dailymission-960-light2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,732},{66,49}}</string>
+                <string>{{759,2},{66,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{66,49}}</string>
                 <key>sourceSize</key>
@@ -59,11 +59,11 @@
             <key>dailymission-960-light3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,644},{66,86}}</string>
+                <string>{{671,2},{66,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{66,86}}</string>
                 <key>sourceSize</key>
@@ -72,11 +72,11 @@
             <key>dailymission-960-light4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,556},{66,86}}</string>
+                <string>{{583,2},{66,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{66,86}}</string>
                 <key>sourceSize</key>
@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d4ff57e9caf3bb6c0d960d34527a4d40$</string>
+            <string>$TexturePacker:SmartUpdate:43a8bd17653dbb161a313e647d55fb32$</string>
             <key>textureFileName</key>
             <string>dailymission-960.png</string>
         </dict>

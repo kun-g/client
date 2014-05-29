@@ -404,7 +404,7 @@ Inventory.prototype.getShopItems = function()
     });
 }
 
-Inventory.prototype.checkUpgradable = function(){
+Inventory.prototype.checkUpgradable = function(lst){
     var slots = [
         EquipSlot_MainHand,
         EquipSlot_SecondHand,
@@ -416,12 +416,18 @@ Inventory.prototype.checkUpgradable = function(){
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
         item = syncItemData(item);
-        if( item.isUpgradable() ) return true;
+        if( item.isUpgradable() ) {
+            if(lst != null){
+                lst[lst.length] = slotsTransfrom(slots[k]);
+            }else{
+                return true
+            }
+        }
     }
-    return false;
+    return (lst != null && lst.length > 0);
 }
 
-Inventory.prototype.checkEnhancable = function(){
+Inventory.prototype.checkEnhancable = function(lst){
     var slots = [
         EquipSlot_MainHand,
         EquipSlot_SecondHand,
@@ -433,12 +439,18 @@ Inventory.prototype.checkEnhancable = function(){
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
         item = syncItemData(item);
-        if( item.isEnhancable() ) return true;
+        if( item.isEnhancable() ) {
+            if(lst != null){
+                lst[lst.length] = slotsTransfrom(slots[k]);
+            }else{
+                return true
+            }
+        }
     }
-    return false;
+    return (lst != null && lst.length > 0);
 }
 
-Inventory.prototype.checkForgable = function(){
+Inventory.prototype.checkForgable = function(lst){
     var slots = [
         EquipSlot_MainHand,
         EquipSlot_SecondHand,
@@ -450,9 +462,28 @@ Inventory.prototype.checkForgable = function(){
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
         item = syncItemData(item);
-        if( item.isForgable() ) return true;
+        if( item.isForgable() ) {
+            if(lst != null){
+                lst[lst.length] = slotsTransfrom(slots[k]);
+            }else{
+                return true
+            }
+        }
     }
-    return false;
+    return(lst != null && lst.length > 0);
+}
+
+function slotsTransfrom(slot) {
+    switch (slot){
+        case 0: return 1;
+        case 1: return 2;
+        case 2: return 3;
+        case 3: return 5;
+        case 4: return 4;
+        case 5: return 6;
+        default : return -1;
+    }
+
 }
 
 //--- ui component ---

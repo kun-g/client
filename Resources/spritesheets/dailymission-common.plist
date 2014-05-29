@@ -7,7 +7,7 @@
             <key>dailymission-common-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{412,991},{21,28}}</string>
+                <string>{{307,117},{21,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>dailymission-common-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{418,968},{21,28}}</string>
+                <string>{{447,990},{21,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>dailymission-common-3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{387,968},{20,29}}</string>
+                <string>{{447,968},{20,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,11 +46,11 @@
             <key>dailymission-common-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{387,990},{23,27}}</string>
+                <string>{{477,990},{23,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{23,27}}</string>
                 <key>sourceSize</key>
@@ -160,6 +160,19 @@
                 <key>sourceSize</key>
                 <string>{376,42}</string>
             </dict>
+            <key>dailymission-common-rw.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{387,968},{58,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{58,33}}</string>
+                <key>sourceSize</key>
+                <string>{58,33}</string>
+            </dict>
             <key>dailymission-common-tabmrrw1.png</key>
             <dict>
                 <key>frame</key>
@@ -209,7 +222,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7dc0fda1421adfa541285dbe2dfc6db6$</string>
+            <string>$TexturePacker:SmartUpdate:06c4705728456919ef58d1ba0e75bec4$</string>
             <key>textureFileName</key>
             <string>dailymission-common.png</string>
         </dict>

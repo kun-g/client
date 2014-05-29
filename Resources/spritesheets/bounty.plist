@@ -7,20 +7,20 @@
             <key>bounty-bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{520,130}}</string>
+                <string>{{2,2},{570,150}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{520,130}}</string>
+                <string>{{0,0},{570,150}}</string>
                 <key>sourceSize</key>
-                <string>{520,130}</string>
+                <string>{570,150}</string>
             </dict>
             <key>bounty-btn-easy1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{703,539},{108,117}}</string>
+                <string>{{112,541},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,11 +33,11 @@
             <key>bounty-btn-easy2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{703,429},{108,117}}</string>
+                <string>{{2,904},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{108,117}}</string>
                 <key>sourceSize</key>
@@ -46,11 +46,11 @@
             <key>bounty-btn-hard1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{358,512},{108,117}}</string>
+                <string>{{2,785},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{108,117}}</string>
                 <key>sourceSize</key>
@@ -59,7 +59,7 @@
             <key>bounty-btn-hard2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{726,319},{108,117}}</string>
+                <string>{{901,658},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,11 +72,11 @@
             <key>bounty-btn-hell1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,444},{108,117}}</string>
+                <string>{{782,649},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{108,117}}</string>
                 <key>sourceSize</key>
@@ -85,7 +85,7 @@
             <key>bounty-btn-hell2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{363,402},{108,117}}</string>
+                <string>{{813,539},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>bounty-btn-ksrw1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,378},{244,104}}</string>
+                <string>{{2,223},{244,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>bounty-btn-ksrw2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,272},{244,104}}</string>
+                <string>{{569,209},{244,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,11 +124,11 @@
             <key>bounty-btn-nightmare1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{728,209},{108,117}}</string>
+                <string>{{246,527},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{108,117}}</string>
                 <key>sourceSize</key>
@@ -137,7 +137,7 @@
             <key>bounty-btn-nightmare2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{363,292},{108,117}}</string>
+                <string>{{814,429},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>bounty-btn-normal1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{365,182},{108,117}}</string>
+                <string>{{814,319},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>bounty-btn-normal2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{887,117},{108,117}}</string>
+                <string>{{815,209},{108,117}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>bounty-btnback1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{482,315},{242,104}}</string>
+                <string>{{2,435},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>bounty-btnback2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{484,209},{242,104}}</string>
+                <string>{{2,329},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>bounty-csbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,683},{86,90}}</string>
+                <string>{{933,365},{86,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -215,11 +215,11 @@
             <key>bounty-icon1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,484},{197,179}}</string>
+                <string>{{361,425},{197,179}}</string>
                 <key>offset</key>
                 <string>{-4,-7}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{7,14},{197,179}}</string>
                 <key>sourceSize</key>
@@ -228,11 +228,11 @@
             <key>bounty-icon2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,784},{191,179}}</string>
+                <string>{{560,527},{191,179}}</string>
                 <key>offset</key>
                 <string>{-7,-7}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{7,14},{191,179}}</string>
                 <key>sourceSize</key>
@@ -241,7 +241,7 @@
             <key>bounty-icon3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{482,421},{219,179}}</string>
+                <string>{{562,315},{219,179}}</string>
                 <key>offset</key>
                 <string>{0,-7}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>bounty-icon4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{822,603},{197,179}}</string>
+                <string>{{363,244},{197,179}}</string>
                 <key>offset</key>
                 <string>{-4,-7}</string>
                 <key>rotated</key>
@@ -267,11 +267,11 @@
             <key>bounty-icon5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{845,422},{177,179}}</string>
+                <string>{{356,606},{177,179}}</string>
                 <key>offset</key>
                 <string>{-14,-7}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,14},{177,179}}</string>
                 <key>sourceSize</key>
@@ -280,7 +280,7 @@
             <key>bounty-jjjsbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,203},{361,67}}</string>
+                <string>{{2,154},{361,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,7 +293,7 @@
             <key>bounty-jjkqbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{507,140},{361,67}}</string>
+                <string>{{574,140},{361,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,11 +306,11 @@
             <key>bounty-knife1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,484},{64,57}}</string>
+                <string>{{933,457},{64,57}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{64,57}}</string>
                 <key>sourceSize</key>
@@ -319,7 +319,7 @@
             <key>bounty-knife2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,550},{25,27}}</string>
+                <string>{{753,623},{25,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,7 +332,7 @@
             <key>bounty-tab1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,272},{113,170}}</string>
+                <string>{{248,223},{113,170}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,11 +345,11 @@
             <key>bounty-tab2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{887,2},{113,130}}</string>
+                <string>{{246,395},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,130}}</string>
                 <key>sourceSize</key>
@@ -358,7 +358,7 @@
             <key>bounty-time1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{847,209},{211,29}}</string>
+                <string>{{783,315},{211,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +371,7 @@
             <key>bounty-time2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,988},{197,29}}</string>
+                <string>{{560,496},{197,29}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,7 +384,7 @@
             <key>bounty-time3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,550},{94,28}}</string>
+                <string>{{783,528},{94,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -397,11 +397,11 @@
             <key>bounty-time4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,784},{202,28}}</string>
+                <string>{{365,214},{202,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{202,28}}</string>
                 <key>sourceSize</key>
@@ -410,11 +410,11 @@
             <key>bounty-time5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,784},{202,28}}</string>
+                <string>{{365,184},{202,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{202,28}}</string>
                 <key>sourceSize</key>
@@ -423,7 +423,7 @@
             <key>bounty-timebs.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,683},{94,28}}</string>
+                <string>{{753,527},{94,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -436,7 +436,7 @@
             <key>bounty-timesld.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{477,602},{202,28}}</string>
+                <string>{{365,154},{202,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -449,11 +449,11 @@
             <key>bounty-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{365,134},{140,46}}</string>
+                <string>{{933,516},{140,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{140,46}}</string>
                 <key>sourceSize</key>
@@ -462,7 +462,7 @@
             <key>bounty-yjjsbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,134},{361,67}}</string>
+                <string>{{574,71},{361,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,11 +475,11 @@
             <key>bounty-yjwcbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{524,71},{361,67}}</string>
+                <string>{{937,2},{361,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{361,67}}</string>
                 <key>sourceSize</key>
@@ -488,7 +488,7 @@
             <key>bounty-zzjxbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{524,2},{361,67}}</string>
+                <string>{{574,2},{361,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -508,7 +508,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:476c0f2f9c7a3058f18f96e21cfe79b2$</string>
+            <string>$TexturePacker:SmartUpdate:038f9e2743a3c1555779ed018e1bec73$</string>
             <key>textureFileName</key>
             <string>bounty.png</string>
         </dict>
