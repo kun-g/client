@@ -48,5 +48,34 @@ exports.data = [
                 ]
             }
         ]
+    },
+    {
+        "bountyId":1,
+        "title":"月卡奖励",
+        "desc":"购买月卡后，30天内每日可领取80宝石。",
+        "date":{
+            "segment":[
+                {
+                    "start":"00:00",
+                    "end":"23:59"
+                }
+            ]
+        },
+        "begin":2,
+        "titlePic":"bounty-icon3.png",
+        "timePic":"bounty-time3.png",
+        "notify":1,
+        "notifyButton":"马上拿下",
+        "notifyText":"报⋯⋯！现在可以领月卡福利！",
+        "level":[
+            {
+                "prize":[
+                    {
+                        "type":2,
+                        "count":80
+                    }
+                ]
+            }
+        ]
     }
 ]

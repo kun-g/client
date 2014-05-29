@@ -215,6 +215,15 @@ function onEnter()
 
     updateVIP();
 
+    //test
+    if (engine.session.monthCardDay <= 0){
+        engine.session.monthCardDay = 30;
+    }
+    var mcdText = "left" + engine.session.monthCardDay + "days.";
+    var mcDay = cc.LabelBMFont.create(mcdText, "font26.fnt");
+    mcDay.setPosition(cc.p(340,780));
+    theLayer.addChild(mcDay);
+
     interval = 0;
     theLayer.update = update;
     theLayer.scheduleUpdate();
