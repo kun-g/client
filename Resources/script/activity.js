@@ -24,7 +24,7 @@ var GRID_GAP = UI_ITEM_GAP + 12;
 var LINE_COUNT = 4;
 var MARGIN_TOP = 30;
 var MARGIN_BUTTOM = 70;
-var lineOffset = 22;
+var lineOffset = 52;
 
 var theCenter = {};
 var theDay = 0;
@@ -85,7 +85,7 @@ function calcPosId(lpos)
     var rpos = cc.p(lpos.x, theCenter.theGridLayer.getContentSize().height - lpos.y);
     var PY = Math.floor((rpos.y - MARGIN_TOP)/(GRID_SIZE+GRID_GAP));
 
-    var PX = 0;
+    var PX = LINE_COUNT;
     for (var k in prizePosXList){
         if (rpos.x <= prizePosXList[k] + 100 && rpos.x >= prizePosXList[k]){
             PX = k;
