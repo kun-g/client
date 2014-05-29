@@ -281,7 +281,12 @@ function onUse(sender){
                 engine.ui.popLayer();
                 tdga.itemUse(theItemClass.label, 1);
                 //处理开箱子的特效
-                processOpenChest(theItem, rsp);
+                if (theItem.category == 0 && theItem.subcategory == 2){
+                    showOpenEffect(rsp.prz);
+                }
+                else{
+                    processOpenChest(theItem, rsp);
+                }
             }
             else
             {
