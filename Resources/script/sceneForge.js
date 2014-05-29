@@ -155,7 +155,9 @@ function upItem(senderTag){
         if( choosingItem != chosenItem){
             chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
             chosenItem.removeChildByTag(CHILDTAG_FRAME);
-            theContent.owner["tag"+chosenItemTag].runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
+            if( theMode != MODE_SYNTHESIZE ){
+                theContent.owner["tag"+chosenItemTag].runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
+            }
         }
         else{ return; }
     }
@@ -163,7 +165,9 @@ function upItem(senderTag){
     chosenItemTag = senderTag;
     chosenItem.addChild(frameSelected, 51, CHILDTAG_FRAME);
     chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
-    theContent.owner["tag"+senderTag].runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
+    if( theMode != MODE_SYNTHESIZE ){
+        theContent.owner["tag"+senderTag].runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
+    }
 }
 
 function getEnhanceStoneCid(stoneLv){
