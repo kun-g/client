@@ -212,7 +212,7 @@ function refreshTag(thiz, type) { //type 0:main 1:upgrade 2:enhance 3:forge
             if( engine.user.inventory.checkForgable(TagArray[2]) ){
                 thiz.owner.tag3.setVisible(true);
             }else thiz.owner.tag3.setVisible(false);
-        }else{
+        }else if(type < 4){
             for( var i=1; i<7; i++) { thiz.owner["tag"+i].setVisible(false); }
             for( var k in TagArray[type-1]){
                 thiz.owner[ "tag"+TagArray[type-1][k] ].setVisible(true);
@@ -461,9 +461,6 @@ function loadUpgrade(){
     ret.ui.xp.setProgress(0);
     libGadget.setProperties(null, ret.owner.nodeProperties1);
     libGadget.setProperties(null, ret.owner.nodeProperties2);
-    refreshTag(theLayer, 0);
-    theLayer.owner.tag1.setVisible(false);
-    refreshTag(ret, 1);
     return ret;
 }
 
@@ -1018,9 +1015,12 @@ function setForgeEquip(item){
             loadForgeMaterial(itemClass);
             theContent.owner.tipLvMax.setVisible(false);
             theContent.owner.tipToForge.setVisible(false);
-
+            theContent.owner.btnStartForge.setEnabled(true);
+            theContent.owner.nodeMtrlCount.setVisible(true);
         }else{
             loadForgeMaterial(null);
+            theContent.owner.btnStartForge.setEnabled(false);
+            theContent.owner.nodeMtrlCount.setVisible(false);
             if( ableToForge == 1 ){
                 theContent.owner.tipLvMax.setVisible(true);
                 theContent.owner.tipToForge.setVisible(false);
@@ -1029,11 +1029,11 @@ function setForgeEquip(item){
                 theContent.owner.tipToForge.setVisible(true);
             }
         }
-
     }
     else {
         theContent.ui.equipTarget.setItem(null);
         theContent.owner.labName.setString("请选择装备");
+        theContent.owner.btnStartForge.setEnabled(false);
         libGadget.setProperties(null, theContent.owner.nodeProperties);
         if( ForgeArgs != null ){
             delete ForgeArgs.sid;
@@ -1467,6 +1467,12 @@ function onUIAnimationCompleted(name){
                 theTransitionContent.node.release();
                 theContent = theTransitionContent;
                 theTransitionContent = null;
+                refreshTag(theLayer, 0);
+                var tag = theLayer.owner["tag"+(theMode+1)];
+                if( tag != null ){
+                    tag.setVisible(false);
+                }
+                refreshTag(ret, theMode+1);
             }
         }break;
     }
@@ -1486,10 +1492,12 @@ function onNotify(ntf){
             switch(theMode){
                 case MODE_UPGRADE:{
                     refreshTag(theLayer, 0);
+                    theLayer.owner.tag1.setVisible(false);
                     refreshTag(theContent, 1);
                 }break;
                 case MODE_ENHANCE:{
                     refreshTag(theLayer, 0);
+                    theLayer.owner.tag2.setVisible(false);
                     refreshTag(theContent, 2);
                     setEnhanceEquip(theForgeItem);
                 }break;
@@ -1498,6 +1506,7 @@ function onNotify(ntf){
                 }break;
                 case MODE_FORGE:{
                     refreshTag(theLayer, 0);
+                    theLayer.owner.tag3.setVisible(false);
                     refreshTag(theContent, 3);
                     setForgeEquip(theForgeItem);
                 }break;
