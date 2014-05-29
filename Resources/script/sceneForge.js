@@ -39,7 +39,7 @@ var goldCost = 0;
 
 //equipment variables
 var chosenItem = null;
-
+var chosenItemTag = 0;
 //forge variables
 var ForgeArgs = null;
 var ForgeCost = 0;
@@ -155,12 +155,15 @@ function upItem(senderTag){
         if( choosingItem != chosenItem){
             chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
             chosenItem.removeChildByTag(CHILDTAG_FRAME);
+            theContent.owner["tag"+chosenItemTag].runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
         }
         else{ return; }
     }
     chosenItem = choosingItem;
+    chosenItemTag = senderTag;
     chosenItem.addChild(frameSelected, 51, CHILDTAG_FRAME);
     chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
+    theContent.owner["tag"+senderTag].runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
 }
 
 function getEnhanceStoneCid(stoneLv){
@@ -461,13 +464,16 @@ function loadUpgrade(){
     ret.ui.xp.setProgress(0);
     libGadget.setProperties(null, ret.owner.nodeProperties1);
     libGadget.setProperties(null, ret.owner.nodeProperties2);
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag1.setVisible(false);
+    refreshTag(ret, 1);
     return ret;
 }
 
 function onUpgrade(sender){
     chosenItem = null;
     if( isFlying ) return;
-
+    theLayer.owner.tag1.setVisible(false);
     //clean transitionContent
     if( theTransitionContent != null ){
         theTransitionContent.removeFromParent();
@@ -808,6 +814,7 @@ function onEnhance(sender){
     chosenItem = null;
 
     if( isFlying ) return;
+    theLayer.owner.tag2.setVisible(false);
 
     //clean transitionContent
     if( theTransitionContent != null ){
@@ -1115,6 +1122,7 @@ function onForge(sender){
     }
     chosenItem = null;
     if( isFlying ) return;
+    theLayer.owner.tag3.setVisible(false);
 
     //clean transitionContent
     if( theTransitionContent != null ){
@@ -1467,12 +1475,7 @@ function onUIAnimationCompleted(name){
                 theTransitionContent.node.release();
                 theContent = theTransitionContent;
                 theTransitionContent = null;
-                refreshTag(theLayer, 0);
-                var tag = theLayer.owner["tag"+(theMode+1)];
-                if( tag != null ){
-                    tag.setVisible(false);
-                }
-                refreshTag(ret, theMode+1);
+
             }
         }break;
     }

@@ -137,7 +137,7 @@
             <key>friend-btntc1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{439,632},{46,50}}</string>
+                <string>{{452,649},{46,50}}</string>
                 <key>offset</key>
                 <string>{18,10}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>friend-btntc2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{387,632},{46,50}}</string>
+                <string>{{400,649},{46,50}}</string>
                 <key>offset</key>
                 <string>{18,10}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>friend-edit1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{311,611},{66,74}}</string>
+                <string>{{324,628},{66,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>friend-edit2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{399,564},{66,74}}</string>
+                <string>{{412,581},{66,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,15 +254,15 @@
             <key>friend-rolebg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,96},{560,135}}</string>
+                <string>{{174,96},{577,148}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{560,135}}</string>
+                <string>{{0,0},{577,148}}</string>
                 <key>sourceSize</key>
-                <string>{560,135}</string>
+                <string>{577,148}</string>
             </dict>
             <key>friend-rolebg2.png</key>
             <dict>
@@ -280,20 +280,20 @@
             <key>friend-rolebgvip.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{329,2},{560,135}}</string>
+                <string>{{329,2},{577,148}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{560,135}}</string>
+                <string>{{0,0},{577,148}}</string>
                 <key>sourceSize</key>
-                <string>{560,135}</string>
+                <string>{577,148}</string>
             </dict>
             <key>friend-titlehy.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{311,564},{86,45}}</string>
+                <string>{{324,581},{86,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -313,7 +313,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2e644ec8549ade45406232a7f93adc6f$</string>
+            <string>$TexturePacker:SmartUpdate:b7b05171cc01a50a3356b9ca1a22f08a$</string>
             <key>textureFileName</key>
             <string>friend.png</string>
         </dict>
