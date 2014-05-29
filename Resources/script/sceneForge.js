@@ -53,8 +53,8 @@ var theForgeItem;
 var theForgeAnimationNode;
 var TouchId;
 var EnoughMtrls = false;
-
 var Delta = [];
+var TagArray = [[],[],[]]; //TagArray[0]:upgrade TagArray[1]:enhance TagArray[3]:forge
 
 var ITEM_POSITION = cc.p(45,45);
 
@@ -198,6 +198,29 @@ function checkGold(gold){
         return true;
     }
 }
+
+function refreshTag(thiz, type) { //type 0:main 1:upgrade 2:enhance 3:forge
+    if(thiz != null){
+        if( type == 0 ){
+            TagArray = [[],[],[]];
+            if( engine.user.inventory.checkUpgradable(TagArray[0]) ){
+                thiz.owner.tag1.setVisible(true);
+            }else thiz.owner.tag1.setVisible(false);
+            if( engine.user.inventory.checkEnhancable(TagArray[1]) ){
+                thiz.owner.tag2.setVisible(true);
+            }else thiz.owner.tag2.setVisible(false);
+            if( engine.user.inventory.checkForgable(TagArray[2]) ){
+                thiz.owner.tag3.setVisible(true);
+            }else thiz.owner.tag3.setVisible(false);
+        }else{
+            for( var i=1; i<7; i++) { thiz.owner["tag"+i].setVisible(false); }
+            for( var k in TagArray[type-1]){
+                thiz.owner[ "tag"+TagArray[type-1][k] ].setVisible(true);
+            }
+        }
+    }
+}
+
 
 //--- 升级 ---
 function onStartUpgrade(sender){
@@ -438,6 +461,9 @@ function loadUpgrade(){
     ret.ui.xp.setProgress(0);
     libGadget.setProperties(null, ret.owner.nodeProperties1);
     libGadget.setProperties(null, ret.owner.nodeProperties2);
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag1.setVisible(false);
+    refreshTag(ret, 1);
     return ret;
 }
 
@@ -756,7 +782,8 @@ function loadEnhance(){
         },
         itemEquip: {
             ui: "UIItem",
-            id: "equip"
+            id: "equip",
+            def: "wenhao.png"
         }
     };
     var node = libUIC.loadUI(ret, "ui-forge2.ccbi", bind);
@@ -771,6 +798,9 @@ function loadEnhance(){
     ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
     ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
     libGadget.setProperties(null, ret.owner.nodeProperties);
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag2.setVisible(false);
+    refreshTag(ret, 2);
     return ret;
 }
 
@@ -902,6 +932,9 @@ function loadForge(){
         ret.owner["btnAdd" + i].setVisible(false);
         ret.owner["itemMtrl" + i].setEnabled(false);
     }
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag3.setVisible(false);
+    refreshTag(ret, 3);
     return ret;
 }
 
@@ -1330,6 +1363,7 @@ function loadSynthesize(){
         });
         ret.ui["stone"+i].setItemSmall(dummyStone);
     }
+    refreshTag(theLayer, 0);
     return ret;
 }
 
@@ -1450,13 +1484,21 @@ function onNotify(ntf){
         case Message_UpdateItem:
         {
             switch(theMode){
+                case MODE_UPGRADE:{
+                    refreshTag(theLayer, 0);
+                    refreshTag(theContent, 1);
+                }break;
                 case MODE_ENHANCE:{
+                    refreshTag(theLayer, 0);
+                    refreshTag(theContent, 2);
                     setEnhanceEquip(theForgeItem);
                 }break;
                 case MODE_SYNTHESIZE:{
-                    // TODO: ?
+                    //todo?
                 }break;
                 case MODE_FORGE:{
+                    refreshTag(theLayer, 0);
+                    refreshTag(theContent, 3);
                     setForgeEquip(theForgeItem);
                 }break;
             }
@@ -1497,7 +1539,8 @@ function onEnter(){
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
     theLayer.node = node;
-
+    //add tag
+    refreshTag(this, 0);
     //assign values
     theContentNode = this.owner.nodeContent;
     theContentNodeL = this.owner.nodeContentL;
