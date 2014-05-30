@@ -14,3 +14,5 @@ android/proj.android/bin/*
 
 android/proj.andorid/obj/*
 
+develop/build
+libs/GA/proj.ios/build
