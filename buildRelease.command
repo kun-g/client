@@ -1,9 +1,5 @@
 #!/bin/bash
 #所有渠道自动打包工具
-#打包步骤:
-#1 进入项目路径 执行xcodebuild -configuration Release
-#2 复制生成的包进入tools/pack/PayLoad目录
-#3 压缩，改名成ipa
 
 #global arguments
 WORK_PATH=`dirname $0`
@@ -23,12 +19,19 @@ function build {
 	echo "* building ["$BUILD_FOLDER"]"
 	cd $WORK_PATH
 	cd $BUILD_FOLDER
+	#set versions
+	sed -ie s/\"binary_version\".*,/\"binary_version\"\ :\ \"${BINARY_VERSION}\",/ ./PocketDungeon/static.json
+	sed -ie s/\"resource_version\".*,/\"resource_version\"\ :\ ${RESOURCE_VERSION},/ ./PocketDungeon/static.json
+	#build
 	xcodebuild -configuration Release
+	#copy
 	rm -rf $PACK_APP_DST*
 	cp -R -f build/Release-iphoneos/$APP_NAME $PACK_APP_DST
 	cd $WORK_PATH
 	cd $PACK_FOLDER
+	#pack
 	zip -r -q $PACKAGE_NAME iTunesArtwork iTunesMetadata Payload
+	#move
 	mv $PACKAGE_NAME ../../release/$PACKAGE_NAME
 }
 
@@ -50,27 +53,27 @@ build
 BUILD_FOLDER="25pp"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(PP助手).ALL.ipa"
-#build
+build
 
 BUILD_FOLDER="app111"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(苹果园).ALL.ipa"
-#build
+build
 
 BUILD_FOLDER="AppStore"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城.ipa"
-#build
+build
 
 BUILD_FOLDER="kuaiyong"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(快用).ipa"
-#build
+build
 
 BUILD_FOLDER="nd91"
 APP_NAME="PocketDungeon.app"
 PACKAGE_NAME="PocketDungeon_v${BINARY_VERSION}_${DATE_TIME}.ipa"
-#build
+build
 
 #debug
 read -p "Press [Enter] key to continue..."
