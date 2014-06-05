@@ -44,6 +44,14 @@ UIManager.prototype.newScene = function(assign)
     director.replaceScene(scene);
 
     singleton.newLayer(assign);
+    singleton.LAYERS[0].backClicked = function(){
+        system.alert("离开游戏", "确认要退出游戏吗？", null, function(btn){
+                       if( btn != 0 ){//switch
+                           system.exit();
+                       }
+                  }, "点错了", "退出");
+    };
+    singleton.LAYERS[0].setKeypadEnabled(true);
 }
 
 /*

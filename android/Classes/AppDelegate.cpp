@@ -205,7 +205,7 @@ void AppDelegate::applicationDidEnterBackground()
     CCDirector::sharedDirector()->pause();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     triggerEnterBackground();
     onPauseApp();
 }
@@ -214,7 +214,8 @@ void AppDelegate::applicationDidEnterBackground()
 void AppDelegate::applicationWillEnterForeground()
 {
     CCDirector::sharedDirector()->resume();
-    
+    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+
     triggerEnterForeground();
     onResumeApp();
 }

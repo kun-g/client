@@ -29,7 +29,7 @@ public class SystemInvoke {
     }
 	
 	private static Activity mActivity;
-	
+
 	public static void setActivity(Activity act){
 		mActivity = act;
 	}
@@ -153,5 +153,10 @@ public class SystemInvoke {
   			folder.delete();
   		}
   		return true;
+  	}
+  	
+  	//exit
+  	public static void exitApplication(){
+  		mActivity.finish();
   	}
 }

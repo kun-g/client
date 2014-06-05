@@ -219,3 +219,12 @@ bool AndroidSystem::isFirstLaunch()
         return true;
     }
 }
+
+void AndroidSystem::exit()
+{
+    JniMethodInfo t;
+    if( JniHelper::getStaticMethodInfo(t, "com/tringame/SystemInvoke", "exitApplication", "()V") ){
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+    }
+}

@@ -62,6 +62,8 @@ public:
     void setPreference(std::string key, std::string val);
     
     bool isFirstLaunch();
+
+    void exit();
 };
 
 void onAlertCallback(int which);

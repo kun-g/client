@@ -356,6 +356,12 @@ JSBool jsbSysReset(JSContext* cx, unsigned argc, JS::Value* vp)
     return JS_TRUE;
 }
 
+JSBool jsbSysExit(JSContext* cx, unsigned argc, JS::Value* vp)
+{
+    getSystem()->exit();
+    return JS_TRUE;
+}
+
 void registerSys(JSContext* cx, JSObject* global)
 {
     JSObject *sys = JS_NewObject(cx, NULL, NULL, NULL);
@@ -378,4 +384,5 @@ void registerSys(JSContext* cx, JSObject* global)
     JS_DefineFunction(cx, sys, "checkNetworkStatus", jsbSysCheckNetworkStatus, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, sys, "getPreference", jsbSysGetPreference, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, sys, "reset", jsbSysReset, 0, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, sys, "exit", jsbSysExit, 0, JSPROP_READONLY | JSPROP_PERMANENT);
 }
