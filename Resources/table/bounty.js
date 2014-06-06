@@ -7,7 +7,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"12:00",
+                    "start":"00:00",
                     "end":"23:59"
                 }
             ]
