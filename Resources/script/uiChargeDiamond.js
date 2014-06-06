@@ -185,6 +185,12 @@ function onActivate(){
     engine.pop.resetAllFlags();
     engine.pop.setFlag("tutorial");
     engine.pop.invokePop("charge");
+    if (engine.session.monthCardDay <= 0){
+        purchaseMonthCard();
+    }
+    else{
+        hasMonthCard();
+    }
 }
 
 function onEnter()
@@ -197,14 +203,14 @@ function onEnter()
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
     theLayer.owner.onCharge = onCharge;
-    //theLayer.owner.onMonthCard = onMonthCard;
-    theLayer.theNode = cc.BuilderReader.load("sceneJewel.ccbi", theLayer.owner);
+    theLayer.owner.onMonthCard = onMonthCard;
     theLayer.theNode = ui.loadUI(theLayer, "sceneJewel.ccbi", {
        nodeTreasure: {
            ui: "UITreasure",
            id: "treasureDisplay"
        }
     });
+
     theLayer.addChild(theLayer.theNode);
 
     theMode = MODE_NORMAL;
@@ -218,12 +224,11 @@ function onEnter()
     updateVIP();
 
     //test
+    debug("engine.session.monthCardDay = "+engine.session.monthCardDay);
     this.owner.nodePurMC.setVisible(false);
     this.owner.nodeHasMC.setVisible(false);
+
     if (engine.session.monthCardDay <= 0){
-        engine.session.monthCardDay = 30;
-    }
-    if (engine.session.monthCardDay > 0){
         purchaseMonthCard();
     }
     else{
@@ -274,10 +279,10 @@ function hasMonthCard(){
     theLayer.owner.labLv.setString(engine.session.monthCardDay);
 }
 
-//function onMonthCard(sender)
-//{
-//    loadModule("sceneMonthCard.js").show();
-//}
+function onMonthCard(sender)
+{
+    loadModule("sceneMonthCard.js").show();
+}
 
 function node(func, obj)
 {
