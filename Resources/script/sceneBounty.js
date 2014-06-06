@@ -135,7 +135,8 @@ function onSubmit(sender){
         }
         else if (bountyData.begin == 2){
             //test
-            engine.session.monthCardDay--;
+            //engine.session.monthCardDay--;
+            //向服务器发送领取消息
         }
 
 

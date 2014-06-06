@@ -27,7 +27,8 @@ var payStr = [
     {str:"128元", cost:128, dm:1460 },
     {str:"198元", cost:198, dm:2260 },
     {str:"328元", cost:328, dm:3760 },
-    {str:"648元", cost:648, dm:7480 }
+    {str:"648元", cost:648, dm:7480 },
+    {str:"25元", cost:25, dm:2500 }
 ];
 
 var theLastBillNo = null;
@@ -196,6 +197,7 @@ function onEnter()
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
     theLayer.owner.onCharge = onCharge;
+    //theLayer.owner.onMonthCard = onMonthCard;
     theLayer.theNode = cc.BuilderReader.load("sceneJewel.ccbi", theLayer.owner);
     theLayer.theNode = ui.loadUI(theLayer, "sceneJewel.ccbi", {
        nodeTreasure: {
@@ -216,13 +218,21 @@ function onEnter()
     updateVIP();
 
     //test
+    this.owner.nodePurMC.setVisible(false);
+    this.owner.nodeHasMC.setVisible(false);
     if (engine.session.monthCardDay <= 0){
         engine.session.monthCardDay = 30;
     }
-    var mcdText = "left" + engine.session.monthCardDay + "days.";
-    var mcDay = cc.LabelBMFont.create(mcdText, "font26.fnt");
-    mcDay.setPosition(cc.p(340,780));
-    theLayer.addChild(mcDay);
+    if (engine.session.monthCardDay > 0){
+        purchaseMonthCard();
+    }
+    else{
+        hasMonthCard();
+    }
+//    var mcdText = "left" + engine.session.monthCardDay + "days.";
+//    var mcDay = cc.LabelBMFont.create(mcdText, "font26.fnt");
+//    mcDay.setPosition(cc.p(340,780));
+//    theLayer.addChild(mcDay);
 
     interval = 0;
     theLayer.update = update;
@@ -252,6 +262,22 @@ function onCharge(sender)
     //保持连接
     engine.event.sendNTFEvent(103, {sign:-1});
 }
+
+function purchaseMonthCard(){
+    theLayer.owner.nodePurMC.setVisible(true);
+    theLayer.owner.nodeHasMC.setVisible(false);
+}
+
+function hasMonthCard(){
+    theLayer.owner.nodePurMC.setVisible(false);
+    theLayer.owner.nodeHasMC.setVisible(true);
+    theLayer.owner.labLv.setString(engine.session.monthCardDay);
+}
+
+//function onMonthCard(sender)
+//{
+//    loadModule("sceneMonthCard.js").show();
+//}
 
 function node(func, obj)
 {
