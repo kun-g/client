@@ -6,8 +6,7 @@ ENCRYPT_KEY="WhyDoingThis" #default encrypt key
 #1 procedural constants
 WORK_PATH=`dirname $0`
 cd $WORK_PATH
-RES_PATH="Clients/PocketDungeon/PocketDungeon/Resources"
-CLI_PATH="Clients/PocketDungeon/PocketDungeon"
+RES_PATH="Resources"
 
 BLACKLIST=( \
 "*/blackbox/*" \
