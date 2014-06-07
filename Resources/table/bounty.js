@@ -7,7 +7,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"00:00",
+                    "start":"12:00",
                     "end":"23:59"
                 }
             ]
@@ -47,6 +47,201 @@ exports.data = [
                     }
                 ]
             }
+        ]
+    } ,
+    {
+        "bountyId":1,
+        "title":"邪恶头领讨伐令",
+        "desc":"邪恶头领聚集起来，讨伐它们获得大量强化石！",
+        "count":13,
+        "date":{
+            "day":[0,2,4,6],
+            "segment":[
+                {
+                    "start":"10:00",
+                    "end":"23:59"
+                }
+            ]
+        },
+        "begin":1,
+        "titlePic":"bounty-icon5.png",
+        "timePic":"bounty-time5.png",
+        "notify":1,
+        "notifyButton":"挑战",
+        "notifyText":"邪恶头领又出没了，够胆你就来！",
+        "level":[
+            {
+                "powerLimit":100,
+                "stage":108,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":853
+                    }
+                ]
+
+            },
+            {
+                "powerLimit":400,
+                "stage":109,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":854
+                    }
+                ]
+            },
+            {
+                "powerLimit":1700,
+                "stage":110,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":855
+                    }
+                ]
+            },{
+                "powerLimit":3800,
+                "stage":111,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":856
+                    }
+                ]
+
+            },
+            {
+                "powerLimit":5300,
+                "stage":112,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":857
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "bountyId":2,
+        "title":"神秘的装备大师",
+        "desc":"传说中的装备大师出现了，打到他获得大量装备熟练度！",
+        "count":13,
+        "date":{
+            "day":[0,1,3,5],
+            "segment":[
+                {
+                    "start":"10:00",
+                    "end":"23:59"
+                }
+            ]
+        },
+        "begin":1,
+        "titlePic":"bounty-icon5.png",
+        "timePic":"bounty-time5.png",
+        "notify":1,
+        "notifyButton":"挑战",
+        "notifyText":"装备大师出现了，还不赶紧来击倒他为装备增添威力！",
+        "level":[
+            {
+                "powerLimit":100,
+                "stage":108,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":853
+                    }
+                ]
+
+            },
+            {
+                "powerLimit":1400,
+                "stage":109,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":854
+                    }
+                ]
+            },
+            {
+                "powerLimit":5000,
+                "stage":112,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":857
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "bountyId":3,
+        "title":"铁人试炼状",
+        "desc":"强大且变幻莫测的无尽地牢已经开启，谁才能够获得地下城勇者铁人的称号？",
+        "count":13,
+        "date":{
+            "segment":[
+                {
+                    "start":"10:00",
+                    "end":"23:59"
+                }
+            ]
+        },
+        "begin":1,
+        "titlePic":"bounty-icon5.png",
+        "timePic":"bounty-time5.png",
+        "notify":1,
+        "notifyButton":"加入",
+        "notifyText":"铁人试炼地牢开启，立刻挑战最强勇者铁人称号！",
+        "level":[
+            {
+                "powerLimit":100,
+                "stage":108,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":853
+                    }
+                ]
+
+            }
+        ]
+    },
+    {
+        "bountyId":4,
+        "title":"地牢狩猎",
+        "desc":"地牢狩猎活动开启，捉拿悬赏怪物，成为最强地牢猎人！",
+        "count":13,
+        "date":{
+            "segment":[
+                {
+                    "start":"10:00",
+                    "end":"23:59"
+                }
+            ]
+        },
+        "begin":1,
+        "titlePic":"bounty-icon5.png",
+        "timePic":"bounty-time5.png",
+        "notify":1,
+        "notifyButton":"加入",
+        "notifyText":"地牢狩猎全面开启，赶紧加入最强猎人排行！",
+        "level":[
+            {
+                "powerLimit":100,
+                "stage":108,
+                "prize":[
+                    {
+                        "type":0,
+                        "value":853
+                    }
+                ]
+
+            }
+
         ]
     }
 ]
