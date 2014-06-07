@@ -14,3 +14,13 @@ android/proj.android/bin/*
 
 android/proj.andorid/obj/*
 
+25pp/build
+app111/build
+AppStore/build
+nd91/build
+tools/pack/Payload
+libs/GA/proj.ios/build
+kuaiyong/build
+develop/build
+cocos2d-x-2.1.5/cocos2dx/platform/android/java/bin
+cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt
