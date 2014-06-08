@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5301A8EF194414780029001C /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 5301A8EC194414780029001C /* dblackbox */; };
+		5301A8F0194414780029001C /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 5301A8ED194414780029001C /* dscript */; };
+		5301A8F1194414780029001C /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 5301A8EE194414780029001C /* dtable */; };
 		5308A0C2188394C0008CEC46 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5308A0BF188394C0008CEC46 /* libUMFeedback.a */; };
 		5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5308A0C0188394C0008CEC46 /* umFeedback.bundle */; };
 		5308A0C6188395B0008CEC46 /* IFeedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0C4188395B0008CEC46 /* IFeedback.cpp */; };
@@ -43,9 +46,6 @@
 		535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28E17E9447100D0D61D /* libiconv.dylib */; };
 		5371A1FB192CAFFD0033411F /* misc in Resources */ = {isa = PBXBuildFile; fileRef = 5371A1FA192CAFFD0033411F /* misc */; };
 		53744E3618891EFF0096A891 /* PublishVersions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53744E3418891EFF0096A891 /* PublishVersions.mm */; };
-		537E45CA1941C28F0071C001 /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 537E45C71941C28F0071C001 /* blackbox */; };
-		537E45CB1941C28F0071C001 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 537E45C81941C28F0071C001 /* script */; };
-		537E45CC1941C28F0071C001 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 537E45C91941C28F0071C001 /* table */; };
 		5386046918FE658100A08149 /* 91UAC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5386046818FE658100A08149 /* 91UAC.mm */; };
 		5386047418FE668900A08149 /* ATSMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5386046C18FE668900A08149 /* ATSMS.framework */; };
 		5386047518FE668900A08149 /* Encrypt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5386046D18FE668900A08149 /* Encrypt.framework */; };
@@ -411,6 +411,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5301A8EC194414780029001C /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
+		5301A8ED194414780029001C /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
+		5301A8EE194414780029001C /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		5308A0BF188394C0008CEC46 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		5308A0C0188394C0008CEC46 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		5308A0C1188394C0008CEC46 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
@@ -475,9 +478,6 @@
 		5371A1FA192CAFFD0033411F /* misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = misc; sourceTree = "<group>"; };
 		53744E3418891EFF0096A891 /* PublishVersions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PublishVersions.mm; sourceTree = "<group>"; };
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
-		537E45C71941C28F0071C001 /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
-		537E45C81941C28F0071C001 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
-		537E45C91941C28F0071C001 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		5386046718FE658100A08149 /* 91UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 91UAC.h; sourceTree = "<group>"; };
 		5386046818FE658100A08149 /* 91UAC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = 91UAC.mm; sourceTree = "<group>"; };
 		5386046C18FE668900A08149 /* ATSMS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ATSMS.framework; sourceTree = "<group>"; };
@@ -2902,9 +2902,9 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				537E45C71941C28F0071C001 /* blackbox */,
-				537E45C81941C28F0071C001 /* script */,
-				537E45C91941C28F0071C001 /* table */,
+				5301A8EC194414780029001C /* dblackbox */,
+				5301A8ED194414780029001C /* dscript */,
+				5301A8EE194414780029001C /* dtable */,
 				5371A1FA192CAFFD0033411F /* misc */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
@@ -3034,7 +3034,6 @@
 				53A315B018FD3191001CE8B0 /* Default-Portrait@2x~ipad.png in Resources */,
 				53EA73CE18FE890600A4DF4F /* static.json in Resources */,
 				53A315B618FD3191001CE8B0 /* Icon-Small.png in Resources */,
-				537E45CA1941C28F0071C001 /* blackbox in Resources */,
 				53A315B118FD3191001CE8B0 /* Default.png in Resources */,
 				53A304C418FD30EB001CE8B0 /* ChangeLog in Resources */,
 				53A315B418FD3191001CE8B0 /* Icon-72.png in Resources */,
@@ -3053,6 +3052,7 @@
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
+				5301A8F1194414780029001C /* dtable in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				5371A1FB192CAFFD0033411F /* misc in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
@@ -3068,14 +3068,14 @@
 				53A315AE18FD3191001CE8B0 /* AppStore.plist in Resources */,
 				53A3159918FD317E001CE8B0 /* sprite in Resources */,
 				53A30DC018FD3121001CE8B0 /* jsb_cocos2d_extension.jsc in Resources */,
-				537E45CB1941C28F0071C001 /* script in Resources */,
 				53A305B618FD30EC001CE8B0 /* js.msg in Resources */,
 				53A3159418FD317E001CE8B0 /* font in Resources */,
-				537E45CC1941C28F0071C001 /* table in Resources */,
 				53A315BA18FD3191001CE8B0 /* Icon@2x~ipad.png in Resources */,
 				53A315B318FD3191001CE8B0 /* Default~iphone.png in Resources */,
 				53A304C518FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A315B818FD3191001CE8B0 /* Icon.png in Resources */,
+				5301A8EF194414780029001C /* dblackbox in Resources */,
+				5301A8F0194414780029001C /* dscript in Resources */,
 				53A3159C18FD317E001CE8B0 /* ui in Resources */,
 				5386047D18FE66BD00A08149 /* NdComPlatform_SNS_Resources.bundle in Resources */,
 			);

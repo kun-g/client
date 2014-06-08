@@ -30,6 +30,19 @@
                 <key>sourceSize</key>
                 <string>{496,98}</string>
             </dict>
+            <key>dailyprize-common-get.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{102,831},{83,83}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{83,83}}</string>
+                <key>sourceSize</key>
+                <string>{83,83}</string>
+            </dict>
             <key>dailyprize-common-light.png</key>
             <dict>
                 <key>frame</key>
@@ -144,7 +157,7 @@
             <key>size</key>
             <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:11c0054ad35910bc731f021e12ed512a$</string>
+            <string>$TexturePacker:SmartUpdate:e8fcc218437c2a6c5625825e1f4c7680$</string>
             <key>textureFileName</key>
             <string>dailyprize-common.png</string>
         </dict>
