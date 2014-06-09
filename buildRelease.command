@@ -48,22 +48,22 @@ echo "RESOURCE_VERSION = "$RESOURCE_VERSION
 BUILD_FOLDER="develop"
 APP_NAME="测试版.app"
 PACKAGE_NAME="内网测试版.ipa"
-build
+#build
 
 BUILD_FOLDER="25pp"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(PP助手).ALL.ipa"
-build
+#build
 
 BUILD_FOLDER="app111"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(苹果园).ALL.ipa"
-build
+#build
 
 BUILD_FOLDER="AppStore"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城.ipa"
-build
+#build
 
 BUILD_FOLDER="kuaiyong"
 APP_NAME="口袋地下城.app"
