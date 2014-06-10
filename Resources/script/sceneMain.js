@@ -206,7 +206,7 @@ function onEnter()
 
     updateBattlePower();
 
-    getMonthCard();
+    //getMonthCard();
 }
 
 function onExit()
@@ -221,6 +221,11 @@ function onActivate(){
     if( theMode == MODE_CLOSE ){
         startOpenAnimation();
     }
+//    else{
+//        engine.pop.resetAllFlags();
+//        engine.pop.setFlag("tutorial");
+//        engine.pop.invokePop("activity");
+//    }
 }
 
 function onDeactivate(){

@@ -228,6 +228,7 @@ var Request_TutorialStageComplete = 27;
 var Request_ReportState = 28;
 var Request_SubmitDailyQuest = 29;
 var Request_QueryLeaderboard = 30;
+var Request_SubmitBounty = 31;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
