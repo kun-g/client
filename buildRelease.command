@@ -22,17 +22,20 @@ function build {
 	#set versions
 	sed -ie s/\"binary_version\".*,/\"binary_version\"\ :\ \"${BINARY_VERSION}\",/ ./PocketDungeon/static.json
 	sed -ie s/\"resource_version\".*,/\"resource_version\"\ :\ ${RESOURCE_VERSION},/ ./PocketDungeon/static.json
+	SUBCMD="s/<string>[0-9]*\.[0-9]*\.[0-9]*<\/string>/<string>"${BINARY_VERSION}"<\/string>/g"
+	sed -ie $SUBCMD ./PocketDungeon/ios/Info.plist
+
 	#build
-	xcodebuild -configuration Release
+	#xcodebuild -configuration Release
 	#copy
-	rm -rf $PACK_APP_DST*
-	cp -R -f build/Release-iphoneos/$APP_NAME $PACK_APP_DST
-	cd $WORK_PATH
-	cd $PACK_FOLDER
+	#rm -rf $PACK_APP_DST*
+	#cp -R -f build/Release-iphoneos/$APP_NAME $PACK_APP_DST
+	#cd $WORK_PATH
+	#cd $PACK_FOLDER
 	#pack
-	zip -r -q $PACKAGE_NAME iTunesArtwork iTunesMetadata Payload
+	#zip -r -q $PACKAGE_NAME iTunesArtwork iTunesMetadata Payload
 	#move
-	mv $PACKAGE_NAME ../../release/$PACKAGE_NAME
+	#mv $PACKAGE_NAME ../../release/$PACKAGE_NAME
 }
 
 #init

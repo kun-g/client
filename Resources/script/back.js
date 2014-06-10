@@ -363,9 +363,16 @@ function onEvent(event)
         }
         case Event_PlayerInfo:
         {
-            engine.user.player.RMB = event.arg.rmb;
-            engine.user.actor.vip = event.arg.vip;
-            engine.user.player.AID = event.arg.aid;
+            if( event.arg.rmb != null ){
+                engine.user.player.RMB = event.arg.rmb;
+            }
+            if( event.arg.vip != null ){
+                engine.user.actor.vip = event.arg.vip;
+            }
+            if( event.arg.aid != null ){
+                engine.user.player.AID = event.arg.aid;
+            }
+
             engine.event.processNotification(Message_UpdateVIPLevel);
             return true;
         }
