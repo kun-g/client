@@ -142,8 +142,8 @@ function loadPage(list){
 function update(delta){
     if( this.LOAD_FLAG === true ){
         var offY = theLayer.ui.scroller.getContentOffset().y + 959;
-        var idxOff = (BAR_HEIGHT+BAR_OFFSET) * this.LOAD_INDEX;
-        var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6+BAR_OFFSET*5);
+        var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
+        var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
         if( this.LOAD_INDEX < theRankList.length ){
             if(isInFrame){
                 var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
