@@ -7,11 +7,11 @@
             <key>yueka-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,565},{276,118}}</string>
+                <string>{{861,2},{276,118}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{276,118}}</string>
                 <key>sourceSize</key>
@@ -20,7 +20,7 @@
             <key>yueka-1m.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{400,809},{1,1}}</string>
+                <string>{{837,62},{1,1}}</string>
                 <key>offset</key>
                 <string>{-137.5,58.5}</string>
                 <key>rotated</key>
@@ -33,11 +33,11 @@
             <key>yueka-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{280,565},{270,118}}</string>
+                <string>{{565,62},{270,118}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{270,118}}</string>
                 <key>sourceSize</key>
@@ -50,7 +50,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{561,475}}</string>
                 <key>sourceSize</key>
@@ -59,11 +59,11 @@
             <key>yueka-btnfh1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{400,565},{242,104}}</string>
+                <string>{{565,394},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{242,104}}</string>
                 <key>sourceSize</key>
@@ -72,7 +72,7 @@
             <key>yueka-btnfh2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{214,837},{242,104}}</string>
+                <string>{{565,288},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>yueka-btngm1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{108,685},{242,104}}</string>
+                <string>{{809,280},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,15 +98,28 @@
             <key>yueka-btngm2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,685},{242,104}}</string>
+                <string>{{565,182},{242,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{242,104}}</string>
                 <key>sourceSize</key>
                 <string>{242,104}</string>
+            </dict>
+            <key>yueka-swgm.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{565,2},{294,58}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{294,58}}</string>
+                <key>sourceSize</key>
+                <string>{294,58}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -116,9 +129,9 @@
             <key>realTextureFileName</key>
             <string>yueka.png</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:aedfb7c2fccf6f2ce535c0ca35d25f06$</string>
+            <string>$TexturePacker:SmartUpdate:e95aa79a5607a6033d39ec937d17d52c$</string>
             <key>textureFileName</key>
             <string>yueka.png</string>
         </dict>

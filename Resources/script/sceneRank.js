@@ -12,17 +12,30 @@ var libRole = loadModule("role.js");
 
 var theMode;
 
-var MODE_NORMAL = 0;
-var MODE_EXIT = 1;
-
 var RANK_BATTLEPOWER = 0;
+var RANK_ENDLESS = 1;
+var RANK_KILL = 2;
+
+var MODE_BATTLEPOWER = RANK_BATTLEPOWER;
+var MODE_ENDLESS = RANK_ENDLESS;
+var MODE_KILL = RANK_KILL;
+var MODE_EXIT = 3;
 
 var theLIST = [];
 var theRankList;
 var thePage;
 var theMe;
 
-var theCache;
+//domains
+//var theLeft;
+//var theRight;
+//var theCenter;
+//var theTransitionGroup;
+//var theCurrentGroup;
+//var isFlying;
+
+
+var theCache = [];
 
 var PAGE_SIZE = 10;//每页显示的玩家数量
 var PAGE_COUNT = 3;
@@ -60,7 +73,8 @@ function createRoleBar(role, rank){
     layer.owner.labName.setString(role.Name);
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
-    layer.owner.labPower.setString(role.getPower());
+    layer.owner.labPower.setString(role.scr);
+    debug("scr:"+role.scr);
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
 
@@ -85,17 +99,17 @@ function createRoleBar(role, rank){
 }
 
 function fillPage(page){
-    if( theCache[page] == null ){
+    if( theCache[theMode][page] == null ){
         engine.event.sendRPCEvent(Request_QueryLeaderboard, {
             me: true,
             src: page*PAGE_SIZE,
             cnt: PAGE_SIZE,
-            typ: RANK_BATTLEPOWER
+            typ: theMode
         }, function(rsp){
             if( rsp.RET == RET_OK ){
                 thePage = page;
                 theMe = rsp.me;
-                theCache[page] = rsp;//cache
+                theCache[theMode][page] = rsp;//cache
                 loadPage(rsp.lst);
                 engine.session.cacheRoleInfo(rsp.lst);//缓存
             }
@@ -106,8 +120,8 @@ function fillPage(page){
     }
     else{
         thePage = page;
-        theMe = theCache[page].me;
-        loadPage(theCache[page].lst);
+        theMe = theCache[theMode][page].me;
+        loadPage(theCache[theMode][page].lst);
     }
 }
 
@@ -116,7 +130,6 @@ function loadPage(list){
     theListLayer.removeAllChildren();
     theLIST = [];
     theRankList = list;
-
     if( theRankList.length == 0 ){
         var size = cc.size(0, 0);
         var label = cc.LabelTTF.create("暂时还没有数据", UI_FONT, UI_SIZE_XL);
@@ -141,9 +154,10 @@ function loadPage(list){
 
 function update(delta){
     if( this.LOAD_FLAG === true ){
-        var offY = theLayer.ui.scroller.getContentOffset().y + 959;
+        var offY = theLayer.ui.scroller.getContentOffset().y + 959; //todo?
         var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
         var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
+        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInFrame:"+isInFrame);
         if( this.LOAD_INDEX < theRankList.length ){
             if(isInFrame){
                 var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
@@ -252,19 +266,42 @@ function onUIAnimationCompleted(name){
         var main = loadModule("sceneMain.js");
         engine.ui.newScene(main.scene());
     }
-    if( theMode == MODE_NORMAL ){
+    if( theMode < MODE_EXIT ){
         theLayer.scheduleUpdate();
     }
 }
 
+function onPower() {
+    theMode = MODE_BATTLEPOWER;
+    fillPage(0);
+    updatePageNumber(0);
+}
+
+function onEndless() {
+    theMode = MODE_ENDLESS;
+    fillPage(0);
+    updatePageNumber(0);
+}
+
+function onKill() {
+    theMode = MODE_KILL;
+    fillPage(0);
+    updatePageNumber(0);
+}
+
 function onEnter()
 {
-    theCache = {};
+    theCache[MODE_BATTLEPOWER] = [];
+    theCache[MODE_ENDLESS] = [];
+    theCache[MODE_KILL] = [];
     theLayer = this;
 
     theSelect = null;
 
     this.owner = {};
+    this.owner.onPower = onPower;
+    this.owner.onEndless = onEndless;
+    this.owner.onKill = onKill;
     this.owner.onClose = onClose;
     this.owner.onMyPage = onMyPage;
     this.owner.onFirstPage = onFirstPage;
@@ -276,23 +313,33 @@ function onEnter()
             ui: "UIScrollView",
             id: "scroller",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
-        }
+        }/*,
+        nodeContentL: {
+            ui: "UIScrollView",
+            id: "scrollerL",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        },
+        nodeContentR: {
+            ui: "UIScrollView",
+            id: "scrollerR",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        }*/
     });
     theLayer.node = node;
     this.addChild(node);
-    theMode = MODE_NORMAL;
+    theMode = MODE_BATTLEPOWER;
     this.update = update;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
 
+    //set domains TODO?
     engine.ui.regMenu(this.owner.menuRoot);
     theListLayer = cc.Layer.create();
     this.ui.scroller.setContainer(theListLayer);
     var off = this.ui.scroller.getContentOffset();
     off.y = this.ui.scroller.minContainerOffset().y;
     this.ui.scroller.setContentOffset(off);
-    fillPage(0);
-    updatePageNumber(0);
+    onPower();
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
