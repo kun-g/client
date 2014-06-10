@@ -107,15 +107,21 @@ function onSubmit(sender){
 
         var segmentSel = engine.user.bounty.getProcess(line.bounty.BountyId);
         var chkProcess = engine.user.bounty.checkProcess(line.bounty.BountyId,segmentSel);
+        if (line.bounty.count == null){
+            line.bounty.count = 0;
+        }
+        debug("chkProcess = "+chkProcess+";str = "+str+
+            ";engine.session.dataBounty["+line.bounty.BountyId+"] = "+JSON.stringify(engine.session.dataBounty[line.bounty.BountyId]));
         if (chkProcess == 1){
             engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
         }else if (chkProcess == 2){
             engine.msg.pop("任务已经结束了。", POPTYPE_ERROR);
         }
-        else if (str.length <= 0 &&
+        else if (str.length <= 0 && (
             engine.session.dataBounty[line.bounty.BountyId] != null &&
             engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
-            engine.session.dataBounty[line.bounty.BountyId].cnt > 0){
+            engine.session.dataBounty[line.bounty.BountyId].cnt > 0) ||
+            line.bounty.count <= 0){
             var libTable = loadModule("table.js");
             var libStage = loadModule("sceneStage.js");
             var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
