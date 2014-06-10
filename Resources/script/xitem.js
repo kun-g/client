@@ -989,7 +989,7 @@ var ItemPreview = cc.Layer.extend({
             }
             return true;
         });
-
+        debug("pvs = "+JSON.stringify(pvs));
         for(var k in pvs){
             this.pushPreview(pvs[k]);
         }
