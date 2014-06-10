@@ -353,14 +353,11 @@
 		53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */ = {isa = PBXBuildFile; fileRef = 53A305E218FD3102001CE8B0 /* main.debug.jsc */; };
 		53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3086018FD3113001CE8B0 /* PP25Pay.plist */; };
 		53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3089E18FD3113001CE8B0 /* Setup.plist */; };
-		53A3159018FD317E001CE8B0 /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158318FD317E001CE8B0 /* blackbox */; };
 		53A3159418FD317E001CE8B0 /* font in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158718FD317E001CE8B0 /* font */; };
 		53A3159618FD317E001CE8B0 /* node in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158918FD317E001CE8B0 /* node */; };
-		53A3159718FD317E001CE8B0 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158A18FD317E001CE8B0 /* script */; };
 		53A3159818FD317E001CE8B0 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158B18FD317E001CE8B0 /* sound */; };
 		53A3159918FD317E001CE8B0 /* sprite in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158C18FD317E001CE8B0 /* sprite */; };
 		53A3159A18FD317E001CE8B0 /* spritesheets in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158D18FD317E001CE8B0 /* spritesheets */; };
-		53A3159B18FD317E001CE8B0 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158E18FD317E001CE8B0 /* table */; };
 		53A3159C18FD317E001CE8B0 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158F18FD317E001CE8B0 /* ui */; };
 		53A315AE18FD3191001CE8B0 /* AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3159D18FD3191001CE8B0 /* AppStore.plist */; };
 		53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */; };
@@ -383,6 +380,9 @@
 		53C284D418FFBE2600725B8F /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53C284D318FFBE2600725B8F /* static.json */; };
 		53C284D618FFC13E00725B8F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C284D518FFC13D00725B8F /* CoreTelephony.framework */; };
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
+		53FA6E031944A40200616FC4 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53FA6E001944A40200616FC4 /* dblackbox */; };
+		53FA6E041944A40200616FC4 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 53FA6E011944A40200616FC4 /* dscript */; };
+		53FA6E051944A40200616FC4 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 53FA6E021944A40200616FC4 /* dtable */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -1226,14 +1226,11 @@
 		53A305E218FD3102001CE8B0 /* main.debug.jsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.debug.jsc; sourceTree = "<group>"; };
 		53A3086018FD3113001CE8B0 /* PP25Pay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PP25Pay.plist; sourceTree = "<group>"; };
 		53A3089E18FD3113001CE8B0 /* Setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
-		53A3158318FD317E001CE8B0 /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
 		53A3158718FD317E001CE8B0 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		53A3158918FD317E001CE8B0 /* node */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node; sourceTree = "<group>"; };
-		53A3158A18FD317E001CE8B0 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
 		53A3158B18FD317E001CE8B0 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
 		53A3158C18FD317E001CE8B0 /* sprite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sprite; sourceTree = "<group>"; };
 		53A3158D18FD317E001CE8B0 /* spritesheets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spritesheets; sourceTree = "<group>"; };
-		53A3158E18FD317E001CE8B0 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		53A3158F18FD317E001CE8B0 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
 		53A3159D18FD3191001CE8B0 /* AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppStore.plist; path = ios/AppStore.plist; sourceTree = "<group>"; };
 		53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "ios/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1257,6 +1254,9 @@
 		53C284D518FFC13D00725B8F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53D8B4B11888047E00F2804E /* aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes.cpp; sourceTree = "<group>"; };
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		53FA6E001944A40200616FC4 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
+		53FA6E011944A40200616FC4 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
+		53FA6E021944A40200616FC4 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2883,15 +2883,15 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53FA6E001944A40200616FC4 /* dblackbox */,
+				53FA6E011944A40200616FC4 /* dscript */,
+				53FA6E021944A40200616FC4 /* dtable */,
 				5371A1EE192CAFC40033411F /* misc */,
-				53A3158318FD317E001CE8B0 /* blackbox */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
-				53A3158A18FD317E001CE8B0 /* script */,
 				53A3158B18FD317E001CE8B0 /* sound */,
 				53A3158C18FD317E001CE8B0 /* sprite */,
 				53A3158D18FD317E001CE8B0 /* spritesheets */,
-				53A3158E18FD317E001CE8B0 /* table */,
 				53A3158F18FD317E001CE8B0 /* ui */,
 				53A305D718FD3102001CE8B0 /* jsb.jsc */,
 				53A305D818FD3102001CE8B0 /* jsb_chipmunk.jsc */,
@@ -3028,20 +3028,20 @@
 				5371A1EF192CAFC40033411F /* misc in Resources */,
 				53A315BD18FD3191001CE8B0 /* Info.plist in Resources */,
 				53A315B918FD3191001CE8B0 /* Icon@2x.png in Resources */,
+				53FA6E051944A40200616FC4 /* dtable in Resources */,
 				53A315B718FD3191001CE8B0 /* Icon-Small@2x.png in Resources */,
 				53A315BC18FD3191001CE8B0 /* Icon~iphone.png in Resources */,
-				53A3159B18FD317E001CE8B0 /* table in Resources */,
 				53A3159A18FD317E001CE8B0 /* spritesheets in Resources */,
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
+				53FA6E041944A40200616FC4 /* dscript in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
-				53A3159018FD317E001CE8B0 /* blackbox in Resources */,
-				53A3159718FD317E001CE8B0 /* script in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,
 				53A3048018FD30EB001CE8B0 /* README.txt in Resources */,
+				53FA6E031944A40200616FC4 /* dblackbox in Resources */,
 				53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */,
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,

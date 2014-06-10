@@ -46,6 +46,7 @@ function onTouchEnded(touch, event){
             && localPos.x < size.width && localPos.y < size.height ){
             var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
             var line = theListLayer.getChildByTag(PY);
+
             loadQuestDesc(line.quest);
         }
     }

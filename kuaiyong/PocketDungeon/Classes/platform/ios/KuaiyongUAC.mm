@@ -92,7 +92,6 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             NSString* strUserName = [NSString stringWithUTF8String:username.c_str()];
             NSString* strTitle = [detail objectForKey:@"title"];
             NSNumber* numPrice = [detail objectForKey:@"price"];
-            numPrice = [NSNumber numberWithFloat:0.1];//test code
             int cost = [numPrice intValue]*quantity;
             
             //record purchase
