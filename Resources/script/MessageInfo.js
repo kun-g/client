@@ -30,6 +30,7 @@ var isFlying;
 var theSelectedNode;
 var theClickFlag;
 var touchPosBegin;
+var BAR_HEIGHT = 100;
 
 function removeDeliver(sid){
     if( sid == null ){
@@ -552,7 +553,12 @@ function onTouchEnded(touch, event){
             theSelectedNode = null;
         }
         else{
-            loadDeliverDetail(theSelectedNode.DATA);
+            var layerPos = theLayer.owner.nodeContent.getPosition();
+            var layerSize = theLayer.owner.nodeContent.getContentSize();
+            var rect = cc.rect(layerPos.x, layerPos.y - BAR_HEIGHT/2, layerSize.width, layerSize.height);
+            if( cc.rectContainsPoint(rect, theSelectedNode.getParent().convertToWorldSpace(theSelectedNode.getPosition())) ){
+                loadDeliverDetail(theSelectedNode.DATA);
+            }
         }
         theClickFlag = false;
     }

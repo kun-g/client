@@ -141,20 +141,37 @@ function loadPage(list){
 
 function update(delta){
     if( this.LOAD_FLAG === true ){
+        var offY = theLayer.ui.scroller.getContentOffset().y + 959;
+        var idxOff = (BAR_HEIGHT+BAR_OFFSET) * this.LOAD_INDEX;
+        var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6+BAR_OFFSET*5);
         if( this.LOAD_INDEX < theRankList.length ){
-            var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
-            role.fix();
-            var rank = thePage*PAGE_SIZE+1+this.LOAD_INDEX;
-            var node = createRoleBar(role, rank);
-            node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT));
-            node.KEY = Number(this.LOAD_INDEX);
-            theListLayer.addChild(node);
-            theLIST.push(node);
-
-            this.LOAD_INDEX++;
+            if(isInFrame){
+                var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
+                role.fix();
+                var rank = thePage*PAGE_SIZE+1+this.LOAD_INDEX;
+                var node = createRoleBar(role, rank);
+                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT));
+                node.KEY = Number(this.LOAD_INDEX);
+                theListLayer.addChild(node);
+                theLIST.push(node);
+                this.LOAD_INDEX++;
+            }
         }
         else{
             this.LOAD_FLAG = false;
+        }
+    }
+    var bars = theListLayer.getChildren();
+    if( bars != null){
+        for( var k in bars ){
+            var layerPos = theLayer.owner.nodeContent.getPosition();
+            var layerSize = theLayer.owner.nodeContent.getContentSize();
+            var rect = cc.rect(layerPos.x, layerPos.y - BAR_HEIGHT/2, layerSize.width, layerSize.height);
+            if( cc.rectContainsPoint(rect, bars[k].getParent().convertToWorldSpace(bars[k].getPosition())) ){
+                bars[k].owner.menuRoot.setTouchEnabled(true);
+            }else{
+                bars[k].owner.menuRoot.setTouchEnabled(false);
+            }
         }
     }
 }
@@ -235,6 +252,9 @@ function onUIAnimationCompleted(name){
         var main = loadModule("sceneMain.js");
         engine.ui.newScene(main.scene());
     }
+    if( theMode == MODE_NORMAL ){
+        theLayer.scheduleUpdate();
+    }
 }
 
 function onEnter()
@@ -251,7 +271,6 @@ function onEnter()
     this.owner.onPreviousPage = onPreviousPage;
     this.owner.onNextPage = onNextPage;
     this.owner.onLastPage = onLastPage;
-
     var node = libUIC.loadUI(this, "sceneRanking.ccbi", {
         nodeContent:{
             ui: "UIScrollView",
@@ -259,27 +278,21 @@ function onEnter()
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
         }
     });
-
     theLayer.node = node;
     this.addChild(node);
     theMode = MODE_NORMAL;
+    this.update = update;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
 
     engine.ui.regMenu(this.owner.menuRoot);
-
     theListLayer = cc.Layer.create();
     this.ui.scroller.setContainer(theListLayer);
     var off = this.ui.scroller.getContentOffset();
     off.y = this.ui.scroller.minContainerOffset().y;
     this.ui.scroller.setContentOffset(off);
-
     fillPage(0);
     updatePageNumber(0);
-
-    this.update = update;
-    this.scheduleUpdate();
-
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
