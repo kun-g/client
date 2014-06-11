@@ -927,6 +927,10 @@ var ItemPreview = cc.Layer.extend({
             var node = cc.Node.create();
             node.PV = pv;
             node.icon = pit.icon;
+            if (pit.label.length >= 5){
+                pit.label = pit.label.substr(0,4);
+                pit.label += "...";
+            }
             node.label = cc.LabelTTF.create(pit.label, UI_FONT, UI_SIZE_S);
             node.label.setDimensions(cc.size(ITEMPREVIEW_WIDTH, 60));
             node.label.setVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_TOP);
@@ -938,6 +942,7 @@ var ItemPreview = cc.Layer.extend({
             node.icon.setPosition(cc.p(65, 115));
             node.addChild(node.icon);
             node.label.setPosition(cc.p(65, 32));
+
             node.addChild(node.label);
             this.addChild(node);
         }
@@ -989,7 +994,7 @@ var ItemPreview = cc.Layer.extend({
             }
             return true;
         });
-        debug("pvs = "+JSON.stringify(pvs));
+
         for(var k in pvs){
             this.pushPreview(pvs[k]);
         }
