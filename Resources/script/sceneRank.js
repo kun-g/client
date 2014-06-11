@@ -73,7 +73,10 @@ function createRoleBar(role, rank){
     layer.owner.labName.setString(role.Name);
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
-    for(var i=0; i<3; i++){ layer.owner["spType"+i].setVisible(theMode == i); }
+    for(var i=0; i<3; i++){
+        layer.owner["spType"+i].setVisible(theMode == i);
+        layer.owner["spPattern"+i].setVisible(theMode == i);
+    }
     layer.owner.labPower.setString(role.scr);
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
@@ -100,6 +103,7 @@ function createRoleBar(role, rank){
 
 function fillPage(page){
     if( theCache[theMode][page] == null ){
+        debug("load from server");
         engine.event.sendRPCEvent(Request_QueryLeaderboard, {
             me: true,
             src: page*PAGE_SIZE,
@@ -119,6 +123,7 @@ function fillPage(page){
         }, theLayer);
     }
     else{
+        debug("load from cache");
         thePage = page;
         theMe = theCache[theMode][page].me;
         loadPage(theCache[theMode][page].lst);
@@ -155,7 +160,7 @@ function loadPage(list){
 
 function update(delta){
     if( this.LOAD_FLAG === true ){
-        var offY = theCurrentGroup.scroller.getContentOffset().y - theCurrentGroup.scroller.minContainerOffset().y; //todo?
+        var offY = theCurrentGroup.scroller.getContentOffset().y - theCurrentGroup.scroller.minContainerOffset().y;
         var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
         var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
 //        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInFrame:"+isInFrame);
@@ -434,6 +439,7 @@ function onEnter()
     isFlying = false;
     isScheduling = false;
     theSelect = null;
+    theCurrentGroup = null;
 
     this.owner = {};
     this.owner.onPower = onPower;
