@@ -373,6 +373,12 @@ function onEvent(event)
                 engine.user.player.AID = event.arg.aid;
             }
 
+            if (event.arg.mcc != null){
+                engine.session.monthCardDay = event.arg.mcc;
+            }
+            else{
+                engine.session.monthCardDay = 0;
+            }
             engine.event.processNotification(Message_UpdateVIPLevel);
             return true;
         }
@@ -398,11 +404,21 @@ function onEvent(event)
         }
         case Event_BountyUpdate:
         {
-            engine.session.dataBounty[event.arg.bid] = event.arg;
+            if (event.arg.bid >= 0){
+                engine.session.dataBounty[event.arg.bid] = event.arg;
 
-            var event = {};
-            event.NTF = Message_UpdateBounty;
-            engine.event.processNotification(event);
+                var event = {};
+                event.NTF = Message_UpdateBounty;
+                engine.event.processNotification(event);
+            }
+            else if (event.arg.bid == -1){
+                if ( event.arg.sta == 1){
+                    engine.session.monthCardToday = event.arg.cnt;
+                }
+                else{
+                    engine.session.monthCardToday = 0;
+                }
+            }
             return true;
         }
     }

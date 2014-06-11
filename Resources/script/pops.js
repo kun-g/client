@@ -7,6 +7,7 @@
 var libTable = loadModule("table.js");
 var libSkill = loadModule("skill.js");
 var libUIC = loadModule("UIComposer.js");
+var libUIKit = loadModule("uiKit.js");
 
 //--------- POP MANAGER 防止弹窗一起弹出来 ----------
 function PopMgr(){
@@ -262,3 +263,27 @@ function popInvalidDungeon(){
 }
 
 exports.popInvalidDungeon = popInvalidDungeon;
+
+//--------------------------------------------------
+
+function popMonthCard(theLayer){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    if (engine.session.monthCardToday >= 1 && engine.session.monthCardDay > 0){
+//        libUIKit.showAlert("月卡奖励，每日领取80宝石。");
+//        engine.session.monthCardToday = 0;
+
+        libUIKit.showAlert("月卡奖励，每日领取80宝石。", function(){
+            libUIKit.waitRPC(Request_SubmitBounty, {bid: -1},
+                function(rsp){
+                    if( rsp.RET == RET_OK ){
+                        engine.session.monthCardToday = 0;
+                    }
+                    else{
+                        libUIKit.showErrorMessage(rsp);
+                    }
+                }, theLayer);
+        }, theLayer);
+    }
+}
+
+exports.popMonthCard = popMonthCard;

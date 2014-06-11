@@ -25,6 +25,8 @@ function Session(){
     this.roleCache = {};
 
     this.dataBounty = [];
+    this.monthCardDay = 0;
+    this.monthCardToday = 0;
 }
 
 Session.prototype.pushFriendApply = function(msg){

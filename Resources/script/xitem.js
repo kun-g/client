@@ -797,7 +797,7 @@ UIItem.make = function(thiz, args)
 //--- ItemPreviewArea
 
 var ITEMPREVIEW_WIDTH = 130;
-var ITEMPREVIEW_HEIGHT = 170;
+var ITEMPREVIEW_HEIGHT = 135;
 
 function queryPrize(pit){
     var ret = {

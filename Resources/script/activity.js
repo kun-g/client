@@ -95,7 +95,8 @@ function calcPosId(lpos)
             break;
         }
     }
-
+    //debug("touchPosBeginWorld = "+JSON.stringify(touchPosBeginWorld));
+    //debug("rpos = "+JSON.stringify(rpos));
     var PYoff = rpos.y - MARGIN_TOP - PY*(GRID_SIZE+GRID_GAP);
     var PXoff = rpos.x - PX*(GRID_SIZE+GRID_GAP) - GRID_SIZE/2 - lineOffset;
     if( PXoff < 100 && PYoff < 100 )
@@ -137,6 +138,7 @@ function onTouchEnded(touch, event)
     {//as click
         var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
         var id = calcPosId(localPos);
+        //debug("id = "+id);
         if (theDay == id && engine.user.activity.dailyPrize == true){
             var item = theCenter.inventoryData[id];
             if( item != null ) {

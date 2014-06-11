@@ -110,8 +110,7 @@ function onSubmit(sender){
         if (line.bounty.count == null){
             line.bounty.count = 0;
         }
-        debug("chkProcess = "+chkProcess+";str = "+str+
-            ";engine.session.dataBounty["+line.bounty.BountyId+"] = "+JSON.stringify(engine.session.dataBounty[line.bounty.BountyId]));
+
         if (chkProcess == 1){
             engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
         }else if (chkProcess == 2){
@@ -132,13 +131,11 @@ function onSubmit(sender){
         else if (engine.session.dataBounty[line.bounty.BountyId] != null &&
                 engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
                 engine.session.dataBounty[line.bounty.BountyId].cnt <= 0){
-            engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
+                engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
         }
         else if (str.length > 0){
             engine.msg.pop(str, POPTYPE_ERROR);
         }
-
-
     }
 }
 
@@ -311,6 +308,7 @@ function loadBountyList(){
 
 function loadBountyDesc(bounty, lev){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    //var sfc = cc.SpriteFrameCache.getInstance();
     theMode = MODE_DESC;
     theLayer.owner.nodeList.setVisible(false);
     theLayer.owner.nodeDesc.setVisible(true);
@@ -336,12 +334,6 @@ function loadBountyDesc(bounty, lev){
     theLayer.owner.labTitle.setString(bountyData.title);
 
     ajustPostion(bounty.BountyId);
-
-    if (engine.user.bounty.checkLimit(bounty.BountyId, lev).length <= 0){
-        theLayer.owner[nodeEffList[lev]].setVisible(true);
-        theLayer.owner[nodeEffList[lev]].removeAllChildren();
-        libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
-    }
 
     if (bountyData.begin == 1){
         theLayer.owner.btnSubmit.setVisible(true);
@@ -444,6 +436,12 @@ function loadBountyDesc(bounty, lev){
         var curroffset = theLayer.ui.scrollDesc.getContentOffset();
         curroffset.y = theLayer.ui.scrollDesc.minContainerOffset().y;
         theLayer.ui.scrollDesc.setContentOffset(curroffset);
+
+        if (engine.user.bounty.checkLimit(bounty.BountyId, lev).length <= 0){
+            theLayer.owner[nodeEffList[lev]].setVisible(true);
+            theLayer.owner[nodeEffList[lev]].removeAllChildren();
+            libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
+        }
     }
     else if (bountyData.level.length == 1){
         theDescLayer2.addChild(prize);
@@ -497,6 +495,9 @@ function updateTime()
             for (var k in list) {
                 var bounty = list[k];
                 var line = theListLayer.getChildByTag(k);
+                if (line == null){
+                    break;
+                }
                 var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
                 var segmentSel = engine.user.bounty.getProcess(bounty.BountyId);
                 var timediff = engine.user.bounty.cacultime(bounty.BountyId, segmentSel);
