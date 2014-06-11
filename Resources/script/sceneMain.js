@@ -410,6 +410,10 @@ function onChat(sender)
 
 function onStage(sender)
 {
+    //test code
+    requestBattle(118, [engine.user.actor]);
+    return;
+
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     startCloseAnimation(function(){
         //强制进某一关

@@ -1720,11 +1720,12 @@ var data = [
       "stage":[
         {
           stageId: 108,
-          cost: 15,
+          cost: 10,
           team: 3,
           hidden: true,
           dungeon: 105,
           description: "Enhance1",
+          eventName: "event_enhance",
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
@@ -1738,10 +1739,11 @@ var data = [
         },
         {
           stageId: 109,
-          cost: 15,
+          cost: 10,
           team: 3,
           hidden: true,
           dungeon: 106,
+          eventName: "event_enhance",
           description: "Enhance2",
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
@@ -1761,6 +1763,7 @@ var data = [
           hidden: true,
           dungeon: 107,
           description: "Enhance3",
+          eventName: "event_enhance",
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
@@ -1779,6 +1782,7 @@ var data = [
           hidden: true,
           dungeon: 108,
           description: "Enhance4",
+          eventName: "event_enhance",
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
@@ -1792,11 +1796,12 @@ var data = [
         },
         {
           stageId: 112,
-          cost: 15,
+          cost: 20,
           team: 3,
           hidden: true,
           dungeon: 109,
           description: "Enhance5",
+          eventName: "event_enhance",
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
@@ -1867,7 +1872,140 @@ var data = [
                 obj.counters.newProperty('goblin', 1);
               }
             }
-        }
+        },
+          {
+              stageId: 117,
+              cost: 10,
+              team: 3,
+              hidden: true,
+              dungeon: 110,
+              description: "wxp1",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          },
+          {
+              stageId: 118,
+              cost: 15,
+              team: 3,
+              hidden: true,
+              dungeon: 111,
+              description: "wxp2",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          },
+          {
+              stageId: 119,
+              cost: 20,
+              team: 3,
+              hidden: true,
+              dungeon: 112,
+              description: "wxp3",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          },
+          {
+              stageId: 120,
+              cost: 10,
+              team: 3,
+              hidden: true,
+              dungeon: 113,
+              description: "infinity",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          },
+          {
+              stageId: 121,
+              cost: 10,
+              team: 3,
+              hidden: true,
+              dungeon: 114,
+              description: "hunt83",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          },
+          {
+              stageId: 122,
+              cost: 10,
+              team: 3,
+              hidden: true,
+              dungeon: 115,
+              description: "hunt39",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          },
+          {
+              stageId: 123,
+              cost: 10,
+              team: 3,
+              hidden: true,
+              dungeon: 116,
+              description: "hunt112",
+              eventName: "event_goblin",
+              condition: function (obj, util) {
+                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+              },
+              initialAction: function (obj) {
+                  if (obj.counters.goblin) {
+                      obj.counters.goblin++;
+                  } else {
+                      obj.counters.newProperty('goblin', 1);
+                  }
+              }
+          }
       ]
   }
 ];

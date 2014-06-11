@@ -464,8 +464,6 @@ function refreshDailyQuest(){
 
             var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimensionPrize);
             prize.setPosition(cc.p(0, 0));
-            var psz = prize.getContentSize();
-            prize.setPosition(cc.p(0, 0));
             layer.owner.layerPrize.addChild(prize);
             text.setPosition(cc.p(0, 0));
             layer.owner.layerDesc.addChild(text);
