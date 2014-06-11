@@ -294,10 +294,12 @@ function update(delta){
             var layerPos = theLayer.owner.nodeContent.getPosition();
             var layerSize = theLayer.owner.nodeContent.getContentSize();
             var rect = cc.rect(layerPos.x, layerPos.y - BAR_HEIGHT/2, layerSize.width, layerSize.height);
-            if( cc.rectContainsPoint(rect, bars[k].getParent().convertToWorldSpace(bars[k].getPosition())) ){
-                bars[k].owner.menuRoot.setTouchEnabled(true);
-            }else{
-                bars[k].owner.menuRoot.setTouchEnabled(false);
+            if( bars[k].owner != null ){
+                if( cc.rectContainsPoint(rect, bars[k].getParent().convertToWorldSpace(bars[k].getPosition())) ){
+                    bars[k].owner.menuRoot.setTouchEnabled(true);
+                }else{
+                    bars[k].owner.menuRoot.setTouchEnabled(false);
+                }
             }
         }
     }
