@@ -27,13 +27,13 @@ var thePage;
 var theMe;
 
 //domains
-//var theLeft;
-//var theRight;
-//var theCenter;
-//var theTransitionGroup;
-//var theCurrentGroup;
-//var isFlying;
-
+var theLeft;
+var theRight;
+var theCenter;
+var theTransitionGroup;
+var theCurrentGroup;
+var isFlying;
+var isScheduling;
 
 var theCache = [];
 
@@ -73,6 +73,7 @@ function createRoleBar(role, rank){
     layer.owner.labName.setString(role.Name);
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
+    for(var i=0; i<3; i++){ layer.owner["spType"+i].setVisible(theMode == i); }
     layer.owner.labPower.setString(role.scr);
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
@@ -126,15 +127,15 @@ function fillPage(page){
 
 function loadPage(list){
     //clear up
-    theListLayer.removeAllChildren();
+    theCurrentGroup.theListLayer.removeAllChildren();
     theLIST = [];
     theRankList = list;
     if( theRankList.length == 0 ){
         var size = cc.size(0, 0);
         var label = cc.LabelTTF.create("暂时还没有数据", UI_FONT, UI_SIZE_XL);
-        var viewSize = theLayer.ui.scroller.getViewSize();
+        var viewSize = theCurrentGroup.scroller.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -2*viewSize.height/5));
-        theListLayer.addChild(label);
+        theCurrentGroup.theListLayer.addChild(label);
     }
     else{
         theLayer.LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT*theRankList.length+BAR_OFFSET);
@@ -145,16 +146,16 @@ function loadPage(list){
     }
 
     //reform the list
-    theListLayer.setContentSize(size);
-    var off = theLayer.ui.scroller.getContentOffset();
-    off.y = theLayer.ui.scroller.minContainerOffset().y;
+    theCurrentGroup.theListLayer.setContentSize(size);
+    var off = theCurrentGroup.scroller.getContentOffset();
+    off.y = theCurrentGroup.scroller.minContainerOffset().y;
 //    debug("minContainerOffset.Y:"+off.y);
-    theLayer.ui.scroller.setContentOffset(off);
+    theCurrentGroup.scroller.setContentOffset(off);
 }
 
 function update(delta){
     if( this.LOAD_FLAG === true ){
-        var offY = theLayer.ui.scroller.getContentOffset().y - theLayer.ui.scroller.minContainerOffset().y; //todo?
+        var offY = theCurrentGroup.scroller.getContentOffset().y - theCurrentGroup.scroller.minContainerOffset().y; //todo?
         var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
         var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
 //        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInFrame:"+isInFrame);
@@ -166,7 +167,7 @@ function update(delta){
                 var node = createRoleBar(role, rank);
                 node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT));
                 node.KEY = Number(this.LOAD_INDEX);
-                theListLayer.addChild(node);
+                theCurrentGroup.theListLayer.addChild(node);
                 theLIST.push(node);
                 this.LOAD_INDEX++;
             }
@@ -175,16 +176,18 @@ function update(delta){
             this.LOAD_FLAG = false;
         }
     }
-    var bars = theListLayer.getChildren();
+    var bars = theCurrentGroup.theListLayer.getChildren();
     if( bars != null){
         for( var k in bars ){
-            var layerPos = theLayer.owner.nodeContent.getPosition();
-            var layerSize = theLayer.owner.nodeContent.getContentSize();
+            var layerPos = theCurrentGroup.nodeContent.getPosition();
+            var layerSize = theCurrentGroup.nodeContent.getContentSize();
             var rect = cc.rect(layerPos.x, layerPos.y - BAR_HEIGHT/2, layerSize.width, layerSize.height);
-            if( cc.rectContainsPoint(rect, bars[k].getParent().convertToWorldSpace(bars[k].getPosition())) ){
-                bars[k].owner.menuRoot.setTouchEnabled(true);
-            }else{
-                bars[k].owner.menuRoot.setTouchEnabled(false);
+            if( bars[k].owner != null ){
+                if( cc.rectContainsPoint(rect, bars[k].getParent().convertToWorldSpace(bars[k].getPosition())) ){
+                    bars[k].owner.menuRoot.setTouchEnabled(true);
+                }else{
+                    bars[k].owner.menuRoot.setTouchEnabled(false);
+                }
             }
         }
     }
@@ -193,10 +196,10 @@ function update(delta){
 function updatePageNumber(page){
     var p = page+1;
     if( page <= PAGE_COUNT ){
-        theLayer.owner.labelPage.setString(p+"/"+PAGE_COUNT);
+        theCurrentGroup.labPage.setString(p+"/"+PAGE_COUNT);
     }
     else{
-        theLayer.owner.labelPage.setString(p);
+        theCurrentGroup.labPage.setString(p);
     }
 }
 
@@ -264,31 +267,162 @@ function onClose(sender){
 }
 
 function onUIAnimationCompleted(name){
+    isFlying = false;
     if( theMode == MODE_EXIT ){
         var main = loadModule("sceneMain.js");
         engine.ui.newScene(main.scene());
     }
+
     if( theMode < MODE_EXIT ){
-        theLayer.scheduleUpdate();
+        if( theTransitionGroup != null ){
+            theCurrentGroup = theTransitionGroup;
+            theTransitionGroup = null;
+            theLayer.LOAD_FLAG = true;
+            theLayer.LOAD_INDEX = 0;
+            fillPage(0);
+            updatePageNumber(0);
+        }
+        if( !isScheduling ){
+            theLayer.scheduleUpdate();
+            isScheduling = true;
+        }
     }
 }
 
 function onPower() {
+    if( isFlying ) return;
+    if(theCurrentGroup != null && theCurrentGroup.theListLayer != null) {
+        theCurrentGroup.theListLayer.removeAllChildren();
+    }
+    if( theMode < MODE_BATTLEPOWER ){
+        //to right
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
+        theTransitionGroup = theRight;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else if( theMode > MODE_BATTLEPOWER ){
+        //to left
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
+        theTransitionGroup = theLeft;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else{
+        //just load
+        theTransitionGroup = null;
+        theCurrentGroup = theCenter;
+        isFlying = false;
+    }
     theMode = MODE_BATTLEPOWER;
-    fillPage(0);
-    updatePageNumber(0);
+    setModeTag(theMode);
 }
 
 function onEndless() {
+    if( isFlying ) return;
+    if(theCurrentGroup != null && theCurrentGroup.theListLayer != null) {
+        theCurrentGroup.theListLayer.removeAllChildren();
+    }
+    if( theMode < MODE_ENDLESS ){
+        //to right
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
+        theTransitionGroup = theRight;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else if( theMode > MODE_ENDLESS ){
+        //to left
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
+        theTransitionGroup = theLeft;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else{
+        //just load
+        theTransitionGroup = null;
+        theCurrentGroup = theCenter;
+        isFlying = false;
+    }
     theMode = MODE_ENDLESS;
-    fillPage(0);
-    updatePageNumber(0);
+    setModeTag(theMode);
 }
 
 function onKill() {
+    if( isFlying ) return;
+    if(theCurrentGroup != null && theCurrentGroup.theListLayer != null) {
+        theCurrentGroup.theListLayer.removeAllChildren();
+    }
+    if( theMode < MODE_KILL ){
+        //to right
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
+        theTransitionGroup = theRight;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else if( theMode > MODE_KILL ){
+        //to left
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
+        theTransitionGroup = theLeft;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else{
+        //just load
+        theTransitionGroup = null;
+        theCurrentGroup = theCenter;
+        isFlying = false;
+    }
     theMode = MODE_KILL;
-    fillPage(0);
-    updatePageNumber(0);
+    setModeTag(theMode);
+}
+
+function setModeTag(mode){
+    var sfc = cc.SpriteFrameCache.getInstance();
+    if( mode == MODE_BATTLEPOWER ){
+        theLayer.owner.btnPower.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnph1.png"));
+        theLayer.owner.btnPower.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnph2.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-title.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-title.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-title.png"));
+        theLayer.owner.btnPower.setEnabled(false);
+    }
+    else{
+        theLayer.owner.btnPower.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnph2.png"));
+        theLayer.owner.btnPower.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnph1.png"));
+        theLayer.owner.btnPower.setEnabled(true);
+    }
+    if( mode == MODE_ENDLESS ){
+        theLayer.owner.btnEndless.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnwj1.png"));
+        theLayer.owner.btnEndless.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnwj2.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlewj.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlewj.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlewj.png"));
+        theLayer.owner.btnEndless.setEnabled(false);
+    }
+    else{
+        theLayer.owner.btnEndless.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnwj2.png"));
+        theLayer.owner.btnEndless.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnwj1.png"));
+        theLayer.owner.btnEndless.setEnabled(true);
+    }
+    if( mode == MODE_KILL ){
+        theLayer.owner.btnKill.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
+        theLayer.owner.btnKill.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg2.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.btnKill.setEnabled(false);
+    }
+    else{
+        theLayer.owner.btnKill.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsg2.png"));
+        theLayer.owner.btnKill.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
+        theLayer.owner.btnKill.setEnabled(true);
+    }
 }
 
 function onEnter()
@@ -297,7 +431,8 @@ function onEnter()
     theCache[MODE_ENDLESS] = [];
     theCache[MODE_KILL] = [];
     theLayer = this;
-
+    isFlying = false;
+    isScheduling = false;
     theSelect = null;
 
     this.owner = {};
@@ -315,7 +450,7 @@ function onEnter()
             ui: "UIScrollView",
             id: "scroller",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
-        }/*,
+        },
         nodeContentL: {
             ui: "UIScrollView",
             id: "scrollerL",
@@ -325,7 +460,7 @@ function onEnter()
             ui: "UIScrollView",
             id: "scrollerR",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
-        }*/
+        }
     });
     theLayer.node = node;
     this.addChild(node);
@@ -334,14 +469,56 @@ function onEnter()
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
 
-    //set domains TODO?
+    //set domains
+    theLeft = {};
+    {
+        theLeft.scroller = this.ui.scrollerL;
+        theLeft.labTitle = this.owner.labTitleL;
+        theLeft.labPage = this.owner.labelPageL;
+        theLeft.scrollTop = this.owner.scrollTopL;
+        theLeft.scrollBottom = this.owner.scrollBottomL;
+        theLeft.theListLayer = cc.Layer.create();
+        theLeft.scroller.setContainer(theLeft.theListLayer);
+        theLeft.nodeContent = this.owner.nodeContentL;
+        var offL = theLeft.scroller.getContentOffset();
+        offL.y = theLeft.scroller.minContainerOffset().y;
+        theLeft.scroller.setContentOffset(offL);
+    }
+    theRight = {};
+    {
+        theRight.scroller = this.ui.scrollerR;
+        theRight.labTitle = this.owner.labTitleR;
+        theRight.labPage = this.owner.labelPageR;
+        theRight.scrollTop = this.owner.scrollTopR;
+        theRight.scrollBottom = this.owner.scrollBottomR;
+        theRight.theListLayer = cc.Layer.create();
+        theRight.scroller.setContainer(theRight.theListLayer);
+        theRight.nodeContent = this.owner.nodeContentR;
+        var offR = theRight.scroller.getContentOffset();
+        offR.y = theRight.scroller.minContainerOffset().y;
+        theRight.scroller.setContentOffset(offR);
+    }
+    theCenter = {};
+    {
+        theCenter.scroller = this.ui.scroller;
+        theCenter.labTitle = this.owner.labTitle;
+        theCenter.labPage = this.owner.labelPage;
+        theCenter.scrollTop = this.owner.scrollTop;
+        theCenter.scrollBottom = this.owner.scrollBottom;
+        theCenter.theListLayer = cc.Layer.create();
+        theCenter.scroller.setContainer(theCenter.theListLayer);
+        theCenter.nodeContent = this.owner.nodeContent;
+        var off = theCenter.scroller.getContentOffset();
+        off.y = theCenter.scroller.minContainerOffset().y;
+        theCenter.scroller.setContentOffset(off);
+    }
     engine.ui.regMenu(this.owner.menuRoot);
-    theListLayer = cc.Layer.create();
-    this.ui.scroller.setContainer(theListLayer);
-    var off = this.ui.scroller.getContentOffset();
-    off.y = this.ui.scroller.minContainerOffset().y;
-    this.ui.scroller.setContentOffset(off);
+//    theListLayer = cc.Layer.create();
+//    this.ui.scroller.setContainer(theListLayer);
+
     onPower();
+    fillPage(0);
+    updatePageNumber(0);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
