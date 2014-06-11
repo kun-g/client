@@ -49,6 +49,9 @@ function onDailyAnimationCompleted(name){
         engine.ui.popLayer();
         theLayerMode = null;
     }
+    else if( theLayerMode == MODE_DAILYQUEST ){
+        theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
+    }
 }
 
 function getDailyPrize(id){
@@ -457,12 +460,14 @@ function refreshDailyQuest(){
                     text: str,
                     color: color,
                     size: UI_SIZE_L,
-                    align: cc.TEXT_ALIGNMENT_CENTER
+                    align: cc.TEXT_ALIGNMENT_LEFT
                 });
             }
             var size = text.getContentSize();
 
             var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimensionPrize);
+            debug("dailyQuest = "+JSON.stringify(dailyQuest));
+            debug("prize = "+JSON.stringify(prize));
             prize.setPosition(cc.p(0, 0));
             layer.owner.layerPrize.addChild(prize);
             text.setPosition(cc.p(0, 0));

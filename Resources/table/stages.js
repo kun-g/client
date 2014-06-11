@@ -1729,7 +1729,7 @@ var data = [
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
-                util.today.weekday() === 3 ||
+                util.today.weekday() === 4 ||
                 util.today.weekday() === 6 ||
                 util.today.weekday() === 0 );
           },
@@ -1748,7 +1748,7 @@ var data = [
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
-                util.today.weekday() === 3 ||
+                util.today.weekday() === 4 ||
                 util.today.weekday() === 6 ||
                 util.today.weekday() === 0 );
           },
@@ -1767,7 +1767,7 @@ var data = [
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
-                util.today.weekday() === 3 ||
+                util.today.weekday() === 4 ||
                 util.today.weekday() === 6 ||
                 util.today.weekday() === 0 );
           },
@@ -1786,7 +1786,7 @@ var data = [
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
-                util.today.weekday() === 3 ||
+                util.today.weekday() === 4 ||
                 util.today.weekday() === 6 ||
                 util.today.weekday() === 0 );
           },
@@ -1805,7 +1805,7 @@ var data = [
           condition: function (obj, util) {
             return ( obj.counters.enhance < 3 ) &&
               ( util.today.weekday() === 2 ||
-                util.today.weekday() === 3 ||
+                util.today.weekday() === 4 ||
                 util.today.weekday() === 6 ||
                 util.today.weekday() === 0 );
           },
@@ -1880,16 +1880,16 @@ var data = [
               hidden: true,
               dungeon: 110,
               description: "wxp1",
-              eventName: "event_goblin",
+              eventName: "event_weapon",
               condition: function (obj, util) {
-                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+                return ( obj.counters.weapon < 3 ) &&
+                  ( util.today.weekday() === 1 ||
+                    util.today.weekday() === 3 ||
+                    util.today.weekday() === 5 ||
+                    util.today.weekday() === 0 );
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
+                obj.counters.weapon++;
               }
           },
           {
@@ -1899,16 +1899,16 @@ var data = [
               hidden: true,
               dungeon: 111,
               description: "wxp2",
-              eventName: "event_goblin",
+              eventName: "event_weapon",
               condition: function (obj, util) {
-                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+                return ( obj.counters.weapon < 3 ) &&
+                  ( util.today.weekday() === 1 ||
+                    util.today.weekday() === 3 ||
+                    util.today.weekday() === 5 ||
+                    util.today.weekday() === 0 );
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
+                obj.counters.weapon++;
               }
           },
           {
@@ -1918,16 +1918,16 @@ var data = [
               hidden: true,
               dungeon: 112,
               description: "wxp3",
-              eventName: "event_goblin",
+              eventName: "event_weapon",
               condition: function (obj, util) {
-                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+                return ( obj.counters.weapon < 3 ) &&
+                  ( util.today.weekday() === 1 ||
+                    util.today.weekday() === 3 ||
+                    util.today.weekday() === 5 ||
+                    util.today.weekday() === 0 );
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
+                obj.counters.weapon++;
               }
           },
           {
@@ -1961,11 +1961,11 @@ var data = [
                   return obj.counters.goblin < 3 || !obj.counters.goblin;
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
+                  //if (obj.counters.goblin) {
+                  //    obj.counters.goblin++;
+                  //} else {
+                  //    obj.counters.newProperty('goblin', 1);
+                  //}
               }
           },
           {
@@ -1980,11 +1980,11 @@ var data = [
                   return obj.counters.goblin < 3 || !obj.counters.goblin;
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
+                  //if (obj.counters.goblin) {
+                  //    obj.counters.goblin++;
+                  //} else {
+                  //    obj.counters.newProperty('goblin', 1);
+                  //}
               }
           },
           {
@@ -1999,11 +1999,11 @@ var data = [
                   return obj.counters.goblin < 3 || !obj.counters.goblin;
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
+                  //if (obj.counters.goblin) {
+                  //    obj.counters.goblin++;
+                  //} else {
+                  //    obj.counters.newProperty('goblin', 1);
+                  //}
               }
           }
       ]
