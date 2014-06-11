@@ -21,13 +21,14 @@ var closeCBOBJ;
 
 var payStr = [
     {str:"6元", cost:6, dm:60 },
-    {str:"18元", cost:18, dm:130 },
+    {str:"12元", cost:12, dm:130 },
     {str:"30元", cost:30, dm:330 },
     {str:"68元", cost:68, dm:760 },
     {str:"128元", cost:128, dm:1460 },
     {str:"198元", cost:198, dm:2260 },
     {str:"328元", cost:328, dm:3760 },
-    {str:"648元", cost:648, dm:7480 }
+    {str:"648元", cost:648, dm:7480 },
+    {str:"25元", cost:25, dm:2500 }
 ];
 
 var theLastBillNo = null;
@@ -184,6 +185,12 @@ function onActivate(){
     engine.pop.resetAllFlags();
     engine.pop.setFlag("tutorial");
     engine.pop.invokePop("charge");
+    if (engine.session.monthCardDay <= 0){
+        purchaseMonthCard();
+    }
+    else{
+        hasMonthCard();
+    }
 }
 
 function onEnter()
@@ -196,13 +203,14 @@ function onEnter()
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
     theLayer.owner.onCharge = onCharge;
-    theLayer.theNode = cc.BuilderReader.load("sceneJewel.ccbi", theLayer.owner);
+    theLayer.owner.onMonthCard = onMonthCard;
     theLayer.theNode = ui.loadUI(theLayer, "sceneJewel.ccbi", {
        nodeTreasure: {
            ui: "UITreasure",
            id: "treasureDisplay"
        }
     });
+
     theLayer.addChild(theLayer.theNode);
 
     theMode = MODE_NORMAL;
@@ -214,6 +222,22 @@ function onEnter()
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     updateVIP();
+
+    //test
+    debug("engine.session.monthCardDay = "+engine.session.monthCardDay);
+    this.owner.nodePurMC.setVisible(false);
+    this.owner.nodeHasMC.setVisible(false);
+
+    if (engine.session.monthCardDay <= 0){
+        purchaseMonthCard();
+    }
+    else{
+        hasMonthCard();
+    }
+//    var mcdText = "left" + engine.session.monthCardDay + "days.";
+//    var mcDay = cc.LabelBMFont.create(mcdText, "font26.fnt");
+//    mcDay.setPosition(cc.p(340,780));
+//    theLayer.addChild(mcDay);
 
     interval = 0;
     theLayer.update = update;
@@ -242,6 +266,22 @@ function onCharge(sender)
 
     //保持连接
     engine.event.sendNTFEvent(103, {sign:-1});
+}
+
+function purchaseMonthCard(){
+    theLayer.owner.nodePurMC.setVisible(true);
+    theLayer.owner.nodeHasMC.setVisible(false);
+}
+
+function hasMonthCard(){
+    theLayer.owner.nodePurMC.setVisible(false);
+    theLayer.owner.nodeHasMC.setVisible(true);
+    theLayer.owner.labLv.setString(engine.session.monthCardDay);
+}
+
+function onMonthCard(sender)
+{
+    loadModule("sceneMonthCard.js").show();
 }
 
 function node(func, obj)

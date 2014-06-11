@@ -228,6 +228,7 @@ var Request_TutorialStageComplete = 27;
 var Request_ReportState = 28;
 var Request_SubmitDailyQuest = 29;
 var Request_QueryLeaderboard = 30;
+var Request_SubmitBounty = 31;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
@@ -313,6 +314,7 @@ var Message_ResetDungeon = 1029;
 var Message_UpdateDailyQuest = 1030;
 var Message_UpdateBounty = 1031;
 var Message_UpdateEnergy = 1032;
+var Message_GetMonthCard = 1033;
 
 var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;

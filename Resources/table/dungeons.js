@@ -25172,10 +25172,6 @@ exports.data = [
                     "weight":2
                 },
                 {
-                    "id":57,
-                    "weight":2
-                },
-                {
                     "id":58,
                     "weight":2
                 },
@@ -25233,10 +25229,6 @@ exports.data = [
                 },
                 {
                     "id":89,
-                    "weight":2
-                },
-                {
-                    "id":90,
                     "weight":2
                 },
                 {
@@ -25411,10 +25403,6 @@ exports.data = [
                     "weight":2
                 },
                 {
-                    "id":57,
-                    "weight":2
-                },
-                {
                     "id":58,
                     "weight":2
                 },
@@ -25472,10 +25460,6 @@ exports.data = [
                 },
                 {
                     "id":89,
-                    "weight":2
-                },
-                {
-                    "id":90,
                     "weight":2
                 },
                 {
@@ -25783,10 +25767,6 @@ exports.data = [
                 },
                 {
                     "id":11,
-                    "weight":2
-                },
-                {
-                    "id":12,
                     "weight":2
                 },
                 {

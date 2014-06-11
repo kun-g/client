@@ -50,5 +50,11 @@
 		<key>title</key>
 		<string>648元宝石大礼包</string>
 	</dict>
+	<dict>
+		<key>price</key>
+		<string>25</string>
+		<key>title</key>
+		<string>月卡</string>
+	</dict>
 </array>
 </plist>
