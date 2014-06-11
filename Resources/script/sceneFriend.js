@@ -264,10 +264,10 @@ function loadFriend(){
 
 function update(delta){
     if( this.LOAD_FLAG === true ){
-        var offY = theLayer.ui.scroller.getContentOffset().y + 959 + 2250;
+        var offY = theLayer.ui.scroller.getContentOffset().y - theLayer.ui.scroller.minContainerOffset().y;
         var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
         var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
-        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInframe:"+isInFrame);
+//        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInframe:"+isInFrame);
         if( this.LOAD_INDEX < engine.user.friend.Friends.length ){
             if( isInFrame ){
                 var friend = engine.user.friend.Friends[this.LOAD_INDEX];

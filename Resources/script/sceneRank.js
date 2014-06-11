@@ -74,7 +74,6 @@ function createRoleBar(role, rank){
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
     layer.owner.labPower.setString(role.scr);
-    debug("scr:"+role.scr);
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
 
@@ -149,15 +148,16 @@ function loadPage(list){
     theListLayer.setContentSize(size);
     var off = theLayer.ui.scroller.getContentOffset();
     off.y = theLayer.ui.scroller.minContainerOffset().y;
+//    debug("minContainerOffset.Y:"+off.y);
     theLayer.ui.scroller.setContentOffset(off);
 }
 
 function update(delta){
     if( this.LOAD_FLAG === true ){
-        var offY = theLayer.ui.scroller.getContentOffset().y + 959; //todo?
+        var offY = theLayer.ui.scroller.getContentOffset().y - theLayer.ui.scroller.minContainerOffset().y; //todo?
         var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
         var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
-        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInFrame:"+isInFrame);
+//        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInFrame:"+isInFrame);
         if( this.LOAD_INDEX < theRankList.length ){
             if(isInFrame){
                 var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
@@ -238,18 +238,20 @@ function onNextPage(sender){
         PopMsg.pop("已经到最后一页了", POPTYPE_ERROR);
     }
     else{
-        var page = thePage+1;
-        if( page < 0 ) page = 0;
-        if( page > PAGE_COUNT-1 ) page = PAGE_COUNT-1;
+        if( theRankList.length == 10){
+            var page = thePage+1;
+            if( page < 0 ) page = 0;
+            if( page > PAGE_COUNT-1 ) page = PAGE_COUNT-1;
 
-        fillPage(page);
-        updatePageNumber(page);
+            fillPage(page);
+            updatePageNumber(page);
+        }
     }
 }
 
 function onLastPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( thePage != PAGE_COUNT-1 ){
+    if( thePage != PAGE_COUNT-1 && theRankList.length == 10){
         fillPage(PAGE_COUNT-1);
         updatePageNumber(PAGE_COUNT-1);
     }
