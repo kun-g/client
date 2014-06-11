@@ -14,6 +14,9 @@
 		5308A0CC1883C162008CEC46 /* Feedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0CA1883C162008CEC46 /* Feedback.cpp */; };
 		531F129D18895859004E036F /* UAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 531F129B18895859004E036F /* UAC.cpp */; };
 		531F129F18895FA8004E036F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531F129E18895FA8004E036F /* Security.framework */; };
+		532F3A57194849D300FEBFB8 /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 532F3A54194849D300FEBFB8 /* blackbox */; };
+		532F3A58194849D300FEBFB8 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 532F3A55194849D300FEBFB8 /* script */; };
+		532F3A59194849D300FEBFB8 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 532F3A56194849D300FEBFB8 /* table */; };
 		533FB3CB18840010008925DC /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 533FB3C918840010008925DC /* GameCenter.mm */; };
 		533FB3CD18841201008925DC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533FB3CC18841201008925DC /* GameKit.framework */; };
 		534267E318891A20005C4DE2 /* IUAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534267E118891A20005C4DE2 /* IUAC.cpp */; };
@@ -380,9 +383,6 @@
 		53C284D418FFBE2600725B8F /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53C284D318FFBE2600725B8F /* static.json */; };
 		53C284D618FFC13E00725B8F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C284D518FFC13D00725B8F /* CoreTelephony.framework */; };
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
-		53FA6E031944A40200616FC4 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53FA6E001944A40200616FC4 /* dblackbox */; };
-		53FA6E041944A40200616FC4 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 53FA6E011944A40200616FC4 /* dscript */; };
-		53FA6E051944A40200616FC4 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 53FA6E021944A40200616FC4 /* dtable */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -427,6 +427,9 @@
 		531F129B18895859004E036F /* UAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UAC.cpp; sourceTree = "<group>"; };
 		531F129C18895859004E036F /* UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAC.h; sourceTree = "<group>"; };
 		531F129E18895FA8004E036F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		532F3A54194849D300FEBFB8 /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
+		532F3A55194849D300FEBFB8 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
+		532F3A56194849D300FEBFB8 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		533FB3C918840010008925DC /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
 		533FB3CA18840010008925DC /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		533FB3CC18841201008925DC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -1254,9 +1257,6 @@
 		53C284D518FFC13D00725B8F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53D8B4B11888047E00F2804E /* aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes.cpp; sourceTree = "<group>"; };
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
-		53FA6E001944A40200616FC4 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
-		53FA6E011944A40200616FC4 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
-		53FA6E021944A40200616FC4 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2883,9 +2883,9 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53FA6E001944A40200616FC4 /* dblackbox */,
-				53FA6E011944A40200616FC4 /* dscript */,
-				53FA6E021944A40200616FC4 /* dtable */,
+				532F3A54194849D300FEBFB8 /* blackbox */,
+				532F3A55194849D300FEBFB8 /* script */,
+				532F3A56194849D300FEBFB8 /* table */,
 				5371A1EE192CAFC40033411F /* misc */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
@@ -3023,17 +3023,16 @@
 				53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */,
 				53A315B218FD3191001CE8B0 /* Default~ipad.png in Resources */,
 				53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */,
+				532F3A58194849D300FEBFB8 /* script in Resources */,
 				53A30DBB18FD3121001CE8B0 /* jsb.jsc in Resources */,
 				53A30DC118FD3121001CE8B0 /* jsb_cocosbuilder.jsc in Resources */,
 				5371A1EF192CAFC40033411F /* misc in Resources */,
 				53A315BD18FD3191001CE8B0 /* Info.plist in Resources */,
 				53A315B918FD3191001CE8B0 /* Icon@2x.png in Resources */,
-				53FA6E051944A40200616FC4 /* dtable in Resources */,
 				53A315B718FD3191001CE8B0 /* Icon-Small@2x.png in Resources */,
 				53A315BC18FD3191001CE8B0 /* Icon~iphone.png in Resources */,
 				53A3159A18FD317E001CE8B0 /* spritesheets in Resources */,
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
-				53FA6E041944A40200616FC4 /* dscript in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
@@ -3041,8 +3040,8 @@
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,
 				53A3048018FD30EB001CE8B0 /* README.txt in Resources */,
-				53FA6E031944A40200616FC4 /* dblackbox in Resources */,
 				53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */,
+				532F3A57194849D300FEBFB8 /* blackbox in Resources */,
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,
 				53A30DBC18FD3121001CE8B0 /* jsb_chipmunk.jsc in Resources */,
@@ -3054,6 +3053,7 @@
 				53A30DC018FD3121001CE8B0 /* jsb_cocos2d_extension.jsc in Resources */,
 				53A305B618FD30EC001CE8B0 /* js.msg in Resources */,
 				53A3159418FD317E001CE8B0 /* font in Resources */,
+				532F3A59194849D300FEBFB8 /* table in Resources */,
 				53A315BA18FD3191001CE8B0 /* Icon@2x~ipad.png in Resources */,
 				53A315B318FD3191001CE8B0 /* Default~iphone.png in Resources */,
 				53A304C518FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
