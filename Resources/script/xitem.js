@@ -797,7 +797,7 @@ UIItem.make = function(thiz, args)
 //--- ItemPreviewArea
 
 var ITEMPREVIEW_WIDTH = 130;
-var ITEMPREVIEW_HEIGHT = 135;
+var ITEMPREVIEW_HEIGHT = 155;
 
 function queryPrize(pit){
     var ret = {
@@ -806,6 +806,7 @@ function queryPrize(pit){
     };
     var strIcon,strLabel;
     var spQuality = null;
+    var stack = 1;
     switch(pit.type){
         case PRIZETYPE_ITEM:{//item
             var itemClass = libTable.queryTable(TABLE_ITEM, pit.value);
@@ -836,7 +837,7 @@ function queryPrize(pit){
                 strLabel = "???";
             }
             if( pit.count > 1 ){
-                strLabel += "x"+pit.count;
+                stack = pit.count;
             }
             if( itemClass.quality != null){
                 var fileName = "itemquality"+(itemClass.quality+1)+".png";
@@ -848,7 +849,7 @@ function queryPrize(pit){
         case PRIZETYPE_GOLD:{//gold
             strIcon = "mission-coin.png";
             if( pit.count != null ){
-                strLabel = pit.count+"金币";
+                strLabel = pit.count;
             }
             else{
                 strLabel = "金币";
@@ -857,7 +858,7 @@ function queryPrize(pit){
         case PRIZETYPE_DIAMOND:{//diamond
             strIcon = "mission-jewel.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"宝石";
+                strLabel = pit.count;
             }
             else{
                 strLabel = "宝石";
@@ -866,7 +867,7 @@ function queryPrize(pit){
         case PRIZETYPE_EXP:{//exp
             strIcon = "mission-xp.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"经验";
+                strLabel = pit.count;
             }
             else{
                 strLabel = "经验";
@@ -875,7 +876,7 @@ function queryPrize(pit){
         case PRIZETYPE_WXP:{//wxp
             strIcon = "mission-sld.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"熟练";
+                strLabel = pit.count;
             }
             else{
                 strLabel = "熟练";
@@ -887,6 +888,17 @@ function queryPrize(pit){
     ret.icon = cc.Sprite.create(strIcon);
     if( spQuality != null ){
         ret.icon.addChild(spQuality);
+    }
+    if( stack > 1 ){
+        var dot = cc.Sprite.create("cardnummask.png");
+        dot.setAnchorPoint(cc.p(1, 0));
+        dot.setPosition(cc.p(ret.icon.getContentSize().width/2-5, -ret.icon.getContentSize().height/2+5));
+        ret.icon.addChild(dot, 30);
+
+        var num = cc.LabelBMFont.create(stack, "font1.fnt");
+        num.setAnchorPoint(cc.p(0.5, 0.5));
+        num.setPosition(cc.p(32-5, -32+5));
+        ret.icon.addChild(num, 40);
     }
     return ret;
 }
@@ -927,7 +939,7 @@ var ItemPreview = cc.Layer.extend({
             var node = cc.Node.create();
             node.PV = pv;
             node.icon = pit.icon;
-            if (pit.label.length >= 5){
+            if (pit.label.length > 5){
                 pit.label = pit.label.substr(0,4);
                 pit.label += "...";
             }
@@ -939,9 +951,9 @@ var ItemPreview = cc.Layer.extend({
                 node.label.setColor(this.COLOR);
             }
             //place the node
-            node.icon.setPosition(cc.p(65, 115));
+            node.icon.setPosition(cc.p(ITEMPREVIEW_WIDTH/2, ITEMPREVIEW_HEIGHT-55));
             node.addChild(node.icon);
-            node.label.setPosition(cc.p(65, 32));
+            node.label.setPosition(cc.p(ITEMPREVIEW_WIDTH/2, (ITEMPREVIEW_HEIGHT-110)/2));
 
             node.addChild(node.label);
             this.addChild(node);
