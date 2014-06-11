@@ -466,8 +466,7 @@ function refreshDailyQuest(){
             var size = text.getContentSize();
 
             var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimensionPrize);
-            debug("dailyQuest = "+JSON.stringify(dailyQuest));
-            debug("prize = "+JSON.stringify(prize));
+
             prize.setPosition(cc.p(0, 0));
             var psz = prize.getContentSize();
             prize.setPosition(cc.p(0, 0));
