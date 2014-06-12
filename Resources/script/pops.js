@@ -269,6 +269,8 @@ exports.popInvalidDungeon = popInvalidDungeon;
 var theMonthLayer = null;
 
 function popMonthCard(){
+    theMonthLayer = engine.ui.newLayer();
+
     var filename = "ui-questdone2.ccbi";
     var submit = {
         ui: "UIButtonL",
@@ -280,12 +282,14 @@ function popMonthCard(){
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
             theMonthLayer.node.runAction(actionPopOut(function(){
                 engine.ui.removeLayer(theMonthLayer);
+                theMonthLayer = null;
+
+                libUIKit.waitRPC(Request_SubmitBounty, {bid: -1}, function(rsp){
+                    if( rsp.RET != RET_OK ){
+                        libUIKit.showErrorMessage(rsp);
+                    }
+                });
             }));
-            libUIKit.waitRPC(Request_SubmitBounty, {bid: -1}, function(rsp){
-                if( rsp.RET != RET_OK ){
-                    libUIKit.showErrorMessage(rsp);
-                }
-            });
         },
         type: BUTTONTYPE_DEFAULT
     };
@@ -294,7 +298,6 @@ function popMonthCard(){
         count: 80
     }];
 
-    theMonthLayer = engine.ui.newLayer();
     var mask = blackMask();
     theMonthLayer.addChild(mask);
     theMonthLayer.owner = {};
@@ -319,7 +322,8 @@ function popMonthCard(){
 }
 
 function invokeMonthCardPop(){
-    if( engine.session.MonthCardAvaiable ){
+    debug("invokeMonthCardPop");
+    if( engine.session.MonthCardAvaiable && theMonthLayer == null ){
         popMonthCard();
         return true;
     }
