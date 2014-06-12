@@ -12,7 +12,8 @@ var ItemScheme = {
     stc : "StackCount",
     sta : "Status",
     xp : "Xp",
-    eh : "Enhance"
+    eh : "Enhance",
+    ts : "TimeStamp"
 };
 
 function Item(source)
@@ -23,6 +24,7 @@ function Item(source)
     this.Status = 0;
     this.Xp = 0;
     this.Enhance = [{id:null, lv:-1}];
+    this.TimeStamp = null;
 
     if( source != null )
     {
@@ -518,7 +520,6 @@ var UIItem = cc.Node.extend({
         if( this.ITEM != null )
         {
             var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
-
             if( ItemClass.label == null ){
                 var sp = cc.Sprite.create(this.DEF);
                 this.addChild(sp);
