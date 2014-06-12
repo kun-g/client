@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>rfasion-helmetsg2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{74,58}}</string>
+                <key>offset</key>
+                <string>{-6,16}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{12,10},{74,58}}</string>
+                <key>sourceSize</key>
+                <string>{110,110}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>rfasion-helmetsg2.png</string>
+            <key>size</key>
+            <string>{64,128}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ce7f0ea7cd22f2c5cfb1c61d741dc71e$</string>
+            <key>textureFileName</key>
+            <string>rfasion-helmetsg2.png</string>
+        </dict>
+    </dict>
+</plist>
