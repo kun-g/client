@@ -518,7 +518,6 @@ var UIItem = cc.Node.extend({
         if( this.ITEM != null )
         {
             var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
-
             if( ItemClass.label == null ){
                 var sp = cc.Sprite.create(this.DEF);
                 this.addChild(sp);
