@@ -27613,6 +27613,10 @@ exports.data = [
             {
                 "part": "helmet",
                 "file": "rfasion-helmetsg1.ccbi"
+            },
+            {
+                "part": "helmet2",
+                "file": "rfasion-helmetsg1-2.ccbi"
             }
         ],
         "basic_properties": {
@@ -27638,6 +27642,10 @@ exports.data = [
             {
                 "part": "helmet",
                 "file": "rfasion-helmetsg2.ccbi"
+            },
+            {
+                "part": "helmet2",
+                "file": "rfasion-helmetsg2-2.ccbi"
             }
         ],
         "basic_properties": {
@@ -27663,6 +27671,10 @@ exports.data = [
             {
                 "part": "helmet",
                 "file": "rfasion-helmetsg3.ccbi"
+            },
+            {
+                "part": "helmet2",
+                "file": "rfasion-helmetsg3-2.ccbi"
             }
         ],
         "basic_properties": {

@@ -4,16 +4,29 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>rfasion-helmetsg1-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{30,2},{22,44}}</string>
+                <key>offset</key>
+                <string>{-31,12}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{13,21},{22,44}}</string>
+                <key>sourceSize</key>
+                <string>{110,110}</string>
+            </dict>
             <key>rfasion-helmetsg1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{70,46}}</string>
+                <string>{{2,2},{26,44}}</string>
                 <key>offset</key>
-                <string>{-8,13}</string>
+                <string>{14,13}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{12,19},{70,46}}</string>
+                <string>{{56,20},{26,44}}</string>
                 <key>sourceSize</key>
                 <string>{110,110}</string>
             </dict>
@@ -25,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>rfasion-helmetsg1.png</string>
             <key>size</key>
-            <string>{64,128}</string>
+            <string>{64,64}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d3d2f5047c090c7b07661044fbb3f0c8$</string>
+            <string>$TexturePacker:SmartUpdate:57343e4a7a3071a97467eeaf96cc7903$</string>
             <key>textureFileName</key>
             <string>rfasion-helmetsg1.png</string>
         </dict>

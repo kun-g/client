@@ -12,7 +12,8 @@ var ItemScheme = {
     stc : "StackCount",
     sta : "Status",
     xp : "Xp",
-    eh : "Enhance"
+    eh : "Enhance",
+    ts : "TimeStamp"
 };
 
 function Item(source)
@@ -23,6 +24,7 @@ function Item(source)
     this.Status = 0;
     this.Xp = 0;
     this.Enhance = [{id:null, lv:-1}];
+    this.TimeStamp = null;
 
     if( source != null )
     {

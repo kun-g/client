@@ -215,6 +215,17 @@ function contentEquip(){
         prog.setProgress(xpNow/xpTotal);
         owner.nodeProgress.addChild(prog.node);
     }
+
+    //expiry date
+    if( theItemClass.expiration != null && theItem.TimeStamp != null){
+        var expiration = theItemClass.expiration.day;
+        var purchaseTime = theItem.TimeStamp;
+        var currentTime = engine.game.getServerTime();
+        var leftDays = Math.floor( expiration - (currentTime - purchaseTime)/(1000*60*60*24) );
+        owner.labLeftdays.setString( (leftDays < 1)? "还剩不到1天":("还剩"+leftDays+"天"));
+    }else{
+        owner.labLeftdays.setString("");
+    }
 }
 
 
@@ -412,6 +423,7 @@ function onEnter(){
     //assign values
     this.ui.icon.setItem(theItem,theRole);
     this.owner.labelName.setString(theItemClass.label);
+
     //sell button
     if( theItemClass.sellprice != null && theOperate ){
         this.owner.btnSell.setVisible(true);
