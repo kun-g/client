@@ -271,6 +271,7 @@ function onDissolve(sender){
 function onUse(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if (theItemClass.category == 0 && theItemClass.subcategory == 3){
+        engine.ui.popLayer();
         loadModule("sceneExpBook.js").show(theItemClass);
     }
     else{

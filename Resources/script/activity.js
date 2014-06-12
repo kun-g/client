@@ -209,15 +209,6 @@ function setPrizeSize(group,day,curDays)
         prize.icon.setPosition(pos);
         prize.icon.setScale(theScal);
         group.theGridLayer.addChild(prize.icon);
-        //set item count
-        var labelCount = "x";
-        if (prizeData.prize[0].count > 1){
-            labelCount += prizeData.prize[0].count;
-            var prizeLabel = cc.LabelBMFont.create(labelCount, "font26.fnt");
-            //prizeLabel.setAnchorPoint(cc.p(0.5, 1));
-            prizeLabel.setPosition(cc.p(pos.x,pos.y - GRID_SIZE/2));
-            group.theGridLayer.addChild(prizeLabel);
-        }
         //set get flag
         if (k < day){
             var iconGet = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[0]));

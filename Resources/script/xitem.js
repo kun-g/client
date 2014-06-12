@@ -892,12 +892,12 @@ function queryPrize(pit){
     if( stack > 1 ){
         var dot = cc.Sprite.create("cardnummask.png");
         dot.setAnchorPoint(cc.p(1, 0));
-        dot.setPosition(cc.p(ret.icon.getContentSize().width/2-5, -ret.icon.getContentSize().height/2+5));
+        dot.setPosition(cc.p(ret.icon.getContentSize().width, 0));
         ret.icon.addChild(dot, 30);
 
         var num = cc.LabelBMFont.create(stack, "font1.fnt");
         num.setAnchorPoint(cc.p(0.5, 0.5));
-        num.setPosition(cc.p(32-5, -32+5));
+        num.setPosition(cc.p(ret.icon.getContentSize().width-18, 18));
         ret.icon.addChild(num, 40);
     }
     return ret;

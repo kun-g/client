@@ -268,20 +268,82 @@ function onCharge(sender)
     engine.event.sendNTFEvent(103, {sign:-1});
 }
 
+//--- Month Card ---
+var theMonthCardLayer;
+
 function purchaseMonthCard(){
-    theLayer.owner.nodePurMC.setVisible(true);
-    theLayer.owner.nodeHasMC.setVisible(false);
+    theMonthCardLayer.owner.btnBack.setVisible(true);
+    theMonthCardLayer.owner.btnBack1.setVisible(false);
+    theMonthCardLayer.owner.btnPurchase.setVisible(true);
+    theMonthCardLayer.owner.nodeNoMC.setVisible(true);
+    theMonthCardLayer.owner.labLv.setVisible(false);
 }
 
 function hasMonthCard(){
-    theLayer.owner.nodePurMC.setVisible(false);
-    theLayer.owner.nodeHasMC.setVisible(true);
-    theLayer.owner.labLv.setString(engine.session.monthCardDay);
+    theMonthCardLayer.owner.btnBack.setVisible(false);
+    theMonthCardLayer.owner.btnBack1.setVisible(true);
+    theMonthCardLayer.owner.btnPurchase.setVisible(false);
+    theMonthCardLayer.owner.labLv.setVisible(true);
+    theMonthCardLayer.owner.labLv.setString(engine.session.monthCardDay);
+    theMonthCardLayer.owner.nodeNoMC.setVisible(false);
 }
 
 function onMonthCard(sender)
 {
-    loadModule("sceneMonthCard.js").show();
+    showMonthCard();
+}
+
+function onBackMonthCard(sender){
+    cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    theMonthCardLayer.node.runAction(actionPopOut(function(){
+        engine.ui.popLayer();
+    }, theMonthCardLayer));
+}
+
+function onPurchaseMonthCard(sender){
+    //向服务器发送购买月卡的消息
+    var actorName = engine.user.actor.Name;
+    var zoneId = engine.session.zoneId;
+    var billNo = genBillNo(8);
+    iap.makePayment(billNo, 8, 1, actorName, zoneId);
+    tdga.paymentRequest(billNo, payStr[0].str, payStr[0].cost, "CNY", payStr[0].dm, iap.getStoreName() );
+
+    //保持连接
+    engine.event.sendNTFEvent(103, {sign:-1});
+}
+
+function showMonthCard()
+{
+    theMonthCardLayer = engine.ui.newLayer();
+
+    var winSize = cc.Director.getInstance().getWinSize();
+
+    var mask = blackMask();
+    theMonthCardLayer.addChild(mask);
+
+    theMonthCardLayer.owner = {};
+    theMonthCardLayer.owner.onBack = onBackMonthCard;
+    theMonthCardLayer.owner.onPurchase = onPurchaseMonthCard;
+
+    theMonthCardLayer.node = libUIC.loadUI(theMonthCardLayer, "ui-yk.ccbi", {});
+    theMonthCardLayer.node.setPosition(cc.p(winSize.width / 2,winSize.height / 2));
+    theMonthCardLayer.addChild(theMonthCardLayer.node);
+
+    theMonthCardLayer.owner.btnBack.setVisible(false);
+    theMonthCardLayer.owner.btnBack1.setVisible(false);
+    theMonthCardLayer.owner.btnPurchase.setVisible(false);
+    theMonthCardLayer.owner.nodeNoMC.setVisible(false);
+
+    if (engine.session.monthCardDay <= 0){
+        purchaseMonthCard();
+    }
+    else{
+        hasMonthCard();
+    }
+
+    theMonthCardLayer.node.runAction(actionPopIn());
+
+    engine.ui.regMenu(theMonthCardLayer.owner.menuRoot);
 }
 
 function node(func, obj)
