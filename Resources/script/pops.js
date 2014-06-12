@@ -8,6 +8,7 @@ var libTable = loadModule("table.js");
 var libSkill = loadModule("skill.js");
 var libUIC = loadModule("UIComposer.js");
 var libUIKit = loadModule("uiKit.js");
+var libItem = loadModule("xitem.js");
 
 //--------- POP MANAGER 防止弹窗一起弹出来 ----------
 function PopMgr(){
@@ -265,25 +266,66 @@ function popInvalidDungeon(){
 exports.popInvalidDungeon = popInvalidDungeon;
 
 //--------------------------------------------------
+var theMonthLayer = null;
 
-function popMonthCard(theLayer){
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if (engine.session.monthCardToday >= 1 && engine.session.monthCardDay > 0){
-//        libUIKit.showAlert("月卡奖励，每日领取80宝石。");
-//        engine.session.monthCardToday = 0;
+function popMonthCard(){
+    var filename = "ui-questdone2.ccbi";
+    var submit = {
+        ui: "UIButtonL",
+        id: "btnSubmit",
+        menu: "menuRoot",
+        label: "buttontext-confirm.png",
+        func: function(sender){
+            engine.session.MonthCardAvaiable = false;
+            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+            theMonthLayer.node.runAction(actionPopOut(function(){
+                engine.ui.removeLayer(theMonthLayer);
+            }));
+            libUIKit.waitRPC(Request_SubmitBounty, {bid: -1}, function(rsp){
+                if( rsp.RET != RET_OK ){
+                    libUIKit.showErrorMessage(rsp);
+                }
+            });
+        },
+        type: BUTTONTYPE_DEFAULT
+    };
+    var pdata = [{
+        type:2,
+        count: 80
+    }];
 
-        libUIKit.showAlert("月卡奖励，每日领取80宝石。", function(){
-            libUIKit.waitRPC(Request_SubmitBounty, {bid: -1},
-                function(rsp){
-                    if( rsp.RET == RET_OK ){
-                        engine.session.monthCardToday = 0;
-                    }
-                    else{
-                        libUIKit.showErrorMessage(rsp);
-                    }
-                }, theLayer);
-        }, theLayer);
+    theMonthLayer = engine.ui.newLayer();
+    var mask = blackMask();
+    theMonthLayer.addChild(mask);
+    theMonthLayer.owner = {};
+    theMonthLayer.node = libUIC.loadUI(theMonthLayer, filename, {
+        nodeSubmit:submit
+    });
+
+    var winSize = cc.Director.getInstance().getWinSize();
+    theMonthLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    theMonthLayer.addChild(theMonthLayer.node);
+    engine.ui.regMenu(theMonthLayer.owner.menuRoot);
+
+    //set panel data
+    theMonthLayer.owner.labelTitle.setString("月卡奖励");
+    var prize = libItem.ItemPreview.create(pdata);
+    var size = prize.getContentSize();
+    prize.setPosition(cc.p(-size.width/2, -size.height/2));
+    theMonthLayer.owner.nodePrize.addChild(prize);
+
+    theMonthLayer.node.setScale(0);
+    theMonthLayer.node.runAction(actionPopIn());
+}
+
+function invokeMonthCardPop(){
+    if( engine.session.MonthCardAvaiable ){
+        popMonthCard();
+        return true;
+    }
+    else{
+        return false;
     }
 }
 
-exports.popMonthCard = popMonthCard;
+exports.invokeMonthCardPop = invokeMonthCardPop;

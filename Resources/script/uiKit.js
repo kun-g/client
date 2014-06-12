@@ -107,6 +107,7 @@ function pushLoading(){
     var rotate = cc.RotateBy.create(1, 120);
     var repeat = cc.RepeatForever.create(rotate);
     sp.runAction(repeat);
+    return layer;
 }
 exports.pushLoading = pushLoading;
 

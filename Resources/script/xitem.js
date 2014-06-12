@@ -849,7 +849,7 @@ function queryPrize(pit){
         case PRIZETYPE_GOLD:{//gold
             strIcon = "mission-coin.png";
             if( pit.count != null ){
-                strLabel = pit.count;
+                strLabel = pit.count+"金";
             }
             else{
                 strLabel = "金币";
@@ -858,7 +858,7 @@ function queryPrize(pit){
         case PRIZETYPE_DIAMOND:{//diamond
             strIcon = "mission-jewel.png";
             if ( pit.count != null ){
-                strLabel = pit.count;
+                strLabel = pit.count+"钻";
             }
             else{
                 strLabel = "宝石";

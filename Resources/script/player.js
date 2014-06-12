@@ -14,6 +14,7 @@ function Player()
     this.Tutorial = 0;
     this.RMB = 0;
     this.AID = -1;
+    this.MonthCardCount = -1;
     this.Flags = {};
 }
 

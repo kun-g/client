@@ -372,12 +372,11 @@ function onEvent(event)
             if( event.arg.aid != null ){
                 engine.user.player.AID = event.arg.aid;
             }
-
             if (event.arg.mcc != null){
-                engine.session.monthCardDay = event.arg.mcc;
+                engine.user.player.MonthCardCount = event.arg.mcc;
             }
             else{
-                engine.session.monthCardDay = 0;
+                engine.user.player.MonthCardCount = 0;
             }
             engine.event.processNotification(Message_UpdateVIPLevel);
             return true;
@@ -406,19 +405,16 @@ function onEvent(event)
         {
             if (event.arg.bid >= 0){
                 engine.session.dataBounty[event.arg.bid] = event.arg;
-
-                var event = {};
-                event.NTF = Message_UpdateBounty;
-                engine.event.processNotification(event);
             }
             else if (event.arg.bid == -1){
+                engine.session.MonthCardAvaiable = false;
                 if ( event.arg.sta == 1){
-                    engine.session.monthCardToday = event.arg.cnt;
-                }
-                else{
-                    engine.session.monthCardToday = 0;
+                    engine.session.MonthCardAvaiable = true;
                 }
             }
+            var event = {};
+            event.NTF = Message_UpdateBounty;
+            engine.event.processNotification(event);
             return true;
         }
     }

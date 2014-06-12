@@ -103,6 +103,18 @@ function onEvent(event)
         case Message_UpdateTreasure:
             theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
             return false;
+        case Message_UpdateBounty:{
+            if (engine.user.player.MonthCardCount <= 0){
+                theLayer.owner.nodePurMC.setVisible(true);
+                theLayer.owner.nodeHasMC.setVisible(false);
+            }
+            else{
+                theLayer.owner.nodePurMC.setVisible(false);
+                theLayer.owner.nodeHasMC.setVisible(true);
+                theLayer.owner.labLv.setString(engine.user.player.MonthCardCount);
+            }
+        }
+            return false;
     }
     return false;
 }
@@ -181,18 +193,6 @@ function onUIAnimationCompleted(name){
     }
 }
 
-function onActivate(){
-    engine.pop.resetAllFlags();
-    engine.pop.setFlag("tutorial");
-    engine.pop.invokePop("charge");
-    if (engine.session.monthCardDay <= 0){
-        purchaseMonthCard();
-    }
-    else{
-        hasMonthCard();
-    }
-}
-
 function onEnter()
 {
     theLayer = this;
@@ -223,27 +223,22 @@ function onEnter()
 
     updateVIP();
 
-    //test
-    debug("engine.session.monthCardDay = "+engine.session.monthCardDay);
     this.owner.nodePurMC.setVisible(false);
     this.owner.nodeHasMC.setVisible(false);
 
-    if (engine.session.monthCardDay <= 0){
-        purchaseMonthCard();
+    if (engine.user.player.MonthCardCount <= 0){
+        theLayer.owner.nodePurMC.setVisible(true);
+        theLayer.owner.nodeHasMC.setVisible(false);
     }
     else{
-        hasMonthCard();
+        theLayer.owner.nodePurMC.setVisible(false);
+        theLayer.owner.nodeHasMC.setVisible(true);
+        theLayer.owner.labLv.setString(engine.user.player.MonthCardCount);
     }
-//    var mcdText = "left" + engine.session.monthCardDay + "days.";
-//    var mcDay = cc.LabelBMFont.create(mcdText, "font26.fnt");
-//    mcDay.setPosition(cc.p(340,780));
-//    theLayer.addChild(mcDay);
 
     interval = 0;
     theLayer.update = update;
     theLayer.scheduleUpdate();
-    
-    
 }
 
 function onClose(sender)
@@ -284,7 +279,7 @@ function hasMonthCard(){
     theMonthCardLayer.owner.btnBack1.setVisible(true);
     theMonthCardLayer.owner.btnPurchase.setVisible(false);
     theMonthCardLayer.owner.labLv.setVisible(true);
-    theMonthCardLayer.owner.labLv.setString(engine.session.monthCardDay);
+    theMonthCardLayer.owner.labLv.setString(engine.user.player.MonthCardCount);
     theMonthCardLayer.owner.nodeNoMC.setVisible(false);
 }
 
@@ -310,6 +305,13 @@ function onPurchaseMonthCard(sender){
 
     //保持连接
     engine.event.sendNTFEvent(103, {sign:-1});
+
+    theMonthCardLayer.node.runAction(actionPopOut(function(){
+        engine.ui.removeLayer(theMonthCardLayer);
+        theMonthCardLayer = null;
+
+        theLoad = uikit.pushLoading();
+    }, theMonthCardLayer));
 }
 
 function showMonthCard()
@@ -325,7 +327,7 @@ function showMonthCard()
     theMonthCardLayer.owner.onBack = onBackMonthCard;
     theMonthCardLayer.owner.onPurchase = onPurchaseMonthCard;
 
-    theMonthCardLayer.node = libUIC.loadUI(theMonthCardLayer, "ui-yk.ccbi", {});
+    theMonthCardLayer.node = ui.loadUI(theMonthCardLayer, "ui-yk.ccbi", {});
     theMonthCardLayer.node.setPosition(cc.p(winSize.width / 2,winSize.height / 2));
     theMonthCardLayer.addChild(theMonthCardLayer.node);
 
@@ -334,7 +336,7 @@ function showMonthCard()
     theMonthCardLayer.owner.btnPurchase.setVisible(false);
     theMonthCardLayer.owner.nodeNoMC.setVisible(false);
 
-    if (engine.session.monthCardDay <= 0){
+    if (engine.user.player.MonthCardCount <= 0){
         purchaseMonthCard();
     }
     else{
@@ -353,8 +355,7 @@ function node(func, obj)
 
     return engine.ui.newLayer({
         onEnter: onEnter,
-        onNotify: onEvent,
-        onActivate: onActivate
+        onNotify: onEvent
     });
 }
 

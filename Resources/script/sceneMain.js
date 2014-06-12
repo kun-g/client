@@ -216,16 +216,10 @@ function onExit()
 }
 
 function onActivate(){
-    //schedule pop
     engine.pop.setAllAndInvoke("main");
     if( theMode == MODE_CLOSE ){
         startOpenAnimation();
     }
-//    else{
-//        engine.pop.resetAllFlags();
-//        engine.pop.setFlag("tutorial");
-//        engine.pop.invokePop("activity");
-//    }
 }
 
 function onDeactivate(){
@@ -332,25 +326,6 @@ function updateActivityBadge(){
         notifyActivity.setVisible(false);
     }
     activityBadgeCache = count;
-}
-
-function getMonthCard(){
-    if (engine.session.monthCardToday >= 1 && engine.session.monthCardDay > 0){
-//        libUIKit.showAlert("月卡奖励，每日领取80宝石。");
-//        engine.session.monthCardToday = 0;
-
-//        libUIKit.showAlert("月卡奖励，每日领取80宝石。", function(){
-//            libUIKit.waitRPC(Request_SubmitBounty, {bid: -1},
-//                function(rsp){
-//                    if( rsp.RET == RET_OK ){
-//                        engine.session.monthCardToday = 0;
-//                    }
-//                    else{
-//                        libUIKit.showErrorMessage(rsp);
-//                    }
-//                }, theLayer);
-//        }, theLayer);
-    }
 }
 
 function update(delta)

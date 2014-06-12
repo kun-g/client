@@ -66,8 +66,7 @@ Game.prototype.init = function()
     engine.pop.registerPop("quest", loadModule("questInfo.js").checkQuestPop);
     engine.pop.registerPop("activity", loadModule("activity.js").invokeActivity);
     engine.pop.registerPop("tutorial", loadModule("tutorialx.js").activateTutorial);
-    engine.pop.registerPop("monthcard", loadModule("pops.js").popMonthCard);
-    //popMonthCard
+    engine.pop.registerPop("monthcard", loadModule("pops.js").invokeMonthCardPop);
 
     //read game tables
     var table = loadModule("table.js");
