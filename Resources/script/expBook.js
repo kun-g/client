@@ -27,6 +27,9 @@ var theRes = null;
 var argItem = [EquipSlot_MainHand,EquipSlot_SecondHand,EquipSlot_Chest,EquipSlot_Legs,EquipSlot_Finger,EquipSlot_Neck];
 var effectSj = "effect-forgesj.ccbi";
 
+var btnItemList = ["btnItem1","btnItem2","btnItem3","btnItem4","btnItem5","btnItem6"];
+var equipList = ["equip1","equip2","equip3","equip4","equip5","equip6"];
+
 function onBack(){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
     if (theWXPSound >= 0){
@@ -38,15 +41,17 @@ function onBack(){
 
 }
 
-function onItem1(){
-    theLayer.owner.btnItem1.setEnabled(false);
+function onItem(sender){
+    var index = sender.getTag();
+    index--;
+
+    theLayer.owner[btnItemList[index]].setEnabled(false);
     initExpAnim();
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var itemequip = theLayer.ui["equip1"].getItem();
+    var itemequip = theLayer.ui[equipList[index]].getItem();
 
     var countk = 0;
     var inventoryData = engine.user.inventory.Items;
-    //debug("inventoryData = " + JSON.stringify(inventoryData));
     for(var k in inventoryData){
         var item = inventoryData[k];
         if( item.ClassId == theItem.classId ){
@@ -54,15 +59,19 @@ function onItem1(){
             countk++;
         }
     }
-    //debug("ordinary:itemarry = " + JSON.stringify(itemarry));
+    //不存在书则退出
+    if (countk == 0){
+        onBack();
+        return;
+    }
+
     seletMin();
-    //debug("after seletMin:itemarry = " + JSON.stringify(itemarry));
     if (itemarry[0] != undefined &&
         itemarry[0] != null){
         //检查装备能否升级
-        if (!bookUseFlag(EquipSlot_MainHand)){
-            theLayer.owner.btnItem1.setEnabled(true);
-            return false;
+        if (!bookUseFlag(argItem[index])){
+            theLayer.owner[btnItemList[index]].setEnabled(true);
+            return;
         }
 
         libUIKit.waitRPC(Request_InventoryUseItem, {
@@ -72,8 +81,8 @@ function onItem1(){
         }, function(rsp){
             if( rsp.RET == RET_OK ){
                 animFlag = true;
-                animItem = 1;
-                itemPart = EquipSlot_MainHand;
+                animItem = index + 1;
+                itemPart = argItem[index];
                 var item = engine.user.actor.queryArmor(itemPart,true);
                 if (item != null)
                     currExp = item.Xp;
@@ -83,321 +92,17 @@ function onItem1(){
                 if (rsp.RES != null){
                     theRes = rsp.RES;
                     theBtnId = 0;
-                    //initOneProgress(0);
                 }
-                libEffect.attachEffectCCBI(theLayer.ui["equip1"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
+                libEffect.attachEffectCCBI(theLayer.ui[equipList[index]],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
             }
             else{
                 animFlag = false;
                 currExp = 0;
                 libUIKit.showErrorMessage(rsp);
             }
-            theLayer.owner.btnItem1.setEnabled(true);
+            theLayer.owner[btnItemList[index]].setEnabled(true);
         }, theLayer);
     }
-}
-
-function onItem2(){
-    theLayer.owner.btnItem2.setEnabled(false);
-    initExpAnim();
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var itemequip = theLayer.ui["equip2"].getItem();//adapt
-
-    var countk = 0;
-    var inventoryData = engine.user.inventory.Items;
-    //debug("inventoryData = " + JSON.stringify(inventoryData));
-    for(var k in inventoryData){
-        var item = inventoryData[k];
-        if( item.ClassId == theItem.classId ){
-            itemarry[countk] = item;
-            countk++;
-        }
-    }
-    //debug("ordinary:itemarry = " + JSON.stringify(itemarry));
-    seletMin();
-    //debug("after seletMin:itemarry = " + JSON.stringify(itemarry));
-    if (itemarry[0] != undefined &&
-        itemarry[0] != null){
-        //检查装备能否升级
-        if (!bookUseFlag(EquipSlot_SecondHand)){
-            theLayer.owner.btnItem2.setEnabled(true);
-            return false;
-        }
-
-        libUIKit.waitRPC(Request_InventoryUseItem, {
-            sid:itemarry[0].ServerId,
-            opn:ITMOP_USEEXPBOOK,
-            opd:itemequip.ServerId
-        }, function(rsp){
-            if( rsp.RET == RET_OK ){
-                animFlag = true;
-                animItem = 2;//adapt
-                itemPart = EquipSlot_SecondHand;//adapt
-                var item = engine.user.actor.queryArmor(itemPart,true);
-                if (item != null)
-                    currExp = item.Xp;
-                if (theWXPSound < 0) {
-                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
-                }
-                if (rsp.RES != null){
-                    theRes = rsp.RES;
-                    theBtnId = 1;
-                    //initOneProgress(1);
-                }
-                libEffect.attachEffectCCBI(theLayer.ui["equip2"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
-            }
-            else{
-                animFlag = false;
-                currExp = 0;
-                libUIKit.showErrorMessage(rsp);
-            }
-            theLayer.owner.btnItem2.setEnabled(true);
-        }, theLayer);
-    }
-}
-
-function onItem3(){
-    theLayer.owner.btnItem3.setEnabled(false);
-    initExpAnim();
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var itemequip = theLayer.ui["equip3"].getItem();//adapt
-
-    var countk = 0;
-    var inventoryData = engine.user.inventory.Items;
-    //debug("inventoryData = " + JSON.stringify(inventoryData));
-    for(var k in inventoryData){
-        var item = inventoryData[k];
-        if( item.ClassId == theItem.classId ){
-            itemarry[countk] = item;
-            countk++;
-        }
-    }
-    //debug("ordinary:itemarry = " + JSON.stringify(itemarry));
-    seletMin();
-    //debug("after seletMin:itemarry = " + JSON.stringify(itemarry));
-    if (itemarry[0] != undefined &&
-        itemarry[0] != null){
-        //检查装备能否升级
-        if (!bookUseFlag(EquipSlot_Chest)){
-            theLayer.owner.btnItem3.setEnabled(true);
-            return false;
-        }
-
-        libUIKit.waitRPC(Request_InventoryUseItem, {
-            sid:itemarry[0].ServerId,
-            opn:ITMOP_USEEXPBOOK,
-            opd:itemequip.ServerId
-        }, function(rsp){
-            if( rsp.RET == RET_OK ){
-                animFlag = true;
-                animItem = 3;//adapt
-                itemPart = EquipSlot_Chest;//adapt
-                var item = engine.user.actor.queryArmor(itemPart,true);
-                if (item != null)
-                    currExp = item.Xp;
-                if (theWXPSound < 0) {
-                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
-                }
-                if (rsp.RES != null){
-                    theRes = rsp.RES;
-                    theBtnId = 2;
-                    //initOneProgress(2);
-                }
-                libEffect.attachEffectCCBI(theLayer.ui["equip3"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
-            }
-            else{
-                animFlag = false;
-                currExp = 0;
-                libUIKit.showErrorMessage(rsp);
-            }
-            theLayer.owner.btnItem3.setEnabled(true);
-        }, theLayer);
-    }
-}
-
-function onItem4(){
-    theLayer.owner.btnItem4.setEnabled(false);
-    initExpAnim();
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var itemequip = theLayer.ui["equip4"].getItem();//adapt
-
-    var countk = 0;
-    var inventoryData = engine.user.inventory.Items;
-    //debug("inventoryData = " + JSON.stringify(inventoryData));
-    for(var k in inventoryData){
-        var item = inventoryData[k];
-        if( item.ClassId == theItem.classId ){
-            itemarry[countk] = item;
-            countk++;
-        }
-    }
-    //debug("ordinary:itemarry = " + JSON.stringify(itemarry));
-    seletMin();
-    //debug("after seletMin:itemarry = " + JSON.stringify(itemarry));
-    if (itemarry[0] != undefined &&
-        itemarry[0] != null){
-        //检查装备能否升级
-        if (!bookUseFlag(EquipSlot_Legs)){
-            theLayer.owner.btnItem4.setEnabled(true);
-            return false;
-        }
-
-        libUIKit.waitRPC(Request_InventoryUseItem, {
-            sid:itemarry[0].ServerId,
-            opn:ITMOP_USEEXPBOOK,
-            opd:itemequip.ServerId
-        }, function(rsp){
-            if( rsp.RET == RET_OK ){
-                animFlag = true;
-                animItem = 4;//adapt
-                itemPart = EquipSlot_Legs;//adapt
-                var item = engine.user.actor.queryArmor(itemPart,true);
-                if (item != null)
-                    currExp = item.Xp;
-                if (theWXPSound < 0) {
-                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
-                }
-                if (rsp.RES != null){
-                    theRes = rsp.RES;
-                    theBtnId = 4;
-                    //initOneProgress(4);
-                }
-                libEffect.attachEffectCCBI(theLayer.ui["equip4"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
-            }
-            else{
-                animFlag = false;
-                currExp = 0;
-                libUIKit.showErrorMessage(rsp);
-            }
-            theLayer.owner.btnItem4.setEnabled(true);
-        }, theLayer);
-    }
-}
-
-function onItem5(){
-    theLayer.owner.btnItem5.setEnabled(false);
-    initExpAnim();
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var itemequip = theLayer.ui["equip5"].getItem();//adapt
-
-    var countk = 0;
-    var inventoryData = engine.user.inventory.Items;
-    //debug("inventoryData = " + JSON.stringify(inventoryData));
-    for(var k in inventoryData){
-        var item = inventoryData[k];
-        if( item.ClassId == theItem.classId ){
-            itemarry[countk] = item;
-            countk++;
-        }
-    }
-    //debug("ordinary:itemarry = " + JSON.stringify(itemarry));
-    seletMin();
-    //debug("after seletMin:itemarry = " + JSON.stringify(itemarry));
-    if (itemarry[0] != undefined &&
-        itemarry[0] != null){
-        //检查装备能否升级
-        if (!bookUseFlag(EquipSlot_Finger)){
-            theLayer.owner.btnItem5.setEnabled(true);
-            return false;
-        }
-
-        libUIKit.waitRPC(Request_InventoryUseItem, {
-            sid:itemarry[0].ServerId,
-            opn:ITMOP_USEEXPBOOK,
-            opd:itemequip.ServerId
-        }, function(rsp){
-            if( rsp.RET == RET_OK ){
-                animFlag = true;
-                animItem = 5;//adapt
-                itemPart = EquipSlot_Finger;//adapt
-                var item = engine.user.actor.queryArmor(itemPart,true);
-                if (item != null)
-                    currExp = item.Xp;
-                if (theWXPSound < 0) {
-                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
-                }
-                if (rsp.RES != null){
-                    theRes = rsp.RES;
-                    theBtnId = 3;
-                    //initOneProgress(3);
-                }
-                libEffect.attachEffectCCBI(theLayer.ui["equip5"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
-            }
-            else{
-                animFlag = false;
-                currExp = 0;
-                libUIKit.showErrorMessage(rsp);
-            }
-            theLayer.owner.btnItem5.setEnabled(true);
-        }, theLayer);
-    }
-}
-
-function onItem6(){
-    theLayer.owner.btnItem6.setEnabled(false);
-    initExpAnim();
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var itemequip = theLayer.ui["equip6"].getItem();//adapt
-
-    var countk = 0;
-    var inventoryData = engine.user.inventory.Items;
-    //debug("inventoryData = " + JSON.stringify(inventoryData));
-    //debug("theItem.classId = "+theItem.classId);
-    for(var k in inventoryData){
-        var item = inventoryData[k];
-        if( item.ClassId == theItem.classId ){
-            itemarry[countk] = item;
-            countk++;
-        }
-    }
-    //debug("ordinary:itemarry = " + JSON.stringify(itemarry));
-    seletMin();
-    //debug("after seletMin:itemarry = " + JSON.stringify(itemarry));
-    if (itemarry[0] != undefined &&
-        itemarry[0] != null){
-        //检查装备能否升级
-        if (!bookUseFlag(EquipSlot_Neck)){
-            theLayer.owner.btnItem6.setEnabled(true);
-            return false;
-        }
-
-        libUIKit.waitRPC(Request_InventoryUseItem, {
-            sid:itemarry[0].ServerId,
-            opn:ITMOP_USEEXPBOOK,
-            opd:itemequip.ServerId
-        }, function(rsp){
-            if( rsp.RET == RET_OK ){
-                animFlag = true;
-                animItem = 6;//adapt
-                itemPart = EquipSlot_Neck;//adapt
-                var item = engine.user.actor.queryArmor(itemPart,true);
-                if (item != null)
-                    currExp = item.Xp;
-                if (theWXPSound < 0) {
-                    theWXPSound = cc.AudioEngine.getInstance().playEffect("prize.mp3", true);
-                }
-                if (rsp.RES != null){
-                    theRes = rsp.RES;
-                    theBtnId = 5;
-                    //initOneProgress(5);
-                }
-                libEffect.attachEffectCCBI(theLayer.ui["equip6"],cc.p(0, 0), effectSj,libEffect.EFFECTMODE_AUTO);
-            }
-            else{
-                animFlag = false;
-                currExp = 0;
-                libUIKit.showErrorMessage(rsp);
-            }
-            theLayer.owner.btnItem6.setEnabled(true);
-        }, theLayer);
-    }
-}
-
-function onNotify(event){
-    return false;
-}
-
-function onActivate(){
 }
 
 function update(delta)
@@ -426,7 +131,7 @@ function update(delta)
             if (theWXPSound >= 0) {
                 cc.AudioEngine.getInstance().stopEffect(theWXPSound);
             }
-            //debug("356 stopEffect:theWXPSound = " + theWXPSound);
+
             theWXPSound = -1;
         }
         if (currExp >= upgreadeXp){
@@ -435,7 +140,7 @@ function update(delta)
         }
         if (theLayer.ui["progress" + animItem] != undefined){
             theLayer.ui["progress" + animItem].setProgress(currExp/upgreadeXp);
-            //debug("currExp = "+currExp+";curXp = "+curXp+";upgreadeXp = "+upgreadeXp);
+
             var sub = Math.ceil(currExp - curXp);
             if (sub > addExpConst){
                 sub = addExpConst;
@@ -533,7 +238,7 @@ function initExpAnim(){
             if (theWXPSound >= 0) {
                 cc.AudioEngine.getInstance().stopEffect(theWXPSound);
             }
-            //debug("373 stopEffect:theWXPSound = " + theWXPSound);
+
             theWXPSound = -1;
         }
     }
@@ -566,7 +271,7 @@ function initProgress(){
         var item = engine.user.actor.queryArmor(argItem[k],true);
         var curXp = 0;
         var upgreadeXp = 1;
-        //debug(k + ":" + "item = " + JSON.stringify(item));
+
         if (item != null){
             curXp = item.Xp;
             upgreadeXp = item.equipUpgradeXp();
@@ -578,19 +283,18 @@ function initProgress(){
                 curXp = upgreadeXp;
             }
         }
-        //debug("curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
+
         var proId = +k+1;
         theLayer.ui["progress" + proId].setProgress(curXp/upgreadeXp);
     }
 }
 
 function initOneProgress(id){
-    //debug("items = "+JSON.stringify(engine.user.inventory.getItems()));
     engine.user.inventory.syncArmors();
     var item = engine.user.actor.queryArmor(argItem[id],true);
     var curXp = 0;
     var upgreadeXp = 1;
-    //debug("initOneProgress:id = " + "id" + "item = " + JSON.stringify(item));
+
     if (item != null){
         curXp = item.Xp;
         upgreadeXp = item.equipUpgradeXp();
@@ -602,7 +306,7 @@ function initOneProgress(id){
             curXp = upgreadeXp;
         }
     }
-    debug("initOneProgress:" + "curXp = " + curXp + "   upgreadeXp = " + upgreadeXp);
+
     var proId = +id+1;
     theLayer.ui["progress" + proId].setProgress(curXp/upgreadeXp);
 }
@@ -614,12 +318,7 @@ function onEnter(){
 //    this.addChild(mask);
     this.owner = {};
     this.owner.onBack = onBack;
-    this.owner.onItem1 = onItem1;
-    this.owner.onItem2 = onItem2;
-    this.owner.onItem3 = onItem3;
-    this.owner.onItem4 = onItem4;
-    this.owner.onItem5 = onItem5;
-    this.owner.onItem6 = onItem6;
+    this.owner.onItem = onItem;
     this.update = update;
     this.scheduleUpdate();
 
@@ -745,9 +444,7 @@ function show(item){
     addExpConst = theItem.wxp;
     EXP_SPEED = theItem.wxp / 2;
     engine.ui.newLayer({
-        onNotify: onNotify,
-        onEnter: onEnter,
-        onActivate: onActivate
+        onEnter: onEnter
     });
 }
 
