@@ -529,7 +529,7 @@ var UIItem = cc.Node.extend({
         if( this.ITEM != null )
         {
             var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
-            if( ItemClass.label == null ){
+            if( ItemClass != null && ItemClass.label == null ){
                 var sp = cc.Sprite.create(this.DEF);
                 if( isSmall === true ){
                     sp.setScale(ITEM_SCALE);
@@ -613,7 +613,7 @@ var UIItem = cc.Node.extend({
             }
             else
             {
-                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
+//                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
                 var sp = cc.Sprite.create("wenhao.png");
                 if( isSmall === true ){
                     sp.setScale(ITEM_SCALE);
