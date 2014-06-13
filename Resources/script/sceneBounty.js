@@ -107,8 +107,12 @@ function onSubmit(sender){
 
         var segmentSel = engine.user.bounty.getProcess(line.bounty.BountyId);
         var chkProcess = engine.user.bounty.checkProcess(line.bounty.BountyId,segmentSel);
-        if (line.bounty.count == null){
+        var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
+        if (bountyData.count == null){
             line.bounty.count = 0;
+        }
+        else{
+            line.bounty.count = bountyData.count;
         }
 
         if (chkProcess == 1){
@@ -121,9 +125,7 @@ function onSubmit(sender){
             engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
             engine.session.dataBounty[line.bounty.BountyId].cnt > 0) ||
             line.bounty.count <= 0){
-            var libTable = loadModule("table.js");
             var libStage = loadModule("sceneStage.js");
-            var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
             var stageData = queryStage(bountyData.level[theLevel].stage);
 
             libStage.startStage(bountyData.level[theLevel].stage, stageData.team, stageData.cost);
