@@ -214,7 +214,7 @@ function loadResult(){
         theLayer.ui["equip"+index].showFrame();
         if( theWXPSource[index] != null ){
             var src = theWXPSource[index];
-            theLayer.ui["equip"+index].setItemSmall(src.itm, null, true);
+            theLayer.ui["equip"+index].setItem(src.itm, null, true, true);
             if( src.up >= 0 ){
                 var last = src.xp + theWXP;
                 if( last > src.up ){
@@ -249,7 +249,7 @@ function loadResult(){
             theLayer.ui["progress"+index].setProgress(0);
             theLayer.owner["labExp"+index].setVisible(false);
             theLayer.ui["equip"+index].setDefaultIcon(args.icon);
-            theLayer.ui["equip"+index].setItemSmall(null);
+            theLayer.ui["equip"+index].setItem(null, null, true, true);
         }
     }
     //init exp animation

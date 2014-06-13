@@ -103,7 +103,6 @@ function createRoleBar(role, rank){
 
 function fillPage(page){
     if( theCache[theMode][page] == null ){
-        debug("load from server");
         engine.event.sendRPCEvent(Request_QueryLeaderboard, {
             me: true,
             src: page*PAGE_SIZE,
@@ -123,7 +122,6 @@ function fillPage(page){
         }, theLayer);
     }
     else{
-        debug("load from cache");
         thePage = page;
         theMe = theCache[theMode][page].me;
         loadPage(theCache[theMode][page].lst);
@@ -519,8 +517,6 @@ function onEnter()
         theCenter.scroller.setContentOffset(off);
     }
     engine.ui.regMenu(this.owner.menuRoot);
-//    theListLayer = cc.Layer.create();
-//    this.ui.scroller.setContainer(theListLayer);
 
     onPower();
     fillPage(0);

@@ -255,7 +255,7 @@ function onStartUpgrade(sender){
                                 }
                                 var newItem = engine.user.actor.queryArmor(slot);
                                 if (newItem != null) {
-                                    theContent.ui["equip" + TouchId].setItemSmall(newItem);
+                                    theContent.ui["equip" + TouchId].setItem(newItem, null, true);
                                     setUpgradeItem(newItem);
                                 }
                             }
@@ -459,12 +459,12 @@ function loadUpgrade(){
     engine.ui.regMenu(ret.owner.menuRoot);
 
     //set values
-    ret.ui.equip1.setItemSmall(engine.user.actor.queryArmor(EquipSlot_MainHand));
-    ret.ui.equip2.setItemSmall(engine.user.actor.queryArmor(EquipSlot_SecondHand));
-    ret.ui.equip3.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Chest));
-    ret.ui.equip4.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Legs));
-    ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
-    ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
+    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand), null, true);
+    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand), null, true);
+    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest), null, true);
+    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs), null, true);
+    ret.ui.equip5.setItem(engine.user.actor.queryArmor(EquipSlot_Finger), null, true);
+    ret.ui.equip6.setItem(engine.user.actor.queryArmor(EquipSlot_Neck), null, true);
     ret.ui.xp.setProgress(0);
     libGadget.setProperties(null, ret.owner.nodeProperties1);
     libGadget.setProperties(null, ret.owner.nodeProperties2);
@@ -530,7 +530,7 @@ function onStartEnhance(sender){
                         //execute result
                         if( rsp.RES != null ){
                             engine.event.processResponses(rsp.RES);
-                            theContent.ui["equip"+TouchId].setItemSmall(theForgeItem);
+                            theContent.ui["equip"+TouchId].setItem(theForgeItem, null, true);
                             setEnhanceEquip(theForgeItem);
                         }
                     }
@@ -798,12 +798,12 @@ function loadEnhance(){
     engine.ui.regMenu(ret.owner.menuRoot);
 
     //set values
-    ret.ui.equip1.setItemSmall(engine.user.actor.queryArmor(EquipSlot_MainHand));
-    ret.ui.equip2.setItemSmall(engine.user.actor.queryArmor(EquipSlot_SecondHand));
-    ret.ui.equip3.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Chest));
-    ret.ui.equip4.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Legs));
-    ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
-    ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
+    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand), null, true);
+    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand), null, true);
+    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest), null, true);
+    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs), null, true);
+    ret.ui.equip5.setItem(engine.user.actor.queryArmor(EquipSlot_Finger), null, true);
+    ret.ui.equip6.setItem(engine.user.actor.queryArmor(EquipSlot_Neck), null, true);
     libGadget.setProperties(null, ret.owner.nodeProperties);
     refreshTag(theLayer, 0);
     theLayer.owner.tag2.setVisible(false);
@@ -927,16 +927,16 @@ function loadForge(){
     engine.ui.regMenu(ret.owner.menuRoot);
 
     //set values
-    ret.ui.equip1.setItemSmall(engine.user.actor.queryArmor(EquipSlot_MainHand));
-    ret.ui.equip2.setItemSmall(engine.user.actor.queryArmor(EquipSlot_SecondHand));
-    ret.ui.equip3.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Chest));
-    ret.ui.equip4.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Legs));
-    ret.ui.equip5.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Finger));
-    ret.ui.equip6.setItemSmall(engine.user.actor.queryArmor(EquipSlot_Neck));
+    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand), null, true);
+    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand), null, true);
+    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest), null, true);
+    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs), null, true);
+    ret.ui.equip5.setItem(engine.user.actor.queryArmor(EquipSlot_Finger), null, true);
+    ret.ui.equip6.setItem(engine.user.actor.queryArmor(EquipSlot_Neck), null, true);
     libGadget.setProperties(null, ret.owner.nodeProperties);
     var dummyMtrl = new libItem.Item();
     for( var i=1; i<7; ++i){
-        ret.ui["mtrl"+i].setItemSmall(dummyMtrl);
+        ret.ui["mtrl"+i].setItem(dummyMtrl, null, true);
         ret.owner["btnAdd" + i].setVisible(false);
         ret.owner["itemMtrl" + i].setEnabled(false);
     }
@@ -1068,7 +1068,7 @@ function loadForgeMaterial(equipClass){
                             var mtrlCost = forgeCost.material[k].count;
                             var dummyMtrl = new libItem.Item({cid: mtrlClass.classId});
                             theContent.ui["mtrl" + i].removeAllChildren();
-                            theContent.ui["mtrl" + i].setItemSmall(dummyMtrl);
+                            theContent.ui["mtrl" + i].setItem(dummyMtrl, null, true);
                             theContent.owner["labCount" + i].setString(mtrlCount + "/" + mtrlCost);
                             if (mtrlCount >= mtrlCost) {
                                 Delta[i] = 0;
@@ -1097,7 +1097,7 @@ function loadForgeMaterial(equipClass){
         }
         else{
             for( var i=1; i<7; ++i){
-                theContent.ui["mtrl"+i].setItemSmall(null);
+                theContent.ui["mtrl"+i].setItem(null, null, true);
                 theContent.owner["labCount"+i].setString("0/0");
                 theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
                 theContent.owner["btnAdd"+i].setVisible(false);
@@ -1109,7 +1109,7 @@ function loadForgeMaterial(equipClass){
     }
     else{
         for( var i=1; i<7; ++i){
-            theContent.ui["mtrl"+i].setItemSmall(null);
+            theContent.ui["mtrl"+i].setItem(null, null, true);
             theContent.owner["labCount"+i].setString("0/0");
             theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
             theContent.owner["btnAdd"+i].setVisible(false);
@@ -1190,7 +1190,7 @@ function onStartForge(sender){
                                         }
                                         var newItem = engine.user.actor.queryArmor(slot);
                                         if( newItem != null){
-                                            theContent.ui["equip"+TouchId].setItemSmall(newItem);
+                                            theContent.ui["equip"+TouchId].setItem(newItem, null, true);
                                             setForgeEquip(newItem);
                                         }
                                     }
@@ -1305,17 +1305,6 @@ function onSynthesizeStone(sender){
         var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom]);
         setSynthesizeStone(sto1Class, sto2Class);
     }
-//    else{
-//        if(SynthesizeSlider != null){
-//            theContent.owner.nodeX.removeChildByTag(10);
-//        }
-//        theContent.owner.nodeFrom.addChild(cc.Sprite.create("wenhao.png"));
-//        theContent.owner.nodeTo.addChild(cc.Sprite.create("stone1.png"));
-//        theContent.owner.nameFrom.setString("初级强化石");
-//        theContent.owner.labCost.setString("不需要提炼");
-//        theContent.owner.nameTo.setString(libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[0]).label);
-//        EnoughMtrls = false;
-//    }
 }
 
 function loadSynthesize(){
@@ -1325,11 +1314,6 @@ function loadSynthesize(){
     ret.owner.onStartSynthesize = onStartSynthesize;
 
     var bind = {
-//        item1: {
-//            ui: "UIItem",
-//            id: "stone1",
-//            def: "stonebg.png"
-//        },
         item2: {
             ui: "UIItem",
             id: "stone2",
@@ -1373,7 +1357,7 @@ function loadSynthesize(){
         var dummyStone = new libItem.Item({
             cid: EnhanceStoneCid[i-1]
         });
-        ret.ui["stone"+i].setItemSmall(dummyStone);
+        ret.ui["stone"+i].setItem(dummyStone, null, true);
     }
     refreshTag(theLayer, 0);
     return ret;

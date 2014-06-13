@@ -507,8 +507,17 @@ var UIItem = cc.Node.extend({
         this.setItem(item);
         return true;
     },
-    setItem: function(item, owner)
+    setItem: function(item, owner, isSmall, isNode)
     {
+        if( isSmall === true ){
+            var ITEM_SCALE = 0.77; //缩放比例
+            var ITEM_DELTA_POS;
+            if (isNode != null && isNode ){
+                ITEM_DELTA_POS = cc.p(0, 0);
+            }else{
+                ITEM_DELTA_POS = cc.p(45, 45);
+            }
+        }
         if( owner == null ) owner = engine.user.actor;
         this.ITEM = item;
         this.removeAllChildren();
@@ -522,6 +531,10 @@ var UIItem = cc.Node.extend({
             var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
             if( ItemClass.label == null ){
                 var sp = cc.Sprite.create(this.DEF);
+                if( isSmall === true ){
+                    sp.setScale(ITEM_SCALE);
+                    sp.setPosition(ITEM_DELTA_POS);
+                }
                 this.addChild(sp);
                 return;
             }
@@ -553,10 +566,14 @@ var UIItem = cc.Node.extend({
                     var icon = cc.Sprite.create(ItemClass.icon);
                 }
                 if( icon != null ){
+                    if( isSmall === true ){
+                        icon.setScale(ITEM_SCALE);
+                        icon.setPosition(ITEM_DELTA_POS);
+                    }
                     this.addChild(icon, 0);
                 }
                 this.icon = icon;
-                if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED )
+                if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED &&!(isSmall === true) )
                 {
                     var equipTag = cc.Sprite.createWithSpriteFrameName("bag-equipped.png");
                     equipTag.setAnchorPoint(cc.p(0.5 , 1));
@@ -570,6 +587,11 @@ var UIItem = cc.Node.extend({
                     var qualityTag = cc.Sprite.create(fileName);
                     qualityTag.setAnchorPoint(cc.p(0, 0));
                     qualityTag.setPosition(cc.p(-50, -50));
+                    if( isSmall === true ){
+                        qualityTag.setAnchorPoint(cc.p(0.5, 0.5));
+                        qualityTag.setScale(ITEM_SCALE);
+                        qualityTag.setPosition(ITEM_DELTA_POS);
+                    }
                     this.addChild(qualityTag, 20);
                 }
                 //add enhance mark
@@ -580,120 +602,37 @@ var UIItem = cc.Node.extend({
                         var enhanceMark = cc.Sprite.create(fileStar);
                         enhanceMark.setAnchorPoint(cc.p(0.5, 0));
                         enhanceMark.setPosition(cc.p(0, -44));
-                        this.addChild(enhanceMark, 50);
-                    }
-                }
-            }
-            else
-            {
-                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
-                var sp = cc.Sprite.create("wenhao.png");
-                this.addChild(sp, 0);
-            }
-        }
-        else
-        {
-            var sp = cc.Sprite.create(this.DEF);
-            this.addChild(sp, 0);
-        }
-    },
-    setItemSmall: function(item, owner, isNode){
-        var ITEM_SCALE = 0.77; //缩放比例
-        var ITEM_DELTA_POS;
-        if (isNode != null && isNode ){
-            ITEM_DELTA_POS = cc.p(0, 0);
-        }else{
-            ITEM_DELTA_POS = cc.p(45, 45);
-        }
-        if( owner == null ) owner = engine.user.actor;
-        this.ITEM = item;
-        this.removeAllChildren();
-        this.icon = null;
-        this.dot = null;
-        this.num = null;
-        this.frameAvailable = null;
-
-        if( this.ITEM != null )
-        {
-            var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
-
-            if( ItemClass == null || ItemClass.label == null ){
-                var sp = cc.Sprite.create(this.DEF);
-                sp.setScale(ITEM_SCALE);
-                sp.setPosition(ITEM_DELTA_POS);
-                this.addChild(sp);
-                return;
-            }
-
-            if( ItemClass != null )
-            {
-                //var tbg = cc.Sprite.create(ItemTypeImages[ItemClass.category]);
-                //this.addChild(tbg);
-                if( ItemClass.iconm != null && ItemClass.iconf != null )
-                {
-                    if( owner != null )
-                    {
-                        if( owner.Gender == 0 )
-                        {//female icon
-                            var icon = cc.Sprite.create(ItemClass.iconf);
+                        if( isSmall === true ){
+                            enhanceMark.setAnchorPoint(cc.p(0.5, 0.5));
+                            enhanceMark.setScale(ITEM_SCALE);
+                            enhanceMark.setPosition(cc.p(ITEM_DELTA_POS.x, ITEM_DELTA_POS.y-31));
                         }
-                        else
-                        {//male icon
-                            var icon = cc.Sprite.create(ItemClass.iconm);
-                        }
-                    }
-                    else
-                    {//if no user, use male
-                        var icon = cc.Sprite.create(ItemClass.iconm);
-                    }
-                }
-                else
-                {
-                    var icon = cc.Sprite.create(ItemClass.icon);
-                }
-                icon.setScale(ITEM_SCALE);
-                icon.setPosition(ITEM_DELTA_POS);
-                this.addChild(icon, 0);
-                this.icon = icon;
-                this.setStackCount(this.ITEM.StackCount);
-                //add quality tag
-                if( ItemClass.quality != null){
-                    var fileName = "itemquality"+(ItemClass.quality+1)+".png";
-                    var qualityTag = cc.Sprite.create(fileName);
-                    qualityTag.setScale(ITEM_SCALE);
-                    qualityTag.setPosition(ITEM_DELTA_POS);
-                    this.addChild(qualityTag, 20);
-                }
-                //add enhance mark
-                if( this.ITEM.Enhance[0] != null){
-                    var starLv = Math.floor((this.ITEM.Enhance[0].lv+1) / 8) % 6;
-                    if( starLv >0){
-                        var fileStar = "itemstar"+starLv+".png";
-                        var enhanceMark = cc.Sprite.create(fileStar);
-                        enhanceMark.setScale(ITEM_SCALE);
-                        enhanceMark.setPosition(cc.p(ITEM_DELTA_POS.x, ITEM_DELTA_POS.y-31));
                         this.addChild(enhanceMark, 52);
                     }
                 }
-
             }
             else
             {
                 warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
                 var sp = cc.Sprite.create("wenhao.png");
-                sp.setScale(ITEM_SCALE);
-                sp.setPosition(ITEM_DELTA_POS);
+                if( isSmall === true ){
+                    sp.setScale(ITEM_SCALE);
+                    sp.setPosition(ITEM_DELTA_POS);
+                }
                 this.addChild(sp, 0);
             }
         }
         else
         {
             var sp = cc.Sprite.create(this.DEF);
-            sp.setScale(ITEM_SCALE);
-            sp.setPosition(ITEM_DELTA_POS);
+            if( isSmall === true ){
+                sp.setScale(ITEM_SCALE);
+                sp.setPosition(ITEM_DELTA_POS);
+            }
             this.addChild(sp, 0);
         }
     },
+
     showFrame: function()
     {
         var frame = cc.Sprite.create("skillbg.png");
