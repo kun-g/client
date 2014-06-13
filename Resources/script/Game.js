@@ -107,6 +107,9 @@ Game.prototype.init = function()
     debug("Version "+system.getBinaryVersion()+"("+this.config.resource_version+")");
 
     this.processPreference();
+
+    //hotfix
+    cc.FileUtils.getInstance().addSearchPath(doc+PATH_UPDATE);
 }
 
 /*** Manage Server Time ***/
