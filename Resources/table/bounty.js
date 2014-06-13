@@ -53,12 +53,12 @@ exports.data = [
         "bountyId":1,
         "title":"邪恶头领讨伐令",
         "desc":"邪恶头领聚集起来，讨伐它们获得大量强化石！",
-        "count":13,
+        "count":3,
         "date":{
             "day":[0,2,4,6],
             "segment":[
                 {
-                    "start":"10:00",
+                    "start":"18:00",
                     "end":"23:59"
                 }
             ]
@@ -127,12 +127,12 @@ exports.data = [
         "bountyId":2,
         "title":"神秘的装备劫匪",
         "desc":"传说中的装备劫匪出现了，打到他获得大量装备熟练度！",
-        "count":13,
+        "count":3,
         "date":{
             "day":[0,1,3,5],
             "segment":[
                 {
-                    "start":"10:00",
+                    "start":"19:00",
                     "end":"23:59"
                 }
             ]
