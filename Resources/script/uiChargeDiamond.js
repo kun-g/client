@@ -309,8 +309,6 @@ function onPurchaseMonthCard(sender){
     theMonthCardLayer.node.runAction(actionPopOut(function(){
         engine.ui.removeLayer(theMonthCardLayer);
         theMonthCardLayer = null;
-
-        theLoad = uikit.pushLoading();
     }, theMonthCardLayer));
 }
 
