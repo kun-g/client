@@ -739,14 +739,22 @@ UIItem.make = function(thiz, args)
 var ITEMPREVIEW_WIDTH = 130;
 var ITEMPREVIEW_HEIGHT = 155;
 
-function queryPrize(pit){
+function queryPrize(pit, treasureDisplayFlag){
     var ret = {
         icon: null,
         label: null
     };
+    if( treasureDisplayFlag == null ){
+        treasureDisplayFlag = false;
+    }
     var strIcon,strLabel;
     var spQuality = null;
     var stack = 1;
+    if( pit.count > 1 ){
+        if( treasureDisplayFlag || pit.type == PRIZETYPE_ITEM ){
+            stack = pit.count;
+        }
+    }
     switch(pit.type){
         case PRIZETYPE_ITEM:{//item
             var itemClass = libTable.queryTable(TABLE_ITEM, pit.value);
@@ -775,9 +783,6 @@ function queryPrize(pit){
             else{
                 strIcon = "wenhao.png";
                 strLabel = "???";
-            }
-            if( pit.count > 1 ){
-                stack = pit.count;
             }
             if( itemClass.quality != null){
                 var fileName = "itemquality"+(itemClass.quality+1)+".png";
