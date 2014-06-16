@@ -222,7 +222,7 @@ function loadQuestDesc(quest){
     }
     else{
         theLayer.owner.btnSubmit.setEnabled(false);
-        if (!inDungeon){
+        if (!inDungeon && questData.questStage != null){
             theLayer.owner.btnStartQuest.setVisible(true);
             theLayer.owner.btnStartQuest.setEnabled(true);
         }
