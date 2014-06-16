@@ -270,7 +270,7 @@ function onEnter(){
     this.owner.onClose = onClose;
     this.owner.onBack = onBack;
     this.owner.onSubmit = onSubmit;
-    this.owner.onStartQuest = onStartQuest();
+    this.owner.onStartQuest = onStartQuest;
 
     this.node = libUIC.loadUI(this, "sceneMission.ccbi", {
         layerList: {
