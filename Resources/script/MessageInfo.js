@@ -31,6 +31,7 @@ var theSelectedNode;
 var theClickFlag;
 var touchPosBegin;
 var BAR_HEIGHT = 100;
+var FIRST_GAP = 25;
 
 function removeDeliver(sid){
     if( sid == null ){
@@ -472,7 +473,7 @@ function update(delta){
         if( theState == STATE_SYSTEMDELIVER_LIST ){
             if( this.LOAD_INDEX < engine.session.deliver.length ){
                 var node = createDeliverBar(engine.session.deliver[this.LOAD_INDEX]);
-                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*DELIVER_HEIGHT - DELIVER_HEIGHT));
+                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*DELIVER_HEIGHT - DELIVER_HEIGHT - FIRST_GAP));
                 theCenter.theContentLayer.addChild(node);
                 theCenter.thePresentList.push(node);
 
@@ -485,7 +486,7 @@ function update(delta){
         else if( theState == STATE_FRIENDINVITE_LIST ){
             if( this.LOAD_INDEX < engine.session.invite.length ){
                 var node = createInviteBar(engine.session.invite[this.LOAD_INDEX]);
-                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*INVITE_HEIGHT - INVITE_HEIGHT));
+                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*INVITE_HEIGHT - INVITE_HEIGHT - FIRST_GAP));
                 theCenter.theContentLayer.addChild(node);
                 theCenter.thePresentList.push(node);
 

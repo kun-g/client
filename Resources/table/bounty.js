@@ -244,7 +244,7 @@ exports.data = [
                 "stage":121,
                 "prize":[
                     {
-                        "type":0
+                        "type":2
                     },
                     {
                         "type":0,

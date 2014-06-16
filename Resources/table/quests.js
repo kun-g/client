@@ -508,6 +508,7 @@ exports.data = [
         "questId":18,
         "title":"走丢的雪莉",
         "desc":"雪莉去【密谋森林I】就再也没人见过了，帮村民们去找找吧",
+        "questStage":8,
         "objects":[
             {
                 "type":0,
