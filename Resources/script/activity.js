@@ -205,7 +205,7 @@ function setPrizeSize(group,day,curDays)
         group.itemList[k] = slot;
         //set item
         var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
-        var prize = libItem.queryPrize(prizeData.prize[0]);
+        var prize = libItem.queryPrize(prizeData.prize[0], true);
         prize.icon.setPosition(pos);
         prize.icon.setScale(theScal);
         group.theGridLayer.addChild(prize.icon);
