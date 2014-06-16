@@ -459,7 +459,7 @@ function onPause(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    loadModule("questInfo.js").show();
+    loadModule("questInfo.js").show(true);
 }
 
 function showBuyRevive(){

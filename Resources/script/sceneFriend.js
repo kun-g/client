@@ -30,6 +30,7 @@ var thePopMsg;
 var BAR_WIDTH = 580;
 var BAR_HEIGHT = 150;
 var BAR_OFFSET = 80;
+var FIRST_GAP = 25;
 
 function updateFriendTeam(){
     nodeParty.removeAllChildren();
@@ -273,7 +274,7 @@ function update(delta){
                 var friend = engine.user.friend.Friends[this.LOAD_INDEX];
                 friend.fix();
                 var node = createFriendBar(friend);
-                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT));
+                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT - FIRST_GAP));
                 node.KEY = Number(this.LOAD_INDEX);
                 theListLayer.addChild(node);
                 theLIST.push(node);

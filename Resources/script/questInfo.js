@@ -9,6 +9,7 @@ var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libQuest = loadModule("quest.js");
 var libItem = loadModule("xitem.js");
+var libStage = loadModule("sceneStage.js");
 
 var theLayer;
 var theListLayer;
@@ -20,7 +21,7 @@ var MODE_DESC = 1;
 var MODE_EXIT = 2;
 
 var theMode;
-
+var inDungeon = false;
 var touchPosBegin;
 
 //contants
@@ -91,6 +92,15 @@ function onSubmit(sender){
     }, theLayer);
 }
 
+function onStartQuest() {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    if( theMode == MODE_DESC ){
+        var questData = libTable.queryTable(TABLE_QUEST, theQuest.QuestId);
+        var stageData = queryStage(questData.questStage);
+        libStage.startStage(questData.questStage, stageData.team, stageData.cost);
+    }
+}
+
 function loadQuestList(){
     theMode = MODE_LIST;
     theLayer.owner.nodeList.setVisible(true);
@@ -99,6 +109,7 @@ function loadQuestList(){
     theListLayer.setTouchEnabled(true);
     theLayer.owner.btnBack.setVisible(false);
     theLayer.owner.btnSubmit.setVisible(false);
+    theLayer.owner.btnStartQuest.setVisible(false);
 
     var size = cc.size(LINE_WIDTH, engine.user.quest.Count*LINE_HEIGHT);
     theListLayer.setContentSize(size);
@@ -206,9 +217,15 @@ function loadQuestDesc(quest){
     theDescLayer.setContentSize(size);
     if( theQuest.State == QUESTSTATUS_COMPLETE ){
         theLayer.owner.btnSubmit.setEnabled(true);
+        theLayer.owner.btnStartQuest.setVisible(false);
+        theLayer.owner.btnStartQuest.setEnabled(false);
     }
     else{
         theLayer.owner.btnSubmit.setEnabled(false);
+        if (!inDungeon){
+            theLayer.owner.btnStartQuest.setVisible(true);
+            theLayer.owner.btnStartQuest.setEnabled(true);
+        }
     }
 
     var curroffset = theLayer.ui.scrollDesc.getContentOffset();
@@ -253,6 +270,7 @@ function onEnter(){
     this.owner.onClose = onClose;
     this.owner.onBack = onBack;
     this.owner.onSubmit = onSubmit;
+    this.owner.onStartQuest = onStartQuest();
 
     this.node = libUIC.loadUI(this, "sceneMission.ccbi", {
         layerList: {
@@ -296,7 +314,12 @@ function onEnter(){
     loadQuestList();
 }
 
-function show(){
+function show(isInDungeon){
+    if (isInDungeon != null){
+        inDungeon = isInDungeon;
+    }else{
+        inDungeon = false;
+    }
     engine.ui.newLayer({
         onNotify: onNotify,
         onEnter: onEnter,

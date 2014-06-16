@@ -43,6 +43,7 @@ var PAGE_COUNT = 3;
 var BAR_WIDTH = 580;
 var BAR_HEIGHT = 150;
 var BAR_OFFSET = 80;
+var FIRST_GAP = 25;
 
 var nodeTopList = ["nodeZdlbg1","nodeZdlbg2","nodeZdlbg3","nodeZdlbg4"];
 var topNum = [3,10,20,30];
@@ -168,7 +169,7 @@ function update(delta){
                 role.fix();
                 var rank = thePage*PAGE_SIZE+1+this.LOAD_INDEX;
                 var node = createRoleBar(role, rank);
-                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT));
+                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT - FIRST_GAP));
                 node.KEY = Number(this.LOAD_INDEX);
                 theCurrentGroup.theListLayer.addChild(node);
                 theLIST.push(node);
