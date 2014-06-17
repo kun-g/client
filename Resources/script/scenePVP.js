@@ -22,7 +22,7 @@ function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkInfo, {}, function(rsp) {
         if( rsp.RET == RET_OK ){
             theRivalsList = rsp.lst;
-            loadPkRivals(theRivalsList);
+            loadPkRivals();
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -31,7 +31,21 @@ function getPkRivals() {
 }
 
 function loadPkRivals() {
+    if( theRivalsList != null ){
+        for( var i=1; i<4; i++ ){
+            if( theRivalsList[i] != null ){
+                //todo?
+                //theLayer.owner[""+i].set
+            }
+        }
+    }
+}
 
+function loadMyInfo() {
+    var pkInfo = engine.user.player.PkInfo;
+    if( pkInfo != null ){
+        //todo?
+    }
 }
 
 function setReceiveButton() {
@@ -39,6 +53,7 @@ function setReceiveButton() {
 }
 
 function onRival(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( sender.getTag() == TouchId ){
         TouchId = -1;
     }else{
@@ -103,7 +118,7 @@ function onUIAnimationCompleted(name){
 
 function onEnter() {
     TouchId = -1;
-
+    theRivalsList = {};
     theLayer = this;
     this.owner = {};
     this.owner.onRival = onRival;
@@ -118,7 +133,7 @@ function onEnter() {
     theMode = MODE_PVP;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
-
+    loadMyInfo();
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }

@@ -372,17 +372,8 @@ function onEvent(event)
             if( event.arg.aid != null ){
                 engine.user.player.AID = event.arg.aid;
             }
-            if( event.arg.pki.rnk != null ){
-                engine.user.player.PkInfo.rank = event.arg.pki.rnk;
-            }
-            if( event.arg.pki.cpl != null ){
-                engine.user.player.PkInfo.complete = event.arg.pki.cpl;
-            }
-            if( event.arg.pki.ttl != null ){
-                engine.user.player.PkInfo.total = event.arg.pki.ttl;
-            }
-            if( event.arg.pki.bnp != null ){
-                engine.user.player.PkInfo.bonusPond = event.arg.pki.bnp;
+            if( event.arg.pki != null ){
+                engine.user.player.PkInfo = event.arg.pki;
             }
             if (event.arg.mcc != null){
                 engine.user.player.MonthCardCount = event.arg.mcc;
