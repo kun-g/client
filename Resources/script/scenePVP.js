@@ -79,7 +79,7 @@ function onRival(sender) {
 function onStartPK() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var alert = libUIKit.alert();
-    alert.setContent("确定开始挑战TA吗？");
+    alert.setContent("确定开始挑战对手吗？");
     alert.setButton([
         {
             label: "buttontext-qx.png",
