@@ -25,7 +25,9 @@ var RoleScheme = {
     bst: "BlueStar",//蓝星
     ifn: "IsFriend",//好友标记
     vip: "vip",
-    scr: "scr"
+    scr: "Score",
+    cup: "CupBonus",
+    gld: "GoldBonus"
 };
 
 function Role(source)
@@ -264,6 +266,14 @@ Role.prototype.fix = function()
         if( this.Score == null )
         {
             this.Score = 0;
+        }
+        if( this.CupBonus == null )
+        {
+            this.CupBonus = 0;
+        }
+        if( this.GoldBonus == null )
+        {
+            this.GoldBonus = 0;
         }
     }
 

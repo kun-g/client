@@ -6,6 +6,7 @@ var libUIC = loadModule("UIComposer.js");
 var libTable = loadModule("table.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
+var libRole = loadModule("role.js");
 
 var theLayer = null;
 var isFlying = false;
@@ -16,7 +17,7 @@ var MODE_EXIT = 0;
 var MODE_PVP = 1;
 
 var theRivalsList;
-
+var myPkInfo;
 
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkInfo, {}, function(rsp) {
@@ -36,20 +37,30 @@ function loadPkRivals() {
             if( theRivalsList[i] != null ){
                 //todo?
                 //theLayer.owner[""+i].set
+                var role = new libRole.Role(theRivalsList[i]);
+                role.fix();
+                theLayer.ui["avatar"+i].setRole(role);
+                theLayer.owner["labName"+i].setString(role.Name);
+                theLayer.owner["labCup"+i].setString(role.CupBonus);
+                theLayer.owner["labGold"+i].setString(role.GoldBonus);
             }
         }
     }
 }
 
 function loadMyInfo() {
-    var pkInfo = engine.user.player.PkInfo;
-    if( pkInfo != null ){
+    if( myPkInfo != null ){
         //todo?
+        setReceiveButton(myPkInfo.bnp > 0);
     }
 }
 
-function setReceiveButton() {
+function setReceiveButton(canBeReceived) {
+    if( canBeReceived ){
 
+    }else{
+
+    }
 }
 
 function onRival(sender) {
@@ -77,7 +88,7 @@ function onStartPK() {
         },
         {
             label: "xxxx.png",//todo?
-            func: function () {
+            func: function() {
                 var libStage = loadModule("sceneStage.js");
                 libStage.startStage();//todo?
             },
@@ -92,6 +103,9 @@ function onReceivePrize() {
     libUIKit.waitRPC(Request_ReceivePrize, {typ: ReceivePkPrize}, function (rsp) {
         if( rsp.RET == RET_OK ){
             libUIKit.showAlert("奖金领取成功！");
+            if (rsp.RES != null) {
+                engine.event.processResponses(rsp.RES);
+            }
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -127,12 +141,25 @@ function onEnter() {
     this.owner.onClose = onClose;
     var node = libUIC.loadUI(this, "scenePVP.ccbi", {
         //bind todo?
+        nodeRole1:{
+            ui: "UIAvatar",
+            id: "avatar1"
+        },
+        nodeRole2:{
+            ui: "UIAvatar",
+            id: "avatar2"
+        },
+        nodeRole3:{
+            ui: "UIAvatar",
+            id: "avatar3"
+        }
     });
     theLayer.node = node;
     this.addChild(node);
     theMode = MODE_PVP;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
+    myPkInfo = engine.user.player.PkInfo;
     loadMyInfo();
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
