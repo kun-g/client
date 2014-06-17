@@ -16,6 +16,12 @@ function Player()
     this.AID = -1;
     this.MonthCardCount = -1;
     this.Flags = {};
+    this.PkInfo = {
+        rank: -1,
+        total: 0,
+        complete: 0,
+        bonusPond: 0
+    };
 }
 
 Player.prototype.setEnergy = function(energy, timer){
