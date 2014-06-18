@@ -16,6 +16,10 @@ var theMode;
 var MODE_EXIT = 0;
 var MODE_PVP = 1;
 
+var DAILY_TIMES_NEED = 5;
+var DAILY_SETTLE_TIME_MIN = 1200;  // 0~1439min, 1200 = 20:00
+var PVP_STAGEID = 124;
+
 var theRivalsList;
 var myPkInfo;
 
@@ -24,6 +28,7 @@ function getPkRivals() {
         if( rsp.RET == RET_OK ){
             theRivalsList = rsp.lst;
             loadPkRivals();
+            engine.session.cacheRoleInfo(rsp.lst);
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -35,14 +40,12 @@ function loadPkRivals() {
     if( theRivalsList != null ){
         for( var i=1; i<4; i++ ){
             if( theRivalsList[i] != null ){
-                //todo?
-                //theLayer.owner[""+i].set
                 var role = new libRole.Role(theRivalsList[i]);
                 role.fix();
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
-                theLayer.owner["labCup"+i].setString(role.CupBonus);
-                theLayer.owner["labGold"+i].setString(role.GoldBonus);
+                theLayer.owner["labBonusCup"+i].setString(role.CupBonus);
+                theLayer.owner["labBonusGold"+i].setString(role.GoldBonus);
             }
         }
     }
@@ -50,17 +53,41 @@ function loadPkRivals() {
 
 function loadMyInfo() {
     if( myPkInfo != null ){
-        //todo?
-        setReceiveButton(myPkInfo.bnp > 0);
+        theLayer.owner.labMyCup.setString(myPkInfo.cup);
+        theLayer.owner.labMyRank.setString(myPkInfo.rnk);
+        theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
+        setBottomContent();
     }
 }
 
-function setReceiveButton(canBeReceived) {
-    if( canBeReceived ){
-
+function setBottomContent() {
+    if( myPkInfo.bnp > 0 ){
+        theLayer.owner.nodeBotCnt1.setVisible(false);
+        theLayer.owner.nodeBotCnt2.setVisible(false);
+        theLayer.owner.nodeBotCnt3.setVisible(true);
     }else{
-
+        if( myPkInfo.cpl >= DAILY_TIMES_NEED ){
+            theLayer.owner.nodeBotCnt1.setVisible(false);
+            theLayer.owner.nodeBotCnt2.setVisible(true);
+            theLayer.owner.nodeBotCnt3.setVisible(false);
+            var leftMinutes = calcLeftTimeMin(DAILY_SETTLE_TIME_MIN);
+            theLayer.owner.labLeftTime.setString(Math.floor(leftMinutes/60)+":"+leftMinutes%60);
+        }else{
+            theLayer.owner.nodeBotCnt1.setVisible(true);
+            theLayer.owner.nodeBotCnt2.setVisible(false);
+            theLayer.owner.nodeBotCnt3.setVisible(false);
+            var timesNeed = DAILY_TIMES_NEED - myPkInfo.cpl;
+            if( timesNeed < 0 ) timesNeed = 0;
+            theLayer.owner.labTimesNeed.setString(timesNeed);
+        }
     }
+}
+
+function calcLeftTimeMin(endTime) {
+    var currentTimeStamp = engine.game.getServerTime();
+    var curTime = new Date(parseInt(currentTimeStamp));
+    var curTimeMin = curTime.getMinutes() + (curTime.getHours() * 60);
+    return (endTime - curTimeMin);
 }
 
 function onRival(sender) {
@@ -72,8 +99,14 @@ function onRival(sender) {
     }
     for( var i=1; i<4; i++){
         theLayer.owner["btnStartPK"+i].setVisible(i == TouchId);
+        theLayer.owner["nodeBonus"+i].setVisible(!(i == TouchId));
     }
 
+}
+
+function onRoleInfo(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    libUIKit.showRoleInfo(theRivalsList[sender.getTag()-1].nam);
 }
 
 function onStartPK() {
@@ -87,10 +120,11 @@ function onStartPK() {
             obj: alert
         },
         {
-            label: "xxxx.png",//todo?
+            label: "buttontext-confirm.png",
             func: function() {
                 var libStage = loadModule("sceneStage.js");
-                libStage.startStage();//todo?
+                var stageDate = queryStage(PVP_STAGEID);
+                libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost);
             },
             obj: alert,
             type: BUTTONTYPE_DEFAULT
@@ -137,10 +171,10 @@ function onEnter() {
     this.owner = {};
     this.owner.onRival = onRival;
     this.owner.onStartPK = onStartPK;
+    this.owner.onRoleInfo = onRoleInfo;
     this.owner.onReceivePrize = onReceivePrize;
     this.owner.onClose = onClose;
     var node = libUIC.loadUI(this, "scenePVP.ccbi", {
-        //bind todo?
         nodeRole1:{
             ui: "UIAvatar",
             id: "avatar1"
@@ -159,6 +193,7 @@ function onEnter() {
     theMode = MODE_PVP;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
+    engine.ui.regMenu(this.owner.menuRoot);
     myPkInfo = engine.user.player.PkInfo;
     loadMyInfo();
     //register broadcast
