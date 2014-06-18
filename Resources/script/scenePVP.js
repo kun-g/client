@@ -52,6 +52,7 @@ function loadPkRivals() {
 }
 
 function loadMyInfo() {
+    myPkInfo = engine.user.player.PkInfo;
     if( myPkInfo != null ){
         theLayer.owner.labMyCup.setString(myPkInfo.cup);
         theLayer.owner.labMyRank.setString(myPkInfo.rnk);
@@ -61,34 +62,34 @@ function loadMyInfo() {
 }
 
 function setBottomContent() {
-    if( myPkInfo.bnp > 0 ){
+//    if( myPkInfo.bnp > 0 ){
+//        theLayer.owner.nodeBotCnt1.setVisible(false);
+//        theLayer.owner.nodeBotCnt2.setVisible(false);
+//        theLayer.owner.nodeBotCnt3.setVisible(true);
+//    }else{
+//    }
+    if( myPkInfo.cpl >= DAILY_TIMES_NEED ){
         theLayer.owner.nodeBotCnt1.setVisible(false);
-        theLayer.owner.nodeBotCnt2.setVisible(false);
-        theLayer.owner.nodeBotCnt3.setVisible(true);
+        theLayer.owner.nodeBotCnt2.setVisible(true);
+        theLayer.owner.nodeBotCnt3.setVisible(false);
+//        var leftMinutes = calcLeftTimeMin(DAILY_SETTLE_TIME_MIN);
+//        theLayer.owner.labLeftTime.setString(Math.floor(leftMinutes/60)+":"+leftMinutes%60);
     }else{
-        if( myPkInfo.cpl >= DAILY_TIMES_NEED ){
-            theLayer.owner.nodeBotCnt1.setVisible(false);
-            theLayer.owner.nodeBotCnt2.setVisible(true);
-            theLayer.owner.nodeBotCnt3.setVisible(false);
-            var leftMinutes = calcLeftTimeMin(DAILY_SETTLE_TIME_MIN);
-            theLayer.owner.labLeftTime.setString(Math.floor(leftMinutes/60)+":"+leftMinutes%60);
-        }else{
-            theLayer.owner.nodeBotCnt1.setVisible(true);
-            theLayer.owner.nodeBotCnt2.setVisible(false);
-            theLayer.owner.nodeBotCnt3.setVisible(false);
-            var timesNeed = DAILY_TIMES_NEED - myPkInfo.cpl;
-            if( timesNeed < 0 ) timesNeed = 0;
-            theLayer.owner.labTimesNeed.setString(timesNeed);
-        }
+        theLayer.owner.nodeBotCnt1.setVisible(true);
+        theLayer.owner.nodeBotCnt2.setVisible(false);
+        theLayer.owner.nodeBotCnt3.setVisible(false);
+        var timesNeed = DAILY_TIMES_NEED - myPkInfo.cpl;
+        if( timesNeed < 0 ) timesNeed = 0;
+        theLayer.owner.labTimesNeed.setString(timesNeed);
     }
 }
 
-function calcLeftTimeMin(endTime) {
-    var currentTimeStamp = engine.game.getServerTime();
-    var curTime = new Date(parseInt(currentTimeStamp));
-    var curTimeMin = curTime.getMinutes() + (curTime.getHours() * 60);
-    return (endTime - curTimeMin);
-}
+//function calcLeftTimeMin(endTime) {
+//    var currentTimeStamp = engine.game.getServerTime();
+//    var curTime = new Date(parseInt(currentTimeStamp));
+//    var curTimeMin = curTime.getMinutes() + (curTime.getHours() * 60);
+//    return (endTime - curTimeMin);
+//}
 
 function onRival(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
@@ -168,6 +169,7 @@ function onEnter() {
     TouchId = -1;
     theRivalsList = {};
     theLayer = this;
+    myPkInfo = {};
     this.owner = {};
     this.owner.onRival = onRival;
     this.owner.onStartPK = onStartPK;
@@ -194,8 +196,7 @@ function onEnter() {
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
-    myPkInfo = engine.user.player.PkInfo;
-    loadMyInfo();
+    this.schedule(loadMyInfo(), 60);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
