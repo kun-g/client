@@ -15,11 +15,13 @@ var theMode;
 var RANK_BATTLEPOWER = 0;
 var RANK_ENDLESS = 1;
 var RANK_KILL = 2;
+var RANK_PVP = 3;
 
 var MODE_BATTLEPOWER = RANK_BATTLEPOWER;
 var MODE_ENDLESS = RANK_ENDLESS;
 var MODE_KILL = RANK_KILL;
-var MODE_EXIT = 3;
+var MODE_PVP = RANK_PVP;
+var MODE_EXIT = 4;
 
 var theLIST = [];
 var theRankList;
@@ -103,12 +105,17 @@ function createRoleBar(role, rank){
 }
 
 function fillPage(page){
+    //因为服务器未支持PVP排行，暂时用战斗力的数据替代
+    var mode = theMode;
+    if (theMode == MODE_PVP){
+        mode = MODE_BATTLEPOWER;
+    }
     if( theCache[theMode][page] == null ){
         engine.event.sendRPCEvent(Request_QueryLeaderboard, {
             me: true,
             src: page*PAGE_SIZE,
             cnt: PAGE_SIZE,
-            typ: theMode
+            typ: mode//theMode
         }, function(rsp){
             if( rsp.RET == RET_OK ){
                 thePage = page;
@@ -386,6 +393,37 @@ function onKill() {
     setModeTag(theMode);
 }
 
+function onPVP() {
+    if( isFlying ) return;
+    if(theCurrentGroup != null && theCurrentGroup.theListLayer != null) {
+        theCurrentGroup.theListLayer.removeAllChildren();
+    }
+    if( theMode < MODE_PVP ){
+        //to right
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
+        theTransitionGroup = theRight;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else if( theMode > MODE_PVP ){
+        //to left
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
+        theTransitionGroup = theLeft;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else{
+        //just load
+        theTransitionGroup = null;
+        theCurrentGroup = theCenter;
+        isFlying = false;
+    }
+    theMode = MODE_PVP;
+    setModeTag(theMode);
+}
+
 function setModeTag(mode){
     var sfc = cc.SpriteFrameCache.getInstance();
     if( mode == MODE_BATTLEPOWER ){
@@ -427,6 +465,19 @@ function setModeTag(mode){
         theLayer.owner.btnKill.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
         theLayer.owner.btnKill.setEnabled(true);
     }
+    if( mode == MODE_PVP ){
+        theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
+        theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg2.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.btnPVP.setEnabled(false);
+    }
+    else{
+        theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsg2.png"));
+        theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
+        theLayer.owner.btnPVP.setEnabled(true);
+    }
 }
 
 function onEnter()
@@ -434,6 +485,7 @@ function onEnter()
     theCache[MODE_BATTLEPOWER] = [];
     theCache[MODE_ENDLESS] = [];
     theCache[MODE_KILL] = [];
+    theCache[MODE_PVP] = [];
     theLayer = this;
     isFlying = false;
     isScheduling = false;
@@ -450,6 +502,7 @@ function onEnter()
     this.owner.onPreviousPage = onPreviousPage;
     this.owner.onNextPage = onNextPage;
     this.owner.onLastPage = onLastPage;
+    this.owner.onPVP = onPVP;
     var node = libUIC.loadUI(this, "sceneRanking.ccbi", {
         nodeContent:{
             ui: "UIScrollView",
