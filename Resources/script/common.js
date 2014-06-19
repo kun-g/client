@@ -288,7 +288,7 @@ function blackMask(width, height)
     //auto complete
     if( height == null || width == null )
     {
-        var screen = cc.Director.getInstance().getWinSize();
+        var screen = engine.game.viewSize;
         if( width == null )
         {
             width = screen.width;
@@ -1036,7 +1036,7 @@ PopMsg.create = function(){
 }
 
 PopMsg.simpleInit = function(layer){
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var ret = PopMsg.create();
     ret.setPosition(cc.p(winSize.width/2, winSize.height*2/3));
     ret.setZOrder(2000);

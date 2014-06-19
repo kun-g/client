@@ -272,7 +272,7 @@ DialogueDisplay.prototype.displayDialogue = function(did){
             this.LAYER.addChild(this.LAYER.mask);
             this.LAYER.owner = {};
             this.LAYER.node = cc.BuilderReader.load("ui-dialogue.ccbi", this.LAYER.owner);
-            var winSize = cc.Director.getInstance().getWinSize();
+            var winSize = engine.game.viewSize;
             this.LAYER.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
             this.LAYER.addChild(this.LAYER.node);
 

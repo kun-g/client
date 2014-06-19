@@ -60,7 +60,7 @@ function onEnter()
     sfc.addSpriteFrames("map.plist");
     sfc.addSpriteFrames("map2.plist");
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     theLayer.bgOwner = {};
     theLayer.bg = cc.BuilderReader.load("ui-map.ccbi", theLayer.bgOwner);
@@ -323,7 +323,7 @@ function showStages(chId)
     var stage = engine.ui.newLayer();
     var mask = blackMask();
     stage.addChild(mask); //weaken the map to highlight the choose-stage scene
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     //judge the flag of World Task
 //    var worldTask = null;

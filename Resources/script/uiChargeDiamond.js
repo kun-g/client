@@ -321,7 +321,7 @@ function showMonthCard()
 {
     theMonthCardLayer = engine.ui.newLayer();
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     var mask = blackMask();
     theMonthCardLayer.addChild(mask);

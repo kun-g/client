@@ -400,7 +400,7 @@ function onStartGame(sender){
 
     //libUIKit.pushLoading();
     {
-        var winSize = cc.Director.getInstance().getWinSize();
+        var winSize = engine.game.viewSize;
         theLayer.loadingCircle = cc.Sprite.create("loading.png");
         theLayer.loadingCircle.setPosition(cc.p(winSize.width/2, winSize.height/2));
         theLayer.addChild(theLayer.loadingCircle);
@@ -439,7 +439,7 @@ function onEnter()
 
     cc.AudioEngine.getInstance().playMusic("login.mp3", true);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     theLayer.owner = {};
     var node = cc.BuilderReader.load("sceneLogin2.ccbi", theLayer.owner);

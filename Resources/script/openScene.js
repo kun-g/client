@@ -264,7 +264,7 @@ function onEnter(){
     cc.AudioEngine.getInstance().playMusic("login.mp3", true);
 
     //add text area
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     theNode = cc.Node.create();
     theNode.setPosition(cc.p(0, winSize.height - 960));

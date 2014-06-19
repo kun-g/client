@@ -414,7 +414,7 @@ function showQuestComplete(qid, mode, prz){
     theQCLayer.node = libUIC.loadUI(theQCLayer, filename, {
        nodeSubmit:submit
     });
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theQCLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theQCLayer.addChild(theQCLayer.node);
     engine.ui.regMenu(theQCLayer.owner.menuRoot);

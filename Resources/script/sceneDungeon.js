@@ -425,7 +425,7 @@ function onPause(sender)
     var thiz = theLayer;
     var newLayer = engine.ui.newLayer();
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     thiz.greymask.setVisible(true);
 
     thiz.pause = {};
@@ -600,7 +600,7 @@ function doDungeonResult(win){
     theLayer.waitResponse = true;
     theLayer.waitResult = true;
     theLayer.updateMode();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     cc.AudioEngine.getInstance().stopMusic(true);
     if( win == 1 )
     {//win
@@ -987,7 +987,7 @@ function updateMode()
 
 function resetBlocks()
 {
-    var screenSize = cc.Director.getInstance().getWinSize();
+    var screenSize = engine.game.viewSize;
     theLayer.actors.removeAllChildren();
     theLayer.blocks.removeAllChildren();
     theLayer.ground.removeAllChildren();
@@ -1518,7 +1518,7 @@ function updateCardDesc()
             theLayer.card.layerMask.setVisible(true);
         }
 
-        var screen = cc.Director.getInstance().getWinSize();
+        var screen = engine.game.viewSize;
         var start = theLayer.owner.nodeCard.getPosition();
         start.x += theLayer.card.select*CARD_SPACE;
 
@@ -1901,7 +1901,7 @@ function showBossHP(max)
         this.BOSSHP = null;
     }
     this.BOSSHP = libGadgets.BossHP.create(max);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.BOSSHP.setPosition(cc.p(winSize.width/2, winSize.height));
     this.addChild(this.BOSSHP);
     return this.BOSSHP;

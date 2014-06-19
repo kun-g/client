@@ -50,7 +50,7 @@ function processOpenChest(item, rsp){
         theOpenLayer.addChild(mask);
         theOpenLayer.owner = {};
         theOpenLayer.node = cc.BuilderReader.load(fileName, theOpenLayer.owner);
-        var winSize = cc.Director.getInstance().getWinSize();
+        var winSize = engine.game.viewSize;
         theOpenLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
         theOpenLayer.addChild(theOpenLayer.node);
         theOpenLayer.node.animationManager.runAnimationsForSequenceNamed("effect");
@@ -90,7 +90,7 @@ function showOpenEffect(prize){
     theOpenLayer.addChild(mask);
     theOpenLayer.owner = {};
     theOpenLayer.node = cc.BuilderReader.load(fileName, theOpenLayer.owner);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theOpenLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theOpenLayer.addChild(theOpenLayer.node);
     theOpenLayer.node.animationManager.runAnimationsForSequenceNamed("effect");
@@ -411,7 +411,7 @@ function onEnter(){
         }
     });
     var mask = blackMask();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     this.addChild(mask);
     this.addChild(this.node);

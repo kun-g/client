@@ -93,7 +93,7 @@ function popLevelUp(){
     layer.node = cc.BuilderReader.load("ui-levelup.ccbi", layer.owner);
 
     layer.node.animationManager.runAnimationsForSequenceNamed("effect");
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
 
@@ -240,7 +240,7 @@ function popInvalidDungeon(){
     var mask = blackMask();
     layer.addChild(mask);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     layer.owner = {};
     layer.node = libUIC.loadUI(layer, "ui-tcfb.ccbi", {
@@ -305,7 +305,7 @@ function popMonthCard(){
         nodeSubmit:submit
     });
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theMonthLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theMonthLayer.addChild(theMonthLayer.node);
     engine.ui.regMenu(theMonthLayer.owner.menuRoot);
