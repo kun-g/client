@@ -17,7 +17,6 @@ var MODE_EXIT = 0;
 var MODE_PVP = 1;
 
 var DAILY_TIMES_NEED = 5;
-var DAILY_SETTLE_TIME_MIN = 1200;  // 0~1439min, 1200 = 20:00
 var PVP_STAGEID = 124;
 
 var theRivalsList;
@@ -44,8 +43,8 @@ function loadPkRivals() {
                 role.fix();
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
-                theLayer.owner["labBonusCup"+i].setString(role.CupBonus);
-                theLayer.owner["labBonusGold"+i].setString(role.GoldBonus);
+                theLayer.owner["labPower"+i].setString(role.getPower());
+                theLayer.owner["labRank"+i].setString(role.rnk);
             }
         }
     }
@@ -54,7 +53,6 @@ function loadPkRivals() {
 function loadMyInfo() {
     myPkInfo = engine.user.player.PkInfo;
     if( myPkInfo != null ){
-        theLayer.owner.labMyCup.setString(myPkInfo.cup);
         theLayer.owner.labMyRank.setString(myPkInfo.rnk);
         theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
         setBottomContent();
@@ -62,22 +60,24 @@ function loadMyInfo() {
 }
 
 function setBottomContent() {
-//    if( myPkInfo.bnp > 0 ){
-//        theLayer.owner.nodeBotCnt1.setVisible(false);
-//        theLayer.owner.nodeBotCnt2.setVisible(false);
-//        theLayer.owner.nodeBotCnt3.setVisible(true);
-//    }else{
-//    }
     if( myPkInfo.cpl >= DAILY_TIMES_NEED ){
-        theLayer.owner.nodeBotCnt1.setVisible(false);
-        theLayer.owner.nodeBotCnt2.setVisible(true);
-        theLayer.owner.nodeBotCnt3.setVisible(false);
-//        var leftMinutes = calcLeftTimeMin(DAILY_SETTLE_TIME_MIN);
-//        theLayer.owner.labLeftTime.setString(Math.floor(leftMinutes/60)+":"+leftMinutes%60);
+        //can receive
+        if(myPkInfo.rcv != null && myPkInfo.rcv){
+            //received
+            theLayer.owner.nodeBotCnt1.setVisible(false);
+            theLayer.owner.nodeBotCnt2.setVisible(false);
+            theLayer.owner.nodeBotCnt3.setVisible(true);
+        }else{
+            //not received
+            theLayer.owner.nodeBotCnt1.setVisible(false);
+            theLayer.owner.nodeBotCnt2.setVisible(true);
+            theLayer.owner.nodeBotCnt3.setVisible(false);
+            theLayer.owner.labBonusGold.setString(myPkInfo.bng);
+        }
     }else{
+        //cannot receive
         theLayer.owner.nodeBotCnt1.setVisible(true);
         theLayer.owner.nodeBotCnt2.setVisible(false);
-        theLayer.owner.nodeBotCnt3.setVisible(false);
         var timesNeed = DAILY_TIMES_NEED - myPkInfo.cpl;
         if( timesNeed < 0 ) timesNeed = 0;
         theLayer.owner.labTimesNeed.setString(timesNeed);
@@ -125,7 +125,7 @@ function onStartPK() {
             func: function() {
                 var libStage = loadModule("sceneStage.js");
                 var stageDate = queryStage(PVP_STAGEID);
-                libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost);
+                libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
             },
             obj: alert,
             type: BUTTONTYPE_DEFAULT

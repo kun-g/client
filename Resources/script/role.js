@@ -26,8 +26,7 @@ var RoleScheme = {
     ifn: "IsFriend",//好友标记
     vip: "vip",
     scr: "Score",
-    cup: "CupBonus",
-    gld: "GoldBonus"
+    rnk: "Rank"
 };
 
 function Role(source)
@@ -267,13 +266,9 @@ Role.prototype.fix = function()
         {
             this.Score = 0;
         }
-        if( this.CupBonus == null )
+        if( this.Rank == null )
         {
-            this.CupBonus = 0;
-        }
-        if( this.GoldBonus == null )
-        {
-            this.GoldBonus = 0;
+            this.Rank = 0;
         }
     }
 
