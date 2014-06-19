@@ -51,7 +51,7 @@ function loadPkRivals() {
 }
 
 function loadMyInfo() {
-    engine.session.updatePVPInfo();
+    //engine.session.updatePVPInfo();
     myPkInfo = engine.session.PkInfo;
 
     //test code
@@ -113,6 +113,7 @@ function onRival(sender) {
     for( var i=1; i<4; i++){
         theLayer.owner["btnStartPK"+i].setVisible(i == TouchId);
         theLayer.owner["nodeBonus"+i].setVisible(!(i == TouchId));
+        theLayer.owner["layerOnBtn"+i].setEnabled(!(i == TouchId));
     }
 
 }
@@ -192,7 +193,7 @@ function onEnter() {
     this.owner.onRoleInfo = onRoleInfo;
     this.owner.onReceivePrize = onReceivePrize;
     this.owner.onClose = onClose;
-    var node = libUIC.loadUI(this, "scenePVP.ccbi", {
+    var node = libUIC.loadUI(this, "sceneJjc.ccbi", {
         nodeRole1:{
             ui: "UIAvatar",
             id: "avatar1"
@@ -212,7 +213,7 @@ function onEnter() {
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
-    this.schedule(loadMyInfo(), 60);
+    //this.schedule(loadMyInfo(), 60);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
