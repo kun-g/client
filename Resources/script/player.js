@@ -16,7 +16,6 @@ function Player()
     this.AID = -1;
     this.MonthCardCount = -1;
     this.Flags = {};
-    this.PkInfo = {};
 }
 
 Player.prototype.setEnergy = function(energy, timer){

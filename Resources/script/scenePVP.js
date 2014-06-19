@@ -23,7 +23,7 @@ var theRivalsList;
 var myPkInfo;
 
 function getPkRivals() {
-    libUIKit.waitRPC(Request_GetPkInfo, {}, function(rsp) {
+    libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
         if( rsp.RET == RET_OK ){
             theRivalsList = rsp.lst;
             loadPkRivals();
@@ -51,7 +51,18 @@ function loadPkRivals() {
 }
 
 function loadMyInfo() {
-    myPkInfo = engine.user.player.PkInfo;
+    engine.session.updatePVPInfo();
+    myPkInfo = engine.session.PkInfo;
+
+    //test code
+    myPkInfo = {
+        rnk: 333,
+        cpl: 2,
+        ttl: 10,
+        bng: 3000,
+        rcv: false
+    };
+
     if( myPkInfo != null ){
         theLayer.owner.labMyRank.setString(myPkInfo.rnk);
         theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
@@ -78,6 +89,7 @@ function setBottomContent() {
         //cannot receive
         theLayer.owner.nodeBotCnt1.setVisible(true);
         theLayer.owner.nodeBotCnt2.setVisible(false);
+        theLayer.owner.nodeBotCnt3.setVisible(false);
         var timesNeed = DAILY_TIMES_NEED - myPkInfo.cpl;
         if( timesNeed < 0 ) timesNeed = 0;
         theLayer.owner.labTimesNeed.setString(timesNeed);
@@ -161,6 +173,10 @@ function onUIAnimationCompleted(name){
         engine.ui.newScene(main.scene());
     }
     if( theMode == MODE_PVP ){
+
+        //test code
+        return;
+
         getPkRivals();
     }
 }

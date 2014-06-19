@@ -21,11 +21,10 @@ function Session(){
     this.accountId = null;
     this.accountType = null;
     this.zoneId = 0;
-
     this.roleCache = {};
-
     this.dataBounty = [];
     this.MonthCardAvaiable = false;
+    this.PkInfo = {};
 }
 
 Session.prototype.pushFriendApply = function(msg){
@@ -105,6 +104,21 @@ Session.prototype.cacheRoleInfo = function(info){
 
 Session.prototype.queryRoleInfo = function(name){
     return this.roleCache[name];
+}
+
+Session.prototype.updatePVPInfo = function() {
+    var libUIKit = loadModule("uiKit.js");
+    libUIKit.waitRPC(Request_PVPInfoUpdate, {}, function (rsp) {
+        if( rsp.RET == RET_OK ){
+            if( rsp.pki != null ){
+                this.PkInfo = rsp.pki;
+            }else{
+                debug("*updatePVPInfo error: pki is null");
+            }
+        }else{
+            debug("*updatePVPInfo error: RET is not OK");
+        }
+    }, this);
 }
 
 var singleton = new Session();

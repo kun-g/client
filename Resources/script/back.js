@@ -372,9 +372,6 @@ function onEvent(event)
             if( event.arg.aid != null ){
                 engine.user.player.AID = event.arg.aid;
             }
-            if( event.arg.pki != null ){
-                engine.user.player.PkInfo = event.arg.pki;
-            }
             if (event.arg.mcc != null){
                 engine.user.player.MonthCardCount = event.arg.mcc;
             }
