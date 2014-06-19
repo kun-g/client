@@ -1559,8 +1559,6 @@ function onEnter(){
 
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
-
-
 }
 
 function onActivate(){

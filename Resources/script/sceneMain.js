@@ -83,6 +83,7 @@ function onEnter()
     theLayer.owner.onDailyQuest = onDailyQuest;
     theLayer.owner.onDailyPrize = onDailyPrize;
     theLayer.owner.onBounty = onBounty;
+    theLayer.owner.onPVP = onPVP;
 
     var node = libUIC.loadUI(theLayer, "sceneIndex.ccbi", {
         nodeEnergy:{
@@ -473,6 +474,13 @@ function onShop(sender)
 {
     startCloseAnimation(function(){
         engine.ui.newScene(loadModule("sceneShop.js").scene());
+    });
+}
+
+function onPVP(sender)
+{
+    startCloseAnimation(function(){
+        engine.ui.newScene(loadModule("scenePVP.js").scene());
     });
 }
 

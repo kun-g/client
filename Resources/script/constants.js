@@ -229,6 +229,9 @@ var Request_ReportState = 28;
 var Request_SubmitDailyQuest = 29;
 var Request_QueryLeaderboard = 30;
 var Request_SubmitBounty = 31;
+var Request_GetPkRivals = 32;
+var Request_ReceivePrize = 33;
+var Request_PVPInfoUpdate = 34;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
@@ -237,6 +240,9 @@ var Request_Awake = 104;
 var Request_BindAccount = 105;
 
 var Request_GetDailyPrize = 300;
+
+/*** ReceivePrizeType ***/
+var ReceivePkPrize = 0;
 
 /*** EVENTS ***/
 var Event_DungeonEnter = 0;

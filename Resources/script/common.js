@@ -1054,7 +1054,7 @@ PopMsg.pop = function(msg, typ){
     node.pushMsg(msg, typ);
 }
 
-function requestBattle(stage, party){
+function requestBattle(stage, party, pkRival){
     var libUIKit = loadModule("uiKit.js");
     //assign variables
     if( engine.user.dungeon == null ){
@@ -1066,10 +1066,20 @@ function requestBattle(stage, party){
     }
     //go request
     if( FLAG_BLACKBOX ){
-        libUIKit.waitRPC(Request_GameStartDungeon, {
-            stg: stage,
-            initialDataOnly: true
-        }, function(rsp){
+        var args = {};
+        if(pkRival != null){
+            args = {
+                stg: stage,
+                pkr: pkRival,
+                initialDataOnly: true
+            }
+        }else{
+            args = {
+                stg: stage,
+                initialDataOnly: true
+            }
+        }
+        libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
                 engine.box.start(rsp.arg);
                 engine.event.holdNotifications();
@@ -1093,8 +1103,19 @@ function requestBattle(stage, party){
         });
     }
     else{
+        var args = {};
+        if(pkRival != null){
+            args = {
+                stg: stage,
+                pkr: pkRival
+            }
+        }else{
+            args = {
+                stg: stage
+            }
+        }
         //send rpc request
-        libUIKit.waitRPC(Request_GameStartDungeon, {stg: stage}, function(rsp){
+        libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
                 engine.event.holdNotifications();
                 engine.session.clearTeam();

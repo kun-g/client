@@ -2957,7 +2957,7 @@
 			buildPhases = (
 				53885E7317E93DE400A3A8B4 /* Sources */,
 				53885E7417E93DE400A3A8B4 /* Frameworks */,
-				D4AD99CE19502CE800AC2ABE /* Run Script */,
+				809766B219502AF400A0C79C /* ShellScript */,
 				53885E7517E93DE400A3A8B4 /* Resources */,
 			);
 			buildRules = (
@@ -3094,14 +3094,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D4AD99CE19502CE800AC2ABE /* Run Script */ = {
+		809766B219502AF400A0C79C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

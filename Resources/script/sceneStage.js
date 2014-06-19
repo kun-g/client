@@ -618,7 +618,7 @@ function scene()
 }
 
 //-------------------
-function startStage(stg, team, cost){
+function startStage(stg, team, cost, pkRival){
     debug("startStage("+stg+", "+team+", "+cost+")");
     //check energy
     if( engine.user.player.Energy < cost ){
@@ -649,7 +649,7 @@ function startStage(stg, team, cost){
     }
     else
     {//start dungeon
-        requestBattle(engine.user.dungeon.stage, [engine.user.actor]);
+        requestBattle(engine.user.dungeon.stage, [engine.user.actor], pkRival);
     }
 }
 

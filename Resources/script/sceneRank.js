@@ -80,7 +80,7 @@ function createRoleBar(role, rank){
         layer.owner["spType"+i].setVisible(theMode == i);
         layer.owner["spPattern"+i].setVisible(theMode == i);
     }
-    layer.owner.labPower.setString(role.scr);
+    layer.owner.labPower.setString(role.Score);
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
 
