@@ -105,17 +105,12 @@ function createRoleBar(role, rank){
 }
 
 function fillPage(page){
-    //因为服务器未支持PVP排行，暂时用战斗力的数据替代
-    var mode = theMode;
-    if (theMode == MODE_PVP){
-        mode = MODE_BATTLEPOWER;
-    }
     if( theCache[theMode][page] == null ){
         engine.event.sendRPCEvent(Request_QueryLeaderboard, {
             me: true,
             src: page*PAGE_SIZE,
             cnt: PAGE_SIZE,
-            typ: mode//theMode
+            typ: theMode
         }, function(rsp){
             if( rsp.RET == RET_OK ){
                 thePage = page;
