@@ -125,25 +125,28 @@ function onRoleInfo(sender){
 
 function onStartPK() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var alert = libUIKit.alert();
-    alert.setContent("确定开始挑战对手吗？");
-    alert.setButton([
-        {
-            label: "buttontext-qx.png",
-            func: onClose,
-            obj: alert
-        },
-        {
-            label: "buttontext-confirm.png",
-            func: function() {
-                var libStage = loadModule("sceneStage.js");
-                var stageDate = queryStage(PVP_STAGEID);
-                libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
-            },
-            obj: alert,
-            type: BUTTONTYPE_DEFAULT
-        }
-    ]);
+    var libStage = loadModule("sceneStage.js");
+    var stageDate = queryStage(PVP_STAGEID);
+    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
+//    var alert = libUIKit.alert();
+//    alert.setContent("确定开始挑战对手吗？");
+//    alert.setButton([
+//        {
+//            label: "buttontext-qx.png",
+//            func: onClose,
+//            obj: alert
+//        },
+//        {
+//            label: "buttontext-confirm.png",
+//            func: function() {
+//                var libStage = loadModule("sceneStage.js");
+//                var stageDate = queryStage(PVP_STAGEID);
+//                libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
+//            },
+//            obj: alert,
+//            type: BUTTONTYPE_DEFAULT
+//        }
+//    ]);
 }
 
 function onReceivePrize() {
@@ -213,7 +216,8 @@ function onEnter() {
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
-    //this.schedule(loadMyInfo(), 60);
+    loadMyInfo();
+    this.schedule(loadMyInfo, 60);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
