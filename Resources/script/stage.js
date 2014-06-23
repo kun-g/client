@@ -77,11 +77,11 @@ Stage.prototype.update = function(event, notify)
 Stage.prototype.queryStageInfo = function(stageId)
 {
     var ret = {};
-    var tables = libTable.readTable(TABLE_STAGE);
+    var chCnt = libTable.getTableLength(TABLE_STAGE);
     var found = false;
-    for(var k in tables){
+    for(var k=0; k<chCnt; ++k){
         if( found ) break;
-        var chap = tables[k];
+        var chap = libTable.queryTable(TABLE_STAGE, k);
         if( chap.stage != null ){
             for(var m in chap.stage){
                 var stage = chap.stage[m];
@@ -89,13 +89,14 @@ Stage.prototype.queryStageInfo = function(stageId)
                     found = true;
                     ret.chapterClass = chap;
                     ret.stageClass = stage;
+                    ret.stageIndex = m;
                 }
             }
         }
     }
     if( found ){
         if( this.Chapters[ret.chapterClass.chapterId] != null ){
-            var stageData = this.Chapters[ret.chapterClass.chapterId][ret.stageClass.stageId];
+            var stageData = this.Chapters[ret.chapterClass.chapterId].Stages[ret.stageIndex];
             if( stageData != null ){
                 ret.stageData = stageData;
             }
@@ -105,7 +106,7 @@ Stage.prototype.queryStageInfo = function(stageId)
             var team = 3;
             var level = 0;
             if( ret.stageData != null ){
-                level =ret.stageData.Level;
+                level = ret.stageData.Level;
             }
             if( Math.floor(level%10 == 0 )){
                 team = 1;

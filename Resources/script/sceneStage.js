@@ -12,7 +12,6 @@ var scroller = loadModule("scroller.js");
 var ui = loadModule("UIComposer.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
-var libQuest = loadModule("questInfo.js");
 
 var theLayer = null;
 var theChapterClass;
@@ -44,7 +43,7 @@ function onClose(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libQuest.show();
+    loadModule("questInfo.js").show();
 }
 
 function onEnter()
@@ -638,7 +637,6 @@ function startStage(stg, team, cost, pkRival){
     }
 
     var stageInfo = engine.user.stage.queryStageInfo(stg);
-    debug("*** STAGE INFO = "+JSON.stringify(stageInfo));//test
     if( stageInfo.teamSize != null ){
         team = stageInfo.teamSize;
     }
