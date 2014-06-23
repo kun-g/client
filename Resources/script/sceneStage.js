@@ -631,7 +631,7 @@ function startStage(stg, team, cost, pkRival){
         }, str1, str2, cost, function(rsp){
             if( rsp.RET == RET_OK ){
                 //统计
-                tdga.itemPurchase("精力值", need, 1);
+                tdga.itemPurchase(translate(engine.game.language, "sceneStageEnergy"), need, 1);
             }
         });
         return;

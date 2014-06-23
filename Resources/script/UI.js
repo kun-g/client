@@ -45,11 +45,11 @@ UIManager.prototype.newScene = function(assign)
 
     singleton.newLayer(assign);
     singleton.LAYERS[0].backClicked = function(){
-        system.alert("离开游戏", "确认要退出游戏吗？", null, function(btn){
+        system.alert(translate(engine.game.language, "uiLeaveGame"), translate(engine.game.language, "uiWantLeave"), null, function(btn){
                        if( btn != 0 ){//switch
                            system.exit();
                        }
-                  }, "点错了", "退出");
+                  }, translate(engine.game.language, "uiNo"), translate(engine.game.language, "uiExit"));
     };
     singleton.LAYERS[0].setKeypadEnabled(true);
 }
