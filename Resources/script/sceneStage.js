@@ -21,6 +21,7 @@ var theStageClass;
 
 var theEnergyCost = 0;
 
+var winSize;
 var BIRD_HIGH = 30;
 var CLOUD_HIGH = 40;
 
@@ -30,6 +31,8 @@ var MODE_STAGE = 1;
 var TYPE_NORMAL = 0;
 var TYPE_CHALLENGE = 1;
 var theType = -1;
+
+var PrizeList = [];
 
 function onEvent(event)
 {
@@ -61,7 +64,7 @@ function onEnter()
     sfc.addSpriteFrames("map.plist");
     sfc.addSpriteFrames("map2.plist");
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    winSize = cc.Director.getInstance().getWinSize();
 
     theLayer.bgOwner = {};
     theLayer.bg = cc.BuilderReader.load("ui-map.ccbi", theLayer.bgOwner);
@@ -324,7 +327,6 @@ function showStages(chId)
     var stage = engine.ui.newLayer();
     var mask = blackMask();
     stage.addChild(mask); //weaken the map to highlight the choose-stage scene
-    var winSize = cc.Director.getInstance().getWinSize();
 
     //judge the flag of World Task
 //    var worldTask = null;
@@ -577,7 +579,6 @@ function showSweepAnimetion() {
     var sweepLayer = engine.ui.newLayer();
     var mask = blackMask();
     sweepLayer.addChild(mask);
-    var winSize = cc.Director.getInstance().getWinSize();
     theLayer.sweepLayer = sweepLayer;
     theLayer.sweep = {};
     theLayer.sweep.owner = {};
@@ -596,11 +597,16 @@ function showSweepAnimetion() {
 }
 
 function sweepAnimeCompleted() {
-    theLayer.sweep.node.removeFromParent();
+    theLayer.sweep.node.removeFromParent(true);
+    showSweepResult(PrizeList);
 }
 
-function showSweepResult(itemList) {
-    //todo?
+function showSweepResult(prizeList) {
+    theLayer.sweep = {};
+    theLayer.sweep.owner = {};
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", null);
+    theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    theLayer.sweepLayer.addChild(theLayer.sweep.node);
 }
 
 function onTouchBegan(touch, event)
@@ -686,7 +692,8 @@ function sweepStage(stg, mod, cost) {
         if( rsp.RET == RET_OK ){
 
             if( rsp.arg != null ){
-                showSweepResult(rsp.arg);
+                PrizeList = rsp.arg;
+                showSweepAnimetion();
             }
         }else{
             libUIKit.showErrorMessage(rsp);
