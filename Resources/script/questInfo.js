@@ -114,7 +114,7 @@ function loadQuestList(){
     var size = cc.size(LINE_WIDTH, engine.user.quest.Count*LINE_HEIGHT);
     theListLayer.setContentSize(size);
     if( engine.user.quest.Count == 0 ){
-        var label = cc.LabelTTF.create("暂无任务", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "questInfoNoMission"), UI_FONT, UI_SIZE_XL);
         var viewSize = theLayer.ui.scrollList.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -viewSize.height/3));
         theListLayer.addChild(label);
@@ -173,7 +173,7 @@ function loadQuestDesc(quest){
     });
     text.pushText({text: "  "});
     text.pushText({//push objectives
-        text: "任务目标",
+        text: translate(engine.game.language, "questInfoNoTarget"),
         color: cc.c3b(236, 199, 101),
         size: UI_SIZE_XL
     });
@@ -200,7 +200,7 @@ function loadQuestDesc(quest){
     }
     text.pushText({text: "  "});
     text.pushText({//push title
-        text: "任务奖励",
+        text: translate(engine.game.language, "questInfoMissonTarget"),
         color: cc.c3b(236, 199, 101),
         size: UI_SIZE_XL
     });

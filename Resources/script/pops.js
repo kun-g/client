@@ -112,10 +112,10 @@ function popLevelUp(){
     layer.owner.nodeSkill.addChild(uiSkill);
     var skillData = libTable.queryTable(TABLE_SKILL, skill.id);
     if( skill.level == 1 ){
-        layer.owner.labelDesc.setString("获得了新技能【"+skillData.label+"】");
+        layer.owner.labelDesc.setString(translate(engine.game.language, "popsGetNewSkill", [skillData.label]));
     }
     else{
-        layer.owner.labelDesc.setString("【"+skillData.label+"】等级提升到"+skill.level);
+        layer.owner.labelDesc.setString(translate(engine.game.language, "popsUpgradeSkill", [skillData.label,skill.level]));
     }
 
     engine.ui.regMenu(layer);
@@ -311,7 +311,7 @@ function popMonthCard(){
     engine.ui.regMenu(theMonthLayer.owner.menuRoot);
 
     //set panel data
-    theMonthLayer.owner.labelTitle.setString("月卡奖励");
+    theMonthLayer.owner.labelTitle.setString(translate(engine.game.language, "popsMonthCardPrize"));
     var prize = libItem.ItemPreview.create(pdata);
     var size = prize.getContentSize();
     prize.setPosition(cc.p(-size.width/2, -size.height/2));

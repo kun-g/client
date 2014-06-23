@@ -270,7 +270,7 @@ function loadDeliverDetail(data){
     if( data.prz != null ){
         text.pushText({text: "  "});
         text.pushText({//push title
-            text: "附件",
+            text: translate(engine.game.language, "messageInfoAttachment"),
             color: cc.c3b(236, 199, 101),
             size: UI_SIZE_XL
         });
@@ -431,7 +431,7 @@ function onFIRoleInfo(sender){
 function onFIRejectAll(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var alt = libUIKit.alert();
-    alt.setContent("确定要拒绝所有好友邀请吗？");
+    alt.setContent(translate(engine.game.language, "messageInfoRefuseAll"));
     alt.setButton([
         {
             label: "buttontext-confirm.png",

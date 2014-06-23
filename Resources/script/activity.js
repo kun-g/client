@@ -73,7 +73,7 @@ function getDailyPrize(id){
             var nowtime = new Date();
             var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
             var getDay = +theDay + 1;
-            theLayer.owner.labDay.setString("累计签到" + getDay + "天");
+            theLayer.owner.labDay.setString(translate(engine.game.language, "activityTotalSign", [getDay]));
             //根据day和curDays设置contentScroller
             setNormalPrize(theCenter,theDay,curDays);
         }
@@ -264,11 +264,11 @@ function showDailyPrize(day){
     theLayer.owner.labelMonth.setString(nowtime.getMonth() + 1);
 
     if (engine.user.activity.dailyPrize == true){
-        theLayer.owner.labDay.setString("累计签到" + day + "天");
+        theLayer.owner.labDay.setString(translate(engine.game.language, "activityTotalSign", [day]));
     }
     else{
         var getDay = +day + 1;
-        theLayer.owner.labDay.setString("累计签到" + getDay + "天");
+        theLayer.owner.labDay.setString(translate(engine.game.language, "activityTotalSign", [getDay]));
     }
 
     theCenter.theGridLayer = cc.Layer.create();
@@ -483,7 +483,7 @@ function refreshDailyQuest(){
         else{
             layer.owner.labTitle.setString("");
             layer.owner.nodeComplete.setVisible(true);
-            layer.owner.labComplete.setString("暂时没有日常任务");
+            layer.owner.labComplete.setString(translate(engine.game.language, "activityNoDailyMisson"));
             layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart1.png"));
             layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
@@ -493,7 +493,7 @@ function refreshDailyQuest(){
     }
     else if( dailyQuest.step == 4 ){//take to prize
         layer.owner.nodeComplete.setVisible(true);
-        layer.owner.labComplete.setString("你已经完成了今日任务，点击领取奖励。");
+        layer.owner.labComplete.setString(translate(engine.game.language, "activityMissionDone"));
         //gather prize
         layer.owner.btnGet.setEnabled(true);
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
@@ -503,7 +503,7 @@ function refreshDailyQuest(){
     }
     else{//daily quest is done
         layer.owner.nodeComplete.setVisible(true);
-        layer.owner.labComplete.setString("今天的任务已经结束了，请明天再来。");
+        layer.owner.labComplete.setString(translate(engine.game.language, "activityMissonOver"));
         //gather prize & greyed out
         layer.owner.btnGet.setEnabled(false);
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));

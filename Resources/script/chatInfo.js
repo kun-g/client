@@ -78,7 +78,7 @@ function onMenuInvite(sender){
     }, function(rsp){
         engine.ui.popLayer();
         if( rsp.RET == RET_OK ){
-            engine.msg.pop("邀请已经发送", POPTYPE_INFO);
+            engine.msg.pop(translate(engine.game.language, "chatInfoInviteSended"), POPTYPE_INFO);
         }
         else{
             engine.msg.pop(ErrorMsgs[rsp.RET], POPTYPE_ERROR);
@@ -343,7 +343,7 @@ function setPublic(group){
 
     //update chat box
     theInput.setText("");
-    theInput.setPlaceHolder("请输入聊天内容");
+    theInput.setPlaceHolder(translate(engine.game.language, "chatInfoInputContent"));
 }
 
 function loadPublic(){
@@ -405,7 +405,7 @@ function setPrivate(group){
     //update chat box
     if( engine.session.whisper.curEvent != null ){
         theInput.setText("");
-        theInput.setPlaceHolder("发送消息给"+engine.session.whisper.curEvent.src);
+        theInput.setPlaceHolder();
     }
 }
 
@@ -491,7 +491,7 @@ function onNotify(ntf){
         else{
             if( ntf.arg.typ == 3 ){
                 append = true;
-                theInput.setPlaceHolder("发送消息给"+ntf.arg.src);
+                theInput.setPlaceHolder(translate(engine.game.language, "chatInfoSendMessTo",[ntf.arg.src]));
                 theInput.setText("");
             }
         }
@@ -677,7 +677,7 @@ function onEnter(){
             id: "input",
             length: UI_CHAT_LENGTH,
             type: cc.KEYBOARD_RETURNTYPE_SEND,
-            hold: "请输入聊天内容"
+            hold: translate(engine.game.language, "chatInfoSendMessTo")
         }
     });
     this.addChild(this.node);

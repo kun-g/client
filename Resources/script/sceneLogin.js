@@ -73,7 +73,7 @@ function onAccountChanged(token, type){
             id: token
         }, function(rsp){
               if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
-                  system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
+                  system.alert(translate(engine.game.language, "sceneLoginSwitch"), translate(engine.game.language, "sceneLoginAlreadyBind",[AccountTypeName[type]]), uacDelegate, function(btn){
                        if( btn != 0 ){//switch
                            debug("onSwitchAccount");
                            uac.setAccountMode(1);
@@ -82,7 +82,7 @@ function onAccountChanged(token, type){
                        else{
                            loadModule("back.js").removeLoginSucessInvoke("switchAccount");
                        }
-                  }, "不切换", "现在切换");
+                  }, translate(engine.game.language, "sceneLoginDonotSwitch"), translate(engine.game.language, "sceneLoginSwitchNow"));
               }
         });
     }
@@ -121,7 +121,7 @@ function onEvent(event)
         case Message_SyncBegin:
         {
             debug("开始同步");
-            updateLoading("正在同步数据", 0.3, true);
+            updateLoading(translate(engine.game.language, "sceneLoginSynchroData"), 0.3, true);
             return true;
         }
         case Message_SyncUpdate:
@@ -129,7 +129,7 @@ function onEvent(event)
             debug("同步中");
             var segment = 0.5/event.arg.total;
             var process = 0.3+segment*event.arg.count;
-            updateLoading("正在同步数据", process);
+            updateLoading(translate(engine.game.language, "sceneLoginSynchroData"), process);
             return true;
         }
         case Message_SyncEnd:
@@ -144,7 +144,7 @@ function onEvent(event)
             engine.user.actor.fix();
             tdga.setLevel(engine.user.actor.Level);
 
-            updateLoading("正在登陆", 0.8, true);
+            updateLoading(translate(engine.game.language, "sceneLoginLogining"), 0.8, true);
             engine.event.processNotification(Message_LoadReady, LOAD_MENU);
 
             return true;
@@ -153,7 +153,7 @@ function onEvent(event)
         {
             loadReady = true;
             loadFlag = event.arg;
-            updateLoading("正在进入游戏", 1);
+            updateLoading(translate(engine.game.language, "sceneLoginIntoGame"), 1);
 
             return true;
         }
@@ -191,7 +191,7 @@ function updateInvoke()
         var target = file.getDocumentPath()+PATH_DOWNLOAD+"update.zip";
         debug("Updating RES("+toupdate+") @ "+http);
         file.download(target, http, updateCallback);
-        updateLoading("正在下载更新", update_process);
+        updateLoading(translate(engine.game.language, "sceneLoginDownloading"), update_process);
     }
     else
     {
@@ -209,7 +209,7 @@ function updateCallback(status, dlnow, dltotal)
     {
         case -1:
         {//更新失败
-            updateLoading("下载失败，请稍后再试", update_process);
+            updateLoading(translate(engine.game.language, "sceneLoginDownloadFailed"), update_process);
         }
             break;
         case 0:
@@ -219,7 +219,7 @@ function updateCallback(status, dlnow, dltotal)
                 var step = segment*dlnow/dltotal;
                 var progress = update_process + step;
                 //debug("step = "+step+";progress = "+progress+";update_cnt = "+update_cnt);
-                updateLoading("正在下载更新", progress, true);
+                updateLoading(translate(engine.game.language, "sceneLoginDownloading"), progress, true);
             }
         }
             break;
@@ -271,7 +271,7 @@ function LoginResp(rsp){
         case RET_AppVersionNotMatch:
         {
             var alert = libUIKit.alert();
-            alert.setContent("游戏需要更新新的版本\n是否立即更新?");
+            alert.setContent(translate(engine.game.language, "sceneLoginUpdate"));
             alert.setButton([
                 {
                     label: "buttontext-qx.png",
@@ -308,7 +308,7 @@ function LoginResp(rsp){
                 updateInvoke();
             }
             else{
-                libUIKit.showAlert("此版本不能识别，请重新下载安装。");
+                libUIKit.showAlert(translate(engine.game.language, "sceneLoginCannotRecognize"));
             }
         }break;
         case RET_AccountHaveNoHero:
@@ -365,7 +365,7 @@ function invokeLogin()
             updateInvoke();
         }
         else{
-            libUIKit.showAlert("此版本不能识别，请重新下载安装。");
+            libUIKit.showAlert(translate(engine.game.language, "sceneLoginCannotRecognize"));
         }
         return;
     }
@@ -376,14 +376,14 @@ function startLogin()
 {
     theLayer.loadingCircle.setVisible(false);
 
-    updateLoading("登录中", 0.05);
+    updateLoading(translate(engine.game.language, "sceneLoginLogining2"), 0.05);
     uac.setDelegate(uacDelegate);
     uac.init();
 }
 
 function serverTimeOut(){
     theLayer.loadingCircle.setVisible(false);
-    system.alert("连接失败","无法连接到服务器，请稍后再试", this, onAlert, "重试");
+    system.alert(translate(engine.game.language, "sceneLoginConnectFail"),translate(engine.game.language, "sceneLoginCannotConnect"), this, onAlert, translate(engine.game.language, "sceneLoginRetry"));
 }
 
 function onStartGame(sender){
@@ -469,7 +469,7 @@ function onEnter()
     theLayer.label.setPosition(cc.p( - 2.5, 2.5));
     theLayer.owner.nodeLoad.addChild(theLayer.label);
 
-    updateLoading("正在登陆游戏", 0, true);
+    updateLoading(translate(engine.game.language, "sceneLoginLoginingGame"), 0, true);
 
     loadReady = false;
     tutorialId = -1;
@@ -495,6 +495,9 @@ function onEnter()
     engine.event.releaseNotifications();
     debug("- LOGIN ENTER -");
 
+    //test translate
+    debug("test = "+translate(engine.game.language, "test"));
+    debug("test1 = "+translate(engine.game.language, "test1", [1,5,6]));//{val1:1, val2:5, val3:6}
     //91 special process
 //    if( iap.getStoreName() == "Nd91" ){
 //        onStartGame();

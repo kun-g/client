@@ -136,32 +136,32 @@ var HAIR_STYLE = [7, 8, 9, 29, 30, 31];
 var playerClasses = [0, 1, 2];
 
 var EquipSlotDesc = [
-    "主武器",
-    "副武器",
-    "胸甲",
-    "戒指",
-    "腿甲",
-    "护符",
-    "脸部",
-    "眼部",
-    "眉毛",
-    "头发",
-    "主手装饰",
-    "副手装饰",
-    "外套",
-    "头盔",
-    "发型",
-    "头饰"
+    translate(engine.game.language, "constantsEquipSlotDesc0"),
+    translate(engine.game.language, "constantsEquipSlotDesc1"),
+    translate(engine.game.language, "constantsEquipSlotDesc2"),
+    translate(engine.game.language, "constantsEquipSlotDesc3"),
+    translate(engine.game.language, "constantsEquipSlotDesc4"),
+    translate(engine.game.language, "constantsEquipSlotDesc5"),
+    translate(engine.game.language, "constantsEquipSlotDesc6"),
+    translate(engine.game.language, "constantsEquipSlotDesc7"),
+    translate(engine.game.language, "constantsEquipSlotDesc8"),
+    translate(engine.game.language, "constantsEquipSlotDesc9"),
+    translate(engine.game.language, "constantsEquipSlotDesc10"),
+    translate(engine.game.language, "constantsEquipSlotDesc11"),
+    translate(engine.game.language, "constantsEquipSlotDesc12"),
+    translate(engine.game.language, "constantsEquipSlotDesc13"),
+    translate(engine.game.language, "constantsEquipSlotDesc14"),
+    translate(engine.game.language, "constantsEquipSlotDesc15")
 ];
 
 var ServerPropertyTable ={
-    health: "生命",
-    speed: "速度",
-    attack: "攻击",
-    critical: "暴击",
-    strong: "韧性",
-    accuracy: "命中",
-    reactivity: "反应"
+    health: translate(engine.game.language, "constantsServerPropertyTable0"),
+    speed: translate(engine.game.language, "constantsServerPropertyTable1"),
+    attack: translate(engine.game.language, "constantsServerPropertyTable2"),
+    critical: translate(engine.game.language, "constantsServerPropertyTable3"),
+    strong: translate(engine.game.language, "constantsServerPropertyTable4"),
+    accuracy: translate(engine.game.language, "constantsServerPropertyTable5"),
+    reactivity: translate(engine.game.language, "constantsServerPropertyTable6")
 };
 
 /*** DUNGEONS ***/

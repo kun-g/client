@@ -153,7 +153,7 @@ function onReceivePrize() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_ReceivePrize, {typ: ReceivePkPrize}, function (rsp) {
         if( rsp.RET == RET_OK ){
-            libUIKit.showAlert("奖金领取成功！");
+            libUIKit.showAlert(translate(engine.game.language, "scenePVPGetPrize"));
             if (rsp.RES != null) {
                 engine.event.processResponses(rsp.RES);
             }

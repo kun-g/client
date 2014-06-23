@@ -116,9 +116,9 @@ function onSubmit(sender){
         }
 
         if (chkProcess == 1){
-            engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
+            engine.msg.pop(translate(engine.game.language, "questInfoMissonTarget"), POPTYPE_ERROR);
         }else if (chkProcess == 2){
-            engine.msg.pop("任务已经结束了。", POPTYPE_ERROR);
+            engine.msg.pop(translate(engine.game.language, "sceneBountyOver"), POPTYPE_ERROR);
         }
         else if (str.length <= 0 && (
             engine.session.dataBounty[line.bounty.BountyId] != null &&
@@ -133,7 +133,7 @@ function onSubmit(sender){
         else if (engine.session.dataBounty[line.bounty.BountyId] != null &&
                 engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
                 engine.session.dataBounty[line.bounty.BountyId].cnt <= 0){
-                engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
+                engine.msg.pop(translate(engine.game.language, "sceneBountyDone"), POPTYPE_ERROR);
         }
         else if (str.length > 0){
             engine.msg.pop(str, POPTYPE_ERROR);
@@ -236,7 +236,7 @@ function loadBountyList(){
     theListLayer.setContentSize(size);
 
     if(  bountyCount == 0 ){//engine.user.bounty.Count
-        var label = cc.LabelTTF.create("暂无任务", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "questInfoNoMission"), UI_FONT, UI_SIZE_XL);
         var viewSize = theLayer.ui.scrollList.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -viewSize.height/3));
         theListLayer.addChild(label);
@@ -351,7 +351,7 @@ function loadBountyDesc(bounty, lev){
     var text = DCTextArea.create();
     text.setDimension(dimension);
     text.pushText({//push desc
-        text: "任务描述",
+        text: translate(engine.game.language, "sceneBountyMissonDesc"),
         color: cc.c3b(236, 199, 101),
         size: UI_SIZE_XL
     });
@@ -368,21 +368,21 @@ function loadBountyDesc(bounty, lev){
     
     text.pushText({text: "  "});
     text.pushText({//push objectives
-        text: "任务要求",
+        text: translate(engine.game.language, "sceneBountyMissonRequire"),
         color: cc.c3b(236, 199, 101),
         size: UI_SIZE_XL
     });
     var limitFlag = false;
     if (tar.levelLimit != null){
         text.pushText({//push desc
-            text: "要求等级达到"+tar.levelLimit+"级。",
+            text: translate(engine.game.language, "sceneBountyLimitLevel", [tar.levelLimit]),
             size: UI_SIZE_L
         });
         limitFlag = true;
     }
     if (tar.powerLimit != null){
         text.pushText({//push desc
-            text: "要求战斗力达到"+tar.powerLimit+"。",
+            text: translate(engine.game.language, "sceneBountyLimitPower", [tar.powerLimit]),
             size: UI_SIZE_L
         });
         limitFlag = true;
@@ -391,10 +391,10 @@ function loadBountyDesc(bounty, lev){
         var str = "";
         for (var k in tar.classLimit) {
             var roleClass = libTable.queryTable(TABLE_ROLE, tar.classLimit[k]);
-            str += roleClass.className + "、";
+            str += roleClass.className + translate(engine.game.language, "globalSymbolStop");
         }
         str=str.substring(0,str.length-1);
-        str += "职业可以做。";
+        str += translate(engine.game.language, "sceneBountyLimitClass");
         text.pushText({//push desc
             text: str,
             size: UI_SIZE_L
@@ -403,13 +403,13 @@ function loadBountyDesc(bounty, lev){
     }
     if (limitFlag == false){
         text.pushText({//push desc
-            text: "无。",
+            text: translate(engine.game.language, "sceneBountyNone"),
             size: UI_SIZE_L
         });
     }
     text.pushText({text: "  "});
     text.pushText({//push title
-        text: "任务奖励",
+        text: translate(engine.game.language, "sceneBountyMissonPrize"),
         color: cc.c3b(236, 199, 101),
         size: UI_SIZE_XL
     });

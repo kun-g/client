@@ -203,7 +203,7 @@ function setShopInventory(group){
 
     if( size == 0 )
     {
-        var label = cc.LabelTTF.create("暂无商店道具", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "sceneInventoryNoItem"), UI_FONT, UI_SIZE_XL);
         var viewSize = group.contentScroller.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -viewSize.height/3));
         group.theGridLayer.addChild(label);
@@ -266,15 +266,15 @@ function onExtend(sender)
     var n = x+1;
     if( x > 5 ) x = 5;
     var cost = 50 + x*30;
-    var str1 = "使用"+cost+"宝石来扩展5格仓库空间";
-    var str2 = "剩余的宝石不足\n扩充仓库需要使用"+cost+"宝石\n是否需要充值?";
+    var str1 = translate(engine.game.language, "sceneInventoryExWarehouse", [cost]);
+    var str2 = translate(engine.game.language, "sceneInventoryChargeForExWarehouse", [cost]);
     libUIKit.confirmPurchase(Request_BuyFeature, {
         typ: 1
     }, str1, str2, cost,
     function(rsp){
         if( rsp.RET == RET_OK ){
             //统计
-            tdga.itemPurchase("背包扩充"+n, 1, cost);
+            tdga.itemPurchase(translate(engine.game.language, "sceneInventoryExWarehouseN", [n]), 1, cost);  
         }
     });
 }

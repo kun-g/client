@@ -1240,12 +1240,20 @@ function dayNumOfMonth(year,month)
     return 32-new Date(year,month,32).getDate();
 }
 
-function translate(language,key,args)
+function translate(language,keyword,args)
 {
     var libLocal = loadModule("table.js").readTable(TABLE_LOCALIZE);
+    debug("libLocal = "+JSON.stringify(libLocal));
     var text = "";
-    if (libLocal[language] != null && libLocal[language].key != null){
-        text = libLocal[language].key;
+    if (libLocal[language] != null && libLocal[language][keyword] != null){
+        text = libLocal[language][keyword];
+        for (var k in args){
+            var num = +k + 1;
+            var str = "{#" + num.toString() +  "}";
+            debug("str = "+str);
+            debug("args["+ k +"] = "+args[k]);
+            text = text.replace(str, args[k]);
+        }
     }
     return text;
 }

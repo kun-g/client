@@ -424,8 +424,8 @@ function onEnterBackground()
             system.scheduleLocalNotification(
                 "energyRecover",
                 time,
-                "老大我已经完全恢复了精力。赶紧去把外面嚣张的怪物都砍翻吧，世界和平就靠你啦。",
-                "出征");
+                translate(engine.game.language, "eventRecovery"),
+                translate(engine.game.language, "eventGo"));
         }
 
         engine.user.bounty.setScheduleLocalNotification();
