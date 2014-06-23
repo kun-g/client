@@ -25,9 +25,9 @@ var myPkInfo;
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
         if( rsp.RET == RET_OK ){
-            theRivalsList = rsp.lst;
+            theRivalsList = rsp.arg;
             loadPkRivals();
-            engine.session.cacheRoleInfo(rsp.lst);
+            engine.session.cacheRoleInfo(rsp.arg);
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -51,8 +51,8 @@ function loadPkRivals() {
 }
 
 function loadMyInfo() {
-    //engine.session.updatePVPInfo();
-    myPkInfo = engine.session.PkInfo;
+//    engine.session.updatePVPInfo();
+//    myPkInfo = engine.session.PkInfo;
 
     //test code
     myPkInfo = {
@@ -179,7 +179,7 @@ function onUIAnimationCompleted(name){
     if( theMode == MODE_PVP ){
 
         //test code
-        return;
+//        return;
 
         getPkRivals();
     }
@@ -217,7 +217,7 @@ function onEnter() {
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
     loadMyInfo();
-    this.schedule(loadMyInfo, 60);
+    this.schedule(loadMyInfo, 3);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }

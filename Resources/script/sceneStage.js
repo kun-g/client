@@ -390,6 +390,7 @@ function showStages(chId)
         theLayer.stage = {};
         theLayer.stage.owner = {};
         theLayer.stage.owner.onStage = onSelectStage;
+        theLayer.stage.owner.onSweepStage = onSweepStage;
         theLayer.stage.owner.onMode = onMode;
         theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
         theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -546,6 +547,31 @@ function onSelectStage(sender)
     }
 }
 
+function onSweepStage(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var mod = ( sender.getTag() == 0 ); //true:单次扫荡 false:批量扫荡
+    var times = sender.getTag() * 4 + 1; // 1 or 5
+    var totalEnergyCost = theEnergyCost * times;
+
+    if( engine.user.player.Energy < totalEnergyCost ){
+        var need = totalEnergyCost - engine.user.player.Energy;
+        var str1 = "精力值不足\n进行扫荡还需要"+need+"精力\n需要使用"+need+"宝石来立即恢复吗?";
+        var str2 = "精力值不足，无法扫荡此关\n使用"+need+"宝石可以立即恢复\n需要充值吗?";
+        libUIKit.confirmPurchase(Request_BuyFeature, {
+            typ: 0,
+            tar: totalEnergyCost
+        }, str1, str2, totalEnergyCost, function(rsp){
+            if( rsp.RET == RET_OK ){
+                //统计
+                tdga.itemPurchase("精力值", need, 1);
+            }
+        });
+        return;
+    }
+
+    sweepStage(theLayer.stageSelected, mod, totalEnergyCost);
+}
+
 function onTouchBegan(touch, event)
 {
     var pos = touch.getLocation();
@@ -618,6 +644,29 @@ function scene()
 }
 
 //-------------------
+
+function sweepStage(stg, mod, cost) {
+    debug("sweepStage("+stg+", "+team+", "+cost+")");
+
+    libUIKit.waitRPC(Request_SweepStage, {
+        stg: stg,
+        mod: mod
+    }, function (rsp) {
+        if( rsp.RET == RET_OK ){
+            if( rsp.arg != null ){
+                showSweepResult(rsp.arg);
+            }
+        }else{
+            libUIKit.showErrorMessage(rsp);
+        }
+    });
+}
+//exports.sweepStage = sweepStage;
+
+function showSweepResult(itemList) {
+    //todo?
+}
+
 function startStage(stg, team, cost, pkRival){
     debug("startStage("+stg+", "+team+", "+cost+")");
     //check energy
@@ -652,6 +701,5 @@ function startStage(stg, team, cost, pkRival){
         requestBattle(engine.user.dungeon.stage, [engine.user.actor], pkRival);
     }
 }
-
 exports.startStage = startStage;
 exports.scene = scene;
