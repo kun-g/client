@@ -1239,3 +1239,8 @@ function dayNumOfMonth(year,month)
 {
     return 32-new Date(year,month,32).getDate();
 }
+
+function translate(year,month)
+{
+    return 32-new Date(year,month,32).getDate();
+}
