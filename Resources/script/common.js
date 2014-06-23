@@ -1240,7 +1240,12 @@ function dayNumOfMonth(year,month)
     return 32-new Date(year,month,32).getDate();
 }
 
-function translate(year,month)
+function translate(language,key,args)
 {
-    return 32-new Date(year,month,32).getDate();
+    var libLocal = loadModule("table.js").readTable(TABLE_LOCALIZE);
+    var text = "";
+    if (libLocal[language] != null && libLocal[language].key != null){
+        text = libLocal[language].key;
+    }
+    return text;
 }
