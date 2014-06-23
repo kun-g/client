@@ -138,7 +138,7 @@ function onTouchEnded(touch, event)
     {//as click
         var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
         var id = calcPosId(localPos);
-        //debug("id = "+id);
+        debug("id = "+id);
         if (theDay == id && engine.user.activity.dailyPrize == true){
             var item = theCenter.inventoryData[id];
             if( item != null ) {
