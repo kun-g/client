@@ -74,4 +74,57 @@ Stage.prototype.update = function(event, notify)
     }
 }
 
+Stage.prototype.queryStageInfo = function(stageId)
+{
+    var ret = {};
+    var tables = libTable.readTable(TABLE_STAGE);
+    var found = false;
+    for(var k in tables){
+        if( found ) break;
+        var chap = tables[k];
+        if( chap.stage != null ){
+            for(var m in chap.stage){
+                var stage = chap.stage[m];
+                if( stage.stageId == stageId ){
+                    found = true;
+                    ret.chapterClass = chap;
+                    ret.stageClass = stage;
+                }
+            }
+        }
+    }
+    if( found ){
+        if( this.Chapters[ret.chapterClass.chapterId] != null ){
+            var stageData = this.Chapters[ret.chapterClass.chapterId][ret.stageClass.stageId];
+            if( stageData != null ){
+                ret.stageData = stageData;
+            }
+        }
+        //update team size
+        if( ret.stageClass.isInfinite === true ){
+            var team = 3;
+            var level = 0;
+            if( ret.stageData != null ){
+                level =ret.stageData.Level;
+            }
+            if( Math.floor(level%10 == 0 )){
+                team = 1;
+            }
+            else if( Math.floor(level%5) == 0 ){
+                team = 2;
+            }
+            ret.teamSize = team;
+        }
+        else{
+            if( ret.stageClass.team != null ){
+                ret.teamSize = ret.stageClass.team;
+            }
+        }
+        return ret;
+    }
+    else{
+        return null;
+    }
+}
+
 exports.Stage = Stage;

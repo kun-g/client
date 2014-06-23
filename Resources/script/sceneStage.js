@@ -637,6 +637,12 @@ function startStage(stg, team, cost, pkRival){
         return;
     }
 
+    var stageInfo = engine.user.stage.queryStageInfo(stg);
+    debug("*** STAGE INFO = "+JSON.stringify(stageInfo));//test
+    if( stageInfo.teamSize != null ){
+        team = stageInfo.teamSize;
+    }
+
     var dungeon = {};
     dungeon.stage = stg;
     dungeon.party = [];

@@ -2923,7 +2923,7 @@ exports.data = [
         "config": {
             "basic" : {
                 "spellAction": 2,
-                "spellEffect": 4,
+                "spellEffect": 45,
                 "targetEffect": 1 ,
                 "spellDelay": 0.3
             },
@@ -2931,7 +2931,8 @@ exports.data = [
                 "pool": "self"
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 10 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
+                { "type": "chance", "chance": 0.5}
             ],
             "action": [
                 { "type": "installSpell", "spell": 129}
@@ -2949,7 +2950,7 @@ exports.data = [
             "basic": {
                 "buffEffect": 42,
                 "spellAction": 4,
-                "spellEffect": 1,
+                "spellEffect":46,
                 "spellDelay": 0.3
             },
             "triggerCondition": [
@@ -3019,7 +3020,8 @@ exports.data = [
         "config": {
             "basic" : { },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 14 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 8,"reset":true },
+                { "type": "chance", "chance": 0.3}
             ],
             "targetSelection": {
                 "pool": "self",
@@ -3048,7 +3050,8 @@ exports.data = [
                 "targetDelay": 0.3
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 10 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
+                { "type": "chance", "chance": 0.5}
             ],
             "targetSelection": {
                 "pool": "objects",
@@ -3127,7 +3130,8 @@ exports.data = [
                 "targetDelay": 0.3
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 10 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
+                { "type": "chance", "chance": 0.5}
             ],
             "targetSelection": {
                 "pool": "objects",
@@ -3153,7 +3157,7 @@ exports.data = [
             ],
             "buffType":"AttackBuff",
             "availableCondition": [
-                { "type": "event", "event": "onBeginBattleTurn", "eventCount": 2 }
+                { "type": "event", "event": "onBeginBattleTurn", "eventCount": 1 }
             ],
             "levelConfig" : [
                 { "modifications": {"attack":{"src":{"attack":0.5},"c":5}}},
@@ -3176,7 +3180,8 @@ exports.data = [
                 "targetDelay": 0.3
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 6 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 8,"reset":true },
+                { "type": "chance", "chance": 0.3}
             ],
             "action": [
                 {"type":"delay"},
