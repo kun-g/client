@@ -567,6 +567,7 @@ function onEnter()
     }
     engine.ui.regMenu(this.owner.menuRoot);
 
+    this.owner.btnPVP.setVisible(false);
     onPower();
     fillPage(0);
     updatePageNumber(0);
