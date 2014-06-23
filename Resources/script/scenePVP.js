@@ -20,7 +20,9 @@ var DAILY_TIMES_NEED = 5;
 var PVP_STAGEID = 124;
 
 var theRivalsList;
+var theRival;
 var myPkInfo;
+var PKINFO_UPDATE_PERIOD = 3; // unit: s
 
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
@@ -38,8 +40,8 @@ function getPkRivals() {
 function loadPkRivals() {
     if( theRivalsList != null ){
         for( var i=1; i<4; i++ ){
-            if( theRivalsList[i] != null ){
-                var role = new libRole.Role(theRivalsList[i]);
+            if( theRivalsList[i-1] != null ){
+                var role = new libRole.Role(theRivalsList[i-1]);
                 role.fix();
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
@@ -127,7 +129,7 @@ function onStartPK() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var libStage = loadModule("sceneStage.js");
     var stageDate = queryStage(PVP_STAGEID);
-    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
+    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRivalsList[TouchId-1].nam);
 //    var alert = libUIKit.alert();
 //    alert.setContent("确定开始挑战对手吗？");
 //    alert.setButton([
@@ -217,7 +219,7 @@ function onEnter() {
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
     loadMyInfo();
-    this.schedule(loadMyInfo, 3);
+    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }

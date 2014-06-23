@@ -13,6 +13,7 @@ var ui = loadModule("UIComposer.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
 var libQuest = loadModule("questInfo.js");
+var libUIC = loadModule("UIComposer.js");
 
 var theLayer = null;
 var theChapterClass;
@@ -390,7 +391,7 @@ function showStages(chId)
         theLayer.stage = {};
         theLayer.stage.owner = {};
         theLayer.stage.owner.onStage = onSelectStage;
-        theLayer.stage.owner.onSweepStage = onSweepStage;
+        theLayer.stage.owner.onSweep = onSweep;
         theLayer.stage.owner.onMode = onMode;
         theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
         theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -547,7 +548,7 @@ function onSelectStage(sender)
     }
 }
 
-function onSweepStage(sender) {
+function onSweep(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var mod = ( sender.getTag() == 0 ); //true:单次扫荡 false:批量扫荡
     var times = sender.getTag() * 4 + 1; // 1 or 5
@@ -570,6 +571,36 @@ function onSweepStage(sender) {
     }
 
     sweepStage(theLayer.stageSelected, mod, totalEnergyCost);
+}
+
+function showSweepAnimetion() {
+    var sweepLayer = engine.ui.newLayer();
+    var mask = blackMask();
+    sweepLayer.addChild(mask);
+    var winSize = cc.Director.getInstance().getWinSize();
+    theLayer.sweepLayer = sweepLayer;
+    theLayer.sweep = {};
+    theLayer.sweep.owner = {};
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd.ccbi",{
+        nodeRole:{
+            ui: "UIAvatar",
+            id: "avatar"
+        }
+    });
+    theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.ui.avatar.setRole(engine.user.actor);
+    theLayer.sweep.ui.avatar.playAnimation("walk", true);
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, sweepAnimeCompleted);
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
+}
+
+function sweepAnimeCompleted() {
+    theLayer.sweep.node.removeFromParent();
+}
+
+function showSweepResult(itemList) {
+    //todo?
 }
 
 function onTouchBegan(touch, event)
@@ -646,13 +677,14 @@ function scene()
 //-------------------
 
 function sweepStage(stg, mod, cost) {
-    debug("sweepStage("+stg+", "+team+", "+cost+")");
+    debug("sweepStage("+stg+", "+cost+")");
 
     libUIKit.waitRPC(Request_SweepStage, {
         stg: stg,
         mod: mod
     }, function (rsp) {
         if( rsp.RET == RET_OK ){
+
             if( rsp.arg != null ){
                 showSweepResult(rsp.arg);
             }
@@ -663,9 +695,6 @@ function sweepStage(stg, mod, cost) {
 }
 //exports.sweepStage = sweepStage;
 
-function showSweepResult(itemList) {
-    //todo?
-}
 
 function startStage(stg, team, cost, pkRival){
     debug("startStage("+stg+", "+team+", "+cost+")");
