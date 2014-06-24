@@ -393,6 +393,8 @@ function onInvokeDailyQuest(sender){
 function refreshDailyQuest(){
     if( theLayerMode != MODE_DAILYQUEST ) return;
     var layer = theLayer;
+    cacheSprite("dailymission-common-btnstart1.png");
+    cacheSprite("dailymission-common-btnstart2.png");
 
     //set values
     var sfc = cc.SpriteFrameCache.getInstance();
