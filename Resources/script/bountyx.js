@@ -407,6 +407,8 @@ BountyLog.prototype.setScheduleLocalNotification = function(){
             var bountyData = libTable.queryTable(TABLE_BOUNTY, k);
             if (bountyData.notify != null &&
                 bountyData.notify >= 1 &&
+                engine.session.dataBounty[k] != null &&
+                engine.session.dataBounty[k].sta == 1 &&
                 engine.user.bounty.checkAllLevelLimit(k)) {
 
                 var nextActiveTime = this.getNextActiveTime(k);

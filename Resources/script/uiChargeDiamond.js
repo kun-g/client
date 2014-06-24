@@ -241,9 +241,9 @@ function onEnter()
     theLayer.scheduleUpdate();
 
     //shutdown monthcard
-    theLayer.owner.nodePurMC.setVisible(false);
-    theLayer.owner.nodeHasMC.setVisible(false);
-    theLayer.owner.btnMonthCard.setVisible(false);
+//    theLayer.owner.nodePurMC.setVisible(false);
+//    theLayer.owner.nodeHasMC.setVisible(false);
+//    theLayer.owner.btnMonthCard.setVisible(false);
 }
 
 function onClose(sender)

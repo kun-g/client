@@ -205,7 +205,7 @@ function setPrizeSize(group,day,curDays)
         group.itemList[k] = slot;
         //set item
         var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
-        var prize = libItem.queryPrize(prizeData.prize[0]);
+        var prize = libItem.queryPrize(prizeData.prize[0], true);
         prize.icon.setPosition(pos);
         prize.icon.setScale(theScal);
         group.theGridLayer.addChild(prize.icon);
@@ -393,6 +393,8 @@ function onInvokeDailyQuest(sender){
 function refreshDailyQuest(){
     if( theLayerMode != MODE_DAILYQUEST ) return;
     var layer = theLayer;
+    cacheSprite("dailymission-common-btnstart1.png");
+    cacheSprite("dailymission-common-btnstart2.png");
 
     //set values
     var sfc = cc.SpriteFrameCache.getInstance();

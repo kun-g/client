@@ -184,7 +184,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"10:00",
+                    "start":"11:30",
                     "end":"23:59"
                 }
             ]
@@ -197,7 +197,7 @@ exports.data = [
         "notifyText":"铁人试炼地牢开启，立刻挑战最强勇者铁人称号！",
         "level":[
             {
-                "powerLimit":100,
+                "powerLimit":1000,
                 "stage":120,
                 "prize":[
                     {
@@ -227,7 +227,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"10:00",
+                    "start":"19:30",
                     "end":"23:59"
                 }
             ]
@@ -240,11 +240,11 @@ exports.data = [
         "notifyText":"地牢狩猎全面开启，赶紧加入最强猎人排行！",
         "level":[
             {
-                "powerLimit":100,
+                "powerLimit":1000,
                 "stage":121,
                 "prize":[
                     {
-                        "type":0
+                        "type":2
                     },
                     {
                         "type":0,

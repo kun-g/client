@@ -25,7 +25,8 @@ var RoleScheme = {
     bst: "BlueStar",//蓝星
     ifn: "IsFriend",//好友标记
     vip: "vip",
-    scr: "scr"
+    scr: "Score",
+    rnk: "Rank"
 };
 
 function Role(source)
@@ -264,6 +265,10 @@ Role.prototype.fix = function()
         if( this.Score == null )
         {
             this.Score = 0;
+        }
+        if( this.Rank == null )
+        {
+            this.Rank = 0;
         }
     }
 

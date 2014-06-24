@@ -12,7 +12,6 @@ var scroller = loadModule("scroller.js");
 var ui = loadModule("UIComposer.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
-var libQuest = loadModule("questInfo.js");
 
 var theLayer = null;
 var theChapterClass;
@@ -44,7 +43,7 @@ function onClose(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libQuest.show();
+    loadModule("questInfo.js").show();
 }
 
 function onEnter()
@@ -618,7 +617,7 @@ function scene()
 }
 
 //-------------------
-function startStage(stg, team, cost){
+function startStage(stg, team, cost, pkRival){
     debug("startStage("+stg+", "+team+", "+cost+")");
     //check energy
     if( engine.user.player.Energy < cost ){
@@ -637,6 +636,11 @@ function startStage(stg, team, cost){
         return;
     }
 
+    var stageInfo = engine.user.stage.queryStageInfo(stg);
+    if( stageInfo.teamSize != null ){
+        team = stageInfo.teamSize;
+    }
+
     var dungeon = {};
     dungeon.stage = stg;
     dungeon.party = [];
@@ -649,7 +653,7 @@ function startStage(stg, team, cost){
     }
     else
     {//start dungeon
-        requestBattle(engine.user.dungeon.stage, [engine.user.actor]);
+        requestBattle(engine.user.dungeon.stage, [engine.user.actor], pkRival);
     }
 }
 

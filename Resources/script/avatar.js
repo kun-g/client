@@ -370,7 +370,7 @@ Avatar.prototype.update = function(role)
     this.box = new CCBox("avatar", RoleClass.avatar);
 
     //隐藏血量和攻击力的处理
-    if( RoleClass.classType == 2 || RoleClass.classType == 4 ){
+    if( RoleClass.classType == 2 ){
         //npc默认开启
         if( RoleClass.hideHealth == null ){
             this.hideHealth = true;

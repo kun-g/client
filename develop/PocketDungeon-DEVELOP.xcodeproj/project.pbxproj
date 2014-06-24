@@ -2957,6 +2957,7 @@
 			buildPhases = (
 				53885E7317E93DE400A3A8B4 /* Sources */,
 				53885E7417E93DE400A3A8B4 /* Frameworks */,
+				809766B219502AF400A0C79C /* ShellScript */,
 				53885E7517E93DE400A3A8B4 /* Resources */,
 			);
 			buildRules = (
@@ -3091,6 +3092,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		809766B219502AF400A0C79C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Touch -cm ${SRCROOT}/../Resources/misc\nTouch -cm ${SRCROOT}/../Resources/script\nTouch -cm ${SRCROOT}/../Resources/table\nTouch -cm ${SRCROOT}/../Resources/blackbox\nTouch -cm ${SRCROOT}/../Resources/font\nTouch -cm ${SRCROOT}/../Resources/node\nTouch -cm ${SRCROOT}/../Resources/sound\nTouch -cm ${SRCROOT}/../Resources/sprite\nTouch -cm ${SRCROOT}/../Resources/spritesheets\nTouch -cm ${SRCROOT}/../Resources/ui/960\nTouch -cm ${SRCROOT}/../Resources/ui/1136";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		53885E7317E93DE400A3A8B4 /* Sources */ = {
