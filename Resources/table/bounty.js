@@ -185,7 +185,7 @@ exports.data = [
             "segment":[
                 {
                     "start":"11:30",
-                    "end":"23:59"
+                    "end":"12:30"
                 }
             ]
         },
@@ -227,8 +227,8 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"19:30",
-                    "end":"23:59"
+                    "start":"21:00",
+                    "end":"22:00"
                 }
             ]
         },
