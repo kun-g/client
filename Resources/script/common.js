@@ -1243,6 +1243,7 @@ function dayNumOfMonth(year,month)
 function translate(language,keyword,args)
 {
     var libLocal = loadModule("table.js").readTable(TABLE_LOCALIZE);
+    debug("language = "+language+";keyword = "+keyword);
     debug("libLocal = "+JSON.stringify(libLocal));
     var text = "";
     if (libLocal[language] != null && libLocal[language][keyword] != null){
@@ -1250,10 +1251,9 @@ function translate(language,keyword,args)
         for (var k in args){
             var num = +k + 1;
             var str = "{#" + num.toString() +  "}";
-            debug("str = "+str);
-            debug("args["+ k +"] = "+args[k]);
             text = text.replace(str, args[k]);
         }
     }
+    debug("text = "+text);
     return text;
 }
