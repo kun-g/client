@@ -20,15 +20,15 @@ var closeCBFUNC;
 var closeCBOBJ;
 
 var payStr = [
-    {str:"6元", cost:6, dm:60 },
-    {str:"12元", cost:12, dm:130 },
-    {str:"30元", cost:30, dm:330 },
-    {str:"68元", cost:68, dm:760 },
-    {str:"128元", cost:128, dm:1460 },
-    {str:"198元", cost:198, dm:2260 },
-    {str:"328元", cost:328, dm:3760 },
-    {str:"648元", cost:648, dm:7480 },
-    {str:"25元", cost:25, dm:2500 }
+    {str:translate(engine.game.language, "uiChargeDiamond6"), cost:6, dm:60 },
+    {str:translate(engine.game.language, "uiChargeDiamond12"), cost:12, dm:130 },
+    {str:translate(engine.game.language, "uiChargeDiamond30"), cost:30, dm:330 },
+    {str:translate(engine.game.language, "uiChargeDiamond68"), cost:68, dm:760 },
+    {str:translate(engine.game.language, "uiChargeDiamond128"), cost:128, dm:1460 },
+    {str:translate(engine.game.language, "uiChargeDiamond198"), cost:198, dm:2260 },
+    {str:translate(engine.game.language, "uiChargeDiamond328"), cost:328, dm:3760 },
+    {str:translate(engine.game.language, "uiChargeDiamond648"), cost:648, dm:7480 },
+    {str:translate(engine.game.language, "uiChargeDiamond25"), cost:25, dm:2500 }
 ];
 
 var theLastBillNo = null;
@@ -75,20 +75,20 @@ function onEvent(event)
                             rep: event.arg.message
                         }, function(rsp){
                             if( rsp.RET == RET_OK ){
-                                uikit.showAlert("充值成功");
+                                uikit.showAlert(translate(engine.game.language, "uiChargeDiamondSuc"));
                             }
                             else{
-                                uikit.showAlert("充值失败");
+                                uikit.showAlert(translate(engine.game.language, "uiChargeDiamondFail"));
                             }
                         }, theLayer);
                     }
                 }
                     break;
                 case 1://cancel
-                    uikit.showAlert("充值取消");
+                    uikit.showAlert(translate(engine.game.language, "uiChargeDiamondCancel"));
                     break;
                 case 2://failed
-                    uikit.showAlert("充值失败");
+                    uikit.showAlert(translate(engine.game.language, "uiChargeDiamondFail"));
                     break;
             }
             if( theLoad != null ){
@@ -133,11 +133,11 @@ function updateVIP(){
         spent = engine.user.player.RMB;
     }
     if( curVipLevel >= maxVipLevel ){
-        theLayer.owner.labVipNext.setString("您已经获得最高等级VIP");
+        theLayer.owner.labVipNext.setString(translate(engine.game.language, "uiChargeDiamondMaxVip"));
     }
     else{
         var left = vipInfo.VIP.requirement[curVipLevel+1].rmb - spent;
-        theLayer.owner.labVipNext.setString("再充值"+left+"元即可永久获得"+(curVipLevel+1)+"级VIP");
+        theLayer.owner.labVipNext.setString(translate(engine.game.language, "uiChargeDiamondVipLevUp",[left,(curVipLevel+1)]));
     }
     //show now
     var sfc = cc.SpriteFrameCache.getInstance();
@@ -153,7 +153,7 @@ function updateVIP(){
     else{
         //theLayer.owner.vipBgNow.setDisplayFrame(sfc.getSpriteFrame("jewel-novipbg.png"));
         theLayer.owner.vipTitleNow.setDisplayFrame(sfc.getSpriteFrame("jewel-gradebg1.png"));
-        theLayer.owner.vipTxtNow.setString("您还不是VIP");
+        theLayer.owner.vipTxtNow.setString(translate(engine.game.language, "uiChargeDiamondNotVip"));
         theLayer.owner.vipLvNow.removeAllChildren();
     }
     //show next
@@ -167,7 +167,7 @@ function updateVIP(){
     }
     else{
         //theLayer.owner.vipBgNext.setDisplayFrame(sfc.getSpriteFrame("jewel-vipbg.png"));
-        theLayer.owner.vipTxtNext.setString("更高等级VIP暂未开放");
+        theLayer.owner.vipTxtNext.setString(translate(engine.game.language, "uiChargeDiamondNoHigherLev"));
         theLayer.owner.vipLvNext.removeAllChildren();
         var lv = "jewel-vip"+(curVipLevel)+".png";
         var spl = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(lv));
