@@ -815,7 +815,7 @@ function queryPrize(pit, treasureDisplayFlag){
                 strLabel = pit.count;
             }
             else{
-                strLabel = "经验";translate(engine.game.language, "xitemExp")
+                strLabel = translate(engine.game.language, "xitemExp");
             }
         }break;
         case PRIZETYPE_WXP:{//wxp
@@ -824,7 +824,7 @@ function queryPrize(pit, treasureDisplayFlag){
                 strLabel = pit.count;
             }
             else{
-                strLabel = "熟练";translate(engine.game.language, "xitemProficiency")
+                strLabel = translate(engine.game.language, "xitemProficiency");
             }
         }break;
         default : return null;
