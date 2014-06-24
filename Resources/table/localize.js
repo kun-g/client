@@ -78,7 +78,7 @@ exports.data = {
         "sceneBountyMissonDesc":"任务描述",
         "sceneBountyMissonRequire":"任务要求",
         "sceneBountyLimitLevel":"要求等级达到{#1}级。",
-        "sceneBountyLimitPower":"要求战斗力达到{#1}级。",
+        "sceneBountyLimitPower":"要求战斗力达到{#1}。",
         "sceneBountyLimitClass":"职业可以做。",
         "sceneBountyNone":"无。",
         "sceneBountyMissonPrize":"任务奖励",

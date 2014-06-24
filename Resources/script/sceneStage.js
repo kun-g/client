@@ -505,7 +505,7 @@ function selectStage(sId)
     theLayer.stageSelected = stg.stageId;
     theLayer.TEAM = stg.team;
     theLayer.stage.owner.labelTeam.setString(translate(engine.game.language, "sceneStageTeamPersons", [stg.team]));
-    theLayer.stage.owner.labelTeam2.setString(engine.game.language, "sceneStageTeamPersons", [stg.team]));
+    theLayer.stage.owner.labelTeam2.setString(translate(engine.game.language, "sceneStageTeamPersons", [stg.team]));
     theLayer.stage.owner.labelEnergy.setString(translate(engine.game.language, "sceneStageCostEnergy", [stg.cost]));
     theLayer.stage.owner.labelEnergy2.setString(translate(engine.game.language, "sceneStageCostEnergy", [stg.cost]));
     theEnergyCost = stg.cost;
