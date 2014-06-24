@@ -31,8 +31,9 @@ var MODE_STAGE = 1;
 var TYPE_NORMAL = 0;
 var TYPE_CHALLENGE = 1;
 var theType = -1;
-
+var SWEEP_SCROLL_CID = 871;
 var PrizeList = [];
+var PrizeIndex = 0;
 
 function onEvent(event)
 {
@@ -536,6 +537,32 @@ function selectStage(sId)
         theLayer.stage.owner["loot"].removeAllChildren();
         theLayer.stage.owner["loot"].addChild(lootNode);
     }
+
+    //check sweep
+    theLayer.stage.owner.nodeSweepMid.setVisible(false);
+    theLayer.stage.owner.btnSweep1.setVisible(false);
+    theLayer.stage.owner.btnSweep2.setVisible(false);
+    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
+    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
+    theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
+    var sweepPower = theStageClass.sweepPower;
+    if( sweepPower != null ) {
+        var myPower = engine.user.actor.getPower();
+        theLayer.stage.owner.nodeSweepFrame.setVisible(true);
+        theLayer.stage.owner.nodeSweepMid.setVisible(true);
+        theLayer.stage.owner.labPowerRequired.setString(sweepPower);
+        theLayer.stage.owner.btnSweep1.setVisible(true);
+        theLayer.stage.owner.btnSweep2.setVisible(true);
+        if (myPower >= sweepPower) {
+            theLayer.stage.owner.btnSweep1.setEnabled(true);
+            theLayer.stage.owner.btnSweep2.setEnabled(true);
+            theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_GREEN);
+        } else {
+            theLayer.stage.owner.btnSweep1.setEnabled(false);
+            theLayer.stage.owner.btnSweep2.setEnabled(false);
+            theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_RED);
+        }
+    }
 }
 
 function onSelectStage(sender)
@@ -555,7 +582,11 @@ function onSweep(sender) {
     var mod = ( sender.getTag() == 0 ); //true:单次扫荡 false:批量扫荡
     var times = sender.getTag() * 4 + 1; // 1 or 5
     var totalEnergyCost = theEnergyCost * times;
-
+    var scrollQuantity = Math.floor(Number(theLayer.stage.owner.labSweepScroll.getString()));
+    if( scrollQuantity < times ){
+        libUIKit.showAlert("扫荡卷轴不足！");
+        return;
+    }
     if( engine.user.player.Energy < totalEnergyCost ){
         var need = totalEnergyCost - engine.user.player.Energy;
         var str1 = "精力值不足\n进行扫荡还需要"+need+"精力\n需要使用"+need+"宝石来立即恢复吗?";
@@ -598,15 +629,55 @@ function showSweepAnimetion() {
 
 function sweepAnimeCompleted() {
     theLayer.sweep.node.removeFromParent(true);
-    showSweepResult(PrizeList);
+    showSweepResult();
 }
 
-function showSweepResult(prizeList) {
+function showSweepResult() {
     theLayer.sweep = {};
     theLayer.sweep.owner = {};
-    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", null);
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", {
+        nodeContent:{
+            ui: "UIScrollView",
+            id: "scroller",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        }
+    });
     theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theLayer.sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.theListLayer = cc.Layer.create();
+    theLayer.sweep.ui.scroller.setContainer(theLayer.sweep.theListLayer);
+    var off = theLayer.sweep.ui.scroller.getContentOffset();
+    off.y = theLayer.sweep.ui.scroller.minContainerOffset().y;
+    theLayer.sweep.ui.scroller.setContentOffset(off);
+    PrizeIndex = 0;
+    BAR_WIDTH = 570;
+    BAR_HEIGHT = 220;
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT);
+    createPrizeBar();
+}
+
+function createPrizeBar() {
+    if (PrizeList[PrizeIndex] != null) {
+        var layer = cc.Node.create();
+        layer.owner = {};
+        layer.node = libUIC.loadUI(layer, "ui-sdlist.ccbi", null);
+        layer.addChild(layer.node);
+        layer.owner.nodePrizeBar.setCascadeOpacityEnabled(true);
+        layer.node.animationManager.setCompletedAnimationCallback(layer, createPrizeBar);
+
+        var dimension = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
+        var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
+        prize.setPosition(layer.owner.nodePrize.getPosition());
+        layer.owner.nodePrizeBar.addChild(prize);
+        layer.setPosition(cc.p(0, LOAD_SIZE.height - BAR_HEIGHT * PrizeIndex));
+        theLayer.sweep.theListLayer.addChild(layer);
+
+        PrizeIndex++;
+        layer.node.animationManager.runAnimationsForSequenceNamed("fadeIn");
+    }
+    else {
+        theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("button");
+    }
 }
 
 function onTouchBegan(touch, event)

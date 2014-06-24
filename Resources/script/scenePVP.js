@@ -22,7 +22,7 @@ var PVP_STAGEID = 124;
 var theRivalsList;
 var theRival;
 var myPkInfo;
-var PKINFO_UPDATE_PERIOD = 3; // unit: s
+var PKINFO_UPDATE_PERIOD = 10; // unit: s
 
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
@@ -111,13 +111,13 @@ function onRival(sender) {
         TouchId = -1;
     }else{
         TouchId = sender.getTag();
+        theRival = theRivalsList[TouchId-1];
     }
     for( var i=1; i<4; i++){
         theLayer.owner["btnStartPK"+i].setVisible(i == TouchId);
         theLayer.owner["nodeBonus"+i].setVisible(!(i == TouchId));
         theLayer.owner["layerOnBtn"+i].setEnabled(!(i == TouchId));
     }
-
 }
 
 function onRoleInfo(sender){
@@ -129,7 +129,7 @@ function onStartPK() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var libStage = loadModule("sceneStage.js");
     var stageDate = queryStage(PVP_STAGEID);
-    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRivalsList[TouchId-1].nam);
+    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
 //    var alert = libUIKit.alert();
 //    alert.setContent("确定开始挑战对手吗？");
 //    alert.setButton([

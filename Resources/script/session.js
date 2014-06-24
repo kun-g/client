@@ -28,7 +28,6 @@ function Session(){
         rnk: -1,
         cpl: 0,
         ttl: 0,
-        bng: 0,
         rcv: false
     };
 }
@@ -120,7 +119,6 @@ Session.prototype.updatePVPInfo = function() {
                 if(rsp.pki.rnk != null) this.PkInfo.rnk = rsp.pki.rnk;
                 if(rsp.pki.cpl != null) this.PkInfo.rnk = rsp.pki.cpl;
                 if(rsp.pki.ttl != null) this.PkInfo.rnk = rsp.pki.ttl;
-                if(rsp.pki.bng != null) this.PkInfo.rnk = rsp.pki.bng;
                 if(rsp.pki.rcv != null) this.PkInfo.rnk = rsp.pki.rcv;
             }else{
                 debug("*updatePVPInfo error: pki is null");
