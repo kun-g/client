@@ -61,7 +61,6 @@ function loadMyInfo() {
         rnk: 333,
         cpl: 2,
         ttl: 10,
-        bng: 3000,
         rcv: false
     };
 
@@ -85,7 +84,23 @@ function setBottomContent() {
             theLayer.owner.nodeBotCnt1.setVisible(false);
             theLayer.owner.nodeBotCnt2.setVisible(true);
             theLayer.owner.nodeBotCnt3.setVisible(false);
-            theLayer.owner.labBonusGold.setString(myPkInfo.bng);
+            var pkPrizeInfo, pkBonusGold;
+            for(var i=0; ; i++){
+                pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
+                if( myPkInfo.rnk <= pkPrizeInfo.top ){
+                    for( var k in pkPrizeInfo.prize ){
+                        switch(pkPrizeInfo.prize[k].type){
+                            case 1: {
+                                pkBonusGold = pkPrizeInfo.prize[k].count;
+                                theLayer.owner.labBonusGold.setString(pkBonusGold);
+                                return;
+                            }
+                            default: break;
+                        }
+                    }
+                }
+            }
+
         }
     }else{
         //cannot receive
