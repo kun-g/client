@@ -543,9 +543,11 @@ function selectStage(sId)
     theLayer.stage.owner.btnSweep1.setVisible(false);
     theLayer.stage.owner.btnSweep2.setVisible(false);
     theLayer.stage.owner.nodeSweepFrame.setVisible(false);
-    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
+    var scrollQuantity = 20;
+//    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
+    debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
     if( sweepPower != null ) {
         var myPower = engine.user.actor.getPower();
         theLayer.stage.owner.nodeSweepFrame.setVisible(true);
@@ -635,6 +637,7 @@ function sweepAnimeCompleted() {
 function showSweepResult() {
     theLayer.sweep = {};
     theLayer.sweep.owner = {};
+    theLayer.sweep.owner.onClosePrizeList = onClosePrizeList;
     theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", {
         nodeContent:{
             ui: "UIScrollView",
@@ -678,6 +681,15 @@ function createPrizeBar() {
     else {
         theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("button");
     }
+}
+
+function onClosePrizeList() {
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, function(){
+        theLayer.sweep.node.removeFromParent(true);
+        delete theLayer.sweep;
+    });
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("close");
+
 }
 
 function onTouchBegan(touch, event)

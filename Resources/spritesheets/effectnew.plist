@@ -4,122 +4,135 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>jiesuan-jlbg.png</key>
+            <key>effectn-attack1-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{446,42}}</string>
+                <string>{{206,2},{62,102}}</string>
+                <key>offset</key>
+                <string>{0,37}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,102}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-attack1-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{250,356},{62,146}}</string>
+                <key>offset</key>
+                <string>{0,15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,146}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-attack1-3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,208},{58,176}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{446,42}}</string>
+                <string>{{2,0},{58,176}}</string>
                 <key>sourceSize</key>
-                <string>{446,42}</string>
+                <string>{62,176}</string>
             </dict>
-            <key>jiesuan-jyzbg.png</key>
+            <key>effectn-attack1-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{440,136},{260,34}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{260,34}}</string>
-                <key>sourceSize</key>
-                <string>{260,34}</string>
-            </dict>
-            <key>jiesuan-loseshield.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{151,46},{287,147}}</string>
+                <string>{{62,208},{48,176}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{287,147}}</string>
+                <string>{{7,0},{48,176}}</string>
                 <key>sourceSize</key>
-                <string>{287,147}</string>
+                <string>{62,176}</string>
             </dict>
-            <key>jiesuan-sldbg.png</key>
+            <key>effectn-attack1-5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{491,2},{90,19}}</string>
+                <string>{{112,208},{42,176}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-1,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{90,19}}</string>
+                <string>{{9,0},{42,176}}</string>
                 <key>sourceSize</key>
-                <string>{90,19}</string>
+                <string>{62,176}</string>
             </dict>
-            <key>jiesuan-sldl.png</key>
+            <key>effectn-attack1-6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{491,102},{6,9}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{6,9}}</string>
-                <key>sourceSize</key>
-                <string>{6,9}</string>
-            </dict>
-            <key>jiesuan-sldm.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{502,94},{6,9}}</string>
+                <string>{{2,2},{202,204}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{6,9}}</string>
+                <string>{{1,0},{202,204}}</string>
                 <key>sourceSize</key>
-                <string>{6,9}</string>
+                <string>{204,204}</string>
             </dict>
-            <key>jiesuan-sldr.png</key>
+            <key>effectn-blood1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{491,94},{6,9}}</string>
+                <string>{{156,208},{146,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{6,9}}</string>
+                <string>{{0,0},{146,104}}</string>
                 <key>sourceSize</key>
-                <string>{6,9}</string>
+                <string>{146,104}</string>
             </dict>
-            <key>jiesuan-winshield.png</key>
+            <key>effectn-blood2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,136},{288,147}}</string>
+                <string>{{2,386},{150,122}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{150,122}}</string>
+                <key>sourceSize</key>
+                <string>{150,122}</string>
+            </dict>
+            <key>effectn-blood3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{314,2},{86,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{288,147}}</string>
+                <string>{{0,0},{86,102}}</string>
                 <key>sourceSize</key>
-                <string>{288,147}</string>
+                <string>{86,102}</string>
             </dict>
-            <key>jiesuan-wintext.png</key>
+            <key>effectn-blood4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{450,2},{132,39}}</string>
+                <string>{{154,386},{94,106}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{132,39}}</string>
+                <string>{{0,0},{94,106}}</string>
                 <key>sourceSize</key>
-                <string>{132,39}</string>
+                <string>{94,106}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -127,13 +140,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>jiesuan.png</string>
+            <string>effectnew.png</string>
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b41efe0dfe1235b4212b5bc43061d434$</string>
+            <string>$TexturePacker:SmartUpdate:26debaa41ffd733854c454b5941b15aa$</string>
             <key>textureFileName</key>
-            <string>jiesuan.png</string>
+            <string>effectnew.png</string>
         </dict>
     </dict>
 </plist>
