@@ -581,7 +581,7 @@ function onSelectStage(sender)
 
 function onSweep(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    var mod = ( sender.getTag() == 0 ); //true:单次扫荡 false:批量扫荡
+    var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
     var times = sender.getTag() * 4 + 1; // 1 or 5
     var totalEnergyCost = theEnergyCost * times;
     var scrollQuantity = Math.floor(Number(theLayer.stage.owner.labSweepScroll.getString()));
@@ -605,7 +605,7 @@ function onSweep(sender) {
         return;
     }
 
-    sweepStage(theLayer.stageSelected, mod, totalEnergyCost);
+    sweepStage(theLayer.stageSelected, multi, totalEnergyCost);
 }
 
 function showSweepAnimetion() {
@@ -765,12 +765,12 @@ function scene()
 
 //-------------------
 
-function sweepStage(stg, mod, cost) {
+function sweepStage(stg, mul, cost) {
     debug("sweepStage("+stg+", "+cost+")");
 
     libUIKit.waitRPC(Request_SweepStage, {
         stg: stg,
-        mod: mod
+        mul: mul
     }, function (rsp) {
         if( rsp.RET == RET_OK ){
 

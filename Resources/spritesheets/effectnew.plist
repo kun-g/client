@@ -7,7 +7,7 @@
             <key>effectn-attack1-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{206,2},{62,102}}</string>
+                <string>{{408,372},{62,102}}</string>
                 <key>offset</key>
                 <string>{0,37}</string>
                 <key>rotated</key>
@@ -20,11 +20,11 @@
             <key>effectn-attack1-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{250,356},{62,146}}</string>
+                <string>{{150,478},{62,146}}</string>
                 <key>offset</key>
                 <string>{0,15}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{62,146}}</string>
                 <key>sourceSize</key>
@@ -33,11 +33,11 @@
             <key>effectn-attack1-3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,208},{58,176}}</string>
+                <string>{{180,206},{58,176}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{2,0},{58,176}}</string>
                 <key>sourceSize</key>
@@ -46,11 +46,11 @@
             <key>effectn-attack1-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,208},{48,176}}</string>
+                <string>{{2,266},{48,176}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,0},{48,176}}</string>
                 <key>sourceSize</key>
@@ -59,11 +59,11 @@
             <key>effectn-attack1-5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{112,208},{42,176}}</string>
+                <string>{{180,310},{42,176}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{9,0},{42,176}}</string>
                 <key>sourceSize</key>
@@ -72,24 +72,63 @@
             <key>effectn-attack1-6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{202,204}}</string>
+                <string>{{208,2},{202,204}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{1,0},{202,204}}</string>
                 <key>sourceSize</key>
                 <string>{204,204}</string>
             </dict>
-            <key>effectn-blood1.png</key>
+            <key>effectn-attack2-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{156,208},{146,104}}</string>
+                <string>{{414,110},{92,94}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{92,94}}</string>
+                <key>sourceSize</key>
+                <string>{94,94}</string>
+            </dict>
+            <key>effectn-attack2-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{370,436},{126,130}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{126,130}}</string>
+                <key>sourceSize</key>
+                <string>{130,130}</string>
+            </dict>
+            <key>effectn-attack2-3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,316},{146,150}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{146,150}}</string>
+                <key>sourceSize</key>
+                <string>{150,150}</string>
+            </dict>
+            <key>effectn-blood1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,464},{146,104}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{146,104}}</string>
                 <key>sourceSize</key>
@@ -98,7 +137,7 @@
             <key>effectn-blood2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,386},{150,122}}</string>
+                <string>{{154,354},{150,122}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,11 +150,11 @@
             <key>effectn-blood3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{314,2},{86,102}}</string>
+                <string>{{414,204},{86,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{86,102}}</string>
                 <key>sourceSize</key>
@@ -124,7 +163,7 @@
             <key>effectn-blood4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{154,386},{94,106}}</string>
+                <string>{{414,2},{94,106}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -134,6 +173,84 @@
                 <key>sourceSize</key>
                 <string>{94,106}</string>
             </dict>
+            <key>effectn-eattack1-1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{408,308},{62,102}}</string>
+                <key>offset</key>
+                <string>{0,37}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,102}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-eattack1-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{306,384},{62,146}}</string>
+                <key>offset</key>
+                <string>{0,15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,146}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-eattack1-3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,206},{58,176}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{58,176}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-eattack1-4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{358,206},{48,176}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{7,0},{48,176}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-eattack1-5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{180,266},{42,176}}</string>
+                <key>offset</key>
+                <string>{-2,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{8,0},{42,176}}</string>
+                <key>sourceSize</key>
+                <string>{62,176}</string>
+            </dict>
+            <key>effectn-eattack1-6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{202,204}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{202,204}}</string>
+                <key>sourceSize</key>
+                <string>{204,204}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -142,9 +259,9 @@
             <key>realTextureFileName</key>
             <string>effectnew.png</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:26debaa41ffd733854c454b5941b15aa$</string>
+            <string>$TexturePacker:SmartUpdate:0cda7f1725b9b0bd9cb399c69bcf7ab7$</string>
             <key>textureFileName</key>
             <string>effectnew.png</string>
         </dict>

@@ -46,7 +46,7 @@ function loadPkRivals() {
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
                 theLayer.owner["labPower"+i].setString(role.getPower());
-                theLayer.owner["labRank"+i].setString(role.rnk);
+                theLayer.owner["labRank"+i].setString(Number(role.Rank));
             }
         }
     }

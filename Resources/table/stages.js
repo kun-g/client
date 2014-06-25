@@ -47,7 +47,6 @@ var data = [
 		"stage":[
             {
 				"stageId": 1,
-                "sweepPower": 100,
 				"cost": 15,
 				"team": 3,
 				"hidden":false,
@@ -61,7 +60,6 @@ var data = [
             },
             {
                 "stageId": 2,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 3,
                 "hidden":false,
@@ -76,7 +74,6 @@ var data = [
             },
             {
                 "stageId": 3,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 3,
                 "hidden":false,
@@ -90,7 +87,6 @@ var data = [
             },
             {
                 "stageId": 4,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 3,
                 "hidden":false,
@@ -167,7 +163,6 @@ var data = [
 "stage":[
 {
 "stageId": 1,
-    "sweepPower": 100,
 "cost": 15,
 "team": 1,
 "hidden":false,
@@ -181,7 +176,6 @@ var data = [
 },
 {
 "stageId": 2,
-    "sweepPower": 100,
 "cost": 15,
 "team": 1,
 "hidden":false,
@@ -204,7 +198,6 @@ var data = [
 },
 {
 "stageId": 3,
-    "sweepPower": 100,
 "cost": 15,
 "team": 1,
 "hidden":false,
@@ -226,7 +219,6 @@ var data = [
 },
 {
 "stageId": 4,
-    "sweepPower": 100,
 "cost": 15,
 "team": 2,
 "hidden":false,
@@ -240,7 +232,6 @@ var data = [
 },
 {
 "stageId": 5,
-    "sweepPower": 100,
 "cost": 15,
 "team": 2,
 "hidden":false,
@@ -526,9 +517,9 @@ var data = [
 	{
         "chapterId":4,
 		"idx": 3,
-        "style": "map-dungeon4",
+        "style": "map-dungeon7",
 		"title":"dungeonname7.png",
-        "label":"旋风谷",
+        "label":"断肠崖",
 		"desc":"塔伦山脉中最险要的地方，遍布着夺命的悬\n崖，稍不留神就会让你付出惨痛的代价。",
 		"icon":"mapicon4.png",
 		"stage":[
@@ -868,9 +859,9 @@ var data = [
 	{
 		"chapterId": 7,
 		"idx": 6,
-        "style": "map-dungeon7",
+        "style": "map-dungeon4",
 		"title":"dungeonname4.png",
-        "label":"断肠崖",
+        "label":"旋风谷",
 		"desc":"山谷险要的地势加上诡异的巨大山风，让这\n里成为勇者们永远的噩梦。",
 		"icon":"mapicon4.png",
 		"stage":[
@@ -1506,7 +1497,6 @@ var data = [
         "stage":[
             {
                 "stageId": 96,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 1,
                 "hidden":false,
@@ -1521,7 +1511,6 @@ var data = [
             },
             {
                 "stageId": 97,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 1,
                 "hidden":false,
@@ -1543,7 +1532,6 @@ var data = [
             },
             {
                 "stageId": 98,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 1,
                 "hidden":false,
@@ -1566,7 +1554,6 @@ var data = [
             },
             {
                 "stageId": 99,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 2,
                 "hidden":false,
@@ -1950,16 +1937,12 @@ var data = [
               hidden: true,
               dungeon: 113,
               description: "infinity",
-              eventName: "event_goblin",
+              eventName: "event_infinite",
+	      "isInfinite":true,
               condition: function (obj, util) {
-                  return obj.counters.goblin < 3 || !obj.counters.goblin;
+                return true;
               },
               initialAction: function (obj) {
-                  if (obj.counters.goblin) {
-                      obj.counters.goblin++;
-                  } else {
-                      obj.counters.newProperty('goblin', 1);
-                  }
               }
           },
           {
@@ -1970,6 +1953,8 @@ var data = [
               dungeon: 114,
               description: "hunt83",
               eventName: "event_goblin",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) {
                   return obj.counters.goblin < 3 || !obj.counters.goblin;
               },
@@ -1989,6 +1974,8 @@ var data = [
               dungeon: 115,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2000,6 +1987,8 @@ var data = [
               dungeon: 116,
               description: "hunt112",
               eventName: "event_hunt112",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2012,6 +2001,7 @@ var data = [
               dungeon: 118,
               description: "hunt112",
               eventName: "event_goblin",
+              "formularId":1,
               condition: function (obj, util) { return true;
               },
               initialAction: function (obj) { }
@@ -2024,6 +2014,8 @@ var data = [
               dungeon: 119,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2035,6 +2027,8 @@ var data = [
               dungeon: 120,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2046,6 +2040,8 @@ var data = [
               dungeon: 121,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2057,6 +2053,8 @@ var data = [
               dungeon: 122,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2068,6 +2066,8 @@ var data = [
               dungeon: 123,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2079,6 +2079,8 @@ var data = [
               dungeon: 124,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2090,6 +2092,8 @@ var data = [
               dungeon: 125,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           },
@@ -2101,6 +2105,8 @@ var data = [
               dungeon: 126,
               description: "hunt39",
               eventName: "event_hunt39",
+              "isInfinite":true,
+              "formularId":1,
               condition: function (obj, util) { return true; },
               initialAction: function (obj) { }
           }

@@ -1153,7 +1153,8 @@ exports.data = [
               "pool": "target"
           },
           "action": [
-              { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} }
+              { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
+              {"type": "heal","self":true,"formular": {"tar":{"c":150}}}
           ]
       }
   },
@@ -1318,7 +1319,8 @@ exports.data = [
             },
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -1357,7 +1359,8 @@ exports.data = [
             "triggerCondition": [
                 {"type": "countDown", "cd": 6 },
                 {"type":"visible"},
-                {"type" :"event", "event":"onTurnEnd" }
+                {"type" :"event", "event":"onTurnEnd" },
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"self"
@@ -1409,7 +1412,8 @@ exports.data = [
             "triggerCondition": [
                 {"type": "countDown", "cd": 6 },
                 {"type":"visible"},
-                {"type" :"event", "event":"onTurnEnd" }
+                {"type" :"event", "event":"onTurnEnd" },
+                {"type":"alive"}
             ],
             "action": [
                 {"type":"playAction","motion":8,"pos":"self"},
@@ -1427,7 +1431,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd"},
                 {"type": "myMutex", "mutex": "shilaimu" },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"objects",
@@ -1448,7 +1453,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":4,"reset":true },
                 {"type":"visible"},
-                {"type" :"event", "event":"onTurnEnd" }
+                {"type" :"event", "event":"onTurnEnd" },
+                {"type":"alive"}
             ],
             "action": [{"type": "createMonster","objectCount":2,"effect":21,"randomPos":true,"monsterID":7}]
         }
@@ -1463,7 +1469,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
                 {"type":"visible"},
-                {"type":"property","property":"health","from":150}
+                {"type":"property","property":"health","from":150} ,
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -1506,7 +1513,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
                 {"type":"visible"},
-                {"type":"property","property":"health","to":150}
+                {"type":"property","property":"health","to":150},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -1527,7 +1535,8 @@ exports.data = [
             "triggerCondition": [
                 {"type": "countDown", "cd": 4 },
                 {"type":"visible"},
-                {"type" :"event", "event":"onTurnEnd" }
+                {"type" :"event", "event":"onTurnEnd" },
+                {"type":"alive"}
             ],
             "action": [
                 {"type": "createMonster","objectCount":2,"effect":21,"randomPos":true,"monsterID":69},
@@ -1544,7 +1553,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd"},
                 {"type": "myMutex", "mutex": "langqun" },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"objects",
@@ -1566,7 +1576,8 @@ exports.data = [
             "targetSelection": { "pool": "self" },
             "triggerCondition": [
                 { "type": "event", "event": "onBeEndBattleTurn", "count": 1 },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "installAction": [
                 { "type": "removeSpell", "spell": 65},
@@ -1660,7 +1671,8 @@ exports.data = [
             },
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
-                {"type":"visible"}
+                {"type":"visible"} ,
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "self",
@@ -1703,7 +1715,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"countDown","cd":5},
                 {"type" :"event","event":"onTurnBegin"},
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"self",
@@ -1721,7 +1734,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"countDown","cd":10},
                 {"type" :"event","event":"onTurnBegin"},
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"self",
@@ -2576,7 +2590,8 @@ exports.data = [
         "config": {
             "triggerCondition": [
                 { "type": "event", "event": "onBeEndBattleTurn", "count": 1 },
-                {"type":"visible"}
+                {"type":"visible"} ,
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "Self",
@@ -2627,7 +2642,8 @@ exports.data = [
             },
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -2666,7 +2682,8 @@ exports.data = [
             "triggerCondition": [
                 {"type": "countDown", "cd": 6 },
                 {"type":"visible"},
-                {"type" :"event", "event":"onTurnEnd" }
+                {"type" :"event", "event":"onTurnEnd" } ,
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"self"
@@ -2702,7 +2719,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":5,"reset":true },
                 {"type":"visible"},
-                {"type" :"event", "event":"onTurnEnd" }
+                {"type" :"event", "event":"onTurnEnd" } ,
+                {"type":"alive"}
             ],
             "action": [{"type": "createMonster","objectCount":1,"effect":21,"randomPos":true,"monsterID":7}]
         }
@@ -2717,7 +2735,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
                 {"type":"visible"},
-                {"type":"property","property":"health","from":150}
+                {"type":"property","property":"health","from":150} ,
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -2760,7 +2779,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
                 {"type":"visible"},
-                {"type":"property","property":"health","to":150}
+                {"type":"property","property":"health","to":150},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -2923,7 +2943,7 @@ exports.data = [
         "config": {
             "basic" : {
                 "spellAction": 2,
-                "spellEffect": 4,
+                "spellEffect": 45,
                 "targetEffect": 1 ,
                 "spellDelay": 0.3
             },
@@ -2931,7 +2951,8 @@ exports.data = [
                 "pool": "self"
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 10 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
+                { "type": "chance", "chance": 0.5}
             ],
             "action": [
                 { "type": "installSpell", "spell": 129}
@@ -2949,7 +2970,7 @@ exports.data = [
             "basic": {
                 "buffEffect": 42,
                 "spellAction": 4,
-                "spellEffect": 1,
+                "spellEffect":46,
                 "spellDelay": 0.3
             },
             "triggerCondition": [
@@ -2957,7 +2978,8 @@ exports.data = [
                 { "type": "event", "event": "onBePhysicalRangeDamage" },
                 { "type": "event", "event": "onBeSpellDamage" },
                 { "type": "event", "event": "onBeSpellRangeDamage" },
-                { "type": "targetMutex", "mutex": "reinforce" }
+                { "type": "targetMutex", "mutex": "reinforce" } ,
+                {"type":"alive"}
             ],
             "availableCondition": [
                 { "type": "effectCount" }
@@ -3019,7 +3041,9 @@ exports.data = [
         "config": {
             "basic" : { },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 14 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 8,"reset":true },
+                { "type": "chance", "chance": 0.3},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "self",
@@ -3048,7 +3072,9 @@ exports.data = [
                 "targetDelay": 0.3
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 10 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
+                { "type": "chance", "chance": 0.5},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "objects",
@@ -3127,7 +3153,9 @@ exports.data = [
                 "targetDelay": 0.3
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 10 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
+                { "type": "chance", "chance": 0.5},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "objects",
@@ -3153,7 +3181,7 @@ exports.data = [
             ],
             "buffType":"AttackBuff",
             "availableCondition": [
-                { "type": "event", "event": "onBeginBattleTurn", "eventCount": 2 }
+                { "type": "event", "event": "onBeginBattleTurn", "eventCount": 1 }
             ],
             "levelConfig" : [
                 { "modifications": {"attack":{"src":{"attack":0.5},"c":5}}},
@@ -3176,7 +3204,9 @@ exports.data = [
                 "targetDelay": 0.3
             },
             "triggerCondition": [
-                { "type": "onTurnBegin", "cd": 6 }
+                { "type":"event","event":"onTurnEnd", "eventCount": 8,"reset":true },
+                { "type": "chance", "chance": 0.3},
+                {"type":"alive"}
             ],
             "action": [
                 {"type":"delay"},
@@ -3258,7 +3288,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
                 {"type":"visible"},
-                {"type":"property","property":"health","from":150}
+                {"type":"property","property":"health","from":150},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -3301,7 +3332,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
                 {"type":"visible"},
-                {"type":"property","property":"health","to":150}
+                {"type":"property","property":"health","to":150},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "blocks",
@@ -3322,7 +3354,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd"},
                 {"type": "myMutex", "mutex": "langqun" },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"objects",
@@ -3344,7 +3377,8 @@ exports.data = [
             "targetSelection": { "pool": "self" },
             "triggerCondition": [
                 { "type": "event", "event": "onBeEndBattleTurn", "count": 1 },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "installAction": [
                 { "type": "removeSpell", "spell": 145},
@@ -3438,7 +3472,8 @@ exports.data = [
             },
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":3,"reset":true },
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection": {
                 "pool": "self",
@@ -3481,7 +3516,8 @@ exports.data = [
             "triggerCondition": [
                 {"type" :"countDown","cd":5},
                 {"type" :"event","event":"onTurnBegin"},
-                {"type":"visible"}
+                {"type":"visible"},
+                {"type":"alive"}
             ],
             "targetSelection":{
                 "pool":"self",
@@ -3514,4 +3550,4 @@ exports.data = [
             ]
         }
     }
-]
+];
