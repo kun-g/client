@@ -632,7 +632,6 @@ var UIItem = cc.Node.extend({
             this.addChild(sp, 0);
         }
     },
-
     showFrame: function()
     {
         var frame = cc.Sprite.create("skillbg.png");
