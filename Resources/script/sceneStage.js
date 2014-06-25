@@ -297,7 +297,7 @@ function onChallenge(){
     theLayer.stage.owner.btnSweep1.setVisible(false);
     theLayer.stage.owner.btnSweep2.setVisible(false);
     theLayer.stage.owner.nodeSweepFrame.setVisible(false);
-    
+
     var team = 3;
     if( Math.floor(chInst.Stages[theLayer.INFIKEY].Level%10 == 0 )){
         team = 1;
