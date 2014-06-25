@@ -34,6 +34,7 @@ var theType = -1;
 var SWEEP_SCROLL_CID = 871;
 var PrizeList = [];
 var PrizeIndex = 0;
+var SweepArgs = {};
 
 function onEvent(event)
 {
@@ -589,6 +590,7 @@ function onSelectStage(sender)
 
 function onSweep(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    SweepArgs = {};
     var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
     var times = sender.getTag() * 4 + 1; // 1 or 5
     var totalEnergyCost = theEnergyCost * times;
@@ -612,8 +614,11 @@ function onSweep(sender) {
         });
         return;
     }
-
-    sweepStage(theLayer.stageSelected, multi, totalEnergyCost);
+    SweepArgs = {
+        stg: theLayer.stageSelected,
+        mul: multi
+    };
+    sweepStage(SweepArgs, totalEnergyCost);
 }
 
 function showSweepAnimetion() {
@@ -663,8 +668,10 @@ function showSweepResult() {
     theLayer.sweep.ui.scroller.setContentOffset(off);
     PrizeIndex = 0;
     BAR_WIDTH = 570;
-    BAR_HEIGHT = 220;
-    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT);
+    BAR_HEIGHT = 190;
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * (SweepArgs.mul? 5:1));
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, null);
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
     createPrizeBar();
 }
 
@@ -681,7 +688,7 @@ function createPrizeBar() {
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
         prize.setPosition(layer.owner.nodePrize.getPosition());
         layer.owner.nodePrizeBar.addChild(prize);
-        layer.setPosition(cc.p(0, LOAD_SIZE.height - BAR_HEIGHT * PrizeIndex));
+        layer.setPosition(cc.p(winSize.width/2, LOAD_SIZE.height - BAR_HEIGHT * PrizeIndex));
         theLayer.sweep.theListLayer.addChild(layer);
 
         PrizeIndex++;
@@ -775,8 +782,8 @@ function scene()
 
 //-------------------
 
-function sweepStage(stg, mul, cost) {
-    debug("sweepStage("+stg+", "+cost+")");
+function sweepStage(args, cost) {
+    debug("sweepStage("+args.stg+", "+cost+")");
 
 //    libUIKit.waitRPC(Request_SweepStage, {
 //        stg: stg,
