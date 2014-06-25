@@ -116,10 +116,10 @@ Session.prototype.updatePVPInfo = function() {
     libUIKit.waitRPC(Request_PVPInfoUpdate, {}, function (rsp) {
         if( rsp.RET == RET_OK ){
             if( rsp.pki != null ){
-                if(rsp.pki.rnk != null) this.PkInfo.rnk = rsp.pki.rnk;
-                if(rsp.pki.cpl != null) this.PkInfo.rnk = rsp.pki.cpl;
-                if(rsp.pki.ttl != null) this.PkInfo.rnk = rsp.pki.ttl;
-                if(rsp.pki.rcv != null) this.PkInfo.rnk = rsp.pki.rcv;
+                if(rsp.pki.rnk != null) this.PkInfo.rnk = Number(rsp.pki.rnk);
+                if(rsp.pki.cpl != null) this.PkInfo.rnk = Number(rsp.pki.cpl);
+                if(rsp.pki.ttl != null) this.PkInfo.rnk = Number(rsp.pki.ttl);
+                if(rsp.pki.rcv != null) this.PkInfo.rnk = Number(rsp.pki.rcv);
             }else{
                 debug("*updatePVPInfo error: pki is null");
             }

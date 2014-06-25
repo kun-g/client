@@ -53,16 +53,16 @@ function loadPkRivals() {
 }
 
 function loadMyInfo() {
-//    engine.session.updatePVPInfo();
-//    myPkInfo = engine.session.PkInfo;
+    engine.session.updatePVPInfo();
+    myPkInfo = engine.session.PkInfo;
 
-    //test code
-    myPkInfo = {
-        rnk: 333,
-        cpl: 2,
-        ttl: 10,
-        rcv: false
-    };
+//    //test code
+//    myPkInfo = {
+//        rnk: 333,
+//        cpl: 2,
+//        ttl: 10,
+//        rcv: false
+//    };
 
     if( myPkInfo != null ){
         theLayer.owner.labMyRank.setString(myPkInfo.rnk);
