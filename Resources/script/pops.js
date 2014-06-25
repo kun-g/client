@@ -84,38 +84,109 @@ function onTouchCancelled(touch, event){
 }
 
 function popLevelUp(){
+    var sfc = cc.SpriteFrameCache.getInstance();
+    cacheSprite("levelup-skill.png");
+    cacheSprite("levelup-sj.png");
     var layer = engine.ui.newLayer();
     var mask = blackMask();
     layer.addChild(mask);
 
     layer.owner = {};
     configParticle(layer.owner);
-    layer.node = cc.BuilderReader.load("ui-levelup.ccbi", layer.owner);
+    layer.node = loadModule("UIComposer.js").loadUI(layer, "ui-levelup.ccbi", {
+        sk1: {
+            id: "skill1",
+            ui: "UISkill"
+        },
+        sk2: {
+            id: "skill2",
+            ui: "UISkill"
+        },
+        sk3: {
+            id: "skill3",
+            ui: "UISkill"
+        },
+        sk4: {
+            id: "skill4",
+            ui: "UISkill"
+        },
+        nodeRole: {
+            id: "avatar",
+            ui: "UIAvatar",
+            scale: 1.2
+        }
+    });
 
     layer.node.animationManager.runAnimationsForSequenceNamed("effect");
     var winSize = cc.Director.getInstance().getWinSize();
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
-
-    //set values
-    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    //set all invisible
+    var nodeName = ["nodeMj","nodeJsj","nodeJjs","nodeSj","labLev"];
+    for (var k in nodeName){
+        for (var i = 1;i <= 4;i++){
+            debug(nodeName[k]+i+" set invisible");
+            layer.owner[nodeName[k]+i].setVisible(false);
+        }
+    }
+    //set level
     var level = engine.user.actor.calcExp().level;
     layer.owner.labLevel.setString("LV."+level);
-    var spEmblem = cc.Sprite.create(roleData.emblem[0]);
-    layer.owner.nodeEmblem.addChild(spEmblem);
+    //set skill
+    var role = engine.user.actor;
+    layer.ui.skill1.setSkill(getSkillLev(0));
+    layer.ui.skill2.setSkill(getSkillLev(1));
+    layer.ui.skill3.setSkill(getSkillLev(2));
+    layer.ui.skill4.setSkill(getSkillLev(3));
+    //set role
+    layer.ui.avatar.setRole(role);
+    //set property
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
-    var skill = levelData.levelData[level-1].skill[0];
-    var uiSkill = libSkill.UISkill.create({
-        ClassId: skill.id,
-        Level: skill.level
-    });
-    layer.owner.nodeSkill.addChild(uiSkill);
-    var skillData = libTable.queryTable(TABLE_SKILL, skill.id);
-    if( skill.level == 1 ){
-        layer.owner.labelDesc.setString("获得了新技能【"+skillData.label+"】");
+    var property = levelData.levelData[level-1].property;
+    var proTableList = ["health","attack","speed","critical","strong","accuracy","reactivity"];
+    var proRoleList = ["Health","Attack","Speed","Critical","Strong","Accuracy","Reactivity"];
+    var proLabList = ["labHealth","labAttack","labSpeed","labCritical","labStrong","labAccuracy","labReactivity"];
+    for (var k in proLabList){
+        var originPro = +role[proRoleList[k]] - property[proTableList[k]];
+        debug(originPro + "+" + property[proTableList[k]]);
+        if (property[proTableList[k]] > 0){
+            layer.owner[proLabList[k]].setString(originPro + "+" + property[proTableList[k]]);
+        }
+        else{
+            layer.owner[proLabList[k]].setString(originPro);
+        }
+
     }
-    else{
-        layer.owner.labelDesc.setString("【"+skillData.label+"】等级提升到"+skill.level);
+    //set skill state
+    var skill = levelData.levelData[level-1].skill[0];
+    var newSkill = false;
+    if( skill.level == 1 ){
+        newSkill = true;
+    }
+    for (var j = 1;j <= 4;j++){
+        if (role.querySkill(j - 1) == null){//jjs
+            layer.owner[nodeName[4]+j].setVisible(true);
+            layer.owner[nodeName[4]+j].setString(getNewSkillLev(level,j - 1));
+            layer.owner[nodeName[2]+j].setVisible(true);
+        }
+        else if (skill.id == role.querySkill(j - 1).ClassId){
+            if (newSkill){//get new skill
+                layer.owner[nodeName[3]+j].setDisplayFrame(sfc.getSpriteFrame("levelup-skill.png"));
+            }
+            else{//sj
+                layer.owner[nodeName[3]+j].setDisplayFrame(sfc.getSpriteFrame("levelup-sj.png"));
+            }
+            layer.owner[nodeName[3]+j].setVisible(true);
+        }
+        else if (role.querySkill(j - 1).Level >= getMaxSkillLev(role.querySkill(j - 1).ClassId)){//mj
+            layer.owner[nodeName[0]+j].setVisible(true);
+        }
+        else{//jsj
+            layer.owner[nodeName[4]+j].setVisible(true);
+            layer.owner[nodeName[4]+j].setString(getNextSkillLev(level,role.querySkill(j - 1).ClassId));
+            layer.owner[nodeName[1]+j].setVisible(true);
+        }
     }
 
     engine.ui.regMenu(layer);
@@ -132,6 +203,67 @@ function popLevelUp(){
     layer.node.runAction(actionPopIn(function(){
         layer.setTouchEnabled(true);
     }));
+}
+
+function getSkillLev(slotId){
+    var ret = {};
+    if (engine.user.actor.querySkill(slotId) == null){
+        var roleSkill = [];
+        var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+        var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+        for (var k in levelData.levelData){
+            if (levelData.levelData[k].skill[0].level == 1){
+                roleSkill.push(levelData.levelData[k].skill[0].id);
+            }
+        }
+        ret.ClassId = roleSkill[slotId];
+        ret.Level = 1;
+    }
+    else{
+        ret = engine.user.actor.querySkill(slotId);
+    }
+
+    return ret;
+}
+
+function getNewSkillLev(level,slotId){
+    var ret = 0;
+    var roleSkill = [];
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    for (var k in levelData.levelData){
+        if (levelData.levelData[k].skill[0].level == 1){
+            roleSkill.push(levelData.levelData[k].skill[0].id);
+        }
+    }
+    ret = getNextSkillLev(level,roleSkill[slotId]);
+    return ret;
+}
+
+function getNextSkillLev(level,skillCld){
+    var ret = 0;
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    for (var k = level;k < levelData.levelData.length;k++){
+        if (levelData.levelData[k].skill[0].id == skillCld){
+            ret = k + 1;
+            break;
+        }
+    }
+    return ret;
+}
+
+function getMaxSkillLev(skillCld){
+    var ret = 0;
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    for (var k = levelData.levelData.length - 1;k >= 0;k--){
+        if (levelData.levelData[k].skill[0].id == skillCld){
+            ret = levelData.levelData[k].skill[0].level;
+            break;
+        }
+    }
+    return ret;
 }
 
 function invokePopLevelUp(){

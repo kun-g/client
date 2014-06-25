@@ -50,6 +50,7 @@ function onDailyAnimationCompleted(name){
         theLayerMode = null;
     }
     else if( theLayerMode == MODE_DAILYQUEST ){
+        debug("runAnimationsForSequenceNamed(stand)");
         theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
     }
 }

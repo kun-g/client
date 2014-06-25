@@ -406,9 +406,11 @@ function onMail(sender)
 
 function onChat(sender)
 {
-    startCloseAnimation(function(){
-        libChat.show();
-    });
+//    startCloseAnimation(function(){
+//        libChat.show();
+//    });
+    libPops.setLevelUpAnimation();
+    libPops.invokePopLevelUp();
 }
 
 function onStage(sender)
