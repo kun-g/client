@@ -117,6 +117,9 @@ var COLOR_VALUEDOWN = cc.c3b(232, 55, 55);
 var COLOR_DEBUFF = cc.c3b(203, 84, 224);
 var COLOR_BUFF = cc.c3b(255, 191, 0);
 
+var COLOR_LABEL_RED = cc.c3b(240, 0, 0);
+var COLOR_LABEL_GREEN = cc.c3b(0, 240, 0);
+
 var MSGPOP_COLORS = [
     cc.c3b(60, 206, 30),
     cc.c3b(245, 213, 56),
@@ -232,6 +235,7 @@ var Request_SubmitBounty = 31;
 var Request_GetPkRivals = 32;
 var Request_ReceivePrize = 33;
 var Request_PVPInfoUpdate = 34;
+var Request_SweepStage = 35;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;

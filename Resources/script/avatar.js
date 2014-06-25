@@ -794,6 +794,10 @@ UIAvatar.prototype.getRole = function()
     return this.role;
 }
 
+UIAvatar.prototype.playAnimation = function (name, loop) {
+    this.avatar.playAnimation(name, loop);
+}
+
 UIAvatar.make = function(thiz, args)
 {
     var ret = {};

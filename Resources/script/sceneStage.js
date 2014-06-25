@@ -12,6 +12,8 @@ var scroller = loadModule("scroller.js");
 var ui = loadModule("UIComposer.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
+var libQuest = loadModule("questInfo.js");
+var libUIC = loadModule("UIComposer.js");
 
 var theLayer = null;
 var theChapterClass;
@@ -19,6 +21,7 @@ var theStageClass;
 
 var theEnergyCost = 0;
 
+var winSize;
 var BIRD_HIGH = 30;
 var CLOUD_HIGH = 40;
 
@@ -28,6 +31,9 @@ var MODE_STAGE = 1;
 var TYPE_NORMAL = 0;
 var TYPE_CHALLENGE = 1;
 var theType = -1;
+var SWEEP_SCROLL_CID = 871;
+var PrizeList = [];
+var PrizeIndex = 0;
 
 function onEvent(event)
 {
@@ -43,7 +49,7 @@ function onClose(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    loadModule("questInfo.js").show();
+    libQuest.show();
 }
 
 function onEnter()
@@ -59,7 +65,7 @@ function onEnter()
     sfc.addSpriteFrames("map.plist");
     sfc.addSpriteFrames("map2.plist");
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    winSize = cc.Director.getInstance().getWinSize();
 
     theLayer.bgOwner = {};
     theLayer.bg = cc.BuilderReader.load("ui-map.ccbi", theLayer.bgOwner);
@@ -248,6 +254,7 @@ function onNormal(){
     theLayer.stage.owner.btnMode.setNormalSpriteFrame(sfc.getSpriteFrame("map-btn-wjms1.png"));
     theLayer.stage.owner.btnMode.setSelectedSpriteFrame(sfc.getSpriteFrame("map-btn-wjms2.png"));
     theLayer.stage.owner.btnMode.setDisabledSpriteFrame(sfc.getSpriteFrame("map-btn-wjms2.png"));
+    theLayer.stage.owner.btnMode.runAction(cc.MoveBy.create(0.1, cc.p(0, 64)));
 }
 
 function getInfiPrize(dungeon, level){
@@ -284,6 +291,12 @@ function onChallenge(){
     theLayer.stage.owner.btnMode.setNormalSpriteFrame(sfc.getSpriteFrame("map-btn-zcms1.png"));
     theLayer.stage.owner.btnMode.setSelectedSpriteFrame(sfc.getSpriteFrame("map-btn-zcms2.png"));
     theLayer.stage.owner.btnMode.setDisabledSpriteFrame(sfc.getSpriteFrame("map-btn-zcms2.png"));
+    theLayer.stage.owner.btnMode.runAction(cc.MoveBy.create(0.1, cc.p(0, -64)));
+    //hide sweep buttons
+    theLayer.stage.owner.nodeSweepMid.setVisible(false);
+    theLayer.stage.owner.btnSweep1.setVisible(false);
+    theLayer.stage.owner.btnSweep2.setVisible(false);
+    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
 
     var team = 3;
     if( Math.floor(chInst.Stages[theLayer.INFIKEY].Level%10 == 0 )){
@@ -322,7 +335,6 @@ function showStages(chId)
     var stage = engine.ui.newLayer();
     var mask = blackMask();
     stage.addChild(mask); //weaken the map to highlight the choose-stage scene
-    var winSize = cc.Director.getInstance().getWinSize();
 
     //judge the flag of World Task
 //    var worldTask = null;
@@ -389,6 +401,7 @@ function showStages(chId)
         theLayer.stage = {};
         theLayer.stage.owner = {};
         theLayer.stage.owner.onStage = onSelectStage;
+        theLayer.stage.owner.onSweep = onSweep;
         theLayer.stage.owner.onMode = onMode;
         theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
         theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -413,9 +426,10 @@ function showStages(chId)
         var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
         btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
         theLayer.stage.owner.menu.addChild(btnCancel);
-
+        var btnModePos = theLayer.stage.owner.btnMode.getPosition();
+        btnModePos.y -= 64;
+        theLayer.stage.owner.btnMode.setPosition(btnModePos);
         onNormal();
-
         theLayer.stage.node.setScale(0);
         theLayer.stage.node.runAction(actionPopIn());
     }
@@ -531,6 +545,34 @@ function selectStage(sId)
         theLayer.stage.owner["loot"].removeAllChildren();
         theLayer.stage.owner["loot"].addChild(lootNode);
     }
+
+    //check sweep
+    theLayer.stage.owner.nodeSweepMid.setVisible(false);
+    theLayer.stage.owner.btnSweep1.setVisible(false);
+    theLayer.stage.owner.btnSweep2.setVisible(false);
+    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
+    var scrollQuantity = 20;
+//    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
+    theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
+    var sweepPower = theStageClass.sweepPower;
+    debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
+    if( sweepPower != null ) {
+        var myPower = engine.user.actor.getPower();
+        theLayer.stage.owner.nodeSweepFrame.setVisible(true);
+        theLayer.stage.owner.nodeSweepMid.setVisible(true);
+        theLayer.stage.owner.labPowerRequired.setString(sweepPower);
+        theLayer.stage.owner.btnSweep1.setVisible(true);
+        theLayer.stage.owner.btnSweep2.setVisible(true);
+        if (myPower >= sweepPower) {
+            theLayer.stage.owner.btnSweep1.setEnabled(true);
+            theLayer.stage.owner.btnSweep2.setEnabled(true);
+            theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_GREEN);
+        } else {
+            theLayer.stage.owner.btnSweep1.setEnabled(false);
+            theLayer.stage.owner.btnSweep2.setEnabled(false);
+            theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_RED);
+        }
+    }
 }
 
 function onSelectStage(sender)
@@ -543,6 +585,121 @@ function onSelectStage(sender)
         selectStage(tag -1);
         cc.AudioEngine.getInstance().playEffect("xuanze.mp3");
     }
+}
+
+function onSweep(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
+    var times = sender.getTag() * 4 + 1; // 1 or 5
+    var totalEnergyCost = theEnergyCost * times;
+    var scrollQuantity = Math.floor(Number(theLayer.stage.owner.labSweepScroll.getString()));
+    if( scrollQuantity < times ){
+        libUIKit.showAlert("扫荡卷轴不足！");
+        return;
+    }
+    if( engine.user.player.Energy < totalEnergyCost ){
+        var need = totalEnergyCost - engine.user.player.Energy;
+        var str1 = "精力值不足\n进行扫荡还需要"+need+"精力\n需要使用"+need+"宝石来立即恢复吗?";
+        var str2 = "精力值不足，无法扫荡此关\n使用"+need+"宝石可以立即恢复\n需要充值吗?";
+        libUIKit.confirmPurchase(Request_BuyFeature, {
+            typ: 0,
+            tar: totalEnergyCost
+        }, str1, str2, totalEnergyCost, function(rsp){
+            if( rsp.RET == RET_OK ){
+                //统计
+                tdga.itemPurchase("精力值", need, 1);
+            }
+        });
+        return;
+    }
+
+    sweepStage(theLayer.stageSelected, multi, totalEnergyCost);
+}
+
+function showSweepAnimetion() {
+    var sweepLayer = engine.ui.newLayer();
+    var mask = blackMask();
+    sweepLayer.addChild(mask);
+    theLayer.sweepLayer = sweepLayer;
+    theLayer.sweep = {};
+    theLayer.sweep.owner = {};
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd.ccbi",{
+        nodeRole:{
+            ui: "UIAvatar",
+            id: "avatar",
+            scale: 1.2
+        }
+    });
+    theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.ui.avatar.setRole(engine.user.actor);
+    theLayer.sweep.ui.avatar.playAnimation("walk", true);
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, sweepAnimeCompleted);
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
+}
+
+function sweepAnimeCompleted() {
+    theLayer.sweep.node.removeFromParent(true);
+    showSweepResult();
+}
+
+function showSweepResult() {
+    theLayer.sweep = {};
+    theLayer.sweep.owner = {};
+    theLayer.sweep.owner.onClosePrizeList = onClosePrizeList;
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", {
+        nodeContent:{
+            ui: "UIScrollView",
+            id: "scroller",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        }
+    });
+    theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    theLayer.sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.theListLayer = cc.Layer.create();
+    theLayer.sweep.ui.scroller.setContainer(theLayer.sweep.theListLayer);
+    var off = theLayer.sweep.ui.scroller.getContentOffset();
+    off.y = theLayer.sweep.ui.scroller.minContainerOffset().y;
+    theLayer.sweep.ui.scroller.setContentOffset(off);
+    PrizeIndex = 0;
+    BAR_WIDTH = 570;
+    BAR_HEIGHT = 220;
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT);
+    createPrizeBar();
+}
+
+function createPrizeBar() {
+    if (PrizeList[PrizeIndex] != null) {
+        var layer = cc.Node.create();
+        layer.owner = {};
+        layer.node = libUIC.loadUI(layer, "ui-sdlist.ccbi", null);
+        layer.addChild(layer.node);
+        layer.owner.nodePrizeBar.setCascadeOpacityEnabled(true);
+        layer.node.animationManager.setCompletedAnimationCallback(layer, createPrizeBar);
+
+        var dimension = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
+        var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
+        prize.setPosition(layer.owner.nodePrize.getPosition());
+        layer.owner.nodePrizeBar.addChild(prize);
+        layer.setPosition(cc.p(0, LOAD_SIZE.height - BAR_HEIGHT * PrizeIndex));
+        theLayer.sweep.theListLayer.addChild(layer);
+
+        PrizeIndex++;
+        layer.node.animationManager.runAnimationsForSequenceNamed("fadeIn");
+    }
+    else {
+        theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("button");
+    }
+}
+
+function onClosePrizeList() {
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, function(){
+        engine.ui.popLayer();
+        theLayer.sweep.node.removeFromParent(true);
+        delete theLayer.sweep;
+    });
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("close");
+
 }
 
 function onTouchBegan(touch, event)
@@ -617,6 +774,65 @@ function scene()
 }
 
 //-------------------
+
+function sweepStage(stg, mul, cost) {
+    debug("sweepStage("+stg+", "+cost+")");
+
+//    libUIKit.waitRPC(Request_SweepStage, {
+//        stg: stg,
+//        mul: mul
+//    }, function (rsp) {
+//        if( rsp.RET == RET_OK ){
+//
+//            if( rsp.arg != null ){
+//                PrizeList = rsp.arg;
+//                showSweepAnimetion();
+//            }
+//        }else{
+//            libUIKit.showErrorMessage(rsp);
+//        }
+//    });
+
+
+    //test code
+    PrizeList = [
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ]
+    ];
+    showSweepAnimetion();
+    //test code end
+}
+//exports.sweepStage = sweepStage;
+
+
 function startStage(stg, team, cost, pkRival){
     debug("startStage("+stg+", "+team+", "+cost+")");
     //check energy
@@ -636,11 +852,6 @@ function startStage(stg, team, cost, pkRival){
         return;
     }
 
-    var stageInfo = engine.user.stage.queryStageInfo(stg);
-    if( stageInfo.teamSize != null ){
-        team = stageInfo.teamSize;
-    }
-
     var dungeon = {};
     dungeon.stage = stg;
     dungeon.party = [];
@@ -656,6 +867,5 @@ function startStage(stg, team, cost, pkRival){
         requestBattle(engine.user.dungeon.stage, [engine.user.actor], pkRival);
     }
 }
-
 exports.startStage = startStage;
 exports.scene = scene;

@@ -487,9 +487,10 @@ function onEnter()
         theLayer.owner.nodeStart.setVisible(false);
     }
     else{
-        theMode = MODE_PRESS;
-        theLayer.owner.nodeProgress.setVisible(false);
-        theLayer.owner.nodeStart.setVisible(true);
+        theMode = MODE_LOAD;
+        theLayer.owner.nodeProgress.setVisible(true);
+        theLayer.owner.nodeStart.setVisible(false);
+        onStartGame();
     }
 
     engine.event.releaseNotifications();

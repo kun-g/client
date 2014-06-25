@@ -24,7 +24,12 @@ function Session(){
     this.roleCache = {};
     this.dataBounty = [];
     this.MonthCardAvaiable = false;
-    this.PkInfo = {};
+    this.PkInfo = {
+        rnk: 99999,
+        cpl: 0,
+        ttl: 0,
+        rcv: false
+    };
 }
 
 Session.prototype.pushFriendApply = function(msg){
@@ -106,14 +111,19 @@ Session.prototype.queryRoleInfo = function(name){
     return this.roleCache[name];
 }
 
-Session.prototype.updatePVPInfo = function() {
+Session.prototype.updatePVPInfo = function(func) {
     var libUIKit = loadModule("uiKit.js");
     libUIKit.waitRPC(Request_PVPInfoUpdate, {}, function (rsp) {
         if( rsp.RET == RET_OK ){
-            if( rsp.pki != null ){
-                this.PkInfo = rsp.pki;
+            if( rsp.arg != null ){
+                if(engine.session.PkInfo == null) engine.session.PkInfo = {rnk: 99999, cpl: 0, ttl: 0, rcv: false};
+                if(rsp.arg.rnk != null) engine.session.PkInfo.rnk = Number(rsp.arg.rnk);
+                if(rsp.arg.cpl != null) engine.session.PkInfo.cpl = Number(rsp.arg.cpl);
+                if(rsp.arg.ttl != null) engine.session.PkInfo.ttl = Number(rsp.arg.ttl);
+                if(rsp.arg.rcv != null) engine.session.PkInfo.rcv = Number(rsp.arg.rcv);
+                func();
             }else{
-                debug("*updatePVPInfo error: pki is null");
+                debug("*updatePVPInfo error: arg is null");
             }
         }else{
             debug("*updatePVPInfo error: RET is not OK");
