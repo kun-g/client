@@ -24,7 +24,12 @@ function Session(){
     this.roleCache = {};
     this.dataBounty = [];
     this.MonthCardAvaiable = false;
-    this.PkInfo = {};
+    this.PkInfo = {
+        rnk: -1,
+        cpl: 0,
+        ttl: 0,
+        rcv: false
+    };
 }
 
 Session.prototype.pushFriendApply = function(msg){
@@ -111,7 +116,10 @@ Session.prototype.updatePVPInfo = function() {
     libUIKit.waitRPC(Request_PVPInfoUpdate, {}, function (rsp) {
         if( rsp.RET == RET_OK ){
             if( rsp.pki != null ){
-                this.PkInfo = rsp.pki;
+                if(rsp.pki.rnk != null) this.PkInfo.rnk = rsp.pki.rnk;
+                if(rsp.pki.cpl != null) this.PkInfo.rnk = rsp.pki.cpl;
+                if(rsp.pki.ttl != null) this.PkInfo.rnk = rsp.pki.ttl;
+                if(rsp.pki.rcv != null) this.PkInfo.rnk = rsp.pki.rcv;
             }else{
                 debug("*updatePVPInfo error: pki is null");
             }
