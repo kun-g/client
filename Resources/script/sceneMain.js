@@ -475,7 +475,6 @@ function onShop(sender)
 
 function onPVP(sender)
 {
-    return; // disable PVP
     startCloseAnimation(function(){
         engine.ui.newScene(loadModule("scenePVP.js").scene());
     });
