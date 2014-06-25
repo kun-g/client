@@ -254,6 +254,7 @@ function onNormal(){
     theLayer.stage.owner.btnMode.setNormalSpriteFrame(sfc.getSpriteFrame("map-btn-wjms1.png"));
     theLayer.stage.owner.btnMode.setSelectedSpriteFrame(sfc.getSpriteFrame("map-btn-wjms2.png"));
     theLayer.stage.owner.btnMode.setDisabledSpriteFrame(sfc.getSpriteFrame("map-btn-wjms2.png"));
+    theLayer.stage.owner.btnMode.runAction(cc.MoveBy.create(0.1, cc.p(0, 64)));
 }
 
 function getInfiPrize(dungeon, level){
@@ -290,6 +291,12 @@ function onChallenge(){
     theLayer.stage.owner.btnMode.setNormalSpriteFrame(sfc.getSpriteFrame("map-btn-zcms1.png"));
     theLayer.stage.owner.btnMode.setSelectedSpriteFrame(sfc.getSpriteFrame("map-btn-zcms2.png"));
     theLayer.stage.owner.btnMode.setDisabledSpriteFrame(sfc.getSpriteFrame("map-btn-zcms2.png"));
+    theLayer.stage.owner.btnMode.runAction(cc.MoveBy.create(0.1, cc.p(0, -64)));
+    //hide sweep buttons
+    theLayer.stage.owner.nodeSweepMid.setVisible(false);
+    theLayer.stage.owner.btnSweep1.setVisible(false);
+    theLayer.stage.owner.btnSweep2.setVisible(false);
+    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
 
     var team = 3;
     if( Math.floor(chInst.Stages[theLayer.INFIKEY].Level%10 == 0 )){
@@ -419,9 +426,10 @@ function showStages(chId)
         var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
         btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
         theLayer.stage.owner.menu.addChild(btnCancel);
-
+        var btnModePos = theLayer.stage.owner.btnMode.getPosition();
+        btnModePos.y -= 64;
+        theLayer.stage.owner.btnMode.setPosition(btnModePos);
         onNormal();
-
         theLayer.stage.node.setScale(0);
         theLayer.stage.node.runAction(actionPopIn());
     }
@@ -618,7 +626,8 @@ function showSweepAnimetion() {
     theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd.ccbi",{
         nodeRole:{
             ui: "UIAvatar",
-            id: "avatar"
+            id: "avatar",
+            scale: 1.2
         }
     });
     theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -685,6 +694,7 @@ function createPrizeBar() {
 
 function onClosePrizeList() {
     theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, function(){
+        engine.ui.popLayer();
         theLayer.sweep.node.removeFromParent(true);
         delete theLayer.sweep;
     });
@@ -768,20 +778,57 @@ function scene()
 function sweepStage(stg, mul, cost) {
     debug("sweepStage("+stg+", "+cost+")");
 
-    libUIKit.waitRPC(Request_SweepStage, {
-        stg: stg,
-        mul: mul
-    }, function (rsp) {
-        if( rsp.RET == RET_OK ){
+//    libUIKit.waitRPC(Request_SweepStage, {
+//        stg: stg,
+//        mul: mul
+//    }, function (rsp) {
+//        if( rsp.RET == RET_OK ){
+//
+//            if( rsp.arg != null ){
+//                PrizeList = rsp.arg;
+//                showSweepAnimetion();
+//            }
+//        }else{
+//            libUIKit.showErrorMessage(rsp);
+//        }
+//    });
 
-            if( rsp.arg != null ){
-                PrizeList = rsp.arg;
-                showSweepAnimetion();
-            }
-        }else{
-            libUIKit.showErrorMessage(rsp);
-        }
-    });
+
+    //test code
+    PrizeList = [
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ]
+    ];
+    showSweepAnimetion();
+    //test code end
 }
 //exports.sweepStage = sweepStage;
 

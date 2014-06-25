@@ -53,22 +53,14 @@ function loadPkRivals() {
 }
 
 function loadMyInfo() {
-    engine.session.updatePVPInfo();
-    myPkInfo = engine.session.PkInfo;
-
-//    //test code
-//    myPkInfo = {
-//        rnk: 333,
-//        cpl: 2,
-//        ttl: 10,
-//        rcv: false
-//    };
-
-    if( myPkInfo != null ){
-        theLayer.owner.labMyRank.setString(myPkInfo.rnk);
-        theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
-        setBottomContent();
-    }
+    engine.session.updatePVPInfo(function() {
+        myPkInfo = engine.session.PkInfo;
+        if( myPkInfo != null ){
+            theLayer.owner.labMyRank.setString(myPkInfo.rnk);
+            theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
+            setBottomContent();
+        }
+    });
 }
 
 function setBottomContent() {
@@ -142,28 +134,13 @@ function onRoleInfo(sender){
 
 function onStartPK() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    if( myPkInfo.cpl >= myPkInfo.ttl ){
+        libUIKit.showAlert("今日PK次数已用完");
+        return;
+    }
     var libStage = loadModule("sceneStage.js");
     var stageDate = queryStage(PVP_STAGEID);
     libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
-//    var alert = libUIKit.alert();
-//    alert.setContent("确定开始挑战对手吗？");
-//    alert.setButton([
-//        {
-//            label: "buttontext-qx.png",
-//            func: onClose,
-//            obj: alert
-//        },
-//        {
-//            label: "buttontext-confirm.png",
-//            func: function() {
-//                var libStage = loadModule("sceneStage.js");
-//                var stageDate = queryStage(PVP_STAGEID);
-//                libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
-//            },
-//            obj: alert,
-//            type: BUTTONTYPE_DEFAULT
-//        }
-//    ]);
 }
 
 function onReceivePrize() {
