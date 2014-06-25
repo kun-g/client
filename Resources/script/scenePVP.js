@@ -20,14 +20,16 @@ var DAILY_TIMES_NEED = 5;
 var PVP_STAGEID = 124;
 
 var theRivalsList;
+var theRival;
 var myPkInfo;
+var PKINFO_UPDATE_PERIOD = 10; // unit: s
 
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
         if( rsp.RET == RET_OK ){
-            theRivalsList = rsp.lst;
+            theRivalsList = rsp.arg;
             loadPkRivals();
-            engine.session.cacheRoleInfo(rsp.lst);
+            engine.session.cacheRoleInfo(rsp.arg);
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -38,30 +40,29 @@ function getPkRivals() {
 function loadPkRivals() {
     if( theRivalsList != null ){
         for( var i=1; i<4; i++ ){
-            if( theRivalsList[i] != null ){
-                var role = new libRole.Role(theRivalsList[i]);
+            if( theRivalsList[i-1] != null ){
+                var role = new libRole.Role(theRivalsList[i-1]);
                 role.fix();
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
                 theLayer.owner["labPower"+i].setString(role.getPower());
-                theLayer.owner["labRank"+i].setString(role.rnk);
+                theLayer.owner["labRank"+i].setString(Number(role.Rank));
             }
         }
     }
 }
 
 function loadMyInfo() {
-    //engine.session.updatePVPInfo();
+    engine.session.updatePVPInfo();
     myPkInfo = engine.session.PkInfo;
 
-    //test code
-    myPkInfo = {
-        rnk: 333,
-        cpl: 2,
-        ttl: 10,
-        bng: 3000,
-        rcv: false
-    };
+//    //test code
+//    myPkInfo = {
+//        rnk: 333,
+//        cpl: 2,
+//        ttl: 10,
+//        rcv: false
+//    };
 
     if( myPkInfo != null ){
         theLayer.owner.labMyRank.setString(myPkInfo.rnk);
@@ -83,7 +84,23 @@ function setBottomContent() {
             theLayer.owner.nodeBotCnt1.setVisible(false);
             theLayer.owner.nodeBotCnt2.setVisible(true);
             theLayer.owner.nodeBotCnt3.setVisible(false);
-            theLayer.owner.labBonusGold.setString(myPkInfo.bng);
+            var pkPrizeInfo, pkBonusGold;
+            for(var i=0; ; i++){
+                pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
+                if( myPkInfo.rnk <= pkPrizeInfo.top ){
+                    for( var k in pkPrizeInfo.prize ){
+                        switch(pkPrizeInfo.prize[k].type){
+                            case 1: {
+                                pkBonusGold = pkPrizeInfo.prize[k].count;
+                                theLayer.owner.labBonusGold.setString(pkBonusGold);
+                                return;
+                            }
+                            default: break;
+                        }
+                    }
+                }
+            }
+
         }
     }else{
         //cannot receive
@@ -109,13 +126,13 @@ function onRival(sender) {
         TouchId = -1;
     }else{
         TouchId = sender.getTag();
+        theRival = theRivalsList[TouchId-1];
     }
     for( var i=1; i<4; i++){
         theLayer.owner["btnStartPK"+i].setVisible(i == TouchId);
         theLayer.owner["nodeBonus"+i].setVisible(!(i == TouchId));
         theLayer.owner["layerOnBtn"+i].setEnabled(!(i == TouchId));
     }
-
 }
 
 function onRoleInfo(sender){
@@ -127,7 +144,7 @@ function onStartPK() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var libStage = loadModule("sceneStage.js");
     var stageDate = queryStage(PVP_STAGEID);
-    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, TouchId-1);
+    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
 //    var alert = libUIKit.alert();
 //    alert.setContent("确定开始挑战对手吗？");
 //    alert.setButton([
@@ -179,7 +196,7 @@ function onUIAnimationCompleted(name){
     if( theMode == MODE_PVP ){
 
         //test code
-        return;
+//        return;
 
         getPkRivals();
     }
@@ -217,7 +234,7 @@ function onEnter() {
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
     loadMyInfo();
-    this.schedule(loadMyInfo, 60);
+    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
