@@ -618,7 +618,8 @@ function showSweepAnimetion() {
     theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd.ccbi",{
         nodeRole:{
             ui: "UIAvatar",
-            id: "avatar"
+            id: "avatar",
+            scale: 1.2
         }
     });
     theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -685,6 +686,7 @@ function createPrizeBar() {
 
 function onClosePrizeList() {
     theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, function(){
+        engine.ui.popLayer();
         theLayer.sweep.node.removeFromParent(true);
         delete theLayer.sweep;
     });
@@ -768,20 +770,57 @@ function scene()
 function sweepStage(stg, mul, cost) {
     debug("sweepStage("+stg+", "+cost+")");
 
-    libUIKit.waitRPC(Request_SweepStage, {
-        stg: stg,
-        mul: mul
-    }, function (rsp) {
-        if( rsp.RET == RET_OK ){
+//    libUIKit.waitRPC(Request_SweepStage, {
+//        stg: stg,
+//        mul: mul
+//    }, function (rsp) {
+//        if( rsp.RET == RET_OK ){
+//
+//            if( rsp.arg != null ){
+//                PrizeList = rsp.arg;
+//                showSweepAnimetion();
+//            }
+//        }else{
+//            libUIKit.showErrorMessage(rsp);
+//        }
+//    });
 
-            if( rsp.arg != null ){
-                PrizeList = rsp.arg;
-                showSweepAnimetion();
-            }
-        }else{
-            libUIKit.showErrorMessage(rsp);
-        }
-    });
+
+    //test code
+    PrizeList = [
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ],
+        [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ]
+    ];
+    showSweepAnimetion();
+    //test code end
 }
 //exports.sweepStage = sweepStage;
 

@@ -1497,6 +1497,7 @@ var data = [
         "stage":[
             {
                 "stageId": 96,
+                "sweepPower": 100,
                 "cost": 15,
                 "team": 1,
                 "hidden":false,
