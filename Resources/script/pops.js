@@ -134,6 +134,11 @@ function popLevelUp(){
     layer.owner.labLevel.setString("LV."+level);
     //set skill
     var role = engine.user.actor;
+    for (var x = 1;x <= 4;x++){
+        if (role.querySkill(x - 1) == null){
+            layer.ui["skill"+x].setGray(true);
+        }
+    }
     layer.ui.skill1.setSkill(getSkillLev(0));
     layer.ui.skill2.setSkill(getSkillLev(1));
     layer.ui.skill3.setSkill(getSkillLev(2));
@@ -149,7 +154,6 @@ function popLevelUp(){
     var proLabList = ["labHealth","labAttack","labSpeed","labCritical","labStrong","labAccuracy","labReactivity"];
     for (var k in proLabList){
         var originPro = +role[proRoleList[k]] - property[proTableList[k]];
-        debug(originPro + "+" + property[proTableList[k]]);
         if (property[proTableList[k]] > 0){
             layer.owner[proLabList[k]].setString(originPro + "+" + property[proTableList[k]]);
         }
