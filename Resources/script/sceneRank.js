@@ -27,6 +27,7 @@ var theLIST = [];
 var theRankList;
 var thePage;
 var theMe;
+var theMenus = [];
 
 //domains
 var theLeft;
@@ -136,6 +137,12 @@ function loadPage(list){
     theCurrentGroup.theListLayer.removeAllChildren();
     theLIST = [];
     theRankList = list;
+    for(var k in theMenus){
+        var m = theMenus[k];
+        engine.ui.unregMenu(m);
+    }
+    theMenus = [];
+
     if( theRankList.length == 0 ){
         var size = cc.size(0, 0);
         var label = cc.LabelTTF.create("暂时还没有数据", UI_FONT, UI_SIZE_XL);
@@ -175,6 +182,9 @@ function update(delta){
                 node.KEY = Number(this.LOAD_INDEX);
                 theCurrentGroup.theListLayer.addChild(node);
                 theLIST.push(node);
+                var m = node.owner.menuRoot;
+                engine.ui.regMenu(m);
+                theMenus.push(m);
                 this.LOAD_INDEX++;
             }
         }
@@ -567,7 +577,7 @@ function onEnter()
     }
     engine.ui.regMenu(this.owner.menuRoot);
 
-    this.owner.btnPVP.setVisible(false);
+    //this.owner.btnPVP.setVisible(false);
     onPower();
     fillPage(0);
     updatePageNumber(0);
