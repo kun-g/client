@@ -50,7 +50,8 @@ function onDailyAnimationCompleted(name){
         theLayerMode = null;
     }
     else if( theLayerMode == MODE_DAILYQUEST ){
-        theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
+        //theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
+        libEffect.attachEffectCCBI(theLayer.owner.nodeEffectStar,cc.p(0, 0), "effect-dmstar.ccbi",libEffect.EFFECTMODE_LOOP);
     }
 }
 

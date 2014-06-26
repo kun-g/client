@@ -576,8 +576,11 @@ function onEnter()
         theCenter.scroller.setContentOffset(off);
     }
     engine.ui.regMenu(this.owner.menuRoot);
+    engine.ui.regMenu(this.owner.menuRoot1);
+    engine.ui.regMenu(this.owner.menuRoot2);
+    engine.ui.regMenu(this.owner.menuRoot3);
 
-    //this.owner.btnPVP.setVisible(false);
+    this.owner.btnPVP.setVisible(false);
     onPower();
     fillPage(0);
     updatePageNumber(0);
