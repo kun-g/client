@@ -152,15 +152,18 @@ function popLevelUp(){
     var proTableList = ["health","attack","speed","critical","strong","accuracy","reactivity"];
     var proRoleList = ["Health","Attack","Speed","Critical","Strong","Accuracy","Reactivity"];
     var proLabList = ["labHealth","labAttack","labSpeed","labCritical","labStrong","labAccuracy","labReactivity"];
+    var proLabAddList = ["labHealthAdd","labAttackAdd","labSpeedAdd","labCriticalAdd","labStrongAdd","labAccuracyAdd","labReactivityAdd"];
     for (var k in proLabList){
         var originPro = +role[proRoleList[k]] - property[proTableList[k]];
         if (property[proTableList[k]] > 0){
-            layer.owner[proLabList[k]].setString(originPro + "+" + property[proTableList[k]]);
+            layer.owner[proLabAddList[k]].setString("+" + property[proTableList[k]]);
+            layer.owner[proLabAddList[k]].setColor(cc.c3b(0,240,0));
+            layer.owner[proLabAddList[k]].setVisible(true);
         }
         else{
-            layer.owner[proLabList[k]].setString(originPro);
+            layer.owner[proLabAddList[k]].setVisible(false);
         }
-
+        layer.owner[proLabList[k]].setString(originPro);
     }
     //set skill state
     var skill = levelData.levelData[level-1].skill[0];
