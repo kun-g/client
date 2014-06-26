@@ -12,7 +12,6 @@ var scroller = loadModule("scroller.js");
 var ui = loadModule("UIComposer.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
-var libQuest = loadModule("questInfo.js");
 var libUIC = loadModule("UIComposer.js");
 
 var theLayer = null;
@@ -50,7 +49,7 @@ function onClose(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libQuest.show();
+    loadModule("questInfo.js").show();
 }
 
 function onEnter()
@@ -687,8 +686,11 @@ function createPrizeBar() {
         var dimension = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
         prize.setPosition(layer.owner.nodePrize.getPosition());
+        prize.setScale(0.77);
         layer.owner.nodePrizeBar.addChild(prize);
-        layer.setPosition(cc.p(winSize.width/2, LOAD_SIZE.height - BAR_HEIGHT * PrizeIndex));
+        layer.setPosition(cc.p(
+                theLayer.sweep.theListLayer.getContentSize().width/2,
+                LOAD_SIZE.height + 600 - BAR_HEIGHT * PrizeIndex));
         theLayer.sweep.theListLayer.addChild(layer);
 
         PrizeIndex++;
@@ -785,56 +787,56 @@ function scene()
 function sweepStage(args, cost) {
     debug("sweepStage("+args.stg+", "+cost+")");
 
-//    libUIKit.waitRPC(Request_SweepStage, {
-//        stg: stg,
-//        mul: mul
-//    }, function (rsp) {
-//        if( rsp.RET == RET_OK ){
-//
-//            if( rsp.arg != null ){
-//                PrizeList = rsp.arg;
-//                showSweepAnimetion();
-//            }
-//        }else{
-//            libUIKit.showErrorMessage(rsp);
-//        }
-//    });
+    libUIKit.waitRPC(Request_SweepStage, {
+        stg: stg,
+        mul: mul
+    }, function (rsp) {
+        if( rsp.RET == RET_OK ){
+
+            if( rsp.arg != null ){
+                PrizeList = rsp.arg;
+                showSweepAnimetion();
+            }
+        }else{
+            libUIKit.showErrorMessage(rsp);
+        }
+    });
 
 
     //test code
-    PrizeList = [
-        [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100}
-        ],
-        [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100}
-        ],
-        [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100}
-        ],
-        [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100}
-        ],
-        [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100}
-        ]
-    ];
-    showSweepAnimetion();
+//    PrizeList = [
+//        [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ],
+//        [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ],
+//        [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ],
+//        [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ],
+//        [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ]
+//    ];
+//    showSweepAnimetion();
     //test code end
 }
 //exports.sweepStage = sweepStage;
