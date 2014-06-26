@@ -17,7 +17,7 @@ var libUIC = loadModule("UIComposer.js");
 var theLayer = null;
 var theChapterClass;
 var theStageClass;
-
+var onStgTag = -1;
 var theEnergyCost = 0;
 
 var winSize;
@@ -34,6 +34,7 @@ var SWEEP_SCROLL_CID = 871;
 var PrizeList = [];
 var PrizeIndex = 0;
 var SweepArgs = {};
+var isScheduling = false;
 
 function onEvent(event)
 {
@@ -498,6 +499,7 @@ function grabLootInfo(dungeonId){
 
 function selectStage(sId)
 {
+    onStgTag = sId;
     var num = sId+1;
     var stageKey = "spriteStage"+num;
     var stageNode = theLayer.stage.owner[stageKey];
@@ -631,11 +633,12 @@ function showSweepAnimetion() {
         nodeRole:{
             ui: "UIAvatar",
             id: "avatar",
-            scale: 1.2
+            scale: 1.5
         }
     });
     theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.owner.nodeRole.setScaleX(-1);
     theLayer.sweep.ui.avatar.setRole(engine.user.actor);
     theLayer.sweep.ui.avatar.playAnimation("walk", true);
     theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, sweepAnimeCompleted);
@@ -649,6 +652,7 @@ function sweepAnimeCompleted() {
 
 function showSweepResult() {
     theLayer.sweep = {};
+    theLayer.update = updateScrollView;
     theLayer.sweep.owner = {};
     theLayer.sweep.owner.onClosePrizeList = onClosePrizeList;
     theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", {
@@ -667,9 +671,13 @@ function showSweepResult() {
     theLayer.sweep.ui.scroller.setContentOffset(off);
     PrizeIndex = 0;
     BAR_WIDTH = 570;
-    BAR_HEIGHT = 190;
-    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * (SweepArgs.mul? 5:1));
-    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, null);
+    BAR_HEIGHT = 180;
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * 5/*(SweepArgs.mul? 5:1)*/);
+//    theLayer.sweep.owner.effectLight.animationManager.setCompletedAnimationCallback(
+//        theLayer.sweep.owner.effectLight, function () {
+//        theLayer.sweep.owner.effectLight.animationManager.runAnimationsForSequenceNamed("effect");
+//    });
+//    theLayer.sweep.owner.effectLight.animationManager.runAnimationsForSequenceNamed("effect");
     theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
     createPrizeBar();
 }
@@ -680,24 +688,32 @@ function createPrizeBar() {
         layer.owner = {};
         layer.node = libUIC.loadUI(layer, "ui-sdlist.ccbi", null);
         layer.addChild(layer.node);
-        layer.owner.nodePrizeBar.setCascadeOpacityEnabled(true);
         layer.node.animationManager.setCompletedAnimationCallback(layer, createPrizeBar);
-
+        layer.owner.labIndex.setString(PrizeIndex+1);
         var dimension = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
         prize.setPosition(layer.owner.nodePrize.getPosition());
         prize.setScale(0.77);
         layer.owner.nodePrizeBar.addChild(prize);
         layer.setPosition(cc.p(
-                theLayer.sweep.theListLayer.getContentSize().width/2,
-                LOAD_SIZE.height + 600 - BAR_HEIGHT * PrizeIndex));
+                theLayer.sweep.owner.nodeContent.getContentSize().width/2,
+                LOAD_SIZE.height - BAR_HEIGHT * (PrizeIndex+1) + 80));
+        debug("LOAD_SIZE:"+LOAD_SIZE.height+"  layer:"+layer.getPosition().y);
         theLayer.sweep.theListLayer.addChild(layer);
-
+        if( PrizeIndex > 1 && !isScheduling) {
+            isScheduling = true;
+            off1 = theLayer.sweep.ui.scroller.getContentOffset();
+            off2 = cc.p(off1.x, off1.y + BAR_HEIGHT);
+            lerpA = 0;
+            theLayer.scheduleUpdate();
+        }
         PrizeIndex++;
-        layer.node.animationManager.runAnimationsForSequenceNamed("fadeIn");
+        layer.node.animationManager.runAnimationsForSequenceNamed("popup");
     }
     else {
         theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("button");
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
     }
 }
 
@@ -708,7 +724,21 @@ function onClosePrizeList() {
         delete theLayer.sweep;
     });
     theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("close");
+    selectStage(onStgTag);
 
+}
+
+function updateScrollView(delta) {
+    lerpA += 1/30;
+    theLayer.sweep.ui.scroller.setContentOffset(pLerp(off1, off2, lerpA));
+    if( lerpA >= 1 ){
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+    }
+}
+
+function lerp(x, y, a) {
+    return ( (1-a)*x + a*y );
 }
 
 function onTouchBegan(touch, event)
@@ -787,56 +817,30 @@ function scene()
 function sweepStage(args, cost) {
     debug("sweepStage("+args.stg+", "+cost+")");
 
-    libUIKit.waitRPC(Request_SweepStage, {
-        stg: stg,
-        mul: mul
-    }, function (rsp) {
-        if( rsp.RET == RET_OK ){
-
-            if( rsp.arg != null ){
-                PrizeList = rsp.arg;
-                showSweepAnimetion();
-            }
-        }else{
-            libUIKit.showErrorMessage(rsp);
-        }
-    });
+//    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
+//        if( rsp.RET == RET_OK ){
+//
+//            if( rsp.arg != null ){
+//                PrizeList = rsp.arg;
+//                showSweepAnimetion();
+//            }
+//        }else{
+//            libUIKit.showErrorMessage(rsp);
+//        }
+//    });
 
 
     //test code
-//    PrizeList = [
-//        [
-//            {type:1, count:100},
-//            {type:2, count:100},
-//            {type:3, count:100},
-//            {type:4, count:100}
-//        ],
-//        [
-//            {type:1, count:100},
-//            {type:2, count:100},
-//            {type:3, count:100},
-//            {type:4, count:100}
-//        ],
-//        [
-//            {type:1, count:100},
-//            {type:2, count:100},
-//            {type:3, count:100},
-//            {type:4, count:100}
-//        ],
-//        [
-//            {type:1, count:100},
-//            {type:2, count:100},
-//            {type:3, count:100},
-//            {type:4, count:100}
-//        ],
-//        [
-//            {type:1, count:100},
-//            {type:2, count:100},
-//            {type:3, count:100},
-//            {type:4, count:100}
-//        ]
-//    ];
-//    showSweepAnimetion();
+    PrizeList = [];
+    while(PrizeList.length < (args.mul? 5:1)){
+        PrizeList[PrizeList.length] = [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100}
+        ];
+    }
+    showSweepAnimetion();
     //test code end
 }
 //exports.sweepStage = sweepStage;

@@ -1497,12 +1497,12 @@ var data = [
         "stage":[
             {
                 "stageId": 96,
-                "sweepPower": 100,
                 "cost": 15,
                 "team": 1,
                 "hidden":false,
                 "dungeon": 92,
                 "tutorial":2,
+                "sweepPower":100,
                 "cond":
                 { "and": [
                     { "==": [ { "type": "getProperty", "key": "stage.104.state"}, 2 ] }
