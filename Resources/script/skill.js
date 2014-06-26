@@ -46,14 +46,16 @@ var UISkill = cc.Node.extend({
                 this.icon.setColor(cc.c3b(80, 77, 75));
             }
             this.addChild(this.icon);
-            this.dot = cc.Sprite.create("cardnummask.png");
-            this.dot.setAnchorPoint(cc.p(1, 0));
-            this.dot.setPosition(cc.p(this.icon.getContentSize().width/2, -this.icon.getContentSize().height/2));
-            this.addChild(this.dot);
+            if (this.gray == false){
+                this.dot = cc.Sprite.create("cardnummask.png");
+                this.dot.setAnchorPoint(cc.p(1, 0));
+                this.dot.setPosition(cc.p(this.icon.getContentSize().width/2, -this.icon.getContentSize().height/2));
+                this.addChild(this.dot);
 
-            this.num = cc.Sprite.createWithSpriteFrameName(this.skill.Level+".png");
-            this.num.setPosition(cc.p(this.dot.getContentSize().width/2, this.dot.getContentSize().height/2));
-            this.dot.addChild(this.num);
+                this.num = cc.Sprite.createWithSpriteFrameName(this.skill.Level+".png");
+                this.num.setPosition(cc.p(this.dot.getContentSize().width/2, this.dot.getContentSize().height/2));
+                this.dot.addChild(this.num);
+            }
         }
     },
     getSkill: function(){

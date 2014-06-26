@@ -9,6 +9,7 @@ var libSkill = loadModule("skill.js");
 var libUIC = loadModule("UIComposer.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
+var libEffect = loadModule("effect.js");
 
 //--------- POP MANAGER 防止弹窗一起弹出来 ----------
 function PopMgr(){
@@ -84,9 +85,6 @@ function onTouchCancelled(touch, event){
 }
 
 function popLevelUp(){
-    var sfc = cc.SpriteFrameCache.getInstance();
-    cacheSprite("levelup-skill.png");
-    cacheSprite("levelup-sj.png");
     var layer = engine.ui.newLayer();
     var mask = blackMask();
     layer.addChild(mask);
@@ -116,19 +114,24 @@ function popLevelUp(){
             scale: 1.2
         }
     });
-
     layer.node.animationManager.runAnimationsForSequenceNamed("effect");
     var winSize = cc.Director.getInstance().getWinSize();
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
     //set all invisible
-    var nodeName = ["nodeMj","nodeJsj","nodeJjs","nodeSj","labLev"];
+    var nodeName = ["nodeMj","nodeJsj","nodeJjs","nodeEffectSj","labLev","nodeEffectXjn"];
     for (var k in nodeName){
+        layer.owner[nodeName[k]].setVisible(true);
         for (var i = 1;i <= 4;i++){
-            debug(nodeName[k]+i+" set invisible");
             layer.owner[nodeName[k]+i].setVisible(false);
         }
     }
+    //set skill name
+    var nodeSkName = ["nodeSkWarrior","nodeSkMage","nodeSkPriest"];
+    for (var kk in nodeSkName){
+        layer.owner[nodeSkName[kk]].setVisible(false);
+    }
+    layer.owner[nodeSkName[engine.user.actor.ClassId]].setVisible(true);
     //set level
     var level = engine.user.actor.calcExp().level;
     layer.owner.labLevel.setString("LV."+level);
@@ -179,12 +182,13 @@ function popLevelUp(){
         }
         else if (skill.id == role.querySkill(j - 1).ClassId){
             if (newSkill){//get new skill
-                layer.owner[nodeName[3]+j].setDisplayFrame(sfc.getSpriteFrame("levelup-skill.png"));
+                libEffect.attachEffectCCBI(layer.owner[nodeName[5]+j],cc.p(0, 0), "effect-xjn.ccbi",libEffect.EFFECTMODE_STAY);
+                layer.owner[nodeName[5]+j].setVisible(true);
             }
             else{//sj
-                layer.owner[nodeName[3]+j].setDisplayFrame(sfc.getSpriteFrame("levelup-sj.png"));
+                libEffect.attachEffectCCBI(layer.owner[nodeName[3]+j],cc.p(0, 0), "effect-sjwz.ccbi",libEffect.EFFECTMODE_STAY);
+                layer.owner[nodeName[3]+j].setVisible(true);
             }
-            layer.owner[nodeName[3]+j].setVisible(true);
         }
         else if (role.querySkill(j - 1).Level >= getMaxSkillLev(role.querySkill(j - 1).ClassId)){//mj
             layer.owner[nodeName[0]+j].setVisible(true);
