@@ -369,3 +369,4 @@ function setProperties(item, node, mode) { //mode: normal, upgrade, enhance, for
     }
 }
 exports.setProperties = setProperties;
+
