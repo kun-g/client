@@ -35,6 +35,7 @@ var PrizeList = [];
 var PrizeIndex = 0;
 var SweepArgs = {};
 var isScheduling = false;
+var SWEEP_VIP_LEVEL = 4;
 
 function onEvent(event)
 {
@@ -430,7 +431,11 @@ function showStages(chId)
         var btnModePos = theLayer.stage.owner.btnMode.getPosition();
         btnModePos.y -= 64;
         theLayer.stage.owner.btnMode.setPosition(btnModePos);
-        theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon4.png"));//todo?
+        theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
+
+        //check vip level (the Vip4(or higher) player have access to sweep in batches)
+        theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
+
         onNormal();
         theLayer.stage.node.setScale(0);
         theLayer.stage.node.runAction(actionPopIn());
