@@ -306,7 +306,7 @@ function onPurchaseMonthCard(sender){
     var zoneId = engine.session.zoneId;
     var billNo = genBillNo(8);
     iap.makePayment(billNo, 8, 1, actorName, zoneId);
-    tdga.paymentRequest(billNo, payStr[0].str, payStr[0].cost, "CNY", payStr[0].dm, iap.getStoreName() );
+    tdga.paymentRequest(billNo, payStr[8].str, payStr[8].cost, "CNY", payStr[8].dm, iap.getStoreName() );
 
     //保持连接
     engine.event.sendNTFEvent(103, {sign:-1});
