@@ -7,11 +7,11 @@
 //
 
 #include "TDGA.h"
-#include "TalkingData.h"
+//#include "platf/android/TalkingData.h"
 
 using namespace std;
 
-TDCCAccount* gTDGAAccount = NULL;
+//TDCCAccount* gTDGAAccount = NULL;
 
 //account
 JSBool jsbTDGASetAccountId(JSContext* cx, unsigned argc, JS::Value* vp)
@@ -26,7 +26,7 @@ JSBool jsbTDGASetAccountId(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strAccount(arg0);
     string account = strAccount;
     CCLOG("- TDGA setAccount(%s)", account.c_str());
-    gTDGAAccount = TDCCAccount::setAccount(account.c_str());
+    //gTDGAAccount = TDCCAccount::setAccount(account.c_str());
     return JS_TRUE;
 }
 
@@ -41,7 +41,7 @@ JSBool jsbTDGASetAccountType(JSContext* cx, unsigned argc, JS::Value* vp)
     int type;
     JS_ValueToInt32(cx, argv[0], &type);
     CCLOG("- TDGA setAccountType(%d)", type);
-    gTDGAAccount->setAccountType((TDCCAccount::TDCCAccountType)type);
+    //gTDGAAccount->setAccountType((TDCCAccount::TDCCAccountType)type);
     return JS_TRUE;
 }
 
@@ -57,7 +57,7 @@ JSBool jsbTDGASetAccountName(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strAccountName(arg0);
     string name = strAccountName;
     CCLOG("- TDGA setAccountName(%s)", name.c_str());
-    gTDGAAccount->setAccountName(name.c_str());
+    //gTDGAAccount->setAccountName(name.c_str());
     return JS_TRUE;
 }
 
@@ -72,7 +72,7 @@ JSBool jsbTDGASetLevel(JSContext* cx, unsigned argc, JS::Value* vp)
     int level;
     JS_ValueToInt32(cx, argv[0], &level);
     CCLOG("- TDGA setLevel(%d)", level);
-    gTDGAAccount->setLevel(level);
+    //gTDGAAccount->setLevel(level);
     return JS_TRUE;
 }
 
@@ -87,7 +87,7 @@ JSBool jsbTDGASetGender(JSContext* cx, unsigned argc, JS::Value* vp)
     int gender;
     JS_ValueToInt32(cx, argv[0], &gender);
     CCLOG("- TDGA setGender(%d)", gender);
-    gTDGAAccount->setGender((TDCCAccount::TDCCGender)gender);
+    //gTDGAAccount->setGender((TDCCAccount::TDCCGender)gender);
     return JS_TRUE;
 }
 
@@ -102,7 +102,7 @@ JSBool jsbTDGASetAge(JSContext* cx, unsigned argc, JS::Value* vp)
     int age;
     JS_ValueToInt32(cx, argv[0], &age);
     CCLOG("- TDGA setAge(%d)", age);
-    gTDGAAccount->setAge(age);
+    //gTDGAAccount->setAge(age);
     return JS_TRUE;
 }
 
@@ -118,7 +118,7 @@ JSBool jsbTDGASetGameServer(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strServer(arg0);
     string server = strServer;
     CCLOG("- TDGA setServer(%s)", server.c_str());
-    gTDGAAccount->setGameServer(server.c_str());
+    //gTDGAAccount->setGameServer(server.c_str());
     return JS_TRUE;
 }
 
@@ -155,7 +155,7 @@ JSBool jsbTDGAPaymentRequest(JSContext* cx, unsigned argc, JS::Value* vp)
     string channel = strChannel;
     
     CCLOG("- TDGA paymentRequest(%s)@%s", item.c_str(), order.c_str());
-    TDCCVirtualCurrency::onChargeRequest(order.c_str(), item.c_str(), paycount, paytype.c_str(), virtualcurrency, channel.c_str());
+    //TDCCVirtualCurrency::onChargeRequest(order.c_str(), item.c_str(), paycount, paytype.c_str(), virtualcurrency, channel.c_str());
     
     return JS_TRUE;
 }
@@ -172,7 +172,7 @@ JSBool jsbTDGAPaymentSuccess(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strOrder(arg0);
     string order = strOrder;
     CCLOG("- TDGA paymentSuccess @%s", order.c_str());
-    TDCCVirtualCurrency::onChargeSuccess(order.c_str());
+    //TDCCVirtualCurrency::onChargeSuccess(order.c_str());
     return JS_TRUE;
 }
 
@@ -190,7 +190,7 @@ JSBool jsbTDGAReward(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strReason(arg1);
     string reason = strReason;
     CCLOG("- TDGA onReward(%s)x%f", reason.c_str(), ammount);
-    TDCCVirtualCurrency::onReward(ammount, reason.c_str());
+    //TDCCVirtualCurrency::onReward(ammount, reason.c_str());
     return JS_TRUE;
 }
 
@@ -215,7 +215,7 @@ JSBool jsbTDGAItemPurchase(JSContext* cx, unsigned argc, JS::Value* vp)
     JS_ValueToNumber(cx, argv[2], &price);
     
     CCLOG("- TDGA onPurchase(%s)x%d @%f", item.c_str(), count, price);
-    TDCCItem::onPurchase(item.c_str(), count, price);
+    //TDCCItem::onPurchase(item.c_str(), count, price);
     
     return JS_TRUE;
 }
@@ -238,7 +238,7 @@ JSBool jsbTDGAItemUse(JSContext* cx, unsigned argc, JS::Value* vp)
     JS_ValueToInt32(cx, argv[1], &count);
     
     CCLOG("- TDGA onUse(%s)x%d", item.c_str(), count);
-    TDCCItem::onUse(item.c_str(), count);
+    //TDCCItem::onUse(item.c_str(), count);
     
     return JS_TRUE;
 }
@@ -259,7 +259,7 @@ JSBool jsbTDGAQuestBegin(JSContext* cx, unsigned argc, JS::Value* vp)
     string quest = strQuest;
     
     CCLOG("- TDGA questBegin(%s)", quest.c_str());
-    TDCCMission::onBegin(quest.c_str());
+    //TDCCMission::onBegin(quest.c_str());
     
     return JS_TRUE;
 }
@@ -279,7 +279,7 @@ JSBool jsbTDGAQuestComplete(JSContext* cx, unsigned argc, JS::Value* vp)
     string quest = strQuest;
     
     CCLOG("- TDGA questCompleted(%s)", quest.c_str());
-    TDCCMission::onCompleted(quest.c_str());
+    //TDCCMission::onCompleted(quest.c_str());
     
     return JS_TRUE;
 }
@@ -303,7 +303,7 @@ JSBool jsbTDGAQuestFailed(JSContext* cx, unsigned argc, JS::Value* vp)
     string reason = strReason;
     
     CCLOG("- TDGA questFailed(%s) @%s", quest.c_str(), reason.c_str());
-    TDCCMission::onFailed(quest.c_str(), reason.c_str());
+    //TDCCMission::onFailed(quest.c_str(), reason.c_str());
     
     return JS_TRUE;
 }
@@ -323,6 +323,7 @@ JSBool jsbTDGAEvent(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strEvent(arg0);
     string event = strEvent;
     
+    /*
     if( argc > 1 )
     {
         EventParamMap map;
@@ -354,13 +355,14 @@ JSBool jsbTDGAEvent(JSContext* cx, unsigned argc, JS::Value* vp)
             JS_DestroyIdArray(cx, jia);
         }
         CCLOG("- TDGA onEvent(%s)", event.c_str());
-        TDCCTalkingDataGA::onEvent(event.c_str(), &map);
+        //TDCCTalkingDataGA::onEvent(event.c_str(), &map);
     }
     else
     {
         CCLOG("- TDGA onEvent(%s)", event.c_str());
-        TDCCTalkingDataGA::onEvent(event.c_str());
+        //TDCCTalkingDataGA::onEvent(event.c_str());
     }
+    */
     
     return JS_TRUE;
 }

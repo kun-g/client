@@ -12,7 +12,8 @@ var ItemScheme = {
     stc : "StackCount",
     sta : "Status",
     xp : "Xp",
-    eh : "Enhance"
+    eh : "Enhance",
+    ts : "TimeStamp"
 };
 
 function Item(source)
@@ -22,6 +23,8 @@ function Item(source)
     this.StackCount = 1;
     this.Status = 0;
     this.Xp = 0;
+    this.Enhance = [{id:null, lv:-1}];
+    this.TimeStamp = null;
 
     if( source != null )
     {
@@ -142,18 +145,68 @@ Item.prototype.isUpgradable = function(){
     return false;
 }
 
-//--- query functions ---
-Item.prototype.getMaxEnhanceLevel = function(){
-    var mel = 0;
-    if( this.Enhance != null ){
-        for(var k in this.Enhance){
-            var level = this.Enhance[k].lv + 1;
-            if( level > mel ){
-                mel = level;
+Item.prototype.isEnhancable = function () {
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass != null && ItemClass.label != null )
+    {//set value
+        var enhance = (this.Enhance[0] != null)? this.Enhance[0].lv : -1;
+        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, ItemClass.enhanceID);
+        if( enhanceInfo != null ){
+            if( enhance < 8*(ItemClass.quality+1)-1 ) {
+                var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance+1]);
+                if( enhanceCost != null ){
+                    for( var k in enhanceCost.material){
+                        switch(enhanceCost.material[k].type){
+                            case 0: {
+                                var EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).quality;
+                                var EnhanceStoneCost = enhanceCost.material[k].count;
+                                var EnhanceStoneCid = loadModule("sceneForge.js").getEnhanceStoneCid(EnhanceStoneLevel);
+                                var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid);
+                                if (stoneCount >= EnhanceStoneCost) {
+                                    return true;
+                                }
+                            }break;
+                            default: break;
+                        }
+                    }
+                }
             }
         }
     }
-    return mel;
+    return false;
+}
+
+Item.prototype.isForgable = function () {
+    var ItemClass = libTable.queryTable(TABLE_ITEM, this.ClassId);
+    if( ItemClass != null && ItemClass.label != null )
+    {//set value
+        if( ItemClass.forgeTarget != null )
+        {//can forge
+            var forgeCost = libTable.queryTable(TABLE_COST, ItemClass.forgeID);
+            if (forgeCost != null) {
+                for (var k in forgeCost.material) {
+                    switch (forgeCost.material[k].type) {
+                        case 0:{
+                            var mtrlClass = libTable.queryTable(TABLE_ITEM, forgeCost.material[k].value);
+                            var mtrlCount = engine.user.inventory.countItem(mtrlClass.classId);
+                            var mtrlCost = forgeCost.material[k].count;
+                            if ( mtrlCount < mtrlCost ) {
+                                return false;
+                            }
+                        }break;
+                        default: break;
+                    }
+                }
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//--- query functions ---
+Item.prototype.getMaxEnhanceLevel = function(){
+
 }
 
 function Inventory()
@@ -295,6 +348,15 @@ Inventory.prototype.countItem = function(cid){
     return ret;
 }
 
+Inventory.prototype.getServerId = function(cid){
+    for(var k in this.Items){
+        var item = this.Items[k];
+        if( item.ClassId == cid ){
+            return item.ServerId;
+        }
+    }
+}
+
 Inventory.prototype.syncArmors = function(){
     engine.user.actor.Armors = [];
     for(var k in this.Items){
@@ -329,7 +391,8 @@ Inventory.prototype.getNormalItems = function()
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
         if( itemData.storeOnly === true ) return false;
-        else return true;
+        if( itemData.hide === true ) return false;
+        return true;
     });
 }
 
@@ -337,24 +400,92 @@ Inventory.prototype.getShopItems = function()
 {
     return this.Items.filter(function(itm){
         var itemData = libTable.queryTable(TABLE_ITEM, itm.ClassId);
+        if( itemData.hide === true ) return false;
         if( itemData.storeOnly === true ) return true;
-        else return false;
+        return false;
     });
 }
 
-Inventory.prototype.checkUpgradable = function(){
+Inventory.prototype.checkUpgradable = function(lst){
     var slots = [
         EquipSlot_MainHand,
         EquipSlot_SecondHand,
         EquipSlot_Chest,
-        EquipSlot_Legs
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
     ];
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
         item = syncItemData(item);
-        if( item.isUpgradable() ) return true;
+        if( item.isUpgradable() ) {
+            if(lst != null){
+                lst[lst.length] = slotsTransfrom(slots[k]);
+            }else{
+                return true
+            }
+        }
     }
-    return false;
+    return (lst != null && lst.length > 0);
+}
+
+Inventory.prototype.checkEnhancable = function(lst){
+    var slots = [
+        EquipSlot_MainHand,
+        EquipSlot_SecondHand,
+        EquipSlot_Chest,
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
+    ];
+    for(var k in slots){
+        var item = engine.user.actor.queryArmor(slots[k]);
+        item = syncItemData(item);
+        if( item.isEnhancable() ) {
+            if(lst != null){
+                lst[lst.length] = slotsTransfrom(slots[k]);
+            }else{
+                return true
+            }
+        }
+    }
+    return (lst != null && lst.length > 0);
+}
+
+Inventory.prototype.checkForgable = function(lst){
+    var slots = [
+        EquipSlot_MainHand,
+        EquipSlot_SecondHand,
+        EquipSlot_Chest,
+        EquipSlot_Legs,
+        EquipSlot_Finger,
+        EquipSlot_Neck
+    ];
+    for(var k in slots){
+        var item = engine.user.actor.queryArmor(slots[k]);
+        item = syncItemData(item);
+        if( item.isForgable() ) {
+            if(lst != null){
+                lst[lst.length] = slotsTransfrom(slots[k]);
+            }else{
+                return true
+            }
+        }
+    }
+    return(lst != null && lst.length > 0);
+}
+
+function slotsTransfrom(slot) {
+    switch (slot){
+        case 0: return 1;
+        case 1: return 2;
+        case 2: return 3;
+        case 3: return 5;
+        case 4: return 4;
+        case 5: return 6;
+        default : return -1;
+    }
+
 }
 
 //--- ui component ---
@@ -376,8 +507,17 @@ var UIItem = cc.Node.extend({
         this.setItem(item);
         return true;
     },
-    setItem: function(item, owner)
+    setItem: function(item, owner, isSmall, isNode)
     {
+        if( isSmall === true ){
+            var ITEM_SCALE = 0.77; //缩放比例
+            var ITEM_DELTA_POS;
+            if (isNode != null && isNode ){
+                ITEM_DELTA_POS = cc.p(0, 0);
+            }else{
+                ITEM_DELTA_POS = cc.p(45, 45);
+            }
+        }
         if( owner == null ) owner = engine.user.actor;
         this.ITEM = item;
         this.removeAllChildren();
@@ -389,9 +529,12 @@ var UIItem = cc.Node.extend({
         if( this.ITEM != null )
         {
             var ItemClass = libTable.queryTable(TABLE_ITEM, this.ITEM.ClassId);
-
-            if( ItemClass.label == null ){
+            if( ItemClass != null && ItemClass.label == null ){
                 var sp = cc.Sprite.create(this.DEF);
+                if( isSmall === true ){
+                    sp.setScale(ITEM_SCALE);
+                    sp.setPosition(ITEM_DELTA_POS);
+                }
                 this.addChild(sp);
                 return;
             }
@@ -423,10 +566,14 @@ var UIItem = cc.Node.extend({
                     var icon = cc.Sprite.create(ItemClass.icon);
                 }
                 if( icon != null ){
+                    if( isSmall === true ){
+                        icon.setScale(ITEM_SCALE);
+                        icon.setPosition(ITEM_DELTA_POS);
+                    }
                     this.addChild(icon, 0);
                 }
                 this.icon = icon;
-                if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED )
+                if( this.FLAG && this.ITEM.Status == ITEMSTATUS_EQUIPED &&!(isSmall === true) )
                 {
                     var equipTag = cc.Sprite.createWithSpriteFrameName("bag-equipped.png");
                     equipTag.setAnchorPoint(cc.p(0.5 , 1));
@@ -440,19 +587,48 @@ var UIItem = cc.Node.extend({
                     var qualityTag = cc.Sprite.create(fileName);
                     qualityTag.setAnchorPoint(cc.p(0, 0));
                     qualityTag.setPosition(cc.p(-50, -50));
+                    if( isSmall === true ){
+                        qualityTag.setAnchorPoint(cc.p(0.5, 0.5));
+                        qualityTag.setScale(ITEM_SCALE);
+                        qualityTag.setPosition(ITEM_DELTA_POS);
+                    }
                     this.addChild(qualityTag, 20);
+                }
+                //add enhance mark
+                if( this.ITEM.Enhance != null && this.ITEM.Enhance[0] != null){
+                    var starLv = Math.floor((this.ITEM.Enhance[0].lv+1) / 8);
+                    if( starLv >0 ){
+                        var fileStar = "itemstar"+starLv+".png";
+                        var enhanceMark = cc.Sprite.create(fileStar);
+                        enhanceMark.setAnchorPoint(cc.p(0.5, 0));
+                        enhanceMark.setPosition(cc.p(0, -44));
+                        if( isSmall === true ){
+                            enhanceMark.setAnchorPoint(cc.p(0.5, 0.5));
+                            enhanceMark.setScale(ITEM_SCALE);
+                            enhanceMark.setPosition(cc.p(ITEM_DELTA_POS.x, ITEM_DELTA_POS.y-31));
+                        }
+                        this.addChild(enhanceMark, 52);
+                    }
                 }
             }
             else
             {
-                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
+//                warn("UIItem.setItem: Item Class not found.("+this.ITEM.ClassId+")");
                 var sp = cc.Sprite.create("wenhao.png");
+                if( isSmall === true ){
+                    sp.setScale(ITEM_SCALE);
+                    sp.setPosition(ITEM_DELTA_POS);
+                }
                 this.addChild(sp, 0);
             }
         }
         else
         {
             var sp = cc.Sprite.create(this.DEF);
+            if( isSmall === true ){
+                sp.setScale(ITEM_SCALE);
+                sp.setPosition(ITEM_DELTA_POS);
+            }
             this.addChild(sp, 0);
         }
     },
@@ -560,15 +736,24 @@ UIItem.make = function(thiz, args)
 //--- ItemPreviewArea
 
 var ITEMPREVIEW_WIDTH = 130;
-var ITEMPREVIEW_HEIGHT = 170;
+var ITEMPREVIEW_HEIGHT = 155;
 
-function queryPrize(pit){
+function queryPrize(pit, treasureDisplayFlag){
     var ret = {
         icon: null,
         label: null
     };
+    if( treasureDisplayFlag == null ){
+        treasureDisplayFlag = false;
+    }
     var strIcon,strLabel;
     var spQuality = null;
+    var stack = 1;
+    if( pit.count > 1 ){
+        if( treasureDisplayFlag || pit.type == PRIZETYPE_ITEM ){
+            stack = pit.count;
+        }
+    }
     switch(pit.type){
         case PRIZETYPE_ITEM:{//item
             var itemClass = libTable.queryTable(TABLE_ITEM, pit.value);
@@ -598,9 +783,6 @@ function queryPrize(pit){
                 strIcon = "wenhao.png";
                 strLabel = "???";
             }
-            if( pit.count > 1 ){
-                strLabel += "x"+pit.count;
-            }
             if( itemClass.quality != null){
                 var fileName = "itemquality"+(itemClass.quality+1)+".png";
                 spQuality = cc.Sprite.create(fileName);
@@ -611,7 +793,7 @@ function queryPrize(pit){
         case PRIZETYPE_GOLD:{//gold
             strIcon = "mission-coin.png";
             if( pit.count != null ){
-                strLabel = pit.count+"金币";
+                strLabel = pit.count+"金";
             }
             else{
                 strLabel = "金币";
@@ -620,7 +802,7 @@ function queryPrize(pit){
         case PRIZETYPE_DIAMOND:{//diamond
             strIcon = "mission-jewel.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"宝石";
+                strLabel = pit.count+"钻";
             }
             else{
                 strLabel = "宝石";
@@ -629,7 +811,7 @@ function queryPrize(pit){
         case PRIZETYPE_EXP:{//exp
             strIcon = "mission-xp.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"经验";
+                strLabel = pit.count;
             }
             else{
                 strLabel = "经验";
@@ -638,7 +820,7 @@ function queryPrize(pit){
         case PRIZETYPE_WXP:{//wxp
             strIcon = "mission-sld.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"熟练";
+                strLabel = pit.count;
             }
             else{
                 strLabel = "熟练";
@@ -650,6 +832,17 @@ function queryPrize(pit){
     ret.icon = cc.Sprite.create(strIcon);
     if( spQuality != null ){
         ret.icon.addChild(spQuality);
+    }
+    if( stack > 1 ){
+        var dot = cc.Sprite.create("cardnummask.png");
+        dot.setAnchorPoint(cc.p(1, 0));
+        dot.setPosition(cc.p(ret.icon.getContentSize().width, 0));
+        ret.icon.addChild(dot, 30);
+
+        var num = cc.LabelBMFont.create(stack, "font1.fnt");
+        num.setAnchorPoint(cc.p(0.5, 0.5));
+        num.setPosition(cc.p(ret.icon.getContentSize().width-18, 18));
+        ret.icon.addChild(num, 40);
     }
     return ret;
 }
@@ -690,6 +883,10 @@ var ItemPreview = cc.Layer.extend({
             var node = cc.Node.create();
             node.PV = pv;
             node.icon = pit.icon;
+            if (pit.label.length > 5){
+                pit.label = pit.label.substr(0,4);
+                pit.label += "...";
+            }
             node.label = cc.LabelTTF.create(pit.label, UI_FONT, UI_SIZE_S);
             node.label.setDimensions(cc.size(ITEMPREVIEW_WIDTH, 60));
             node.label.setVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_TOP);
@@ -698,9 +895,10 @@ var ItemPreview = cc.Layer.extend({
                 node.label.setColor(this.COLOR);
             }
             //place the node
-            node.icon.setPosition(cc.p(65, 115));
+            node.icon.setPosition(cc.p(ITEMPREVIEW_WIDTH/2, ITEMPREVIEW_HEIGHT-55));
             node.addChild(node.icon);
-            node.label.setPosition(cc.p(65, 32));
+            node.label.setPosition(cc.p(ITEMPREVIEW_WIDTH/2, (ITEMPREVIEW_HEIGHT-110)/2));
+
             node.addChild(node.label);
             this.addChild(node);
         }

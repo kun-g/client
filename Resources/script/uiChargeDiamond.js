@@ -21,13 +21,14 @@ var closeCBOBJ;
 
 var payStr = [
     {str:"6元", cost:6, dm:60 },
-    {str:"18元", cost:18, dm:130 },
+    {str:"12元", cost:12, dm:130 },
     {str:"30元", cost:30, dm:330 },
     {str:"68元", cost:68, dm:760 },
     {str:"128元", cost:128, dm:1460 },
     {str:"198元", cost:198, dm:2260 },
     {str:"328元", cost:328, dm:3760 },
-    {str:"648元", cost:648, dm:7480 }
+    {str:"648元", cost:648, dm:7480 },
+    {str:"25元", cost:0.1, dm:2500 }
 ];
 
 var theLastBillNo = null;
@@ -102,6 +103,18 @@ function onEvent(event)
         case Message_UpdateTreasure:
             theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
             return false;
+        case Message_UpdateBounty:{
+            if (engine.user.player.MonthCardCount <= 0){
+                theLayer.owner.nodePurMC.setVisible(true);
+                theLayer.owner.nodeHasMC.setVisible(false);
+            }
+            else{
+                theLayer.owner.nodePurMC.setVisible(false);
+                theLayer.owner.nodeHasMC.setVisible(true);
+                theLayer.owner.labLv.setString(engine.user.player.MonthCardCount);
+            }
+        }
+            return false;
     }
     return false;
 }
@@ -130,6 +143,7 @@ function updateVIP(){
     var sfc = cc.SpriteFrameCache.getInstance();
     if( curVipLevel > 0 ){
         //theLayer.owner.vipBgNow.setDisplayFrame(sfc.getSpriteFrame("jewel-vipbg.png"));
+        theLayer.owner.vipTitleNow.setDisplayFrame(sfc.getSpriteFrame("jewel-gradebg3.png"));
         theLayer.owner.vipTxtNow.setString(vipInfo.VIP.levels[curVipLevel].desc);
         theLayer.owner.vipLvNow.removeAllChildren();
         var lv = "jewel-vip"+curVipLevel+".png";
@@ -138,6 +152,7 @@ function updateVIP(){
     }
     else{
         //theLayer.owner.vipBgNow.setDisplayFrame(sfc.getSpriteFrame("jewel-novipbg.png"));
+        theLayer.owner.vipTitleNow.setDisplayFrame(sfc.getSpriteFrame("jewel-gradebg1.png"));
         theLayer.owner.vipTxtNow.setString("您还不是VIP");
         theLayer.owner.vipLvNow.removeAllChildren();
     }
@@ -178,12 +193,6 @@ function onUIAnimationCompleted(name){
     }
 }
 
-function onActivate(){
-    engine.pop.resetAllFlags();
-    engine.pop.setFlag("tutorial");
-    engine.pop.invokePop("charge");
-}
-
 function onEnter()
 {
     theLayer = this;
@@ -194,13 +203,14 @@ function onEnter()
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
     theLayer.owner.onCharge = onCharge;
-    theLayer.theNode = cc.BuilderReader.load("sceneJewel.ccbi", theLayer.owner);
+    theLayer.owner.onMonthCard = onMonthCard;
     theLayer.theNode = ui.loadUI(theLayer, "sceneJewel.ccbi", {
        nodeTreasure: {
            ui: "UITreasure",
            id: "treasureDisplay"
        }
     });
+
     theLayer.addChild(theLayer.theNode);
 
     theMode = MODE_NORMAL;
@@ -213,11 +223,27 @@ function onEnter()
 
     updateVIP();
 
+    this.owner.nodePurMC.setVisible(false);
+    this.owner.nodeHasMC.setVisible(false);
+
+    if (engine.user.player.MonthCardCount <= 0){
+        theLayer.owner.nodePurMC.setVisible(true);
+        theLayer.owner.nodeHasMC.setVisible(false);
+    }
+    else{
+        theLayer.owner.nodePurMC.setVisible(false);
+        theLayer.owner.nodeHasMC.setVisible(true);
+        theLayer.owner.labLv.setString(engine.user.player.MonthCardCount);
+    }
+
     interval = 0;
     theLayer.update = update;
     theLayer.scheduleUpdate();
-    
-    
+
+    //shutdown monthcard
+//    theLayer.owner.nodePurMC.setVisible(false);
+//    theLayer.owner.nodeHasMC.setVisible(false);
+//    theLayer.owner.btnMonthCard.setVisible(false);
 }
 
 function onClose(sender)
@@ -242,6 +268,89 @@ function onCharge(sender)
     engine.event.sendNTFEvent(103, {sign:-1});
 }
 
+//--- Month Card ---
+var theMonthCardLayer;
+
+function purchaseMonthCard(){
+    theMonthCardLayer.owner.btnBack.setVisible(true);
+    theMonthCardLayer.owner.btnBack1.setVisible(false);
+    theMonthCardLayer.owner.btnPurchase.setVisible(true);
+    theMonthCardLayer.owner.nodeNoMC.setVisible(true);
+    theMonthCardLayer.owner.labLv.setVisible(false);
+}
+
+function hasMonthCard(){
+    theMonthCardLayer.owner.btnBack.setVisible(false);
+    theMonthCardLayer.owner.btnBack1.setVisible(true);
+    theMonthCardLayer.owner.btnPurchase.setVisible(false);
+    theMonthCardLayer.owner.labLv.setVisible(true);
+    theMonthCardLayer.owner.labLv.setString(engine.user.player.MonthCardCount);
+    theMonthCardLayer.owner.nodeNoMC.setVisible(false);
+}
+
+function onMonthCard(sender)
+{
+    showMonthCard();
+}
+
+function onBackMonthCard(sender){
+    cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    theMonthCardLayer.node.runAction(actionPopOut(function(){
+        engine.ui.popLayer();
+    }, theMonthCardLayer));
+}
+
+function onPurchaseMonthCard(sender){
+    //向服务器发送购买月卡的消息
+    var actorName = engine.user.actor.Name;
+    var zoneId = engine.session.zoneId;
+    var billNo = genBillNo(8);
+    iap.makePayment(billNo, 8, 1, actorName, zoneId);
+    tdga.paymentRequest(billNo, payStr[8].str, payStr[8].cost, "CNY", payStr[8].dm, iap.getStoreName() );
+
+    //保持连接
+    engine.event.sendNTFEvent(103, {sign:-1});
+
+    theMonthCardLayer.node.runAction(actionPopOut(function(){
+        engine.ui.removeLayer(theMonthCardLayer);
+        theMonthCardLayer = null;
+    }, theMonthCardLayer));
+}
+
+function showMonthCard()
+{
+    theMonthCardLayer = engine.ui.newLayer();
+
+    var winSize = cc.Director.getInstance().getWinSize();
+
+    var mask = blackMask();
+    theMonthCardLayer.addChild(mask);
+
+    theMonthCardLayer.owner = {};
+    theMonthCardLayer.owner.onBack = onBackMonthCard;
+    theMonthCardLayer.owner.onPurchase = onPurchaseMonthCard;
+
+    theMonthCardLayer.node = ui.loadUI(theMonthCardLayer, "ui-yk.ccbi", {});
+    theMonthCardLayer.node.setPosition(cc.p(winSize.width / 2,winSize.height / 2));
+    theMonthCardLayer.addChild(theMonthCardLayer.node);
+
+    theMonthCardLayer.owner.btnBack.setVisible(false);
+    theMonthCardLayer.owner.btnBack1.setVisible(false);
+    theMonthCardLayer.owner.btnPurchase.setVisible(false);
+    theMonthCardLayer.owner.nodeNoMC.setVisible(false);
+
+    if (engine.user.player.MonthCardCount <= 0){
+        purchaseMonthCard();
+    }
+    else{
+        hasMonthCard();
+    }
+
+    theMonthCardLayer.node.runAction(actionPopIn());
+
+    engine.ui.regMenu(theMonthCardLayer.owner.menuRoot);
+}
+
 function node(func, obj)
 {
     closeCBFUNC = func;
@@ -249,8 +358,7 @@ function node(func, obj)
 
     return engine.ui.newLayer({
         onEnter: onEnter,
-        onNotify: onEvent,
-        onActivate: onActivate
+        onNotify: onEvent
     });
 }
 

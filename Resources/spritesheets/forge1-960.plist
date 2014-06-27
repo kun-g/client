@@ -7,15 +7,28 @@
             <key>forge1-960-bg960.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{550,435}}</string>
+                <string>{{2,465},{577,461}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{550,435}}</string>
+                <string>{{0,0},{577,461}}</string>
                 <key>sourceSize</key>
-                <string>{550,435}</string>
+                <string>{577,461}</string>
+            </dict>
+            <key>forge1-960-bg9602.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{577,461}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{577,461}}</string>
+                <key>sourceSize</key>
+                <string>{577,461}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -25,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>forge1-960.png</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:81d89670da321f52e5b3d59f57eb5210$</string>
+            <string>$TexturePacker:SmartUpdate:fd14b8b5e0c97f679f4c8ae2db1083f3$</string>
             <key>textureFileName</key>
             <string>forge1-960.png</string>
         </dict>

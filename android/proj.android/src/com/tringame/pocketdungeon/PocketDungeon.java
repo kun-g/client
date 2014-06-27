@@ -25,12 +25,15 @@ package com.tringame.pocketdungeon;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
+import com.tringame.SystemInvoke;
+
 import android.os.Bundle;
 
 public class PocketDungeon extends Cocos2dxActivity{
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		SystemInvoke.setActivity(this);
 	}
 	
     static {

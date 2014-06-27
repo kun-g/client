@@ -14,7 +14,7 @@
 #include "ScriptingCore.h"
 #include "jsapi.h"
 #include "jsfriendapi.h"
-#include "ISystem.h"
+#include "utility/ISystem.h"
 
 void triggerEnterBackground();
 void triggerEnterForeground();
@@ -49,6 +49,7 @@ JSBool jsbSysEnterForegroundCallback(JSContext* cx, unsigned argc, JS::Value* vp
 JSBool jsbSysCheckNetworkStatus(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbSysGetPreference(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbSysReset(JSContext* cx, unsigned argc, JS::Value* vp);
+JSBool jsbSysExit(JSContext* cx, unsigned argc, JS::Value* vp);
 
 void registerSys(JSContext* cx, JSObject* global);
 

@@ -7,9 +7,8 @@
 //
 
 #include "tools.h"
-#include "ISystem.h"
-#include "unzip.h"
-#include <iconv.h>
+#include "utility/ISystem.h"
+#include "support/zip_support/unzip.h"
 #include <dirent.h>
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
@@ -272,65 +271,3 @@ bool unzip(const char *dest, const char *pack)
     
     return true;
 }
-
-void utf8ToUnicode(const std::string& src, std::wstring& dst)
-{
-    iconv_t cd = iconv_open("UTF-16LE", "UTF-8");
-    if( cd == (iconv_t)-1 )
-    {
-        CCLOG("converion: not available");
-    }
-    
-    char* input = NULL;
-    char* output = NULL;
-    size_t inleft = 0;
-    size_t outleft = 0;
-    
-    //prepare input
-    inleft = src.length();
-    size_t insize = inleft+1;
-    input = (char*)malloc(sizeof(char)*insize);
-    memcpy(input, src.c_str(), insize-1);
-    input[insize-1] = '\0';
-    char* fin = input;
-    
-    //prepare output
-    size_t outsize = insize;
-    outleft = (inleft+1)*4;
-    output = (char*)malloc(sizeof(wchar_t)*outsize);
-    wchar_t* fout = (wchar_t*)output;
-    size_t orgin = outleft;
-    
-    size_t rc = iconv(cd, &input, &inleft, &output, &outleft);
-    size_t lenByte = orgin - outleft;
-    //append a terminal character
-    wchar_t end = L'\0';
-    output = (char*)fout;
-    memcpy(output+lenByte, &end, sizeof(wchar_t));
-    
-    if( rc == -1 )
-    {
-        CCLOG("conversion: error");
-        switch (errno) {
-                /* See "man 3 iconv" for an explanation. */
-            case EILSEQ:
-                CCLOG("Invalid multibyte sequence.\n");
-                break;
-            case EINVAL:
-                CCLOG("Incomplete multibyte sequence.\n");
-                break;
-            case E2BIG:
-                CCLOG("No more room.\n");
-                break;
-            default:
-                CCLOG("Error: %s.\n", strerror (errno));
-        }
-    }
-    
-    dst = wstring(fout);
-    //clean up
-    free(fin);
-    free(fout);
-    iconv_close(cd);
-}
-

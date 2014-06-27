@@ -15,6 +15,7 @@ var libEvent = loadModule("eventInfo.js");
 var libPops = loadModule("pops.js");
 var libEffect = loadModule("effect.js");
 var libTutorial = loadModule("tutorialx.js");
+var libUIKit = loadModule("uiKit.js");
 
 //local constants
 var ACTIVITY_GAP = 15;
@@ -82,6 +83,7 @@ function onEnter()
     theLayer.owner.onDailyQuest = onDailyQuest;
     theLayer.owner.onDailyPrize = onDailyPrize;
     theLayer.owner.onBounty = onBounty;
+    theLayer.owner.onPVP = onPVP;
 
     var node = libUIC.loadUI(theLayer, "sceneIndex.ccbi", {
         nodeEnergy:{
@@ -133,6 +135,9 @@ function onEnter()
     notifyQuest = theLayer.owner.spnQuest;
     notifyQuestNumber = theLayer.owner.notifyQuest;
 
+    //function ON/OFF
+    theLayer.owner.btnPVP.setEnabled(false); //turn off PVP
+
     //set stage button
     //-添加职业徽记
     var roleData = loadModule("table.js").queryTable(TABLE_ROLE, engine.user.actor.ClassId);
@@ -142,6 +147,7 @@ function onEnter()
     theLayer.nodeTeam1 = cc.Node.create();
     normal.addChild(theLayer.nodeTeam1);
     {
+        debug("EMBLEM = "+emblem);//test
         var spEmblem1 = cc.Sprite.create(emblem);
         spEmblem1.setScale(0.5);
         spEmblem1.setPosition(cc.p(normal.getContentSize().width/2, normal.getContentSize().height/2+10));
@@ -193,7 +199,9 @@ function onEnter()
     this.scheduleUpdate();
 
     //attach effects
-    if( engine.user.inventory.checkUpgradable() ){
+    if( engine.user.inventory.checkUpgradable()
+        || engine.user.inventory.checkEnhancable()
+        || engine.user.inventory.checkForgable() ){
         libEffect.attachEffectCCBI(theLayer.owner.tipUpgrade, cc.p(0, 0), "tips-forge.ccbi", libEffect.EFFECTMODE_LOOP);
     }
 
@@ -201,6 +209,8 @@ function onEnter()
     loadModule("broadcastx.js").instance.simpleInit(this);
 
     updateBattlePower();
+
+    //getMonthCard();
 }
 
 function onExit()
@@ -210,7 +220,6 @@ function onExit()
 }
 
 function onActivate(){
-    //schedule pop
     engine.pop.setAllAndInvoke("main");
     if( theMode == MODE_CLOSE ){
         startOpenAnimation();
@@ -248,6 +257,11 @@ function onNotify(ntf)
                 theLayer.owner.iconVip.removeAllChildren();
                 theLayer.owner.iconVip.addChild(sp);
             }
+            return false;
+        }
+        case Message_UpdateEnergy:
+        {
+            updateEnergy();
             return false;
         }
     }
@@ -398,6 +412,8 @@ function onChat(sender)
     startCloseAnimation(function(){
         libChat.show();
     });
+//    libPops.setLevelUpAnimation();
+//    libPops.invokePopLevelUp();
 }
 
 function onStage(sender)
@@ -459,6 +475,13 @@ function onShop(sender)
 {
     startCloseAnimation(function(){
         engine.ui.newScene(loadModule("sceneShop.js").scene());
+    });
+}
+
+function onPVP(sender)
+{
+    startCloseAnimation(function(){
+        engine.ui.newScene(loadModule("scenePVP.js").scene());
     });
 }
 

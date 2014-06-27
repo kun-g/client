@@ -38,6 +38,9 @@ set -e
 
 # paths
 
+NDK_ROOT="/Users/hammer/Develop/android-ndk-r8d"
+COCOS2DX_ROOT="/Users/hammer/Develop/cocos2d-x-2.1.5"
+
 if [ -z "${NDK_ROOT+aaa}" ];then
 echo "please define NDK_ROOT"
 exit 1
@@ -70,8 +73,11 @@ mkdir "$APP_ANDROID_ROOT"/assets
 mkdir "$APP_ANDROID_ROOT"/assets/res
 
 # copy Resources/* into assets' root
-cp -rf "$APP_ROOT"/../Resources/* "$APP_ANDROID_ROOT"/assets
+#cp -rf "$APP_ROOT"/../Resources/* "$APP_ANDROID_ROOT"/assets
+rsync -av --exclude='script' --exclude='blackbox' --exclude='table' "$APP_ROOT"/../Resources/ "$APP_ANDROID_ROOT"/assets/
 
+# copy static.json hammer
+cp "$APP_ROOT"/static.json "$APP_ANDROID_ROOT"/assets
 
 # copy bindings/*.js into assets' root
 cp -f "$BINDINGS_JS_ROOT"/* "$APP_ANDROID_ROOT"/assets

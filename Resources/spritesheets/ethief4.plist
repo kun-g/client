@@ -4,10 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>enemy-thief-4-chest.png</key>
+            <key>enemy-thief-4-chest(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,103},{31,26}}</string>
+                <string>{{35,226},{31,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,75 +17,166 @@
                 <key>sourceSize</key>
                 <string>{31,26}</string>
             </dict>
-            <key>enemy-thief-4-head.png</key>
+            <key>enemy-thief-4-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{69,64}}</string>
+                <string>{{2,226},{31,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{31,28}}</string>
+                <key>sourceSize</key>
+                <string>{31,28}</string>
+            </dict>
+            <key>enemy-thief-4-head(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,155},{69,64}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{69,64}}</string>
                 <key>sourceSize</key>
                 <string>{69,64}</string>
             </dict>
-            <key>enemy-thief-4-lefthand.png</key>
+            <key>enemy-thief-4-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,65},{23,37}}</string>
+                <string>{{44,2},{71,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{23,37}}</string>
+                <string>{{0,0},{71,65}}</string>
                 <key>sourceSize</key>
-                <string>{23,37}</string>
+                <string>{71,65}</string>
             </dict>
-            <key>enemy-thief-4-leftleg.png</key>
+            <key>enemy-thief-4-head2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,29},{34,37}}</string>
+                <string>{{2,82},{71,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{34,37}}</string>
+                <string>{{0,0},{71,65}}</string>
                 <key>sourceSize</key>
-                <string>{34,37}</string>
+                <string>{71,65}</string>
             </dict>
-            <key>enemy-thief-4-mainweapon.png</key>
+            <key>enemy-thief-4-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,68},{33,68}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{33,68}}</string>
-                <key>sourceSize</key>
-                <string>{33,68}</string>
-            </dict>
-            <key>enemy-thief-4-righthand.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{73,2},{38,25}}</string>
+                <string>{{106,115},{23,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{23,37}}</string>
+                <key>sourceSize</key>
+                <string>{23,37}</string>
+            </dict>
+            <key>enemy-thief-4-lefthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{68,225},{25,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{25,40}}</string>
+                <key>sourceSize</key>
+                <string>{25,40}</string>
+            </dict>
+            <key>enemy-thief-4-leftleg(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{103,155},{34,37}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{34,37}}</string>
+                <key>sourceSize</key>
+                <string>{34,37}</string>
+            </dict>
+            <key>enemy-thief-4-leftleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{69,116},{35,37}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,37}}</string>
+                <key>sourceSize</key>
+                <string>{35,37}</string>
+            </dict>
+            <key>enemy-thief-4-mainweapon(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{68,155},{33,68}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{33,68}}</string>
+                <key>sourceSize</key>
+                <string>{33,68}</string>
+            </dict>
+            <key>enemy-thief-4-mainweapon.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{40,78}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,78}}</string>
+                <key>sourceSize</key>
+                <string>{40,78}</string>
+            </dict>
+            <key>enemy-thief-4-righthand(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,75},{38,25}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{38,25}}</string>
                 <key>sourceSize</key>
                 <string>{38,25}</string>
             </dict>
-            <key>enemy-thief-4-rightleg.png</key>
+            <key>enemy-thief-4-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,90},{35,35}}</string>
+                <string>{{69,75},{39,25}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{39,25}}</string>
+                <key>sourceSize</key>
+                <string>{39,25}</string>
+            </dict>
+            <key>enemy-thief-4-rightleg(MIRA-PC--MiRa--2014-05-15-17,35,46).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{111,2},{35,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -95,6 +186,19 @@
                 <key>sourceSize</key>
                 <string>{35,35}</string>
             </dict>
+            <key>enemy-thief-4-rightleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{110,194},{36,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{36,35}}</string>
+                <key>sourceSize</key>
+                <string>{36,35}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -103,9 +207,9 @@
             <key>realTextureFileName</key>
             <string>ethief4.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a4258408030f88da6dbd9262f7c7bda6$</string>
+            <string>$TexturePacker:SmartUpdate:c362fc499e6fabcdde393eaa1c966fd9$</string>
             <key>textureFileName</key>
             <string>ethief4.png</string>
         </dict>

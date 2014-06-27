@@ -30,6 +30,9 @@ TABLE_BAN = "bans";
 TABLE_LEADBOARD = "leadboard";
 TABLE_FACTION = "faction";
 TABLE_BOUNTY = "bounty";
+TABLE_COST = "costs";
+TABLE_DAILYPRIZE = "dailyPrize";
+TABLE_ARENA = "arena";
 
 /*** GAME CONSTANTS ***/
 ItemId_RevivePotion = 540;

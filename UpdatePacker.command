@@ -123,7 +123,7 @@ echo "- commiting update"
 git add $RES_PATH
 git commit -am "AUTO COMMIT "$NEW_TAG
 git tag -f $NEW_TAG
-git push origin $WORK_BRANCH
+#git push origin $WORK_BRANCH
 echo "  commit done."
 
 #6 fetch updated files
@@ -156,7 +156,6 @@ for TAR in $CHANGES
 do
 	UpdateFile $TAR
 done
-CleanDFolders
 echo "------ end of list ------"
 
 echo "NOTICE: The update content is about to be packed. You may manually interfere with the update content by now."

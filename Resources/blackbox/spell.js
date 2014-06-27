@@ -651,6 +651,11 @@
         variables = {};
         if (env != null) {
           variables = env.variable();
+          variables.heroCount = env.getAliveHeroes().length;
+          variables.totalMonsterCount = env.getMonsters().length;
+          variables.visibleMonsterCount = env.getMonsters().filter(function(m) {
+            return m.isVisible;
+          }).length;
         }
         if (getProperty(a.formular, level.formular) != null) {
           formularResult = calcFormular(variables, this, target, getProperty(a.formular, level.formular));
@@ -759,7 +764,8 @@
               if (typeof cmd.routine === "function") {
                 cmd.routine({
                   id: 'Kill',
-                  tar: this
+                  tar: this,
+                  cod: a.cod
                 });
               }
             } else {
@@ -768,7 +774,8 @@
                 if (typeof cmd.routine === "function") {
                   cmd.routine({
                     id: 'Kill',
-                    tar: t
+                    tar: t,
+                    cod: a.cod
                   });
                 }
               }

@@ -30,6 +30,7 @@ var UISkill = cc.Node.extend({
         if( !this._super()) return false;
         //init code here
         this.skill = null;
+        this.gray = false;
         return true;
     },
     setSkill: function(ski){
@@ -41,19 +42,32 @@ var UISkill = cc.Node.extend({
             var table = loadModule("table.js");
             var SkillClass = table.queryTable(TABLE_SKILL, this.skill.ClassId);
             this.icon = cc.Sprite.create(SkillClass.icon);
+            if (this.gray){
+                this.icon.setColor(cc.c3b(80, 77, 75));
+            }
             this.addChild(this.icon);
-            this.dot = cc.Sprite.create("cardnummask.png");
-            this.dot.setAnchorPoint(cc.p(1, 0));
-            this.dot.setPosition(cc.p(this.icon.getContentSize().width/2, -this.icon.getContentSize().height/2));
-            this.addChild(this.dot);
+            if (this.gray == false){
+                this.dot = cc.Sprite.create("cardnummask.png");
+                this.dot.setAnchorPoint(cc.p(1, 0));
+                this.dot.setPosition(cc.p(this.icon.getContentSize().width/2, -this.icon.getContentSize().height/2));
+                this.addChild(this.dot);
 
-            this.num = cc.Sprite.createWithSpriteFrameName(this.skill.Level+".png");
-            this.num.setPosition(cc.p(this.dot.getContentSize().width/2, this.dot.getContentSize().height/2));
-            this.dot.addChild(this.num);
+                this.num = cc.Sprite.createWithSpriteFrameName(this.skill.Level+".png");
+                this.num.setPosition(cc.p(this.dot.getContentSize().width/2, this.dot.getContentSize().height/2));
+                this.dot.addChild(this.num);
+            }
         }
     },
     getSkill: function(){
         return this.skill;
+    },
+    setGray: function(flag){
+        if (flag != null){
+            this.gray = flag;
+        }
+        else{
+            this.gray = false;
+        }
     }
 });
 

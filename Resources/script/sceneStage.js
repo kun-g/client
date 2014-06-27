@@ -12,14 +12,15 @@ var scroller = loadModule("scroller.js");
 var ui = loadModule("UIComposer.js");
 var libItem = loadModule("xitem.js");
 var libUIKit = loadModule("uiKit.js");
-var libQuest = loadModule("questInfo.js");
+var libUIC = loadModule("UIComposer.js");
 
 var theLayer = null;
 var theChapterClass;
 var theStageClass;
-
+var onStgTag = -1;
 var theEnergyCost = 0;
 
+var winSize;
 var BIRD_HIGH = 30;
 var CLOUD_HIGH = 40;
 
@@ -29,6 +30,12 @@ var MODE_STAGE = 1;
 var TYPE_NORMAL = 0;
 var TYPE_CHALLENGE = 1;
 var theType = -1;
+var SWEEP_SCROLL_CID = 871;
+var PrizeList = [];
+var PrizeIndex = 0;
+var SweepArgs = {};
+var isScheduling = false;
+var SWEEP_VIP_LEVEL = 4;
 
 function onEvent(event)
 {
@@ -44,7 +51,7 @@ function onClose(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libQuest.show();
+    loadModule("questInfo.js").show();
 }
 
 function onEnter()
@@ -60,7 +67,7 @@ function onEnter()
     sfc.addSpriteFrames("map.plist");
     sfc.addSpriteFrames("map2.plist");
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    winSize = cc.Director.getInstance().getWinSize();
 
     theLayer.bgOwner = {};
     theLayer.bg = cc.BuilderReader.load("ui-map.ccbi", theLayer.bgOwner);
@@ -249,6 +256,7 @@ function onNormal(){
     theLayer.stage.owner.btnMode.setNormalSpriteFrame(sfc.getSpriteFrame("map-btn-wjms1.png"));
     theLayer.stage.owner.btnMode.setSelectedSpriteFrame(sfc.getSpriteFrame("map-btn-wjms2.png"));
     theLayer.stage.owner.btnMode.setDisabledSpriteFrame(sfc.getSpriteFrame("map-btn-wjms2.png"));
+    theLayer.stage.owner.btnMode.runAction(cc.MoveBy.create(0.1, cc.p(0, 64)));
 }
 
 function getInfiPrize(dungeon, level){
@@ -285,6 +293,12 @@ function onChallenge(){
     theLayer.stage.owner.btnMode.setNormalSpriteFrame(sfc.getSpriteFrame("map-btn-zcms1.png"));
     theLayer.stage.owner.btnMode.setSelectedSpriteFrame(sfc.getSpriteFrame("map-btn-zcms2.png"));
     theLayer.stage.owner.btnMode.setDisabledSpriteFrame(sfc.getSpriteFrame("map-btn-zcms2.png"));
+    theLayer.stage.owner.btnMode.runAction(cc.MoveBy.create(0.1, cc.p(0, -64)));
+    //hide sweep buttons
+    theLayer.stage.owner.nodeSweepMid.setVisible(false);
+    theLayer.stage.owner.btnSweep1.setVisible(false);
+    theLayer.stage.owner.btnSweep2.setVisible(false);
+    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
 
     var team = 3;
     if( Math.floor(chInst.Stages[theLayer.INFIKEY].Level%10 == 0 )){
@@ -295,6 +309,7 @@ function onChallenge(){
     }
     theLayer.TEAM = team;
     theLayer.stage.owner.labelTeam.setString("队伍人数："+team+"人");
+    theLayer.stage.owner.labelTeam2.setString("队伍人数："+team+"人");
     theLayer.stage.owner.labelLevel.setString(chInst.Stages[theLayer.INFIKEY].Level);
 
     theStageClass = theLayer.CHCLASS.stage[theLayer.INFIKEY];
@@ -306,49 +321,125 @@ function onChallenge(){
     theLayer.stage.owner.labNext.setString("打通第"+prize.level+"关可以获得额外奖励：");
     theLayer.stage.owner.nodePrize.addChild(preview);
     theLayer.stage.owner.labelEnergy.setString("精力消耗："+theLayer.COST+"点");
+    theLayer.stage.owner.labelEnergy2.setString("精力消耗："+theLayer.COST+"点");
 
     theEnergyCost = theLayer.COST;
     engine.session.set("stage", theStageClass);
 }
 
+function onWorldTask(){
+
+}
+
+//gonna modify here for World Task stage scene
 function showStages(chId)
 {
     var stage = engine.ui.newLayer();
     var mask = blackMask();
-    stage.addChild(mask);
-    var winSize = cc.Director.getInstance().getWinSize();
-    theLayer.stageLayer = stage;
-    theLayer.stage = {};
-    theLayer.stage.owner = {};
-    theLayer.stage.owner.onStage = onSelectStage;
-    theLayer.stage.owner.onMode = onMode;
-    theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
-    theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
-    stage.addChild(theLayer.stage.node);
-    engine.ui.regMenu(theLayer.stage.owner.menu);
+    stage.addChild(mask); //weaken the map to highlight the choose-stage scene
 
-    //set values
-    theLayer.CHID = chId;
-    theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
-    var chClass = theLayer.CHCLASS;
-    theChapterClass = theLayer.CHCLASS;
-    var sfc = cc.SpriteFrameCache.getInstance();
+    //judge the flag of World Task
+//    var worldTask = null;
+//    if (table.queryTable(TABLE_STAGE, chId) != null){
+//        worldTask = table.queryTable(TABLE_STAGE, chId).stageWorldTask;
+//    }
+    var worldTaskRequirement = 0;
+//    worldTaskRequirement = worldTask.requirement;
+    var worldTaskProgress = Infinity;
+//    if( worldTask.hasTask === true ) {
+//        libUIKit.waitRPC(Request_WorldTaskProgress, {}, function (rsp) {
+//            if (rsp.RET == RET_OK) {
+//                worldTaskProgress = rsp.prg;
+//            }
+//            else{
+//                libUIKit.showErrorMessage(rsp);
+//            }
+//        }, theLayer);
+//    }
+    if( worldTaskProgress < worldTaskRequirement )
+    {
+        //load World Task stage
+        theLayer.stageLayer = stage;
+        theLayer.stage = {};
+        theLayer.stage.owner = {};
+        theLayer.stage.node = ui.loadUI(theLayer.stage.owner, "ui-stageWorldTask.ccbi", {
+            nodeProgress: {
+                ui: "UIProgress",
+                id: "prg",
+                length: 475,
+                begin: "index-jy1.png",
+                middle: "index-jy2.png",
+                end: "index-jy3.png"
+            }
+        });
+        theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+        stage.addChild(theLayer.stage.node);
+        engine.ui.regMenu(theLayer.stage.owner.menu);
 
-    theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
-    theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
-    theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
-    theLayer.stage.owner.labelDesc.setString(chClass.desc);
-    var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
-    btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
-    theLayer.stage.owner.menu.addChild(btnOK);
-    var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
-    btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
-    theLayer.stage.owner.menu.addChild(btnCancel);
+        //Progress Bar
+        theLayer.stage.owner.labProgess.setString("任务进度 "+worldTaskProgress+"/"+worldTaskRequirement);
+        theLayer.stage.ui.xp.setProgress(worldTaskProgress/worldTaskRequirement);
 
-    onNormal();
+        theLayer.CHID = chId;
+        theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
+        var chClass = theLayer.CHCLASS;
+        theChapterClass = theLayer.CHCLASS;
+        var sfc = cc.SpriteFrameCache.getInstance();
 
-    theLayer.stage.node.setScale(0);
-    theLayer.stage.node.runAction(actionPopIn());
+
+        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK_WT, BUTTONTYPE_DEFAULT);
+        btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
+        theLayer.stage.owner.menu.addChild(btnOK);
+        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
+        btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
+        theLayer.stage.owner.menu.addChild(btnCancel);
+
+        onWorldTask();
+
+    }
+    else //load normal stages
+    {
+        theLayer.stageLayer = stage;
+        theLayer.stage = {};
+        theLayer.stage.owner = {};
+        theLayer.stage.owner.onStage = onSelectStage;
+        theLayer.stage.owner.onSweep = onSweep;
+        theLayer.stage.owner.onMode = onMode;
+        theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
+        theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+        stage.addChild(theLayer.stage.node);
+        engine.ui.regMenu(theLayer.stage.owner.menu);
+
+        //set values
+        theLayer.CHID = chId;
+        theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
+        var chClass = theLayer.CHCLASS;
+        theChapterClass = theLayer.CHCLASS;
+        var sfc = cc.SpriteFrameCache.getInstance();
+
+        theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
+        theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
+        theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
+        theLayer.stage.owner.labelDesc.setString(chClass.desc);
+        theLayer.stage.owner.labelDesc2.setString(chClass.desc);
+        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
+        btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
+        theLayer.stage.owner.menu.addChild(btnOK);
+        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
+        btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
+        theLayer.stage.owner.menu.addChild(btnCancel);
+        var btnModePos = theLayer.stage.owner.btnMode.getPosition();
+        btnModePos.y -= 64;
+        theLayer.stage.owner.btnMode.setPosition(btnModePos);
+        theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
+
+        //check vip level (the Vip4(or higher) player have access to sweep in batches)
+        theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
+
+        onNormal();
+        theLayer.stage.node.setScale(0);
+        theLayer.stage.node.runAction(actionPopIn());
+    }
 }
 
 function hideStages()
@@ -374,8 +465,47 @@ function onBtnCancel(sender)
     hideStages();
 }
 
+function grabLootInfo(dungeonId){
+    var dData = table.queryTable(TABLE_DUNGEON, dungeonId);
+    if( dData != null && dData.dropID != null ){
+        var ret = [];
+        for(var k in dData.dropID){
+            var dIndex = dData.dropID[k];
+            var dropList = table.queryTable(TABLE_DROP, dIndex);
+            for(var m in dropList){
+                var dropInfo = dropList[m];
+                for(var n in dropInfo.prize){
+                    var itemInfo = dropInfo.prize[n];
+                    if( itemInfo.type == 0 ){
+                        var exist = false;
+                        for(var o in ret){
+                            if( ret[o] == itemInfo.value ){
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if( !exist ){
+                            ret.push(itemInfo.value);
+                        }
+                    }
+                }
+            }
+        }
+        if( ret.length > 0 ){
+            return ret;
+        }
+        else{
+            return null;
+        }
+    }
+    else{
+        return null;
+    }
+}
+
 function selectStage(sId)
 {
+    onStgTag = sId;
     var num = sId+1;
     var stageKey = "spriteStage"+num;
     var stageNode = theLayer.stage.owner[stageKey];
@@ -383,7 +513,7 @@ function selectStage(sId)
     if( theLayer.stage.spriteSelect == null)
     {
         theLayer.stage.spriteSelect = cc.Sprite.createWithSpriteFrameName("mapicon-selected.png");
-        theLayer.stage.node.addChild(theLayer.stage.spriteSelect);
+        theLayer.stage.owner["nodeNormal"].addChild(theLayer.stage.spriteSelect);
     }
     else{
         theLayer.stage.spriteSelect.setVisible(true);
@@ -396,11 +526,61 @@ function selectStage(sId)
     theLayer.stageSelected = stg.stageId;
     theLayer.TEAM = stg.team;
     theLayer.stage.owner.labelTeam.setString("队伍人数："+stg.team+"人");
+    theLayer.stage.owner.labelTeam2.setString("队伍人数："+stg.team+"人");
     theLayer.stage.owner.labelEnergy.setString("精力消耗："+stg.cost+"点");
+    theLayer.stage.owner.labelEnergy2.setString("精力消耗："+stg.cost+"点");
     theEnergyCost = stg.cost;
 
     //set current stage data
     engine.session.set("stage", stg);
+
+    //grab loot info
+    var loot = grabLootInfo(theStageClass.dungeon);
+    if( loot != null ){
+        // display loot
+        var lootNode = cc.Node.create();
+        var offset = 0;
+        for(var k in loot){
+            var icon = libItem.UIItem.create({
+                ClassId: loot[k]
+            });
+            icon.setPosition(cc.p(offset, 0));
+            lootNode.addChild(icon);
+            offset += 120;
+        }
+        lootNode.setScale(0.7);
+        lootNode.setPosition(cc.p(0, 0));
+        theLayer.stage.owner["loot"].removeAllChildren();
+        theLayer.stage.owner["loot"].addChild(lootNode);
+    }
+
+    //check sweep
+    theLayer.stage.owner.nodeSweepMid.setVisible(false);
+    theLayer.stage.owner.btnSweep1.setVisible(false);
+    theLayer.stage.owner.btnSweep2.setVisible(false);
+    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
+//    var scrollQuantity = 20;
+    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
+    theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
+    var sweepPower = theStageClass.sweepPower;
+    debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
+    if( sweepPower != null ) {
+        var myPower = engine.user.actor.getPower();
+        theLayer.stage.owner.nodeSweepFrame.setVisible(true);
+        theLayer.stage.owner.nodeSweepMid.setVisible(true);
+        theLayer.stage.owner.labPowerRequired.setString(sweepPower);
+        theLayer.stage.owner.btnSweep1.setVisible(true);
+        theLayer.stage.owner.btnSweep2.setVisible(true);
+        if (myPower >= sweepPower) {
+            theLayer.stage.owner.btnSweep1.setEnabled(true);
+            theLayer.stage.owner.btnSweep2.setEnabled(true);
+            theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_GREEN);
+        } else {
+            theLayer.stage.owner.btnSweep1.setEnabled(false);
+            theLayer.stage.owner.btnSweep2.setEnabled(false);
+            theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_RED);
+        }
+    }
 }
 
 function onSelectStage(sender)
@@ -413,6 +593,153 @@ function onSelectStage(sender)
         selectStage(tag -1);
         cc.AudioEngine.getInstance().playEffect("xuanze.mp3");
     }
+}
+
+function onSweep(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    SweepArgs = {};
+    var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
+    var times = sender.getTag() * 4 + 1; // 1 or 5
+    var totalEnergyCost = theEnergyCost * times;
+    var scrollQuantity = Math.floor(Number(theLayer.stage.owner.labSweepScroll.getString()));
+    if( scrollQuantity < times ){
+        libUIKit.showAlert("扫荡卷轴不足！");
+        return;
+    }
+    if( engine.user.player.Energy < totalEnergyCost ){
+        var need = totalEnergyCost - engine.user.player.Energy;
+        var str1 = "精力值不足\n进行扫荡还需要"+need+"精力\n需要使用"+need+"宝石来立即恢复吗?";
+        var str2 = "精力值不足，无法扫荡此关\n使用"+need+"宝石可以立即恢复\n需要充值吗?";
+        libUIKit.confirmPurchase(Request_BuyFeature, {
+            typ: 0,
+            tar: totalEnergyCost
+        }, str1, str2, totalEnergyCost, function(rsp){
+            if( rsp.RET == RET_OK ){
+                //统计
+                tdga.itemPurchase("精力值", need, 1);
+            }
+        });
+        return;
+    }
+    SweepArgs = {
+        stg: theLayer.stageSelected,
+        mul: multi
+    };
+    sweepStage(SweepArgs, totalEnergyCost);
+}
+
+function showSweepAnimetion() {
+    var sweepLayer = engine.ui.newLayer();
+    var mask = blackMask();
+    sweepLayer.addChild(mask);
+    theLayer.sweepLayer = sweepLayer;
+    theLayer.sweep = {};
+    theLayer.sweep.owner = {};
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd.ccbi",{
+        nodeRole:{
+            ui: "UIAvatar",
+            id: "avatar",
+            scale: 1.5
+        }
+    });
+    theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.owner.nodeRole.setScaleX(-1);
+    theLayer.sweep.ui.avatar.setRole(engine.user.actor);
+    theLayer.sweep.ui.avatar.playAnimation("walk", true);
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, sweepAnimeCompleted);
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
+}
+
+function sweepAnimeCompleted() {
+    theLayer.sweep.node.removeFromParent(true);
+    showSweepResult();
+}
+
+function showSweepResult() {
+    theLayer.sweep = {};
+    theLayer.update = updateScrollView;
+    theLayer.sweep.owner = {};
+    theLayer.sweep.owner.onClosePrizeList = onClosePrizeList;
+    theLayer.sweep.node = libUIC.loadUI(theLayer.sweep, "ui-sd2.ccbi", {
+        nodeContent:{
+            ui: "UIScrollView",
+            id: "scroller",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        }
+    });
+    theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    theLayer.sweepLayer.addChild(theLayer.sweep.node);
+    theLayer.sweep.theListLayer = cc.Layer.create();
+    theLayer.sweep.ui.scroller.setContainer(theLayer.sweep.theListLayer);
+    var off = theLayer.sweep.ui.scroller.getContentOffset();
+    off.y = theLayer.sweep.ui.scroller.minContainerOffset().y;
+    theLayer.sweep.ui.scroller.setContentOffset(off);
+    PrizeIndex = 0;
+    BAR_WIDTH = 570;
+    BAR_HEIGHT = 180;
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * 5/*(SweepArgs.mul? 5:1)*/);
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
+    createPrizeBar();
+}
+
+function createPrizeBar() {
+    if (PrizeList[PrizeIndex] != null) {
+        var layer = cc.Node.create();
+        layer.owner = {};
+        layer.node = libUIC.loadUI(layer, "ui-sdlist.ccbi", null);
+        layer.addChild(layer.node);
+        layer.node.animationManager.setCompletedAnimationCallback(layer, createPrizeBar);
+        layer.owner.labIndex.setString(PrizeIndex+1);
+        var dimension = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
+        var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
+        prize.setPosition(layer.owner.nodePrize.getPosition());
+        prize.setScale(0.77);
+        layer.owner.nodePrizeBar.addChild(prize);
+        layer.setPosition(cc.p(
+                theLayer.sweep.owner.nodeContent.getContentSize().width/2,
+                LOAD_SIZE.height - BAR_HEIGHT * (PrizeIndex+1) + 80));
+        debug("LOAD_SIZE:"+LOAD_SIZE.height+"  layer:"+layer.getPosition().y);
+        theLayer.sweep.theListLayer.addChild(layer);
+        if( PrizeIndex > 1 && !isScheduling) {
+            isScheduling = true;
+            off1 = theLayer.sweep.ui.scroller.getContentOffset();
+            off2 = cc.p(off1.x, off1.y + BAR_HEIGHT);
+            lerpA = 0;
+            theLayer.scheduleUpdate();
+        }
+        PrizeIndex++;
+        layer.node.animationManager.runAnimationsForSequenceNamed("popup");
+    }
+    else {
+        theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("button");
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+    }
+}
+
+function onClosePrizeList() {
+    theLayer.sweep.node.animationManager.setCompletedAnimationCallback(theLayer.sweep, function(){
+        engine.ui.popLayer();
+        theLayer.sweep.node.removeFromParent(true);
+        delete theLayer.sweep;
+    });
+    theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("close");
+    selectStage(onStgTag);
+
+}
+
+function updateScrollView(delta) {
+    lerpA += 1/30;
+    theLayer.sweep.ui.scroller.setContentOffset(pLerp(off1, off2, lerpA));
+    if( lerpA >= 1 ){
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+    }
+}
+
+function lerp(x, y, a) {
+    return ( (1-a)*x + a*y );
 }
 
 function onTouchBegan(touch, event)
@@ -487,7 +814,40 @@ function scene()
 }
 
 //-------------------
-function startStage(stg, team, cost){
+
+function sweepStage(args, cost) {
+    debug("sweepStage("+args.stg+", "+cost+")");
+
+    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
+        if( rsp.RET == RET_OK ){
+
+            if( rsp.arg != null ){
+                PrizeList = rsp.arg;
+                showSweepAnimetion();
+            }
+        }else{
+            libUIKit.showErrorMessage(rsp);
+        }
+    });
+
+
+    //test code
+//    PrizeList = [];
+//    while(PrizeList.length < (args.mul? 5:1)){
+//        PrizeList[PrizeList.length] = [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ];
+//    }
+//    showSweepAnimetion();
+    //test code end
+}
+//exports.sweepStage = sweepStage;
+
+
+function startStage(stg, team, cost, pkRival){
     debug("startStage("+stg+", "+team+", "+cost+")");
     //check energy
     if( engine.user.player.Energy < cost ){
@@ -518,9 +878,8 @@ function startStage(stg, team, cost){
     }
     else
     {//start dungeon
-        requestBattle(engine.user.dungeon.stage, [engine.user.actor]);
+        requestBattle(engine.user.dungeon.stage, [engine.user.actor], pkRival);
     }
 }
-
 exports.startStage = startStage;
 exports.scene = scene;

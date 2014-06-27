@@ -7,15 +7,15 @@
             <key>forge2-1136-bg1136.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{550,480}}</string>
+                <string>{{2,2},{577,598}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{550,480}}</string>
+                <string>{{0,0},{577,598}}</string>
                 <key>sourceSize</key>
-                <string>{550,480}</string>
+                <string>{577,598}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -25,9 +25,9 @@
             <key>realTextureFileName</key>
             <string>forge2-1136.png</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c6d2847c76d802b0f097993db00420cb$</string>
+            <string>$TexturePacker:SmartUpdate:8a832d266326c1f028aab643493d9d86$</string>
             <key>textureFileName</key>
             <string>forge2-1136.png</string>
         </dict>

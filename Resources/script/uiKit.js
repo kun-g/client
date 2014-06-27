@@ -107,6 +107,7 @@ function pushLoading(){
     var rotate = cc.RotateBy.create(1, 120);
     var repeat = cc.RepeatForever.create(rotate);
     sp.runAction(repeat);
+    return layer;
 }
 exports.pushLoading = pushLoading;
 
@@ -205,7 +206,9 @@ exports.CONFIRM_NEUTRAL = CONFIRM_NEUTRAL;
 function confirmPurchase(command, args, text1, text2, cost, callback){
     if( engine.user.inventory.Diamond >= cost ){
         //ask to confirm the purchase
+        debug("text1 var alt = alert();");
         var alt = alert();
+        debug("text1 alt.setContent("+text1+");");
         alt.setContent(text1);
         alt.setButton([
                 {
@@ -218,7 +221,7 @@ function confirmPurchase(command, args, text1, text2, cost, callback){
                     func: function(sender){
                         engine.ui.popLayer();
                         waitRPC(command, args, function(rsp){
-                            if( rsp != RET_OK ){
+                            if( rsp.RET != RET_OK ){
                                 showErrorMessage(rsp);
                             }
                             if( callback != null ){
@@ -233,7 +236,9 @@ function confirmPurchase(command, args, text1, text2, cost, callback){
     }
     else{
         //ask to confirm charge
+        debug("text2 var alt = alert();");
         var alt = alert();
+        debug("text2 alt.setContent("+text2+");");
         alt.setContent(text2);
         alt.setButton([
             {

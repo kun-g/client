@@ -7,6 +7,9 @@
 var libTable = loadModule("table.js");
 var libSkill = loadModule("skill.js");
 var libUIC = loadModule("UIComposer.js");
+var libUIKit = loadModule("uiKit.js");
+var libItem = loadModule("xitem.js");
+var libEffect = loadModule("effect.js");
 
 //--------- POP MANAGER 防止弹窗一起弹出来 ----------
 function PopMgr(){
@@ -88,32 +91,113 @@ function popLevelUp(){
 
     layer.owner = {};
     configParticle(layer.owner);
-    layer.node = cc.BuilderReader.load("ui-levelup.ccbi", layer.owner);
-
+    layer.node = loadModule("UIComposer.js").loadUI(layer, "ui-levelup.ccbi", {
+        sk1: {
+            id: "skill1",
+            ui: "UISkill"
+        },
+        sk2: {
+            id: "skill2",
+            ui: "UISkill"
+        },
+        sk3: {
+            id: "skill3",
+            ui: "UISkill"
+        },
+        sk4: {
+            id: "skill4",
+            ui: "UISkill"
+        },
+        nodeRole: {
+            id: "avatar",
+            ui: "UIAvatar",
+            scale: 1.2
+        }
+    });
     layer.node.animationManager.runAnimationsForSequenceNamed("effect");
     var winSize = cc.Director.getInstance().getWinSize();
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
-
-    //set values
-    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    //set all invisible
+    var nodeName = ["nodeMj","nodeJsj","nodeJjs","nodeEffectSj","labLev","nodeEffectXjn"];
+    for (var k in nodeName){
+        layer.owner[nodeName[k]].setVisible(true);
+        for (var i = 1;i <= 4;i++){
+            layer.owner[nodeName[k]+i].setVisible(false);
+        }
+    }
+    //set skill name
+    var nodeSkName = ["nodeSkWarrior","nodeSkMage","nodeSkPriest"];
+    for (var kk in nodeSkName){
+        layer.owner[nodeSkName[kk]].setVisible(false);
+    }
+    layer.owner[nodeSkName[engine.user.actor.ClassId]].setVisible(true);
+    //set level
     var level = engine.user.actor.calcExp().level;
     layer.owner.labLevel.setString("LV."+level);
-    var spEmblem = cc.Sprite.create(roleData.emblem[0]);
-    layer.owner.nodeEmblem.addChild(spEmblem);
-    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
-    var skill = levelData.levelData[level-1].skill[0];
-    var uiSkill = libSkill.UISkill.create({
-        ClassId: skill.id,
-        Level: skill.level
-    });
-    layer.owner.nodeSkill.addChild(uiSkill);
-    var skillData = libTable.queryTable(TABLE_SKILL, skill.id);
-    if( skill.level == 1 ){
-        layer.owner.labelDesc.setString("获得了新技能【"+skillData.label+"】");
+    //set skill
+    var role = engine.user.actor;
+    for (var x = 1;x <= 4;x++){
+        if (role.querySkill(x - 1) == null){
+            layer.ui["skill"+x].setGray(true);
+        }
     }
-    else{
-        layer.owner.labelDesc.setString("【"+skillData.label+"】等级提升到"+skill.level);
+    layer.ui.skill1.setSkill(getSkillLev(0));
+    layer.ui.skill2.setSkill(getSkillLev(1));
+    layer.ui.skill3.setSkill(getSkillLev(2));
+    layer.ui.skill4.setSkill(getSkillLev(3));
+    //set role
+    layer.ui.avatar.setRole(role);
+    //set property
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    var property = levelData.levelData[level-1].property;
+    var proTableList = ["health","attack","speed","critical","strong","accuracy","reactivity"];
+    var proRoleList = ["Health","Attack","Speed","Critical","Strong","Accuracy","Reactivity"];
+    var proLabList = ["labHealth","labAttack","labSpeed","labCritical","labStrong","labAccuracy","labReactivity"];
+    var proLabAddList = ["labHealthAdd","labAttackAdd","labSpeedAdd","labCriticalAdd","labStrongAdd","labAccuracyAdd","labReactivityAdd"];
+    for (var k in proLabList){
+        var originPro = +role[proRoleList[k]] - property[proTableList[k]];
+        if (property[proTableList[k]] > 0){
+            layer.owner[proLabAddList[k]].setString("+" + property[proTableList[k]]);
+            layer.owner[proLabAddList[k]].setColor(cc.c3b(0,240,0));
+            layer.owner[proLabAddList[k]].setVisible(true);
+        }
+        else{
+            layer.owner[proLabAddList[k]].setVisible(false);
+        }
+        layer.owner[proLabList[k]].setString(originPro);
+    }
+    //set skill state
+    var skill = levelData.levelData[level-1].skill[0];
+    var newSkill = false;
+    if( skill.level == 1 ){
+        newSkill = true;
+    }
+    for (var j = 1;j <= 4;j++){
+        if (role.querySkill(j - 1) == null){//jjs
+            layer.owner[nodeName[4]+j].setVisible(true);
+            layer.owner[nodeName[4]+j].setString(getNewSkillLev(level,j - 1));
+            layer.owner[nodeName[2]+j].setVisible(true);
+        }
+        else if (skill.id == role.querySkill(j - 1).ClassId){
+            if (newSkill){//get new skill
+                libEffect.attachEffectCCBI(layer.owner[nodeName[5]+j],cc.p(0, 0), "effect-xjn.ccbi",libEffect.EFFECTMODE_STAY);
+                layer.owner[nodeName[5]+j].setVisible(true);
+            }
+            else{//sj
+                libEffect.attachEffectCCBI(layer.owner[nodeName[3]+j],cc.p(0, 0), "effect-sjwz.ccbi",libEffect.EFFECTMODE_STAY);
+                layer.owner[nodeName[3]+j].setVisible(true);
+            }
+        }
+        else if (role.querySkill(j - 1).Level >= getMaxSkillLev(role.querySkill(j - 1).ClassId)){//mj
+            layer.owner[nodeName[0]+j].setVisible(true);
+        }
+        else{//jsj
+            layer.owner[nodeName[4]+j].setVisible(true);
+            layer.owner[nodeName[4]+j].setString(getNextSkillLev(level,role.querySkill(j - 1).ClassId));
+            layer.owner[nodeName[1]+j].setVisible(true);
+        }
     }
 
     engine.ui.regMenu(layer);
@@ -130,6 +214,67 @@ function popLevelUp(){
     layer.node.runAction(actionPopIn(function(){
         layer.setTouchEnabled(true);
     }));
+}
+
+function getSkillLev(slotId){
+    var ret = {};
+    if (engine.user.actor.querySkill(slotId) == null){
+        var roleSkill = [];
+        var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+        var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+        for (var k in levelData.levelData){
+            if (levelData.levelData[k].skill[0].level == 1){
+                roleSkill.push(levelData.levelData[k].skill[0].id);
+            }
+        }
+        ret.ClassId = roleSkill[slotId];
+        ret.Level = 1;
+    }
+    else{
+        ret = engine.user.actor.querySkill(slotId);
+    }
+
+    return ret;
+}
+
+function getNewSkillLev(level,slotId){
+    var ret = 0;
+    var roleSkill = [];
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    for (var k in levelData.levelData){
+        if (levelData.levelData[k].skill[0].level == 1){
+            roleSkill.push(levelData.levelData[k].skill[0].id);
+        }
+    }
+    ret = getNextSkillLev(level,roleSkill[slotId]);
+    return ret;
+}
+
+function getNextSkillLev(level,skillCld){
+    var ret = 0;
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    for (var k = level;k < levelData.levelData.length;k++){
+        if (levelData.levelData[k].skill[0].id == skillCld){
+            ret = k + 1;
+            break;
+        }
+    }
+    return ret;
+}
+
+function getMaxSkillLev(skillCld){
+    var ret = 0;
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    for (var k = levelData.levelData.length - 1;k >= 0;k--){
+        if (levelData.levelData[k].skill[0].id == skillCld){
+            ret = levelData.levelData[k].skill[0].level;
+            break;
+        }
+    }
+    return ret;
 }
 
 function invokePopLevelUp(){
@@ -262,3 +407,72 @@ function popInvalidDungeon(){
 }
 
 exports.popInvalidDungeon = popInvalidDungeon;
+
+//--------------------------------------------------
+var theMonthLayer = null;
+
+function popMonthCard(){
+    theMonthLayer = engine.ui.newLayer();
+
+    var filename = "ui-questdone2.ccbi";
+    var submit = {
+        ui: "UIButtonL",
+        id: "btnSubmit",
+        menu: "menuRoot",
+        label: "buttontext-confirm.png",
+        func: function(sender){
+            engine.session.MonthCardAvaiable = false;
+            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+            theMonthLayer.node.runAction(actionPopOut(function(){
+                engine.ui.removeLayer(theMonthLayer);
+                theMonthLayer = null;
+
+                libUIKit.waitRPC(Request_SubmitBounty, {bid: -1}, function(rsp){
+                    if( rsp.RET != RET_OK ){
+                        libUIKit.showErrorMessage(rsp);
+                    }
+                });
+            }));
+        },
+        type: BUTTONTYPE_DEFAULT
+    };
+    var pdata = [{
+        type:2,
+        count: 80
+    }];
+
+    var mask = blackMask();
+    theMonthLayer.addChild(mask);
+    theMonthLayer.owner = {};
+    theMonthLayer.node = libUIC.loadUI(theMonthLayer, filename, {
+        nodeSubmit:submit
+    });
+
+    var winSize = cc.Director.getInstance().getWinSize();
+    theMonthLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    theMonthLayer.addChild(theMonthLayer.node);
+    engine.ui.regMenu(theMonthLayer.owner.menuRoot);
+
+    //set panel data
+    theMonthLayer.owner.labelTitle.setString("月卡奖励");
+    var prize = libItem.ItemPreview.create(pdata);
+    var size = prize.getContentSize();
+    prize.setPosition(cc.p(-size.width/2, -size.height/2));
+    theMonthLayer.owner.nodePrize.addChild(prize);
+
+    theMonthLayer.node.setScale(0);
+    theMonthLayer.node.runAction(actionPopIn());
+}
+
+function invokeMonthCardPop(){
+    debug("invokeMonthCardPop");
+    if( engine.session.MonthCardAvaiable && theMonthLayer == null ){
+        popMonthCard();
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+exports.invokeMonthCardPop = invokeMonthCardPop;

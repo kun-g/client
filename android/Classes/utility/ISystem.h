@@ -98,6 +98,8 @@ public:
     virtual void setPreference(std::string key, std::string val) = 0;
     
     virtual bool isFirstLaunch() = 0;
+
+    virtual void exit() = 0;
 };
 
 //set and access to system

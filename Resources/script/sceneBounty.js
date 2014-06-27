@@ -34,11 +34,11 @@ var LINE_WIDTH = 570;
 var LINE_HEIGHT = 180;
 
 var loadList = [
-    "bounty-jjjsbg.png",
-    "bounty-jjkqbg.png",
-    "bounty-yjjsbg.png",
-    "bounty-yjwcbg.png",
-    "bounty-zzjxbg.png"
+    "bounty-jjjsbg.png",//0 即将结束
+    "bounty-jjkqbg.png",//1 即将开启
+    "bounty-yjjsbg.png",//2 已经结束
+    "bounty-yjwcbg.png",//3 已经完成
+    "bounty-zzjxbg.png" //4 正在进行
 ];
 
 var levelBtnList = [
@@ -107,18 +107,25 @@ function onSubmit(sender){
 
         var segmentSel = engine.user.bounty.getProcess(line.bounty.BountyId);
         var chkProcess = engine.user.bounty.checkProcess(line.bounty.BountyId,segmentSel);
+        var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
+        if (bountyData.count == null){
+            line.bounty.count = 0;
+        }
+        else{
+            line.bounty.count = bountyData.count;
+        }
+
         if (chkProcess == 1){
             engine.msg.pop("任务还未开启，请等待。", POPTYPE_ERROR);
         }else if (chkProcess == 2){
             engine.msg.pop("任务已经结束了。", POPTYPE_ERROR);
         }
-        else if (str.length <= 0 &&
+        else if (str.length <= 0 && (
             engine.session.dataBounty[line.bounty.BountyId] != null &&
             engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
-            engine.session.dataBounty[line.bounty.BountyId].cnt > 0){
-            var libTable = loadModule("table.js");
+            engine.session.dataBounty[line.bounty.BountyId].cnt > 0) ||
+            line.bounty.count <= 0){
             var libStage = loadModule("sceneStage.js");
-            var bountyData = libTable.queryTable(TABLE_BOUNTY, line.bounty.BountyId);
             var stageData = queryStage(bountyData.level[theLevel].stage);
 
             libStage.startStage(bountyData.level[theLevel].stage, stageData.team, stageData.cost);
@@ -126,13 +133,11 @@ function onSubmit(sender){
         else if (engine.session.dataBounty[line.bounty.BountyId] != null &&
                 engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
                 engine.session.dataBounty[line.bounty.BountyId].cnt <= 0){
-            engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
+                engine.msg.pop("活动次数已经用完。", POPTYPE_ERROR);
         }
         else if (str.length > 0){
             engine.msg.pop(str, POPTYPE_ERROR);
         }
-
-
     }
 }
 
@@ -260,7 +265,7 @@ function loadBountyList(){
             }
 
             var remainFlag = bountyData.count;
-            if (remainFlag != null && remainFlag > 0){
+            if (chkProcess != 1 && chkProcess != 2 && remainFlag != null && remainFlag > 0){
                 if (engine.session.dataBounty[k] != null &&
                     engine.session.dataBounty[k].cnt != null &&
                     engine.session.dataBounty[k].cnt > 0){
@@ -305,6 +310,7 @@ function loadBountyList(){
 
 function loadBountyDesc(bounty, lev){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    //var sfc = cc.SpriteFrameCache.getInstance();
     theMode = MODE_DESC;
     theLayer.owner.nodeList.setVisible(false);
     theLayer.owner.nodeDesc.setVisible(true);
@@ -330,12 +336,6 @@ function loadBountyDesc(bounty, lev){
     theLayer.owner.labTitle.setString(bountyData.title);
 
     ajustPostion(bounty.BountyId);
-
-    if (engine.user.bounty.checkLimit(bounty.BountyId, lev).length <= 0){
-        theLayer.owner[nodeEffList[lev]].setVisible(true);
-        theLayer.owner[nodeEffList[lev]].removeAllChildren();
-        libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
-    }
 
     if (bountyData.begin == 1){
         theLayer.owner.btnSubmit.setVisible(true);
@@ -438,6 +438,12 @@ function loadBountyDesc(bounty, lev){
         var curroffset = theLayer.ui.scrollDesc.getContentOffset();
         curroffset.y = theLayer.ui.scrollDesc.minContainerOffset().y;
         theLayer.ui.scrollDesc.setContentOffset(curroffset);
+
+        if (engine.user.bounty.checkLimit(bounty.BountyId, lev).length <= 0){
+            theLayer.owner[nodeEffList[lev]].setVisible(true);
+            theLayer.owner[nodeEffList[lev]].removeAllChildren();
+            libEffect.attachEffectCCBI(theLayer.owner[nodeEffList[lev]],cc.p(0, 0), "effect-bounty.ccbi",libEffect.EFFECTMODE_STAY);
+        }
     }
     else if (bountyData.level.length == 1){
         theDescLayer2.addChild(prize);
@@ -491,6 +497,9 @@ function updateTime()
             for (var k in list) {
                 var bounty = list[k];
                 var line = theListLayer.getChildByTag(k);
+                if (line == null){
+                    break;
+                }
                 var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
                 var segmentSel = engine.user.bounty.getProcess(bounty.BountyId);
                 var timediff = engine.user.bounty.cacultime(bounty.BountyId, segmentSel);

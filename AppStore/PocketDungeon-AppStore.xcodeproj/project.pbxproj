@@ -12,6 +12,9 @@
 		5308A0C6188395B0008CEC46 /* IFeedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0C4188395B0008CEC46 /* IFeedback.cpp */; };
 		5308A0C91883A023008CEC46 /* iOSfeedback.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0C71883A022008CEC46 /* iOSfeedback.mm */; };
 		5308A0CC1883C162008CEC46 /* Feedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0CA1883C162008CEC46 /* Feedback.cpp */; };
+		530C029B19518CDB00282A82 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 530C029819518CDB00282A82 /* dblackbox */; };
+		530C029C19518CDB00282A82 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 530C029919518CDB00282A82 /* dscript */; };
+		530C029D19518CDB00282A82 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 530C029A19518CDB00282A82 /* dtable */; };
 		531F129D18895859004E036F /* UAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 531F129B18895859004E036F /* UAC.cpp */; };
 		531F129F18895FA8004E036F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531F129E18895FA8004E036F /* Security.framework */; };
 		533FB3CB18840010008925DC /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 533FB3C918840010008925DC /* GameCenter.mm */; };
@@ -40,6 +43,7 @@
 		535EF28917E9444D00D0D61D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28817E9444C00D0D61D /* libz.dylib */; };
 		535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28A17E9445800D0D61D /* SystemConfiguration.framework */; };
 		535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28E17E9447100D0D61D /* libiconv.dylib */; };
+		5371A1EF192CAFC40033411F /* misc in Resources */ = {isa = PBXBuildFile; fileRef = 5371A1EE192CAFC40033411F /* misc */; };
 		53744E3618891EFF0096A891 /* PublishVersions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53744E3418891EFF0096A891 /* PublishVersions.mm */; };
 		538818611894A2B500B1E461 /* TDGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5388185F1894A2B500B1E461 /* TDGA.cpp */; };
 		53885E7B17E93DE400A3A8B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */; };
@@ -352,14 +356,11 @@
 		53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */ = {isa = PBXBuildFile; fileRef = 53A305E218FD3102001CE8B0 /* main.debug.jsc */; };
 		53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3086018FD3113001CE8B0 /* PP25Pay.plist */; };
 		53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3089E18FD3113001CE8B0 /* Setup.plist */; };
-		53A3159018FD317E001CE8B0 /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158318FD317E001CE8B0 /* blackbox */; };
 		53A3159418FD317E001CE8B0 /* font in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158718FD317E001CE8B0 /* font */; };
 		53A3159618FD317E001CE8B0 /* node in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158918FD317E001CE8B0 /* node */; };
-		53A3159718FD317E001CE8B0 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158A18FD317E001CE8B0 /* script */; };
 		53A3159818FD317E001CE8B0 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158B18FD317E001CE8B0 /* sound */; };
 		53A3159918FD317E001CE8B0 /* sprite in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158C18FD317E001CE8B0 /* sprite */; };
 		53A3159A18FD317E001CE8B0 /* spritesheets in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158D18FD317E001CE8B0 /* spritesheets */; };
-		53A3159B18FD317E001CE8B0 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158E18FD317E001CE8B0 /* table */; };
 		53A3159C18FD317E001CE8B0 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = 53A3158F18FD317E001CE8B0 /* ui */; };
 		53A315AE18FD3191001CE8B0 /* AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A3159D18FD3191001CE8B0 /* AppStore.plist */; };
 		53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */; };
@@ -423,6 +424,9 @@
 		5308A0C81883A022008CEC46 /* iOSfeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSfeedback.h; sourceTree = "<group>"; };
 		5308A0CA1883C162008CEC46 /* Feedback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Feedback.cpp; sourceTree = "<group>"; };
 		5308A0CB1883C162008CEC46 /* Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feedback.h; sourceTree = "<group>"; };
+		530C029819518CDB00282A82 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
+		530C029919518CDB00282A82 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
+		530C029A19518CDB00282A82 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		531F129B18895859004E036F /* UAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UAC.cpp; sourceTree = "<group>"; };
 		531F129C18895859004E036F /* UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAC.h; sourceTree = "<group>"; };
 		531F129E18895FA8004E036F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -475,6 +479,7 @@
 		535EF28817E9444C00D0D61D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		535EF28A17E9445800D0D61D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		535EF28E17E9447100D0D61D /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		5371A1EE192CAFC40033411F /* misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = misc; sourceTree = "<group>"; };
 		53744E3418891EFF0096A891 /* PublishVersions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PublishVersions.mm; sourceTree = "<group>"; };
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5388185F1894A2B500B1E461 /* TDGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDGA.cpp; sourceTree = "<group>"; };
@@ -1224,14 +1229,11 @@
 		53A305E218FD3102001CE8B0 /* main.debug.jsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.debug.jsc; sourceTree = "<group>"; };
 		53A3086018FD3113001CE8B0 /* PP25Pay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PP25Pay.plist; sourceTree = "<group>"; };
 		53A3089E18FD3113001CE8B0 /* Setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
-		53A3158318FD317E001CE8B0 /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
 		53A3158718FD317E001CE8B0 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		53A3158918FD317E001CE8B0 /* node */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node; sourceTree = "<group>"; };
-		53A3158A18FD317E001CE8B0 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
 		53A3158B18FD317E001CE8B0 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
 		53A3158C18FD317E001CE8B0 /* sprite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sprite; sourceTree = "<group>"; };
 		53A3158D18FD317E001CE8B0 /* spritesheets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spritesheets; sourceTree = "<group>"; };
-		53A3158E18FD317E001CE8B0 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		53A3158F18FD317E001CE8B0 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
 		53A3159D18FD3191001CE8B0 /* AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppStore.plist; path = ios/AppStore.plist; sourceTree = "<group>"; };
 		53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "ios/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -2881,14 +2883,15 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53A3158318FD317E001CE8B0 /* blackbox */,
+				530C029819518CDB00282A82 /* dblackbox */,
+				530C029919518CDB00282A82 /* dscript */,
+				530C029A19518CDB00282A82 /* dtable */,
+				5371A1EE192CAFC40033411F /* misc */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
-				53A3158A18FD317E001CE8B0 /* script */,
 				53A3158B18FD317E001CE8B0 /* sound */,
 				53A3158C18FD317E001CE8B0 /* sprite */,
 				53A3158D18FD317E001CE8B0 /* spritesheets */,
-				53A3158E18FD317E001CE8B0 /* table */,
 				53A3158F18FD317E001CE8B0 /* ui */,
 				53A305D718FD3102001CE8B0 /* jsb.jsc */,
 				53A305D818FD3102001CE8B0 /* jsb_chipmunk.jsc */,
@@ -3022,22 +3025,23 @@
 				53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */,
 				53A30DBB18FD3121001CE8B0 /* jsb.jsc in Resources */,
 				53A30DC118FD3121001CE8B0 /* jsb_cocosbuilder.jsc in Resources */,
+				5371A1EF192CAFC40033411F /* misc in Resources */,
 				53A315BD18FD3191001CE8B0 /* Info.plist in Resources */,
 				53A315B918FD3191001CE8B0 /* Icon@2x.png in Resources */,
+				530C029D19518CDB00282A82 /* dtable in Resources */,
 				53A315B718FD3191001CE8B0 /* Icon-Small@2x.png in Resources */,
 				53A315BC18FD3191001CE8B0 /* Icon~iphone.png in Resources */,
-				53A3159B18FD317E001CE8B0 /* table in Resources */,
 				53A3159A18FD317E001CE8B0 /* spritesheets in Resources */,
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
+				530C029C19518CDB00282A82 /* dscript in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
-				53A3159018FD317E001CE8B0 /* blackbox in Resources */,
-				53A3159718FD317E001CE8B0 /* script in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,
 				53A3048018FD30EB001CE8B0 /* README.txt in Resources */,
+				530C029B19518CDB00282A82 /* dblackbox in Resources */,
 				53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */,
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,

@@ -47,6 +47,7 @@
 		535EF28917E9444D00D0D61D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28817E9444C00D0D61D /* libz.dylib */; };
 		535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28A17E9445800D0D61D /* SystemConfiguration.framework */; };
 		535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28E17E9447100D0D61D /* libiconv.dylib */; };
+		5371A1DD192CAE710033411F /* misc in Resources */ = {isa = PBXBuildFile; fileRef = 5371A1DC192CAE700033411F /* misc */; };
 		53744E3618891EFF0096A891 /* PublishVersions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53744E3418891EFF0096A891 /* PublishVersions.mm */; };
 		538818611894A2B500B1E461 /* TDGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5388185F1894A2B500B1E461 /* TDGA.cpp */; };
 		53885E7B17E93DE400A3A8B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */; };
@@ -480,6 +481,7 @@
 		535EF28E17E9447100D0D61D /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		536D4F3D190786E100FC13D3 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
 		536D4F3E190786E100FC13D3 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
+		5371A1DC192CAE700033411F /* misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = misc; sourceTree = "<group>"; };
 		53744E3418891EFF0096A891 /* PublishVersions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PublishVersions.mm; sourceTree = "<group>"; };
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5388185F1894A2B500B1E461 /* TDGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDGA.cpp; sourceTree = "<group>"; };
@@ -2909,6 +2911,7 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5371A1DC192CAE700033411F /* misc */,
 				536D4F3D190786E100FC13D3 /* script */,
 				536D4F3E190786E100FC13D3 /* table */,
 				53A3158318FD317E001CE8B0 /* blackbox */,
@@ -2954,6 +2957,7 @@
 			buildPhases = (
 				53885E7317E93DE400A3A8B4 /* Sources */,
 				53885E7417E93DE400A3A8B4 /* Frameworks */,
+				809766B219502AF400A0C79C /* ShellScript */,
 				53885E7517E93DE400A3A8B4 /* Resources */,
 			);
 			buildRules = (
@@ -2983,7 +2987,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-Develop" */;
+			buildConfigurationList = 53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-DEVELOP" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3060,6 +3064,7 @@
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
+				5371A1DD192CAE710033411F /* misc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
 				53A3159018FD317E001CE8B0 /* blackbox in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
@@ -3087,6 +3092,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		809766B219502AF400A0C79C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Touch -cm ${SRCROOT}/../Resources/misc\nTouch -cm ${SRCROOT}/../Resources/script\nTouch -cm ${SRCROOT}/../Resources/table\nTouch -cm ${SRCROOT}/../Resources/blackbox\nTouch -cm ${SRCROOT}/../Resources/font\nTouch -cm ${SRCROOT}/../Resources/node\nTouch -cm ${SRCROOT}/../Resources/sound\nTouch -cm ${SRCROOT}/../Resources/sprite\nTouch -cm ${SRCROOT}/../Resources/spritesheets\nTouch -cm ${SRCROOT}/../Resources/ui/960\nTouch -cm ${SRCROOT}/../Resources/ui/1136";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		53885E7317E93DE400A3A8B4 /* Sources */ = {
@@ -3584,7 +3605,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-Develop" */ = {
+		53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-DEVELOP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5388632117E93DF600A3A8B4 /* Debug */,

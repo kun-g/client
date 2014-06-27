@@ -195,6 +195,9 @@ function onEvent(event)
         case Event_EnergyUpdate:
         {
             engine.user.player.setEnergy(event.arg.eng, event.arg.tim);
+            var event = {};
+            event.NTF = Message_UpdateEnergy;
+            engine.event.processNotification(event);
             //debug("Energy Update! = "+engine.user.player.Energy);
             return true;
         }
@@ -360,9 +363,21 @@ function onEvent(event)
         }
         case Event_PlayerInfo:
         {
-            engine.user.player.RMB = event.arg.rmb;
-            engine.user.actor.vip = event.arg.vip;
-            engine.user.player.AID = event.arg.aid;
+            if( event.arg.rmb != null ){
+                engine.user.player.RMB = event.arg.rmb;
+            }
+            if( event.arg.vip != null ){
+                engine.user.actor.vip = event.arg.vip;
+            }
+            if( event.arg.aid != null ){
+                engine.user.player.AID = event.arg.aid;
+            }
+            if (event.arg.mcc != null){
+                engine.user.player.MonthCardCount = event.arg.mcc;
+            }
+            else{
+                engine.user.player.MonthCardCount = 0;
+            }
             engine.event.processNotification(Message_UpdateVIPLevel);
             return true;
         }
@@ -388,8 +403,15 @@ function onEvent(event)
         }
         case Event_BountyUpdate:
         {
-            engine.session.dataBounty[event.arg.bid] = event.arg;
-
+            if (event.arg.bid >= 0){
+                engine.session.dataBounty[event.arg.bid] = event.arg;
+            }
+            else if (event.arg.bid == -1){
+                engine.session.MonthCardAvaiable = false;
+                if ( event.arg.sta == 1){
+                    engine.session.MonthCardAvaiable = true;
+                }
+            }
             var event = {};
             event.NTF = Message_UpdateBounty;
             engine.event.processNotification(event);

@@ -84,8 +84,8 @@ var ITMOP_EQUIP = 1;
 var ITMOP_ENHANCE = 2;
 var ITMOP_UPGRADE = 3;
 var ITMOP_FORGE = 4;
-var ITMOP_EXTRACT = 5;
-var ITMOP_RESEVED3 = 6;
+var ITMOP_SYNTHESIZE = 5;
+var ITMOP_USEEXPBOOK = 6;
 var ITMOP_DISSOLVE = 7;
 var ITMOP_SELL = 8;
 
@@ -116,6 +116,9 @@ var COLOR_VALUEUP = cc.c3b(133, 222, 44);
 var COLOR_VALUEDOWN = cc.c3b(232, 55, 55);
 var COLOR_DEBUFF = cc.c3b(203, 84, 224);
 var COLOR_BUFF = cc.c3b(255, 191, 0);
+
+var COLOR_LABEL_RED = cc.c3b(240, 0, 0);
+var COLOR_LABEL_GREEN = cc.c3b(0, 240, 0);
 
 var MSGPOP_COLORS = [
     cc.c3b(60, 206, 30),
@@ -181,7 +184,7 @@ var BLOCK_LOCKEDEXIT = 4;
 
 var ACTION_DELAY = 0.3;
 
-var RUN_SPEED = 512;
+var RUN_SPEED = 700;
 var HERO_TAG = 0;
 var UNIT_TAG = 100;
 
@@ -228,6 +231,11 @@ var Request_TutorialStageComplete = 27;
 var Request_ReportState = 28;
 var Request_SubmitDailyQuest = 29;
 var Request_QueryLeaderboard = 30;
+var Request_SubmitBounty = 31;
+var Request_GetPkRivals = 32;
+var Request_ReceivePrize = 33;
+var Request_PVPInfoUpdate = 34;
+var Request_SweepStage = 35;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
@@ -236,6 +244,9 @@ var Request_Awake = 104;
 var Request_BindAccount = 105;
 
 var Request_GetDailyPrize = 300;
+
+/*** ReceivePrizeType ***/
+var ReceivePkPrize = 0;
 
 /*** EVENTS ***/
 var Event_DungeonEnter = 0;
@@ -312,6 +323,8 @@ var Message_About2Reboot = 1028;
 var Message_ResetDungeon = 1029;
 var Message_UpdateDailyQuest = 1030;
 var Message_UpdateBounty = 1031;
+var Message_UpdateEnergy = 1032;
+var Message_GetMonthCard = 1033;
 
 var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;

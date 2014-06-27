@@ -459,7 +459,7 @@ function onPause(sender)
 
 function onQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    loadModule("questInfo.js").show();
+    loadModule("questInfo.js").show(true);
 }
 
 function showBuyRevive(){
@@ -1200,7 +1200,7 @@ function syncAccess()
 
 function addActor(unit, boss)
 {
-    //debug("ADD ACTOR = \n"+JSON.stringify(unit));
+    debug("ADD ACTOR = \n"+JSON.stringify(unit));
     var actor = null;
     var z = theLayer.baseZOrder(unit.pos);
     if( boss ){

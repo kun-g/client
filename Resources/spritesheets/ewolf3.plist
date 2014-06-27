@@ -7,20 +7,20 @@
             <key>enemy-wolf3-1-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{187,40},{61,48}}</string>
+                <string>{{205,151},{61,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{61,48}}</string>
                 <key>sourceSize</key>
                 <string>{61,48}</string>
             </dict>
-            <key>enemy-wolf3-1-chest2.png</key>
+            <key>enemy-wolf3-1-chest2(MIRA-PC--MiRa--2014-05-15-17,35,48).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{93,88}}</string>
+                <string>{{2,94},{93,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,10 +30,23 @@
                 <key>sourceSize</key>
                 <string>{93,88}</string>
             </dict>
-            <key>enemy-wolf3-1-chest3.png</key>
+            <key>enemy-wolf3-1-chest2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{97,77},{60,73}}</string>
+                <string>{{2,2},{105,90}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{105,90}}</string>
+                <key>sourceSize</key>
+                <string>{105,90}</string>
+            </dict>
+            <key>enemy-wolf3-1-chest3(MIRA-PC--MiRa--2014-05-15-17,35,48).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{85,241},{60,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -43,10 +56,23 @@
                 <key>sourceSize</key>
                 <string>{60,73}</string>
             </dict>
-            <key>enemy-wolf3-1-head.png</key>
+            <key>enemy-wolf3-1-chest3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{97,2},{88,73}}</string>
+                <string>{{2,184},{69,81}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{69,81}}</string>
+                <key>sourceSize</key>
+                <string>{69,81}</string>
+            </dict>
+            <key>enemy-wolf3-1-head(MIRA-PC--MiRa--2014-05-15-17,35,48).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{97,166},{88,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -56,10 +82,36 @@
                 <key>sourceSize</key>
                 <string>{88,73}</string>
             </dict>
-            <key>enemy-wolf3-1-lefthand.png</key>
+            <key>enemy-wolf3-1-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,92},{55,56}}</string>
+                <string>{{109,84},{94,80}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{94,80}}</string>
+                <key>sourceSize</key>
+                <string>{94,80}</string>
+            </dict>
+            <key>enemy-wolf3-1-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{109,2},{96,80}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{96,80}}</string>
+                <key>sourceSize</key>
+                <string>{96,80}</string>
+            </dict>
+            <key>enemy-wolf3-1-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,48).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,351},{55,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,10 +121,23 @@
                 <key>sourceSize</key>
                 <string>{55,56}</string>
             </dict>
-            <key>enemy-wolf3-1-leftleg.png</key>
+            <key>enemy-wolf3-1-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,149},{37,50}}</string>
+                <string>{{2,293},{60,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,56}}</string>
+                <key>sourceSize</key>
+                <string>{60,56}</string>
+            </dict>
+            <key>enemy-wolf3-1-leftleg(MIRA-PC--MiRa--2014-05-15-17,35,48).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,408},{37,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -82,10 +147,23 @@
                 <key>sourceSize</key>
                 <string>{37,50}</string>
             </dict>
-            <key>enemy-wolf3-1-righthand.png</key>
+            <key>enemy-wolf3-1-leftleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{172,90},{57,53}}</string>
+                <string>{{207,53},{37,57}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{37,57}}</string>
+                <key>sourceSize</key>
+                <string>{37,57}</string>
+            </dict>
+            <key>enemy-wolf3-1-righthand(MIRA-PC--MiRa--2014-05-15-17,35,49).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{64,303},{57,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -95,10 +173,23 @@
                 <key>sourceSize</key>
                 <string>{57,53}</string>
             </dict>
-            <key>enemy-wolf3-1-rightleg.png</key>
+            <key>enemy-wolf3-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,201},{38,49}}</string>
+                <string>{{160,252},{60,53}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,53}}</string>
+                <key>sourceSize</key>
+                <string>{60,53}</string>
+            </dict>
+            <key>enemy-wolf3-1-rightleg(MIRA-PC--MiRa--2014-05-15-17,35,49).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{207,2},{38,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -108,10 +199,23 @@
                 <key>sourceSize</key>
                 <string>{38,49}</string>
             </dict>
-            <key>enemy-wolf3-1-tail.png</key>
+            <key>enemy-wolf3-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{187,2},{67,36}}</string>
+                <string>{{205,112},{37,49}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{37,49}}</string>
+                <key>sourceSize</key>
+                <string>{37,49}</string>
+            </dict>
+            <key>enemy-wolf3-1-tail(MIRA-PC--MiRa--2014-05-15-17,35,49).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{187,214},{67,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -121,6 +225,19 @@
                 <key>sourceSize</key>
                 <string>{67,36}</string>
             </dict>
+            <key>enemy-wolf3-1-tail.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,255},{70,36}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{70,36}}</string>
+                <key>sourceSize</key>
+                <string>{70,36}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -129,9 +246,9 @@
             <key>realTextureFileName</key>
             <string>ewolf3.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8b0723ec9882e361353365ed598083ce$</string>
+            <string>$TexturePacker:SmartUpdate:c135e7035201fe36a3241dc4ced481b1$</string>
             <key>textureFileName</key>
             <string>ewolf3.png</string>
         </dict>

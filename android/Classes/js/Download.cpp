@@ -7,7 +7,7 @@
 //
 
 #include "Download.h"
-#include "curl.h"
+#include "curl/curl.h"
 #include "CallbackManager.h"
 
 using namespace cocos2d;
@@ -61,12 +61,12 @@ void* downloadWorker(void* h)
             fseek(read, 0, SEEK_END);
             length = ftell(read);
             hand->existlen = length;
+            fclose(read);
         }
         else
         {
             exist = false;
         }
-        fclose(read);
         read = NULL;
     }
     

@@ -34,9 +34,26 @@ function mergeRoleProperties(dst, src){
     }
 }
 
+function compareRoleProperties(rst, src1, src2){ //src2 is greater than src1
+    if( src1 != null && src2 != null){
+        for(var k in src2){
+            if( src1[k] == null ){
+                rst[k] = src2[k];
+            }
+            else{
+                rst[k] = src2[k] - src1[k];
+            }
+        }
+        for(var k in src1){
+            if( src2[k] == null ){
+                rst[k] = -src1[k];
+            }
+        }
+    }
+}
+
 function propertyString(properties){
     var strProperty = "";
-    var flag = false;
     for(var k in properties){
         var value = properties[k];
         if( value > 0 ){
@@ -530,11 +547,11 @@ var UIPrice = cc.Node.extend({
                     {
                         offset.x += PRICE_GAP;
                     }
-                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
-                    sp.setAnchorPoint(cc.p(0, 0.5));
-                    sp.setPosition(offset);
-                    this.addChild(sp);
-                    offset.x += sp.getContentSize().width;
+//                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
+//                    sp.setAnchorPoint(cc.p(0, 0.5));
+//                    sp.setPosition(offset);
+//                    this.addChild(sp);
+//                    offset.x += sp.getContentSize().width;
                     var lb = cc.LabelBMFont.create(price[k], "font1.fnt");
                     lb.setAnchorPoint(cc.p(0, 0.5));
                     lb.setPosition(offset);
@@ -1037,7 +1054,7 @@ PopMsg.pop = function(msg, typ){
     node.pushMsg(msg, typ);
 }
 
-function requestBattle(stage, party){
+function requestBattle(stage, party, pkRival){
     var libUIKit = loadModule("uiKit.js");
     //assign variables
     if( engine.user.dungeon == null ){
@@ -1049,10 +1066,20 @@ function requestBattle(stage, party){
     }
     //go request
     if( FLAG_BLACKBOX ){
-        libUIKit.waitRPC(Request_GameStartDungeon, {
-            stg: stage,
-            initialDataOnly: true
-        }, function(rsp){
+        var args = {};
+        if(pkRival != null){
+            args = {
+                stg: stage,
+                pkr: pkRival,
+                initialDataOnly: true
+            }
+        }else{
+            args = {
+                stg: stage,
+                initialDataOnly: true
+            }
+        }
+        libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
                 engine.box.start(rsp.arg);
                 engine.event.holdNotifications();
@@ -1076,8 +1103,19 @@ function requestBattle(stage, party){
         });
     }
     else{
+        var args = {};
+        if(pkRival != null){
+            args = {
+                stg: stage,
+                pkr: pkRival
+            }
+        }else{
+            args = {
+                stg: stage
+            }
+        }
         //send rpc request
-        libUIKit.waitRPC(Request_GameStartDungeon, {stg: stage}, function(rsp){
+        libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
                 engine.event.holdNotifications();
                 engine.session.clearTeam();
@@ -1129,13 +1167,16 @@ function queryStage(stg){
 function matchDate(scheme, date){
     var boolflag = false;
     //////////年/////////////
-    if (scheme.year != undefined){
+    if (scheme.year != null){
         for (var k in scheme.year){
             if (scheme.year[k] == date.getFullYear()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     if (boolflag == false){
         return false;
@@ -1144,13 +1185,16 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////月/////////////
-    if (scheme.month != undefined){
+    if (scheme.month != null){
         for (var k in scheme.month){
             if (scheme.month[k] == date.getMonth()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     if (boolflag == false){
         return false;
@@ -1159,13 +1203,16 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////日/////////////
-    if (scheme.date != undefined){
+    if (scheme.date != null){
         for (var k in scheme.date){
             if (scheme.date[k] == date.getDate()){
                 boolflag = true;
                 break;
             }
         }
+    }
+    else{
+        boolflag = true;
     }
     if (boolflag == false){
         return false;
@@ -1174,7 +1221,7 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////周/////////////
-    if (scheme.day != undefined){
+    if (scheme.day != null){
         for (var k in scheme.day){
             if (scheme.day[k] == date.getDay()){
                 boolflag = true;
@@ -1182,5 +1229,13 @@ function matchDate(scheme, date){
             }
         }
     }
+    else{
+        boolflag = true;
+    }
     return boolflag;
+}
+
+function dayNumOfMonth(year,month)
+{
+    return 32-new Date(year,month,32).getDate();
 }

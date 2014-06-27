@@ -10,45 +10,51 @@
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>12</string>
+		<integer>12</integer>
 		<key>title</key>
 		<string>12元宝石大礼包</string>
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>30</string>
+		<integer>30</integer>
 		<key>title</key>
 		<string>30元宝石大礼包</string>
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>68</string>
+		<integer>68</integer>
 		<key>title</key>
 		<string>68元宝石大礼包</string>
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>128</string>
+		<integer>128</integer>
 		<key>title</key>
 		<string>128元宝石大礼包</string>
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>198</string>
+		<integer>198</integer>
 		<key>title</key>
 		<string>198元宝石大礼包</string>
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>328</string>
+		<integer>328</integer>
 		<key>title</key>
 		<string>328元宝石大礼包</string>
 	</dict>
 	<dict>
 		<key>price</key>
-		<string>648</string>
+		<integer>648</integer>
 		<key>title</key>
 		<string>648元宝石大礼包</string>
+	</dict>
+	<dict>
+		<key>price</key>
+		<integer>25</integer>
+		<key>title</key>
+		<string>月卡</string>
 	</dict>
 </array>
 </plist>

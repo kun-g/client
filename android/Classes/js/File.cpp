@@ -8,9 +8,9 @@
 
 #include "File.h"
 #include "tools.h"
-#include "ISystem.h"
+#include "utility/ISystem.h"
 #include "Download.h"
-#include "aes.h"
+#include "utility/aes.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -377,7 +377,7 @@ JSBool jsbFileDecrypt(JSContext* cx, unsigned argc, JS::Value* vp)
     string src = strSource;
     
     size_t size;
-    unsigned char * input = CCFileUtils::sharedFileUtils()->getFileData(src.c_str(), "r", &size);
+    unsigned char * input = CCFileUtils::sharedFileUtils()->getFileData(src.c_str(), "r", (unsigned long*)&size);
     if( input != NULL )
     {
         unsigned char * output = (unsigned char *)malloc(size);

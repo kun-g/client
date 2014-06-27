@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5301A8EF194414780029001C /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 5301A8EC194414780029001C /* dblackbox */; };
+		5301A8F0194414780029001C /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 5301A8ED194414780029001C /* dscript */; };
+		5301A8F1194414780029001C /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 5301A8EE194414780029001C /* dtable */; };
 		5308A0C2188394C0008CEC46 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5308A0BF188394C0008CEC46 /* libUMFeedback.a */; };
 		5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5308A0C0188394C0008CEC46 /* umFeedback.bundle */; };
 		5308A0C6188395B0008CEC46 /* IFeedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5308A0C4188395B0008CEC46 /* IFeedback.cpp */; };
@@ -41,6 +44,7 @@
 		535EF28917E9444D00D0D61D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28817E9444C00D0D61D /* libz.dylib */; };
 		535EF28B17E9445800D0D61D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28A17E9445800D0D61D /* SystemConfiguration.framework */; };
 		535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EF28E17E9447100D0D61D /* libiconv.dylib */; };
+		5371A1FB192CAFFD0033411F /* misc in Resources */ = {isa = PBXBuildFile; fileRef = 5371A1FA192CAFFD0033411F /* misc */; };
 		53744E3618891EFF0096A891 /* PublishVersions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 53744E3418891EFF0096A891 /* PublishVersions.mm */; };
 		5386046918FE658100A08149 /* 91UAC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5386046818FE658100A08149 /* 91UAC.mm */; };
 		5386047418FE668900A08149 /* ATSMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5386046C18FE668900A08149 /* ATSMS.framework */; };
@@ -384,9 +388,6 @@
 		53A315BD18FD3191001CE8B0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A315AC18FD3191001CE8B0 /* Info.plist */; };
 		53A315BE18FD3191001CE8B0 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 53A315AD18FD3191001CE8B0 /* iTunesArtwork */; };
 		53A315C518FD413B001CE8B0 /* libcocos2dx-talkingdata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A315C418FD31C6001CE8B0 /* libcocos2dx-talkingdata.a */; };
-		53D0272B1906C71D007DC2A2 /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 53D027281906C71D007DC2A2 /* blackbox */; };
-		53D0272C1906C71D007DC2A2 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 53D027291906C71D007DC2A2 /* script */; };
-		53D0272D1906C71D007DC2A2 /* table in Resources */ = {isa = PBXBuildFile; fileRef = 53D0272A1906C71D007DC2A2 /* table */; };
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
 		53EA73CE18FE890600A4DF4F /* static.json in Resources */ = {isa = PBXBuildFile; fileRef = 53EA73CD18FE890600A4DF4F /* static.json */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
@@ -410,6 +411,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5301A8EC194414780029001C /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
+		5301A8ED194414780029001C /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
+		5301A8EE194414780029001C /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		5308A0BF188394C0008CEC46 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		5308A0C0188394C0008CEC46 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		5308A0C1188394C0008CEC46 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
@@ -471,6 +475,7 @@
 		535EF28817E9444C00D0D61D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		535EF28A17E9445800D0D61D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		535EF28E17E9447100D0D61D /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		5371A1FA192CAFFD0033411F /* misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = misc; sourceTree = "<group>"; };
 		53744E3418891EFF0096A891 /* PublishVersions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PublishVersions.mm; sourceTree = "<group>"; };
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5386046718FE658100A08149 /* 91UAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 91UAC.h; sourceTree = "<group>"; };
@@ -1245,9 +1250,6 @@
 		53A315AC18FD3191001CE8B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ios/Info.plist; sourceTree = "<group>"; };
 		53A315AD18FD3191001CE8B0 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = ios/iTunesArtwork; sourceTree = "<group>"; };
 		53A315BF18FD31C6001CE8B0 /* cocos2dx-talkingdata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2dx-talkingdata.xcodeproj"; path = "../libs/GA/proj.ios/cocos2dx-talkingdata.xcodeproj"; sourceTree = "<group>"; };
-		53D027281906C71D007DC2A2 /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
-		53D027291906C71D007DC2A2 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
-		53D0272A1906C71D007DC2A2 /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 		53D8B4B11888047E00F2804E /* aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes.cpp; sourceTree = "<group>"; };
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		53EA73CD18FE890600A4DF4F /* static.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = static.json; sourceTree = "<group>"; };
@@ -2900,9 +2902,10 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53D027281906C71D007DC2A2 /* blackbox */,
-				53D027291906C71D007DC2A2 /* script */,
-				53D0272A1906C71D007DC2A2 /* table */,
+				5301A8EC194414780029001C /* dblackbox */,
+				5301A8ED194414780029001C /* dscript */,
+				5301A8EE194414780029001C /* dtable */,
+				5371A1FA192CAFFD0033411F /* misc */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
 				53A3158B18FD317E001CE8B0 /* sound */,
@@ -3038,7 +3041,6 @@
 				53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */,
 				53A315B218FD3191001CE8B0 /* Default~ipad.png in Resources */,
 				53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */,
-				53D0272C1906C71D007DC2A2 /* script in Resources */,
 				53A30DBB18FD3121001CE8B0 /* jsb.jsc in Resources */,
 				53A30DC118FD3121001CE8B0 /* jsb_cocosbuilder.jsc in Resources */,
 				53A315BD18FD3191001CE8B0 /* Info.plist in Resources */,
@@ -3050,13 +3052,14 @@
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				53A30DC518FD3121001CE8B0 /* jsb_sys.jsc in Resources */,
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
+				5301A8F1194414780029001C /* dtable in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
+				5371A1FB192CAFFD0033411F /* misc in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
 				53A315AF18FD3191001CE8B0 /* Default-568h@2x.png in Resources */,
 				53A3048018FD30EB001CE8B0 /* README.txt in Resources */,
 				53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */,
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
-				53D0272B1906C71D007DC2A2 /* blackbox in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,
 				53A30DBC18FD3121001CE8B0 /* jsb_chipmunk.jsc in Resources */,
 				53A3159818FD317E001CE8B0 /* sound in Resources */,
@@ -3068,10 +3071,11 @@
 				53A305B618FD30EC001CE8B0 /* js.msg in Resources */,
 				53A3159418FD317E001CE8B0 /* font in Resources */,
 				53A315BA18FD3191001CE8B0 /* Icon@2x~ipad.png in Resources */,
-				53D0272D1906C71D007DC2A2 /* table in Resources */,
 				53A315B318FD3191001CE8B0 /* Default~iphone.png in Resources */,
 				53A304C518FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A315B818FD3191001CE8B0 /* Icon.png in Resources */,
+				5301A8EF194414780029001C /* dblackbox in Resources */,
+				5301A8F0194414780029001C /* dscript in Resources */,
 				53A3159C18FD317E001CE8B0 /* ui in Resources */,
 				5386047D18FE66BD00A08149 /* NdComPlatform_SNS_Resources.bundle in Resources */,
 			);

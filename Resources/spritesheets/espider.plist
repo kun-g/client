@@ -4,6 +4,19 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>enemy-spider-1-head(MIRA-PC--MiRa--2014-05-15-17,35,37).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{61,116},{57,42}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{57,42}}</string>
+                <key>sourceSize</key>
+                <string>{57,42}</string>
+            </dict>
             <key>enemy-spider-1-head.png</key>
             <dict>
                 <key>frame</key>
@@ -79,7 +92,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4fb36f6c71da6343f446206fa35eecf7$</string>
+            <string>$TexturePacker:SmartUpdate:4e58e51d6b92fa5de240a26daeb7a9c5$</string>
             <key>textureFileName</key>
             <string>espider.png</string>
         </dict>
