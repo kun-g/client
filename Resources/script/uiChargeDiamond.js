@@ -28,7 +28,7 @@ var payStr = [
     {str:"198元", cost:198, dm:2260 },
     {str:"328元", cost:328, dm:3760 },
     {str:"648元", cost:648, dm:7480 },
-    {str:"25元", cost:25, dm:2500 }
+    {str:"25元", cost:0.1, dm:2500 }
 ];
 
 var theLastBillNo = null;
@@ -306,7 +306,7 @@ function onPurchaseMonthCard(sender){
     var zoneId = engine.session.zoneId;
     var billNo = genBillNo(8);
     iap.makePayment(billNo, 8, 1, actorName, zoneId);
-    tdga.paymentRequest(billNo, payStr[0].str, payStr[0].cost, "CNY", payStr[0].dm, iap.getStoreName() );
+    tdga.paymentRequest(billNo, payStr[8].str, payStr[8].cost, "CNY", payStr[8].dm, iap.getStoreName() );
 
     //保持连接
     engine.event.sendNTFEvent(103, {sign:-1});

@@ -35,6 +35,7 @@ var PrizeList = [];
 var PrizeIndex = 0;
 var SweepArgs = {};
 var isScheduling = false;
+var SWEEP_VIP_LEVEL = 4;
 
 function onEvent(event)
 {
@@ -430,6 +431,11 @@ function showStages(chId)
         var btnModePos = theLayer.stage.owner.btnMode.getPosition();
         btnModePos.y -= 64;
         theLayer.stage.owner.btnMode.setPosition(btnModePos);
+        theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
+
+        //check vip level (the Vip4(or higher) player have access to sweep in batches)
+        theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
+
         onNormal();
         theLayer.stage.node.setScale(0);
         theLayer.stage.node.runAction(actionPopIn());
@@ -553,12 +559,13 @@ function selectStage(sId)
     theLayer.stage.owner.btnSweep1.setVisible(false);
     theLayer.stage.owner.btnSweep2.setVisible(false);
     theLayer.stage.owner.nodeSweepFrame.setVisible(false);
-    var scrollQuantity = 20;
-//    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
+//    var scrollQuantity = 20;
+    var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
     debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
-    if( sweepPower != null ) {
+    var stgFinished = (engine.user.stage.Chapters[theChapterClass.chapterId].Stages[sId].State >= 2);
+    if( sweepPower != null && stgFinished) {
         var myPower = engine.user.actor.getPower();
         theLayer.stage.owner.nodeSweepFrame.setVisible(true);
         theLayer.stage.owner.nodeSweepMid.setVisible(true);
@@ -673,11 +680,6 @@ function showSweepResult() {
     BAR_WIDTH = 570;
     BAR_HEIGHT = 180;
     LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * 5/*(SweepArgs.mul? 5:1)*/);
-//    theLayer.sweep.owner.effectLight.animationManager.setCompletedAnimationCallback(
-//        theLayer.sweep.owner.effectLight, function () {
-//        theLayer.sweep.owner.effectLight.animationManager.runAnimationsForSequenceNamed("effect");
-//    });
-//    theLayer.sweep.owner.effectLight.animationManager.runAnimationsForSequenceNamed("effect");
     theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
     createPrizeBar();
 }
@@ -817,30 +819,30 @@ function scene()
 function sweepStage(args, cost) {
     debug("sweepStage("+args.stg+", "+cost+")");
 
-//    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
-//        if( rsp.RET == RET_OK ){
-//
-//            if( rsp.arg != null ){
-//                PrizeList = rsp.arg;
-//                showSweepAnimetion();
-//            }
-//        }else{
-//            libUIKit.showErrorMessage(rsp);
-//        }
-//    });
+    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
+        if( rsp.RET == RET_OK ){
+
+            if( rsp.arg != null ){
+                PrizeList = rsp.arg;
+                showSweepAnimetion();
+            }
+        }else{
+            libUIKit.showErrorMessage(rsp);
+        }
+    });
 
 
     //test code
-    PrizeList = [];
-    while(PrizeList.length < (args.mul? 5:1)){
-        PrizeList[PrizeList.length] = [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100}
-        ];
-    }
-    showSweepAnimetion();
+//    PrizeList = [];
+//    while(PrizeList.length < (args.mul? 5:1)){
+//        PrizeList[PrizeList.length] = [
+//            {type:1, count:100},
+//            {type:2, count:100},
+//            {type:3, count:100},
+//            {type:4, count:100}
+//        ];
+//    }
+//    showSweepAnimetion();
     //test code end
 }
 //exports.sweepStage = sweepStage;
