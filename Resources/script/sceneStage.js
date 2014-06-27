@@ -564,7 +564,8 @@ function selectStage(sId)
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
     debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
-    if( sweepPower != null ) {
+    var stgFinished = (engine.user.stage.Chapters[theChapterClass.chapterId].Stages[sId].State >= 2);
+    if( sweepPower != null && stgFinished) {
         var myPower = engine.user.actor.getPower();
         theLayer.stage.owner.nodeSweepFrame.setVisible(true);
         theLayer.stage.owner.nodeSweepMid.setVisible(true);
