@@ -135,6 +135,9 @@ function onEnter()
     notifyQuest = theLayer.owner.spnQuest;
     notifyQuestNumber = theLayer.owner.notifyQuest;
 
+    //function ON/OFF
+    theLayer.owner.btnPVP.setEnabled(false); //turn off PVP
+
     //set stage button
     //-添加职业徽记
     var roleData = loadModule("table.js").queryTable(TABLE_ROLE, engine.user.actor.ClassId);
