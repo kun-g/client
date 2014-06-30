@@ -2987,7 +2987,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-DEVELOP" */;
+			buildConfigurationList = 53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-Develop" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3605,7 +3605,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-DEVELOP" */ = {
+		53885E7217E93DE400A3A8B4 /* Build configuration list for PBXProject "PocketDungeon-Develop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5388632117E93DF600A3A8B4 /* Debug */,

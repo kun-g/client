@@ -1,6 +1,6 @@
 {
     "binary_channel" : "Kuaiyong",
-    "resource_version" : 96,
+    "resource_version" : 101,
     "binary_version" : "1.0.7",
     "account_type" : 4,
     "default_user" : ""
