@@ -113,11 +113,11 @@
                 <key>frame</key>
                 <string>{{401,448},{29,44}}</string>
                 <key>offset</key>
-                <string>{-1,5}</string>
+                <string>{-1,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{29,44}}</string>
+                <string>{{0,1},{29,44}}</string>
                 <key>sourceSize</key>
                 <string>{31,54}</string>
             </dict>
@@ -1379,7 +1379,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f752fb844cd1d355a62794107c7a0fd6$</string>
+            <string>$TexturePacker:SmartUpdate:65658c6144379b2356079f2b0eef7754$</string>
             <key>textureFileName</key>
             <string>effect.png</string>
         </dict>
