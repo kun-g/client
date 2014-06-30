@@ -21,6 +21,7 @@ var libGadgets = loadModule("gadgets.js");
 
 var theDungeon = null;
 var thePopMsg = null;
+var theStageClass = null;
 
 var gameOverFlag = false;
 var resultFlag = false;
@@ -47,6 +48,7 @@ function onEvent(event)
         {
             if( event.arg.stg != null ){
                 engine.user.dungeon.stage = event.arg.stg;
+                theStageClass = queryStage(event.arg.stg);
                 if( event.arg.stg == INITIAL_STAGE )
                 {
                     theDungeon.TutorialFlag = true;
@@ -564,6 +566,11 @@ function onCancelDungeon(force){
 }
 
 function showRevive(potionNeedCount){
+    if( theStageClass.pvp === true ){
+        engine.event.sendNTFEvent(Request_CancelDungeon);
+        FailReason = "PK战败";
+        return;
+    }
     //show revive dialogue
     var alert = libUIKit.alert();
     alert.setContent("队伍成员已经全部牺牲\n是否要使用复活药水继续战斗？");
@@ -753,6 +760,7 @@ function onEnter()
 
     //setup action environmenta
     theDungeon = new dungeon.Dungeon();
+    theStageClass = {};
     theLayer.actions.setEnvironment(theDungeon, theLayer);
     theLayer.scheduleUpdate();
     theLayer.avatars = {};

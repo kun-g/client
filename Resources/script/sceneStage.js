@@ -37,6 +37,11 @@ var SweepArgs = {};
 var isScheduling = false;
 var SWEEP_VIP_LEVEL = 4;
 
+var BAR_WIDTH = 570;
+var BAR_HEIGHT = 180;
+var NumMultiRows;
+var LastMultiRows;
+
 function onEvent(event)
 {
     return false;
@@ -672,15 +677,25 @@ function showSweepResult() {
     theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theLayer.sweepLayer.addChild(theLayer.sweep.node);
     theLayer.sweep.theListLayer = cc.Layer.create();
+
+    NumMultiRows = 0;
+    for( var k in PrizeList){
+        if( PrizeList[k].length > 5 ){
+            NumMultiRows++;
+        }
+    }
+    var listSize = theLayer.sweep.theListLayer.getContentSize();
+    listSize.height = BAR_HEIGHT*(SweepArgs.mul? 5:1) + NumMultiRows*120 + 50;
+    theLayer.sweep.theListLayer.setContentSize(listSize);
+    theLayer.sweep.theListLayer.setPosition(cc.p(0, winSize.height/2));
     theLayer.sweep.ui.scroller.setContainer(theLayer.sweep.theListLayer);
     var off = theLayer.sweep.ui.scroller.getContentOffset();
     off.y = theLayer.sweep.ui.scroller.minContainerOffset().y;
     theLayer.sweep.ui.scroller.setContentOffset(off);
     PrizeIndex = 0;
-    BAR_WIDTH = 570;
-    BAR_HEIGHT = 180;
-    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * 5/*(SweepArgs.mul? 5:1)*/);
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * (SweepArgs.mul? 5:1));
     theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
+    LastMultiRows = 0;
     createPrizeBar();
 }
 
@@ -692,15 +707,21 @@ function createPrizeBar() {
         layer.addChild(layer.node);
         layer.node.animationManager.setCompletedAnimationCallback(layer, createPrizeBar);
         layer.owner.labIndex.setString(PrizeIndex+1);
-        var dimension = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
+
+        var ITEM_SCALE = 0.77;
+        var dimension = cc.size(layer.owner.layerPrize.getContentSize().width/ITEM_SCALE + 10, 0);
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
-        prize.setPosition(layer.owner.nodePrize.getPosition());
-        prize.setScale(0.77);
+        prize.setAnchorPoint(cc.p(0, 0));
+        var posPrize = layer.owner.nodePrize.getPosition();
+        posPrize.y -= 120 * ITEM_SCALE * LastMultiRows;
+        prize.setPosition(posPrize);
+        prize.setScale(ITEM_SCALE);
+        debug("Size:"+JSON.stringify(prize.getContentSize())+"  Position:"+JSON.stringify(prize.getPosition()));
         layer.owner.nodePrizeBar.addChild(prize);
         layer.setPosition(cc.p(
                 theLayer.sweep.owner.nodeContent.getContentSize().width/2,
-                LOAD_SIZE.height - BAR_HEIGHT * (PrizeIndex+1) + 80));
-        debug("LOAD_SIZE:"+LOAD_SIZE.height+"  layer:"+layer.getPosition().y);
+                LOAD_SIZE.height - BAR_HEIGHT * (PrizeIndex+1) - LastMultiRows * 120 + 80));
+        LastMultiRows = Math.floor( (PrizeList[PrizeIndex].length-1) / 5 );
         theLayer.sweep.theListLayer.addChild(layer);
         if( PrizeIndex > 1 && !isScheduling) {
             isScheduling = true;
@@ -819,30 +840,34 @@ function scene()
 function sweepStage(args, cost) {
     debug("sweepStage("+args.stg+", "+cost+")");
 
-    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
-        if( rsp.RET == RET_OK ){
-
-            if( rsp.arg != null ){
-                PrizeList = rsp.arg;
-                showSweepAnimetion();
-            }
-        }else{
-            libUIKit.showErrorMessage(rsp);
-        }
-    });
+//    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
+//        if( rsp.RET == RET_OK ){
+//
+//            if( rsp.arg != null ){
+//                PrizeList = rsp.arg;
+//                showSweepAnimetion();
+//            }
+//        }else{
+//            libUIKit.showErrorMessage(rsp);
+//        }
+//    });
 
 
     //test code
-//    PrizeList = [];
-//    while(PrizeList.length < (args.mul? 5:1)){
-//        PrizeList[PrizeList.length] = [
-//            {type:1, count:100},
-//            {type:2, count:100},
-//            {type:3, count:100},
-//            {type:4, count:100}
-//        ];
-//    }
-//    showSweepAnimetion();
+    PrizeList = [];
+    while(PrizeList.length < (args.mul? 5:1)){
+        PrizeList[PrizeList.length] = [
+            {type:1, count:100},
+            {type:2, count:100},
+            {type:3, count:100},
+            {type:4, count:100},
+            {type:4, count:100},
+            {type:4, count:100},
+            {type:4, count:100},
+            {type:4, count:100}
+        ];
+    }
+    showSweepAnimetion();
     //test code end
 }
 //exports.sweepStage = sweepStage;
