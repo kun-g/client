@@ -906,30 +906,35 @@ var ItemPreview = cc.Layer.extend({
     formatPreview: function(){
         var count = this.getChildrenCount();
         var nodes = this.getChildren();
+        var scale = 1;
+        if(this.SCALE != null){
+            scale = this.SCALE;
+        }
         if( this.DIMENSION.width == 0 ){
             var index = 0;
             for(var k in nodes){
                 var nd = nodes[k];
-                nd.setPosition(cc.p(index*ITEMPREVIEW_WIDTH, 0));
+                nd.setPosition(cc.p(index*ITEMPREVIEW_WIDTH*scale, 0));
                 index++;
             }
-            this.setContentSize(cc.size(ITEMPREVIEW_WIDTH*count, ITEMPREVIEW_HEIGHT));
+            this.setContentSize(cc.size(ITEMPREVIEW_WIDTH*count*scale, ITEMPREVIEW_HEIGHT*scale));
         }
         else{
-            var PC = Math.floor(this.DIMENSION.width/ITEMPREVIEW_WIDTH);
+            var PC = Math.floor(this.DIMENSION.width/ITEMPREVIEW_WIDTH/scale);
             var LN = Math.ceil(count/PC);
-            var WD = count*ITEMPREVIEW_WIDTH;
+            var WD = count*ITEMPREVIEW_WIDTH*scale;
             if( LN > 1 ){
-                WD = PC*ITEMPREVIEW_WIDTH;
+                WD = PC*ITEMPREVIEW_WIDTH*scale;
             }
-            var size = cc.size(WD, ITEMPREVIEW_HEIGHT*LN);
+            var size = cc.size(WD, ITEMPREVIEW_HEIGHT*LN*scale);
             this.setContentSize(size);
             var index = 0;
             for(var k in nodes){
                 var PX = Math.floor(index%PC);
                 var PY = Math.floor(index/PC);
                 var nd = nodes[k];
-                nd.setPosition(cc.p(PX*ITEMPREVIEW_WIDTH, size.height - PY*ITEMPREVIEW_HEIGHT - ITEMPREVIEW_HEIGHT));
+                nd.setPosition(cc.p(PX*ITEMPREVIEW_WIDTH*scale, size.height - PY*ITEMPREVIEW_HEIGHT*scale - ITEMPREVIEW_HEIGHT*scale));
+                nd.setScale(scale);
                 index++;
             }
         }
@@ -958,6 +963,9 @@ var ItemPreview = cc.Layer.extend({
     },
     setTextColor: function(color){
         this.COLOR = color;
+    },
+    setNodeScale: function(scale){
+        this.SCALE = scale;
     },
     shake: function(){
         var off = 0;

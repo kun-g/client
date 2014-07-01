@@ -30,12 +30,16 @@ var theCenter = {};
 var theDay = 0;
 
 var animTag = 100;
+var dmStarEffect = false;
 
 var prizeIconList = ["dailyprize-common-lq.png",
     "dailyprize-common-light.png",
     "dailyprize-common-vip1.png"];
 
 var prizePosXList = [];
+
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
 
 //common used close function
 function onClose(sender){
@@ -49,9 +53,10 @@ function onDailyAnimationCompleted(name){
         engine.ui.popLayer();
         theLayerMode = null;
     }
-    else if( theLayerMode == MODE_DAILYQUEST ){
+    else if( theLayerMode == MODE_DAILYQUEST && dmStarEffect == false ){
         //theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
         libEffect.attachEffectCCBI(theLayer.owner.nodeEffectStar,cc.p(0, 0), "effect-dmstar.ccbi",libEffect.EFFECTMODE_LOOP);
+        dmStarEffect = true;
     }
 }
 
@@ -436,8 +441,13 @@ function refreshDailyQuest(){
             var dimension = cc.size(layer.owner.layerDesc.getContentSize().width, 0);
             var dimensionPrize = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
 
+            var winSize = cc.Director.getInstance().getWinSize();
+            var iphone5s = (winSize.height == 1136);
             var text = DCTextArea.create();
             text.setDimension(dimension);
+            if (iphone5s){
+                text.pushText({text: "  "});
+            }
             for(var k in questData.objects){
                 var tar = questData.objects[k];
                 var cnt = theQuest.Count[k];
@@ -445,7 +455,7 @@ function refreshDailyQuest(){
                     cnt = 0;
                 }
 
-                var color = cc.c3b(0, 0, 0);
+                var color = COLOR_BLACK;
                 if( cnt >= tar.count ){
                     cnt = tar.count;
                     color = cc.c3b(95, 187, 38);
@@ -460,8 +470,16 @@ function refreshDailyQuest(){
                 });
             }
             var size = text.getContentSize();
+            if (iphone5s){
+                text.pushText({text: "  "});
+            }
 
-            var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimensionPrize);
+            var prize = libItem.ItemPreview.createRaw(dimensionPrize);
+            prize.setTextColor(COLOR_BLACK);
+            if (!iphone5s){
+                prize.setNodeScale(0.77);
+            }
+            prize.setPreview(dailyQuest.curpriz);
 
             prize.setPosition(cc.p(0, 0));
             layer.owner.layerPrize.addChild(prize);
