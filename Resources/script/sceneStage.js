@@ -693,7 +693,7 @@ function showSweepResult() {
     off.y = theLayer.sweep.ui.scroller.minContainerOffset().y;
     theLayer.sweep.ui.scroller.setContentOffset(off);
     PrizeIndex = 0;
-    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * (SweepArgs.mul? 5:1));
+    LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT * (SweepArgs.mul? 5:1) + NumMultiRows*120);
     theLayer.sweep.node.animationManager.runAnimationsForSequenceNamed("open");
     LastMultiRows = 0;
     createPrizeBar();
@@ -713,23 +713,30 @@ function createPrizeBar() {
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
         prize.setAnchorPoint(cc.p(0, 0));
         var posPrize = layer.owner.nodePrize.getPosition();
-        posPrize.y -= 120 * ITEM_SCALE * LastMultiRows;
+        var thisMultiRows = Math.floor( (PrizeList[PrizeIndex].length-1) / 5 );
+        posPrize.y -= 120 * thisMultiRows;
         prize.setPosition(posPrize);
         prize.setScale(ITEM_SCALE);
         debug("Size:"+JSON.stringify(prize.getContentSize())+"  Position:"+JSON.stringify(prize.getPosition()));
         layer.owner.nodePrizeBar.addChild(prize);
-        layer.setPosition(cc.p(
-                theLayer.sweep.owner.nodeContent.getContentSize().width/2,
-                LOAD_SIZE.height - BAR_HEIGHT * (PrizeIndex+1) - LastMultiRows * 120 + 80));
-        LastMultiRows = Math.floor( (PrizeList[PrizeIndex].length-1) / 5 );
-        theLayer.sweep.theListLayer.addChild(layer);
-        if( PrizeIndex > 1 && !isScheduling) {
+        if( PrizeIndex == 0 ){
+            layer.setPosition(cc.p(
+                    theLayer.sweep.owner.nodeContent.getContentSize().width/2,
+                    LOAD_SIZE.height - BAR_HEIGHT + 80));
+        }else{
+            layer.setPosition(cc.p(
+                    theLayer.sweep.owner.nodeContent.getContentSize().width/2,
+                    theLayer.sweep.theListLayer.getChildByTag(PrizeIndex-1).getPosition().y - BAR_HEIGHT - LastMultiRows*120 ));
+        }
+        theLayer.sweep.theListLayer.addChild(layer, null, PrizeIndex);
+        if( ( PrizeIndex > 1 || (PrizeIndex == 1 && LastMultiRows+thisMultiRows > 1) ) && !isScheduling) {
             isScheduling = true;
             off1 = theLayer.sweep.ui.scroller.getContentOffset();
-            off2 = cc.p(off1.x, off1.y + BAR_HEIGHT);
+            off2 = cc.p(off1.x, off1.y + BAR_HEIGHT + LastMultiRows * 120 * ITEM_SCALE);
             lerpA = 0;
             theLayer.scheduleUpdate();
         }
+        LastMultiRows = thisMultiRows;
         PrizeIndex++;
         layer.node.animationManager.runAnimationsForSequenceNamed("popup");
     }
@@ -758,10 +765,6 @@ function updateScrollView(delta) {
         theLayer.unscheduleUpdate();
         isScheduling = false;
     }
-}
-
-function lerp(x, y, a) {
-    return ( (1-a)*x + a*y );
 }
 
 function onTouchBegan(touch, event)
@@ -840,35 +843,18 @@ function scene()
 function sweepStage(args, cost) {
     debug("sweepStage("+args.stg+", "+cost+")");
 
-//    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
-//        if( rsp.RET == RET_OK ){
-//
-//            if( rsp.arg != null ){
-//                PrizeList = rsp.arg;
-//                showSweepAnimetion();
-//            }
-//        }else{
-//            libUIKit.showErrorMessage(rsp);
-//        }
-//    });
+    libUIKit.waitRPC(Request_SweepStage, args, function (rsp) {
+        if( rsp.RET == RET_OK ){
 
+            if( rsp.arg != null ){
+                PrizeList = rsp.arg;
+                showSweepAnimetion();
+            }
+        }else{
+            libUIKit.showErrorMessage(rsp);
+        }
+    });
 
-    //test code
-    PrizeList = [];
-    while(PrizeList.length < (args.mul? 5:1)){
-        PrizeList[PrizeList.length] = [
-            {type:1, count:100},
-            {type:2, count:100},
-            {type:3, count:100},
-            {type:4, count:100},
-            {type:4, count:100},
-            {type:4, count:100},
-            {type:4, count:100},
-            {type:4, count:100}
-        ];
-    }
-    showSweepAnimetion();
-    //test code end
 }
 //exports.sweepStage = sweepStage;
 
