@@ -133,7 +133,7 @@ AppStore* gAppStoreInstance = nil;
         }
         else
         {
-            NSString* strMsg = @"不存在此商品";
+            NSString* strMsg = @"此商品暂时不可用";
             mpHandle->getIAPDelegate()->onPaymentResult(Payment_Failed, product, string([strMsg cStringUsingEncoding:NSUTF8StringEncoding]));
         }
     }
