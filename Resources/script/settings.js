@@ -139,6 +139,14 @@ function show(){
     theLayer.node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     theLayer.node.animationManager.runAnimationsForSequenceNamed("open");
 
+    if( engine.game.getConfig().binary_channel == "AppStore" ){
+        cacheSprite("setting-gamecenter1.png");
+        cacheSprite("setting-gamecenter2.png");
+        var sfc = cc.SpriteFrameCache.getInstance();
+        theLayer.owner.btnUACManage.setNormalSpriteFrame(sfc.getSpriteFrame("setting-gamecenter1.png"));
+        theLayer.owner.btnUACManage.setSelectedSpriteFrame(sfc.getSpriteFrame("setting-gamecenter2.png"));
+    }
+
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     updateMusicLabel();

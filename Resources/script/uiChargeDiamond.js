@@ -88,7 +88,11 @@ function onEvent(event)
                     uikit.showAlert("充值取消");
                     break;
                 case 2://failed
-                    uikit.showAlert("充值失败");
+                    var str = "充值失败";
+                    if( event.arg.message != null ){
+                        str += "\n"+event.arg.message;
+                    }
+                    uikit.showAlert(str);
                     break;
             }
             if( theLoad != null ){
