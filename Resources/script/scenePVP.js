@@ -78,6 +78,7 @@ function setBottomContent() {
             var pkPrizeInfo, pkBonusGold;
             for(var i=0; ; i++){
                 pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
+                if( pkPrizeInfo == null ) return;
                 if( myPkInfo.rnk <= pkPrizeInfo.top ){
                     for( var k in pkPrizeInfo.prize ){
                         switch(pkPrizeInfo.prize[k].type){
