@@ -1632,6 +1632,9 @@ exports.data = [
         },
 
         "collectId":17001,
+        "global": [
+            {id: 211,from: 1, to: 4,dropPrize:}
+        ],
         "levels" :[
             {
                  "objects" :[

@@ -2952,7 +2952,7 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
-                { "type": "chance", "chance": 0.5}
+                { "type": "chance", "chance": 0.3}
             ],
             "action": [
                 { "type": "installSpell", "spell": 129}
@@ -3070,7 +3070,7 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
-                { "type": "chance", "chance": 0.5},
+                { "type": "chance", "chance": 0.3},
                 {"type":"alive"}
             ],
             "targetSelection": {
@@ -3155,7 +3155,7 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
-                { "type": "chance", "chance": 0.5},
+                { "type": "chance", "chance": 0.3},
                 {"type":"alive"}
             ],
             "targetSelection": {
@@ -3549,6 +3549,40 @@ exports.data = [
                 {"type": "delay"},
                 {"type":"playEffect","effect":21,"pos":"self"}
             ]
+        }
+    },
+    {
+        "skillId": 153,
+        "label": "boss掉落",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeKill" }
+            ],
+            "action": [
+                { "type": "dropPrize"} ]
+        }
+    },
+    {
+        "skillId": 154,
+        "label": "小兵掉落",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeKill" },
+                { "type": "chance", "chance": 0.3 }
+            ],
+            "action": [
+                { "type": "dropPrize"} ]
+        }
+    },
+    {
+        "skillId": 154,
+        "label": "宝箱掉落",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeActivate" }
+            ],
+            "action": [
+                { "type": "dropPrize"} ]
         }
     }
 ];
