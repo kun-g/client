@@ -475,6 +475,7 @@ function makeAttack(pace, act)
         //debug("ON ATTACK ANIMATION");//debug
         actor.playAnimation("attack");
 
+        var mainWeapon = null;
         //play sound
         if( !isHero(this.act) )
         {
@@ -484,15 +485,22 @@ function makeAttack(pace, act)
                 cc.AudioEngine.getInstance().playEffect(monster.soundAttack);
             }
             this.hit = monster.effectAttack;//assign hit effect
+            if( dungeon.Units[this.act-UNIT_TAG].role != null ){
+                var role = loadModule("role.js");
+                var monsterRole = new role.Role(dungeon.Units[this.act-UNIT_TAG].role);
+                mainWeapon = monsterRole.queryArmor(EquipSlot_MainHand);
+            }
         }
         else
         {
             var ro = engine.user.dungeon.party[this.act-HERO_TAG];
             var sound = null;
-            var item = ro.queryArmor(EquipSlot_MainHand);
-            if( item != null )
+            mainWeapon = ro.queryArmor(EquipSlot_MainHand);
+        }
+        if( mainWeapon != null ){
+            if( mainWeapon != null )
             {
-                var itemClass = table.queryTable(TABLE_ITEM, item.ClassId);
+                var itemClass = table.queryTable(TABLE_ITEM, mainWeapon.ClassId);
                 if( itemClass != null )
                 {
                     sound = itemClass.soundAttack;
@@ -500,7 +508,7 @@ function makeAttack(pace, act)
                 }
                 else
                 {
-                    error("no such item ("+item.ClassId+")");
+                    error("no such item ("+mainWeapon.ClassId+")");
                 }
             }
             if( sound != null )
@@ -508,6 +516,7 @@ function makeAttack(pace, act)
                 cc.AudioEngine.getInstance().playEffect(sound);
             }
         }
+
         this.timer = 0;
         this.effected = false;
     }

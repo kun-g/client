@@ -22,7 +22,7 @@ var PVP_STAGEID = 124;
 var theRivalsList;
 var theRival;
 var myPkInfo;
-var PKINFO_UPDATE_PERIOD = 15; // unit: s
+var PKINFO_UPDATE_PERIOD = 60; // unit: s
 
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
@@ -198,7 +198,7 @@ function onEnter() {
     engine.ui.regMenu(this.owner.menuRoot);
 
     loadMyInfo();
-    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
+//    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
