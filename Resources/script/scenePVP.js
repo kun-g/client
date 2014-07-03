@@ -145,6 +145,7 @@ function onReceivePrize() {
             libUIKit.showErrorMessage(rsp);
         }
     }, theLayer);
+    setBottomContent();
 }
 
 function onClose(sender){
