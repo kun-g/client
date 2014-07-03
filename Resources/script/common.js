@@ -1166,10 +1166,18 @@ function queryStage(stg){
 
 function matchDate(scheme, date){
     var boolflag = false;
+    var schemeDate = scheme.date;
+    var schemeDateInterval = scheme.dateInterval;
+    ////check interval
+    if (schemeDateInterval != null){
+        boolflag = matchDateinterval(schemeDateInterval, date);
+        return boolflag;
+    }
+    ////
     //////////年/////////////
-    if (scheme.year != null){
-        for (var k in scheme.year){
-            if (scheme.year[k] == date.getFullYear()){
+    if (schemeDate.year != null){
+        for (var k in schemeDate.year){
+            if (schemeDate.year[k] == date.getFullYear()){
                 boolflag = true;
                 break;
             }
@@ -1185,9 +1193,9 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////月/////////////
-    if (scheme.month != null){
-        for (var k in scheme.month){
-            if (scheme.month[k] == date.getMonth()){
+    if (schemeDate.month != null){
+        for (var k in schemeDate.month){
+            if (schemeDate.month[k] == date.getMonth()){
                 boolflag = true;
                 break;
             }
@@ -1203,9 +1211,9 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////日/////////////
-    if (scheme.date != null){
-        for (var k in scheme.date){
-            if (scheme.date[k] == date.getDate()){
+    if (schemeDate.date != null){
+        for (var k in schemeDate.date){
+            if (schemeDate.date[k] == date.getDate()){
                 boolflag = true;
                 break;
             }
@@ -1221,9 +1229,9 @@ function matchDate(scheme, date){
         boolflag = false;
     }
     //////////周/////////////
-    if (scheme.day != null){
-        for (var k in scheme.day){
-            if (scheme.day[k] == date.getDay()){
+    if (schemeDate.day != null){
+        for (var k in schemeDate.day){
+            if (schemeDate.day[k] == date.getDay()){
                 boolflag = true;
                 break;
             }
@@ -1238,4 +1246,20 @@ function matchDate(scheme, date){
 function dayNumOfMonth(year,month)
 {
     return 32-new Date(year,month,32).getDate();
+}
+
+function matchDateinterval(scheme, date){
+    if (scheme.startDate != null && scheme.interval != null && scheme.interval >= 1){
+        for (var k in scheme.startDate){
+            for (var x in scheme.startDate[k].date){
+                var sttime = new Date(scheme.startDate[k].year, scheme.startDate[k].month, scheme.startDate[k].date[x],0,0,0,0);
+                var subtime = date.getTime() - sttime.getTime();
+                var days = Math.floor(subtime / 60000 / 24 / 60);
+                if (days % scheme.interval == 0){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
