@@ -479,7 +479,7 @@ function refreshDailyQuest(){
             if (!iphone5s){
                 prize.setNodeScale(0.77);
             }
-            prize.setPreview(dailyQuest.curpriz);
+            prize.setPreview(dailyQuest.curprize);
 
             prize.setPosition(cc.p(0, 0));
             layer.owner.layerPrize.addChild(prize);

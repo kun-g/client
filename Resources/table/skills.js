@@ -169,7 +169,7 @@ exports.data = [
       "action": [
         { "type": "damage","damageType":"Spell","isRange":true,"delay":0.8},
         {"type": "playEffect","effect":44,"act":"self"},
-        {"type": "playEffect","effect":0,"pos":"target","delay":0.6},
+        {"type": "playEffect","effect":0,"act":"target","delay":0.6},
           {"type": "blink","delay":0.6,"time":0.08},
           {"type":"shock","delay":0.6,"range":5,"time":0.2}
       ],
@@ -694,13 +694,13 @@ exports.data = [
           },
           "action": [
               {"type": "delay"},
-              {"type":"playEffect","effect":20,"act":"self"},
-              {"type":"playAction","motion":6,"act":"self"},
+              {"type":"playEffect","effect":20,"pos":"self"},
+              {"type":"playAction","motion":6,"pos":"self"},
               {"type": "delay"},
               {"type": "randTeleport"},
               {"type": "delay"},
-              {"type":"playEffect","effect":21,"act":"self"},
-              {"type":"playAction","motion":5,"act":"self"}
+              {"type":"playEffect","effect":21,"pos":"self"},
+              {"type":"playAction","motion":5,"pos":"self"}
           ]
       }
   },
@@ -847,7 +847,7 @@ exports.data = [
       "config":{
           "installAction":[
               {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":150}},
-              {"type": "playEffect","effect":18,"act":"self"}
+              {"type": "playEffect","effect":18,"pos":"self"}
           ],
           "targetSelection": {
               "pool": "objects",
@@ -870,7 +870,7 @@ exports.data = [
           },
           "action": [
               {"type":"delay" },
-              {"type": "playEffect","effect":35,"act":"self"}
+              {"type": "playEffect","effect":35,"pos":"self"}
           ]
       }
   },
@@ -1129,7 +1129,7 @@ exports.data = [
               {"type": "blink","delay":1.7,"time":0.08},
               {"type": "playEffect","effect":10,"pos":"target","delay":3.6} ,
               {"type":"shock","delay":1.6,"range":20,"time":2},
-              {"type":"playAction","motion":2,"act":"self"}
+              {"type":"playAction","motion":2,"pos":"self"}
           ]
       }
   },
@@ -1162,7 +1162,7 @@ exports.data = [
       "skillId": 44,
       "config":{
           "installAction":[
-              {"type": "playEffect","effect":18,"act":"self"},
+              {"type": "playEffect","effect":18,"pos":"self"},
               {"type":"shock","delay":0.5,"range":20,"time":0.3}
           ],
           "targetSelection": {
@@ -1264,7 +1264,7 @@ exports.data = [
                   {"weight":0, "item":9}
                   ]
               },
-              {"type":"playAction","motion":1,"act":"self"},
+              {"type":"playAction","motion":1,"pos":"self"},
               {"type":"delay"},
               {"type":"kill"}
           ]
@@ -1292,7 +1292,7 @@ exports.data = [
                                 {"weight":0, "item":9}
                               ]
         },
-          {"type":"playEffect","effect":23,"delay":0.3,"act":"self"},
+          {"type":"playEffect","effect":23,"delay":0.3,"pos":"self"},
           {"type":"delay"},
           {"type":"kill"}
       ]
@@ -1334,7 +1334,7 @@ exports.data = [
     { "skillId": 52,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -1348,7 +1348,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":25}},
-                {"type": "playEffect","effect":24,"act":"self"}
+                {"type": "playEffect","effect":24,"pos":"self"}
             ]
         }
     },
@@ -1416,7 +1416,7 @@ exports.data = [
                 {"type":"alive"}
             ],
             "action": [
-                {"type":"playAction","motion":8,"act":"self"},
+                {"type":"playAction","motion":8,"pos":"self"},
                 {"type": "createMonster","objectCount":4,"randomPos":true,"monsterID":19},
                 {"type": "setMyMutex", "mutex": "shilaimu","effect":21, "count": 3}]
         }
@@ -1439,7 +1439,7 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"},{"type":"role-id","roleID":19}]
             },
             "action": [
-                {"type":"playAction","motion":7,"act":"self"},
+                {"type":"playAction","motion":7,"pos":"self"},
                 {"type": "heal","self":true,"formular": {"tar":{"c":10}}},
                 {"type": "setMyMutex", "mutex": "shilaimu", "count": 9999},
                 {"type":"kill"}
@@ -1485,7 +1485,7 @@ exports.data = [
         "skillId": 60,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -1499,7 +1499,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":55}},
-                {"type": "playEffect","effect":30,"act":"self"}
+                {"type": "playEffect","effect":30,"pos":"self"}
             ]
         }
     },
@@ -1593,7 +1593,7 @@ exports.data = [
     {"skillId": 65,
         "config": {
             "action":[
-                {"type": "playEffect","effect":28,"act":"self"},
+                {"type": "playEffect","effect":28,"pos":"self"},
                 { "type": "setProperty","modifications": {"critical":{"c":5}}},
                 { "type": "setProperty","modifications": {"attack":{"c":10}}}
             ],
@@ -1687,7 +1687,7 @@ exports.data = [
         "skillId": 70,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -1701,7 +1701,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Spell","isRange":true,"formular": {"c":100}},
-                {"type": "playEffect","effect":25,"act":"self"}
+                {"type": "playEffect","effect":25,"pos":"self"}
             ]
         }
     },
@@ -1743,7 +1743,7 @@ exports.data = [
             },
             "action": [
                 {"type": "installSpell", "spell": 73},
-                {"type": "playEffect","effect":28,"act":"self"}
+                {"type": "playEffect","effect":28,"pos":"self"}
             ]
         }
     },
@@ -1766,7 +1766,7 @@ exports.data = [
             ],
             "action": [
                 { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
-                {"type": "playEffect","effect":1,"act":"self"}
+                {"type": "playEffect","effect":1,"pos":"self"}
             ]
         }
     },
@@ -1991,7 +1991,7 @@ exports.data = [
                     {"weight":5, "item":7}
                 ]
                 },
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill"}
             ]
@@ -2015,7 +2015,7 @@ exports.data = [
                 {"type": "playEffect","delay":1},
                 {"type": "blink","delay":1,"time":0.08},
                 {"type":"shock","delay":1,"range":5,"time":0.2},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
             ],
@@ -2041,7 +2041,7 @@ exports.data = [
               {"type":"delay"},
               {"type": "heal", "delay":1.3,"formular": {"src":{"strong":0.5}, "c":5}},
               {"type": "playEffect","delay":1.3,"effect":19,"pos":"target"} ,
-              {"type":"playAction","motion":1,"act":"self"},
+              {"type":"playAction","motion":1,"pos":"self"},
               {"type":"delay"},
               {"type":"kill","self": true}
           ]
@@ -2098,7 +2098,7 @@ exports.data = [
                 {"type":"delay"},
                 { "type": "installSpell", "spell": 88,"delay":1.5},
                 {"type": "playEffect","effect":37,"pos":"target","delay":1.5},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
 
@@ -2136,7 +2136,7 @@ exports.data = [
                 {"type":"delay"},
                 { "type": "installSpell", "spell": 90,"delay":1.5} ,
                 {"type": "playEffect","effect":13,"pos":"target","delay":1.5} ,
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
 
@@ -2175,7 +2175,7 @@ exports.data = [
                 {"type":"delay"},
                 { "type": "installSpell", "spell": 92,"delay":1.5} ,
                 {"type": "playEffect","effect":38,"pos":"target","delay":1.5},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
             ]
@@ -2213,7 +2213,7 @@ exports.data = [
                 {"type":"delay"},
                 {"type": "installSpell", "spell": 94},
                 {"type": "playEffect","effect":36,"pos":"target","delay":2.0},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
 
@@ -2260,7 +2260,7 @@ exports.data = [
                 {"type":"delay"},
                 { "type": "installSpell", "spell": 96,"delay":0.3},
                 { "type": "removeSpell", "spell": 98},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill", "self": true}
             ]
@@ -2274,7 +2274,7 @@ exports.data = [
             },
             "action":[
                 {"type": "ignoreHurt" },
-                {"type": "playEffect","delay":0.3,"effect":1,"act":"self"},
+                {"type": "playEffect","delay":0.3,"effect":1,"pos":"self"},
                 {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}}
             ],
             "targetSelection":
@@ -2311,7 +2311,7 @@ exports.data = [
                 {"type":"delay"},
                 { "type": "installSpell", "spell": 98}  ,
                 { "type": "removeSpell", "spell": 96},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
 
@@ -2366,7 +2366,7 @@ exports.data = [
                 {"type":"clearDebuff","delay":1.8},
                 {"type":"clearBuff","delay":1.8} ,
                 {"type": "playEffect","effect":41,"pos":"target","delay":1.8},
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"},
                 {"type":"kill","self": true}
              ]
@@ -2657,7 +2657,7 @@ exports.data = [
     { "skillId": 115,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -2671,7 +2671,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":10}},
-                {"type": "playEffect","effect":24,"act":"self"}
+                {"type": "playEffect","effect":24,"pos":"self"}
             ]
         }
     },
@@ -2751,7 +2751,7 @@ exports.data = [
         "skillId": 120,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -2765,7 +2765,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Physical","isRange":true,"delay":0.4,"formular": {"c":10}},
-                {"type": "playEffect","effect":30,"act":"self"}
+                {"type": "playEffect","effect":30,"pos":"self"}
             ]
         }
     },
@@ -2806,7 +2806,7 @@ exports.data = [
             },
             "action":[
                 {"type":"delay"} ,
-                {"type":"playEffect","effect":4,"act":"self"},
+                {"type":"playEffect","effect":4,"pos":"self"},
                 {"type": "installSpell", "spell": 123}
 
             ]
@@ -2826,7 +2826,7 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action":[
-                {"type":"playAction","motion":1,"act":"self"},
+                {"type":"playAction","motion":1,"pos":"self"},
                 {"type":"delay"} ,
                 {"type":"kill", "cod": 1}
             ]
@@ -2849,11 +2849,11 @@ exports.data = [
             },
             "action": [
                 {"type": "delay"},
-                {"type":"playEffect","effect":20,"act":"self"},
+                {"type":"playEffect","effect":20,"pos":"self"},
                 {"type": "delay"},
                 {"type": "randTeleport"},
                 {"type": "delay"},
-                {"type":"playEffect","effect":21,"act":"self"}
+                {"type":"playEffect","effect":21,"pos":"self"}
             ]
         }
     },
@@ -2869,7 +2869,7 @@ exports.data = [
             },
             "action": [
                 {"type":"delay" },
-                {"type": "playEffect","effect":43,"act":"self"}
+                {"type": "playEffect","effect":43,"pos":"self"}
             ]
         }
     },
@@ -2952,7 +2952,7 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
-                { "type": "chance", "chance": 0.5}
+                { "type": "chance", "chance": 0.3}
             ],
             "action": [
                 { "type": "installSpell", "spell": 129}
@@ -3070,7 +3070,7 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
-                { "type": "chance", "chance": 0.5},
+                { "type": "chance", "chance": 0.3},
                 {"type":"alive"}
             ],
             "targetSelection": {
@@ -3079,7 +3079,7 @@ exports.data = [
             },
             "action": [
                 { "type": "damage","damageType":"Spell","isRange":true },
-                {"type": "playEffect","effect":44,"act":"self"},
+                {"type": "playEffect","effect":44,"pos":"self"},
                 {"type": "playEffect","effect":0,"pos":"target","delay":0.6},
                 {"type": "blink","delay":0.6,"time":0.08},
                 {"type":"shock","delay":0.6,"range":5,"time":0.2}
@@ -3155,7 +3155,7 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type":"event","event":"onTurnEnd", "eventCount": 5,"reset":true },
-                { "type": "chance", "chance": 0.5},
+                { "type": "chance", "chance": 0.3},
                 {"type":"alive"}
             ],
             "targetSelection": {
@@ -3305,7 +3305,7 @@ exports.data = [
         "skillId": 141,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -3319,7 +3319,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":100}},
-                {"type": "playEffect","effect":30,"act":"self"}
+                {"type": "playEffect","effect":30,"pos":"self"}
             ]
         }
     },
@@ -3395,7 +3395,7 @@ exports.data = [
     {"skillId": 145,
         "config": {
             "action":[
-                {"type": "playEffect","effect":28,"act":"self"},
+                {"type": "playEffect","effect":28,"pos":"self"},
                 { "type": "setProperty","modifications": {"critical":{"c":15}}},
                 { "type": "setProperty","modifications": {"attack":{"c":25}}}
             ],
@@ -3489,7 +3489,7 @@ exports.data = [
         "skillId": 150,
         "config":{
             "installAction":[
-                {"type":"playEffect","effect":26,"act":"self"}
+                {"type":"playEffect","effect":26,"pos":"self"}
             ],
             "triggerCondition": [
                 {"type" :"event", "event":"onTurnEnd","eventCount":2 }
@@ -3503,7 +3503,7 @@ exports.data = [
             ],
             "action":[
                 {"type": "damage","damageType":"Spell","isRange":true,"formular": {"c":230}},
-                {"type": "playEffect","effect":25,"act":"self"}
+                {"type": "playEffect","effect":25,"pos":"self"}
             ]
         }
     },
@@ -3543,12 +3543,46 @@ exports.data = [
             },
             "action": [
                 {"type": "delay"},
-                {"type":"playEffect","effect":20,"act":"self"},
+                {"type":"playEffect","effect":20,"pos":"self"},
                 {"type": "delay"},
                 {"type": "randTeleport"},
                 {"type": "delay"},
-                {"type":"playEffect","effect":21,"act":"self"}
+                {"type":"playEffect","effect":21,"pos":"self"}
             ]
+        }
+    },
+    {
+        "skillId": 153,
+        "label": "boss掉落",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeKill" }
+            ],
+            "action": [
+                { "type": "dropPrize"} ]
+        }
+    },
+    {
+        "skillId": 154,
+        "label": "小兵掉落",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeKill" },
+                { "type": "chance", "chance": 0.3 }
+            ],
+            "action": [
+                { "type": "dropPrize"} ]
+        }
+    },
+    {
+        "skillId": 154,
+        "label": "宝箱掉落",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeActivate" }
+            ],
+            "action": [
+                { "type": "dropPrize"} ]
         }
     }
 ];
