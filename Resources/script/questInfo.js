@@ -28,6 +28,9 @@ var touchPosBegin;
 var LINE_WIDTH = 570;
 var LINE_HEIGHT = 120;
 
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
     return true;
@@ -110,6 +113,8 @@ function loadQuestList(){
     theLayer.owner.btnBack.setVisible(false);
     theLayer.owner.btnSubmit.setVisible(false);
     theLayer.owner.btnStartQuest.setVisible(false);
+    theLayer.owner.labBlueTitle.setVisible(false);
+    theLayer.owner.nodeConBg.setVisible(false);
 
     var size = cc.size(LINE_WIDTH, engine.user.quest.Count*LINE_HEIGHT);
     theListLayer.setContentSize(size);
@@ -157,6 +162,8 @@ function loadQuestDesc(quest){
     theListLayer.setTouchEnabled(false);
     theLayer.owner.btnBack.setVisible(true);
     theLayer.owner.btnSubmit.setVisible(true);
+    theLayer.owner.labBlueTitle.setVisible(true);
+    theLayer.owner.nodeConBg.setVisible(true);
 
     theQuest = quest;
     theQuest.fixState();
@@ -165,19 +172,27 @@ function loadQuestDesc(quest){
 
     theLayer.owner.labTitle.setString(questData.title);
 
+    var winSize = cc.Director.getInstance().getWinSize();
+    var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     text.setDimension(dimension);
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     text.pushText({//push desc
         text: /*"    "+*/questData.desc,
-        size: UI_SIZE_L
+        color: COLOR_BLACK,
+        size: UI_SIZE_S
     });
     text.pushText({text: "  "});
     text.pushText({//push objectives
         text: "任务目标",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
+        color: COLOR_RED,
+        size: UI_SIZE_L
     });
-    text.pushText({text: "  "});
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     for(var k in questData.objects){
         var tar = questData.objects[k];
         var cnt = quest.Count[k];
@@ -185,7 +200,7 @@ function loadQuestDesc(quest){
             cnt = 0;
         }
 
-        var color = cc.c3b(255, 255, 255);
+        var color = COLOR_BLACK;
         if( cnt >= tar.count ){
             cnt = tar.count;
             color = cc.c3b(95, 187, 38);
@@ -195,19 +210,26 @@ function loadQuestDesc(quest){
         text.pushText({//push title
             text: str,
             color: color,
-            size: UI_SIZE_L
+            size: UI_SIZE_S
         });
     }
     text.pushText({text: "  "});
     text.pushText({//push title
         text: "任务奖励",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
+        color: COLOR_RED,
+        size: UI_SIZE_L
     });
-    text.pushText({text: "  "});
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     var size = text.getContentSize();
 
-    var prize = libItem.ItemPreview.create(questData.prize, dimension);
+    var prize = libItem.ItemPreview.createRaw(dimension);
+    prize.setTextColor(COLOR_BLACK);
+    if (!iphone5s){
+        prize.setNodeScale(0.77);
+    }
+    prize.setPreview(questData.prize);
     prize.setPosition(cc.p(0, 0));
     theDescLayer.addChild(prize);
     text.setPosition(cc.p(0, prize.getContentSize().height));
@@ -293,6 +315,8 @@ function onEnter(){
     this.owner.nodeDesc.setVisible(false);
     this.owner.btnBack.setVisible(false);
     this.owner.btnSubmit.setVisible(false);
+    this.owner.labBlueTitle.setVisible(false);
+    this.owner.nodeConBg.setVisible(false);
 
     //theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
