@@ -1460,10 +1460,10 @@ function makeDungeonEnemy(pace, act)
             if( dungeon.Heroes[unit.ref] == null ){
                 dungeon.Heroes[unit.ref - HERO_TAG] = unit;
                 var actor = layer.addActor(unit);
+                actor.setDefaultAnimation("stand");
                 dungeon.HeroCount++;
 
                 dungeon.updateTeamShiftPos();
-                // TODO attach spawn effect
 
                 //update access
                 dungeon.updateAccess();
@@ -1500,8 +1500,8 @@ function makeDungeonEnemy(pace, act)
             }
             if( monster.animSpawn != null ){
                 actor.playAnimation(monster.animSpawn);
-                actor.setDefaultAnimation("stand");
             }
+            actor.setDefaultAnimation("stand");
 
             if( !boss ){
                 //set face
