@@ -7,7 +7,7 @@
             <key>jjc-avatar-btn1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,362},{180,120}}</string>
+                <string>{{268,374},{180,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>jjc-avatar-btn2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,240},{180,120}}</string>
+                <string>{{268,252},{180,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>jjc-avatar2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,118},{180,120}}</string>
+                <string>{{268,130},{180,120}}</string>
                 <key>offset</key>
                 <string>{0,-7}</string>
                 <key>rotated</key>
@@ -46,28 +46,28 @@
             <key>jjc-dd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,60},{196,56}}</string>
+                <string>{{268,66},{194,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{196,56}}</string>
+                <string>{{0,0},{194,62}}</string>
                 <key>sourceSize</key>
-                <string>{196,56}</string>
+                <string>{194,62}</string>
             </dict>
             <key>jjc-ddvip.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,2},{196,56}}</string>
+                <string>{{268,2},{194,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{196,56}}</string>
+                <string>{{0,0},{194,62}}</string>
                 <key>sourceSize</key>
-                <string>{196,56}</string>
+                <string>{194,62}</string>
             </dict>
             <key>jjc-jb1-chang.png</key>
             <dict>
@@ -98,7 +98,7 @@
             <key>jjc-jb2-hour.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{466,114},{66,32}}</string>
+                <string>{{450,224},{66,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>jjc-jb3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,484},{172,102}}</string>
+                <string>{{268,496},{172,102}}</string>
                 <key>offset</key>
                 <string>{-1,-4}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>jjc-jrcc.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{466,2},{110,32}}</string>
+                <string>{{464,112},{110,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>jjc-tab1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{176,588},{113,170}}</string>
+                <string>{{176,600},{113,170}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>jjc-tab2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{348,588},{113,130}}</string>
+                <string>{{348,600},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>jjc-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{450,182},{108,46}}</string>
+                <string>{{464,2},{108,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -222,7 +222,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6a2965fd404412dfc090365cb74c44d5$</string>
+            <string>$TexturePacker:SmartUpdate:e6145867eed154d5715c806566d31a0f$</string>
             <key>textureFileName</key>
             <string>jjc.png</string>
         </dict>

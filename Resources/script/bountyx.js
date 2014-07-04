@@ -114,7 +114,7 @@ BountyLog.prototype.checkProcess = function(bountyId, segId){
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
 
     var nowtime = new Date();
-    if(!matchDate(bountyData.date, nowtime)){
+    if(!matchDate(bountyData, nowtime)){
         str = 2;
         return str;
     }
@@ -181,7 +181,7 @@ BountyLog.prototype.cacultime = function(bountyId, segId){
     var secFlag = ":";
 
     var nowtime = new Date();
-    if(!matchDate(bountyData.date, nowtime)){
+    if(!matchDate(bountyData, nowtime)){
         ret = "";
         return ret;
     }
@@ -384,7 +384,7 @@ BountyLog.prototype.getNextActiveTime = function(bountyId){
     for(var k = 0; k<=7; ++k){
         if( found ) break;
         var thatDate = new Date(now.valueOf() + k*oneDay);
-        if( matchDate(boundyData.date, thatDate) ){
+        if( matchDate(boundyData, thatDate) ){
             for(var l in segments){
                 thatDate.setHours(segments[l].hour);
                 thatDate.setMinutes(segments[l].minute);
