@@ -799,8 +799,6 @@ function onEnter()
     theLayer.effects = cc.Node.create();
     theLayer.owner.nodeBlock.addChild(theLayer.effects);
 
-    theLayer.owner.spShadow.setZOrder(25);
-
     //*** CARDS ***
     theLayer.card = {};
     theLayer.card.nodeDesc = cc.Node.create();
@@ -1064,13 +1062,16 @@ function resetBlocks()
         box.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(box, 20, i);
 
-        theLayer.owner.spShadow.setZOrder(25);
-
         var mask = cc.Sprite.createWithSpriteFrameName("battle-boxshadow.png");
         mask.setAnchorPoint(cc.p(0,1));
         mask.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(mask, 30, 300+i);
     }
+
+    //dungeon shadow
+//    var shadow = cc.Sprite.createWithSpriteFrameName("dungeon-shadow.png");
+//    shadow.setPosition(theLayer.owner.nodeShadow.getPosition());
+//    theLayer.blocks.addChild(shadow, 25);
 
     //create walls=100+pos
     for(var j=0; j<49; ++j)
