@@ -184,8 +184,8 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"1:30",
-                    "end":"23:30"
+                    "start":"11:30",
+                    "end":"12:30"
                 }
             ]
         },
@@ -194,7 +194,7 @@ exports.data = [
                 {
                     "year":2014,
                     "month":6,
-                    "date":[3,4,5,14,15,16,17,18,19,20]
+                    "date":[14,15,16,17,18,19,20]
                 }
             ],
             "interval":14
@@ -237,7 +237,7 @@ exports.data = [
         "date":{
             "segment":[
                 {
-                    "start":"1:00",
+                    "start":"21:00",
                     "end":"22:00"
                 }
             ]
@@ -247,7 +247,7 @@ exports.data = [
                 {
                     "year":2014,
                     "month":6,
-                    "date":[3,4,5,7,8,9,10,11,12,13]
+                    "date":[7,8,9,10,11,12,13]
                 }
             ],
             "interval":14
