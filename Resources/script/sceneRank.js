@@ -77,7 +77,7 @@ function createRoleBar(role, rank){
     layer.owner.labName.setString(role.Name);
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
-    for(var i=0; i<3; i++){
+    for(var i=0; i<4; i++){
         layer.owner["spType"+i].setVisible(theMode == i);
         layer.owner["spPattern"+i].setVisible(theMode == i);
     }
