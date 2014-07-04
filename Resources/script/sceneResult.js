@@ -398,6 +398,10 @@ function update(delta){
 }
 
 function onConfirm(sender){
+    if (theWXPSound >= 0) {
+        cc.AudioEngine.getInstance().stopEffect(theWXPSound);
+        theWXPSound = -1;
+    }
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( !checkFriendInvite() ){
         engine.ui.newScene(loadModule("sceneMain.js").scene());
