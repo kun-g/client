@@ -799,6 +799,8 @@ function onEnter()
     theLayer.effects = cc.Node.create();
     theLayer.owner.nodeBlock.addChild(theLayer.effects);
 
+    theLayer.owner.spShadow.setZOrder(25);
+
     //*** CARDS ***
     theLayer.card = {};
     theLayer.card.nodeDesc = cc.Node.create();
@@ -1061,6 +1063,8 @@ function resetBlocks()
         box.setAnchorPoint(cc.p(0, 1));
         box.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(box, 20, i);
+
+        theLayer.owner.spShadow.setZOrder(25);
 
         var mask = cc.Sprite.createWithSpriteFrameName("battle-boxshadow.png");
         mask.setAnchorPoint(cc.p(0,1));
