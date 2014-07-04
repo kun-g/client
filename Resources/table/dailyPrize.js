@@ -108,7 +108,7 @@ exports.data = [
                 "type": 0,
                 "value":858,
                 "count":8,
-                "vip":1
+                "vip":2
             }
         ]
     },
@@ -142,8 +142,8 @@ exports.data = [
             {
                 "type": 0,
                 "value":871,
-                "count":2,
-                "vip":5
+                "count":5,
+                "vip":3
             }
         ]
     },
@@ -169,7 +169,7 @@ exports.data = [
                 "type": 0,
                 "value":859,
                 "count":4,
-                "vip":1
+                "vip":4
             }
         ]
     },
@@ -204,7 +204,7 @@ exports.data = [
                 "type": 0,
                 "value":871,
                 "count":10,
-                "vip":2
+                "vip":5
             }
         ]
     },
@@ -230,7 +230,7 @@ exports.data = [
                 "type": 0,
                 "value":859,
                 "count":8,
-                "vip":2
+                "vip":6
             }
         ]
     },
@@ -265,7 +265,7 @@ exports.data = [
                 "type": 0,
                 "value":871,
                 "count":15,
-                "vip":2
+                "vip":7
             }
         ]
     },
@@ -291,7 +291,7 @@ exports.data = [
                 "type": 0,
                 "value":860,
                 "count":5,
-                "vip":2
+                "vip":8
             }
         ]
     },
@@ -326,7 +326,7 @@ exports.data = [
                 "type": 0,
                 "value":871,
                 "count":18,
-                "vip":2
+                "vip":8
             }
         ]
     },
@@ -349,7 +349,7 @@ exports.data = [
             {
                 "type": 2,
                 "count":150,
-                "vip":2
+                "vip":8
             }
         ]
     },

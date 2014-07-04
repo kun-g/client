@@ -21402,7 +21402,7 @@ exports.data = [
         "dungeonId": 117,
         "levelCount" :1,
         "pool":{
-            "soldierPool":[
+            "soldierPool":{"objects":[
                 {
                     "id":3,
                     "weight":2
@@ -21596,8 +21596,8 @@ exports.data = [
                     "id":113,
                     "weight":2
                 }
-            ],
-            "rangePool":[
+            ]},
+            "rangePool":{"objects":[
                 {
                     "id":8,
                     "weight":2
@@ -21647,8 +21647,8 @@ exports.data = [
                     "weight":2
                 }
 
-            ],
-            "normalPool":[
+            ]},
+            "normalPool":{"objects":[
                 {
                     "id":170,
                     "weight":3
@@ -21689,7 +21689,7 @@ exports.data = [
                     "id":179, "weight":3}, {"id":180, "weight":2},{"id":181, "weight":2},{"id":182, "weight":2},{"id":183, "weight":2},{"id":184, "weight":2},{"id":185, 
                     "weight":3
                 }
-            ]
+            ]}
         },
         "levels" :[
             {
@@ -21712,7 +21712,7 @@ exports.data = [
         "dungeonId": 118,
         "levelCount" :1,
         "pool":{
-            "rangePool":[
+            "rangePool":{"objects":[
                 { "id":8, "weight":2 },
                 {
                     "id":13,
@@ -21759,8 +21759,8 @@ exports.data = [
                     "weight":2
                 }
 
-            ],
-            "normalPool":[
+            ]},
+            "normalPool":{"objects":[
                 {
                     "id":170,
                     "weight":3
@@ -21801,8 +21801,8 @@ exports.data = [
                     "id":179, "weight":3}, {"id":180, "weight":2},{"id":181, "weight":2},{"id":182, "weight":2},{"id":183, "weight":2},{"id":184, "weight":2},{"id":185, 
                     "weight":3
                 }
-            ],
-            "soldierPool":[
+            ]},
+            "soldierPool":{"objects":[
                 {
                     "id":3,
                     "weight":2
@@ -21996,7 +21996,7 @@ exports.data = [
                     "id":113,
                     "weight":2
                 }
-            ]
+            ]}
         },
         "levels" :[
             {
