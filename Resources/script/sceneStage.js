@@ -35,7 +35,7 @@ var PrizeList = [];
 var PrizeIndex = 0;
 var SweepArgs = {};
 var isScheduling = false;
-var SWEEP_VIP_LEVEL = 4;
+var SWEEP_VIP_LEVEL = 3;
 
 var BAR_WIDTH = 570;
 var BAR_HEIGHT = 180;

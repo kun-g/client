@@ -672,7 +672,7 @@ function makeDead(pace, act)
         }
         else
         {//kill monster
-            checkNull(unit, "ACT = "+this.act);
+            if( checkNull(unit, "ACT = "+this.act) ) return;
             var pos = unit.pos;
 
             dungeon.Blocks[pos].type = BLOCK_EMPITY;
