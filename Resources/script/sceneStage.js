@@ -603,7 +603,7 @@ function onSweep(sender) {
     SweepArgs = {};
     var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
     if( multi && engine.user.actor.vip < SWEEP_VIP_LEVEL ){
-        libUIKit.showAlert("VIP等级不足！\n扫荡需要达到VIP4");
+        libUIKit.showAlert("VIP等级不足！\n扫荡需要达到VIP3");
         return;
     }
     theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
