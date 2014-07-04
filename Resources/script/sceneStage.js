@@ -440,6 +440,7 @@ function showStages(chId)
 
         //check vip level (the Vip4(or higher) player have access to sweep in batches)
         theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
+        debug("vip: "+engine.user.actor.vip);
 
         onNormal();
         theLayer.stage.node.setScale(0);
