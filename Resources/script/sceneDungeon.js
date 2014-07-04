@@ -1069,9 +1069,10 @@ function resetBlocks()
     }
 
     //dungeon shadow
-//    var shadow = cc.Sprite.createWithSpriteFrameName("dungeon-shadow.png");
-//    shadow.setPosition(theLayer.owner.nodeShadow.getPosition());
-//    theLayer.blocks.addChild(shadow, 25);
+    var shadow = cc.Sprite.createWithSpriteFrameName("dungeon-shadow.png");
+    shadow.setPosition(theLayer.owner.nodeShadow.getPosition());
+    shadow.setScale(2);
+    theLayer.blocks.addChild(shadow, 25);
 
     //create walls=100+pos
     for(var j=0; j<49; ++j)
