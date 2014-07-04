@@ -473,9 +473,9 @@ function setModeTag(mode){
     if( mode == MODE_PVP ){
         theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc1.png"));
         theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc2.png"));
-        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlejjc.png"));
-        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlejjc.png"));
-        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlejjc.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlepk.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlepk.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlepk.png"));
         theLayer.owner.btnPVP.setEnabled(false);
     }
     else{

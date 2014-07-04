@@ -438,10 +438,6 @@ function showStages(chId)
         theLayer.stage.owner.btnMode.setPosition(btnModePos);
         theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
 
-        //check vip level (the Vip4(or higher) player have access to sweep in batches)
-        theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
-        debug("vip: "+engine.user.actor.vip);
-
         onNormal();
         theLayer.stage.node.setScale(0);
         theLayer.stage.node.runAction(actionPopIn());
@@ -606,6 +602,11 @@ function onSweep(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     SweepArgs = {};
     var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
+    if( multi && engine.user.actor.vip < SWEEP_VIP_LEVEL ){
+        libUIKit.showAlert("VIP等级不足！\n扫荡需要达到VIP4");
+        return;
+    }
+    theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
     var times = sender.getTag() * 4 + 1; // 1 or 5
     var totalEnergyCost = theEnergyCost * times;
     var scrollQuantity = Math.floor(Number(theLayer.stage.owner.labSweepScroll.getString()));
