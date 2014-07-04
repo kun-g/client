@@ -22,6 +22,7 @@ var PVP_STAGEID = 124;
 var theRivalsList;
 var theRival;
 var myPkInfo;
+var myRank;
 var PKINFO_UPDATE_PERIOD = 60; // unit: s
 
 function getPkRivals() {
@@ -45,7 +46,7 @@ function loadPkRivals() {
                 role.fix();
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
-                theLayer.owner["labRank"+i].setString(Number(role.Rank));
+                theLayer.owner["labRank"+i].setString(Number(role.Rank+1));
             }
         }
     }
@@ -54,8 +55,9 @@ function loadPkRivals() {
 function loadMyInfo() {
     engine.session.updatePVPInfo(function() {
         myPkInfo = engine.session.PkInfo;
+        myRank = myPkInfo.rnk + 1;
         if( myPkInfo != null ){
-            theLayer.owner.labMyRank.setString(myPkInfo.rnk);
+            theLayer.owner.labMyRank.setString(myRank);
             theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
             setBottomContent();
         }
@@ -78,7 +80,8 @@ function setBottomContent() {
             var pkPrizeInfo, pkBonusGold;
             for(var i=0; ; i++){
                 pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
-                if( myPkInfo.rnk <= pkPrizeInfo.top ){
+                if( pkPrizeInfo == null ) return;
+                if( (myRank) <= pkPrizeInfo.top ){
                     for( var k in pkPrizeInfo.prize ){
                         switch(pkPrizeInfo.prize[k].type){
                             case 1: {
@@ -142,6 +145,7 @@ function onReceivePrize() {
             libUIKit.showErrorMessage(rsp);
         }
     }, theLayer);
+    setBottomContent();
 }
 
 function onClose(sender){

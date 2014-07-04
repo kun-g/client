@@ -4,14 +4,40 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>effect-fyyjn1.png</key>
+            <key>effect-bjbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{320,100},{158,315}}</string>
+                <string>{{320,100},{162,172}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{162,172}}</string>
+                <key>sourceSize</key>
+                <string>{162,172}</string>
+            </dict>
+            <key>effect-bjwz.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{430,2},{60,22}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,22}}</string>
+                <key>sourceSize</key>
+                <string>{60,22}</string>
+            </dict>
+            <key>effect-fyyjn1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,260},{158,315}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{2,1},{158,315}}</string>
                 <key>sourceSize</key>
@@ -33,11 +59,11 @@
             <key>effect-fyyjn3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{293,619},{158,215}}</string>
+                <string>{{319,264},{158,215}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{158,215}}</string>
                 <key>sourceSize</key>
@@ -46,11 +72,11 @@
             <key>effect-fyyjn4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,566},{289,90}}</string>
+                <string>{{2,726},{289,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{289,90}}</string>
                 <key>sourceSize</key>
@@ -59,11 +85,11 @@
             <key>effect-fyyjn5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,658},{258,97}}</string>
+                <string>{{94,726},{258,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{258,97}}</string>
                 <key>sourceSize</key>
@@ -85,7 +111,7 @@
             <key>effect-fyyjn7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{310,417},{200,200}}</string>
+                <string>{{310,481},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +124,7 @@
             <key>effect-fyyjn8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,260},{304,306}}</string>
+                <string>{{2,420},{304,306}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +137,7 @@
             <key>effect-fyyjn9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{430,2},{48,48}}</string>
+                <string>{{430,26},{48,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -131,7 +157,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8d29ec630a1d9bf6ec3b06e9464761d1$</string>
+            <string>$TexturePacker:SmartUpdate:7affc91fac913ca9e425960e789c1748$</string>
             <key>textureFileName</key>
             <string>effect3.png</string>
         </dict>

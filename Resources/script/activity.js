@@ -66,7 +66,7 @@ function getDailyPrize(id){
         {
             engine.user.activity.dailyPrize = false;
             //成功后改变奖励图标
-            var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, id);
+            var prizeData = libTable.queryTable(TABLE_DP, id);
             var prize = [];
             if (prizeData.prize.length == 2 && prizeData.prize[1].vip <= engine.user.actor.vip){
                 prize = prizeData.prize;
@@ -210,7 +210,7 @@ function setPrizeSize(group,day,curDays)
         group.theGridLayer.addChild(slot);
         group.itemList[k] = slot;
         //set item
-        var prizeData = libTable.queryTable(TABLE_DAILYPRIZE, k);
+        var prizeData = libTable.queryTable(TABLE_DP, k);
         var prize = libItem.queryPrize(prizeData.prize[0], true);
         prize.icon.setPosition(pos);
         prize.icon.setScale(theScal);

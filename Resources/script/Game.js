@@ -92,7 +92,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_FACTION);
     table.loadTable(TABLE_COST);
     table.loadTable(TABLE_DROP);
-    table.loadTable(TABLE_DAILYPRIZE);
+    table.loadTable(TABLE_DP);
     table.loadTable(TABLE_ARENA);
 
     //init global resources

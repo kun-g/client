@@ -3558,8 +3558,13 @@ exports.data = [
             "triggerCondition": [
                 { "type": "event", "event": "onBeKill" }
             ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
             "action": [
-                { "type": "dropPrize"} ]
+                { "type": "dropPrize"},
+                {"type": "playEffect","effect":49,"pos":"self"}]
         }
     },
     {
@@ -3568,21 +3573,33 @@ exports.data = [
         "config": {
             "triggerCondition": [
                 { "type": "event", "event": "onBeKill" },
-                { "type": "chance", "chance": 0.3 }
+                { "type": "chance", "chance": 0.25 }
             ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
             "action": [
-                { "type": "dropPrize"} ]
+                { "type": "dropPrize"},
+                {"type": "playEffect","effect":49,"pos":"self"}]
         }
     },
     {
-        "skillId": 154,
+        "skillId": 155,
         "label": "宝箱掉落",
         "config": {
             "triggerCondition": [
                 { "type": "event", "event": "onBeActivate" }
             ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
             "action": [
-                { "type": "dropPrize"} ]
+                { "type": "dropPrize"},
+                {"type":"playAction","motion":1,"pos":"self"},
+                {"type":"delay"},
+                {"type":"kill"}]
         }
     }
 ];
