@@ -81,7 +81,7 @@ function createRoleBar(role, rank){
         layer.owner["spType"+i].setVisible(theMode == i);
         layer.owner["spPattern"+i].setVisible(theMode == i);
     }
-    layer.owner.labPower.setString(role.Score);
+    layer.owner.labPower.setString(role.getPower());
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
 
@@ -471,16 +471,16 @@ function setModeTag(mode){
         theLayer.owner.btnKill.setEnabled(true);
     }
     if( mode == MODE_PVP ){
-        theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
-        theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg2.png"));
-        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
-        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
-        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesg.png"));
+        theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc1.png"));
+        theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc2.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlejjc.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlejjc.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlejjc.png"));
         theLayer.owner.btnPVP.setEnabled(false);
     }
     else{
-        theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsg2.png"));
-        theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsg1.png"));
+        theLayer.owner.btnPVP.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc2.png"));
+        theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc1.png"));
         theLayer.owner.btnPVP.setEnabled(true);
     }
 }
