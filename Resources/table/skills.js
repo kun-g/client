@@ -3558,6 +3558,10 @@ exports.data = [
             "triggerCondition": [
                 { "type": "event", "event": "onBeKill" }
             ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
             "action": [
                 { "type": "dropPrize"},
                 {"type": "playEffect","effect":49,"pos":"self"}]
@@ -3571,6 +3575,10 @@ exports.data = [
                 { "type": "event", "event": "onBeKill" },
                 { "type": "chance", "chance": 0.25 }
             ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
             "action": [
                 { "type": "dropPrize"},
                 {"type": "playEffect","effect":49,"pos":"self"}]
@@ -3583,6 +3591,10 @@ exports.data = [
             "triggerCondition": [
                 { "type": "event", "event": "onBeActivate" }
             ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
             "action": [
                 { "type": "dropPrize"},
                 {"type":"playAction","motion":1,"pos":"self"},
