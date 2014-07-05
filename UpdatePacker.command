@@ -61,6 +61,7 @@ fi
 #3 fetch version info
 echo "- fetching version info"
 LAST_VERSION=`curl -s ${CDN_URL}/version`
+LAST_VERSION=103
 LAST_TAG=$TAG_PREFIX$LAST_VERSION
 echo "  last version code is $LAST_VERSION($LAST_TAG)"
 NEW_VERSION=`expr $LAST_VERSION + 1`
