@@ -715,11 +715,13 @@ function createPrizeBar() {
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
         prize.setAnchorPoint(cc.p(0, 0));
         var posPrize = layer.owner.nodePrize.getPosition();
+        posPrize.x += (layer.owner.layerPrize.getContentSize().width
+            - prize.getContentSize().width * ITEM_SCALE) / 2;
         var thisMultiRows = Math.floor( (PrizeList[PrizeIndex].length-1) / 5 );
         posPrize.y -= 120 * thisMultiRows;
         prize.setPosition(posPrize);
         prize.setScale(ITEM_SCALE);
-        debug("Size:"+JSON.stringify(prize.getContentSize())+"  Position:"+JSON.stringify(prize.getPosition()));
+//        debug("Size:"+JSON.stringify(prize.getContentSize())+"  Position:"+JSON.stringify(prize.getPosition()));
         layer.owner.nodePrizeBar.addChild(prize);
         if( PrizeIndex == 0 ){
             layer.setPosition(cc.p(
