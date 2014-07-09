@@ -301,9 +301,8 @@ function loadBountyList(){
 
             if (engine.session.dataBounty[k] == null || engine.session.dataBounty[k].sta == 1){
                 theListLayer.addChild(line);
+                count++;
             }
-
-            count++;
         }
     }
 

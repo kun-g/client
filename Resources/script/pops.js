@@ -61,6 +61,7 @@ exports.instance = singleton;
 //-------------------------------------------------
 
 var levelUpFlag = false;
+var theOldLevel = 0;
 
 function onClose(sender){
     this.node.stopAllActions();
@@ -149,13 +150,19 @@ function popLevelUp(){
     //set role
     layer.ui.avatar.setRole(role);
     //set property
-    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
-    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
-    var property = levelData.levelData[level-1].property;
     var proTableList = ["health","attack","speed","critical","strong","accuracy","reactivity"];
     var proRoleList = ["Health","Attack","Speed","Critical","Strong","Accuracy","Reactivity"];
     var proLabList = ["labHealth","labAttack","labSpeed","labCritical","labStrong","labAccuracy","labReactivity"];
     var proLabAddList = ["labHealthAdd","labAttackAdd","labSpeedAdd","labCriticalAdd","labStrongAdd","labAccuracyAdd","labReactivityAdd"];
+    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+    //var property = levelData.levelData[theOldLevel].property;
+    var property = levelData.levelData[theOldLevel].property;
+    for (var n = theOldLevel + 1;n <= level;n++){
+        for (var m in proTableList){
+            property[proTableList[m]] += levelData.levelData[n].property[proTableList[m]];
+        }
+    }
     for (var k in proLabList){
         var originPro = +role[proRoleList[k]] - property[proTableList[k]];
         if (property[proTableList[k]] > 0){
@@ -169,18 +176,33 @@ function popLevelUp(){
         layer.owner[proLabList[k]].setString(originPro);
     }
     //set skill state
-    var skill = levelData.levelData[level-1].skill[0];
-    var newSkill = false;
-    if( skill.level == 1 ){
-        newSkill = true;
+    debug("engine.user.actor = "+JSON.stringify(engine.user.actor));
+    var skillList = [];
+    for (var q = theOldLevel + 1;q <= level;q++) {
+        if (levelData.levelData[q].skill != null) {
+            for (var a in levelData.levelData[q].skill) {
+                if (levelData.levelData[q].skill[a].classLimit == engine.user.actor.ClassId) {
+                    skillList[levelData.levelData[q].skill[a].id] = levelData.levelData[q].skill[a];
+                }
+            }
+        }
     }
+    debug("skillList = "+JSON.stringify(skillList));
     for (var j = 1;j <= 4;j++){
+        var skill = null;
+        if (role.querySkill(j - 1) != null){
+            skill = skillList[role.querySkill(j - 1).ClassId];
+        }
+        var newSkill = false;
+        if( skill != null && skill.level == 1 ){
+            newSkill = true;
+        }
         if (role.querySkill(j - 1) == null){//jjs
             layer.owner[nodeName[4]+j].setVisible(true);
             layer.owner[nodeName[4]+j].setString(getNewSkillLev(level,j - 1));
             layer.owner[nodeName[2]+j].setVisible(true);
         }
-        else if (skill.id == role.querySkill(j - 1).ClassId){
+        else if (skill != null && skill.id == role.querySkill(j - 1).ClassId){
             if (newSkill){//get new skill
                 libEffect.attachEffectCCBI(layer.owner[nodeName[5]+j],cc.p(0, 0), "effect-xjn.ccbi",libEffect.EFFECTMODE_STAY);
                 layer.owner[nodeName[5]+j].setVisible(true);
@@ -222,9 +244,19 @@ function getSkillLev(slotId){
         var roleSkill = [];
         var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
         var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+//        for (var k in levelData.levelData){
+//            if (levelData.levelData[k].skill[0].level == 1){
+//                roleSkill.push(levelData.levelData[k].skill[0].id);
+//            }
+//        }
         for (var k in levelData.levelData){
-            if (levelData.levelData[k].skill[0].level == 1){
-                roleSkill.push(levelData.levelData[k].skill[0].id);
+            if (levelData.levelData[k].skill != null){
+                for (var x in levelData.levelData[k].skill){
+                    if (levelData.levelData[k].skill[x].level == 1 &&
+                        levelData.levelData[k].skill[x].classLimit == engine.user.actor.ClassId){
+                        roleSkill.push(levelData.levelData[k].skill[x].id);
+                    }
+                }
             }
         }
         ret.ClassId = roleSkill[slotId];
@@ -242,9 +274,19 @@ function getNewSkillLev(level,slotId){
     var roleSkill = [];
     var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+//    for (var k in levelData.levelData){
+//        if (levelData.levelData[k].skill[0].level == 1){
+//            roleSkill.push(levelData.levelData[k].skill[0].id);
+//        }
+//    }
     for (var k in levelData.levelData){
-        if (levelData.levelData[k].skill[0].level == 1){
-            roleSkill.push(levelData.levelData[k].skill[0].id);
+        if (levelData.levelData[k].skill != null){
+            for (var x in levelData.levelData[k].skill){
+                if (levelData.levelData[k].skill[x].level == 1 &&
+                    levelData.levelData[k].skill[x].classLimit == engine.user.actor.ClassId){
+                    roleSkill.push(levelData.levelData[k].skill[x].id);
+                }
+            }
         }
     }
     ret = getNextSkillLev(level,roleSkill[slotId]);
@@ -255,10 +297,36 @@ function getNextSkillLev(level,skillCld){
     var ret = 0;
     var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+//    for (var k = level;k < levelData.levelData.length;k++){
+//        if (levelData.levelData[k].skill[0].id == skillCld){
+//            ret = k + 1;
+//            break;
+//        }
+//    }
+    var oldSkLev = 0;
+    for (var k = level;k >= 1;k--){
+        if (levelData.levelData[k].skill != null){
+            for (var x in levelData.levelData[k].skill){
+                if (levelData.levelData[k].skill[x].id == skillCld &&
+                    levelData.levelData[k].skill[x].classLimit == engine.user.actor.ClassId){
+                    oldSkLev = levelData.levelData[k].skill[x].level;
+                    k = 0;
+                    break;
+                }
+            }
+        }
+    }
     for (var k = level;k < levelData.levelData.length;k++){
-        if (levelData.levelData[k].skill[0].id == skillCld){
-            ret = k + 1;
-            break;
+        if (levelData.levelData[k].skill != null){
+            for (var x in levelData.levelData[k].skill){
+                if (levelData.levelData[k].skill[x].id == skillCld &&
+                    levelData.levelData[k].skill[x].classLimit == engine.user.actor.ClassId &&
+                    levelData.levelData[k].skill[x].level == oldSkLev + 1){
+                    ret = k;
+                    k = levelData.levelData.length;
+                    break;
+                }
+            }
         }
     }
     return ret;
@@ -268,12 +336,26 @@ function getMaxSkillLev(skillCld){
     var ret = 0;
     var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
+//    for (var k = levelData.levelData.length - 1;k >= 0;k--){
+//        if (levelData.levelData[k].skill[0].id == skillCld){
+//            ret = levelData.levelData[k].skill[0].level;
+//            break;
+//        }
+//    }
     for (var k = levelData.levelData.length - 1;k >= 0;k--){
-        if (levelData.levelData[k].skill[0].id == skillCld){
-            ret = levelData.levelData[k].skill[0].level;
-            break;
+        if (levelData.levelData[k].skill != null){
+            debug("levelData.levelData["+k+"].skill = "+JSON.stringify(levelData.levelData[k].skill));
+            for (var x in levelData.levelData[k].skill){
+                if (levelData.levelData[k].skill[x].id == skillCld &&
+                    levelData.levelData[k].skill[x].classLimit == engine.user.actor.ClassId){
+                    ret = levelData.levelData[k].skill[x].level;
+                    k = -1;
+                    break;
+                }
+            }
         }
     }
+    debug(skillCld+" skill MaxSkillLev = "+ret);
     return ret;
 }
 
@@ -286,8 +368,9 @@ function invokePopLevelUp(){
     return false;
 }
 
-function setLevelUp(){
+function setLevelUp(oldLevel){
     levelUpFlag = true;
+    theOldLevel = oldLevel;
     //统计等级信息
     tdga.setLevel(engine.user.actor.calcExp().level);
 }
@@ -426,7 +509,6 @@ function popMonthCard(){
             theMonthLayer.node.runAction(actionPopOut(function(){
                 engine.ui.removeLayer(theMonthLayer);
                 theMonthLayer = null;
-
                 libUIKit.waitRPC(Request_SubmitBounty, {bid: -1}, function(rsp){
                     if( rsp.RET != RET_OK ){
                         libUIKit.showErrorMessage(rsp);
@@ -440,6 +522,13 @@ function popMonthCard(){
         type:2,
         count: 80
     }];
+
+    if (engine.user.player.MonthCardCount == 30){
+        pdata = [{
+            type:2,
+            count: 180
+        }];
+    }
 
     var mask = blackMask();
     theMonthLayer.addChild(mask);
