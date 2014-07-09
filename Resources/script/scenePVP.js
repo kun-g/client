@@ -77,24 +77,7 @@ function setBottomContent() {
             theLayer.owner.nodeBotCnt1.setVisible(false);
             theLayer.owner.nodeBotCnt2.setVisible(true);
             theLayer.owner.nodeBotCnt3.setVisible(false);
-            var pkPrizeInfo, pkBonusGold;
-            for(var i=0; ; i++){
-                pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
-                if( pkPrizeInfo == null ) return;
-                if( (myRank) <= pkPrizeInfo.top ){
-                    for( var k in pkPrizeInfo.prize ){
-                        switch(pkPrizeInfo.prize[k].type){
-                            case 1: {
-                                pkBonusGold = pkPrizeInfo.prize[k].count;
-                                theLayer.owner.labBonusGold.setString(pkBonusGold);
-                                return;
-                            }
-                            default: break;
-                        }
-                    }
-                }
-            }
-
+            theLayer.owner.labBonusGold.setString(queryPkPrize(myRank).count);
         }
     }else{
         //cannot receive
@@ -104,6 +87,24 @@ function setBottomContent() {
         var timesNeed = DAILY_TIMES_NEED - myPkInfo.cpl;
         if( timesNeed < 0 ) timesNeed = 0;
         theLayer.owner.labTimesNeed.setString(timesNeed);
+    }
+}
+
+function queryPkPrize(rank){
+    var pkPrizeInfo;
+    for(var i=0; ; i++){
+        pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
+        if( pkPrizeInfo == null ) return null;
+        if( rank <= pkPrizeInfo.top ){
+            for( var k in pkPrizeInfo.prize ){
+                switch(pkPrizeInfo.prize[k].type){
+                    case 1: {
+                        return pkPrizeInfo.prize[k];
+                    }
+                    default: break;
+                }
+            }
+        }
     }
 }
 
@@ -136,16 +137,13 @@ function onReceivePrize() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_ReceivePrize, {typ: ReceivePkPrize}, function (rsp) {
         if( rsp.RET == RET_OK ){
-            libUIKit.showAlert("奖金领取成功！");
-            if (rsp.RES != null) {
-                engine.event.processResponses(rsp.RES);
-            }
+            loadModule("itemInfo.js").showOpenEffect([queryPkPrize(myRank)]);
+            loadMyInfo();
         }
         else{
             libUIKit.showErrorMessage(rsp);
         }
     }, theLayer);
-    setBottomContent();
 }
 
 function onClose(sender){
