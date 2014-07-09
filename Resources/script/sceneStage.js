@@ -679,7 +679,7 @@ function showSweepResult() {
     theLayer.sweep.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theLayer.sweepLayer.addChild(theLayer.sweep.node);
     theLayer.sweep.theListLayer = cc.Layer.create();
-
+    loadModule("effect.js").attachEffectCCBI(theLayer.sweep.owner.nodeLight, cc.p(0,0), "effect-jjclight.ccbi");
     NumMultiRows = 0;
     for( var k in PrizeList){
         if( PrizeList[k].length > 5 ){
