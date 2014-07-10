@@ -26,6 +26,7 @@ var lockOffset = 25;
 var effOffset = 43;
 
 var theMode;
+var theDesc = 0;
 
 var touchPosBegin;
 
@@ -61,6 +62,9 @@ var nodeEffList = ["nodeEffSim","nodeEffNor","nodeEffHar","nodeEffHel","nodeEffN
 var COLOR_BLACK = cc.c3b(55,37,20);
 var COLOR_RED = cc.c3b(197,16,16);
 
+var ITEMPREVIEW_WIDTH = 130;
+var ITEMPREVIEW_HEIGHT = 155;
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
 
@@ -75,14 +79,28 @@ function onTouchEnded(touch, event){
     var pos = touch.getLocation();
     var dis = cc.pSub(pos, touchPosBegin);
     if( cc.pLengthSQ(dis) < CLICK_RANGESQ ){
-        var localPos = theListLayer.convertToNodeSpace(touchPosBegin);
-        var size = theListLayer.getContentSize();
-        if( localPos.x >0 && localPos.y >0
-            && localPos.x < size.width && localPos.y < size.height ){
-            var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
-            thePy = PY;
-            var line = theListLayer.getChildByTag(PY);
-            loadBountyDesc(line.bounty, 0);
+        if (theMode == MODE_LIST){
+            var localPos = theListLayer.convertToNodeSpace(touchPosBegin);
+            var size = theListLayer.getContentSize();
+            if( localPos.x >0 && localPos.y >0
+                && localPos.x < size.width && localPos.y < size.height ){
+                var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
+                thePy = PY;
+                var line = theListLayer.getChildByTag(PY);
+                loadBountyDesc(line.bounty, 0);
+            }
+        }
+        else if (theMode == MODE_DESC){
+            var localDescPos = {};
+            debug("MODE_DESC touchPosBegin = "+JSON.stringify(touchPosBegin));
+            if (theDesc == 1){
+                localDescPos = theDescLayer.convertToNodeSpace(touchPosBegin);
+                debug("MODE_DESC localDescPos = "+JSON.stringify(localDescPos));
+            }
+            else if (theDesc == 2){
+                localDescPos = theDescLayer2.convertToNodeSpace(touchPosBegin);
+                debug("MODE_DESC2 localDescPos = "+JSON.stringify(localDescPos));
+            }
         }
     }
 }
@@ -221,6 +239,8 @@ function loadBountyList(){
     theLayer.owner.nodeDesc2.setVisible(false);
     theListLayer.removeAllChildren();
     theListLayer.setTouchEnabled(true);
+    theDescLayer.setTouchEnabled(false);
+    theDescLayer2.setTouchEnabled(false);
     theLayer.owner.btnBack.setVisible(false);
     theLayer.owner.btnSubmit.setVisible(false);
     theLayer.owner.labTitle.setVisible(false);
@@ -232,7 +252,7 @@ function loadBountyList(){
     theLayer.owner.nodelockHel.setVisible(false);
     theLayer.owner.nodelockNig.setVisible(false);
 
-    var bountyCount = engine.user.bounty.getBountyListCount();//
+    var bountyCount = engine.user.bounty.getBountyListLength();//
 
     var sfc = cc.SpriteFrameCache.getInstance();
 
@@ -455,6 +475,8 @@ function loadBountyDesc(bounty, lev){
     size.height += prize.getContentSize().height;
 
     if (bountyData.level.length > 1){
+        theDesc = 1;
+        theDescLayer.setTouchEnabled(true);
         theDescLayer.addChild(prize);
         theDescLayer.addChild(text);
         theDescLayer.setContentSize(size);
@@ -469,6 +491,8 @@ function loadBountyDesc(bounty, lev){
         }
     }
     else if (bountyData.level.length == 1){
+        theDesc = 2;
+        theDescLayer2.setTouchEnabled(true);
         theDescLayer2.addChild(prize);
         theDescLayer2.addChild(text);
         theDescLayer2.setContentSize(size);
@@ -736,6 +760,22 @@ function onEnter(){
     theListLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
     theListLayer.setTouchPriority(1);
     theListLayer.setTouchEnabled(false);
+
+    theDescLayer.onTouchBegan = onTouchBegan;
+    theDescLayer.onTouchMoved = onTouchMoved;
+    theDescLayer.onTouchEnded = onTouchEnded;
+    theDescLayer.onTouchCancelled = onTouchCancelled;
+    theDescLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theDescLayer.setTouchPriority(1);
+    theDescLayer.setTouchEnabled(false);
+
+    theDescLayer2.onTouchBegan = onTouchBegan;
+    theDescLayer2.onTouchMoved = onTouchMoved;
+    theDescLayer2.onTouchEnded = onTouchEnded;
+    theDescLayer2.onTouchCancelled = onTouchCancelled;
+    theDescLayer2.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theDescLayer2.setTouchPriority(1);
+    theDescLayer2.setTouchEnabled(false);
 
     this.scheduleUpdate();
     theTime = new Date();

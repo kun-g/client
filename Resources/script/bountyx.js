@@ -424,4 +424,14 @@ BountyLog.prototype.setScheduleLocalNotification = function(){
     }
 }
 
+BountyLog.prototype.getBountyListLength = function(){
+    var ret  = 0;
+    for (var k in engine.session.dataBounty){
+        if (engine.session.dataBounty[k] == null || engine.session.dataBounty[k].sta == 1){
+            ret++;
+        }
+    }
+    return ret;
+}
+
 exports.BountyLog = BountyLog;

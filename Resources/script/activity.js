@@ -56,7 +56,7 @@ function onDailyAnimationCompleted(name){
     else if( theLayerMode == MODE_DAILYQUEST && dmStarEffect == false ){
         //theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
         libEffect.attachEffectCCBI(theLayer.owner.nodeEffectStar,cc.p(0, 0), "effect-dmstar.ccbi",libEffect.EFFECTMODE_LOOP);
-        dmStarEffect = true;
+        dmStarEffect = true;loadModule("itemInfo.js").showOpenEffect(prize);
     }
 }
 
@@ -74,7 +74,7 @@ function getDailyPrize(id){
             else{
                 prize[0] = prizeData.prize[0];
             }
-            loadModule("itemInfo.js").showOpenEffect(prize);
+
 
             var nowtime = new Date();
             var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
