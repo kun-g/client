@@ -27,10 +27,6 @@ exports.data = {
         "tutorialStage":7,
         "refuseDialogue":61
     },
-    "dailyQuest":{
-        "flag":"daily",
-        "refuseDialogue":66
-    },
     "tutorialTriggers":{
         "1":{
             "tutorial": 4

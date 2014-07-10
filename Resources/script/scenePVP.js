@@ -137,16 +137,13 @@ function onReceivePrize() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_ReceivePrize, {typ: ReceivePkPrize}, function (rsp) {
         if( rsp.RET == RET_OK ){
-            loadModule("itemInfo.js").showOpenEffect(queryPkPrize(myRank));
-            if (rsp.RES != null) {
-                engine.event.processResponses(rsp.RES);
-            }
+            loadModule("itemInfo.js").showOpenEffect([queryPkPrize(myRank)]);
+            loadMyInfo();
         }
         else{
             libUIKit.showErrorMessage(rsp);
         }
     }, theLayer);
-    loadMyInfo();
 }
 
 function onClose(sender){
