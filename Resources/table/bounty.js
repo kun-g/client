@@ -189,6 +189,16 @@ exports.data = [
                 }
             ]
         },
+        "dateInterval":{
+            "startDate":[
+                {
+                    "year":2014,
+                    "month":6,
+                    "date":[14,15,16,17,18,19,20]
+                }
+            ],
+            "interval":14
+        },
         "begin":1,
         "titlePic":"bounty-icon1.png",
         "timePic":"bounty-time1.png",
@@ -231,6 +241,16 @@ exports.data = [
                     "end":"22:00"
                 }
             ]
+        },
+        "dateInterval":{
+            "startDate":[
+                {
+                    "year":2014,
+                    "month":6,
+                    "date":[7,8,9,10,11,12,13]
+                }
+            ],
+            "interval":14
         },
         "begin":1,
         "titlePic":"bounty-icon2.png",

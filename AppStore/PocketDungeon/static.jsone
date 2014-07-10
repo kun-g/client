@@ -1,6 +1,6 @@
 {
     "binary_channel" : "AppStore",
-    "resource_version" : 96,
+    "resource_version" : 101,
     "binary_version" : "1.0.7",
     "account_type" : 1,
     "default_user" : ""

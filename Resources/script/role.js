@@ -95,7 +95,7 @@ Role.prototype.update = function(event)
     }
 
     if( vibrate && event.act.exp != null && oldLevel != newLevel ){
-        loadModule("pops").setLevelUpAnimation();
+        loadModule("pops").setLevelUpAnimation(oldLevel);
     }
 }
 

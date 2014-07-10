@@ -618,7 +618,7 @@ exports.data = [
                 "type":0,
                 "label":"收集圣灵草",
                 "collect":22001,
-                "count":10
+                "count":5
             }
         ],
         "prize":[
@@ -671,7 +671,7 @@ exports.data = [
                 "type":0,
                 "label":"收集火焰魔法结晶",
                 "collect":24001,
-                "count":10
+                "count":5
             }
         ],
         "prize":[
@@ -1194,7 +1194,7 @@ exports.data = [
                 "type":0,
                 "label":"商队宝箱",
                 "collect":43001,
-                "count":5
+                "count":4
             }
         ],
         "prize":[
@@ -1494,7 +1494,7 @@ exports.data = [
                 "type":0,
                 "label":"收集风之草",
                 "collect":54001,
-                "count":10
+                "count":5
             }
         ],
         "prize":[
@@ -1597,7 +1597,7 @@ exports.data = [
                 "type":0,
                 "label":"采集风之结晶",
                 "collect":58001,
-                "count":15
+                "count":5
             }
         ],
         "prize":[
@@ -1927,7 +1927,7 @@ exports.data = [
                 "type":0,
                 "label":"救回被捉走的村民",
                 "collect":70001,
-                "count":8
+                "count":4
             }
         ],
         "prize":[
@@ -2357,7 +2357,7 @@ exports.data = [
                 "type":0,
                 "label":"收集还魂草",
                 "collect":86001,
-                "count":25
+                "count":3
             }
         ],
         "prize":[
@@ -2435,7 +2435,7 @@ exports.data = [
                 "type":0,
                 "label":"销毁迷魂草",
                 "collect":89001,
-                "count":12
+                "count":2
             }
         ],
         "prize":[
@@ -3441,13 +3441,13 @@ exports.data = [
                 "type":0,
                 "label":"收集炼制结晶I",
                 "collect":125001,
-                "count":5
+                "count":2
             },
             {
                 "type":0,
                 "label":"收集炼制结晶II",
                 "collect":125002,
-                "count":5
+                "count":2
             },
             {
                 "type":0,
@@ -3504,7 +3504,7 @@ exports.data = [
                 "type":0,
                 "label":"营救村民",
                 "collect":127001,
-                "count":5
+                "count":3
             }
         ],
         "prize":[
@@ -4477,12 +4477,12 @@ exports.data = [
     {
         "questId":164,
         "title":"冒险征途的里程碑I",
-        "desc":"将角色升至3级",
+        "desc":"将角色升至5级",
         "objects":[
             {
                 "type":4,
-                "label":"升级至3级",
-                "count":3
+                "label":"升级至5级",
+                "count":5
             }
         ],
         "prize":[
@@ -4495,12 +4495,12 @@ exports.data = [
     {
         "questId":165,
         "title":"冒险征途的里程碑II",
-        "desc":"将角色升至5级",
+        "desc":"将角色升至25级",
         "objects":[
             {
                 "type":4,
-                "label":"升级至5级",
-                "count":5
+                "label":"升级至25级",
+                "count":25
             }
         ],
         "prize":[
@@ -4523,12 +4523,12 @@ exports.data = [
     {
         "questId":166,
         "title":"冒险征途的里程碑III",
-        "desc":"将角色升至7级",
+        "desc":"将角色升至35级",
         "objects":[
             {
                 "type":4,
-                "label":"升级至7级",
-                "count":7
+                "label":"升级至35级",
+                "count":35
             }
         ],
         "prize":[
@@ -4555,12 +4555,12 @@ exports.data = [
     {
         "questId":167,
         "title":"冒险征途的里程碑IV",
-        "desc":"将角色升至9级",
+        "desc":"将角色升至40级",
         "objects":[
             {
                 "type":4,
-                "label":"升级至9级",
-                "count":9
+                "label":"升级至40级",
+                "count":40
             }
         ],
         "prize":[
@@ -4587,12 +4587,12 @@ exports.data = [
     {
         "questId":168,
         "title":"冒险征途的里程碑V",
-        "desc":"将角色升至10级",
+        "desc":"将角色升至45级",
         "objects":[
             {
                 "type":4,
-                "label":"升级至10级",
-                "count":10
+                "label":"升级至45级",
+                "count":45
             }
         ],
         "prize":[

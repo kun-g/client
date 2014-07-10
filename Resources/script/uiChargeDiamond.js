@@ -28,7 +28,7 @@ var payStr = [
     {str:"198元", cost:198, dm:2260 },
     {str:"328元", cost:328, dm:3760 },
     {str:"648元", cost:648, dm:7480 },
-    {str:"25元", cost:0.1, dm:2500 }
+    {str:"25元", cost:25, dm:2500 }
 ];
 
 var theLastBillNo = null;
@@ -88,7 +88,11 @@ function onEvent(event)
                     uikit.showAlert("充值取消");
                     break;
                 case 2://failed
-                    uikit.showAlert("充值失败");
+                    var str = "充值失败";
+                    if( event.arg.message != null ){
+                        str += "\n"+event.arg.message;
+                    }
+                    uikit.showAlert(str);
                     break;
             }
             if( theLoad != null ){

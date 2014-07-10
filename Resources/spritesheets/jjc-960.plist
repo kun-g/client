@@ -20,7 +20,7 @@
             <key>jjc-960-btntm1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{485,2},{1,1}}</string>
+                <string>{{482,2},{1,1}}</string>
                 <key>offset</key>
                 <string>{-89.5,80.5}</string>
                 <key>rotated</key>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:258910726e2f4923dca38ddd5991b98b$</string>
+            <string>$TexturePacker:SmartUpdate:fcdb457d3f83ffc7afa5c7eb68e32669$</string>
             <key>textureFileName</key>
             <string>jjc-960.png</string>
         </dict>

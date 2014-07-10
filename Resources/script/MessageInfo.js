@@ -33,6 +33,9 @@ var touchPosBegin;
 var BAR_HEIGHT = 100;
 var FIRST_GAP = 25;
 
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
+
 function removeDeliver(sid){
     if( sid == null ){
         //remove all
@@ -65,6 +68,7 @@ function removeInvite(sid){
 
 function clearBoard(group){
     group.theContentLayer.removeAllChildren();
+    group.theContentListLayer.removeAllChildren();
     group.thePresentList = [];
     for(var k in group.theMenus){
         var m = group.theMenus[k];
@@ -100,7 +104,11 @@ function setButtons(group, barray){
 }
 
 function resetContentScroll(group){
-    var curroffset = group.scroller.getContentOffset();
+    var curroffset = group.scrollerlist.getContentOffset();
+    curroffset.y = group.scrollerlist.minContainerOffset().y;
+    group.scrollerlist.setContentOffset(curroffset);
+
+    curroffset = group.scroller.getContentOffset();
     curroffset.y = group.scroller.minContainerOffset().y;
     group.scroller.setContentOffset(curroffset);
 }
@@ -129,7 +137,7 @@ function createDeliverBar(data){
 }
 
 function getDeliverNodeByPos(rpos){
-    var size = theCenter.theContentLayer.getContentSize();
+    var size = theCenter.theContentListLayer.getContentSize();
     var rect = cc.rect(0, 0, size.width, size.height);
     if( cc.rectContainsPoint(rect, rpos) ){
         var index = theCenter.thePresentList.length - Math.floor(rpos.y/DELIVER_HEIGHT) - 1;
@@ -139,9 +147,14 @@ function getDeliverNodeByPos(rpos){
 }
 
 function setSystemDeliver(group){
-    group.theContentLayer.setTouchEnabled(true);
+    group.theContentListLayer.setTouchEnabled(true);
     clearBoard(group);
+
     theState = STATE_SYSTEMDELIVER_LIST;
+
+    group.labBlueTitle.setVisible(false);
+    group.nodeConBg.setVisible(false);
+    group.labContTitle.setVisible(false);
 
     var sfc = cc.SpriteFrameCache.getInstance();
     group.labTitle.setDisplayFrame(sfc.getSpriteFrame("mail-titlextyj.png"));
@@ -150,7 +163,7 @@ function setSystemDeliver(group){
     var list = engine.session.deliver;
     var size = cc.size(DELIVER_WIDTH, DELIVER_HEIGHT*list.length);
     theLayer.LOAD_SIZE = size;
-    group.theContentLayer.setContentSize(size);
+    group.theContentListLayer.setContentSize(size);
     resetContentScroll(group);
 
     var bstate = list.length != 0;
@@ -249,34 +262,52 @@ function createInviteBar(data){
 function loadDeliverDetail(data){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     clearBoard(theCurrentGroup);
-    theState = STATE_SYSTEMDELIVER_INFO;
 
+    theState = STATE_SYSTEMDELIVER_INFO;
+    theCurrentGroup.labBlueTitle.setVisible(true);
+    theCurrentGroup.nodeConBg.setVisible(true);
+    theCurrentGroup.labContTitle.setVisible(true);
+
+    theCurrentGroup.labContTitle.setString(data.tit);
+
+    var winSize = cc.Director.getInstance().getWinSize();
+    var iphone5s = (winSize.height == 1136);
     var dimension = cc.size(theCurrentGroup.nodeContent.getContentSize().width, 0);
     var text = DCTextArea.create();
     text.setDimension(dimension);
-    text.pushText({text: "  "});
-    text.pushText({//push title
-        text: data.tit,
-        color: cc.c3b(11, 139, 255),
-        //align: cc.TEXT_ALIGNMENT_CENTER,
-        size: UI_SIZE_XXL
-    });
-    text.pushText({text: "  "});
+//    text.pushText({text: "  "});
+//    text.pushText({//push title
+//        text: data.tit,
+//        color: COLOR_RED,
+//        //align: cc.TEXT_ALIGNMENT_CENTER,
+//        size: UI_SIZE_XXL
+//    });
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     text.pushText({//push title
         text: /*"    "+*/data.txt,
-        size: UI_SIZE_L
+        color: COLOR_BLACK,
+        size: UI_SIZE_S
     });
     var yoffset = 0;
     if( data.prz != null ){
         text.pushText({text: "  "});
         text.pushText({//push title
             text: "附件",
-            color: cc.c3b(236, 199, 101),
-            size: UI_SIZE_XL
+            color: COLOR_RED,
+            size: UI_SIZE_L
         });
-        text.pushText({text: "  "});
+        if (iphone5s){
+            text.pushText({text: "  "});
+        }
         var size = text.getContentSize();
-        var prize = libItem.ItemPreview.create(data.prz, dimension);
+        var prize = libItem.ItemPreview.createRaw(dimension);
+        prize.setTextColor(COLOR_BLACK);
+        if (!iphone5s){
+            prize.setNodeScale(0.77);
+        }
+        prize.setPreview(data.prz);
         prize.setPosition(cc.p(0, 0));
         theCurrentGroup.theContentLayer.addChild(prize);
         yoffset = prize.getContentSize().height;
@@ -304,9 +335,13 @@ function loadDeliverDetail(data){
 }
 
 function setFriendInvite(group){
-    group.theContentLayer.setTouchEnabled(false);
+    group.theContentListLayer.setTouchEnabled(false);
     clearBoard(group);
     theState = STATE_FRIENDINVITE_LIST;
+
+    group.labBlueTitle.setVisible(false);
+    group.nodeConBg.setVisible(false);
+    group.labContTitle.setVisible(false);
 
     var sfc = cc.SpriteFrameCache.getInstance();
     cacheSprite("buttontext-hysq.png");
@@ -316,7 +351,7 @@ function setFriendInvite(group){
     var list = engine.session.invite;
     var size = cc.size(INVITE_WIDTH, INVITE_HEIGHT*list.length);
     theLayer.LOAD_SIZE = size;
-    group.theContentLayer.setContentSize(size);
+    group.theContentListLayer.setContentSize(size);
     resetContentScroll(group);
 
     var bstate = list.length != 0;
@@ -474,7 +509,7 @@ function update(delta){
             if( this.LOAD_INDEX < engine.session.deliver.length ){
                 var node = createDeliverBar(engine.session.deliver[this.LOAD_INDEX]);
                 node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*DELIVER_HEIGHT - DELIVER_HEIGHT - FIRST_GAP));
-                theCenter.theContentLayer.addChild(node);
+                theCenter.theContentListLayer.addChild(node);
                 theCenter.thePresentList.push(node);
 
                 this.LOAD_INDEX++;
@@ -487,7 +522,7 @@ function update(delta){
             if( this.LOAD_INDEX < engine.session.invite.length ){
                 var node = createInviteBar(engine.session.invite[this.LOAD_INDEX]);
                 node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*INVITE_HEIGHT - INVITE_HEIGHT - FIRST_GAP));
-                theCenter.theContentLayer.addChild(node);
+                theCenter.theContentListLayer.addChild(node);
                 theCenter.thePresentList.push(node);
 
                 this.LOAD_INDEX++;
@@ -519,7 +554,7 @@ function onActivate(){
 
 function onTouchBegan(touch, event){
     var pos = touch.getLocation();
-    var rpos = theCenter.theContentLayer.convertToNodeSpace(pos);
+    var rpos = theCenter.theContentListLayer.convertToNodeSpace(pos);
     var node = getDeliverNodeByPos(rpos);
     if( node != null ){
         touchPosBegin = pos;
@@ -554,8 +589,8 @@ function onTouchEnded(touch, event){
             theSelectedNode = null;
         }
         else{
-            var layerPos = theLayer.owner.nodeContent.getPosition();
-            var layerSize = theLayer.owner.nodeContent.getContentSize();
+            var layerPos = theLayer.owner.nodeContentlist.getPosition();
+            var layerSize = theLayer.owner.nodeContentlist.getContentSize();
             var rect = cc.rect(layerPos.x, layerPos.y - BAR_HEIGHT/2, layerSize.width, layerSize.height);
             if( cc.rectContainsPoint(rect, theSelectedNode.getParent().convertToWorldSpace(theSelectedNode.getPosition())) ){
                 loadDeliverDetail(theSelectedNode.DATA);
@@ -629,6 +664,21 @@ function onEnter(){
             ui: "UIScrollView",
             id: "scrollerR",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        },
+        nodeContentlist: {
+            ui: "UIScrollView",
+            id: "scrollerlist",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        },
+        nodeContentlistL: {
+            ui: "UIScrollView",
+            id: "scrollerlistL",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
+        },
+        nodeContentlistR: {
+            ui: "UIScrollView",
+            id: "scrollerlistR",
+            dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
         }
     });
     this.addChild(this.node);
@@ -639,45 +689,66 @@ function onEnter(){
     theLeft = {};
     {
         theLeft.scroller = this.ui.scrollerL;
+        theLeft.scrollerlist = this.ui.scrollerlistL;
         theLeft.labTitle = this.owner.labTitleL;
+        theLeft.labBlueTitle = this.owner.labBlueTitleL;
+        theLeft.nodeConBg = this.owner.nodeConBgL;
+        theLeft.labContTitle = this.owner.labContTitleL;
         theLeft.scrollTop = this.owner.scrollTopL;
         theLeft.scrollBottom = this.owner.scrollBottomL;
         theLeft.btnA = this.owner.btnAL;
         theLeft.btnB = this.owner.btnBL;
         theLeft.btnC = this.owner.btnCL;
         theLeft.theContentLayer = cc.Layer.create();
+        theLeft.theContentListLayer = cc.Layer.create();
         theLeft.scroller.setContainer(theLeft.theContentLayer);
+        theLeft.scrollerlist.setContainer(theLeft.theContentListLayer);
         theLeft.nodeContent = this.owner.nodeContentL;
+        theLeft.nodeContentlist = this.owner.nodeContentlistL;
         theLeft.menu = this.owner.menuL;
         theLeft.theMenus = [];
     }
     theRight = {};
     {
         theRight.scroller = this.ui.scrollerR;
+        theRight.scrollerlist = this.ui.scrollerlistR;
+        theRight.labBlueTitle = this.owner.labBlueTitleR;
         theRight.labTitle = this.owner.labTitleR;
+        theRight.nodeConBg = this.owner.nodeConBgR;
+        theRight.labContTitle = this.owner.labContTitleR;
         theRight.scrollTop = this.owner.scrollTopR;
         theRight.scrollBottom = this.owner.scrollBottomR;
         theRight.btnA = this.owner.btnAR;
         theRight.btnB = this.owner.btnBR;
         theRight.btnC = this.owner.btnCR;
         theRight.theContentLayer = cc.Layer.create();
+        theRight.theContentListLayer = cc.Layer.create();
         theRight.scroller.setContainer(theRight.theContentLayer);
+        theRight.scrollerlist.setContainer(theRight.theContentListLayer);
         theRight.nodeContent = this.owner.nodeContentR;
+        theRight.nodeContentlist = this.owner.nodeContentlistR;
         theRight.menu = this.owner.menuR;
         theRight.theMenus = [];
     }
     theCenter = {};
     {
         theCenter.scroller = this.ui.scroller;
+        theCenter.scrollerlist = this.ui.scrollerlist;
         theCenter.labTitle = this.owner.labTitle;
+        theCenter.labBlueTitle = this.owner.labBlueTitle;
+        theCenter.nodeConBg = this.owner.nodeConBg;
+        theCenter.labContTitle = this.owner.labContTitle;
         theCenter.scrollTop = this.owner.scrollTop;
         theCenter.scrollBottom = this.owner.scrollBottom;
         theCenter.btnA = this.owner.btnA;
         theCenter.btnB = this.owner.btnB;
         theCenter.btnC = this.owner.btnC;
         theCenter.theContentLayer = cc.Layer.create();
+        theCenter.theContentListLayer = cc.Layer.create();
         theCenter.scroller.setContainer(theCenter.theContentLayer);
+        theCenter.scrollerlist.setContainer(theCenter.theContentListLayer);
         theCenter.nodeContent = this.owner.nodeContent;
+        theCenter.nodeContentlist = this.owner.nodeContentlist;
         theCenter.menu = this.owner.menu;
         theCenter.theMenus = [];
     }
@@ -685,13 +756,13 @@ function onEnter(){
 
     engine.ui.regMenu(this.owner.menuRoot);
 
-    theCenter.theContentLayer.onTouchBegan = onTouchBegan;
-    theCenter.theContentLayer.onTouchMoved = onTouchMoved;
-    theCenter.theContentLayer.onTouchEnded = onTouchEnded;
-    theCenter.theContentLayer.onTouchCancelled = onTouchCancelled;
-    theCenter.theContentLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
-    theCenter.theContentLayer.setTouchPriority(1);
-    theCenter.theContentLayer.setTouchEnabled(false);
+    theCenter.theContentListLayer.onTouchBegan = onTouchBegan;
+    theCenter.theContentListLayer.onTouchMoved = onTouchMoved;
+    theCenter.theContentListLayer.onTouchEnded = onTouchEnded;
+    theCenter.theContentListLayer.onTouchCancelled = onTouchCancelled;
+    theCenter.theContentListLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theCenter.theContentListLayer.setTouchPriority(1);
+    theCenter.theContentListLayer.setTouchEnabled(false);
 
     thePopMsg = PopMsg.simpleInit(theLayer);
 

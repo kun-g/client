@@ -58,6 +58,9 @@ var btnList = ["btnSimple","btnNormal","btnHard","btnHell","btnNightmare"];
 var nodelockList = ["nodelockSim","nodelockNor","nodelockHar","nodelockHel","nodelockNig"];
 var nodeEffList = ["nodeEffSim","nodeEffNor","nodeEffHar","nodeEffHel","nodeEffNig"];
 
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
 
@@ -222,6 +225,7 @@ function loadBountyList(){
     theLayer.owner.btnSubmit.setVisible(false);
     theLayer.owner.labTitle.setVisible(false);
     theLayer.owner.labBlueTitle.setVisible(false);
+    theLayer.owner.nodeConBg.setVisible(false);
     theLayer.owner.nodelockSim.setVisible(false);
     theLayer.owner.nodelockNor.setVisible(false);
     theLayer.owner.nodelockHar.setVisible(false);
@@ -297,9 +301,8 @@ function loadBountyList(){
 
             if (engine.session.dataBounty[k] == null || engine.session.dataBounty[k].sta == 1){
                 theListLayer.addChild(line);
+                count++;
             }
-
-            count++;
         }
     }
 
@@ -322,6 +325,7 @@ function loadBountyDesc(bounty, lev){
     theLayer.owner.btnSubmit.setVisible(true);
     theLayer.owner.labTitle.setVisible(true);
     theLayer.owner.labBlueTitle.setVisible(true);
+    theLayer.owner.nodeConBg.setVisible(true);
     theLayer.owner.nodelockSim.setVisible(false);
     theLayer.owner.nodelockNor.setVisible(false);
     theLayer.owner.nodelockHar.setVisible(false);
@@ -348,17 +352,22 @@ function loadBountyDesc(bounty, lev){
         theLayer.owner.btnBack2.setVisible(true);
     }
 
+    var winSize = cc.Director.getInstance().getWinSize();
+    var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     text.setDimension(dimension);
-    text.pushText({//push desc
-        text: "任务描述",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
-    });
-    text.pushText({text: "  "});
+//    text.pushText({//push desc
+//        text: "任务描述",
+//        color: COLOR_RED,
+//        size: UI_SIZE_L
+//    });
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     text.pushText({//push desc
         text: /*"    "+*/bountyData.desc,
-        size: UI_SIZE_L
+        color: COLOR_BLACK,
+        size: UI_SIZE_S
     });
 
     if (lev == null){
@@ -369,21 +378,26 @@ function loadBountyDesc(bounty, lev){
     text.pushText({text: "  "});
     text.pushText({//push objectives
         text: "任务要求",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
+        color: COLOR_RED,
+        size: UI_SIZE_L
     });
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     var limitFlag = false;
     if (tar.levelLimit != null){
         text.pushText({//push desc
             text: "要求等级达到"+tar.levelLimit+"级。",
-            size: UI_SIZE_L
+            color: COLOR_BLACK,
+            size: UI_SIZE_S
         });
         limitFlag = true;
     }
     if (tar.powerLimit != null){
         text.pushText({//push desc
             text: "要求战斗力达到"+tar.powerLimit+"。",
-            size: UI_SIZE_L
+            color: COLOR_BLACK,
+            size: UI_SIZE_S
         });
         limitFlag = true;
     }
@@ -397,36 +411,45 @@ function loadBountyDesc(bounty, lev){
         str += "职业可以做。";
         text.pushText({//push desc
             text: str,
-            size: UI_SIZE_L
+            color: COLOR_BLACK,
+            size: UI_SIZE_S
         });
         limitFlag = true;
     }
     if (limitFlag == false){
         text.pushText({//push desc
             text: "无。",
-            size: UI_SIZE_L
+            color: COLOR_BLACK,
+            size: UI_SIZE_S
         });
     }
     text.pushText({text: "  "});
     text.pushText({//push title
         text: "任务奖励",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
+        color: COLOR_RED,
+        size: UI_SIZE_L
     });
-    text.pushText({text: "  "});
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     var size = text.getContentSize();
 
-    var prize = libItem.ItemPreview.create(tar.prize, dimension);
 
+    var prize = libItem.ItemPreview.createRaw(dimension);
+    prize.setTextColor(COLOR_BLACK);
+    if (!iphone5s){
+        prize.setNodeScale(0.77);
+    }
     if (engine.session.dataBounty[k] != null &&
         engine.session.dataBounty[k].lev != null &&
         engine.session.dataBounty[k].lev[lev] != null &&
         engine.session.dataBounty[k].lev[lev].prz != null){
-        prize = libItem.ItemPreview.create(engine.session.dataBounty[k].lev[lev].prz, dimension);
+        prize.setPreview(engine.session.dataBounty[k].lev[lev].prz);
     }
-
+    else{
+        prize.setPreview(tar.prize);
+    }
     prize.setPosition(cc.p(0, 0));
-
     text.setPosition(cc.p(0, prize.getContentSize().height));
 
     size.height += prize.getContentSize().height;
@@ -695,6 +718,7 @@ function onEnter(){
     this.owner.btnSubmit.setVisible(false);
     this.owner.labTitle.setVisible(false);
     this.owner.labBlueTitle.setVisible(false);
+    this.owner.nodeConBg.setVisible(false);
 
     //theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 

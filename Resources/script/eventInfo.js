@@ -25,6 +25,9 @@ var touchPosBegin;
 var LINE_WIDTH = 570;
 var LINE_HEIGHT = 250;
 
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
     return true;
@@ -71,6 +74,8 @@ function loadEventList(){
     theListLayer.removeAllChildren();
     theListLayer.setTouchEnabled(true);
     theLayer.owner.btnBack.setVisible(false);
+    theLayer.owner.labBlueTitle.setVisible(false);
+    theLayer.owner.nodeConBg.setVisible(false);
 
     var size = cc.size(LINE_WIDTH, engine.user.activity.list.length*LINE_HEIGHT);
     theListLayer.setContentSize(size);
@@ -109,15 +114,22 @@ function loadEventDesc(quest){
     theDescLayer.removeAllChildren();
     theListLayer.setTouchEnabled(false);
     theLayer.owner.btnBack.setVisible(true);
+    theLayer.owner.labBlueTitle.setVisible(true);
+    theLayer.owner.nodeConBg.setVisible(true);
 
     theEvent = quest;
     var dimension = cc.size(theLayer.owner.layerDesc.getContentSize().width, 0);
 
     theLayer.owner.labTitle.setString(quest.title);
 
+    var winSize = cc.Director.getInstance().getWinSize();
+    var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     var size = cc.size(0, 0);
     text.setDimension(dimension);
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     if( quest.desc != null ){
         text.pushMarkdown(quest.desc);
         size = text.getContentSize();
@@ -126,13 +138,16 @@ function loadEventDesc(quest){
         text.pushText({text: "  "});
         text.pushText({//push objectives
             text: "活动日期",
-            color: cc.c3b(236, 199, 101),
-            size: UI_SIZE_XL
+            color: COLOR_RED,
+            size: UI_SIZE_L
         });
-        text.pushText({text: "  "});
+        if (iphone5s){
+            text.pushText({text: "  "});
+        }
         text.pushText({//push date
             text: /*"    "+*/quest.date,
-            size: UI_SIZE_L
+            color: COLOR_BLACK,
+            size: UI_SIZE_S
         });
         size = text.getContentSize();
     }
@@ -140,13 +155,20 @@ function loadEventDesc(quest){
         text.pushText({text: "  "});
         text.pushText({//push title
             text: "活动奖励",
-            color: cc.c3b(236, 199, 101),
-            size: UI_SIZE_XL
+            color: COLOR_RED,
+            size: UI_SIZE_L
         });
-        text.pushText({text: "  "});
+        if (iphone5s){
+            text.pushText({text: "  "});
+        }
         size = text.getContentSize();
 
-        var prize = libItem.ItemPreview.create(quest.prz, dimension);
+        var prize = libItem.ItemPreview.createRaw(dimension);
+        prize.setTextColor(COLOR_BLACK);
+        if (!iphone5s){
+            prize.setNodeScale(0.77);
+        }
+        prize.setPreview(quest.prz);
         prize.setPosition(cc.p(0, 0));
         theDescLayer.addChild(prize);
         text.setPosition(cc.p(0, prize.getContentSize().height));
@@ -201,6 +223,8 @@ function onEnter(){
     this.owner.nodeList.setVisible(false);
     this.owner.nodeDesc.setVisible(false);
     this.owner.btnBack.setVisible(false);
+    this.owner.labBlueTitle.setVisible(false);
+    this.owner.nodeConBg.setVisible(false);
 
     theListLayer = cc.Layer.create();
     this.ui.scrollList.setContainer(theListLayer);

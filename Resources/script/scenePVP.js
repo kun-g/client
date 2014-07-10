@@ -22,7 +22,8 @@ var PVP_STAGEID = 124;
 var theRivalsList;
 var theRival;
 var myPkInfo;
-var PKINFO_UPDATE_PERIOD = 10; // unit: s
+var myRank;
+var PKINFO_UPDATE_PERIOD = 60; // unit: s
 
 function getPkRivals() {
     libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
@@ -45,8 +46,7 @@ function loadPkRivals() {
                 role.fix();
                 theLayer.ui["avatar"+i].setRole(role);
                 theLayer.owner["labName"+i].setString(role.Name);
-                theLayer.owner["labPower"+i].setString(role.getPower());
-                theLayer.owner["labRank"+i].setString(Number(role.Rank));
+                theLayer.owner["labRank"+i].setString(Number(role.Rank+1));
             }
         }
     }
@@ -55,8 +55,9 @@ function loadPkRivals() {
 function loadMyInfo() {
     engine.session.updatePVPInfo(function() {
         myPkInfo = engine.session.PkInfo;
+        myRank = myPkInfo.rnk + 1;
         if( myPkInfo != null ){
-            theLayer.owner.labMyRank.setString(myPkInfo.rnk);
+            theLayer.owner.labMyRank.setString(myRank);
             theLayer.owner.labTimes.setString(myPkInfo.cpl+"/"+myPkInfo.ttl);
             setBottomContent();
         }
@@ -76,23 +77,7 @@ function setBottomContent() {
             theLayer.owner.nodeBotCnt1.setVisible(false);
             theLayer.owner.nodeBotCnt2.setVisible(true);
             theLayer.owner.nodeBotCnt3.setVisible(false);
-            var pkPrizeInfo, pkBonusGold;
-            for(var i=0; ; i++){
-                pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
-                if( myPkInfo.rnk <= pkPrizeInfo.top ){
-                    for( var k in pkPrizeInfo.prize ){
-                        switch(pkPrizeInfo.prize[k].type){
-                            case 1: {
-                                pkBonusGold = pkPrizeInfo.prize[k].count;
-                                theLayer.owner.labBonusGold.setString(pkBonusGold);
-                                return;
-                            }
-                            default: break;
-                        }
-                    }
-                }
-            }
-
+            theLayer.owner.labBonusGold.setString(queryPkPrize(myRank).count);
         }
     }else{
         //cannot receive
@@ -105,25 +90,21 @@ function setBottomContent() {
     }
 }
 
-//function calcLeftTimeMin(endTime) {
-//    var currentTimeStamp = engine.game.getServerTime();
-//    var curTime = new Date(parseInt(currentTimeStamp));
-//    var curTimeMin = curTime.getMinutes() + (curTime.getHours() * 60);
-//    return (endTime - curTimeMin);
-//}
-
-function onRival(sender) {
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( sender.getTag() == TouchId ){
-        TouchId = -1;
-    }else{
-        TouchId = sender.getTag();
-        theRival = theRivalsList[TouchId-1];
-    }
-    for( var i=1; i<4; i++){
-        theLayer.owner["btnStartPK"+i].setVisible(i == TouchId);
-        theLayer.owner["nodeBonus"+i].setVisible(!(i == TouchId));
-        theLayer.owner["layerOnBtn"+i].setEnabled(!(i == TouchId));
+function queryPkPrize(rank){
+    var pkPrizeInfo;
+    for(var i=0; ; i++){
+        pkPrizeInfo = libTable.queryTable(TABLE_ARENA, i);
+        if( pkPrizeInfo == null ) return null;
+        if( rank <= pkPrizeInfo.top ){
+            for( var k in pkPrizeInfo.prize ){
+                switch(pkPrizeInfo.prize[k].type){
+                    case 1: {
+                        return pkPrizeInfo.prize[k];
+                    }
+                    default: break;
+                }
+            }
+        }
     }
 }
 
@@ -132,25 +113,32 @@ function onRoleInfo(sender){
     libUIKit.showRoleInfo(theRivalsList[sender.getTag()-1].nam);
 }
 
-function onStartPK() {
+function onStartPK(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    TouchId = sender.getTag();
     if( myPkInfo.cpl >= myPkInfo.ttl ){
         libUIKit.showAlert("今日PK次数已用完");
         return;
     }
-    var libStage = loadModule("sceneStage.js");
-    var stageDate = queryStage(PVP_STAGEID);
-    libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
+    if( theRivalsList != null && theRivalsList[TouchId-1] != null ){
+        theRival = theRivalsList[TouchId-1];
+    }
+    if( theRival != null ){
+        var libStage = loadModule("sceneStage.js");
+        var stageDate = queryStage(PVP_STAGEID);
+        libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
+    }else{
+        libUIKit.showAlert("PK对手不存在");
+    }
+
 }
 
 function onReceivePrize() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_ReceivePrize, {typ: ReceivePkPrize}, function (rsp) {
         if( rsp.RET == RET_OK ){
-            libUIKit.showAlert("奖金领取成功！");
-            if (rsp.RES != null) {
-                engine.event.processResponses(rsp.RES);
-            }
+            loadModule("itemInfo.js").showOpenEffect([queryPkPrize(myRank)]);
+            loadMyInfo();
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -184,8 +172,8 @@ function onEnter() {
     theRivalsList = {};
     theLayer = this;
     myPkInfo = {};
+    theRival = null;
     this.owner = {};
-    this.owner.onRival = onRival;
     this.owner.onStartPK = onStartPK;
     this.owner.onRoleInfo = onRoleInfo;
     this.owner.onReceivePrize = onReceivePrize;
@@ -210,8 +198,9 @@ function onEnter() {
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
     engine.ui.regMenu(this.owner.menuRoot);
+
     loadMyInfo();
-    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
+//    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }
