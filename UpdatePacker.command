@@ -35,6 +35,7 @@ if [ "$COMMAND" == "develop" ]; then
 	CDN_URL="http://hotupdate.qiniudn.com"
 	CDN_CONF="./develop-conf.json"
 	TAG_PREFIX="D"
+    REDIS_KEY="LocalVersion"
 elif [ "$COMMAND" == "master" ]; then
 	echo "* WARNING: YOU ARE ATTEMPTING TO WORK WITH MASTER BRANCH. TYPE 'master' AGAIN TO CONFIRM."
 	read -p "Confirm your choice:" COMMAND
@@ -42,6 +43,7 @@ elif [ "$COMMAND" == "master" ]; then
 		WORK_BRANCH="master"
 		CDN_URL="http://drhu.qiniudn.com"
 		CDN_CONF="./master-conf.json"
+        REDIS_KEY="MasterVersion"
 		TAG_PREFIX="M"
 	else
 		echo "ERROR: wrong command."
@@ -60,7 +62,7 @@ fi
 
 #3 fetch version info
 echo "- fetching version info"
-LAST_VERSION=`curl -s ${CDN_URL}/version`
+LAST_VERSION=`redis-cli -h 10.4.3.41 --raw get $REDIS_KEY`
 LAST_TAG=$TAG_PREFIX$LAST_VERSION
 echo "  last version code is $LAST_VERSION($LAST_TAG)"
 NEW_VERSION=`expr $LAST_VERSION + 1`
@@ -177,7 +179,7 @@ echo "- uploading"
 rm -R -f hotupdate
 mkdir hotupdate
 mv update.zip hotupdate/$NEW_VERSION
-echo $NEW_VERSION > hotupdate/version
+redis-cli -h 10.4.3.41 set $REDIS_KEY $NEW_VERSION
 ./qrsync $CDN_CONF
 rm -R -f hotupdate
 echo "  upload done."
