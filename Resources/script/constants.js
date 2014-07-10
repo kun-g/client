@@ -14,6 +14,15 @@ var FLAG_BLACKBOX = true;
 var MUSIC_VOLUME = 0.75;
 var SFX_VOLUME = 1;
 
+var AccountTypeName = [
+    "未定义",//0
+    "设备",  //1
+    "PP助手",//2
+    "PP助手",//3
+    "91助手",//4
+    "GameCenter"//5
+];
+
 /*** FILE PATHS ***/
 var PATH_UPDATE = "update/";
 var PATH_DOWNLOAD = "download/";
@@ -45,6 +54,7 @@ var CACHE_INVENTORY = "inventory";
 var CACHE_PLAYER = "player";
 var CACHE_STAGE = "stage";
 var CACHE_QUEST = "quest";
+var CACHE_BOUNTY = "bounty";
 var CACHE_FRIEND = "friend";
 var CACHE_ACTIVITY = "activity";
 var CACHE_DUNGEON = "dungeon";
@@ -74,8 +84,8 @@ var ITMOP_EQUIP = 1;
 var ITMOP_ENHANCE = 2;
 var ITMOP_UPGRADE = 3;
 var ITMOP_FORGE = 4;
-var ITMOP_EXTRACT = 5;
-var ITMOP_RESEVED3 = 6;
+var ITMOP_SYNTHESIZE = 5;
+var ITMOP_USEEXPBOOK = 6;
 var ITMOP_DISSOLVE = 7;
 var ITMOP_SELL = 8;
 
@@ -105,6 +115,10 @@ var COLOR_HAIR = [
 var COLOR_VALUEUP = cc.c3b(133, 222, 44);
 var COLOR_VALUEDOWN = cc.c3b(232, 55, 55);
 var COLOR_DEBUFF = cc.c3b(203, 84, 224);
+var COLOR_BUFF = cc.c3b(255, 191, 0);
+
+var COLOR_LABEL_RED = cc.c3b(240, 0, 0);
+var COLOR_LABEL_GREEN = cc.c3b(0, 240, 0);
 
 var MSGPOP_COLORS = [
     cc.c3b(60, 206, 30),
@@ -170,7 +184,7 @@ var BLOCK_LOCKEDEXIT = 4;
 
 var ACTION_DELAY = 0.3;
 
-var RUN_SPEED = 512;
+var RUN_SPEED = 700;
 var HERO_TAG = 0;
 var UNIT_TAG = 100;
 
@@ -217,13 +231,22 @@ var Request_TutorialStageComplete = 27;
 var Request_ReportState = 28;
 var Request_SubmitDailyQuest = 29;
 var Request_QueryLeaderboard = 30;
+var Request_SubmitBounty = 31;
+var Request_GetPkRivals = 32;
+var Request_ReceivePrize = 33;
+var Request_PVPInfoUpdate = 34;
+var Request_SweepStage = 35;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
 var Request_Echo = 103;
 var Request_Awake = 104;
+var Request_BindAccount = 105;
 
 var Request_GetDailyPrize = 300;
+
+/*** ReceivePrizeType ***/
+var ReceivePkPrize = 0;
 
 /*** EVENTS ***/
 var Event_DungeonEnter = 0;
@@ -255,6 +278,7 @@ var Event_Broadcast = 25;
 var Event_ABTestSeed = 26;
 var Event_UpdateDailyQuest = 27;
 var Event_UpdatePlayerFlags = 28;
+var Event_BountyUpdate = 30;
 
 var Event_Reconnect = 100;
 var Event_Echo = 101;
@@ -298,6 +322,9 @@ var Message_UpdateVIPLevel = 1027;
 var Message_About2Reboot = 1028;
 var Message_ResetDungeon = 1029;
 var Message_UpdateDailyQuest = 1030;
+var Message_UpdateBounty = 1031;
+var Message_UpdateEnergy = 1032;
+var Message_GetMonthCard = 1033;
 
 var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;

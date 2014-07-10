@@ -4,10 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>enemy-robber-3-chest.png</key>
+            <key>enemy-robber-3-chest(MIRA-PC--MiRa--2014-05-15-17,35,28).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{83,102},{42,44}}</string>
+                <string>{{66,208},{42,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,75 +17,179 @@
                 <key>sourceSize</key>
                 <string>{42,44}</string>
             </dict>
-            <key>enemy-robber-3-head.png</key>
+            <key>enemy-robber-3-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,64},{62,79}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{62,79}}</string>
-                <key>sourceSize</key>
-                <string>{62,79}</string>
-            </dict>
-            <key>enemy-robber-3-lefthand.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,128},{27,48}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{27,48}}</string>
-                <key>sourceSize</key>
-                <string>{27,48}</string>
-            </dict>
-            <key>enemy-robber-3-leftleg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{87,2},{32,35}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{32,35}}</string>
-                <key>sourceSize</key>
-                <string>{32,35}</string>
-            </dict>
-            <key>enemy-robber-3-mainweapon.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{60,83}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{60,83}}</string>
-                <key>sourceSize</key>
-                <string>{60,83}</string>
-            </dict>
-            <key>enemy-robber-3-righthand.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{83,71},{43,29}}</string>
+                <string>{{110,203},{42,42}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{42,42}}</string>
+                <key>sourceSize</key>
+                <string>{42,42}</string>
+            </dict>
+            <key>enemy-robber-3-head(MIRA-PC--MiRa--2014-05-15-17,35,28).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,173},{62,79}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,79}}</string>
+                <key>sourceSize</key>
+                <string>{62,79}</string>
+            </dict>
+            <key>enemy-robber-3-head.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{66,2},{62,68}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,68}}</string>
+                <key>sourceSize</key>
+                <string>{62,68}</string>
+            </dict>
+            <key>enemy-robber-3-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{64,88},{64,68}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{64,68}}</string>
+                <key>sourceSize</key>
+                <string>{64,68}</string>
+            </dict>
+            <key>enemy-robber-3-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,28).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{66,158},{27,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{27,48}}</string>
+                <key>sourceSize</key>
+                <string>{27,48}</string>
+            </dict>
+            <key>enemy-robber-3-lefthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{66,158},{27,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{27,48}}</string>
+                <key>sourceSize</key>
+                <string>{27,48}</string>
+            </dict>
+            <key>enemy-robber-3-leftleg(MIRA-PC--MiRa--2014-05-15-17,35,28).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{154,195},{32,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,35}}</string>
+                <key>sourceSize</key>
+                <string>{32,35}</string>
+            </dict>
+            <key>enemy-robber-3-leftleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{126,158},{32,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,35}}</string>
+                <key>sourceSize</key>
+                <string>{32,35}</string>
+            </dict>
+            <key>enemy-robber-3-mainweapon(MIRA-PC--MiRa--2014-05-15-17,35,28).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,88},{60,83}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,83}}</string>
+                <key>sourceSize</key>
+                <string>{60,83}</string>
+            </dict>
+            <key>enemy-robber-3-mainweapon.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{62,84}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,84}}</string>
+                <key>sourceSize</key>
+                <string>{62,84}</string>
+            </dict>
+            <key>enemy-robber-3-righthand(MIRA-PC--MiRa--2014-05-15-17,35,29).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{95,158},{43,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{43,29}}</string>
                 <key>sourceSize</key>
                 <string>{43,29}</string>
             </dict>
+            <key>enemy-robber-3-righthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{95,158},{43,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{43,29}}</string>
+                <key>sourceSize</key>
+                <string>{43,29}</string>
+            </dict>
+            <key>enemy-robber-3-rightleg(MIRA-PC--MiRa--2014-05-15-17,35,29).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{130,2},{34,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{34,33}}</string>
+                <key>sourceSize</key>
+                <string>{34,33}</string>
+            </dict>
             <key>enemy-robber-3-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{87,36},{34,33}}</string>
+                <string>{{188,2},{34,33}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -103,9 +207,9 @@
             <key>realTextureFileName</key>
             <string>erobber-3.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:45f0f5c608bb6b48c330fa89bbdaebed$</string>
+            <string>$TexturePacker:SmartUpdate:1076d73cf5b518c0e0ecd9771d2a378e$</string>
             <key>textureFileName</key>
             <string>erobber-3.png</string>
         </dict>

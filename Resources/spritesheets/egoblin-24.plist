@@ -4,23 +4,36 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>enemy-goblin4-2-chest.png</key>
+            <key>enemy-goblin4-2-chest(MIRA-PC--MiRa--2014-05-15-17,35,06).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,171},{51,67}}</string>
+                <string>{{2,191},{51,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{51,67}}</string>
                 <key>sourceSize</key>
                 <string>{51,67}</string>
             </dict>
-            <key>enemy-goblin4-2-head.png</key>
+            <key>enemy-goblin4-2-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,2},{112,87}}</string>
+                <string>{{96,179},{41,55}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{41,55}}</string>
+                <key>sourceSize</key>
+                <string>{41,55}</string>
+            </dict>
+            <key>enemy-goblin4-2-head(MIRA-PC--MiRa--2014-05-15-17,35,07).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{141,98},{112,87}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,23 +43,62 @@
                 <key>sourceSize</key>
                 <string>{112,87}</string>
             </dict>
-            <key>enemy-goblin4-2-lefthand.png</key>
+            <key>enemy-goblin4-2-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{55,171},{39,59}}</string>
+                <string>{{2,115},{92,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{92,74}}</string>
+                <key>sourceSize</key>
+                <string>{92,74}</string>
+            </dict>
+            <key>enemy-goblin4-2-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{171,2},{93,74}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{93,74}}</string>
+                <key>sourceSize</key>
+                <string>{93,74}</string>
+            </dict>
+            <key>enemy-goblin4-2-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,07).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{139,187},{39,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{39,59}}</string>
                 <key>sourceSize</key>
                 <string>{39,59}</string>
             </dict>
-            <key>enemy-goblin4-2-leftleg.png</key>
+            <key>enemy-goblin4-2-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{210,38},{39,40}}</string>
+                <string>{{139,228},{32,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,56}}</string>
+                <key>sourceSize</key>
+                <string>{32,56}</string>
+            </dict>
+            <key>enemy-goblin4-2-leftleg(MIRA-PC--MiRa--2014-05-15-17,35,07).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{200,187},{39,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -56,36 +108,75 @@
                 <key>sourceSize</key>
                 <string>{39,40}</string>
             </dict>
-            <key>enemy-goblin4-2-mainweapon.png</key>
+            <key>enemy-goblin4-2-leftleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{71,236},{33,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{33,31}}</string>
+                <key>sourceSize</key>
+                <string>{33,31}</string>
+            </dict>
+            <key>enemy-goblin4-2-mainweapon(MIRA-PC--MiRa--2014-05-15-17,35,07).png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{57,167}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{57,167}}</string>
                 <key>sourceSize</key>
                 <string>{57,167}</string>
             </dict>
-            <key>enemy-goblin4-2-righthand.png</key>
+            <key>enemy-goblin4-2-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{61,2},{55,33}}</string>
+                <string>{{2,61},{52,137}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{52,137}}</string>
+                <key>sourceSize</key>
+                <string>{52,137}</string>
+            </dict>
+            <key>enemy-goblin4-2-righthand(MIRA-PC--MiRa--2014-05-15-17,35,07).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{197,228},{55,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{55,33}}</string>
                 <key>sourceSize</key>
                 <string>{55,33}</string>
             </dict>
-            <key>enemy-goblin4-2-rightleg.png</key>
+            <key>enemy-goblin4-2-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{210,2},{42,34}}</string>
+                <string>{{96,115},{43,26}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{43,26}}</string>
+                <key>sourceSize</key>
+                <string>{43,26}</string>
+            </dict>
+            <key>enemy-goblin4-2-rightleg(MIRA-PC--MiRa--2014-05-15-17,35,08).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,143},{42,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -95,6 +186,19 @@
                 <key>sourceSize</key>
                 <string>{42,34}</string>
             </dict>
+            <key>enemy-goblin4-2-rightleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{141,61},{35,28}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,28}}</string>
+                <key>sourceSize</key>
+                <string>{35,28}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -103,9 +207,9 @@
             <key>realTextureFileName</key>
             <string>egoblin-24.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:03a4de1fd4012681b374b1f3749a20f4$</string>
+            <string>$TexturePacker:SmartUpdate:7fa9df1dced8ba57e94aea288ca93367$</string>
             <key>textureFileName</key>
             <string>egoblin-24.png</string>
         </dict>

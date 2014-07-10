@@ -7,7 +7,7 @@
             <key>effect-attack1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{38,536},{30,74}}</string>
+                <string>{{47,536},{30,74}}</string>
                 <key>offset</key>
                 <string>{0,40}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>effect-attack2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{403,494},{28,120}}</string>
+                <string>{{401,494},{28,120}}</string>
                 <key>offset</key>
                 <string>{0,17}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>effect-attack3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,547},{24,154}}</string>
+                <string>{{432,493},{24,154}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>effect-attack5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{359,573},{10,128}}</string>
+                <string>{{588,493},{10,128}}</string>
                 <key>offset</key>
                 <string>{-1,-13}</string>
                 <key>rotated</key>
@@ -98,11 +98,11 @@
             <key>effect-attackm3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{595,992},{27,52}}</string>
+                <string>{{211,536},{27,52}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{2,0},{27,52}}</string>
                 <key>sourceSize</key>
@@ -111,20 +111,20 @@
             <key>effect-attackm4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{403,448},{29,44}}</string>
+                <string>{{401,448},{29,44}}</string>
                 <key>offset</key>
-                <string>{-1,5}</string>
+                <string>{-1,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{29,44}}</string>
+                <string>{{0,1},{29,44}}</string>
                 <key>sourceSize</key>
                 <string>{31,54}</string>
             </dict>
             <key>effect-attackp1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{595,932},{56,58}}</string>
+                <string>{{510,751},{56,58}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
@@ -137,11 +137,11 @@
             <key>effect-attackp2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{531,942},{62,66}}</string>
+                <string>{{442,753},{62,66}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{6,5},{62,66}}</string>
                 <key>sourceSize</key>
@@ -163,11 +163,11 @@
             <key>effect-bj1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{906,724},{103,107}}</string>
+                <string>{{619,733},{103,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{103,107}}</string>
                 <key>sourceSize</key>
@@ -176,11 +176,11 @@
             <key>effect-bj2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{678,990},{53,23}}</string>
+                <string>{{547,956},{53,23}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{53,23}}</string>
                 <key>sourceSize</key>
@@ -215,7 +215,7 @@
             <key>effect-cardskill1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{909,614},{108,108}}</string>
+                <string>{{588,623},{108,108}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,11 +241,11 @@
             <key>effect-cardskill3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{797,648},{105,107}}</string>
+                <string>{{577,842},{105,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{105,107}}</string>
                 <key>sourceSize</key>
@@ -254,7 +254,7 @@
             <key>effect-cardskill4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{619,808},{120,120}}</string>
+                <string>{{466,629},{120,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,7 +280,7 @@
             <key>effect-cardskill6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{797,536},{110,110}}</string>
+                <string>{{465,844},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>effect-defense2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{371,637},{56,63}}</string>
+                <string>{{384,754},{56,63}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -345,7 +345,7 @@
             <key>effect-forge2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{394,815},{140,69}}</string>
+                <string>{{360,844},{140,69}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +371,7 @@
             <key>effect-forgebg2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,732},{116,84}}</string>
+                <string>{{90,645},{116,84}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -397,7 +397,7 @@
             <key>effect-forgebg4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{680,696},{110,115}}</string>
+                <string>{{90,731},{110,115}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -436,11 +436,11 @@
             <key>effect-forgehummer1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,818},{100,146}}</string>
+                <string>{{240,611},{100,146}}</string>
                 <key>offset</key>
                 <string>{3,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,0},{100,146}}</string>
                 <key>sourceSize</key>
@@ -449,7 +449,7 @@
             <key>effect-forgehummer2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,683},{106,146}}</string>
+                <string>{{240,503},{106,146}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,7 +462,7 @@
             <key>effect-forgehummer3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,573},{108,146}}</string>
+                <string>{{431,519},{108,146}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,11 +475,11 @@
             <key>effect-forgehummer4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{192,818},{104,144}}</string>
+                <string>{{238,713},{104,144}}</string>
                 <key>offset</key>
                 <string>{-2,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,1},{104,144}}</string>
                 <key>sourceSize</key>
@@ -488,7 +488,7 @@
             <key>effect-forgeitem1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{748,922},{100,100}}</string>
+                <string>{{724,782},{100,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -524,62 +524,10 @@
                 <key>sourceSize</key>
                 <string>{247,156}</string>
             </dict>
-            <key>effect-fyyj1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{434,493},{86,161}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{86,161}}</string>
-                <key>sourceSize</key>
-                <string>{86,161}</string>
-            </dict>
-            <key>effect-fyyj2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{597,517},{85,137}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{85,137}}</string>
-                <key>sourceSize</key>
-                <string>{85,137}</string>
-            </dict>
-            <key>effect-fyyj3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{90,645},{85,116}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{85,116}}</string>
-                <key>sourceSize</key>
-                <string>{85,116}</string>
-            </dict>
-            <key>effect-fyyj4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{240,448},{86,161}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{86,161}}</string>
-                <key>sourceSize</key>
-                <string>{86,161}</string>
-            </dict>
             <key>effect-fyyjb1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{574,778},{99,28}}</string>
+                <string>{{237,819},{99,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -628,23 +576,10 @@
                 <key>sourceSize</key>
                 <string>{192,86}</string>
             </dict>
-            <key>effect-fyyjb5.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{401,957},{128,65}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{128,65}}</string>
-                <key>sourceSize</key>
-                <string>{128,65}</string>
-            </dict>
             <key>effect-gj1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{29,536},{7,75}}</string>
+                <string>{{38,536},{7,75}}</string>
                 <key>offset</key>
                 <string>{0,-42}</string>
                 <key>rotated</key>
@@ -657,7 +592,7 @@
             <key>effect-gj2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,536},{9,159}}</string>
+                <string>{{240,492},{9,159}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -670,11 +605,11 @@
             <key>effect-gj3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{647,604},{7,51}}</string>
+                <string>{{388,556},{7,51}}</string>
                 <key>offset</key>
                 <string>{0,54}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{1,0},{7,51}}</string>
                 <key>sourceSize</key>
@@ -683,7 +618,7 @@
             <key>effect-gjts1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{573,696},{80,105}}</string>
+                <string>{{887,778},{80,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -696,11 +631,37 @@
             <key>effect-gjts2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{668,614},{80,23}}</string>
+                <string>{{600,555},{80,23}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{80,23}}</string>
+                <key>sourceSize</key>
+                <string>{80,23}</string>
+            </dict>
+            <key>effect-gjxj1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{780,700},{80,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{80,105}}</string>
+                <key>sourceSize</key>
+                <string>{80,105}</string>
+            </dict>
+            <key>effect-gjxj2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{465,956},{80,23}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{80,23}}</string>
                 <key>sourceSize</key>
@@ -709,7 +670,7 @@
             <key>effect-healing.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{649,992},{27,27}}</string>
+                <string>{{211,619},{27,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -722,7 +683,7 @@
             <key>effect-healing1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{20,536},{7,75}}</string>
+                <string>{{29,536},{7,75}}</string>
                 <key>offset</key>
                 <string>{0,-42}</string>
                 <key>rotated</key>
@@ -735,7 +696,7 @@
             <key>effect-healing2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{433,603},{9,159}}</string>
+                <string>{{240,481},{9,159}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -748,11 +709,11 @@
             <key>effect-healing3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{594,604},{7,51}}</string>
+                <string>{{388,503},{7,51}}</string>
                 <key>offset</key>
                 <string>{0,54}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{1,0},{7,51}}</string>
                 <key>sourceSize</key>
@@ -761,7 +722,7 @@
             <key>effect-healingb0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{70,536},{72,128}}</string>
+                <string>{{79,536},{72,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -774,7 +735,7 @@
             <key>effect-healingb1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{473,780},{99,28}}</string>
+                <string>{{211,994},{99,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -800,11 +761,11 @@
             <key>effect-healingb3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{543,810},{130,36}}</string>
+                <string>{{394,986},{130,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{130,36}}</string>
                 <key>sourceSize</key>
@@ -826,7 +787,7 @@
             <key>effect-hf.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{220,964},{27,27}}</string>
+                <string>{{211,590},{27,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -839,7 +800,7 @@
             <key>effect-hf1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{11,536},{7,75}}</string>
+                <string>{{20,536},{7,75}}</string>
                 <key>offset</key>
                 <string>{0,-42}</string>
                 <key>rotated</key>
@@ -852,7 +813,7 @@
             <key>effect-hf2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{433,592},{9,159}}</string>
+                <string>{{240,470},{9,159}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -865,7 +826,7 @@
             <key>effect-hf3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,536},{7,51}}</string>
+                <string>{{579,572},{7,51}}</string>
                 <key>offset</key>
                 <string>{0,54}</string>
                 <key>rotated</key>
@@ -878,7 +839,7 @@
             <key>effect-lingting1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{581,808},{36,122}}</string>
+                <string>{{428,629},{36,122}}</string>
                 <key>offset</key>
                 <string>{-1,7}</string>
                 <key>rotated</key>
@@ -891,7 +852,7 @@
             <key>effect-lingting2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{465,815},{38,136}}</string>
+                <string>{{388,616},{38,136}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -904,11 +865,11 @@
             <key>effect-lingting3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,966},{32,128}}</string>
+                <string>{{431,844},{32,128}}</string>
                 <key>offset</key>
                 <string>{-1,-3}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{2,7},{32,128}}</string>
                 <key>sourceSize</key>
@@ -956,11 +917,11 @@
             <key>effect-lingtingnb1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{372,785},{99,28}}</string>
+                <string>{{207,749},{99,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{99,28}}</string>
                 <key>sourceSize</key>
@@ -982,11 +943,11 @@
             <key>effect-lingtingnb3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{505,810},{130,36}}</string>
+                <string>{{600,517},{130,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{130,36}}</string>
                 <key>sourceSize</key>
@@ -1008,11 +969,11 @@
             <key>effect-lingtingnb5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{257,964},{142,58}}</string>
+                <string>{{300,849},{142,58}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{10,0},{142,58}}</string>
                 <key>sourceSize</key>
@@ -1034,11 +995,11 @@
             <key>effect-lingtingnb7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{257,964},{142,58}}</string>
+                <string>{{300,849},{142,58}}</string>
                 <key>offset</key>
                 <string>{-1,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{10,1},{142,58}}</string>
                 <key>sourceSize</key>
@@ -1047,7 +1008,7 @@
             <key>effect-mzts1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{536,614},{80,105}}</string>
+                <string>{{887,696},{80,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1060,20 +1021,59 @@
             <key>effect-mzts2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{643,614},{80,23}}</string>
+                <string>{{502,817},{80,23}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{80,23}}</string>
                 <key>sourceSize</key>
                 <string>{80,23}</string>
             </dict>
+            <key>effect-sd1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{11,536},{7,75}}</string>
+                <key>offset</key>
+                <string>{0,-42}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,84},{7,75}}</string>
+                <key>sourceSize</key>
+                <string>{9,159}</string>
+            </dict>
+            <key>effect-sd2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{240,459},{9,159}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{9,159}}</string>
+                <key>sourceSize</key>
+                <string>{9,159}</string>
+            </dict>
+            <key>effect-sd3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{579,519},{7,51}}</string>
+                <key>offset</key>
+                <string>{0,54}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{7,51}}</string>
+                <key>sourceSize</key>
+                <string>{9,159}</string>
+            </dict>
             <key>effect-sdts1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{466,698},{80,105}}</string>
+                <string>{{780,618},{80,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1083,10 +1083,36 @@
                 <key>sourceSize</key>
                 <string>{80,105}</string>
             </dict>
+            <key>effect-sdts2-1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{887,614},{80,105}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{80,105}}</string>
+                <key>sourceSize</key>
+                <string>{80,105}</string>
+            </dict>
+            <key>effect-sdts2-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{420,819},{80,23}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{80,23}}</string>
+                <key>sourceSize</key>
+                <string>{80,23}</string>
+            </dict>
             <key>effect-sdts2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{290,791},{80,23}}</string>
+                <string>{{312,993},{80,23}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1112,11 +1138,11 @@
             <key>effect-skill1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{741,808},{112,108}}</string>
+                <string>{{90,843},{112,108}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{15,0},{112,108}}</string>
                 <key>sourceSize</key>
@@ -1125,7 +1151,7 @@
             <key>effect-skill2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{850,922},{100,98}}</string>
+                <string>{{684,884},{100,98}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -1151,7 +1177,7 @@
             <key>effect-skill4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{704,930},{42,42}}</string>
+                <string>{{113,953},{42,42}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1164,7 +1190,7 @@
             <key>effect-skill5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{298,816},{142,94}}</string>
+                <string>{{204,850},{142,94}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -1203,7 +1229,7 @@
             <key>effect-smoke2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{653,930},{58,49}}</string>
+                <string>{{568,751},{58,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1216,11 +1242,11 @@
             <key>effect-smoke3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,1000},{44,21}}</string>
+                <string>{{90,953},{44,21}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{44,21}}</string>
                 <key>sourceSize</key>
@@ -1242,7 +1268,7 @@
             <key>effect-xiajia1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{429,616},{80,105}}</string>
+                <string>{{780,536},{80,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1255,7 +1281,7 @@
             <key>effect-xiajia2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{208,791},{80,23}}</string>
+                <string>{{338,819},{80,23}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1281,7 +1307,7 @@
             <key>effect-xj2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{433,581},{9,159}}</string>
+                <string>{{240,448},{9,159}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1307,7 +1333,7 @@
             <key>effect-yellowb1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{372,536},{99,28}}</string>
+                <string>{{208,648},{99,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1333,11 +1359,11 @@
             <key>effect-znz.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{359,703},{80,105}}</string>
+                <string>{{698,614},{80,105}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{80,105}}</string>
                 <key>sourceSize</key>
@@ -1353,7 +1379,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:62e291f542535ec39f7ab89142dada9d$</string>
+            <string>$TexturePacker:SmartUpdate:c9314c3251f4629ecbf6f8c79599c0de$</string>
             <key>textureFileName</key>
             <string>effect.png</string>
         </dict>

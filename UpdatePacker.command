@@ -6,14 +6,13 @@ ENCRYPT_KEY="WhyDoingThis" #default encrypt key
 #1 procedural constants
 WORK_PATH=`dirname $0`
 cd $WORK_PATH
-RES_PATH="Clients/PocketDungeon/PocketDungeon/Resources"
-CLI_PATH="Clients/PocketDungeon/PocketDungeon"
+RES_PATH="Resources"
 
 BLACKLIST=( \
-"/Resources/blackbox/" \
-"/Resources/script/" \
-"/Resources/table/" \
-"/Resources/dtable/drop.bad" \
+"*/blackbox/*" \
+"*/script/*" \
+"*/table/*" \
+"*/tutorialList.js" \
 )
 
 function folder {
@@ -113,8 +112,10 @@ folder $RES_PATH/dscript/dummy
 folder $RES_PATH/dtable/dummy
 CompileJSC $RES_PATH/blackbox $RES_PATH/dblackbox
 CompileJSC $RES_PATH/script $RES_PATH/dscript
-CompileJSC $CLI_PATH/libs/javascript/bindings/js $RES_PATH
-Encrypt $RES_PATH/table $RES_PATH/dtable
+CompileJSC libs/javascript/bindings/js $RES_PATH
+CompileJSC $RES_PATH/table $RES_PATH/dtable
+CompileJSC $RES_PATH/ui/1136 $RES_PATH/ui/1136
+CompileJSC $RES_PATH/ui/960 $RES_PATH/ui/960
 echo "  compile done."
 
 #5 commit branch
@@ -122,7 +123,7 @@ echo "- commiting update"
 git add $RES_PATH
 git commit -am "AUTO COMMIT "$NEW_TAG
 git tag -f $NEW_TAG
-git push origin $WORK_BRANCH
+#git push origin $WORK_BRANCH
 echo "  commit done."
 
 #6 fetch updated files
@@ -131,7 +132,7 @@ function UpdateFile {
 	_FLAG=1
 	for _BLACK in ${BLACKLIST[*]}
 	do
-		if [[ $1 == *$_BLACK* ]]; then
+		if [[ $1 == $_BLACK ]]; then
 			_FLAG=0
 			break
 		fi
@@ -155,7 +156,6 @@ for TAR in $CHANGES
 do
 	UpdateFile $TAR
 done
-CleanDFolders
 echo "------ end of list ------"
 
 echo "NOTICE: The update content is about to be packed. You may manually interfere with the update content by now."

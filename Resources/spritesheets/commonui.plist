@@ -261,7 +261,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:096d363f24378e816de1e3d1c97d6af5$</string>
+            <string>$TexturePacker:SmartUpdate:9fa05782d22ac622cf6a85a815053638$</string>
             <key>textureFileName</key>
             <string>commonui.png</string>
         </dict>

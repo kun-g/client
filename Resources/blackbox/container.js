@@ -46,6 +46,13 @@
             });
             item.slot[_this.type] = index;
           }
+          if (item.id == null) {
+            logInfo({
+              action: 'clearSlot',
+              index: index
+            });
+            _this.removeItemAt(index);
+          }
           return item;
         };
       })(this));
@@ -139,11 +146,11 @@
             } else {
               tmpCount = left > stack ? stack : left;
               if (count === 1) {
-                bag.newProperty(e, item);
+                bag[e] = item;
               } else {
                 constructor = item.getConstructor();
                 tmp = new constructor(item.dump().save);
-                bag.newProperty(e, tmp);
+                bag[e] = tmp;
               }
             }
             bag[e].count = tmpCount;

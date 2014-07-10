@@ -24,9 +24,15 @@ TABLE_CAMPAIGN = "campaign";
 TABLE_VIP = "vip";
 TABLE_TRIGGER = "triggers";
 TABLE_BROADCAST = "broadcast";
-TABLE_TUTORIAL = "tutorial";
+TABLE_TUTORIAL = "tutorialList";
 TABLE_TUTORIAL_CONFIG = "tutorialConfig";
 TABLE_BAN = "bans";
+TABLE_LEADBOARD = "leadboard";
+TABLE_FACTION = "faction";
+TABLE_BOUNTY = "bounty";
+TABLE_COST = "costs";
+TABLE_DP = "dailyPrize";
+TABLE_ARENA = "arena";
 
 /*** GAME CONSTANTS ***/
 ItemId_RevivePotion = 540;
@@ -80,9 +86,12 @@ RET_SessionOutOfDate = 44;
 RET_NeedTeammate = 45;
 RET_NeedReceipt = 46;
 RET_InsufficientIngredient = 47;
-
+RET_InvalidPaymentInfo = 48;
+RET_SweepPowerNotEnough = 49;
+RET_NotEnoughTimes = 50;
+RET_CantReceivePkAward = 51;
 ErrorMsgs = [
-    "操作成功",//0
+    "操作成功",
     "金币数量不足",
     "宝石数量不足",
     "精力值不足",
@@ -94,7 +103,7 @@ ErrorMsgs = [
     "装备熟练度不足",
     "缺少装备",
     "缺少强化宝石",
-    "装备无法再次升级",//10
+    "装备无法再次升级",
     "发生了什么错误",
     "道具数量不足",
     "聊天信息发送过于频繁，请稍等片刻",
@@ -110,7 +119,7 @@ ErrorMsgs = [
     "资源版本不匹配",
     "需要创建角色",
     "错误的登录信息",
-    "不允许的名字",//20
+    "不允许的名字",
     "角色不存在",
     "名字已被占用",
     "没有匹配的钥匙",
@@ -121,7 +130,7 @@ ErrorMsgs = [
     "错误:36",
     "错误:37",
     "错误:38",
-    "VIP等级不足",//30
+    "VIP等级不足",
     "物品已经售完",
     "错误:41",
     "从另外一个设备登录",
@@ -129,7 +138,11 @@ ErrorMsgs = [
     "与服务器断开连接",
     "Need Teammate",
     "缺少配方",
-    "缺少材料"
+    "缺少材料",
+    "付费信息错误，请联系工作人员",
+    "战斗力不足",
+    "挑战次数以用尽",
+    "无法领取PK奖励"
 ];
 
 /*** ITEM CATEGORY ***/
@@ -199,17 +212,26 @@ RES_GOLD = 12;
 RES_WXP = 13;
 RES_EXP = 14;
 
+Sweep_Vip_Level = 3;
+
 LOGIN_ACCOUNT_TYPE_TG = 0;
 LOGIN_ACCOUNT_TYPE_AD = 1;
 LOGIN_ACCOUNT_TYPE_PP =  2;
 LOGIN_ACCOUNT_TYPE_91 =  3;
 LOGIN_ACCOUNT_TYPE_KY =  4;
+LOGIN_ACCOUNT_TYPE_GAMECENTER =  5;
 
 Max_tutorialStage = 3;
+
+MonthCardID = 8;
 
 /*** Quest Status ***/
 QUESTSTATUS_ONGOING = 0;
 QUESTSTATUS_COMPLETE = 1;
+
+/*** Bounty Status ***/
+BOUNTYSTATUS_ONGOING = 0;
+BOUNTYSTATUS_COMPLETE = 1;
 
 /*** Prize Type ***/
 PRIZETYPE_ITEM = 0;
@@ -237,11 +259,13 @@ BROADCAST_INFINITE_LEVEL = 1;
 BROADCAST_ENHANCE = 2;
 BROADCAST_ITEM_LEVEL = 3;
 BROADCAST_PLAYER_LEVEL = 4;
+BROADCAST_CRAFT = 5;
 
 /*** FEATURES ***/
 FEATURE_ENERGY_RECOVER = 0;
 FEATURE_INVENTORY_STROAGE = 1;
 FEATURE_FRIEND_STROAGE = 2;
+FEATURE_FRIEND_GOLD = 3;
 
 /*** NOTIOFICATION OP ID ***/
 NTFOP_ACCEPT = 1;

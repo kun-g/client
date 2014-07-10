@@ -11,6 +11,26 @@ var synCount = 0;
 
 var role = loadModule("role.js");
 
+var loginSucessInvokes = {};
+function pushLoginSuccessInvoke(key, obj, func, args){
+    loginSucessInvokes[key] = {
+        OBJ: obj,
+        FUNC: func,
+        ARGS: args
+    };
+}
+function removeLoginSucessInvoke(key){
+    delete loginSucessInvokes[key];
+}
+function processLoginSucessInvokes(){
+    isGameLoggedIn = true;
+    for(var k in loginSucessInvokes){
+        var ivk = loginSucessInvokes[k];
+        ivk.FUNC.apply(ivk.OBJ, ivk.ARGS);
+    }
+    loginSucessInvokes = {};
+}
+
 function syncEvent(event, key){
     if( event.arg.clr )
     {
@@ -46,6 +66,8 @@ function onEvent(event)
     {
         case Message_AccountLoginSuccess:
         {
+            processLoginSucessInvokes();
+
             engine.user.initProfile(event.arg.usr);
 
             //sync time
@@ -173,6 +195,9 @@ function onEvent(event)
         case Event_EnergyUpdate:
         {
             engine.user.player.setEnergy(event.arg.eng, event.arg.tim);
+            var event = {};
+            event.NTF = Message_UpdateEnergy;
+            engine.event.processNotification(event);
             //debug("Energy Update! = "+engine.user.player.Energy);
             return true;
         }
@@ -292,7 +317,7 @@ function onEvent(event)
             var deliver = event.arg;
             if( deliver.typ == 0 ){
                 deliver.tit = "组队战斗奖励";
-                deliver.txt = "你的英雄继续和别人组队厮杀打拼。又挣到了一些奖励⋯⋯";
+                deliver.txt = "你的英雄和别人组队厮杀打拼。又挣到了一些奖励⋯⋯";
             }
             engine.session.pushSystemDeliver(deliver);
             engine.event.processNotification(Message_NewSystemDeliver);
@@ -317,6 +342,7 @@ function onEvent(event)
         }
         case Event_TutorialInfo:
         {
+            debug("** TutorialInfo = "+JSON.stringify(event.arg));//test
             //trigger tutorial
             if( engine.user.player.Tutorial != null
                 && engine.user.player.Tutorial != event.arg.tut ){
@@ -324,7 +350,7 @@ function onEvent(event)
                 if( tc.tutorialTriggers != null
                     && tc.tutorialTriggers[event.arg.tut] != null
                     && tc.tutorialTriggers[event.arg.tut].tutorial != null ){
-                    loadModule("tutorial").invokeTutorial(tc.tutorialTriggers[event.arg.tut].tutorial);
+                    loadModule("tutorialx.js").invokeTutorial(tc.tutorialTriggers[event.arg.tut].tutorial);
                 }
             }
             engine.user.player.Tutorial = event.arg.tut;
@@ -337,14 +363,27 @@ function onEvent(event)
         }
         case Event_PlayerInfo:
         {
-            engine.user.player.RMB = event.arg.rmb;
-            engine.user.actor.vip = event.arg.vip;
+            if( event.arg.rmb != null ){
+                engine.user.player.RMB = event.arg.rmb;
+            }
+            if( event.arg.vip != null ){
+                engine.user.actor.vip = event.arg.vip;
+            }
+            if( event.arg.aid != null ){
+                engine.user.player.AID = event.arg.aid;
+            }
+            if (event.arg.mcc != null){
+                engine.user.player.MonthCardCount = event.arg.mcc;
+            }
+            else{
+                engine.user.player.MonthCardCount = 0;
+            }
             engine.event.processNotification(Message_UpdateVIPLevel);
             return true;
         }
         case Event_Broadcast:
         {
-            loadModule("broadcast.js").instance.pushBroadcast(event.arg);
+            loadModule("broadcastx.js").instance.pushBroadcast(event.arg);
             return true;
         }
         case Event_ABTestSeed:
@@ -362,6 +401,22 @@ function onEvent(event)
             engine.user.player.Flags = event.arg;
             return true;
         }
+        case Event_BountyUpdate:
+        {
+            if (event.arg.bid >= 0){
+                engine.session.dataBounty[event.arg.bid] = event.arg;
+            }
+            else if (event.arg.bid == -1){
+                engine.session.MonthCardAvaiable = false;
+                if ( event.arg.sta == 1){
+                    engine.session.MonthCardAvaiable = true;
+                }
+            }
+            var event = {};
+            event.NTF = Message_UpdateBounty;
+            engine.event.processNotification(event);
+            return true;
+        }
     }
 
     if( event.NTF < 1000 ){
@@ -377,3 +432,5 @@ function getDungeonFlag()
 
 exports.onEvent = onEvent;
 exports.getDungeonFlag = getDungeonFlag;
+exports.pushLoginSuccessInvoke = pushLoginSuccessInvoke;
+exports.removeLoginSucessInvoke = removeLoginSucessInvoke;

@@ -212,6 +212,7 @@ function attachEffect(node, offset, effectId, mode)
     eff.setPosition(offset);
     node.addChild(eff);
 
+    node.setCompleteCallback = setEffectCallback;
     return eff;
 }
 

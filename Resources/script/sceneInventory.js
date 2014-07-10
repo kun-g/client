@@ -86,8 +86,7 @@ function onTouchEnded(touch, event)
         var id = calcPosId(localPos);
         //debug("CLICK ID = "+id);
         var item = theCenter.inventoryData[id];
-        if( item != null )
-        {
+        if( item != null ) {
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
             libItemInfo.show(item, true);
         }
@@ -237,7 +236,7 @@ function onShopInventory(sender)
         //just load
         theTransitionGroup = null;
         theCurrentGroup = theCenter;
-        setNormalInventory(theCurrentGroup);
+        setShopInventory(theCurrentGroup);
         isFlying = false;
     }
     currentMode = INVENTORY_SHOP;
@@ -519,7 +518,7 @@ function onEnter()
     engine.ui.regMenu(theCenter.theGridLayer);
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
     
     
 }
@@ -533,7 +532,7 @@ function onActivate(){
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function scene()

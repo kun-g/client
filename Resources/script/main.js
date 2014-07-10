@@ -1,6 +1,7 @@
 require("jsb.js");
 
 var engine = {};
+var isGameLoggedIn = false;
 
 function initEngine()
 {
@@ -83,6 +84,7 @@ function splash(){
             var call = cc.CallFunc.create(function(){
                 //delayed init
                 startEngine();
+                isGameLoggedIn = false;
                 engine.ui.newScene(loadModule("sceneLogin.js").scene());
             });
             this.runAction(call);
@@ -93,8 +95,9 @@ function splash(){
 function main()
 {
     //global init
-    feedback.init();
+    //feedback.init();
     system.setAppBadgeNumber(0);
+    system.unscheduleAllLocalNotifications();
 
     //start the game
     initEngine();

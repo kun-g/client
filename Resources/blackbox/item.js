@@ -27,6 +27,9 @@
         cfg.xp = 0;
         cfg.enhancement = [];
       }
+      if (this.getConfig().expiration) {
+        cfg.date = -1;
+      }
       Item.__super__.constructor.call(this, data, cfg, {});
       if (this.id != null) {
         this.initialize();
@@ -46,7 +49,7 @@
 
     Item.prototype.initialize = function() {
       if (this.id != null) {
-        return this.restore(this.getConfig());
+        return this.restore(JSON.parse(JSON.stringify(this.getConfig())));
       }
     };
 

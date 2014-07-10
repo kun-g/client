@@ -23,37 +23,40 @@ var theTransitionContent = null;
 
 var UpgradeArgs = null;
 var EnhanceArgs = null;
-var EnhanceStoneCost = 0;
+var EnhanceStoneLevel = -1;//0,1,2,3,4
+var EnhanceStoneCost = 0;//quantity
+var EnhanceStoneCid = [5];//cid array
+var EnhanceStoneSid = 0;//sid
+var EnhanceMaxLv = 39;
 
 var MODE_UPGRADE = 0;
 var MODE_ENHANCE = 1;
 var MODE_FORGE = 2;
-var MODE_EXTRACT = 3;
+var MODE_SYNTHESIZE = 3;
 var MODE_EXIT = 4;
 var theMode = MODE_UPGRADE;
+var goldCost = 0;
 
-var ENHANCE_ITEM_GAP = UI_ITEM_GAP;
-
-//enhance variables
-var EnhanceEquipList;
-var EnhanceEquipLayer;
-var EnhanceEquipTouch;
-
-var theSSLayer;
-var theSSList;
-var theSSTouch;
-
+//equipment variables
+var chosenItem = null;
+var chosenItemTag = 0;
 //forge variables
 var ForgeArgs = null;
 var ForgeCost = 0;
-var theRecipeLabel;
 
-//extract variables
-var ExtractArgs = null;
-var ExtractSlider;
+//synthesize variables
+var SynthesizeArgs = null;
+var SynthesizeStoneFrom = 1;
+var SynthesizeSlider;
 
 var theForgeItem;
 var theForgeAnimationNode;
+var TouchId;
+var EnoughMtrls = false;
+var Delta = [];
+var TagArray = [[],[],[]]; //TagArray[0]:upgrade TagArray[1]:enhance TagArray[3]:forge
+
+var ITEM_POSITION = cc.p(45,45);
 
 function onFinishForgeAnimation(func, obj){
     theForgeAnimationNode.runAction(actionPopOut(function(){
@@ -107,7 +110,6 @@ function setModeTag(mode){
         theLayer.owner.btnEnhance.setNormalSpriteFrame(sfc.getSpriteFrame("forge2-common-tabqh2.png"));
         theLayer.owner.btnEnhance.setSelectedSpriteFrame(sfc.getSpriteFrame("forge2-common-tabqh1.png"));
         theLayer.owner.btnEnhance.setEnabled(true);
-        theSSLayer = null;
     }
     if( mode == MODE_FORGE ){
         theLayer.owner.btnForge.setNormalSpriteFrame(sfc.getSpriteFrame("forge3-common-tabdz1.png"));
@@ -121,157 +123,202 @@ function setModeTag(mode){
         theLayer.owner.btnForge.setNormalSpriteFrame(sfc.getSpriteFrame("forge3-common-tabdz2.png"));
         theLayer.owner.btnForge.setSelectedSpriteFrame(sfc.getSpriteFrame("forge3-common-tabdz1.png"));
         theLayer.owner.btnForge.setEnabled(true);
-        theSSLayer = null;
     }
-    if( mode == MODE_EXTRACT ){
-        theLayer.owner.btnExtract.setNormalSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl1.png"));
-        theLayer.owner.btnExtract.setSelectedSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl2.png"));
+    if( mode == MODE_SYNTHESIZE ){
+        theLayer.owner.btnSynthesize.setNormalSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl1.png"));
+        theLayer.owner.btnSynthesize.setSelectedSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl2.png"));
         theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("forge4-common-title.png"));
         theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("forge4-common-title.png"));
         theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("forge4-common-title.png"));
-        theLayer.owner.btnExtract.setEnabled(false);
+        theLayer.owner.btnSynthesize.setEnabled(false);
     }
     else{
-        theLayer.owner.btnExtract.setNormalSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl2.png"));
-        theLayer.owner.btnExtract.setSelectedSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl1.png"));
-        theLayer.owner.btnExtract.setEnabled(true);
+        theLayer.owner.btnSynthesize.setNormalSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl2.png"));
+        theLayer.owner.btnSynthesize.setSelectedSpriteFrame(sfc.getSpriteFrame("forge4-common-tabtl1.png"));
+        theLayer.owner.btnSynthesize.setEnabled(true);
     }
 }
 
+function onClose(sender){
+    cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    theMode = MODE_EXIT;
+    theLayer.node.animationManager.runAnimationsForSequenceNamed("close");
+}
+
+function upItem(senderTag){
+    var CHILDTAG_FRAME = 10;
+    var frameSelected = cc.Sprite.create("skillbg.png");
+    frameSelected.setScale(0.8);
+    frameSelected.setPosition(ITEM_POSITION);
+    var choosingItem = theContent.owner["item"+senderTag];
+    if( chosenItem != null ){
+        if( choosingItem != chosenItem){
+            chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
+            chosenItem.removeChildByTag(CHILDTAG_FRAME);
+            if( theMode != MODE_SYNTHESIZE ){
+                theContent.owner["tag"+chosenItemTag].runAction(cc.MoveBy.create(0.1, cc.p(0, -7)));
+            }
+        }
+        else{ return; }
+    }
+    chosenItem = choosingItem;
+    chosenItemTag = senderTag;
+    chosenItem.addChild(frameSelected, 51, CHILDTAG_FRAME);
+    chosenItem.runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
+    if( theMode != MODE_SYNTHESIZE ){
+        theContent.owner["tag"+senderTag].runAction(cc.MoveBy.create(0.1, cc.p(0, 7)));
+    }
+}
+
+function getEnhanceStoneCid(stoneLv){
+    for( var cid=0; ; cid++){
+        var item = libTable.queryTable(TABLE_ITEM, cid);
+        if( item != null ){
+            if( item.category == 2 && item.subcategory == 1 && item.quality == stoneLv){
+                return item.classId;
+            }
+        }
+        else return null;
+    }
+}
+exports.getEnhanceStoneCid = getEnhanceStoneCid;
+
+function checkGold(gold){
+    if (engine.user.inventory.Gold < gold){
+        var needgold = gold - engine.user.inventory.Gold;
+        var needdia = Math.ceil(needgold / 10);
+        var str1 = "金币不足\n还需要"+needgold+"金币\n需要使用"+needdia+"宝石来兑换吗?";
+        var str2 = "宝石不足，无法兑换\n需要充值吗?";
+        debug("宝石 = "+needdia);
+        libUIKit.confirmPurchase(Request_BuyFeature, {
+            typ: 3,
+            tar: needdia
+        }, str1, str2, needdia, function(rsp){
+            if( rsp.RET == RET_OK ){
+                //统计
+                tdga.itemPurchase("兑金币", needgold, 0.1);
+            }
+        });
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+function refreshTag(thiz, type) { //type 0:main 1:upgrade 2:enhance 3:forge
+    if(thiz != null){
+        if( type == 0 ){
+            TagArray = [[],[],[]];
+            if( engine.user.inventory.checkUpgradable(TagArray[0]) ){
+                thiz.owner.tag1.setVisible(true);
+            }else thiz.owner.tag1.setVisible(false);
+            if( engine.user.inventory.checkEnhancable(TagArray[1]) ){
+                thiz.owner.tag2.setVisible(true);
+            }else thiz.owner.tag2.setVisible(false);
+            if( engine.user.inventory.checkForgable(TagArray[2]) ){
+                thiz.owner.tag3.setVisible(true);
+            }else thiz.owner.tag3.setVisible(false);
+        }else if(type < 4){
+            for( var i=1; i<7; i++) { thiz.owner["tag"+i].setVisible(false); }
+            for( var k in TagArray[type-1]){
+                thiz.owner[ "tag"+TagArray[type-1][k] ].setVisible(true);
+            }
+        }
+    }
+}
+
+
+//--- 升级 ---
 function onStartUpgrade(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( UpgradeArgs != null ){
-        libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function(rsp){
-            if( rsp.RET == RET_OK ){
-                pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
-                    libUIKit.showAlert("装备升级成功", function(){
-                        onUpgrade();
-                    }, theLayer);
-
-                    //execute result
-                    if( rsp.RES != null ){
-                        engine.event.processResponses(rsp.RES);
+    if( EnoughMtrls ){
+        if( UpgradeArgs != null ) {
+            debug("金币 = " + goldCost);
+            if (checkGold(goldCost)) {
+                libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function (rsp) {
+                    if (rsp.RET == RET_OK) {
+                        pushForgeAnimation("effect-forge.ccbi", {nodeItem: theForgeItem}, function () {
+                            libUIKit.showAlert("装备升级成功", function () {
+                            }, theLayer);
+                            //execute result
+                            if (rsp.RES != null) {
+                                engine.event.processResponses(rsp.RES);
+                                var slot = EquipSlot_MainHand;
+                                switch (TouchId) {
+                                    case 1: slot = EquipSlot_MainHand; break;
+                                    case 2: slot = EquipSlot_SecondHand; break;
+                                    case 3: slot = EquipSlot_Chest; break;
+                                    case 4: slot = EquipSlot_Legs; break;
+                                    case 5: slot = EquipSlot_Finger; break;
+                                    case 6: slot = EquipSlot_Neck; break;
+                                }
+                                var newItem = engine.user.actor.queryArmor(slot);
+                                if (newItem != null) {
+                                    theContent.ui["equip" + TouchId].setItem(newItem, null, true);
+                                    setUpgradeItem(newItem);
+                                }
+                            }
+                        }, theLayer);
                     }
-
+                    else {
+                        libUIKit.showErrorMessage(rsp);
+                    }
                 }, theLayer);
             }
-            else{
-                libUIKit.showErrorMessage(rsp);
-            }
-        }, theLayer);
+        }
     }
-}
-
-function onStartEnhance(sender){
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( EnhanceArgs != null
-        && EnhanceArgs.sid != null
-        && EnhanceArgs.sto != null ){
-        //decide which sto should be used
-        var enoughStone = false;
-        var stoneId = -1;
-        for(var k in EnhanceArgs.sto.Items){
-            var item = EnhanceArgs.sto.Items[k];
-            if( item.StackCount >= EnhanceStoneCost ){
-                EnhanceArgs.sto = item.ServerId;
-                stoneId = item.ClassId;
-                enoughStone = true;
-                break;
-            }
-        }
-        //send RPC request
-        if( enoughStone ){
-            var theEnhanceStone = new libItem.Item({
-                cid: stoneId,
-                stc: EnhanceStoneCost
-            });
-            libUIKit.waitRPC(Request_InventoryUseItem, EnhanceArgs, function(rsp){
-                if( rsp.RET == RET_OK || rsp.RET == RET_EnhanceFailed ){
-
-                    pushForgeAnimation("effect-forge2.ccbi", {
-                        nodeItem:theForgeItem,
-                        nodeItem2: theEnhanceStone,
-                        nodeItem3: theEnhanceStone
-                    }, function(){
-                        if( rsp.RET == RET_OK ){
-                            libUIKit.showAlert("装备强化成功", function(){
-                            }, theLayer);
-
-                            //统计
-                            tdga.itemUse(theContent.owner.labStoneName.getString(), EnhanceStoneCost);
-                        }
-                        else{
-                            libUIKit.showErrorMessage(rsp);
-                        }
-
-                        setEnhanceStone(null);
-                        loadEnhanceItems(theContent);
-
-                        //execute result
-                        if( rsp.RES != null ){
-                            engine.event.processResponses(rsp.RES);
-                        }
-
-                    }, theLayer);
-
-                }
-                else{
-                    libUIKit.showErrorMessage(rsp);
-                }
-            }, theLayer);
-        }
-        else{
-            libUIKit.showAlert("强化宝石的数量不足");
-        }
+    else{
+        libUIKit.showAlert("条件不足无法升级");
     }
 }
 
 function setUpgradeItem(item){
-
     if( item != null ){
         item = syncItemData(item);
-        var ItemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
+        var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
     }
-
-    if( item != null && ItemClass.label != null )
+    if( item != null && itemClass.label != null )
     {//set value
-        theContent.ui.oldItem.setItem(item);
-        theForgeItem = item;
-
-        theContent.owner.oldName.setString(ItemClass.label);
-        var srcProperties = {};
-        mergeRoleProperties(srcProperties, ItemClass.basic_properties);
-        theContent.owner.labOldProperty.setString(propertyString(srcProperties));
-
-        if( ItemClass.upgradeTarget != null )
+        if( itemClass.upgradeTarget != null )
         {//can upgrade
-            var upgradeXp = ItemClass.upgradeXp;
-            var upgradeCost = ItemClass.upgradeCost;
+            theContent.owner.content1.setVisible(true);
+            theContent.owner.content2.setVisible(false);
+            theContent.owner.btnStartUpgrade.setEnabled(true);
+            theContent.ui.oldItem.setItem(item);
+            theForgeItem = item;
+            theContent.owner.oldName.setString(itemClass.label);
+            theContent.owner.labLvOld.setString(itemClass.rank);
+            libGadget.setProperties(item, theContent.owner.nodeProperties1);
+            var upgradeXp = itemClass.upgradeXp;
+            var upgradeCost = itemClass.upgradeCost;
             if( upgradeXp == null ){
-                upgradeXp = libTable.queryTable(TABLE_UPGRADE, ItemClass.rank).xp;
+                upgradeXp = libTable.queryTable(TABLE_UPGRADE, itemClass.rank).xp;
             }
             if( upgradeCost == null ){
-                upgradeCost = libTable.queryTable(TABLE_UPGRADE, ItemClass.rank).cost;
+                upgradeCost = libTable.queryTable(TABLE_UPGRADE, itemClass.rank).cost;
             }
-            var targetClass = libTable.queryTable(TABLE_ITEM, ItemClass.upgradeTarget);
-            var dummyTarget = new libItem.Item({cid:ItemClass.upgradeTarget});
+            var targetClass = libTable.queryTable(TABLE_ITEM, itemClass.upgradeTarget);
+            var dummyTarget = new libItem.Item({cid:itemClass.upgradeTarget, eh:item.Enhance});
             theContent.ui.newItem.setItem(dummyTarget);
             theContent.owner.newName.setString(targetClass.label);
-
-            var dstProperties = {};
-            mergeRoleProperties(dstProperties, targetClass.basic_properties);
-            theContent.owner.labNewProperty.setString(propertyString(dstProperties));
+            theContent.owner.labLvNew.setString(targetClass.rank);
+            libGadget.setProperties(dummyTarget, theContent.owner.nodeProperties2, "upgrade");
             theContent.ui.cost.setPrice({
                 gold: upgradeCost
             });
 
+            goldCost = upgradeCost;
+
             var xp = item.Xp;
-            if( xp > upgradeXp )
-            {
+            if( xp >= upgradeXp ){
                 xp = upgradeXp;
+                EnoughMtrls = true;
+            }else{
+                EnoughMtrls = false;
             }
 
-            if( ItemClass.rank != null && ItemClass.rank < engine.user.actor.Level ){
+            if( itemClass.rank != null && itemClass.rank < engine.user.actor.Level ){
                 theContent.owner.labXp.setString("熟练度 "+xp+"/"+upgradeXp);
                 theContent.ui.xp.setProgress(xp/upgradeXp);
 
@@ -289,13 +336,21 @@ function setUpgradeItem(item){
         }
         else
         {//can't upgrade
-            theContent.ui.newItem.setItem(null);
-            theContent.owner.newName.setString("");
-            theContent.owner.labNewProperty.setString("");
-            theContent.ui.cost.setPrice(null);
-            theContent.owner.labXp.setString("该装备无法升级");
-            theContent.ui.xp.setProgress(0);
-
+            theContent.owner.content1.setVisible(false);
+            theContent.owner.content2.setVisible(true);
+            theContent.owner.btnStartUpgrade.setEnabled(false);
+            theContent.owner.labLv.setString(itemClass.rank);
+            theContent.owner.theName.setString(itemClass.label);
+            theContent.ui.theItem.setItem(item);
+            libGadget.setProperties(item, theContent.owner.nodeProperties3);
+            if( itemClass.rank == 10 ){
+                theContent.owner.tipLvMax.setVisible(true);
+                theContent.owner.tipToForge.setVisible(false);
+            }else{
+                theContent.owner.tipLvMax.setVisible(false);
+                theContent.owner.tipToForge.setVisible(true);
+            }
+            EnoughMtrls = false;
             UpgradeArgs = null;
         }
     }
@@ -310,38 +365,37 @@ function setUpgradeItem(item){
         theContent.ui.cost.setPrice(null);
         theContent.owner.labXp.setString("");
         theContent.ui.xp.setProgress(0);
+        EnoughMtrls = false;
     }
 }
 
 function onUpgradeEquip(sender){
-    cc.AudioEngine.getInstance().playEffect("card2.mp3");
-
-    var id = sender.getTag();
+    if( isFlying ) return;
+    TouchId = sender.getTag();
     var slot = EquipSlot_MainHand;
-    switch(id)
-    {
+    switch(TouchId){
         case 1: slot = EquipSlot_MainHand; break;
         case 2: slot = EquipSlot_SecondHand; break;
         case 3: slot = EquipSlot_Chest; break;
         case 4: slot = EquipSlot_Legs; break;
+        case 5: slot = EquipSlot_Finger; break;
+        case 6: slot = EquipSlot_Neck; break;
     }
     var oldItem = engine.user.actor.queryArmor(slot);
-    setUpgradeItem(oldItem);
-}
-
-function onClose(sender){
-    cc.AudioEngine.getInstance().playEffect("cancel.mp3");
-    theMode = MODE_EXIT;
-    theLayer.node.animationManager.runAnimationsForSequenceNamed("close");
+    if( oldItem != null){
+        cc.AudioEngine.getInstance().playEffect("card2.mp3");
+        upItem(TouchId);
+        setUpgradeItem(oldItem);
+    }
 }
 
 function loadUpgrade(){
     var ret = {};
     ret.owner = {};
-    ret.owner.onUpgradeEquip = onUpgradeEquip;
     ret.owner.onStartUpgrade = onStartUpgrade;
+    ret.owner.onUpgradeEquip = onUpgradeEquip;
 
-    var node = libUIC.loadUI(ret, "ui-forge.ccbi", {
+    var bind = {
         item1: {
             ui: "UIItem",
             id: "equip1",
@@ -362,9 +416,20 @@ function loadUpgrade(){
             id: "equip4",
             def: "equipmentbg4.png"
         },
+        item5: {
+            ui: "UIItem",
+            id: "equip5",
+            def: "equipmentbg5.png"
+        },
+        item6: {
+            ui: "UIItem",
+            id: "equip6",
+            def: "equipmentbg6.png"
+        },
         itemOld: {
             ui: "UIItem",
-            id: "oldItem"
+            id: "oldItem",
+            def: "wenhao.png"
         },
         itemNew: {
             ui: "UIItem",
@@ -382,24 +447,37 @@ function loadUpgrade(){
             begin: "index-jy1.png",
             middle: "index-jy2.png",
             end: "index-jy3.png"
+        },
+        theItem: {
+            ui: "UIItem",
+            id: "theItem",
+            def: "wenhao.png"
         }
-    });
+    };
+    var node = libUIC.loadUI(ret, "ui-forge.ccbi", bind);
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 
     //set values
-    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand));
-    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand));
-    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest));
-    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs));
+    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand), null, true);
+    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand), null, true);
+    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest), null, true);
+    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs), null, true);
+    ret.ui.equip5.setItem(engine.user.actor.queryArmor(EquipSlot_Finger), null, true);
+    ret.ui.equip6.setItem(engine.user.actor.queryArmor(EquipSlot_Neck), null, true);
     ret.ui.xp.setProgress(0);
-
+    libGadget.setProperties(null, ret.owner.nodeProperties1);
+    libGadget.setProperties(null, ret.owner.nodeProperties2);
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag1.setVisible(false);
+    refreshTag(ret, 1);
     return ret;
 }
 
 function onUpgrade(sender){
+    chosenItem = null;
     if( isFlying ) return;
-
+    theLayer.owner.tag1.setVisible(false);
     //clean transitionContent
     if( theTransitionContent != null ){
         theTransitionContent.removeFromParent();
@@ -429,96 +507,51 @@ function onUpgrade(sender){
     }
     theMode = MODE_UPGRADE;
     setModeTag(theMode);
+
+    UpgradeArgs = null;
 }
 
-function calcPosId(lpos)
-{
-    if( lpos.y < 0 || lpos.y > UI_ITEM_FRAME || lpos.x < 0 ){
-        return -1;
-    }
-    var PX = Math.floor(lpos.x/(UI_ITEM_FRAME+ENHANCE_ITEM_GAP));
-    var off = lpos.x - PX*(UI_ITEM_FRAME+ENHANCE_ITEM_GAP);
-    if( off < ENHANCE_ITEM_GAP ){
-        return -1;
-    }
-    else{
-        return PX;
-    }
-}
+//--- 强化 ---
 
-function onEquipTouchBegan(touch, event){
-    EnhanceEquipTouch = touch.getLocation();
-    var lpos = EnhanceEquipLayer.convertToNodeSpace(EnhanceEquipTouch);
-    var grid = calcPosId(lpos);
-    if( grid >= 0 && grid < EnhanceEquipList.length ){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-function onEquipTouchMoved(touch, event){}
-
-function onEquipTouchEnded(touch, event){
-    var pos = touch.getLocation();
-    var dis = cc.pSub(pos, EnhanceEquipTouch);
-    if( cc.pLengthSQ(dis) < CLICK_RANGESQ ){
-        var lpos = EnhanceEquipLayer.convertToNodeSpace(EnhanceEquipTouch);
-        var grid = calcPosId(lpos);
-        if( grid >= 0 ){
-            if( grid < EnhanceEquipList.length ){
-                cc.AudioEngine.getInstance().playEffect("card2.mp3");
-                setEnhanceEquip(EnhanceEquipList[grid]);
+function onStartEnhance(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    if( EnoughMtrls ){
+        if( EnhanceArgs != null){
+            if( checkGold(goldCost)){
+                libUIKit.waitRPC(Request_InventoryUseItem, EnhanceArgs, function(rsp){
+                    if( rsp.RET == RET_OK || rsp.RET == RET_EnhanceFailed ){
+                        if( rsp.RET == RET_OK) {
+                            libEffect.attachEffectCCBI(theContent.owner.itemEquip, cc.p(0,0), "effect-forgeqh.ccbi");
+                            EnoughMtrls = false;
+                        }
+                        else{
+                            libUIKit.showErrorMessage(rsp);
+                        }
+                        //execute result
+                        if( rsp.RES != null ){
+                            engine.event.processResponses(rsp.RES);
+                            theContent.ui["equip"+TouchId].setItem(theForgeItem, null, true);
+                            setEnhanceEquip(theForgeItem);
+                        }
+                    }
+                    else{
+                        libUIKit.showErrorMessage(rsp);
+                    }
+                }, theLayer);
             }
         }
-    }
-}
-
-function onEquipTouchCancelled(touch, event){
-    onEquipTouchEnded(touch, event);
-}
-
-function onSSTouchBegan(touch, event){
-    theSSTouch = touch.getLocation();
-    if( theSSLayer == null ) return false;
-    var lpos = theSSLayer.convertToNodeSpace(theSSTouch);
-    var grid = calcPosId(lpos);
-    if( grid >= 0 && grid < theSSList.length ){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-function onSSTouchMoved(touch, event){}
-
-function onSSTouchEnded(touch, event){
-    var pos = touch.getLocation();
-    var dis = cc.pSub(pos, theSSTouch);
-    if( cc.pLengthSQ(dis) < CLICK_RANGESQ ){
-        var lpos = theSSLayer.convertToNodeSpace(theSSTouch);
-        var grid = calcPosId(lpos);
-        if( grid >= 0 ){
-            if( grid < theSSList.length ){
-                cc.AudioEngine.getInstance().playEffect("card2.mp3");
-                if( theMode == MODE_ENHANCE ){
-                    setEnhanceStone(theSSList[grid]);
-                }
-                else if( theMode == MODE_FORGE ){
-                    setForgeRecipe(theSSList[grid]);
-                }
-            }
+        else{
+            libUIKit.showAlert("该装备无法再强化");
         }
     }
-}
+    else{
+        libUIKit.showAlert("强化宝石的数量不足");
+    }
 
-function onSSTouchCancelled(touch, event){
-    onSSTouchEnded(touch, event);
 }
 
 function setEnhanceEquip(item){
+    libGadget.setProperties(null, theContent.owner.nodeProperties);
     if( item != null ){
         item = syncItemData(item);
         var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
@@ -526,290 +559,255 @@ function setEnhanceEquip(item){
     if( item != null && itemClass.label != null ){
         theContent.ui.equip.setItem(item);
         theForgeItem = item;
-
         theContent.owner.labEquipName.setString(itemClass.label);
+
         //load equip enhance state
-        for(var i=0; i<4; ++i){
-            var enhance = null;
-            if( item.Enhance != null ){
-                enhance = item.Enhance[i];
+        var enhance = -1;
+        if( item.Enhance[0] != null && item.Enhance[0].lv != null ){
+            enhance = item.Enhance[0].lv;
+        }else{
+            item.Enhance[0] = {id:null, lv:-1};
+            enhance = item.Enhance[0].lv;
+        }
+        var starLv = Math.floor((enhance+1) / 8);
+        var barLv = ((enhance == EnhanceMaxLv)? 8:Math.floor(((enhance+1)%8)));
+        for(var i=1; i<6; ++i){
+            var starName = "ehStar"+i;
+            if( i <= starLv){
+                theContent.owner[starName].runAction(cc.FadeIn.create(0.3));
             }
-            var keyName = "nodeQh"+(i+1);
-            var keyLevel = "labEhValue"+(i+1);
-            theContent.owner[keyName].removeAllChildren();
-            if( enhance != null ){
-                var EnhanceClass = libTable.queryTable(TABLE_ENHANCE, enhance.id);
-                var icon = cc.Sprite.create(EnhanceClass.icon);
-                theContent.owner[keyName].addChild(icon);
-                theContent.owner[keyLevel].setString("Lv."+(enhance.lv+1));
+            else {
+                theContent.owner[starName].stopAllActions();
+                theContent.owner[starName].setOpacity(0);
             }
-            else
-            {
-                theContent.owner[keyLevel].setString("");
+        }
+        for(var i=1; i<9; ++i){
+            var barName = "ehBar"+i;
+            if( i <= barLv){
+                theContent.owner[barName].runAction(cc.FadeIn.create(0.3));
+            }
+            else {
+                theContent.owner[barName].stopAllActions();
+                theContent.owner[barName].setOpacity(0);
             }
         }
 
+        libGadget.setProperties(item, theContent.owner.nodeProperties, "enhance");
+        theContent.owner.labLv.setString(itemClass.rank);
+        
         if( EnhanceArgs == null ){
             EnhanceArgs = {};
         }
         EnhanceArgs.sid = item.ServerId;
         EnhanceArgs.opn = ITMOP_ENHANCE;
 
-        //calc EnhanceStoneCost
-        var maxLevel = item.getMaxEnhanceLevel();
-        EnhanceStoneCost = maxLevel*2;
-        if( EnhanceStoneCost < 1 ){
-            EnhanceStoneCost = 1;
-        }
+        EnoughMtrls = true;
+        setEnhanceStone(itemClass);
 
-        //calc enhance cost
-        theContent.ui.cost.setPrice({
-            gold: 200*EnhanceStoneCost
-        });
-
-        //update stone cost
-        if( EnhanceArgs.sto != null ){
-            theContent.ui.stone.setStackCount(EnhanceStoneCost);
-            if( EnhanceArgs.sto.StackCount >= EnhanceStoneCost ){
-                theContent.ui.stone.setStackColor(cc.c3b(0, 255, 0));
-            }
-            else{
-                theContent.ui.stone.setStackColor(cc.c3b(255, 0, 0));
-            }
-        }
-        else{
-            theContent.ui.stone.setStackColor(cc.c3b(255, 255, 255));
-        }
     }
     else{
         theContent.ui.equip.setItem(null);
-        theContent.owner.labEquipName.setString("");
+        theContent.owner.labEquipName.setString("请选择装备");
+        libGadget.setProperties(null, theContent.owner.nodeProperties);
+        theContent.owner.labLv.setString("0");
         //load equip enhance state
-        for(var i=0; i<4; ++i){
-            var keyName = "nodeQh"+(i+1);
-            var keyLevel = "labEhValue"+(i+1);
-            theContent.owner[keyName].removeAllChildren();
-            theContent.owner[keyLevel].setString("");
+        for(var i=0; i<5; ++i){
+            var starName = "ehStar"+(i+1);
+            theContent.owner[starName].setOpacity(0);
         }
-
+        for(var i=0; i<8; ++i){
+            var barName = "ehBar"+(i+1);
+            theContent.owner[barName].setOpacity(0);
+        }
         if( EnhanceArgs != null ){
-            delete EnhanceArgs.sid;
+            EnhanceArgs = null;
         }
+        setEnhanceStone(null);
 
-        EnhanceStoneCost = 0;
-    }
-
-    //update stone number
-    if( EnhanceArgs != null
-        && EnhanceArgs.sto != null ){
-        setEnhanceStone(EnhanceArgs.sto);
     }
 }
 
-function setEnhanceStone(info){
-    if( info != null ){
-        var dummyItem =  new libItem.Item({
-            cid: info.ClassId,
-            stc: info.StackCount
-        });
-        theContent.ui.stone.setItem(dummyItem);
-        var StoneClass = libTable.queryTable(TABLE_ITEM, info.ClassId);
-        theContent.owner.labStoneName.setString(StoneClass.label);
-        theContent.owner.labStoneDesc.setString(StoneClass.description);
-
-        if( EnhanceArgs == null ){
-            EnhanceArgs = {};
-        }
-        EnhanceArgs.sto = info;
-
-        //update stone cost
-        if( EnhanceStoneCost > 0 ){
-            theContent.ui.stone.setStackCount(EnhanceStoneCost);
-            if( info.StackCount >= EnhanceStoneCost ){
-                theContent.ui.stone.setStackColor(cc.c3b(0, 255, 0));
-            }
-            else{
-                theContent.ui.stone.setStackColor(cc.c3b(255, 0, 0));
-            }
-        }
-        else{
-            theContent.ui.stone.setStackColor(cc.c3b(255, 255, 255));
-        }
-    }
-    else{
-        theContent.ui.stone.setItem(null);
-        theContent.owner.labStoneName.setString("");
-        theContent.owner.labStoneDesc.setString("");
-
-        if( EnhanceArgs != null ){
-            delete EnhanceArgs.sto;
-        }
-    }
-}
-
-function loadEnhanceItems(content){
-    //load equip list
-    content.ui.equipList.removeAllChildren();
-    EnhanceEquipList = [];
-    var theEquipLayer = cc.Layer.create();
-    EnhanceEquipLayer = theEquipLayer;
-    theEquipLayer.onTouchBegan = onEquipTouchBegan;
-    theEquipLayer.onTouchMoved = onEquipTouchMoved;
-    theEquipLayer.onTouchEnded = onEquipTouchEnded;
-    theEquipLayer.onTouchCancelled = onEquipTouchCancelled;
-    theEquipLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
-    theEquipLayer.setTouchPriority(2);
-    theEquipLayer.setTouchEnabled(true);
-    var equipSize = cc.size(0, content.ui.equipList.getViewSize().height);
-    //load all six items
-    var ArmorList = [
-        {
-            slot: EquipSlot_MainHand,
-            def: "equipmentbg1.png"
-        },
-        {
-            slot: EquipSlot_SecondHand,
-            def: "equipmentbg2.png"
-        },
-        {
-            slot: EquipSlot_Chest,
-            def: "equipmentbg3.png"
-        },
-        {
-            slot: EquipSlot_Legs,
-            def: "equipmentbg4.png"
-        },
-        {
-            slot: EquipSlot_Finger,
-            def: "equipmentbg5.png"
-        },
-        {
-            slot: EquipSlot_Neck,
-            def: "equipmentbg6.png"
-        }
-    ];
-    for(var k in ArmorList){
-        var NK = Number(k);
-        var armor = ArmorList[k];
-        var item = engine.user.actor.queryArmor(armor.slot);
-        var icon = libItem.UIItem.create(item, false, armor.def);
-        icon.showFrame();
-        icon.setPosition(cc.p(UI_ITEM_FRAME/2+NK*(UI_ITEM_FRAME+ENHANCE_ITEM_GAP), UI_ITEM_FRAME/2));
-        theEquipLayer.addChild(icon);
-        equipSize.width += UI_ITEM_FRAME+ENHANCE_ITEM_GAP;
-        EnhanceEquipList.push(item);
-    }
-    theEquipLayer.setContentSize(equipSize);
-    content.ui.equipList.setContainer(theEquipLayer);
-
-    //load stone list
-    content.ui.stoneList.removeAllChildren();
-    var theStoneLayer = cc.Layer.create();
-    theSSLayer = theStoneLayer;
-    theStoneLayer.onTouchBegan = onSSTouchBegan;
-    theStoneLayer.onTouchMoved = onSSTouchMoved;
-    theStoneLayer.onTouchEnded = onSSTouchEnded;
-    theStoneLayer.onTouchCancelled = onSSTouchCancelled;
-    theStoneLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
-    theStoneLayer.setTouchPriority(1);
-    theStoneLayer.setTouchEnabled(true);
-
-    //load stone list
-    theSSList = [];
-    var inventory = engine.user.inventory.getItems();
-    for(var k in inventory){
-        var item = inventory[k];
-        var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        if( itemClass.category == ITEM_GEM ){
-            var exist = false;
-            for(var m in theSSList){
-                var info = theSSList[m];
-                if( info.ClassId == item.ClassId ){
-                    info.StackCount += item.StackCount;
-                    info.Items.push(item);
-                    exist = true;
-                    break;
+function setEnhanceStone(itemClass){
+    theContent.owner.btnPlus.setVisible(false);
+    if( itemClass != null ){
+        var enhance = (theForgeItem.Enhance[0] != null)? theForgeItem.Enhance[0].lv : -1;
+        var enhanceInfo = libTable.queryTable(TABLE_ENHANCE, itemClass.enhanceID);
+        if( enhanceInfo != null ){
+            if( enhance < 8*(itemClass.quality+1)-1 ) {
+                theContent.owner.btnStartEnhance.setEnabled(true);
+                theContent.owner.tipLvMax.setVisible(false);
+                theContent.owner.tipToForge.setVisible(false);
+                var enhanceCost = libTable.queryTable(TABLE_COST, enhanceInfo.costList[enhance+1]);
+                if( enhanceCost != null ){
+                    for( var k in enhanceCost.material){
+                        switch(enhanceCost.material[k].type){
+                            case 0: {
+                                EnhanceStoneLevel = libTable.queryTable(TABLE_ITEM, enhanceCost.material[k].value).quality;
+                                EnhanceStoneCost = enhanceCost.material[k].count;
+                                for(var i=1; i<6; i++){
+                                    theContent.owner["stone"+i].setVisible( (EnhanceStoneLevel+1) == i );
+                                }
+                                EnhanceStoneSid = engine.user.inventory.getServerId(EnhanceStoneCid[EnhanceStoneLevel]);
+                                var stoneCount = engine.user.inventory.countItem(EnhanceStoneCid[EnhanceStoneLevel]);
+                                theContent.owner.labStoneCost.setString(EnhanceStoneCost);
+                                if (stoneCount < EnhanceStoneCost){
+                                    Delta[0] = EnhanceStoneCost - stoneCount;
+                                    theContent.owner.labStoneCost.setColor(cc.c3b(255,0,0));
+                                    theContent.owner.btnPlus.setVisible(true);
+                                    EnhanceArgs = null;
+                                    EnoughMtrls = false;
+                                }
+                                else {
+                                    Delta[0] = 0;
+                                    theContent.owner.labStoneCost.setColor(cc.c3b(0,255,0));
+                                    theContent.owner.btnPlus.setVisible(false);
+                                    EnoughMtrls = true;
+                                }
+                            }break;
+                            case 1: {
+                                var moneyCost = enhanceCost.material[k].count;
+                                theContent.owner.labGoldCost.setString(moneyCost);
+                                goldCost = moneyCost;
+                            }break;
+                            default: break;
+                        }
+                    }
+                    return;
                 }
             }
-            if( !exist ){
-                theSSList.push({
-                    ClassId: item.ClassId,
-                    StackCount: item.StackCount,
-                    Items: [item]
-                });
+            else{
+                theContent.owner.btnStartEnhance.setEnabled(false);
+                if( enhance == EnhanceMaxLv ){
+                    theContent.owner.tipLvMax.setVisible(true);
+                    theContent.owner.tipToForge.setVisible(false);
+                }else{
+                    theContent.owner.tipLvMax.setVisible(false);
+                    theContent.owner.tipToForge.setVisible(true);
+                }
             }
         }
-    }
-    //sort stone list
-    for(var k in theSSList){
-        var info = theSSList[k];
-        info.Items = info.Items.sort(function(a, b){
-            return a.StackCount - b.StackCount;
-        });
-    }
-    //set stone list
-    var stoneSize = cc.size(0, content.ui.stoneList.getViewSize().height);
-    if( theSSList.length > 0 ){
-        for(var k in theSSList){
-            var NK = Number(k);
-            var info = theSSList[k];
-            var dummyItem = new libItem.Item({
-                cid: info.ClassId,
-                stc: info.StackCount
-            });
-            var icon = libItem.UIItem.create(dummyItem, false);
-            icon.setPosition(cc.p(UI_ITEM_FRAME/2+NK*(UI_ITEM_FRAME+ENHANCE_ITEM_GAP), UI_ITEM_FRAME/2));
-            icon.showFrame();
-            theStoneLayer.addChild(icon);
-            stoneSize.width += UI_ITEM_FRAME+ENHANCE_ITEM_GAP;
+        theContent.owner.labStoneCost.setString("0");
+        theContent.owner.labStoneCost.setColor(cc.c3b(33,22,13));
+        theContent.owner.labGoldCost.setString("0");
+        for(var i=1; i<6; i++){
+            theContent.owner["stone"+i].setVisible( i==1 );
         }
+        EnhanceStoneCost = 0;
+        EnhanceStoneLevel = -1;
+        EnhanceArgs = null;
+        EnoughMtrls = true;
     }
     else{
-        var label = cc.LabelTTF.create("暂时没有可以用来强化的宝石", UI_FONT, UI_SIZE_XL);
-        label.setAnchorPoint(cc.p(0.5 ,0.5));
-        var viewSize = content.ui.stoneList.getViewSize();
-        label.setPosition(cc.p(viewSize.width/2, viewSize.height/2));
-        theStoneLayer.addChild(label);
+        theContent.owner.labStoneCost.setString("0");
+        theContent.owner.labStoneCost.setColor(cc.c3b(33,22,13));
+        for(var i=1; i<6; i++){
+            theContent.owner["stone"+i].setVisible( i==1 );
+        }
+        libGadget.setProperties(null, theContent.owner.nodeProperties);
+        theContent.owner.labGoldCost.setString("0");
+        EnhanceStoneCost = 0;
+        EnhanceStoneLevel = -1;
+        EnoughMtrls = true;
     }
-    theStoneLayer.setContentSize(stoneSize);
-    content.ui.stoneList.setContainer(theStoneLayer);
+}
 
-    EnhanceStoneCost = 0;
+function onAddStone(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var shopItem = engine.session.queryStore(EnhanceStoneCid[EnhanceStoneLevel]);
+    var cost = shopItem.cost["diamond"]*Delta[0];
+    var str1 = "材料不足\n立即花费"+cost+"宝石买齐材料？";
+    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
+    var args = {
+        sid: shopItem.sid,
+        cnt: Delta[0],
+        ver: engine.session.shop.version
+    };
+    libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function(rsp){
+        if( rsp.RET == RET_OK){
+            cc.AudioEngine.getInstance().playEffect("buy.mp3");
+        }
+    });
+}
+
+function onEnhanceEquip(sender){
+    if( isFlying ) return;
+    TouchId = sender.getTag();
+    var slot = EquipSlot_MainHand;
+    switch(TouchId){
+        case 1: slot = EquipSlot_MainHand; break;
+        case 2: slot = EquipSlot_SecondHand; break;
+        case 3: slot = EquipSlot_Chest; break;
+        case 4: slot = EquipSlot_Legs; break;
+        case 5: slot = EquipSlot_Finger; break;
+        case 6: slot = EquipSlot_Neck; break;
+    }
+    var enhanceEquip = engine.user.actor.queryArmor(slot);
+    if( enhanceEquip != null){
+        cc.AudioEngine.getInstance().playEffect("card2.mp3");
+        upItem(TouchId);
+        setEnhanceEquip(enhanceEquip);
+    }
 }
 
 function loadEnhance(){
-    ret = {};
+    var ret = {};
     ret.owner = {};
     ret.owner.onStartEnhance = onStartEnhance;
+    ret.owner.onEnhanceEquip = onEnhanceEquip;
+    ret.owner.onAddStone = onAddStone;
 
-    var node = libUIC.loadUI(ret, "ui-forge2.ccbi", {
+    var bind = {
         item1: {
             ui: "UIItem",
-            id: "equip"
+            id: "equip1",
+            def: "equipmentbg1.png"
         },
         item2: {
             ui: "UIItem",
-            id: "stone",
-            def: "stonebg.png"
+            id: "equip2",
+            def: "equipmentbg2.png"
         },
-        nodeCost: {
-            ui: "UIPrice",
-            id: "cost"
+        item3: {
+            ui: "UIItem",
+            id: "equip3",
+            def: "equipmentbg3.png"
         },
-        nodeItem1: {
-            ui: "UIScrollView",
-            id: "equipList",
-            dir: cc.SCROLLVIEW_DIRECTION_HORIZONTAL
+        item4: {
+            ui: "UIItem",
+            id: "equip4",
+            def: "equipmentbg4.png"
         },
-        nodeItem2: {
-            ui: "UIScrollView",
-            id: "stoneList",
-            dir: cc.SCROLLVIEW_DIRECTION_HORIZONTAL
+        item5: {
+            ui: "UIItem",
+            id: "equip5",
+            def: "equipmentbg5.png"
+        },
+        item6: {
+            ui: "UIItem",
+            id: "equip6",
+            def: "equipmentbg6.png"
+        },
+        itemEquip: {
+            ui: "UIItem",
+            id: "equip",
+            def: "wenhao.png"
         }
-    });
+    };
+    var node = libUIC.loadUI(ret, "ui-forge2.ccbi", bind);
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 
+    //set values
+    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand), null, true);
+    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand), null, true);
+    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest), null, true);
+    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs), null, true);
+    ret.ui.equip5.setItem(engine.user.actor.queryArmor(EquipSlot_Finger), null, true);
+    ret.ui.equip6.setItem(engine.user.actor.queryArmor(EquipSlot_Neck), null, true);
+    libGadget.setProperties(null, ret.owner.nodeProperties);
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag2.setVisible(false);
+    refreshTag(ret, 2);
     return ret;
 }
 
@@ -817,8 +815,10 @@ function onEnhance(sender){
     if( !engine.user.player.checkUnlock("enhance") ){
         return;
     }
+    chosenItem = null;
 
     if( isFlying ) return;
+    theLayer.owner.tag2.setVisible(false);
 
     //clean transitionContent
     if( theTransitionContent != null ){
@@ -831,7 +831,6 @@ function onEnhance(sender){
         theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
         theTransitionContent = loadEnhance();
         theContentNodeR.addChild(theTransitionContent.node);
-        loadEnhanceItems(theTransitionContent);
         isFlying = true;
     }
     else if( theMode > MODE_ENHANCE ){
@@ -839,7 +838,6 @@ function onEnhance(sender){
         theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
         theTransitionContent = loadEnhance();
         theContentNodeL.addChild(theTransitionContent.node);
-        loadEnhanceItems(theTransitionContent);
         isFlying = true;
     }
     else{
@@ -847,7 +845,6 @@ function onEnhance(sender){
         theTransitionContent = null;
         theContent = loadEnhance();
         theContentNode.addChild(theContent.node);
-        loadEnhanceItems(theContent);
         isFlying = false;
     }
 
@@ -857,61 +854,279 @@ function onEnhance(sender){
     EnhanceArgs = null;
 }
 
-//--- 锻造 ---
+//--- 锻造(升阶) ---
 function loadForge(){
     var ret = {};
     ret.owner = {};
-    ret.owner.onForgeIngredient = onForgeIngredient;
+    ret.owner.onForgeEquip = onForgeEquip;
     ret.owner.onStartForge = onStartForge;
-
-    var node = libUIC.loadUI(ret, "ui-forge3.ccbi", {
+    ret.owner.onAddMaterials = onAddMaterials;
+    var bind = {
+        item1:{
+            ui: "UIItem",
+            id: "equip1",
+            def: "equipmentbg1.png"
+        },
+        item2:{
+            ui: "UIItem",
+            id: "equip2",
+            def: "equipmentbg2.png"
+        },
+        item3:{
+            ui: "UIItem",
+            id: "equip3",
+            def: "equipmentbg3.png"
+        },
+        item4:{
+            ui: "UIItem",
+            id: "equip4",
+            def: "equipmentbg4.png"
+        },
+        item5:{
+            ui: "UIItem",
+            id: "equip5",
+            def: "equipmentbg5.png"
+        },
+        item6:{
+            ui: "UIItem",
+            id: "equip6",
+            def: "equipmentbg6.png"
+        },
+        itemMtrl1:{
+            ui: "UIItem",
+            id: "mtrl1"
+        },
+        itemMtrl2:{
+            ui: "UIItem",
+            id: "mtrl2"
+        },
+        itemMtrl3:{
+            ui: "UIItem",
+            id: "mtrl3"
+        },
+        itemMtrl4:{
+            ui: "UIItem",
+            id: "mtrl4"
+        },
+        itemMtrl5:{
+            ui: "UIItem",
+            id: "mtrl5"
+        },
+        itemMtrl6:{
+            ui: "UIItem",
+            id: "mtrl6"
+        },
         itemTarget: {
             ui: "UIItem",
-            id: "target",
+            id: "equipTarget",
             def: "wenhao.png"
-        },
-        item1: {
-            ui: "UIItem",
-            id: "ingredient1",
-            def: "wenhao.png"
-        },
-        item2: {
-            ui: "UIItem",
-            id: "ingredient2",
-            def: "wenhao.png"
-        },
-        item3: {
-            ui: "UIItem",
-            id: "ingredient3",
-            def: "wenhao.png"
-        },
-        item4: {
-            ui: "UIItem",
-            id: "ingredient4",
-            def: "wenhao.png"
-        },
-        nodeCost: {
-            ui: "UIPrice",
-            id: "cost"
-        },
-        nodeItem2: {
-            ui: "UIScrollView",
-            id: "recipeList",
-            dir: cc.SCROLLVIEW_DIRECTION_HORIZONTAL
         }
-    });
+    };
+    var node = libUIC.loadUI(ret, "ui-forge3.ccbi", bind);
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 
+    //set values
+    ret.ui.equip1.setItem(engine.user.actor.queryArmor(EquipSlot_MainHand), null, true);
+    ret.ui.equip2.setItem(engine.user.actor.queryArmor(EquipSlot_SecondHand), null, true);
+    ret.ui.equip3.setItem(engine.user.actor.queryArmor(EquipSlot_Chest), null, true);
+    ret.ui.equip4.setItem(engine.user.actor.queryArmor(EquipSlot_Legs), null, true);
+    ret.ui.equip5.setItem(engine.user.actor.queryArmor(EquipSlot_Finger), null, true);
+    ret.ui.equip6.setItem(engine.user.actor.queryArmor(EquipSlot_Neck), null, true);
+    libGadget.setProperties(null, ret.owner.nodeProperties);
+    var dummyMtrl = new libItem.Item();
+    for( var i=1; i<7; ++i){
+        ret.ui["mtrl"+i].setItem(dummyMtrl, null, true);
+        ret.owner["btnAdd" + i].setVisible(false);
+        ret.owner["itemMtrl" + i].setEnabled(false);
+    }
+    refreshTag(theLayer, 0);
+    theLayer.owner.tag3.setVisible(false);
+    refreshTag(ret, 3);
     return ret;
+}
+
+function onAddMaterials(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var id = sender.getTag();
+    var itemCid = theContent.ui["mtrl" + id].getItem().ClassId;
+    var shopItem = engine.session.queryStore(itemCid);
+    var cost = shopItem.cost["diamond"] * Delta[id];
+    var str1 = "材料不足\n立即花费" + cost + "宝石买齐材料？";
+    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
+    var args = {
+        sid: shopItem.sid,
+        cnt: Delta[id],
+        ver: engine.session.shop.version
+    };
+    libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function (rsp) {
+        if (rsp.RET == RET_OK) {
+            cc.AudioEngine.getInstance().playEffect("buy.mp3");
+        }
+    });
+}
+
+function onForgeEquip(sender){
+    if( isFlying ) return;
+    TouchId  = sender.getTag();
+    var slot = EquipSlot_MainHand;
+    switch(TouchId){
+        case 1: slot = EquipSlot_MainHand; break;
+        case 2: slot = EquipSlot_SecondHand; break;
+        case 3: slot = EquipSlot_Chest; break;
+        case 4: slot = EquipSlot_Legs; break;
+        case 5: slot = EquipSlot_Finger; break;
+        case 6: slot = EquipSlot_Neck; break;
+    }
+    var forgeEquip = engine.user.actor.queryArmor(slot);
+    if( forgeEquip != null){
+        cc.AudioEngine.getInstance().playEffect("card2.mp3");
+        upItem(TouchId);
+        setForgeEquip(forgeEquip);
+    }
+}
+
+var ableToForge = -1; // 0:可升阶 1:顶级 2:装备等级不足
+function checkForgeTarget(itemClass){
+    var target = itemClass.forgeTarget;
+    var quality = itemClass.quality;
+    if ( target != null ){
+        ableToForge = 0;
+        return true;
+    }else{
+        if( quality == 4){
+            ableToForge = 1;
+        }else{
+            ableToForge = 2;
+        }
+        return false;
+    }
+}
+
+function setForgeEquip(item){
+    if( item != null ){
+        item = syncItemData(item);
+        var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
+    }
+    if( item != null && itemClass.label != null ) {
+        //set value
+        theContent.ui.equipTarget.setItem(item);
+        theContent.owner.labName.setString(itemClass.label);
+        theContent.owner.labLv.setString(itemClass.rank);
+        theForgeItem = item;
+        libGadget.setProperties(item, theContent.owner.nodeProperties, "forge");
+        if( ForgeArgs == null ){
+            ForgeArgs = {};
+        }
+        ForgeArgs.sid = item.ServerId;
+        ForgeArgs.opn = ITMOP_FORGE;
+
+        if( checkForgeTarget(itemClass)){
+            EnoughMtrls = true;
+            loadForgeMaterial(itemClass);
+            theContent.owner.tipLvMax.setVisible(false);
+            theContent.owner.tipToForge.setVisible(false);
+            theContent.owner.btnStartForge.setEnabled(true);
+            theContent.owner.nodeMtrlCount.setVisible(true);
+        }else{
+            loadForgeMaterial(null);
+            theContent.owner.btnStartForge.setEnabled(false);
+            theContent.owner.nodeMtrlCount.setVisible(false);
+            if( ableToForge == 1 ){
+                theContent.owner.tipLvMax.setVisible(true);
+                theContent.owner.tipToForge.setVisible(false);
+            }else if( ableToForge == 2 ){
+                theContent.owner.tipLvMax.setVisible(false);
+                theContent.owner.tipToForge.setVisible(true);
+            }
+        }
+    }
+    else {
+        theContent.ui.equipTarget.setItem(null);
+        theContent.owner.labName.setString("请选择装备");
+        theContent.owner.btnStartForge.setEnabled(false);
+        libGadget.setProperties(null, theContent.owner.nodeProperties);
+        if( ForgeArgs != null ){
+            delete ForgeArgs.sid;
+        }
+        EnoughMtrls = false;
+        loadForgeMaterial(null);
+    }
+}
+
+function loadForgeMaterial(equipClass){
+    if( equipClass != null) {
+        var forgeCost = libTable.queryTable(TABLE_COST, equipClass.forgeID);
+        if (forgeCost != null) {
+            var i = 1;
+            for (var k in forgeCost.material) {
+                switch (forgeCost.material[k].type) {
+                    case 0:{
+                        if (i < 7) {
+                            var mtrlClass = libTable.queryTable(TABLE_ITEM, forgeCost.material[k].value);
+                            var mtrlCount = engine.user.inventory.countItem(mtrlClass.classId);
+                            var mtrlCost = forgeCost.material[k].count;
+                            var dummyMtrl = new libItem.Item({cid: mtrlClass.classId});
+                            theContent.ui["mtrl" + i].removeAllChildren();
+                            theContent.ui["mtrl" + i].setItem(dummyMtrl, null, true);
+                            theContent.owner["labCount" + i].setString(mtrlCount + "/" + mtrlCost);
+                            if (mtrlCount >= mtrlCost) {
+                                Delta[i] = 0;
+                                theContent.owner["labCount" + i].setColor(cc.c3b(0, 255, 0));
+                                theContent.owner["btnAdd" + i].setVisible(false);
+                                theContent.owner["itemMtrl" + i].setEnabled(false);
+                            }
+                            else {
+                                Delta[i] = mtrlCost - mtrlCount;
+                                theContent.owner["labCount" + i].setColor(cc.c3b(255, 0, 0));
+                                theContent.owner["btnAdd" + i].setVisible(true);
+                                theContent.owner["itemMtrl" + i].setEnabled(true);
+                                EnoughMtrls = false;
+                            }
+                            i++;
+                        }
+                    }break;
+                    case 1:{
+                        var moneyCost = forgeCost.material[k].count;
+                        theContent.owner.labGoldCost.setString(moneyCost);
+                        goldCost = moneyCost;
+                    }break;
+                    default: break;
+                }
+            }
+        }
+        else{
+            for( var i=1; i<7; ++i){
+                theContent.ui["mtrl"+i].setItem(null, null, true);
+                theContent.owner["labCount"+i].setString("0/0");
+                theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
+                theContent.owner["btnAdd"+i].setVisible(false);
+                theContent.owner["itemMtrl" + i].setEnabled(false);
+            }
+            theContent.owner.labGoldCost.setString("0");
+            EnoughMtrls = false;
+        }
+    }
+    else{
+        for( var i=1; i<7; ++i){
+            theContent.ui["mtrl"+i].setItem(null, null, true);
+            theContent.owner["labCount"+i].setString("0/0");
+            theContent.owner["labCount"+i].setColor(cc.c3b(192,192,192));
+            theContent.owner["btnAdd"+i].setVisible(false);
+            theContent.owner["itemMtrl" + i].setEnabled(false);
+        }
+        theContent.owner.labGoldCost.setString("0");
+        EnoughMtrls = false;
+    }
 }
 
 function onForge(sender){
     if( !engine.user.player.checkUnlock("forge") ){
         return;
     }
-
+    chosenItem = null;
     if( isFlying ) return;
+    theLayer.owner.tag3.setVisible(false);
 
     //clean transitionContent
     if( theTransitionContent != null ){
@@ -924,7 +1139,6 @@ function onForge(sender){
         theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
         theTransitionContent = loadForge();
         theContentNodeR.addChild(theTransitionContent.node);
-        loadForgeItems(theTransitionContent);
         isFlying = true;
     }
     else if( theMode > MODE_FORGE ){
@@ -932,7 +1146,6 @@ function onForge(sender){
         theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
         theTransitionContent = loadForge();
         theContentNodeL.addChild(theTransitionContent.node);
-        loadForgeItems(theTransitionContent);
         isFlying = true;
     }
     else{
@@ -940,7 +1153,6 @@ function onForge(sender){
         theTransitionContent = null;
         theContent = loadForge();
         theContentNode.addChild(theContent.node);
-        loadForgeItems(theContent);
         isFlying = false;
     }
 
@@ -950,308 +1162,213 @@ function onForge(sender){
     ForgeArgs = null;
 }
 
-var INGREDIENTS = [558, 559, 560, 561];
-var INGREDIENTICON = [
-    "forge3-common-piece1.png",
-    "forge3-common-piece2.png",
-    "forge3-common-piece3.png",
-    "forge3-common-piece4.png"
-];
-
-function loadForgeItems(content){
-    //set ingredients
-    for(var k in INGREDIENTS){
-        var val = Number(k)+1;
-        var ctr = "ingredient"+val;
-        var cnt = engine.user.inventory.countItem(INGREDIENTS[k]);
-        if( cnt > 0 ){
-            var dummyItem = new libItem.Item({
-                cid: INGREDIENTS[k],
-                stc: cnt
-            });
-            content.ui[ctr].setItem(dummyItem);
-        }
-        else{
-            content.ui[ctr].setItem(null);
-        }
-    }
-    //clear ingredients
-    //content.ui.recipeList.removeAllChildren();
-    if( theSSLayer != null ){
-        theSSLayer.removeAllChildren();
-    }
-}
-
-function onForgeIngredient(sender){
-    var id = sender.getTag();
-    var cid = INGREDIENTS[id-1];
-    //load recipes using this ingredient
-    var ForgeRecipeList = {};
-    for(var k in engine.user.inventory.Items ){
-        var item = engine.user.inventory.Items[k];
-        var itemClass = libTable.queryTable(TABLE_ITEM, item.ClassId);
-        var ingredientCost = 0;
-        if( itemClass.category == ITEM_RECIPE ){
-            var match = false;
-            for(var m in itemClass.recipeIngredient){
-                var ing = itemClass.recipeIngredient[m];
-                if( ing.item == cid ){
-                    match = true;
-                    ingredientCost = ing.count;
-                    break;
-                }
-            }
-            if( match ){
-                if( ForgeRecipeList[item.ClassId] == null ){
-                    ForgeRecipeList[item.ClassId] = {
-                        ClassId: item.ClassId,
-                        StackCount:item.StackCount,
-                        ItemClass:itemClass,
-                        IngredientIndex: id-1,
-                        IngredientCost: ingredientCost,
-                        Items:[item.ServerId]
-                    };
-                }
-                else{
-                    ForgeRecipeList[item.ClassId].StackCount += item.StackCount;
-                    ForgeRecipeList[item.ClassId].Items.push(item.ServerId);
-                }
-            }
-        }
-    }
-    //sort recipes
-    var list = [];
-    for(var k in ForgeRecipeList){
-        list.push(ForgeRecipeList[k]);
-    }
-    theSSList = list.sort(function(a, b){
-        var va = -a.ClassId;
-        var ia = engine.user.inventory.getItem(a.Items[0]);
-        if( !ia.isAvailable() ){
-            va += 100000;
-        }
-        var vb = -b.ClassId;
-        var ib = engine.user.inventory.getItem(b.Items[0]);
-        if( !ib.isAvailable() ){
-            vb += 100000;
-        }
-        return va - vb;
-    });
-    //load recipes
-    theContent.ui.recipeList.removeAllChildren();
-    var theRecipeLayer = cc.Layer.create();
-    theRecipeLabel = null;
-    theSSLayer = theRecipeLayer;
-    theRecipeLayer.onEnter = function(){debug("onEnter - recipeLayer");};
-    theRecipeLayer.onExit = function(){debug("onExit - recipeLayer");};
-    theRecipeLayer.onTouchBegan = onSSTouchBegan;
-    theRecipeLayer.onTouchMoved = onSSTouchMoved;
-    theRecipeLayer.onTouchEnded = onSSTouchEnded;
-    theRecipeLayer.onTouchCancelled = onSSTouchCancelled;
-    theRecipeLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
-    theRecipeLayer.setTouchPriority(1);
-    theRecipeLayer.setTouchEnabled(true);
-
-    var recipeSize = cc.size(0, theContent.ui.recipeList.getViewSize().height);
-    if( theSSList.length > 0 ){
-        for(var k in theSSList){
-            var NK = Number(k);
-            var info = theSSList[k];
-            var dummyItem = new libItem.Item({
-                cid: info.ClassId,
-                stc: info.StackCount
-            });
-            var icon = libItem.UIItem.create(dummyItem, false);
-            icon.setPosition(cc.p(UI_ITEM_FRAME/2+NK*(UI_ITEM_FRAME+ENHANCE_ITEM_GAP), UI_ITEM_FRAME/2));
-            icon.showFrame();
-            icon.setAvailable(dummyItem.isAvailable());
-            theRecipeLayer.addChild(icon);
-            recipeSize.width += UI_ITEM_FRAME+ENHANCE_ITEM_GAP;
-        }
-    }
-    else{
-        var label = cc.LabelTTF.create("暂时没有匹配的图纸", UI_FONT, UI_SIZE_XL);
-        theRecipeLabel = label;
-        label.setAnchorPoint(cc.p(0.5 ,0.5));
-        var viewSize = theContent.ui.recipeList.getViewSize();
-        label.setPosition(cc.p(viewSize.width/2, viewSize.height/2));
-        theRecipeLayer.addChild(label);
-    }
-    theRecipeLayer.setContentSize(recipeSize);
-    theContent.ui.recipeList.setContainer(theRecipeLayer);
-
-    ForgeCost = 0;
-}
-
-function setForgeRecipe(info){
-    var targetItem = new libItem.Item({
-        cid: info.ItemClass.recipeTarget
-    });
-    theForgeItem = targetItem;
-    var targetClass = libTable.queryTable(TABLE_ITEM, info.ItemClass.recipeTarget);
-    theContent.ui.target.setItem(targetItem);
-    theContent.owner.labName.setString(targetClass.label);
-    var targetProperties = {};
-    mergeRoleProperties(targetProperties, targetClass.basic_properties);
-    theContent.owner.labProperty.setString(propertyString(targetProperties));
-
-    ForgeCost = info.ItemClass.recipeCost;
-    theContent.ui.cost.setPrice({
-        gold: ForgeCost
-    });
-
-    //类型
-    var strType = EquipSlotDesc[targetClass.subcategory];
-    if( targetClass.classLimit != null ){
-        strType += "  职业限定：";
-        var flag = false;
-        for(var k in targetClass.classLimit){
-            if(flag){
-                strType += "，";
-            }
-            var roleClassId = targetClass.classLimit[k];
-            var roleClass = libTable.queryTable(TABLE_ROLE, roleClassId);
-            strType += roleClass.className;
-        }
-    }
-    theContent.owner.labClass.setString(strType);
-
-    if( targetClass.rank != null ){
-        theContent.owner.labRank.setString(targetClass.rank+"级");
-    }
-
-    //update forge cost
-    theContent.owner.nodePiece.removeAllChildren();
-    var ingicon = cc.Sprite.createWithSpriteFrameName(INGREDIENTICON[info.IngredientIndex]);
-    ingicon.setAnchorPoint(cc.p(0, 0.5));
-    ingicon.setPosition(cc.p(0, 0));
-    theContent.owner.nodePiece.addChild(ingicon);
-    var ingcost = cc.LabelBMFont.create(info.IngredientCost, "font1.fnt");
-    ingcost.setAnchorPoint(cc.p(0, 0.5));
-    ingcost.setPosition(cc.p(ingicon.getContentSize().width, 0));
-    theContent.owner.nodePiece.addChild(ingcost);
-
-    ForgeArgs = {
-        sid: info.Items[0],
-        opn: ITMOP_FORGE
-    };
-}
-
 function onStartForge(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( ForgeArgs != null ){
-        libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
-            if( rsp.RET == RET_OK ){
-                pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
-                        libUIKit.showAlert("锻造成功", function(){
-                    }, theLayer);
-
-                    loadForgeItems(theContent);
-
-                    //execute result
-                    if( rsp.RES != null ){
-                        engine.event.processResponses(rsp.RES);
+    switch(ableToForge){
+        case -1: libUIKit.showAlert("请选择装备"); break;
+        case 0:{
+            if( EnoughMtrls ){
+                if( ForgeArgs != null ){
+                    if( checkGold(goldCost) ){
+                        libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
+                            if( rsp.RET == RET_OK ){
+                                pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
+                                    libUIKit.showAlert("升阶成功！", function(){
+                                        EnoughMtrls = false;
+                                    }, theLayer);
+                                    //execute result
+                                    if( rsp.RES != null ){
+                                        engine.event.processResponses(rsp.RES);
+                                        var slot = EquipSlot_MainHand;
+                                        switch(TouchId){
+                                            case 1: slot = EquipSlot_MainHand; break;
+                                            case 2: slot = EquipSlot_SecondHand; break;
+                                            case 3: slot = EquipSlot_Chest; break;
+                                            case 4: slot = EquipSlot_Legs; break;
+                                            case 5: slot = EquipSlot_Finger; break;
+                                            case 6: slot = EquipSlot_Neck; break;
+                                        }
+                                        var newItem = engine.user.actor.queryArmor(slot);
+                                        if( newItem != null){
+                                            theContent.ui["equip"+TouchId].setItem(newItem, null, true);
+                                            setForgeEquip(newItem);
+                                        }
+                                    }
+                                }, theLayer);
+                            }
+                            else{
+                                libUIKit.showErrorMessage(rsp);
+                            }
+                        }, theLayer);
                     }
-
-                }, theLayer);
+                }
+            }else{
+                libUIKit.showAlert("材料不足！");
             }
-            else{
-                libUIKit.showErrorMessage(rsp);
-            }
-        }, theLayer);
+        }break;
+        case 1:{
+            libUIKit.showAlert("装备已是最高品质！");
+        }break;
+        case 2:{
+            libUIKit.showAlert("装备等级不足\n无法升阶！");
+        }break;
     }
+
 }
 
 //--- 提炼 ---
-var ExtractStoneId = 0;
-var ExtractMinCount = 5;
-var ExtractCostRate = 50;
 
-function loadExtractItems(content){
-    //load all extract stones
-    var stoneCount = engine.user.inventory.countItem(ExtractStoneId);
-    var dummyStone = new libItem.Item({
-        cid: ExtractStoneId,
-        stc: stoneCount
-    });
-    theForgeItem = {
-        ClassId: ExtractStoneId,
-        StackCount: 0
-    };
-    content.ui.target.setItem(dummyStone);
-    ExtractArgs = null;
-    if( stoneCount < ExtractMinCount ){
-        content.owner.newName.setString("一次提炼至少需要5枚七色石");
-        ExtractSlider = libGadget.UISlider.create({
-            start: content.owner.nodeStart.getPosition(),
-            end: content.owner.nodeEnd.getPosition(),
-            sthumb: "forge4-common-btn.png",
-            min: 0,
-            max: stoneCount,
-            def: 0,
-            callback: function(val){
-                var count = Math.floor(val);
-                theForgeItem.StackCount = count;
-                content.owner.labelCount.setString(count);
-                content.ui.cost.setPrice({
-                    gold: ExtractCostRate*count
-                });
+function setSynthesizeStone(sto1Class, sto2Class){
+    theContent.owner.nodeFrom.removeAllChildren();
+    theContent.owner.nodeTo.removeAllChildren();
+    theContent.owner.labCost.setString("");
+    theContent.owner.labelCount.setString("0");
+    if( sto1Class != null && sto2Class != null){
+        var stone1Count = engine.user.inventory.countItem(sto1Class.classId);
+        var stone1Sid = engine.user.inventory.getServerId(sto1Class.classId);
+        var costInfo = libTable.queryTable(TABLE_COST, sto2Class.synthesizeID);
+        var stoneCost, moneyCost;
+        theForgeItem = engine.user.inventory.getItem(stone1Sid);
+        for( var k in costInfo.material){
+            switch (costInfo.material[k].type) {
+                case 0:{
+                    stoneCost = costInfo.material[k].count;
+                }break;
+                case 1:{
+                    moneyCost = costInfo.material[k].count;
+                }break;
+                default: break;
             }
-        });
-    }
-    else{
-        content.owner.newName.setString("提炼可获得多种属性石");
-        ExtractSlider = libGadget.UISlider.create({
-            start: content.owner.nodeStart.getPosition(),
-            end: content.owner.nodeEnd.getPosition(),
-            sthumb: "forge4-common-btn.png",
-            min: ExtractMinCount,
-            max: stoneCount,
-            def: ExtractMinCount,
-            callback: function(val){
-                var count = Math.floor(val);
-                theForgeItem.StackCount = count;
-                content.owner.labelCount.setString(count);
-                content.ui.cost.setPrice({
-                    gold: ExtractCostRate*count
-                });
-                ExtractArgs = {
-                    opn: ITMOP_EXTRACT,
-                    opc: count
+        }
+        theContent.owner.nodeFrom.addChild(cc.Sprite.create("stone"+SynthesizeStoneFrom+".png"));
+        theContent.owner.nodeTo.addChild(cc.Sprite.create("stone"+(SynthesizeStoneFrom+1)+".png"));
+        theContent.owner.nameFrom.setString(sto1Class.label);
+        theContent.owner.nameTo.setString(sto2Class.label);
+        SynthesizeArgs = {};
+        SynthesizeArgs.cid = sto2Class.classId;
+        if(SynthesizeSlider != null){
+            theContent.owner.nodeX.removeChildByTag(10);
+        }
+        if( stone1Count < stoneCost){
+            SynthesizeSlider = libGadget.UISlider.create({
+                start: theContent.owner.nodeStart.getPosition(),
+                end: theContent.owner.nodeEnd.getPosition(),
+                sthumb: "forge4-common-btn.png",
+                min: 0,
+                max: 0,
+                def: 0,
+                callback: function(val){
+                    var count = Math.floor(val);
+                    theContent.owner.labelCount.setString(count);
+                    theContent.owner.labCost.setString("数量不足");
+                    theContent.ui.cost.setPrice({
+                        gold: 0
+                    })
                 }
-            }
-        });
+            });
+            EnoughMtrls = false;
+        }
+        else{
+            SynthesizeSlider = libGadget.UISlider.create({
+                start: theContent.owner.nodeStart.getPosition(),
+                end: theContent.owner.nodeEnd.getPosition(),
+                sthumb: "forge4-common-btn.png",
+                min: 1,
+                max: Math.floor(stone1Count/stoneCost),
+                def: 1,
+                callback: function(val){
+                    var count = Math.floor(val);
+                    theContent.owner.labelCount.setString(count);
+                    theContent.owner.labCost.setString("需要"+(count*stoneCost)+"颗");
+                    theContent.ui.cost.setPrice({
+                        gold: moneyCost * count
+                    });
+                    goldCost = moneyCost * count;
+                    SynthesizeArgs.opn = ITMOP_SYNTHESIZE;
+                    SynthesizeArgs.opc = count;
+                    EnoughMtrls = true;
+                }
+            });
+        }
+        theContent.owner.nodeX.addChild(SynthesizeSlider, null, 10);
     }
-    content.owner.nodeX.addChild(ExtractSlider);
 }
 
-function loadExtract(){
+function onSynthesizeStone(sender){
+    if( isFlying ) return;
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    TouchId = sender.getTag();
+    upItem(TouchId);
+    SynthesizeStoneFrom = TouchId - 1;
+    if( SynthesizeStoneFrom > 0){
+        var sto1Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom-1]);
+        var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom]);
+        setSynthesizeStone(sto1Class, sto2Class);
+    }
+}
+
+function loadSynthesize(){
     var ret = {};
     ret.owner = {};
-    ret.owner.onStartExtract = onStartExtract;
+    ret.owner.onSynthesizeStone = onSynthesizeStone;
+    ret.owner.onStartSynthesize = onStartSynthesize;
 
-    var node = libUIC.loadUI(ret, "ui-forge4x.ccbi", {
-        itemA: {
+    var bind = {
+        item2: {
             ui: "UIItem",
-            id: "target",
+            id: "stone2",
+            def: "stonebg.png"
+        },
+        item3: {
+            ui: "UIItem",
+            id: "stone3",
+            def: "stonebg.png"
+        },
+        item4: {
+            ui: "UIItem",
+            id: "stone4",
+            def: "stonebg.png"
+        },
+        item5: {
+            ui: "UIItem",
+            id: "stone5",
+            def: "stonebg.png"
+        },
+        nodeFrom: {
+            ui: "UIItem",
+            id: "stoFrom",
+            def: "wenhao.png"
+        },
+        nodeTo: {
+            ui: "UIItem",
+            id: "stoTo",
             def: "wenhao.png"
         },
         nodeCost: {
             ui: "UIPrice",
             id: "cost"
         }
-    });
+    };
+    var node = libUIC.loadUI(ret, "ui-forge4x.ccbi", bind);
     ret.node = node;
     engine.ui.regMenu(ret.owner.menuRoot);
 
+    for( var i=2; i<6; i++){
+        var dummyStone = new libItem.Item({
+            cid: EnhanceStoneCid[i-1]
+        });
+        ret.ui["stone"+i].setItem(dummyStone, null, true);
+    }
+    refreshTag(theLayer, 0);
     return ret;
 }
 
-function onExtract(sender){
+function onSynthesize(sender){
     if( !engine.user.player.checkUnlock("extract") ){
         return;
     }
 
+    chosenItem = null;
     if( isFlying ) return;
 
     //clean transitionContent
@@ -1260,59 +1377,68 @@ function onExtract(sender){
         theTransitionContent = null;
     }
 
-    if( theMode < MODE_EXTRACT ){
+    if( theMode < MODE_SYNTHESIZE ){
         //to right
         theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
-        theTransitionContent = loadExtract();
+        theTransitionContent = loadSynthesize();
         theContentNodeR.addChild(theTransitionContent.node);
-        loadExtractItems(theTransitionContent);
         isFlying = true;
     }
-    else if( theMode > MODE_EXTRACT ){
+    else if( theMode > MODE_SYNTHESIZE ){
         //to left
         theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
-        theTransitionContent = loadExtract();
+        theTransitionContent = loadSynthesize();
         theContentNodeL.addChild(theTransitionContent.node);
-        loadExtractItems(theTransitionContent);
         isFlying = true;
     }
     else{
         //just load
         theTransitionContent = null;
-        theContent = loadExtract();
+        theContent = loadSynthesize();
         theContentNode.addChild(theContent.node);
-        loadExtractItems(theContent);
         isFlying = false;
     }
 
-    theMode = MODE_EXTRACT;
+    theMode = MODE_SYNTHESIZE;
     setModeTag(theMode);
+
+    SynthesizeArgs = null;
 }
 
-function onStartExtract(sender){
+function onStartSynthesize(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    if( ExtractArgs != null ){
-        libUIKit.waitRPC(Request_InventoryUseItem, ExtractArgs, function(rsp){
-            if( rsp.RET == RET_OK ){
-                pushForgeAnimation("effect-forge.ccbi", {nodeItem:theForgeItem}, function(){
-                    libUIKit.showAlert("提炼成功", function(){
-                        onExtract();
-                    }, theLayer);
-
-                    //execute result
-                    if( rsp.RES != null ){
-                        engine.event.processResponses(rsp.RES);
+    if( EnoughMtrls ){
+        if (SynthesizeArgs != null){
+            if ( checkGold(goldCost) ){
+                libUIKit.waitRPC(Request_InventoryUseItem, SynthesizeArgs, function(rsp){
+                    if ( rsp.RET == RET_OK ){
+                        var dummyStone = new libItem.Item({cid: EnhanceStoneCid[SynthesizeStoneFrom-1]});
+                        pushForgeAnimation("effect-forge.ccbi", {nodeItem:dummyStone}, function(){
+                            libUIKit.showAlert("提炼成功", function(){
+                                EnoughMtrls = false;
+                            }, theLayer);
+                            if ( rsp.RES != null){
+                                engine.event.processResponses(rsp.RES);
+                                var sto1Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom-1]);
+                                var sto2Class = libTable.queryTable(TABLE_ITEM, EnhanceStoneCid[SynthesizeStoneFrom]);
+                                setSynthesizeStone(sto1Class, sto2Class);
+                            }
+                        }, theLayer);
                     }
-
+                    else{
+                        libUIKit.showErrorMessage(rsp);
+                    }
                 }, theLayer);
             }
-            else{
-                libUIKit.showErrorMessage(rsp);
-            }
-        }, theLayer);
+        }else{
+            libUIKit.showAlert("无法提炼强化石");
+        }
+    }else{
+        libUIKit.showAlert("无法提炼强化石");
     }
 }
 
+//-------------------------------------------//
 function onUIAnimationCompleted(name){
     isFlying = false;
     switch(theMode){
@@ -1323,7 +1449,7 @@ function onUIAnimationCompleted(name){
         case MODE_UPGRADE:
         case MODE_ENHANCE:
         case MODE_FORGE:
-        case MODE_EXTRACT:
+        case MODE_SYNTHESIZE:
         {
             if( theTransitionContent != null ){
                 //move transition to normal
@@ -1337,6 +1463,7 @@ function onUIAnimationCompleted(name){
                 theTransitionContent.node.release();
                 theContent = theTransitionContent;
                 theTransitionContent = null;
+
             }
         }break;
     }
@@ -1354,15 +1481,25 @@ function onNotify(ntf){
         case Message_UpdateItem:
         {
             switch(theMode){
-                case MODE_ENHANCE:{
-                    loadEnhanceItems(theContent);
-                    setEnhanceEquip(theContent.ui.equip.getItem());
+                case MODE_UPGRADE:{
+                    refreshTag(theLayer, 0);
+                    theLayer.owner.tag1.setVisible(false);
+                    refreshTag(theContent, 1);
                 }break;
-                case MODE_EXTRACT:{
-                    // TODO: ?
+                case MODE_ENHANCE:{
+                    refreshTag(theLayer, 0);
+                    theLayer.owner.tag2.setVisible(false);
+                    refreshTag(theContent, 2);
+                    setEnhanceEquip(theForgeItem);
+                }break;
+                case MODE_SYNTHESIZE:{
+                    //todo?
                 }break;
                 case MODE_FORGE:{
-                    // TODO: ?
+                    refreshTag(theLayer, 0);
+                    theLayer.owner.tag3.setVisible(false);
+                    refreshTag(theContent, 3);
+                    setForgeEquip(theForgeItem);
                 }break;
             }
             return false;
@@ -1381,7 +1518,7 @@ function onEnter(){
     this.owner.onUpgrade = onUpgrade;
     this.owner.onEnhance = onEnhance;
     this.owner.onForge = onForge;
-    this.owner.onExtract = onExtract;
+    this.owner.onSynthesize = onSynthesize;
 
     var node = libUIC.loadUI(this, "sceneForge.ccbi", {
         nodeTreasure: {
@@ -1402,7 +1539,8 @@ function onEnter(){
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
     theLayer.node = node;
-
+    //add tag
+    refreshTag(this, 0);
     //assign values
     theContentNode = this.owner.nodeContent;
     theContentNodeL = this.owner.nodeContentL;
@@ -1413,12 +1551,14 @@ function onEnter(){
     this.ui.treasureDisplayL.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
     this.ui.treasureDisplayR.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
+    for( var i=0; i<5; i++){
+        EnhanceStoneCid[i] = getEnhanceStoneCid(i);
+    }
+    EnoughMtrls = false;
     onUpgrade();
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
-    
-    
+    loadModule("broadcastx.js").instance.simpleInit(this);
 }
 
 function onActivate(){
@@ -1428,7 +1568,7 @@ function onActivate(){
 }
 
 function onExit(){
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function scene(){

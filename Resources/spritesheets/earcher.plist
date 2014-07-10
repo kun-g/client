@@ -20,7 +20,20 @@
             <key>enemy-archer-1-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,66},{69,63}}</string>
+                <string>{{2,149},{69,63}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{69,63}}</string>
+                <key>sourceSize</key>
+                <string>{69,63}</string>
+            </dict>
+            <key>enemy-archer-1-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,84},{69,63}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,10 +82,23 @@
                 <key>sourceSize</key>
                 <string>{90,16}</string>
             </dict>
+            <key>enemy-archer-1-mainweapon2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,20},{16,90}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{16,90}}</string>
+                <key>sourceSize</key>
+                <string>{16,90}</string>
+            </dict>
             <key>enemy-archer-1-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,20},{44,70}}</string>
+                <string>{{2,38},{44,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +111,7 @@
             <key>enemy-archer-1-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,131},{35,35}}</string>
+                <string>{{73,145},{35,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -105,7 +131,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8312527eaf86c8f7c1b84621c180febb$</string>
+            <string>$TexturePacker:SmartUpdate:533b87e0941760e61f718859b95ec82e$</string>
             <key>textureFileName</key>
             <string>earcher.png</string>
         </dict>

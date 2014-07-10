@@ -4,10 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>enemy-ogre-3-chest.png</key>
+            <key>enemy-ogre-3-chest(MIRA-PC--MiRa--2014-05-15-17,35,13).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,104},{73,78}}</string>
+                <string>{{181,81},{73,78}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,10 +17,23 @@
                 <key>sourceSize</key>
                 <string>{73,78}</string>
             </dict>
-            <key>enemy-ogre-3-head.png</key>
+            <key>enemy-ogre-3-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,184},{70,77}}</string>
+                <string>{{122,2},{77,81}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{77,81}}</string>
+                <key>sourceSize</key>
+                <string>{77,81}</string>
+            </dict>
+            <key>enemy-ogre-3-head(MIRA-PC--MiRa--2014-05-15-17,35,13).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{122,183},{70,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,36 +43,62 @@
                 <key>sourceSize</key>
                 <string>{70,77}</string>
             </dict>
-            <key>enemy-ogre-3-lefthand.png</key>
+            <key>enemy-ogre-3-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,2},{39,59}}</string>
+                <string>{{2,126},{72,87}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{39,59}}</string>
+                <string>{{0,0},{72,87}}</string>
                 <key>sourceSize</key>
-                <string>{39,59}</string>
+                <string>{72,87}</string>
             </dict>
-            <key>enemy-ogre-3-leftleg.png</key>
+            <key>enemy-ogre-3-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,13).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{77,102},{48,47}}</string>
+                <string>{{2,215},{39,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{39,59}}</string>
+                <key>sourceSize</key>
+                <string>{39,59}</string>
+            </dict>
+            <key>enemy-ogre-3-lefthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{76,2},{40,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,59}}</string>
+                <key>sourceSize</key>
+                <string>{40,59}</string>
+            </dict>
+            <key>enemy-ogre-3-leftleg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{205,2},{48,47}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{48,47}}</string>
                 <key>sourceSize</key>
                 <string>{48,47}</string>
             </dict>
-            <key>enemy-ogre-3-mainweapon.png</key>
+            <key>enemy-ogre-3-mainweapon(MIRA-PC--MiRa--2014-05-15-17,35,13).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{58,100}}</string>
+                <string>{{121,81},{58,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,10 +108,23 @@
                 <key>sourceSize</key>
                 <string>{58,100}</string>
             </dict>
-            <key>enemy-ogre-3-righthand.png</key>
+            <key>enemy-ogre-3-mainweapon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,63},{57,37}}</string>
+                <string>{{2,2},{72,122}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,122}}</string>
+                <key>sourceSize</key>
+                <string>{72,122}</string>
+            </dict>
+            <key>enemy-ogre-3-righthand(MIRA-PC--MiRa--2014-05-15-17,35,13).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{63,215},{57,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -82,10 +134,23 @@
                 <key>sourceSize</key>
                 <string>{57,37}</string>
             </dict>
+            <key>enemy-ogre-3-righthand.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{201,161},{57,51}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{57,51}}</string>
+                <key>sourceSize</key>
+                <string>{57,51}</string>
+            </dict>
             <key>enemy-ogre-3-rightleg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,152},{47,43}}</string>
+                <string>{{76,63},{47,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -103,9 +168,9 @@
             <key>realTextureFileName</key>
             <string>eogre3.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ead4444f71e96a35abe377bc8f10729e$</string>
+            <string>$TexturePacker:SmartUpdate:f8e0809b1dd17d75829f1f0e42506dac$</string>
             <key>textureFileName</key>
             <string>eogre3.png</string>
         </dict>

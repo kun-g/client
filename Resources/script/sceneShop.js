@@ -78,7 +78,9 @@ function onConfirmPurchase(sender){
         if( rsp.RET == RET_OK ){
             cc.AudioEngine.getInstance().playEffect("buy.mp3");
             if( theConfirmShopItem.cost.diamond != null ){
-                tdga.itemPurchase(theConfirmItemClass.label, Number(theConfirmCount.getString()), theConfirmShopItem.cost.diamond);
+                tdga.itemPurchase(theConfirmItemClass.label,
+                Number(theConfirmCount.getString()),
+                theConfirmShopItem.cost.diamond);
             }
         }
         else{
@@ -534,14 +536,14 @@ function onEnter()
     setTag(0);
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
     
     
 }
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function onActivate(){
@@ -560,4 +562,38 @@ function scene()
     };
 }
 
+function purchaseItem(cid, count, callback, thiz){
+    //find store sid
+    var shopItem = engine.session.queryStore(cid);
+    if( shopItem != null ){
+        for( var k in shopItem.cost ){
+            switch(k){
+                case "gold":{
+                    if( engine.user.inventory.Gold < shopItem.cost[k] ){
+                        libUIKit.showAlert(ErrorMsgs[1]);
+                        //callback({RET: RET_NotEnoughGold});
+                        return;
+                    }
+                }break;
+                case "diamond":{
+                    if( engine.user.inventory.Diamond < shopItem.cost[k] ){
+                        libUIKit.showAlert(ErrorMsgs[2]);
+                        //callback({RET: RET_NotEnoughDiamond});
+                        return;
+                    }
+                }break;
+                default: return;
+            }
+        }
+
+        libUIKit.waitRPC(Request_StoreBuyItem, {
+            sid: shopItem.sid,
+            cnt: count,
+            ver: engine.session.shop.version
+        }, callback, thiz);
+    }
+
+}
+
 exports.scene = scene;
+exports.purchaseItem = purchaseItem;

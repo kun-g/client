@@ -23,8 +23,7 @@ var MODE_LOAD = 1;
 var theMode;
 
 var remoteServer = [
-    {"ip":"61.174.8.226", "port":7756},
-    {"ip":"101.69.181.231", "port":7756}
+    {"ip":"60.191.205.25", "port":7757}
 ];
 
 var localServer = [
@@ -44,21 +43,52 @@ function onUACReady(){
     uac.presentLoginView();
 }
 
-function onLoggedIn(token){
+function onLoggedIn(token, type){
     debug("onLoggedIn("+token+")");
     //send login request
     var arg = {};
     arg.id = uac.getUserName();
-    arg.tp = engine.game.getConfig().account_type;
+    arg.tp = type;
     arg.bv = system.getBinaryVersion();
     arg.rv = engine.game.getConfig().resource_version;
     arg.ch = engine.game.getConfig().binary_channel;
     arg.tk = token;
 
+    if( arg.tp == null ){
+        arg.tp = engine.game.getConfig().account_type;
+    }
+
     engine.session.accountName = uac.getUserName();
     engine.session.accountId = uac.getUserId();
+    engine.session.accountType = arg.tp;
 
     engine.event.sendRPCEvent(Request_AccountLogin, arg, LoginResp, theLayer);
+}
+
+function onAccountChanged(token, type){
+    debug("onAccountChanged("+token+", "+type+")");
+    if( type != null && type != engine.session.accountType ){
+        engine.event.sendRPCEvent(Request_BindAccount, {
+            typ: type,
+            id: token
+        }, function(rsp){
+              if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
+                  system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
+                       if( btn != 0 ){//switch
+                           debug("onSwitchAccount");
+                           uac.setAccountMode(1);
+                           reboot();
+                       }
+                       else{
+                           loadModule("back.js").removeLoginSucessInvoke("switchAccount");
+                       }
+                  }, "不切换", "现在切换");
+              }
+        });
+    }
+    if( !isGameLoggedIn ){
+        loadModule("back.js").pushLoginSuccessInvoke("switchAccount", uacDelegate, onAccountChanged, [token, type]);
+    }
 }
 
 function onLoggedOut(){
@@ -80,6 +110,7 @@ function onManageViewClosed(){
 var uacDelegate = {};
 uacDelegate.onUACReady = onUACReady;
 uacDelegate.onLoggedIn = onLoggedIn;
+uacDelegate.onAccountChanged = onAccountChanged;
 uacDelegate.onLoggedOut = onLoggedOut;
 uacDelegate.onLoginViewClosed = onLoginViewClosed;
 uacDelegate.onManageViewClosed = onManageViewClosed;
@@ -183,9 +214,13 @@ function updateCallback(status, dlnow, dltotal)
             break;
         case 0:
         {//更新进度
-            var step = segment*dlnow/dltotal;
-            var progress = update_process + step;
-            updateLoading("正在下载更新", progress, true);
+            if (dltotal != 0){
+                //debug("status = 0"+";segment = "+segment+";dlnow = "+dlnow+";dltotal = "+dltotal);
+                var step = segment*dlnow/dltotal;
+                var progress = update_process + step;
+                //debug("step = "+step+";progress = "+progress+";update_cnt = "+update_cnt);
+                updateLoading("正在下载更新", progress, true);
+            }
         }
             break;
         case 1:
@@ -452,18 +487,19 @@ function onEnter()
         theLayer.owner.nodeStart.setVisible(false);
     }
     else{
-        theMode = MODE_PRESS;
-        theLayer.owner.nodeProgress.setVisible(false);
-        theLayer.owner.nodeStart.setVisible(true);
+        theMode = MODE_LOAD;
+        theLayer.owner.nodeProgress.setVisible(true);
+        theLayer.owner.nodeStart.setVisible(false);
+        onStartGame();
     }
 
     engine.event.releaseNotifications();
     debug("- LOGIN ENTER -");
 
     //91 special process
-    if( iap.getStoreName() == "Nd91" ){
-        onStartGame();
-    }
+//    if( iap.getStoreName() == "Nd91" ){
+//        onStartGame();
+//    }
 }
 
 function onExit()

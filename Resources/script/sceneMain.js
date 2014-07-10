@@ -7,13 +7,15 @@
 //load libs
 var libRole = loadModule("role.js");
 var libQuest = loadModule("questInfo.js");
+var libBounty = loadModule("sceneBounty.js");
 var libUIC = loadModule("UIComposer.js");
 var libChat = loadModule("chatInfo.js");
 var libMessage = loadModule("MessageInfo.js");
 var libEvent = loadModule("eventInfo.js");
 var libPops = loadModule("pops.js");
 var libEffect = loadModule("effect.js");
-var libTutorial = loadModule("tutorial.js");
+var libTutorial = loadModule("tutorialx.js");
+var libUIKit = loadModule("uiKit.js");
 
 //local constants
 var ACTIVITY_GAP = 15;
@@ -80,6 +82,8 @@ function onEnter()
     theLayer.owner.onRank = onRank;
     theLayer.owner.onDailyQuest = onDailyQuest;
     theLayer.owner.onDailyPrize = onDailyPrize;
+    theLayer.owner.onBounty = onBounty;
+    theLayer.owner.onPVP = onPVP;
 
     var node = libUIC.loadUI(theLayer, "sceneIndex.ccbi", {
         nodeEnergy:{
@@ -131,6 +135,9 @@ function onEnter()
     notifyQuest = theLayer.owner.spnQuest;
     notifyQuestNumber = theLayer.owner.notifyQuest;
 
+    //function ON/OFF
+//    theLayer.owner.btnPVP.setEnabled(false);
+
     //set stage button
     //-添加职业徽记
     var roleData = loadModule("table.js").queryTable(TABLE_ROLE, engine.user.actor.ClassId);
@@ -140,6 +147,7 @@ function onEnter()
     theLayer.nodeTeam1 = cc.Node.create();
     normal.addChild(theLayer.nodeTeam1);
     {
+        debug("EMBLEM = "+emblem);//test
         var spEmblem1 = cc.Sprite.create(emblem);
         spEmblem1.setScale(0.5);
         spEmblem1.setPosition(cc.p(normal.getContentSize().width/2, normal.getContentSize().height/2+10));
@@ -191,24 +199,27 @@ function onEnter()
     this.scheduleUpdate();
 
     //attach effects
-    if( engine.user.inventory.checkUpgradable() ){
+    if( engine.user.inventory.checkUpgradable()
+        || engine.user.inventory.checkEnhancable()
+        || engine.user.inventory.checkForgable() ){
         libEffect.attachEffectCCBI(theLayer.owner.tipUpgrade, cc.p(0, 0), "tips-forge.ccbi", libEffect.EFFECTMODE_LOOP);
     }
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
 
     updateBattlePower();
+
+    //getMonthCard();
 }
 
 function onExit()
 {
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
     theLayer = null;
 }
 
 function onActivate(){
-    //schedule pop
     engine.pop.setAllAndInvoke("main");
     if( theMode == MODE_CLOSE ){
         startOpenAnimation();
@@ -246,6 +257,11 @@ function onNotify(ntf)
                 theLayer.owner.iconVip.removeAllChildren();
                 theLayer.owner.iconVip.addChild(sp);
             }
+            return false;
+        }
+        case Message_UpdateEnergy:
+        {
+            updateEnergy();
             return false;
         }
     }
@@ -396,6 +412,8 @@ function onChat(sender)
     startCloseAnimation(function(){
         libChat.show();
     });
+//    libPops.setLevelUpAnimation(engine.user.actor.calcExp().level - 3);
+//    libPops.invokePopLevelUp();
 }
 
 function onStage(sender)
@@ -460,6 +478,13 @@ function onShop(sender)
     });
 }
 
+function onPVP(sender)
+{
+    startCloseAnimation(function(){
+        engine.ui.newScene(loadModule("scenePVP.js").scene());
+    });
+}
+
 function onDress(sender)
 {
     engine.ui.newScene(loadModule("sceneDress.js").scene());
@@ -512,6 +537,12 @@ function onRole(sender)
 
 function updateBattlePower(){
     theLayer.owner.labPower.setString(engine.user.actor.getPower());
+}
+
+function onBounty(){
+    startCloseAnimation(function(){
+        libBounty.show();
+    });
 }
 
 function scene()

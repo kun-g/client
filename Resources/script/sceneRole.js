@@ -11,6 +11,8 @@ var libEffect = loadModule("effect.js");
 var theLayer = null;
 var theRole;
 
+var theRoleFlag = false;
+
 var theSkillEffect;
 
 function onClose(sender){
@@ -91,8 +93,9 @@ function onArmor(sender){
     var tag = sender.getTag();
     var uikey = "equip"+(tag+1);
     var item = theLayer.ui[uikey].getItem();
+    debug("sceneRole onArmor:item = "+JSON.stringify(item));
     if( item != null ){
-        libItemInfo.show(item);
+        libItemInfo.show(item, false, theRole);
     }
 }
 
@@ -209,11 +212,12 @@ function onEnter()
     theLayer.setScale(0);
     theLayer.runAction(actionPopIn());
     
-    
+    theRoleFlag = true;
 }
 
 function onExit()
 {
+    theRoleFlag = false;
 }
 
 function onActivate(){
@@ -224,6 +228,8 @@ function onActivate(){
 
 function show(role){
     theRole = role;
+
+    if( theRoleFlag ) return;
 
     theLayer = engine.ui.newLayer({
         onEnter: onEnter,

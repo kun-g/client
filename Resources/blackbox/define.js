@@ -49,27 +49,10 @@ initServer = function () {
   };
 };
 
-logError = function(log) {
-  print('Error', log);
-};
-logInfo = function(log) {
-  if (logLevel < 1)
-    print('Info', log);
-};
-logUser = function(log) {
-  if (logLevel < 1)
-    print('User', log);
-};
-logWarn = function(log) {
-  if (logLevel < 2)
-    print('Warn', log);
-};
-logDungeon = function(log) {
-  print('DebugDungeon', log);
-};
-logCommandStream = function(log) {
-  print('DebugCommandStream', log);
-};
+logError = function(log) { print('Error', log); };
+logInfo = function(log) { print('Info', log); };
+logUser = function(log) { print('User', log); };
+logWarn = function(log) { print('Warn', log); };
 
 rand = function() {
   return Math.floor(Math.random()*1000000);
@@ -77,7 +60,7 @@ rand = function() {
 
 isNameValid = function(name) {
   var ban = ['\\.', ' ', '\\?', '@', '!', '#', '\\$', '%', '\\^', '\\\\', '\\\*',
-      '\\]', '\\['
+      '\\]', '\\[', ',',
       ];
   for (var x in ban) {
     var reg = new RegExp(ban[x],'g');
@@ -116,6 +99,30 @@ listAllProperties = function(o){
   return result; 
 };
 
+createMirrorHero = function (data) {
+  cfg = queryTable(TABLE_ROLE, data.class);
+  //TODO:
+  hero = {
+    xp: data.xp,
+    name: data.name,
+    class: cfg.transId,
+    gender: data.gender,
+    hairStyle: data.hairStyle,
+    hairColor: data.hairColor,
+    equipment: data.equipment
+  };
+  hero = new Hero(hero);
+  battleForce = hero.calculatePower();
+  hero.health = battleForce * (10/18.5);
+  hero.attack = battleForce * (0.3/18.5);
+  hero.critical = battleForce * (1/18.5);
+  hero.strong = battleForce * (1/18.5);
+  hero.accuracy = battleForce * (1/18.5) + 20;
+  hero.reactivity = battleForce * (10/18.5) - 20;
+  hero.speed = battleForce * (1/18.5) + 20;
+  return hero;
+};
+
 getBasicInfo = function (hero) {
   if (!hero) throw 'Invalid Hero Data';
   var translateTable = {
@@ -125,7 +132,6 @@ getBasicInfo = function (hero) {
     hairStyle : 'hst',
     hairColor : 'hcl',
     xp : 'exp',
-    blueStar : 'bst',
     isFriend: 'ifn',
     vipLevel: 'vip'
   };
@@ -147,28 +153,6 @@ getBasicInfo = function (hero) {
 
   return ret;
 };
-
-var gConfigTable = {};
-function readHandlerGenerator(path, item) {
-  return function (cb) {
-    var fs = requires('fs');
-    if (!path) { path = ''; }
-    fs.readFile(path+item.name+'.json', function (err, data) {
-      if (err) return cb(err);
-      try {
-        var tmp = JSON.parse(String(data));
-        if (item.func) tmp = item.func(tmp);
-        tmp = prepareForABtest(tmp);
-        gConfigTable[item.name] = tmp;
-        return cb(null);
-      } catch (error) {
-        console.log('Table Error(' + item.name +'):', error.message);
-        console.log(error.stack);
-        return cb(error);
-      }
-    });
-  };
-}
 
 initStageConfig = function (cfg) {
   var ret = [];
@@ -238,21 +222,28 @@ prepareForABtest = function (cfg) {
 };
 
 varifyDungeonConfig = function (cfg) {
-  cfg.forEach(function (dungeon, dungeonID) {
-    if (dungeon.prize) {
-      dungeon.prize.forEach(function (prize, prizeID) {
-        if (!prize.rate) { console.log('Missing rate', dungeonID); }
-        if (!prize.items) { console.log('Missing items', dungeonID); }
-        prize.items.forEach( function (item, itemID) {
-          if (item.weight == null) { console.log('Missing weight', dungeonID, prizeID, itemID); }
-          if (queryTable(TABLE_ITEM) && queryTable(TABLE_ITEM, item.id) == null) {  console.log('Item not exist', dungeonID, prizeID, itemID, item.id); }
-        });
-      });
-    }
-  });
   return cfg;
 };
 
+function initShop (data) {
+  if (typeof gShop != 'undefined') {
+    for (var k in data) {
+      gShop.addProduct(k, data[k]);
+    }
+  }
+}
+
+arenaPirze = function (rank) {
+  cfg = queryTable(TABLE_ARENA);
+  for (var k in cfg) {
+    var v = cfg[k];
+    if (rank <= v.top) {
+      return v.prize;
+    }
+  }
+  return []
+}
+var gConfigTable = {};
 initGlobalConfig = function (path, callback) {
   queryTable = function (type, index, abIndex) {
     var cfg = gConfigTable[type];
@@ -266,19 +257,36 @@ initGlobalConfig = function (path, callback) {
     if (index == null) {
       return cfg;
     } else {
-      return cfg[index];
+      if (cfg[index]) {
+        switch (type) {
+          case TABLE_ITEM:
+          case TABLE_ROLE: 
+            return JSON.parse(JSON.stringify(cfg[index])); //TODO: hotfix
+            break;
+          default:
+            return cfg[index]
+        }
+      } else {
+        return null;
+      }
     }
   };
-  var configTable = [
-    {name:TABLE_ROLE}, {name:TABLE_LEVEL}, {name:TABLE_VERSION},
+  var configTable = [{name:TABLE_LEADBOARD}, {name: TABLE_STORE, func:initShop},
+    {name:TABLE_ROLE}, {name:TABLE_LEVEL}, {name:TABLE_VERSION}, {name:TABLE_FACTION},
     {name:TABLE_ITEM}, {name:TABLE_CARD}, {name:TABLE_DUNGEON, func:varifyDungeonConfig},
-    {name:TABLE_STAGE, func: initStageConfig}, {name:TABLE_QUEST},
+    {name:TABLE_STAGE, func: initStageConfig}, {name:TABLE_QUEST}, {name: TABLE_COSTS},
     {name:TABLE_UPGRADE}, {name:TABLE_ENHANCE}, {name: TABLE_CONFIG}, {name: TABLE_VIP},
-    {name:TABLE_SKILL}, {name:TABLE_CAMPAIGN}, {name: TABLE_DROP}, {name: TABLE_TRIGGER}
+    {name:TABLE_SKILL}, {name:TABLE_CAMPAIGN}, {name: TABLE_DROP}, {name: TABLE_TRIGGER},
+    {name:TABLE_DP},{name:TABLE_ARENA}
   ];
-  var jobs = configTable.map(function (j) { return readHandlerGenerator(path, j); });
-  var async = requires('async');
-  async.parallel(jobs, callback);
+  if (!path) path = "./";
+  configTable.forEach(function (e) {
+    gConfigTable[e.name] = requires(path+e.name).data;
+    if (!gConfigTable[e.name]) throw Error("Table not found"+e.name);
+    if (e.func) gConfigTable[e.name] = e.func(gConfigTable[e.name]);
+    gConfigTable[e.name] = prepareForABtest(gConfigTable[e.name]);
+  });
+  callback();
 };
 
 showMeTheStack = function () {try {a = b;} catch (err) {console.log(err.stack);}};
@@ -392,6 +400,17 @@ selectElementFromWeightArray = function (array, randNumber) {
   return null;
 };
 
+mapContact = function (target, source) {
+  if (typeof target != 'object' || typeof source != 'object') {
+    logError({action: 'mapContact', reason: 'invalidate parm'});
+    return null;
+  }
+  for(var k in source) {
+    target[k] = source[k];
+  }
+  return target
+}
+
 logLevel = 0;
 
 updateStageStatus = function (stageStatus, player, abindex) {
@@ -403,6 +422,10 @@ updateStageStatus = function (stageStatus, player, abindex) {
     var unlockable = true;
     if (stage.cond) unlockable = triggerLib.conditionCheck(stage.cond, player);
     if (unlockable && stageStatus[sid] == null) ret.push(sid);
+    if (stage.isInfinite 
+        && stageStatus[sid] 
+        && stageStatus[sid].level == null)
+      ret.push(sid);
   }
   return ret;
 };
@@ -510,6 +533,7 @@ Unit_Hero = 0;
 Unit_Enemy = 1;
 Unit_NPC = 2;
 Unit_TreasureBox = 3;
+Unit_Mirror = 4;
 Unit_Boss = 5;
 Unit_Exit = 100;
 
@@ -549,90 +573,3 @@ Event_Fail = 11;
 Event_UpdateQuest = 19;
 
 exports.fileVersion = -1;
-
-tap = function(obj, key, callback, invokeFlag) {
-  var theCB;
-  if (invokeFlag == null) {
-    invokeFlag = false;
-  }
-  if (typeof obj[key] === 'function') {
-    return false;
-  }
-  if (obj.reactDB == null) {
-    Object.defineProperty(obj, 'reactDB', {
-      enumerable: false,
-      configurable: false,
-      value: {}
-    });
-  }
-  if (obj.reactDB[key] == null) {
-    obj.reactDB[key] = {
-      value: obj[key],
-      hooks: [callback]
-    };
-    theCB = function(val) {
-      var cb, _i, _len, _ref;
-      _ref = obj.reactDB[key].hooks;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        cb = _ref[_i];
-        if (cb != null) {
-          cb(key, val);
-        }
-      }
-      return obj.reactDB[key].value = val;
-    };
-    Object.defineProperty(obj, key, {
-      get: function() {
-        return obj.reactDB[key].value;
-      },
-      set: theCB,
-      enumerable: true,
-      configurable: true
-    });
-    if (typeof obj[key] === 'object') {
-      tapObject(obj[key], theCB);
-    }
-  } else {
-    obj.reactDB[key].hooks.push(callback);
-  }
-  if (invokeFlag) {
-    return callback(key, obj[key]);
-  }
-};
-
-tapObject = function(obj, callback) {
-  var config, k, tabNewProperty, theCallback, v;
-  if (obj == null) {
-    return false;
-  }
-  theCallback = function() {
-    return callback(obj);
-  };
-  tabNewProperty = function(key, val) {
-    obj[key] = val;
-    tap(obj, key, theCallback);
-    return callback(obj);
-  };
-  for (k in obj) {
-    v = obj[k];
-    tap(obj, k, theCallback);
-  }
-  config = {
-    value: tabNewProperty,
-    enumerable: false,
-    configurable: false,
-    writable: false
-  };
-  if (obj.newProperty == null) {
-    Object.defineProperty(obj, 'newProperty', config);
-    if (Array.isArray(obj)) {
-      return Object.defineProperty(obj, 'push', {
-        value: function(val) {
-          return this.newProperty(this.length, val);
-        }
-      });
-    }
-  }
-};
-exports.tap = tap;
-exports.tapObject = tapObject;

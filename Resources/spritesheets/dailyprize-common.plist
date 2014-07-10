@@ -11,7 +11,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{579,65}}</string>
                 <key>sourceSize</key>
@@ -20,271 +20,76 @@
             <key>dailyprize-common-bg2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{583,2},{420,37}}</string>
+                <string>{{69,2},{496,98}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{496,98}}</string>
+                <key>sourceSize</key>
+                <string>{496,98}</string>
+            </dict>
+            <key>dailyprize-common-get.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,934},{83,83}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{420,37}}</string>
+                <string>{{0,0},{83,83}}</string>
                 <key>sourceSize</key>
-                <string>{420,37}</string>
+                <string>{83,83}</string>
             </dict>
-            <key>dailyprize-common-btnreward1.png</key>
+            <key>dailyprize-common-light.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,69},{242,104}}</string>
+                <string>{{2,583},{177,177}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{242,104}}</string>
+                <string>{{0,0},{177,177}}</string>
                 <key>sourceSize</key>
-                <string>{242,104}</string>
+                <string>{177,177}</string>
             </dict>
-            <key>dailyprize-common-btnreward2.png</key>
+            <key>dailyprize-common-lq.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{583,41},{242,104}}</string>
+                <string>{{117,894},{100,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{242,104}}</string>
+                <string>{{0,0},{100,100}}</string>
                 <key>sourceSize</key>
-                <string>{242,104}</string>
+                <string>{100,100}</string>
             </dict>
-            <key>dailyprize-common-day1-1.png</key>
+            <key>dailyprize-common-month.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{707,547},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day1-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,799},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day1-3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,643},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day2-1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{237,537},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day2-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{472,459},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day2-3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{754,391},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day3-1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{519,303},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day3-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{809,156},{154,233}}</string>
+                <string>{{219,894},{29,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
+                <string>{{0,0},{29,31}}</string>
                 <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day3-3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,487},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day4-1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{237,381},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day4-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,331},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day4-3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{237,225},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day5-1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{574,147},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day5-2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,175},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-day5-3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{246,69},{154,233}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{154,233}}</string>
-                <key>sourceSize</key>
-                <string>{154,233}</string>
-            </dict>
-            <key>dailyprize-common-jrjl.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{481,183},{83,71}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{83,71}}</string>
-                <key>sourceSize</key>
-                <string>{83,71}</string>
-            </dict>
-            <key>dailyprize-common-knife.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{481,69},{91,112}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{91,112}}</string>
-                <key>sourceSize</key>
-                <string>{91,112}</string>
+                <string>{29,31}</string>
             </dict>
             <key>dailyprize-common-tabqdjl1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{827,41},{113,170}}</string>
+                <string>{{2,762},{113,170}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,170}}</string>
                 <key>sourceSize</key>
@@ -293,11 +98,11 @@
             <key>dailyprize-common-tabqdjl2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{472,615},{113,130}}</string>
+                <string>{{117,762},{113,130}}</string>
                 <key>offset</key>
                 <string>{0,20}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{113,130}}</string>
                 <key>sourceSize</key>
@@ -306,15 +111,119 @@
             <key>dailyprize-common-title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{472,256},{138,45}}</string>
+                <string>{{69,500},{138,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{138,45}}</string>
                 <key>sourceSize</key>
                 <string>{138,45}</string>
+            </dict>
+            <key>dailyprize-common-vip1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{169,372},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{169,298},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{169,224},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{169,150},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{169,76},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{169,2},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{181,621},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
+            </dict>
+            <key>dailyprize-common-vip8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{181,547},{72,72}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,72}}</string>
+                <key>sourceSize</key>
+                <string>{72,72}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -324,9 +233,9 @@
             <key>realTextureFileName</key>
             <string>dailyprize-common.png</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4d2da053eedfc0f2ddbbdc2274cd0a21$</string>
+            <string>$TexturePacker:SmartUpdate:030080a99d9954976e140ce746cd399b$</string>
             <key>textureFileName</key>
             <string>dailyprize-common.png</string>
         </dict>

@@ -23,6 +23,7 @@
 	</array>
 	<key>SearchPaths</key>
 	<array>
+		<string>/</string>
 		<string>table/</string>
 		<string>script/</string>
 		<string>blackbox/</string>

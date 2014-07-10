@@ -1,7 +1,5 @@
 (function() {
-  var Serializer, g_attr_constructorTable, generateMonitor, objectlize, registerConstructor, tap;
-
-  tap = requires('./define').tap;
+  var Serializer, g_attr_constructorTable, generateMonitor, objectlize, registerConstructor;
 
   generateMonitor = function(obj) {
     return function(key, val) {
@@ -50,6 +48,10 @@
       }
     }
 
+    Serializer.prototype.destroy = function() {
+      return this.s_attr_monitor = null;
+    };
+
     Serializer.prototype.attrSave = function(key, restoreFlag) {
       if (restoreFlag == null) {
         restoreFlag = false;
@@ -57,26 +59,19 @@
       if (this.s_attr_to_save.indexOf(key) !== -1) {
         return false;
       }
-      tap(this, key, this.s_attr_monitor, restoreFlag);
       return this.s_attr_to_save.push(key);
     };
 
     Serializer.prototype.versionControl = function(versionKey, keys) {
-      var key, versionIncr, _i, _len, _results;
+      var versionIncr;
       if (!Array.isArray(keys)) {
         keys = [keys];
       }
-      versionIncr = (function(_this) {
+      return versionIncr = (function(_this) {
         return function() {
           return _this[versionKey]++;
         };
       })(this);
-      _results = [];
-      for (_i = 0, _len = keys.length; _i < _len; _i++) {
-        key = keys[_i];
-        _results.push(tap(this, key, versionIncr));
-      }
-      return _results;
     };
 
     Serializer.prototype.getConstructor = function() {
@@ -139,11 +134,11 @@
     };
 
     Serializer.prototype.dumpChanged = function() {
-      var key, ret, val, _ref;
+      var key, ret, _i, _len, _ref;
       ret = null;
-      _ref = this.s_attr_dirtyFlag;
-      for (key in _ref) {
-        val = _ref[key];
+      _ref = this.s_attr_to_save;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        key = _ref[_i];
         if (ret == null) {
           ret = {};
         }

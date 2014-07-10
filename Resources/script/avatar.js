@@ -149,6 +149,7 @@ function Avatar(role, lazyLoad)
     this.node.thiz = this;
     this.SCALE = 1;
     this.FLIPX = false;
+    this.FLIPFLAG = true;
     this.color = cc.c3b(255, 255, 255);
     this.node.scheduleUpdate();
     this.BOSSFLAG = false;
@@ -179,13 +180,6 @@ Avatar.prototype.doLoad = function(){
 }
 
 Avatar.prototype.addEffect = function(param){
-    var effect = loadModule("effect.js");
-    var mode = effect.EFFECTMODE_AUTO;
-    if (param.serverId != null) {
-        mode = effect.EFFECTMODE_LOOP;
-    }
-    param.node = effect.attachEffect(this.node, cc.p(0, 0), param.effectId, mode);
-
     //include to management
     if( param.serverId != null ){
         if( this.EffectList[param.serverId] != null ){
@@ -194,6 +188,12 @@ Avatar.prototype.addEffect = function(param){
         this.EffectList[param.serverId] = param;
     }
 
+    var effect = loadModule("effect.js");
+    var mode = effect.EFFECTMODE_AUTO;
+    if (param.serverId != null) {
+        mode = effect.EFFECTMODE_LOOP;
+    }
+    param.node = effect.attachEffect(this.node, cc.p(0, 0), param.effectId, mode);
     return param.node;
 }
 
@@ -250,6 +250,7 @@ Avatar.prototype.setHealth = function(health, color)
         this.health = cc.Sprite.createWithSpriteFrameName("hpicon.png");
         this.health.setPosition(cc.p(0, LABEL_SINK));
         this.node.addChild(this.health);
+        this.health.state = 0;
     }
     if( this.BOSSHP != null ){
         this.BOSSHP.setHP(health);
@@ -270,9 +271,12 @@ Avatar.prototype.setHealth = function(health, color)
         np.x = LO_GRID/4 - length;
         this.health.setPosition(np);
 
-        if( color != null )
+        if( color != null ){
+            this.health.state = color;
+        }
+        if( this.health.state != null )
         {
-            switch(color)
+            switch(this.health.state)
             {
                 case 1:
                     label.setColor(COLOR_VALUEDOWN);
@@ -298,6 +302,7 @@ Avatar.prototype.setAttack = function(attack, color)
         this.attack = cc.Sprite.createWithSpriteFrameName("attackicon.png");
         this.attack.setPosition(cc.p(0, LABEL_SINK));
         this.node.addChild(this.attack);
+        this.attack.state = 0;
     }
     if( this.BOSSHP != null ){
         return;
@@ -317,9 +322,12 @@ Avatar.prototype.setAttack = function(attack, color)
         np.x = -length - LO_GRID/4;
         this.attack.setPosition(np);
 
-        if( color != null )
+        if( color != null ){
+            this.attack.state = color;
+        }
+        if( this.attack.state != null )
         {
-            switch(color)
+            switch(this.attack.state)
             {
                 case 1:
                     label.setColor(COLOR_VALUEDOWN);
@@ -391,6 +399,10 @@ Avatar.prototype.update = function(role)
         else{
             this.hideAttack = RoleClass.hideAttack;
         }
+    }
+
+    if( RoleClass.flipFlag != null ){
+        this.FLIPFLAG = RoleClass.flipFlag;
     }
 
     //装备
@@ -558,6 +570,12 @@ Avatar.prototype.tick = function(delta)
     else if( thiz.blink != null )
     {
         thiz.blink.timer += delta;
+        if( thiz.blink.timer >= BLINK_CYCLE ){
+            thiz.blink.colorIndex++;
+            if( thiz.blink.colorIndex >= thiz.blink.colors.length ){
+                thiz.blink.colorIndex = 0;
+            }
+        }
         thiz.blink.timer %= BLINK_CYCLE;
         var alpha = 0;
         if( thiz.blink.timer < BLINK_CYCLE/2 )
@@ -568,7 +586,7 @@ Avatar.prototype.tick = function(delta)
         {
             alpha = 1 - (thiz.blink.timer-BLINK_CYCLE/2)/(BLINK_CYCLE/2);
         }
-        thiz.blendColor(thiz.blink.color, alpha);
+        thiz.blendColor(thiz.blink.colors[thiz.blink.colorIndex], alpha);
     }
     if( thiz.fadeout != null )
     {
@@ -609,8 +627,9 @@ Avatar.prototype.resetBlinkColor = function()
 Avatar.prototype.setBlinkColor = function(color)
 {
     this.blink = {};
-    this.blink.color = color;
+    this.blink.colors = arguments;
     this.blink.timer = 0;
+    this.blink.colorIndex = 0;
 }
 
 Avatar.prototype.flash = function(color)
@@ -716,7 +735,7 @@ Avatar.prototype.getFlipX = function()
 
 Avatar.prototype.setFlipX = function(flag)
 {
-    if( this.BOSSFLAG ) return;//exception
+    if( !this.FLIPFLAG ) return;//exception
 
     if( this.FLIPX != flag ){
         this.FLIPX = flag;
@@ -773,6 +792,10 @@ UIAvatar.prototype.doLoad = function(){
 UIAvatar.prototype.getRole = function()
 {
     return this.role;
+}
+
+UIAvatar.prototype.playAnimation = function (name, loop) {
+    this.avatar.playAnimation(name, loop);
 }
 
 UIAvatar.make = function(thiz, args)

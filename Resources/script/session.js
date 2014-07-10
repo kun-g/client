@@ -19,9 +19,17 @@ function Session(){
 
     this.accountName = null;
     this.accountId = null;
+    this.accountType = null;
     this.zoneId = 0;
-
     this.roleCache = {};
+    this.dataBounty = [];
+    this.MonthCardAvaiable = false;
+    this.PkInfo = {
+        rnk: 99999,
+        cpl: 0,
+        ttl: 0,
+        rcv: false
+    };
 }
 
 Session.prototype.pushFriendApply = function(msg){
@@ -39,7 +47,7 @@ Session.prototype.pushFriendApply = function(msg){
 Session.prototype.pushSystemDeliver = function(msg){
     for(var k in this.deliver){
         var obj = this.deliver[k];
-        if( obj.sid == msg.sid ){
+        if( obj.sid == msg.sid || (msg.typ == 0 && obj.typ == msg.typ) ){
             this.deliver.splice(k, 1);
             this.MessageCount--;
         }
@@ -69,7 +77,8 @@ Session.prototype.queryStore = function(cid, stc){
             if( itm.cnt == null ){
                 itm.cnt = 1;
             }
-            if( itm.cid == cid && itm.cnt == stc ){
+            if( itm.cid == cid &&
+                ( (stc != null && itm.cnt == stc) || (stc == null) ) ){
                 ret = itm;
                 break;
             }
@@ -100,6 +109,26 @@ Session.prototype.cacheRoleInfo = function(info){
 
 Session.prototype.queryRoleInfo = function(name){
     return this.roleCache[name];
+}
+
+Session.prototype.updatePVPInfo = function(func) {
+    var libUIKit = loadModule("uiKit.js");
+    libUIKit.waitRPC(Request_PVPInfoUpdate, {}, function (rsp) {
+        if( rsp.RET == RET_OK ){
+            if( rsp.arg != null ){
+                if(engine.session.PkInfo == null) engine.session.PkInfo = {rnk: 99999, cpl: 0, ttl: 0, rcv: false};
+                if(rsp.arg.rnk != null) engine.session.PkInfo.rnk = Number(rsp.arg.rnk);
+                if(rsp.arg.cpl != null) engine.session.PkInfo.cpl = Number(rsp.arg.cpl);
+                if(rsp.arg.ttl != null) engine.session.PkInfo.ttl = Number(rsp.arg.ttl);
+                if(rsp.arg.rcv != null) engine.session.PkInfo.rcv = Number(rsp.arg.rcv);
+                func();
+            }else{
+                debug("*updatePVPInfo error: arg is null");
+            }
+        }else{
+            debug("*updatePVPInfo error: RET is not OK");
+        }
+    }, this);
 }
 
 var singleton = new Session();

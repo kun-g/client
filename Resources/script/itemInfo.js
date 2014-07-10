@@ -8,11 +8,13 @@ var libUIC = loadModule("UIComposer.js");
 var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
+var libGadget = loadModule("gadgets.js");
 
 var theLayer;
 var theItem;
 var theOperate;
 var theItemClass;
+var theRole;
 
 /******* OPEN CHEST *********/
 var theOpenLayer;
@@ -81,7 +83,7 @@ function processOpenChest(item, rsp){
     return false;
 }
 
-exports.showOpenEffect = function(prize){
+function showOpenEffect(prize){
     var fileName = "ui-dailymission-prize.ccbi";
     theOpenLayer = engine.ui.newLayer();
     var mask = blackMask();
@@ -115,9 +117,11 @@ exports.showOpenEffect = function(prize){
     theOpenLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
     theOpenLayer.setTouchPriority(1);
     theOpenLayer.setTouchEnabled(true);
-};
+}
 
-/****************************/
+exports.showOpenEffect = showOpenEffect;
+
+    /****************************/
 
 function contentNormal(){
     if( theItemClass.description != null && theItemClass.description != "" ){
@@ -155,37 +159,37 @@ function contentEquip(){
 
     //level
     if( theItemClass.rank != null ){
-        owner.labelLevel.setString(theItemClass.rank+"级")
+        owner.labelLevel.setString(theItemClass.rank)
     }
 
-    //calc property
-    var properties = {};
-    mergeRoleProperties(properties, theItemClass.basic_properties);
-
     //enhance
-    for(var i=0; i<4; ++i){
-        var enhance = null;
-        if( theItem.Enhance != null ){
-            enhance = theItem.Enhance[i];
+    var enhance = -1;
+    if( theItem.Enhance != null && theItem.Enhance[0] != null && theItem.Enhance[0].lv != null ){
+        enhance = Math.floor(theItem.Enhance[0].lv);
+    }
+    var starLv = Math.floor((enhance+1) / 8) % 6;
+    var barLv = ((enhance == 39)? 8:parseInt(((enhance+1)%8)));
+    for(var i=1; i<6; ++i){
+        var starName = "ehStar"+i;
+        if( i <= starLv){
+            owner[starName].runAction(cc.FadeIn.create(0.3));
         }
-        var keyName = "nodeQh"+(i+1);
-        var keyLevel = "labEhValue"+(i+1);
-        if( enhance != null ){
-            var EnhanceClass = libTable.queryTable(TABLE_ENHANCE, enhance.id);
-            var icon = cc.Sprite.create(EnhanceClass.icon);
-            owner[keyName].addChild(icon);
-            owner[keyLevel].setString("Lv."+(enhance.lv+1));
-
-            mergeRoleProperties(properties, EnhanceClass.property[enhance.lv]);
+        else {
+            owner[starName].setOpacity(0);
         }
-        else
-        {
-            owner[keyLevel].setString("");
+    }
+    for(var i=1; i<9; ++i){
+        var barName = "ehBar"+i;
+        if( i <= barLv){
+            owner[barName].runAction(cc.FadeIn.create(0.3));
+        }
+        else {
+            owner[barName].setOpacity(0);
         }
     }
 
     //show property
-    owner.labelProperty.setString(propertyString(properties));
+    libGadget.setProperties(theItem, owner.nodeProperties);
 
     //desc
     if( theItemClass.description != null && theItemClass.description != "" ){
@@ -211,8 +215,21 @@ function contentEquip(){
         prog.setProgress(xpNow/xpTotal);
         owner.nodeProgress.addChild(prog.node);
     }
+
+    //expiry date
+    if( theItemClass.expiration != null && theItem.TimeStamp != null){
+        var expiration = theItemClass.expiration.day;
+        var purchaseTime = theItem.TimeStamp;
+        var currentTime = engine.game.getServerTime();
+        var leftDays = Math.floor( expiration - (currentTime - purchaseTime)/(1000*60*60*24) );
+        owner.labLeftdays.setString( (leftDays < 1)? "还剩不到1天":("还剩"+leftDays+"天"));
+    }else{
+        owner.labLeftdays.setString("");
+    }
 }
 
+
+//dissolve module is gonna be removed
 function onDissolve(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( !engine.user.player.checkUnlock("dissolve") ) return;
@@ -264,24 +281,37 @@ function onDissolve(sender){
 
 function onUse(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    libUIKit.waitRPC(Request_InventoryUseItem, {
-        sid: theItem.ServerId,
-        opn: ITMOP_USE
-    }, function(rsp){
-        if( rsp.RET == RET_OK )
-        {
-            engine.ui.popLayer();
-            tdga.itemUse(theItemClass.label, 1);
-            //处理开箱子的特效
-            processOpenChest(theItem, rsp);
-        }
-        else
-        {
-            libUIKit.showErrorMessage(rsp);
-        }
-    }, theLayer);
+    if (theItemClass.category == 0 && theItemClass.subcategory == 3){
+        engine.ui.popLayer();
+        loadModule("expBook.js").show(theItemClass);
+    }
+    else{
+        libUIKit.waitRPC(Request_InventoryUseItem, {
+            sid: theItem.ServerId,
+            opn: ITMOP_USE
+        }, function(rsp){
+            if( rsp.RET == RET_OK )
+            {
+                engine.ui.popLayer();
+                tdga.itemUse(theItemClass.label, 1);
+                //处理开箱子的特效
+                if (theItemClass.category == 0 && theItemClass.subcategory == 2){
+                    showOpenEffect(rsp.prz);
+                }
+                else{
+                    processOpenChest(theItem, rsp);
+                }
+            }
+            else
+            {
+                libUIKit.showErrorMessage(rsp);
+            }
+        }, theLayer);
+    }
+
 }
 
+//equip/unequip module is gonna be removed
 function onEquip(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     libUIKit.waitRPC(Request_InventoryUseItem, {
@@ -348,11 +378,11 @@ function onSell(sender){
 }
 
 function canDissolve(){
-    if( theItemClass.category == ITEM_EQUIPMENT ){
-        if( theItemClass.subcategory >= EquipSlot_MainHand
-            && theItemClass.subcategory < EquipSlot_StoreMainHand )
-            return true;
-    }
+//    if( theItemClass.category == ITEM_EQUIPMENT ){
+//        if( theItemClass.subcategory >= EquipSlot_MainHand
+//            && theItemClass.subcategory < EquipSlot_StoreMainHand )
+//            return true;
+//    }
     return false;
 }
 
@@ -367,7 +397,7 @@ function onEnter(){
 
     this.owner = {};
     this.owner.onSell = onSell;
-    this.owner.onDissolve = onDissolve;
+//    this.owner.onDissolve = onDissolve;
 
     var filename = "ui-iteminfo.ccbi";
     if( theItemClass.category != ITEM_EQUIPMENT ){
@@ -391,8 +421,9 @@ function onEnter(){
     engine.ui.regMenu(this.owner.menuRoot);
 
     //assign values
-    this.ui.icon.setItem(theItem);
+    this.ui.icon.setItem(theItem,theRole);
     this.owner.labelName.setString(theItemClass.label);
+
     //sell button
     if( theItemClass.sellprice != null && theOperate ){
         this.owner.btnSell.setVisible(true);
@@ -483,14 +514,15 @@ function onEnter(){
     
 }
 
-//pass the item and if can operate, default is false
-function show(item, operate){
+//pass the item and if can operate
+function show(item, operate, role){
     theItem = item;
     theOperate = operate;
     if( theOperate == null )
     {
         theOperate = false;
     }
+    theRole = role;
     theItemClass = libTable.queryTable(TABLE_ITEM, theItem.ClassId);
     if( theItemClass.label == null ){
         return;//do not show hidden items

@@ -58,13 +58,15 @@ Game.prototype.init = function()
     utils.registerClass(loadModule("quest.js").Quest);
     utils.registerClass(loadModule("quest.js").QuestLog);
     utils.registerClass(loadModule("role.js").FriendList);
+    utils.registerClass(loadModule("bountyx.js").BountyLog);
 
     //register pop ups
     engine.pop.registerPop("announce", loadModule("pops.js").invokeAnnouncement);
     engine.pop.registerPop("level", loadModule("pops.js").invokePopLevelUp);
     engine.pop.registerPop("quest", loadModule("questInfo.js").checkQuestPop);
     engine.pop.registerPop("activity", loadModule("activity.js").invokeActivity);
-    engine.pop.registerPop("tutorial", loadModule("tutorial.js").activateTutorial);
+    engine.pop.registerPop("tutorial", loadModule("tutorialx.js").activateTutorial);
+    engine.pop.registerPop("monthcard", loadModule("pops.js").invokeMonthCardPop);
 
     //read game tables
     var table = loadModule("table.js");
@@ -86,6 +88,12 @@ Game.prototype.init = function()
     table.loadTable(TABLE_TUTORIAL);
     table.loadTable(TABLE_TUTORIAL_CONFIG);
     table.loadTable(TABLE_BAN);
+    table.loadTable(TABLE_BOUNTY);
+    table.loadTable(TABLE_FACTION);
+    table.loadTable(TABLE_COST);
+    table.loadTable(TABLE_DROP);
+    table.loadTable(TABLE_DP);
+    table.loadTable(TABLE_ARENA);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();

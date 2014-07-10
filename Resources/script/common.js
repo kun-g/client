@@ -34,9 +34,26 @@ function mergeRoleProperties(dst, src){
     }
 }
 
+function compareRoleProperties(rst, src1, src2){ //src2 is greater than src1
+    if( src1 != null && src2 != null){
+        for(var k in src2){
+            if( src1[k] == null ){
+                rst[k] = src2[k];
+            }
+            else{
+                rst[k] = src2[k] - src1[k];
+            }
+        }
+        for(var k in src1){
+            if( src2[k] == null ){
+                rst[k] = -src1[k];
+            }
+        }
+    }
+}
+
 function propertyString(properties){
     var strProperty = "";
-    var flag = false;
     for(var k in properties){
         var value = properties[k];
         if( value > 0 ){
@@ -530,11 +547,11 @@ var UIPrice = cc.Node.extend({
                     {
                         offset.x += PRICE_GAP;
                     }
-                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
-                    sp.setAnchorPoint(cc.p(0, 0.5));
-                    sp.setPosition(offset);
-                    this.addChild(sp);
-                    offset.x += sp.getContentSize().width;
+//                    var sp = cc.Sprite.createWithSpriteFrameName("wood-coin.png");
+//                    sp.setAnchorPoint(cc.p(0, 0.5));
+//                    sp.setPosition(offset);
+//                    this.addChild(sp);
+//                    offset.x += sp.getContentSize().width;
                     var lb = cc.LabelBMFont.create(price[k], "font1.fnt");
                     lb.setAnchorPoint(cc.p(0, 0.5));
                     lb.setPosition(offset);
@@ -1037,7 +1054,7 @@ PopMsg.pop = function(msg, typ){
     node.pushMsg(msg, typ);
 }
 
-function requestBattle(stage, party){
+function requestBattle(stage, party, pkRival){
     var libUIKit = loadModule("uiKit.js");
     //assign variables
     if( engine.user.dungeon == null ){
@@ -1049,10 +1066,20 @@ function requestBattle(stage, party){
     }
     //go request
     if( FLAG_BLACKBOX ){
-        libUIKit.waitRPC(Request_GameStartDungeon, {
-            stg: stage,
-            initialDataOnly: true
-        }, function(rsp){
+        var args = {};
+        if(pkRival != null){
+            args = {
+                stg: stage,
+                pkr: pkRival,
+                initialDataOnly: true
+            }
+        }else{
+            args = {
+                stg: stage,
+                initialDataOnly: true
+            }
+        }
+        libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
                 engine.box.start(rsp.arg);
                 engine.event.holdNotifications();
@@ -1076,8 +1103,19 @@ function requestBattle(stage, party){
         });
     }
     else{
+        var args = {};
+        if(pkRival != null){
+            args = {
+                stg: stage,
+                pkr: pkRival
+            }
+        }else{
+            args = {
+                stg: stage
+            }
+        }
         //send rpc request
-        libUIKit.waitRPC(Request_GameStartDungeon, {stg: stage}, function(rsp){
+        libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
                 engine.event.holdNotifications();
                 engine.session.clearTeam();
@@ -1114,4 +1152,114 @@ function filterUserInput(str){
         ret = ret.replace(bans[k], "*");
     }
     return ret;
+}
+
+function queryStage(stg){
+    var chapters = loadModule("table.js").readTable(TABLE_STAGE);
+    for(var k in chapters){
+        for(var m in chapters[k].stage){
+            if( chapters[k].stage[m].stageId == stg ) return chapters[k].stage[m];
+        }
+    }
+    return null;
+}
+
+function matchDate(scheme, date){
+    var boolflag = false;
+    var schemeDate = scheme.date;
+    var schemeDateInterval = scheme.dateInterval;
+    ////check interval
+    if (schemeDateInterval != null){
+        boolflag = matchDateinterval(schemeDateInterval, date);
+        return boolflag;
+    }
+    ////
+    //////////年/////////////
+    if (schemeDate.year != null){
+        for (var k in schemeDate.year){
+            if (schemeDate.year[k] == date.getFullYear()){
+                boolflag = true;
+                break;
+            }
+        }
+    }
+    else{
+        boolflag = true;
+    }
+    if (boolflag == false){
+        return false;
+    }
+    else{
+        boolflag = false;
+    }
+    //////////月/////////////
+    if (schemeDate.month != null){
+        for (var k in schemeDate.month){
+            if (schemeDate.month[k] == date.getMonth()){
+                boolflag = true;
+                break;
+            }
+        }
+    }
+    else{
+        boolflag = true;
+    }
+    if (boolflag == false){
+        return false;
+    }
+    else{
+        boolflag = false;
+    }
+    //////////日/////////////
+    if (schemeDate.date != null){
+        for (var k in schemeDate.date){
+            if (schemeDate.date[k] == date.getDate()){
+                boolflag = true;
+                break;
+            }
+        }
+    }
+    else{
+        boolflag = true;
+    }
+    if (boolflag == false){
+        return false;
+    }
+    else{
+        boolflag = false;
+    }
+    //////////周/////////////
+    if (schemeDate.day != null){
+        for (var k in schemeDate.day){
+            if (schemeDate.day[k] == date.getDay()){
+                boolflag = true;
+                break;
+            }
+        }
+    }
+    else{
+        boolflag = true;
+    }
+    return boolflag;
+}
+
+function dayNumOfMonth(year,month)
+{
+    return 32-new Date(year,month,32).getDate();
+}
+
+function matchDateinterval(scheme, date){
+    if (scheme.startDate != null && scheme.interval != null && scheme.interval >= 1){
+        for (var k in scheme.startDate){
+            for (var x in scheme.startDate[k].date){
+                var sttime = new Date(scheme.startDate[k].year, scheme.startDate[k].month, scheme.startDate[k].date[x],0,0,0,0);
+                var subtime = date.getTime() - sttime.getTime();
+                var days = Math.floor(subtime / 60000 / 24 / 60);
+                if (days % scheme.interval == 0){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }

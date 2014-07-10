@@ -6,6 +6,9 @@
 
 var libUIC = loadModule("UIComposer.js");
 var libUIKit = loadModule("uiKit.js");
+var libItem = loadModule("xitem.js");
+var libTable = loadModule("table.js");
+var libEffect = loadModule("effect.js");
 
 var MODE_DAILYPRIZE = 0;
 var MODE_DAILYQUEST = 1;
@@ -13,6 +16,30 @@ var MODE_DAILYEXIT = 2;
 
 var theLayer;
 var theLayerMode = null;
+
+//contants
+var theScal = 1;
+var GRID_SIZE = UI_ITEM_SIZE * theScal;
+var GRID_GAP = UI_ITEM_GAP + 12;
+var LINE_COUNT = 4;
+var MARGIN_TOP = 30;
+var MARGIN_BUTTOM = 70;
+var lineOffset = 52;
+
+var theCenter = {};
+var theDay = 0;
+
+var animTag = 100;
+var dmStarEffect = false;
+
+var prizeIconList = ["dailyprize-common-lq.png",
+    "dailyprize-common-light.png",
+    "dailyprize-common-vip1.png"];
+
+var prizePosXList = [];
+
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
 
 //common used close function
 function onClose(sender){
@@ -26,22 +53,188 @@ function onDailyAnimationCompleted(name){
         engine.ui.popLayer();
         theLayerMode = null;
     }
+    else if( theLayerMode == MODE_DAILYQUEST && dmStarEffect == false ){
+        //theLayer.NODE.animationManager.runAnimationsForSequenceNamed("stand");
+        libEffect.attachEffectCCBI(theLayer.owner.nodeEffectStar,cc.p(0, 0), "effect-dmstar.ccbi",libEffect.EFFECTMODE_LOOP);
+        dmStarEffect = true;
+    }
 }
 
-function onGetDailyPrize(sender){
-    debug("ON GET PRIZE");
+function getDailyPrize(id){
     libUIKit.waitRPC(Request_GetDailyPrize, null, function(rsp){
         if( rsp.RET == RET_OK )
         {
             engine.user.activity.dailyPrize = false;
+            //成功后改变奖励图标
+            var prizeData = libTable.queryTable(TABLE_DP, id);
+            var prize = [];
+            if (prizeData.prize.length == 2 && prizeData.prize[1].vip <= engine.user.actor.vip){
+                prize = prizeData.prize;
+            }
+            else{
+                prize[0] = prizeData.prize[0];
+            }
+            loadModule("itemInfo.js").showOpenEffect(prize);
+
+            var nowtime = new Date();
+            var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
+            var getDay = +theDay + 1;
+            theLayer.owner.labDay.setString("累计签到" + getDay + "天");
+            //根据day和curDays设置contentScroller
+            setNormalPrize(theCenter,theDay,curDays);
         }
-        theLayer.NODE.runAction(actionPopOut(function(){
-            engine.ui.popLayer();
-        }));
     }, theLayer);
 }
 
 function onDailyPrizeActivate(){
+}
+
+function calcPosId(lpos)
+{
+    var rpos = cc.p(lpos.x, theCenter.theGridLayer.getContentSize().height - lpos.y);
+    var PY = Math.floor((rpos.y - MARGIN_TOP)/(GRID_SIZE+GRID_GAP));
+
+    var PX = LINE_COUNT;
+    for (var k in prizePosXList){
+        if (rpos.x <= prizePosXList[k] + 100 && rpos.x >= prizePosXList[k]){
+            PX = k;
+            break;
+        }
+    }
+    //debug("touchPosBeginWorld = "+JSON.stringify(touchPosBeginWorld));
+    //debug("rpos = "+JSON.stringify(rpos));
+    var PYoff = rpos.y - MARGIN_TOP - PY*(GRID_SIZE+GRID_GAP);
+    var PXoff = rpos.x - PX*(GRID_SIZE+GRID_GAP) - GRID_SIZE/2 - lineOffset;
+    if( PXoff < 100 && PYoff < 100 )
+    {
+        var ret = +PX + PY*LINE_COUNT;
+        if( PX >= LINE_COUNT || ret >= theCenter.inventorySize )
+        {
+            ret = -1;
+        }
+        return ret;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+function onTouchBegan(touch, event)
+{
+    touchPosBeginWorld = touch.getLocation();
+    var localPos = theCenter.contentScroller.convertToNodeSpace(touchPosBeginWorld);
+    var localSize = theCenter.contentScroller.getViewSize();
+    if( localPos.x >= 0 && localPos.y >= 0
+        && localPos.x <= localSize.width
+        && localPos.y <= localSize.height ) return true;
+    else return false;
+}
+
+function onTouchMoved(touch, event)
+{
+    //theCenter.theScrollBar.updateScrollBar();
+}
+
+function onTouchEnded(touch, event)
+{
+    var pos = touch.getLocation();
+    var dis = cc.pSub(pos, touchPosBeginWorld);
+    if( cc.pLengthSQ(dis) < CLICK_RANGESQ )
+    {//as click
+        var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
+        var id = calcPosId(localPos);
+        //debug("id = "+id);
+        if (theDay == id && engine.user.activity.dailyPrize == true){
+            var item = theCenter.inventoryData[id];
+            if( item != null ) {
+                cc.AudioEngine.getInstance().playEffect("card2.mp3");
+                //向服务器发送消息，若成功改变奖励图标
+                getDailyPrize(id);
+            }
+        }
+    }
+}
+
+function setNormalPrize(group,day,curDays){
+    var sfc = cc.SpriteFrameCache.getInstance();
+    //set size
+    group.itemList = [];
+    group.theGridLayer.removeAllChildren();
+    group.inventoryData = [];
+    setPrizeSize(group,day,curDays);
+
+    var curroffset = group.contentScroller.getContentOffset();
+    curroffset.y = group.contentScroller.minContainerOffset().y;
+    group.contentScroller.setContentOffset(curroffset);
+}
+
+function setPrizeSize(group,day,curDays)
+{
+    //update inventory size
+    var sfc = cc.SpriteFrameCache.getInstance();
+    var lineCount = Math.ceil(curDays/LINE_COUNT);
+    group.theGridLayer.setContentSize(cc.size((LINE_COUNT-1)*(GRID_SIZE+GRID_GAP) + GRID_SIZE,
+            MARGIN_TOP+MARGIN_BUTTOM+lineCount*(GRID_SIZE+GRID_GAP)));
+
+    group.theGridLayer.removeAllChildren();
+    group.itemList = [];
+    group.inventorySize = curDays;
+
+    for(var k = 0; k<group.inventorySize; ++k) {
+        //cal pos
+        var PX = Math.floor(k%LINE_COUNT);
+        var PY = Math.floor(k/LINE_COUNT);
+        var pos = cc.p(PX*(GRID_SIZE+GRID_GAP)+GRID_SIZE/2 + lineOffset, MARGIN_TOP+PY*(GRID_GAP+GRID_SIZE)+GRID_SIZE/2);
+        pos.y = group.theGridLayer.getContentSize().height - pos.y;//reverse
+        if (k < LINE_COUNT){
+            prizePosXList[k] = pos.x - 30;
+        }
+        //set item bg light
+        if (k == day && engine.user.activity.dailyPrize == true){
+            var iconBgLight = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[1]));
+            iconBgLight.setPosition(pos);
+            group.theGridLayer.addChild(iconBgLight);
+            var rotate = cc.RotateBy.create(1, 120);
+            var repeat = cc.RepeatForever.create(rotate);
+            iconBgLight.runAction(repeat);
+        }
+        //add slot
+        var slot = libItem.UIItem.create(null, true, "itembg2.png");
+        slot.setTag(k);
+        slot.setPosition(pos);
+        slot.setScale(theScal);
+        if (k == day){
+            slot.showFrame();
+        }
+        group.theGridLayer.addChild(slot);
+        group.itemList[k] = slot;
+        //set item
+        var prizeData = libTable.queryTable(TABLE_DP, k);
+        var prize = libItem.queryPrize(prizeData.prize[0], true);
+        prize.icon.setPosition(pos);
+        prize.icon.setScale(theScal);
+        group.theGridLayer.addChild(prize.icon);
+        //set get flag
+        if (k < day){
+            var iconGet = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[0]));
+            iconGet.setPosition(pos);
+            group.theGridLayer.addChild(iconGet);
+        }
+        else if (k == day && engine.user.activity.dailyPrize == false){
+            var iconGet = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame(prizeIconList[0]));
+            iconGet.setPosition(pos);
+            group.theGridLayer.addChild(iconGet);
+        }
+        //set vip
+        if (prizeData.prize.length == 2 && prizeData.prize[1].vip >= 1){
+            var iconVip = cc.Sprite.createWithSpriteFrame(sfc.getSpriteFrame("dailyprize-common-vip"+prizeData.prize[1].vip+".png"));
+            iconVip.setAnchorPoint(cc.p(1, 0));
+            iconVip.setPosition(pos);
+            group.theGridLayer.addChild(iconVip);
+        }
+        group.inventoryData[k] = prize;
+    }
 }
 
 function showDailyPrize(day){
@@ -49,73 +242,55 @@ function showDailyPrize(day){
     theLayer = engine.ui.newLayer({
         onActivate: onDailyPrizeActivate
     });
+    theDay = day;
     theLayerMode = MODE_DAILYPRIZE;
     var mask = blackMask();
     theLayer.addChild(mask);
 
     theLayer.owner = {};
-    theLayer.owner.onGetDailyPrize = onGetDailyPrize;
     theLayer.owner.onClose = onClose;
-    theLayer.NODE = cc.BuilderReader.load("sceneDailyprize.ccbi", theLayer.owner);
+    theLayer.NODE = libUIC.loadUI(theLayer, "sceneDailyprize.ccbi", {
+        nodeContent: {
+            ui: "UIScrollView",
+            id: "contentScroller",
+            dir: 1
+        }
+    });
     theLayer.NODE.setPosition(cc.p(0, 0));
     theLayer.addChild(theLayer.NODE);
 
     theLayer.NODE.animationManager.setCompletedAnimationCallback(theLayer, onDailyAnimationCompleted);
     theLayer.NODE.animationManager.runAnimationsForSequenceNamed("open");
 
-    if( !engine.user.activity.dailyPrize ){
-        theLayer.owner.btnGet.setEnabled(false);
-    }
-
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
-    switch(day){
-        case 0:
-        {
-            theLayer.owner.pop1.setVisible(true);
-            theLayer.owner.g1.setVisible(true);
-            theLayer.owner.w2.setVisible(true);
-            theLayer.owner.w3.setVisible(true);
-            theLayer.owner.w4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 1:
-        {
-            theLayer.owner.pop2.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.g2.setVisible(true);
-            theLayer.owner.w3.setVisible(true);
-            theLayer.owner.w4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 2:
-        {
-            theLayer.owner.pop3.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.y2.setVisible(true);
-            theLayer.owner.g3.setVisible(true);
-            theLayer.owner.w4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 3:
-        {
-            theLayer.owner.pop4.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.y2.setVisible(true);
-            theLayer.owner.y3.setVisible(true);
-            theLayer.owner.g4.setVisible(true);
-            theLayer.owner.w5.setVisible(true);
-        }break;
-        case 4:
-        {
-            theLayer.owner.pop5.setVisible(true);
-            theLayer.owner.y1.setVisible(true);
-            theLayer.owner.y2.setVisible(true);
-            theLayer.owner.y3.setVisible(true);
-            theLayer.owner.y4.setVisible(true);
-            theLayer.owner.g5.setVisible(true);
-        }break;
+    var nowtime = new Date();
+    var curDays = dayNumOfMonth(nowtime.getFullYear(),nowtime.getMonth());
+
+    theLayer.owner.labelMonth.setString(nowtime.getMonth() + 1);
+
+    if (engine.user.activity.dailyPrize == true){
+        theLayer.owner.labDay.setString("累计签到" + day + "天");
     }
+    else{
+        var getDay = +day + 1;
+        theLayer.owner.labDay.setString("累计签到" + getDay + "天");
+    }
+
+    theCenter.theGridLayer = cc.Layer.create();
+
+    theCenter.contentScroller = theLayer.ui.contentScroller;
+    theCenter.contentScroller.setContainer(theCenter.theGridLayer);
+    theCenter.theGridLayer.onTouchBegan = onTouchBegan;
+    theCenter.theGridLayer.onTouchMoved = onTouchMoved;
+    theCenter.theGridLayer.onTouchEnded = onTouchEnded;
+    theCenter.theGridLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theCenter.theGridLayer.setTouchPriority(1);
+    theCenter.theGridLayer.setTouchEnabled(true);
+    //根据day和curDays设置contentScroller
+    setNormalPrize(theCenter,theDay,curDays);
+
+    engine.ui.regMenu(theCenter.theGridLayer);
 }
 
 //---------- activity --------------
@@ -190,7 +365,7 @@ function queryStage(stg){
 
 function onInvokeDailyQuest(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    debug("INVOKE DAILY QUEST");
+    debug("INVOKE DAILY QUEST = "+theDQInvokeAction);
     if( theDQInvokeAction == DQINVOKE_GETPRIZE ){
 
         libUIKit.waitRPC(Request_SubmitDailyQuest, null
@@ -211,6 +386,7 @@ function onInvokeDailyQuest(sender){
         }, theLayer);
     }
     else if( theDQInvokeAction == DQINVOKE_STARTQUEST ){
+
         var dailyQuest = engine.user.activity.dailyQuest;
         var libTable = loadModule("table.js");
         var libStage = loadModule("sceneStage.js");
@@ -223,6 +399,8 @@ function onInvokeDailyQuest(sender){
 function refreshDailyQuest(){
     if( theLayerMode != MODE_DAILYQUEST ) return;
     var layer = theLayer;
+    cacheSprite("dailymission-common-btnstart1.png");
+    cacheSprite("dailymission-common-btnstart2.png");
 
     //set values
     var sfc = cc.SpriteFrameCache.getInstance();
@@ -238,6 +416,7 @@ function refreshDailyQuest(){
         else{
             layer.owner[pk].setVisible(false);
         }
+        //layer.owner["num"+(s+1)].setVisible(dailyQuest.step == s);
     }
     //prize
     var pit = libItem.queryPrize(dailyQuest.prize[0]);
@@ -246,10 +425,13 @@ function refreshDailyQuest(){
     layer.owner.nodePrize.addChild(pit.icon);
     layer.owner.labPrize.setString(pit.label);
     layer.owner.layerDesc.removeAllChildren();
+    layer.owner.layerPrize.removeAllChildren();
     layer.owner.labTitle.setString("");
     //quest & buttons
     if( dailyQuest.step < 4 ){
         layer.owner.nodeComplete.setVisible(false);
+        var fileIndex = "dailymission-common-"+(dailyQuest.step+1)+".png";
+        layer.owner.spIndex.setDisplayFrame(sfc.getSpriteFrame(fileIndex));
         var questData = libTable.queryTable(TABLE_QUEST, dailyQuest.quest);
         if( questData != null ){
             layer.owner.labTitle.setString(questData.title);
@@ -257,9 +439,15 @@ function refreshDailyQuest(){
             theQuest = engine.user.quest.Quests[dailyQuest.quest];
             theQuest.fixState();
             var dimension = cc.size(layer.owner.layerDesc.getContentSize().width, 0);
+            var dimensionPrize = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
 
+            var winSize = cc.Director.getInstance().getWinSize();
+            var iphone5s = (winSize.height == 1136);
             var text = DCTextArea.create();
             text.setDimension(dimension);
+            if (iphone5s){
+                text.pushText({text: "  "});
+            }
             for(var k in questData.objects){
                 var tar = questData.objects[k];
                 var cnt = theQuest.Count[k];
@@ -267,7 +455,7 @@ function refreshDailyQuest(){
                     cnt = 0;
                 }
 
-                var color = cc.c3b(0, 0, 0);
+                var color = COLOR_BLACK;
                 if( cnt >= tar.count ){
                     cnt = tar.count;
                     color = cc.c3b(95, 187, 38);
@@ -278,17 +466,24 @@ function refreshDailyQuest(){
                     text: str,
                     color: color,
                     size: UI_SIZE_L,
-                    align: cc.TEXT_ALIGNMENT_CENTER
+                    align: cc.TEXT_ALIGNMENT_LEFT
                 });
             }
             var size = text.getContentSize();
+            if (iphone5s){
+                text.pushText({text: "  "});
+            }
 
-            var prize = libItem.ItemPreview.create(dailyQuest.curprize, dimension);
+            var prize = libItem.ItemPreview.createRaw(dimensionPrize);
+            prize.setTextColor(COLOR_BLACK);
+            if (!iphone5s){
+                prize.setNodeScale(0.77);
+            }
+            prize.setPreview(dailyQuest.curprize);
+
             prize.setPosition(cc.p(0, 0));
-            var psz = prize.getContentSize();
-            prize.setPosition(cc.p((dimension.width - psz.width)/2, 0));
-            layer.owner.layerDesc.addChild(prize);
-            text.setPosition(cc.p(0, prize.getContentSize().height));
+            layer.owner.layerPrize.addChild(prize);
+            text.setPosition(cc.p(0, 0));
             layer.owner.layerDesc.addChild(text);
             size.height += prize.getContentSize().height;
 
@@ -314,6 +509,7 @@ function refreshDailyQuest(){
             layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart2.png"));
             layer.owner.btnGet.setEnabled(false);
+            theDQInvokeAction = DQINVOKE_NOTHING;
         }
     }
     else if( dailyQuest.step == 4 ){//take to prize
@@ -324,6 +520,7 @@ function refreshDailyQuest(){
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
         layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
         layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
+        theDQInvokeAction = DQINVOKE_GETPRIZE;
     }
     else{//daily quest is done
         layer.owner.nodeComplete.setVisible(true);
@@ -333,6 +530,7 @@ function refreshDailyQuest(){
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
         layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
         layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
+        theDQInvokeAction = DQINVOKE_NOTHING;
     }
 
     engine.ui.regMenu(layer.owner.menuRoot);

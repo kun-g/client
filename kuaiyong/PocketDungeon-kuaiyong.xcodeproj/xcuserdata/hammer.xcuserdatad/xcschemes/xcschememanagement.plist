@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PocketDungeon.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>口袋地下城.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>无尽地下城.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5322722718195F4100D506CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53885E7617E93DE400A3A8B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53A17832181959B8004C8E67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53E64B9718195B6A00726163</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53E64BA818195B8300726163</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

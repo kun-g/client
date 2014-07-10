@@ -4,36 +4,75 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>enemy-bat-3-chest.png</key>
+            <key>enemy-bat-3-chest(MIRA-PC--MiRa--2014-05-15-17,35,02).png</key>
             <dict>
                 <key>frame</key>
-                <string>{{73,98},{47,50}}</string>
+                <string>{{2,200},{47,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{47,50}}</string>
                 <key>sourceSize</key>
                 <string>{47,50}</string>
             </dict>
-            <key>enemy-bat-3-head.png</key>
+            <key>enemy-bat-3-chest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,2},{39,45}}</string>
+                <string>{{80,140},{58,67}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
+                <string>{{0,0},{58,67}}</string>
+                <key>sourceSize</key>
+                <string>{58,67}</string>
+            </dict>
+            <key>enemy-bat-3-head(MIRA-PC--MiRa--2014-05-15-17,35,02).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{51,200},{39,45}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
                 <string>{{0,0},{39,45}}</string>
                 <key>sourceSize</key>
                 <string>{39,45}</string>
             </dict>
-            <key>enemy-bat-3-lefthand.png</key>
+            <key>enemy-bat-3-head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,57},{69,58}}</string>
+                <string>{{80,88},{50,68}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{50,68}}</string>
+                <key>sourceSize</key>
+                <string>{50,68}</string>
+            </dict>
+            <key>enemy-bat-3-head2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{184,62},{50,68}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{50,68}}</string>
+                <key>sourceSize</key>
+                <string>{50,68}</string>
+            </dict>
+            <key>enemy-bat-3-lefthand(MIRA-PC--MiRa--2014-05-15-17,35,02).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{184,2},{69,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -43,10 +82,23 @@
                 <key>sourceSize</key>
                 <string>{69,58}</string>
             </dict>
-            <key>enemy-bat-3-righthand.png</key>
+            <key>enemy-bat-3-lefthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{76,53}}</string>
+                <string>{{97,2},{84,85}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{84,85}}</string>
+                <key>sourceSize</key>
+                <string>{84,85}</string>
+            </dict>
+            <key>enemy-bat-3-righthand(MIRA-PC--MiRa--2014-05-15-17,35,02).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,86},{76,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -56,10 +108,23 @@
                 <key>sourceSize</key>
                 <string>{76,53}</string>
             </dict>
-            <key>enemy-bat-3-tail.png</key>
+            <key>enemy-bat-3-righthand.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,43},{53,30}}</string>
+                <string>{{2,2},{93,82}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{93,82}}</string>
+                <key>sourceSize</key>
+                <string>{93,82}</string>
+            </dict>
+            <key>enemy-bat-3-tail(MIRA-PC--MiRa--2014-05-15-17,35,03).png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{150,88},{53,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,6 +134,19 @@
                 <key>sourceSize</key>
                 <string>{53,30}</string>
             </dict>
+            <key>enemy-bat-3-tail.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{182,114},{65,43}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{65,43}}</string>
+                <key>sourceSize</key>
+                <string>{65,43}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -77,9 +155,9 @@
             <key>realTextureFileName</key>
             <string>ebat3.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4ae38eca40ffe3c2ed4834ca003c9d48$</string>
+            <string>$TexturePacker:SmartUpdate:485e2d16a36f0fbfc89544899f779986$</string>
             <key>textureFileName</key>
             <string>ebat3.png</string>
         </dict>

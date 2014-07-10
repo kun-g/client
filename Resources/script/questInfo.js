@@ -9,6 +9,7 @@ var libTable = loadModule("table.js");
 var libUIKit = loadModule("uiKit.js");
 var libQuest = loadModule("quest.js");
 var libItem = loadModule("xitem.js");
+var libStage = loadModule("sceneStage.js");
 
 var theLayer;
 var theListLayer;
@@ -20,12 +21,15 @@ var MODE_DESC = 1;
 var MODE_EXIT = 2;
 
 var theMode;
-
+var inDungeon = false;
 var touchPosBegin;
 
 //contants
 var LINE_WIDTH = 570;
 var LINE_HEIGHT = 120;
+
+var COLOR_BLACK = cc.c3b(55,37,20);
+var COLOR_RED = cc.c3b(197,16,16);
 
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
@@ -46,6 +50,7 @@ function onTouchEnded(touch, event){
             && localPos.x < size.width && localPos.y < size.height ){
             var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
             var line = theListLayer.getChildByTag(PY);
+
             loadQuestDesc(line.quest);
         }
     }
@@ -90,14 +95,26 @@ function onSubmit(sender){
     }, theLayer);
 }
 
+function onStartQuest() {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    if( theMode == MODE_DESC ){
+        var questData = libTable.queryTable(TABLE_QUEST, theQuest.QuestId);
+        var stageData = queryStage(questData.questStage);
+        libStage.startStage(questData.questStage, stageData.team, stageData.cost);
+    }
+}
+
 function loadQuestList(){
     theMode = MODE_LIST;
     theLayer.owner.nodeList.setVisible(true);
     theLayer.owner.nodeDesc.setVisible(false);
     theListLayer.removeAllChildren();
     theListLayer.setTouchEnabled(true);
-    theLayer.ui.buttonBack.setVisible(false);
-    theLayer.ui.buttonSubmit.setVisible(false);
+    theLayer.owner.btnBack.setVisible(false);
+    theLayer.owner.btnSubmit.setVisible(false);
+    theLayer.owner.btnStartQuest.setVisible(false);
+    theLayer.owner.labBlueTitle.setVisible(false);
+    theLayer.owner.nodeConBg.setVisible(false);
 
     var size = cc.size(LINE_WIDTH, engine.user.quest.Count*LINE_HEIGHT);
     theListLayer.setContentSize(size);
@@ -143,8 +160,10 @@ function loadQuestDesc(quest){
     theLayer.owner.nodeDesc.setVisible(true);
     theDescLayer.removeAllChildren();
     theListLayer.setTouchEnabled(false);
-    theLayer.ui.buttonBack.setVisible(true);
-    theLayer.ui.buttonSubmit.setVisible(true);
+    theLayer.owner.btnBack.setVisible(true);
+    theLayer.owner.btnSubmit.setVisible(true);
+    theLayer.owner.labBlueTitle.setVisible(true);
+    theLayer.owner.nodeConBg.setVisible(true);
 
     theQuest = quest;
     theQuest.fixState();
@@ -153,19 +172,27 @@ function loadQuestDesc(quest){
 
     theLayer.owner.labTitle.setString(questData.title);
 
+    var winSize = cc.Director.getInstance().getWinSize();
+    var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     text.setDimension(dimension);
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     text.pushText({//push desc
         text: /*"    "+*/questData.desc,
-        size: UI_SIZE_L
+        color: COLOR_BLACK,
+        size: UI_SIZE_S
     });
     text.pushText({text: "  "});
     text.pushText({//push objectives
         text: "任务目标",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
+        color: COLOR_RED,
+        size: UI_SIZE_L
     });
-    text.pushText({text: "  "});
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     for(var k in questData.objects){
         var tar = questData.objects[k];
         var cnt = quest.Count[k];
@@ -173,7 +200,7 @@ function loadQuestDesc(quest){
             cnt = 0;
         }
 
-        var color = cc.c3b(255, 255, 255);
+        var color = COLOR_BLACK;
         if( cnt >= tar.count ){
             cnt = tar.count;
             color = cc.c3b(95, 187, 38);
@@ -183,19 +210,26 @@ function loadQuestDesc(quest){
         text.pushText({//push title
             text: str,
             color: color,
-            size: UI_SIZE_L
+            size: UI_SIZE_S
         });
     }
     text.pushText({text: "  "});
     text.pushText({//push title
         text: "任务奖励",
-        color: cc.c3b(236, 199, 101),
-        size: UI_SIZE_XL
+        color: COLOR_RED,
+        size: UI_SIZE_L
     });
-    text.pushText({text: "  "});
+    if (iphone5s){
+        text.pushText({text: "  "});
+    }
     var size = text.getContentSize();
 
-    var prize = libItem.ItemPreview.create(questData.prize, dimension);
+    var prize = libItem.ItemPreview.createRaw(dimension);
+    prize.setTextColor(COLOR_BLACK);
+    if (!iphone5s){
+        prize.setNodeScale(0.77);
+    }
+    prize.setPreview(questData.prize);
     prize.setPosition(cc.p(0, 0));
     theDescLayer.addChild(prize);
     text.setPosition(cc.p(0, prize.getContentSize().height));
@@ -204,10 +238,16 @@ function loadQuestDesc(quest){
 
     theDescLayer.setContentSize(size);
     if( theQuest.State == QUESTSTATUS_COMPLETE ){
-        theLayer.ui.buttonSubmit.setEnabled(true);
+        theLayer.owner.btnSubmit.setEnabled(true);
+        theLayer.owner.btnStartQuest.setVisible(false);
+        theLayer.owner.btnStartQuest.setEnabled(false);
     }
     else{
-        theLayer.ui.buttonSubmit.setEnabled(false);
+        theLayer.owner.btnSubmit.setEnabled(false);
+        if (!inDungeon && questData.questStage != null){
+            theLayer.owner.btnStartQuest.setVisible(true);
+            theLayer.owner.btnStartQuest.setEnabled(true);
+        }
     }
 
     var curroffset = theLayer.ui.scrollDesc.getContentOffset();
@@ -252,6 +292,7 @@ function onEnter(){
     this.owner.onClose = onClose;
     this.owner.onBack = onBack;
     this.owner.onSubmit = onSubmit;
+    this.owner.onStartQuest = onStartQuest;
 
     this.node = libUIC.loadUI(this, "sceneMission.ccbi", {
         layerList: {
@@ -263,21 +304,6 @@ function onEnter(){
             ui: "UIScrollView",
             id: "scrollDesc",
             dir: cc.SCROLLVIEW_DIRECTION_VERTICAL
-        },
-        btnBack: {
-            ui: "UIButtonL",
-            id: "buttonBack",
-            menu: "menuRoot",
-            label: "buttontext-back.png",
-            func: onBack
-        },
-        btnSubmit: {
-            ui: "UIButtonL",
-            id: "buttonSubmit",
-            menu: "menuRoot",
-            label: "buttontext-lqjl.png",
-            func: onSubmit,
-            type: BUTTONTYPE_DEFAULT
         }
     });
     this.addChild(this.node);
@@ -287,8 +313,10 @@ function onEnter(){
 
     this.owner.nodeList.setVisible(false);
     this.owner.nodeDesc.setVisible(false);
-    this.ui.buttonBack.setVisible(false);
-    this.ui.buttonSubmit.setVisible(false);
+    this.owner.btnBack.setVisible(false);
+    this.owner.btnSubmit.setVisible(false);
+    this.owner.labBlueTitle.setVisible(false);
+    this.owner.nodeConBg.setVisible(false);
 
     //theLayer.ui.treasureDisplay.setTreasure(engine.user.inventory.Gold, engine.user.inventory.Diamond);
 
@@ -308,11 +336,14 @@ function onEnter(){
     engine.ui.regMenu(this.owner.menuRoot);
 
     loadQuestList();
-    
-    
 }
 
-function show(){
+function show(isInDungeon){
+    if (isInDungeon != null){
+        inDungeon = isInDungeon;
+    }else{
+        inDungeon = false;
+    }
     engine.ui.newLayer({
         onNotify: onNotify,
         onEnter: onEnter,
@@ -324,6 +355,7 @@ exports.show = show;
 
 //--- Quest Complete Popup ---
 var theCompletedQuests;
+var theQCPopFlag = false;
 var theQCLayer;
 
 function onQCSubmit(sender){
@@ -341,6 +373,7 @@ function onQCSubmit(sender){
 
             theQCLayer.node.runAction(actionPopOut(function(){
                 engine.ui.removeLayer(theQCLayer);
+                theQCPopFlag = false;
                 if( QuestData != null && QuestData.endDialogue != null ){
                     engine.dialogue.startDialogue(QuestData.endDialogue);
                 }
@@ -351,6 +384,7 @@ function onQCSubmit(sender){
 
             theQCLayer.node.runAction(actionPopOut(function(){
                 engine.ui.removeLayer(theQCLayer);
+                theQCPopFlag = false;
             }));
         }
     }, theQCLayer);
@@ -360,6 +394,7 @@ function onQCClose(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     theQCLayer.node.runAction(actionPopOut(function(){
         engine.ui.removeLayer(theQCLayer);
+        theQCPopFlag = false;
     }));
 }
 
@@ -418,11 +453,13 @@ function showQuestComplete(qid, mode, prz){
     theQCLayer.node.setScale(0);
     theQCLayer.node.runAction(actionPopIn());
     theQCLayer.QID = qid;
+    theQCPopFlag = true;
 }
 
 function invokeQuestPop(){
     if( theCompletedQuests != null
-        && theCompletedQuests.length > 0 ){
+        && theCompletedQuests.length > 0
+        && theQCPopFlag == false ){
         var qstId = theCompletedQuests.shift();
         showQuestComplete(qstId);
     }

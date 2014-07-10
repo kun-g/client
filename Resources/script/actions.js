@@ -41,7 +41,7 @@ function isActionAlive(action, actor){
 //tar, path
 function makeMoveTo(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.path = act.path;
     ret.target = act.target;
 
@@ -198,7 +198,7 @@ function makeMoveTo(pace, act)
 //tar, path
 function makeMoveOver(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.path = act.path;
 
     ret.onStart = function(dungeon, layer)
@@ -359,7 +359,8 @@ function makeMoveOver(pace, act)
 //act, spl
 function makeSpell(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.tar = act.act;
     ret.spl = act.spl;
 
@@ -441,7 +442,8 @@ function makeMusic(pace, act)
 //act, ref, res(0=miss, 1=hit 2=critical 3=block 4=heal)
 function makeAttack(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.act = act.act;
     ret.tar = act.ref;
     ret.res = act.res;
@@ -473,6 +475,7 @@ function makeAttack(pace, act)
         //debug("ON ATTACK ANIMATION");//debug
         actor.playAnimation("attack");
 
+        var mainWeapon = null;
         //play sound
         if( !isHero(this.act) )
         {
@@ -482,15 +485,22 @@ function makeAttack(pace, act)
                 cc.AudioEngine.getInstance().playEffect(monster.soundAttack);
             }
             this.hit = monster.effectAttack;//assign hit effect
+            if( dungeon.Units[this.act-UNIT_TAG].role != null ){
+                var role = loadModule("role.js");
+                var monsterRole = new role.Role(dungeon.Units[this.act-UNIT_TAG].role);
+                mainWeapon = monsterRole.queryArmor(EquipSlot_MainHand);
+            }
         }
         else
         {
             var ro = engine.user.dungeon.party[this.act-HERO_TAG];
             var sound = null;
-            var item = ro.queryArmor(EquipSlot_MainHand);
-            if( item != null )
+            mainWeapon = ro.queryArmor(EquipSlot_MainHand);
+        }
+        if( mainWeapon != null ){
+            if( mainWeapon != null )
             {
-                var itemClass = table.queryTable(TABLE_ITEM, item.ClassId);
+                var itemClass = table.queryTable(TABLE_ITEM, mainWeapon.ClassId);
                 if( itemClass != null )
                 {
                     sound = itemClass.soundAttack;
@@ -498,7 +508,7 @@ function makeAttack(pace, act)
                 }
                 else
                 {
-                    error("no such item ("+item.ClassId+")");
+                    error("no such item ("+mainWeapon.ClassId+")");
                 }
             }
             if( sound != null )
@@ -506,6 +516,7 @@ function makeAttack(pace, act)
                 cc.AudioEngine.getInstance().playEffect(sound);
             }
         }
+
         this.timer = 0;
         this.effected = false;
     }
@@ -643,7 +654,8 @@ function makeHurt(pace, act)
 //
 function makeDead(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.act = act.act;
 
     ret.onStart = function(dungeon, layer)
@@ -660,7 +672,7 @@ function makeDead(pace, act)
         }
         else
         {//kill monster
-            checkNull(unit, "ACT = "+this.act);
+            if( checkNull(unit, "ACT = "+this.act) ) return;
             var pos = unit.pos;
 
             dungeon.Blocks[pos].type = BLOCK_EMPITY;
@@ -691,7 +703,8 @@ function makeDead(pace, act)
 //act, dey
 function makeEvade(pace, act)
 {
-    var ret = new action.Action(pace);
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
     ret.delay = act.dey;
     ret.act = act.act;
 
@@ -758,7 +771,7 @@ function makeEvade(pace, act)
 //...
 function makeShiftOrder(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
 
     ret.onStart = function(dungeon, layer)
     {
@@ -1084,11 +1097,11 @@ function makeBlink(pace, act)
 //tid
 function makeTutorial(pace, act)
 {
-    var ret= new action.Action(pace);
+    var ret= new action.Action(pace, true);
     ret.tid = act.tid;
     ret.onStart = function(dungeon, layer)
     {
-        loadModule("tutorial.js").invokeTutorial(this.tid);
+        loadModule("tutorialx.js").invokeTutorial(this.tid);
     }
 
     return ret;
@@ -1097,7 +1110,7 @@ function makeTutorial(pace, act)
 //did
 function makeDialogue(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.dialogueId = act.did;
     ret.onStart = function(dungeon, layer){
         engine.dialogue.startDialogue(this.dialogueId);
@@ -1246,6 +1259,7 @@ function makeEffect(pace, act)
     ret.grid = act.pos;
     ret.serverId = act.sid;
     ret.isRemove = act.rmf;
+    debug("** makeEffect = "+JSON.stringify(ret));//test
     ret.onStart = function(dungeon, layer)
     {
         var delay = 0;
@@ -1253,7 +1267,7 @@ function makeEffect(pace, act)
         var thiz = this;
         var actDelay = cc.DelayTime.create(delay);
         var actExec = cc.CallFunc.create(function(){
-            if( thiz.rmf === true ){//remove flag
+            if( thiz.isRemove === true ){//remove flag
                 if( thiz.serverId != null ){
                     layer.removeEffect(thiz.serverId);
                 }
@@ -1270,51 +1284,9 @@ function makeEffect(pace, act)
                     serverId: thiz.serverId
                 });
             }
-
         });
         var actSeq = cc.Sequence.create(actDelay, actExec);
         layer.runAction(actSeq);
-        //---------------------
-        var pos;
-        if( this.target != null ){
-            var actor = layer.getActor(this.target);
-            if( actor == null )
-            {
-                error("Action Effect: Actor not found.");
-                return;
-            }
-            pos = actor.getPosition();
-        }
-        else{
-            if( this.grid != null ){
-                pos = calcPosInGrid(this.grid);
-            }
-            else{
-                error("Action Effect: Grid not found.");
-            }
-        }
-        var parent = layer.effects;
-        var effectData = table.queryTable(TABLE_EFFECT, this.effect);
-        if( effectData.onGround === true ){
-            parent = layer.ground;
-        }
-
-        if( this.delay > 0 )
-        {
-            var zffect = this.effect;
-            var act1 = cc.DelayTime.create(this.delay);
-            var act2 = cc.CallFunc.create(function()
-            {
-                effects.attachEffect(parent, pos, zffect);
-
-            }, layer);
-            var seq = cc.Sequence.create(act1, act2);
-            layer.runAction(seq);
-        }
-        else
-        {
-            effects.attachEffect(parent, pos, this.effect);
-        }
     }
     return ret;
 }
@@ -1376,7 +1348,7 @@ function makeSkillCd(pace, act)
 
 function makeDungeonEvent(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.type = act.typ;
     ret.pos = act.pos;
 
@@ -1438,9 +1410,6 @@ function makeDungeonBlock(pace, act)
             || this.typ == BLOCK_LOCKEDEXIT )
         {
             dungeon.ExitPos = this.pos;
-            if( dungeon.Level == 0 && dungeon.TutorialFlag ){
-                engine.dialogue.startDialogue(2);
-            }
         }
 
         //optimize update access
@@ -1491,10 +1460,10 @@ function makeDungeonEnemy(pace, act)
             if( dungeon.Heroes[unit.ref] == null ){
                 dungeon.Heroes[unit.ref - HERO_TAG] = unit;
                 var actor = layer.addActor(unit);
+                actor.setDefaultAnimation("stand");
                 dungeon.HeroCount++;
 
                 dungeon.updateTeamShiftPos();
-                // TODO attach spawn effect
 
                 //update access
                 dungeon.updateAccess();
@@ -1531,8 +1500,8 @@ function makeDungeonEnemy(pace, act)
             }
             if( monster.animSpawn != null ){
                 actor.playAnimation(monster.animSpawn);
-                actor.setDefaultAnimation("stand");
             }
+            actor.setDefaultAnimation("stand");
 
             if( !boss ){
                 //set face
@@ -1595,19 +1564,25 @@ function makeUnitUpdate(pace, act)
             if( this.rs != null )
             {
                 unit.rs = this.rs;
-                if( unit.rs == 0 )
-                {
-                    actor.resetBlinkColor();
-                    if( isHero(unit.ref) )
-                    {
-                        var role = engine.user.dungeon.party[unit.ref-HERO_TAG];
-                        var haircolor = queryColor(role.HairColor);
-                        actor.setHairColor(haircolor);
-                    }
-                }
-                else if( unit.rs == 1 )
-                {
-                    actor.setBlinkColor(COLOR_DEBUFF);
+                switch(unit.rs){
+                    case 0:{
+                        actor.resetBlinkColor();
+                        if( isHero(unit.ref) )
+                        {
+                            var role = engine.user.dungeon.party[unit.ref-HERO_TAG];
+                            var haircolor = queryColor(role.HairColor);
+                            actor.setHairColor(haircolor);
+                        }
+                    }break;
+                    case 1:{
+                        actor.setBlinkColor(COLOR_DEBUFF);
+                    }break;
+                    case 2:{
+                        actor.setBlinkColor(COLOR_BUFF);
+                    }break;
+                    case 3:{
+                        actor.setBlinkColor(COLOR_BUFF, COLOR_DEBUFF);
+                    }break;
                 }
             }
             //update character order
@@ -1627,7 +1602,7 @@ function makeUnitUpdate(pace, act)
 }
 
 function makeDungeonResult(pace, act){
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.win = act.win;
 
     ret.onStart = function(dungeon, layer){
@@ -1637,7 +1612,7 @@ function makeDungeonResult(pace, act){
 }
 
 function makeEnterLevel(pace, act){
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.pos = act.pos;
     ret.pos1 = act.pos1;
     ret.pos2 = act.pos2;
@@ -1645,36 +1620,6 @@ function makeEnterLevel(pace, act){
 
     ret.onStart = function(dungeon, layer){
         debug("EnterLevel = \n"+JSON.stringify(this));
-        if( this.lvl == 0 && dungeon.TutorialFlag && openScened )
-        {
-            engine.dialogue.startDialogue(0);
-            var tut = loadModule("tutorial.js");
-            tut.setHintCloseCallback(function(){
-                engine.dialogue.clearEventCallback();
-                engine.dialogue.startDialogue(1);
-                tut.setHintCloseCallback(null, null);
-            });
-            engine.dialogue.setEventCallback("onDialogueEnd", tut.showHint, tut);
-        }
-        if( this.lvl == 1 && dungeon.TutorialFlag )
-        {
-            engine.dialogue.startDialogue(8);
-            //统计
-            tdga.event("Intro#4");
-            engine.event.sendNTFEvent(Request_ReportState, {
-                                      key: "intro",
-                                      val: "finish first level"
-                                      });
-        }
-        if( this.lvl == 2 && dungeon.TutorialFlag )
-        {
-            //统计
-            tdga.event("Intro#5");
-            engine.event.sendNTFEvent(Request_ReportState, {
-                                      key: "intro",
-                                      val: "finish second level"
-                                      });
-        }
         //clear
         dungeon.resetBlocks();
         dungeon.Units = [];
@@ -1712,13 +1657,6 @@ function makeEnterLevel(pace, act){
 
                 var actor = layer.addActor(unit);
                 dungeon.HeroCount++;
-
-                //reattach Effects
-                for(var e in unit.effects)
-                {
-                    var eff = Number(e);
-                    effects.attachEffect(layer.effects, actor.getPosition(), eff, actor);
-                }
             }
             else
             {
@@ -1747,13 +1685,26 @@ function makeEnterLevel(pace, act){
         //dump battle state on every level
         engine.user.setData("ddump", engine.box.save());
         engine.user.saveProfile();
+        //--- restore effects ---
+        var retach = [];
+        for(var k in layer.EffectList){
+            var param = layer.EffectList[k];
+            if( param.target != null ){
+                retach.push(param);
+            }
+        }
+        layer.EffectList = {};//clear
+        for(var k in retach){
+            var param = retach[k];
+            layer.addEffect(param);
+        }
     }
     return ret;
 }
 
 function makeAllDead(pace, act)
 {
-    var ret= new action.Action(pace);
+    var ret= new action.Action(pace, true);
     ret.count = act.cnt;
     ret.onStart = function(dungeon, layer)
     {
@@ -1766,7 +1717,7 @@ function makeAllDead(pace, act)
 //event
 function makeEventAction(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new action.Action(pace, true);
     ret.event = act.event;
 
     ret.onStart = function(dungeon, layer)

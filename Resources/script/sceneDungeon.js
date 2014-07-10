@@ -21,6 +21,7 @@ var libGadgets = loadModule("gadgets.js");
 
 var theDungeon = null;
 var thePopMsg = null;
+var theStageClass = null;
 
 var gameOverFlag = false;
 var resultFlag = false;
@@ -37,6 +38,7 @@ var MODE_PAUSE = 1;
 var MAGIC_WALL = 0.109756;
 
 var theSkillCdEffect;
+var theFadeInFlag = false;
 
 function onEvent(event)
 {
@@ -46,7 +48,8 @@ function onEvent(event)
         {
             if( event.arg.stg != null ){
                 engine.user.dungeon.stage = event.arg.stg;
-                if( event.arg.stg == 0 )
+                theStageClass = queryStage(event.arg.stg);
+                if( event.arg.stg == INITIAL_STAGE )
                 {
                     theDungeon.TutorialFlag = true;
                     debug("DUNGEON TUTOROAL FLAG");
@@ -119,7 +122,7 @@ function onEvent(event)
         case Message_TouchGrid:
         {
             var pos = event.arg.pos;
-            debug("POS = "+pos);
+            var rpos = calcPosInGrid(pos);
             var block = theDungeon.Blocks[pos];
             if( block.trans != null ){
                 pos = block.trans;
@@ -167,7 +170,8 @@ function onEvent(event)
                                     }));
                                 }
                                 else{
-                                    thePopMsg.pushMsg("那个出口被挡住了", POPTYPE_ERROR);
+                                    //thePopMsg.pushMsg("那个出口被挡住了", POPTYPE_ERROR);
+                                    effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                                 }
                             }
                             else if( theDungeon.Blocks[pos].type == BLOCK_ENEMY )
@@ -178,7 +182,8 @@ function onEvent(event)
                                     command = Request_DungeonAttack;
                                 }
                                 else{
-                                    thePopMsg.pushMsg("够不到这个怪物", POPTYPE_ERROR);
+                                    //thePopMsg.pushMsg("够不到这个怪物", POPTYPE_ERROR);
+                                    effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                                 }
                             }
                             else if( theDungeon.Blocks[pos].type == BLOCK_NPC )
@@ -188,7 +193,8 @@ function onEvent(event)
                                     command = Request_DungeonActivate;
                                 }
                                 else{
-                                    thePopMsg.pushMsg("到不了那个地方", POPTYPE_ERROR);
+                                    //thePopMsg.pushMsg("到不了那个地方", POPTYPE_ERROR);
+                                    effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                                 }
                             }
                         }
@@ -214,7 +220,8 @@ function onEvent(event)
                         }
                     }
                     else{
-                        thePopMsg.pushMsg("还去不了这个地方", POPTYPE_ERROR);
+                        //thePopMsg.pushMsg("还去不了这个地方", POPTYPE_ERROR);
+                        effect.attachEffectCCBI(theLayer.effects, rpos, "effect-unable.ccbi");
                     }
                 }
             }
@@ -409,12 +416,14 @@ function onPauseHint(sender)
         theLayer.greymask.setVisible(false);
         delete theLayer.pause;
 
-        loadModule("tutorial.js").showHint();
+        loadModule("tutorialx.js").showHint();
     }));
 }
 
 function onPause(sender)
 {
+    if( theLayer.waitResult ) return;
+
     var thiz = theLayer;
     var newLayer = engine.ui.newLayer();
 
@@ -448,6 +457,11 @@ function onPause(sender)
     if( theDungeon.TutorialFlag ){
         exit.setEnabled(false);
     }
+}
+
+function onQuest(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    loadModule("questInfo.js").show(true);
 }
 
 function showBuyRevive(){
@@ -552,6 +566,11 @@ function onCancelDungeon(force){
 }
 
 function showRevive(potionNeedCount){
+    if( theStageClass.pvp === true ){
+        engine.event.sendNTFEvent(Request_CancelDungeon);
+        FailReason = "PK战败";
+        return;
+    }
     //show revive dialogue
     var alert = libUIKit.alert();
     alert.setContent("队伍成员已经全部牺牲\n是否要使用复活药水继续战斗？");
@@ -586,6 +605,7 @@ function showRevive(potionNeedCount){
 
 function doDungeonResult(win){
     theLayer.waitResponse = true;
+    theLayer.waitResult = true;
     theLayer.updateMode();
     var winSize = cc.Director.getInstance().getWinSize();
     cc.AudioEngine.getInstance().stopMusic(true);
@@ -594,7 +614,7 @@ function doDungeonResult(win){
         effect.attachEffect(theLayer, cc.p(winSize.width/2, winSize.height/2), 11, effect.EFFECTMODE_STAY);
         cc.AudioEngine.getInstance().playEffect("win.mp3");
 
-        var actDelay = cc.DelayTime.create(5);
+        var actDelay = cc.DelayTime.create(4);
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
         theLayer.runAction(actSeq);
@@ -604,7 +624,7 @@ function doDungeonResult(win){
         effect.attachEffect(theLayer, cc.p(winSize.width/2, winSize.height/2), 12, effect.EFFECTMODE_STAY);
         cc.AudioEngine.getInstance().playEffect("lose.mp3");
 
-        var actDelay = cc.DelayTime.create(5);
+        var actDelay = cc.DelayTime.create(4);
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
         theLayer.runAction(actSeq);
@@ -614,7 +634,9 @@ function doDungeonResult(win){
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
         theLayer.runAction(actSeq);
-        //theLayer.mask.runAction(cc.FadeIn.create(3));//no more fade in
+        theFadeInFlag = true;
+        theLayer.mask.stopAllActions();
+        //theLayer.mask.runAction(cc.FadeIn.create(3));//fade handly
     }
 
     if( theDungeon.TutorialFlag ){
@@ -677,6 +699,7 @@ function onGameOver()
 function onEnter()
 {
     theLayer = this;
+    theFadeInFlag = false;
 
     cc.AudioEngine.getInstance().playMusic("battle.mp3", true);
 
@@ -726,6 +749,7 @@ function onEnter()
     //init layer mode
     theLayer.waitAction = false;
     theLayer.waitResponse = false;
+    theLayer.waitResult = false;
     theLayer.updateMode();
     //-----------------
 
@@ -736,6 +760,7 @@ function onEnter()
 
     //setup action environmenta
     theDungeon = new dungeon.Dungeon();
+    theStageClass = {};
     theLayer.actions.setEnvironment(theDungeon, theLayer);
     theLayer.scheduleUpdate();
     theLayer.avatars = {};
@@ -754,6 +779,7 @@ function onEnter()
 
     theLayer.owner = {};
     theLayer.owner.onPause = onPause;
+    theLayer.owner.onQuest = onQuest;
 
     var node = cc.BuilderReader.load("sceneDungeon.ccbi", theLayer.owner);
     theLayer.addChild(node);
@@ -850,7 +876,7 @@ function onEnter()
     FailReason = "玩家被击败";
 
     //register broadcast
-    loadModule("broadcast.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(this);
     
     
 }
@@ -859,7 +885,7 @@ function onExit()
 {
     cc.AudioEngine.getInstance().stopMusic(true);
     //register broadcast
-    loadModule("broadcast.js").instance.close();
+    loadModule("broadcastx.js").instance.close();
 }
 
 function onActivate(){
@@ -895,8 +921,15 @@ function applyParty()
 
 function update(delta)
 {
+    if( theFadeInFlag ){
+        var step = Math.floor((255*delta)/3);
+        var curAlpha = theLayer.mask.getOpacity();
+        curAlpha += step;
+        if( curAlpha > 255 ) curAlpha = 255;
+        theLayer.mask.setOpacity(curAlpha);
+    }
     theLayer.actions.updateActions(delta);
-    if( theLayer.actions.isAllActionDone() )
+    if( theLayer.actions.isAllKeyActionsDone() )
     {
         theLayer.waitAction = false;
         if( theDungeon.UpdateAccessFlag )
@@ -941,9 +974,9 @@ function update(delta)
 
 function updateMode()
 {
-    var before = theLayer.canControl;
+    //var before = theLayer.canControl;
 
-    if( theLayer.waitAction || theLayer.waitResponse )
+    if( theLayer.waitAction || theLayer.waitResponse || theLayer.waitResult )
     {
         theLayer.canControl = false;
     }
@@ -1033,60 +1066,13 @@ function resetBlocks()
         mask.setAnchorPoint(cc.p(0,1));
         mask.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(mask, 30, 300+i);
-
-        /*
-        var shadow = null;
-        for(var k=0; k<8; ++k){
-            var rpos;
-            switch(k){
-                case 0:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd3.png");
-                    shadow.setAnchorPoint(cc.p(0, 1));
-                    rpos = cc.p(0, 0);
-                }break;
-                case 1:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc1.png");
-                    shadow.setAnchorPoint(cc.p(0, 1));
-                    rpos = cc.p(LO_CORNER, 0);
-                }break;
-                case 2:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd4.png");
-                    shadow.setAnchorPoint(cc.p(1, 1));
-                    rpos = cc.p(LO_GRID, 0);
-                }break;
-                case 3:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc2.png");
-                    shadow.setAnchorPoint(cc.p(1, 1));
-                    rpos = cc.p(LO_GRID, -LO_CORNER);
-                }break;
-                case 4:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd1.png");
-                    shadow.setAnchorPoint(cc.p(1, 0));
-                    rpos = cc.p(LO_GRID, -LO_GRID);
-                }break;
-                case 5:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc3.png");
-                    shadow.setAnchorPoint(cc.p(0, 0));
-                    rpos = cc.p(LO_CORNER, -LO_GRID);
-                }break;
-                case 6:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowd2.png");
-                    shadow.setAnchorPoint(cc.p(0, 0));
-                    rpos = cc.p(0, -LO_GRID);
-                }break;
-                case 7:{
-                    shadow = cc.Sprite.createWithSpriteFrameName("battle-shadowc4.png");
-                    shadow.setAnchorPoint(cc.p(0, 1));
-                    rpos = cc.p(0, -LO_CORNER);
-                }break;
-            }
-            shadow.getTexture().setAliasTexParameters();
-            shadow.setPosition(cc.pAdd(rpos, pos));
-            var stag = 500+i*8+k;
-            theLayer.blocks.addChild(shadow, 12, stag);
-        }
-        */
     }
+
+    //dungeon shadow
+    var shadow = cc.Sprite.createWithSpriteFrameName("dungeon-shadow.png");
+    shadow.setPosition(theLayer.owner.nodeShadow.getPosition());
+    shadow.setScale(2);
+    theLayer.blocks.addChild(shadow, 25);
 
     //create walls=100+pos
     for(var j=0; j<49; ++j)
@@ -1228,7 +1214,7 @@ function syncAccess()
 
 function addActor(unit, boss)
 {
-    //debug("ADD ACTOR = \n"+JSON.stringify(unit));
+    debug("ADD ACTOR = \n"+JSON.stringify(unit));
     var actor = null;
     var z = theLayer.baseZOrder(unit.pos);
     if( boss ){
@@ -1263,9 +1249,16 @@ function addActor(unit, boss)
     theLayer.avatars[unit.ref] = actor;
 
     //sync colors
-    if( unit.rs == 1 )
-    {
-        actor.setBlinkColor(COLOR_DEBUFF);
+    switch(unit.rs){
+        case 1:{
+            actor.setBlinkColor(COLOR_DEBUFF);
+        }break;
+        case 2:{
+            actor.setBlinkColor(COLOR_BUFF);
+        }break;
+        case 3:{
+            actor.setBlinkColor(COLOR_BUFF, COLOR_DEBUFF);
+        }break;
     }
 
     return actor;
@@ -1310,6 +1303,13 @@ function addEffect(param){
         error("addEffect: No such effect data("+param.effectId+")");
         return;
     }
+    //include to management
+    if( param.serverId != null ){
+        if( theLayer.EffectList[param.serverId] != null ){
+            removeEffect(param.serverId);
+        }
+        theLayer.EffectList[param.serverId] = param;
+    }
     if( param.target != null ){//add to role
         var actor = theLayer.getActor(param.target);
         if( actor != null ){
@@ -1336,14 +1336,6 @@ function addEffect(param){
             error("addEffect: Grid not found.");
         }
     }
-    //include to management
-    if( param.serverId != null ){
-        if( theLayer.EffectList[param.serverId] != null ){
-            removeEffect(param.serverId);
-        }
-        theLayer.EffectList[param.serverId] = param;
-    }
-
     return param.node;
 }
 
