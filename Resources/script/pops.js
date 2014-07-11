@@ -353,7 +353,7 @@ function getMaxSkillLev(skillCld){
             }
         }
     }
-    return ret+1;
+    return ret;
 }
 
 function invokePopLevelUp(){
