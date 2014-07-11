@@ -1862,6 +1862,40 @@ exports.data = [
                 ]
             }
         ]
+    },
+    {
+        "dialogueId": 66,
+        "roles": [
+            {
+                "avatar": "dialogue-rolemaid.png",
+                "name": "凯特"
+            }
+        ],
+        "talks": [
+            {
+                "role":0 ,
+                "text": [
+                    "日常任务需要得到村长的许可才能进行。"
+                ]
+            }
+        ]
+    },
+    {
+        "dialogueId": 67,
+        "roles": [
+            {
+                "avatar": "dialogue-rolemaid.png",
+                "name": "凯特"
+            }
+        ],
+        "talks": [
+            {
+                "role":0 ,
+                "text": [
+                    "排行榜功能即将开放！"
+                ]
+            }
+        ]
     }
 
 

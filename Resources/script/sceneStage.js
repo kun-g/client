@@ -555,13 +555,17 @@ function selectStage(sId)
         theLayer.stage.owner["loot"].removeAllChildren();
         theLayer.stage.owner["loot"].addChild(lootNode);
     }
+//    theLayer.stage.lootLayer = theLayer.stage.owner["lootLayer"];
+//    theLayer.stage.lootLayer.setZOrder(10);
+//    theLayer.stage.lootLayer.setTouchEnabled(true);
+//    theLayer.stage.lootLayer.loots = loot;
+//    theLayer.stage.lootLayer.onTouchEnded = onLootTouchEnded;
 
     //check sweep
     theLayer.stage.owner.nodeSweepMid.setVisible(false);
     theLayer.stage.owner.btnSweep1.setVisible(false);
     theLayer.stage.owner.btnSweep2.setVisible(false);
     theLayer.stage.owner.nodeSweepFrame.setVisible(false);
-//    var scrollQuantity = 20;
     var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
@@ -585,6 +589,26 @@ function selectStage(sId)
         }
     }
 }
+
+//function onLootTouchEnded(touch, event) {
+//    var pos = touch.getLocation();
+//    var relPos = pos;
+//    relPos.x -= theLayer.stage.lootLayer.getPosition().x;
+//    relPos.y -= theLayer.stage.lootLayer.getPosition().y;
+//    debug(JSON.stringify(pos));
+//    debug(JSON.stringify(relPos));
+//    if( cc.rectContainsPoint(cc.rect(0, 0,
+//        theLayer.stage.lootLayer.getContentSize().width,
+//        theLayer.stage.lootLayer.getContentSize().height
+//    ), relPos) ){
+//        var itemCid = theLayer.stage.lootLayer.loots[Math.floor(relPos.y/80)];
+//        debug("Cid:"+itemCid);
+//        if( itemCid != null ){
+//            var item = new libItem.Item({cid:itemCid});
+//            loadModule("itemInfo.js").show(item);
+//        }
+//    }
+//}
 
 function onSelectStage(sender)
 {

@@ -1194,20 +1194,13 @@ function syncAccess()
         var mask = theLayer.blocks.getChildByTag(300+pos);
         if( flag )
         {
-            if( mask.numberOfRunningActions() == 0
-                && mask.getOpacity() > 0 )
-            {
-                mask.runAction(cc.FadeOut.create(0.6));
-            }
+            mask.stopAllActions();
+            mask.runAction(cc.FadeTo.create(0.6, 0));
         }
         else
         {
-            if( mask.numberOfRunningActions() == 0
-                && mask.getOpacity() < 255 )
-            {
-                mask.runAction(cc.FadeIn.create(0.6));
-            }
-
+            mask.stopAllActions();
+            mask.runAction(cc.FadeTo.create(0.6, 255));
         }
     }
 }
