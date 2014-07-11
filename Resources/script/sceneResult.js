@@ -299,7 +299,7 @@ function loadResult(){
 }
 
 function initResult(){
-    //process prze
+    //process prize
     theWXP = 0;
     theEXP = 0;
     if( theResult.prize != null ){
@@ -315,6 +315,7 @@ function initResult(){
             return true;
         });
     }
+    EXP_SPEED = theEXP / 2;
 
     theWXPSource = {};
     var theRole = engine.user.actor;
@@ -348,14 +349,14 @@ function update(delta){
     SleepTimer += delta;
     if( SleepTimer >= 0 ){
         theWXPAnimations = theWXPAnimations.filter(function(anim){
-            var step = Math.ceil(delta*EXP_SPEED);
+            var step = delta*EXP_SPEED;
             var left = anim.toadd - anim.added;
             if( step > left ){
                 step = left;
             }
             anim.added += step;
             var now = anim.base + anim.added;
-            anim.label.setString("+"+anim.added);
+            anim.label.setString("+"+Math.round(anim.added));
             anim.progress.setProgress(now/anim.total);
             if( anim.added >= anim.toadd ){
                 return false;
@@ -364,7 +365,7 @@ function update(delta){
         });
         //run role exp
         if( theEXPFlag ){
-            var step = Math.ceil(delta*EXP_SPEED);
+            var step = delta*EXP_SPEED;
             var exp = theDummyRole.calcExp();
             theLayer.owner.labLevel.setString("LV."+exp.level);
             if( !exp.max ){
@@ -377,7 +378,7 @@ function update(delta){
                     theEXPFlag = false;//used up
                 }
                 theExpAdded += step;
-                theLayer.owner.labExp7.setString("+"+theExpAdded);
+                theLayer.owner.labExp7.setString("+"+Math.round(theExpAdded));
                 theDummyRole.Experience += step;
                 theLayer.ui.progress7.setProgress((exp.now+step)/exp.total);
                 if( theExpAdded >= theEXP ){

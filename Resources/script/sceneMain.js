@@ -412,7 +412,7 @@ function onChat(sender)
     startCloseAnimation(function(){
         libChat.show();
     });
-//    libPops.setLevelUpAnimation(engine.user.actor.calcExp().level - 3);
+//    libPops.setLevelUpAnimation(engine.user.actor.calcExp().level - 1);
 //    libPops.invokePopLevelUp();
 }
 
