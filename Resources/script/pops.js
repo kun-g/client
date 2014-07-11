@@ -136,6 +136,7 @@ function popLevelUp(){
     //set level
     var level = engine.user.actor.calcExp().level;
     layer.owner.labLevel.setString("LV."+level);
+    level = level - 1;
     //set skill
     var role = engine.user.actor;
     for (var x = 1;x <= 4;x++){
@@ -158,7 +159,7 @@ function popLevelUp(){
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
     //var property = levelData.levelData[theOldLevel].property;
     var property = levelData.levelData[theOldLevel].property;
-    for (var n = theOldLevel + 1;n <= level;n++){
+    for (var n = theOldLevel + 1;n < level;n++){
         for (var m in proTableList){
             property[proTableList[m]] += levelData.levelData[n].property[proTableList[m]];
         }
@@ -176,7 +177,6 @@ function popLevelUp(){
         layer.owner[proLabList[k]].setString(originPro);
     }
     //set skill state
-    debug("engine.user.actor = "+JSON.stringify(engine.user.actor));
     var skillList = [];
     for (var q = theOldLevel + 1;q <= level;q++) {
         if (levelData.levelData[q].skill != null) {
@@ -187,7 +187,6 @@ function popLevelUp(){
             }
         }
     }
-    debug("skillList = "+JSON.stringify(skillList));
     for (var j = 1;j <= 4;j++){
         var skill = null;
         if (role.querySkill(j - 1) != null){
@@ -304,7 +303,7 @@ function getNextSkillLev(level,skillCld){
 //        }
 //    }
     var oldSkLev = 0;
-    for (var k = level;k >= 1;k--){
+    for (var k = level;k >= 0;k--){
         if (levelData.levelData[k].skill != null){
             for (var x in levelData.levelData[k].skill){
                 if (levelData.levelData[k].skill[x].id == skillCld &&
@@ -316,7 +315,7 @@ function getNextSkillLev(level,skillCld){
             }
         }
     }
-    for (var k = level;k < levelData.levelData.length;k++){
+    for (var k = level + 1;k < levelData.levelData.length;k++){
         if (levelData.levelData[k].skill != null){
             for (var x in levelData.levelData[k].skill){
                 if (levelData.levelData[k].skill[x].id == skillCld &&
@@ -329,7 +328,7 @@ function getNextSkillLev(level,skillCld){
             }
         }
     }
-    return ret;
+    return ret+1;
 }
 
 function getMaxSkillLev(skillCld){
@@ -344,7 +343,6 @@ function getMaxSkillLev(skillCld){
 //    }
     for (var k = levelData.levelData.length - 1;k >= 0;k--){
         if (levelData.levelData[k].skill != null){
-            debug("levelData.levelData["+k+"].skill = "+JSON.stringify(levelData.levelData[k].skill));
             for (var x in levelData.levelData[k].skill){
                 if (levelData.levelData[k].skill[x].id == skillCld &&
                     levelData.levelData[k].skill[x].classLimit == engine.user.actor.ClassId){
@@ -355,8 +353,7 @@ function getMaxSkillLev(skillCld){
             }
         }
     }
-    debug(skillCld+" skill MaxSkillLev = "+ret);
-    return ret;
+    return ret+1;
 }
 
 function invokePopLevelUp(){
@@ -370,7 +367,7 @@ function invokePopLevelUp(){
 
 function setLevelUp(oldLevel){
     levelUpFlag = true;
-    theOldLevel = oldLevel;
+    theOldLevel = oldLevel - 1;
     //统计等级信息
     tdga.setLevel(engine.user.actor.calcExp().level);
 }
