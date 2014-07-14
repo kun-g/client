@@ -1,7 +1,7 @@
 {
     "binary_channel" : "ND91",
-    "resource_version" : 101,
-    "binary_version" : "1.0.7",
+    "resource_version" : 110,
+    "binary_version" : "1.0.8",
     "account_type" : 3,
     "default_user" : ""
 }

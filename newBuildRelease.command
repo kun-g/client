@@ -8,6 +8,12 @@ BINARY_VERSION=""
 RESOURCE_VERSION=""
 PACK_FOLDER="tools/pack/"
 PACK_APP_DST="../tools/pack/Payload/"
+RELEASE_FOLDER=$WORK_PATH"/release/"
+
+#create release folder
+if [ ! -d $RELEASE_FOLDER ]; then
+    mkdir $RELEASE_FOLDER
+fi
 
 #build arguments
 BUILD_FOLDER="develop"
@@ -38,6 +44,25 @@ function build {
 	mv $PACKAGE_NAME ../../release/$PACKAGE_NAME
 }
 
+echo "> type 'Y' to build without PAUSE."
+echo "> type other letter to build with some PAUSES."
+read -p "Enter your Command: " COMMAND
+if [ "$COMMAND" == 'Y' ] || [ "$COMMAND" == 'y' ]; then
+    isPause=0
+else
+    isPause=1
+fi
+
+
+#build talkingdata
+if [ $isPause == 1 ]; then
+    read -p "To build cocos2dx-talkingdata, Press any key to continue..."
+fi
+TAKINGDATA_FOLDER="libs/GA/proj.ios/"
+cd $WORK_PATH
+cd $TAKINGDATA_FOLDER
+xcodebuild -configuration Release
+
 #init
 cd $WORK_PATH
 rm -rf release/*
@@ -51,37 +76,47 @@ echo "RESOURCE_VERSION = "$RESOURCE_VERSION
 BUILD_FOLDER="develop"
 APP_NAME="测试版.app"
 PACKAGE_NAME="内网测试版.ipa"
-read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+if [ $isPause == 1 ]; then
+    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+fi
 build
 
 BUILD_FOLDER="25pp"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(PP助手).ALL.ipa"
-read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+if [ $isPause == 1 ]; then
+    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+fi
 build
 
 BUILD_FOLDER="app111"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(苹果园).ALL.ipa"
-read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+if [ $isPause == 1 ]; then
+    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+fi
 build
 
-BUILD_FOLDER="AppStore"
-APP_NAME="口袋地下城.app"
-PACKAGE_NAME="口袋地下城.ipa"
-read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
-build
+#BUILD_FOLDER="AppStore"
+#APP_NAME="口袋地下城.app"
+#PACKAGE_NAME="口袋地下城.ipa"
+#read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+#build
 
 BUILD_FOLDER="kuaiyong"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(快用).ipa"
-read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+if [ $isPause == 1 ]; then
+    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+fi
 build
 
 BUILD_FOLDER="nd91"
 APP_NAME="PocketDungeon.app"
 PACKAGE_NAME="PocketDungeon_v${BINARY_VERSION}_${DATE_TIME}.ipa"
-read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+if [ $isPause == 1 ]; then
+    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+fi
 build
 
 #debug

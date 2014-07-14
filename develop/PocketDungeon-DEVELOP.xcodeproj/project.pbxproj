@@ -3521,7 +3521,7 @@
 					"\"$(PROJECT_DIR)/../libs/GA/include\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PocketDungeon/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/../libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -3546,7 +3546,7 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../libs/Chipmunk/include/chipmunk\" \"$(PROJECT_DIR)/../libs/javascript/spidermonkey-ios/include\"";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3581,7 +3581,7 @@
 					"\"$(PROJECT_DIR)/../libs/GA/include\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PocketDungeon/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/../libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -3607,7 +3607,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../libs/Chipmunk/include/chipmunk\" \"$(PROJECT_DIR)/../libs/javascript/spidermonkey-ios/include\"";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
