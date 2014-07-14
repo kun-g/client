@@ -90,6 +90,10 @@ function popLevelUp(){
     var mask = blackMask();
     layer.addChild(mask);
 
+    if (theOldLevel == null)
+    {
+        theOldLevel = 0;
+    }
     layer.owner = {};
     configParticle(layer.owner);
     layer.node = loadModule("UIComposer.js").loadUI(layer, "ui-levelup.ccbi", {
@@ -159,7 +163,18 @@ function popLevelUp(){
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
     //var property = levelData.levelData[theOldLevel].property;
     var property = levelData.levelData[theOldLevel].property;
-    for (var n = theOldLevel + 1;n < level;n++){
+    if (property == null){
+        property = {
+            "health": 0,
+            "attack": 0,
+            "critical": 0,
+            "strong": 0,
+            "accuracy": 0,
+            "reactivity": 0,
+            "speed": 0
+        };
+    }
+    for (var n = theOldLevel + 1;n <= level;n++){
         for (var m in proTableList){
             property[proTableList[m]] += levelData.levelData[n].property[proTableList[m]];
         }
