@@ -288,6 +288,7 @@ function loadResult(){
     var size = theLayer.owner.layerPrize.getContentSize();
     var dimension = cc.size(size.width, 0);
     var prize = libItem.ItemPreview.create(theResult.prize, dimension);
+    prize.setShowInfo(true);
     var psize = prize.getContentSize();
     prize.setPosition(cc.p(size.width/2 - psize.width/2, size.height - psize.height));
     theLayer.owner.layerPrize.addChild(prize);

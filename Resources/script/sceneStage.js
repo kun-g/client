@@ -323,6 +323,7 @@ function onChallenge(){
     var dungeon = table.queryTable(TABLE_DUNGEON, theStageClass.dungeon);
     var prize = getInfiPrize(dungeon, chInst.Stages[theLayer.INFIKEY].Level);
     var preview = libItem.ItemPreview.create([prize]);
+    preview.setShowInfo(true);
     theLayer.stage.owner.labNext.setString("打通第"+prize.level+"关可以获得额外奖励：");
     theLayer.stage.owner.nodePrize.addChild(preview);
     theLayer.stage.owner.labelEnergy.setString("精力消耗："+theLayer.COST+"点");
@@ -737,6 +738,7 @@ function createPrizeBar() {
         var ITEM_SCALE = 0.77;
         var dimension = cc.size(layer.owner.layerPrize.getContentSize().width/ITEM_SCALE + 10, 0);
         var prize = libItem.ItemPreview.create(PrizeList[PrizeIndex], dimension);
+        prize.setShowInfo(true);
         prize.setAnchorPoint(cc.p(0, 0));
         var posPrize = layer.owner.nodePrize.getPosition();
         posPrize.x += (layer.owner.layerPrize.getContentSize().width

@@ -28,6 +28,8 @@ var LINE_HEIGHT = 250;
 var COLOR_BLACK = cc.c3b(55,37,20);
 var COLOR_RED = cc.c3b(197,16,16);
 
+var thePrizeLayer = [];
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
     return true;
@@ -64,6 +66,10 @@ function onClose(sender){
 
 function onBack(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     loadEventList();
 }
 
@@ -107,6 +113,10 @@ function loadEventList(){
 }
 
 function loadEventDesc(quest){
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     theMode = MODE_DESC;
     theLayer.owner.nodeList.setVisible(false);
@@ -164,7 +174,11 @@ function loadEventDesc(quest){
         size = text.getContentSize();
 
         var prize = libItem.ItemPreview.createRaw(dimension);
+        engine.ui.regMenu(prize);
+        thePrizeLayer.push(prize);
+        debug("eventInfo.js");
         prize.setTextColor(COLOR_BLACK);
+        prize.setShowInfo(true);
         if (!iphone5s){
             prize.setNodeScale(0.77);
         }

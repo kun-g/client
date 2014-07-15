@@ -9,6 +9,7 @@ var libUIKit = loadModule("uiKit.js");
 var libItem = loadModule("xitem.js");
 var libTable = loadModule("table.js");
 var libEffect = loadModule("effect.js");
+var libItemInfo = loadModule("itemInfo.js");
 
 var MODE_DAILYPRIZE = 0;
 var MODE_DAILYQUEST = 1;
@@ -40,6 +41,8 @@ var prizePosXList = [];
 
 var COLOR_BLACK = cc.c3b(55,37,20);
 var COLOR_RED = cc.c3b(197,16,16);
+
+var thePrizeLayer = [];
 
 //common used close function
 function onClose(sender){
@@ -145,12 +148,19 @@ function onTouchEnded(touch, event)
         var localPos = theCenter.theGridLayer.convertToNodeSpace(touchPosBeginWorld);
         var id = calcPosId(localPos);
         //debug("id = "+id);
+        var item = theCenter.inventoryData[id];
+        debug("activity.js item = "+JSON.stringify(item));
         if (theDay == id && engine.user.activity.dailyPrize == true){
-            var item = theCenter.inventoryData[id];
             if( item != null ) {
                 cc.AudioEngine.getInstance().playEffect("card2.mp3");
                 //向服务器发送消息，若成功改变奖励图标
                 getDailyPrize(id);
+            }
+        }
+        else{
+            if( item != null && item.ClassId != null){
+                cc.AudioEngine.getInstance().playEffect("card2.mp3");
+                libItemInfo.show(item, false);
             }
         }
     }
@@ -234,6 +244,7 @@ function setPrizeSize(group,day,curDays)
             group.theGridLayer.addChild(iconVip);
         }
         group.inventoryData[k] = prize;
+        group.inventoryData[k].ClassId = prizeData.prize[0].value;
     }
 }
 
@@ -402,6 +413,10 @@ function refreshDailyQuest(){
     cacheSprite("dailymission-common-btnstart1.png");
     cacheSprite("dailymission-common-btnstart2.png");
 
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     //set values
     var sfc = cc.SpriteFrameCache.getInstance();
     var libTable = loadModule("table.js");
@@ -475,6 +490,9 @@ function refreshDailyQuest(){
             }
 
             var prize = libItem.ItemPreview.createRaw(dimensionPrize);
+            engine.ui.regMenu(prize);
+            thePrizeLayer.push(prize);
+            prize.setShowInfo(true);
             prize.setTextColor(COLOR_BLACK);
             if (!iphone5s){
                 prize.setNodeScale(0.77);

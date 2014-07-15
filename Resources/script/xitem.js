@@ -16,6 +16,11 @@ var ItemScheme = {
     ts : "TimeStamp"
 };
 
+var idItemPreview = 4;
+var theClass = 0;
+var theLayer = null;
+var touchPosBegin;
+
 function Item(source)
 {
     this.ClassId = -1;
@@ -737,6 +742,7 @@ UIItem.make = function(thiz, args)
 
 var ITEMPREVIEW_WIDTH = 130;
 var ITEMPREVIEW_HEIGHT = 155;
+var thePrizeNodePos = [];
 
 function queryPrize(pit, treasureDisplayFlag){
     var ret = {
@@ -871,6 +877,7 @@ var ItemPreview = cc.Layer.extend({
         if( !this._super()) return false;
         //init code here
         this.DIMENSION = cc.size(0, 0);
+        this.SCALE = 1;
         return true;
     },
     setDimension: function(dimension){
@@ -881,6 +888,7 @@ var ItemPreview = cc.Layer.extend({
         if( pit != null ){
             //create the node
             var node = cc.Node.create();
+            node.classId = pit.value;
             node.PV = pv;
             node.icon = pit.icon;
             if (pit.label.length > 5){
@@ -904,6 +912,7 @@ var ItemPreview = cc.Layer.extend({
         }
     },
     formatPreview: function(){
+        thePrizeNodePos = [];
         var count = this.getChildrenCount();
         var nodes = this.getChildren();
         var scale = 1;
@@ -934,6 +943,7 @@ var ItemPreview = cc.Layer.extend({
                 var PY = Math.floor(index/PC);
                 var nd = nodes[k];
                 nd.setPosition(cc.p(PX*ITEMPREVIEW_WIDTH*scale, size.height - PY*ITEMPREVIEW_HEIGHT*scale - ITEMPREVIEW_HEIGHT*scale));
+                thePrizeNodePos[index] = cc.p(PX*ITEMPREVIEW_WIDTH*scale, size.height - PY*ITEMPREVIEW_HEIGHT*scale - ITEMPREVIEW_HEIGHT*scale);
                 nd.setScale(scale);
                 index++;
             }
@@ -966,6 +976,12 @@ var ItemPreview = cc.Layer.extend({
     },
     setNodeScale: function(scale){
         this.SCALE = scale;
+    },
+    setShowInfo: function(show){
+        if (show == null){
+            show = false;
+        }
+        this.setTouchEnabled(show);
     },
     shake: function(){
         var off = 0;
@@ -1015,6 +1031,15 @@ ItemPreview.createRaw = function(dimension){
     if( dimension != null ){
         ret.setDimension(dimension);
     }
+    theClass = idItemPreview;
+    theLayer = ret;
+    ret.onTouchBegan = onTouchBegan;
+    ret.onTouchMoved = onTouchMoved;
+    ret.onTouchEnded = onTouchEnded;
+    ret.onTouchCancelled = onTouchCancelled;
+    ret.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    ret.setTouchPriority(1);
+    ret.setTouchEnabled(false);
     return ret;
 }
 
@@ -1027,7 +1052,58 @@ ItemPreview.create = function(pvs, dimension){
     if( pvs != null ){
         ret.setPreview(pvs);
     }
+    theClass = idItemPreview;
+    theLayer = ret;
+    ret.onTouchBegan = onTouchBegan;
+    ret.onTouchMoved = onTouchMoved;
+    ret.onTouchEnded = onTouchEnded;
+    ret.onTouchCancelled = onTouchCancelled;
+    ret.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    ret.setTouchPriority(1);
+    ret.setTouchEnabled(false);
     return ret;
+}
+
+function onTouchBegan(touch, event){
+    touchPosBegin = touch.getLocation();
+
+    return true;
+}
+
+function onTouchMoved(touch, event){
+
+}
+
+function onTouchEnded(touch, event){
+    var pos = touch.getLocation();
+    var dis = cc.pSub(pos, touchPosBegin);
+    if( cc.pLengthSQ(dis) < CLICK_RANGESQ ){
+        if (theClass == idItemPreview && theLayer != null){
+            var localPos = theLayer.convertToNodeSpace(touchPosBegin);
+            var size = theLayer.getContentSize();
+            var nodes = theLayer.getChildren();
+            var scale = theLayer.SCALE;
+            var item = {};
+            if( localPos.x >0 && localPos.y >0
+                && localPos.x < size.width && localPos.y < size.height ){
+                //判断点击位置是何物品
+                for (var k = 0;k < thePrizeNodePos.length;k++){
+                    if (localPos.x > thePrizeNodePos[k].x && localPos.x < thePrizeNodePos[k].x + ITEMPREVIEW_WIDTH*scale &&
+                        localPos.y > thePrizeNodePos[k].y && localPos.y < thePrizeNodePos[k].y + ITEMPREVIEW_HEIGHT*scale){
+                        item = nodes[k];
+                        item.ClassId = nodes[k].PV.value;
+                        cc.AudioEngine.getInstance().playEffect("card2.mp3");
+                        loadModule("itemInfo.js").show(item, false);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function onTouchCancelled(touch, event){
+    onTouchEnded(touch, event);
 }
 
 exports.Item = Item;

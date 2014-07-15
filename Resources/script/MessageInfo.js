@@ -36,6 +36,8 @@ var FIRST_GAP = 25;
 var COLOR_BLACK = cc.c3b(55,37,20);
 var COLOR_RED = cc.c3b(197,16,16);
 
+var thePrizeLayer = [];
+
 function removeDeliver(sid){
     if( sid == null ){
         //remove all
@@ -262,6 +264,10 @@ function createInviteBar(data){
 function loadDeliverDetail(data){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     clearBoard(theCurrentGroup);
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
 
     theState = STATE_SYSTEMDELIVER_INFO;
     theCurrentGroup.labBlueTitle.setVisible(true);
@@ -303,7 +309,11 @@ function loadDeliverDetail(data){
         }
         var size = text.getContentSize();
         var prize = libItem.ItemPreview.createRaw(dimension);
+        engine.ui.regMenu(prize);
+        debug("MessageInfo.js");
+        thePrizeLayer.push(prize);
         prize.setTextColor(COLOR_BLACK);
+        prize.setShowInfo(true);
         if (!iphone5s){
             prize.setNodeScale(0.77);
         }
@@ -424,6 +434,10 @@ function onSDAcceptAll(sender){
 
 function onSDBack(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     onSystemDeliver();
 }
 
@@ -755,6 +769,9 @@ function onEnter(){
     theTransitionGroup = null;
 
     engine.ui.regMenu(this.owner.menuRoot);
+    engine.ui.regMenu(this.owner.menu);
+    engine.ui.regMenu(this.owner.menuR);
+    engine.ui.regMenu(this.owner.menuL);
 
     theCenter.theContentListLayer.onTouchBegan = onTouchBegan;
     theCenter.theContentListLayer.onTouchMoved = onTouchMoved;
