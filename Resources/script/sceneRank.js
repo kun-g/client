@@ -86,7 +86,7 @@ function createRoleBar(role, rank){
     }else{
         layer.owner.labPower.setString(role.Score);
     }
-    
+
     layer.ui.avatar.setRole(role);
     layer.owner.labBPRank.setString(rank);
 
