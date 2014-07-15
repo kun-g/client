@@ -90,6 +90,10 @@ function popLevelUp(){
     var mask = blackMask();
     layer.addChild(mask);
 
+    if (theOldLevel == null)
+    {
+        theOldLevel = 0;
+    }
     layer.owner = {};
     configParticle(layer.owner);
     layer.node = loadModule("UIComposer.js").loadUI(layer, "ui-levelup.ccbi", {
