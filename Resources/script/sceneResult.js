@@ -315,7 +315,7 @@ function initResult(){
             return true;
         });
     }
-    EXP_SPEED = theEXP / 2;
+    EXP_SPEED = theEXP / 1.5;
 
     theWXPSource = {};
     var theRole = engine.user.actor;

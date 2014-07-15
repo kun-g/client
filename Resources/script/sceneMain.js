@@ -420,6 +420,8 @@ function onStage(sender)
 {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     startCloseAnimation(function(){
+//        loadModule("sceneStage.js").startStage(0, 3, 0);
+//        return;
         //强制进某一关
         if( engine.user.player.Tutorial != null ){
             var tutorialStage = engine.user.player.Tutorial;
