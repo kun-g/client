@@ -322,7 +322,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -648,7 +648,7 @@ exports.data = [
 			},
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			}
 		]
 	},
@@ -982,7 +982,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -1309,7 +1309,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -1578,7 +1578,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -1898,7 +1898,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -2235,7 +2235,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -2562,7 +2562,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -2830,7 +2830,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -3150,7 +3150,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -3486,7 +3486,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -3813,7 +3813,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -4081,7 +4081,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 2
 			},
 			{
 				"id": 27,
@@ -4401,7 +4401,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -4737,7 +4737,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level":2
 			},
 			{
 				"id": 27,
@@ -5064,7 +5064,7 @@ exports.data = [
 		"skill": [
 			{
 				"id": 26,
-				"level": 1
+				"level": 3
 			},
 			{
 				"id": 27,
@@ -7671,6 +7671,41 @@ exports.data = [
         "skill": [
             {
                 "id": 155,
+                "level": 1
+            }
+        ]
+    },
+    {
+        "classId": 212,
+        "className": "pk宝箱",
+        "faction": "npc",
+        "classType": 2,
+        "avatar": "enemy-treasurebox.ccbi",
+        "property": {
+            "health": 1.5,
+            "attack": 3,
+            "critical": 6,
+            "strong": 13,
+            "accuracy": 10,
+            "reactivity": -100,
+            "speed": 0,
+            "counterAttack": false,
+            "exp": 0,
+            "gold": 0
+        },
+        "xproperty": {
+            "balance": 0.1,
+            "health": 1.5,
+            "attack": 0.4,
+            "critical": 1,
+            "strong": 1,
+            "accuracy": 1,
+            "reactivity": 1,
+            "speed": 1
+        },
+        "skill": [
+            {
+                "id": 156,
                 "level": 1
             }
         ]

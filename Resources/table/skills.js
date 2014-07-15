@@ -659,7 +659,13 @@ exports.data = [
               "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":1}]
           },
           "action":[
-              {"type": "rangeAttack"}
+              {"type": "rangeAttack"},
+              {"type": "playEffect","delay":1}
+          ],
+        "levelConfig":[
+            {"effect":50},
+            {"effect":51},
+            {"effect":52}
           ]
       }
   },
@@ -3084,8 +3090,8 @@ exports.data = [
             },
             "action": [
                 { "type": "damage","damageType":"Spell","isRange":true,"delay":0.8 },
-                {"type": "playEffect","effect":44,"pos":"self"},
-                {"type": "playEffect","effect":0,"pos":"target","delay":0.6},
+                {"type": "playEffect","effect":44,"act":"self"},
+                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
                 {"type": "blink","delay":0.6,"time":0.08},
                 {"type":"shock","delay":0.6,"range":5,"time":0.2}
             ],
@@ -3612,5 +3618,36 @@ exports.data = [
                 {"type":"delay"},
                 {"type":"kill"}]
         }
-    }
+    },
+    ,
+    { "skillId": 156,
+        "label": "pk宝箱",
+        "config": {
+            "triggerCondition": [
+                { "type": "event", "event": "onBeActivate" }
+            ],
+            "targetSelection":{
+                "pool":"self",
+                "filter": [{"type":"alive"},{"type": "visible"}]
+            },
+            "action": [
+                { "type": "dropItem", "dropList": [
+                    {"weight":5, "item":0},
+                    {"weight":5, "item":1},
+                    {"weight":0, "item":2},
+                    {"weight":5, "item":3},
+                    {"weight":0, "item":4},
+                    {"weight":5, "item":5},
+                    {"weight":5, "item":6},
+                    {"weight":5, "item":7},
+                    {"weight":5, "item":8},
+                    {"weight":0, "item":9}
+                ]
+                },
+                {"type":"playAction","motion":1,"pos":"self"},
+                {"type":"delay"},
+                {"type":"kill"}
+            ]
+        }
+    },
 ];

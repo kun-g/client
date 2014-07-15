@@ -21699,7 +21699,7 @@ exports.data = [
                     {"pool":"normalPool","from":0,to:3},
                     {"pool":"soldierPool","from":5,to:14},
                     {"pool":"rangePool","from":0,to:1},
-                    {"id": 149,"from":0,to:2}
+                    {"id": 212,"from":0,to:2}
 
                 ]
             }
@@ -22007,7 +22007,7 @@ exports.data = [
                     {"pool":"rangePool","from":0,to:1},
                     {"pool":"soldierPool","from":2,to:4},
                     {"pool":"PVP","count":1},
-                    {"id": 149,"from":0,to:4}
+                    {"id": 212,"from":0,to:4}
 
                 ]
             }
