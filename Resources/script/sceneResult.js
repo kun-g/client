@@ -378,6 +378,9 @@ function update(delta){
                     theEXPFlag = false;//used up
                 }
                 theExpAdded += step;
+                if( theExpAdded > theEXP ){
+                    theExpAdded = theEXP;
+                }
                 theLayer.owner.labExp7.setString("+"+Math.round(theExpAdded));
                 theDummyRole.Experience += step;
                 theLayer.ui.progress7.setProgress((exp.now+step)/exp.total);
