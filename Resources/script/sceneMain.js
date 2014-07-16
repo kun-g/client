@@ -421,12 +421,12 @@ function onStage(sender)
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     startCloseAnimation(function(){
 
-        var flag_testStage = ( system.getPreference("flag_debug") == "1" );
-        if( flag_testStage ){
-            var flag_stgId = Number(system.getPreference("flag_stgId"));
-            loadModule("sceneStage.js").startStage(flag_stgId, 3, 0);
-            return;
-        }
+//        var flag_testStage = system.getPreference("flag_debug");
+//        if( flag_testStage != null && flag_testStage == "1" ){
+//            var flag_stgId = Number(system.getPreference("flag_stgId"));
+//            loadModule("sceneStage.js").startStage(flag_stgId, 3, 0);
+//            return;
+//        }
 
         //强制进某一关
         if( engine.user.player.Tutorial != null ){
