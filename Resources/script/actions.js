@@ -373,7 +373,30 @@ function makeSpell(pace, act)
         }
 
         var animation = "spell-" + this.spl;
-        //debug("ON SPELL ANIMATION");//debug
+
+        /*debug*/act.cid = 857;//todo?
+        if( act.cid != null ){
+            if( act.cid >= 0 ){
+                var libItem = loadModule("xitem.js");
+                var spItem = cc.Sprite.create(libItem.getItemIcon(act.cid));
+            }else if( act.cid = -1 ){
+                var spItem = cc.Sprite.create("mission-coin.png");
+            }else{
+                var spItem = cc.Sprite.create("wenhao.png");
+            }
+            spItem.setScale(0.6);
+            var a1 = cc.DelayTime.create(1.6);
+            var a2 = cc.FadeOut.create(0.2);
+            var seq = cc.Sequence.create(a1, a2);
+            if( actor.box != null
+                && actor.box.owner != null
+                && actor.box.owner.nodeItem != null){
+                actor.box.owner.nodeItem.addChild(spItem);
+            }else{
+                debug("Node:actor.box.owner.nodeItem is null");
+            }
+            spItem.runAction(seq);
+        }
         actor.playAnimation(animation);
     }
     ret.onUpdate = function(delta, dungeon, layer)

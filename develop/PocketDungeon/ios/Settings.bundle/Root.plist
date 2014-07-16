@@ -16,7 +16,7 @@
 			<key>Key</key>
 			<string>flag_debug</string>
 			<key>Title</key>
-			<string>调试模式</string>
+			<string>内网调试模式</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -29,6 +29,30 @@
 			<string>flag_blackbox</string>
 			<key>DefaultValue</key>
 			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>测试关卡</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>开启测试关</string>
+			<key>Key</key>
+			<string>flag_testStage</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>测试关编号</string>
+			<key>Key</key>
+			<string>flag_stgId</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
