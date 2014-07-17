@@ -31109,10 +31109,14 @@ exports.data = [
                     {"pool":"bossPool","count":1},
                     {"id": 149,"from":0,to:2},
                     {
-                        "id": 201,
+                        "id": 213,
                         "count":1,
                         "pos":12,
                         "keyed":true
+                    },
+                    {
+                        "id": 214,
+                        "count":2
                     }
                 ],
                 "exit": 29,

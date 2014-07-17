@@ -983,7 +983,6 @@ function getDropStage(cid) {
                         }
                     }
                 }
-
             }
         } else {
             return;

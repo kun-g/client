@@ -7630,10 +7630,6 @@ exports.data = [
             {
                 "id": 48,
                 "level": 1
-            },
-            {
-                "id": 48,
-                "level": 1
             }
         ],
         "dropInfo": [
@@ -7708,6 +7704,105 @@ exports.data = [
                 "id": 156,
                 "level": 1
             }
+        ]
+    },
+    {
+        "classId": 213,
+        "className": "邪恶法师",
+        "faction": "monster",
+        "classType": 1,
+        "avatar": "enemy-wlfs1.ccbi",
+        "property": {
+            "health": 0.7,
+            "attack": 0.54,
+            "critical": -20,
+            "strong": -10,
+            "accuracy": 20,
+            "reactivity": -50,
+            "speed": 0,
+            "counterAttack": true,
+            "exp": 0,
+            "gold": 0
+        },
+        "xproperty": {
+            "balance": 0.1,
+            "health": 1.5,
+            "attack": 0.4,
+            "critical": 1,
+            "strong": 1,
+            "accuracy": 1,
+            "reactivity": 1,
+            "speed": 1
+        },
+        "soundSpawn": "shanzeitoumu.mp3",
+        "soundWound": "shanzeiroumuwound.mp3",
+        "soundAttack": "shanzeitoumuattack.mp3",
+        "soundDie": "shanzeitoumudie.mp3",
+        "effectAttack": 8,
+        "skill": [
+            {
+                "id":159,
+                "level": 1
+            },
+            {
+                "id": 26,
+                "level": 1
+            },
+            {
+                "id": 27,
+                "level": 1
+            }
+        ],
+        "dropInfo": [
+
+        ]
+    },
+    ,
+    {
+        "classId": 214,
+        "className": "邪恶守护者",
+        "faction": "monster",
+        "classType": 1,
+        "avatar": "enemy-db1.ccbi",
+        "property": {
+            "health": 0.7,
+            "attack": 0.54,
+            "critical": -20,
+            "strong": -10,
+            "accuracy": 20,
+            "reactivity": -50,
+            "speed": 0,
+            "counterAttack": true,
+            "exp": 0,
+            "gold": 0
+        },
+        "xproperty": {
+            "balance": 0.1,
+            "health": 1.5,
+            "attack": 0.4,
+            "critical": 1,
+            "strong": 1,
+            "accuracy": 1,
+            "reactivity": 1,
+            "speed": 1
+        },
+        "soundSpawn": "shanzeitoumu.mp3",
+        "soundWound": "shanzeiroumuwound.mp3",
+        "soundAttack": "shanzeitoumuattack.mp3",
+        "soundDie": "shanzeitoumudie.mp3",
+        "effectAttack": 8,
+        "skill": [
+            {
+                "id": 157,
+                "level": 1
+            },
+            {
+                "id": 158,
+                "level": 1
+            }
+        ],
+        "dropInfo": [
+
         ]
     }
 ]
