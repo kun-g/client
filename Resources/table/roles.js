@@ -441,14 +441,7 @@ exports.data = [
 		"soundDie": "shanzeitoumudie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -484,10 +477,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"collectId": 66001
 	},
@@ -685,10 +675,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"collectId": 36001
 	},
@@ -1104,14 +1091,7 @@ exports.data = [
 		"effectAttack": 8,
 		"scale": 1.2,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -1147,10 +1127,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.2
 	},
@@ -1350,10 +1327,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.3
 	},
@@ -1697,14 +1671,7 @@ exports.data = [
 		"soundDie": "shanzeitoumudie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -1741,8 +1708,7 @@ exports.data = [
 		"effectAttack": 8,
 		"skill": [
 			{
-				"id": 48,
-				"level": 1
+
 			}
 		]
 	},
@@ -1939,10 +1905,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -2357,14 +2320,7 @@ exports.data = [
 		"effectAttack": 8,
 		"scale": 1.2,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -2400,10 +2356,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.2
 	},
@@ -2603,10 +2556,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.3
 	},
@@ -2949,14 +2899,7 @@ exports.data = [
 		"soundDie": "shanzeitoumudie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -2992,10 +2935,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -3191,10 +3131,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -3608,14 +3545,7 @@ exports.data = [
 		"effectAttack": 8,
 		"scale": 1.2,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -3651,10 +3581,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.2
 	},
@@ -3854,10 +3781,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.3
 	},
@@ -4200,14 +4124,7 @@ exports.data = [
 		"soundDie": "shanzeitoumudie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -4243,10 +4160,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -4442,10 +4356,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -4859,14 +4770,7 @@ exports.data = [
 		"effectAttack": 8,
 		"scale": 1.2,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			},
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		]
 	},
 	{
@@ -4902,10 +4806,7 @@ exports.data = [
 		"soundDie": "liulangdie.mp3",
 		"effectAttack": 8,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.2
 	},
@@ -5105,10 +5006,7 @@ exports.data = [
 		"soundAttack": "shirenmo.mp3",
 		"effectAttack": 9,
 		"skill": [
-			{
-				"id": 48,
-				"level": 1
-			}
+
 		],
 		"scale": 1.3
 	},
@@ -7062,10 +6960,7 @@ exports.data = [
         "soundAttack": "shirenmo.mp3",
         "effectAttack": 9,
         "skill": [
-            {
-                "id": 48,
-                "level": 1
-            }
+
         ],
         "dropInfo": [
             90
@@ -7627,10 +7522,7 @@ exports.data = [
         "soundDie": "shanzeitoumudie.mp3",
         "effectAttack": 8,
         "skill": [
-            {
-                "id": 48,
-                "level": 1
-            }
+
         ],
         "dropInfo": [
             90
@@ -7753,11 +7645,10 @@ exports.data = [
                 "level": 1
             }
         ],
-        "dropInfo": [
+        "dropInfo": [ 148
 
         ]
     },
-    ,
     {
         "classId": 214,
         "className": "邪恶守护者",

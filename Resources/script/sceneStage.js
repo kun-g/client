@@ -36,7 +36,9 @@ var PrizeIndex = 0;
 var SweepArgs = {};
 var isScheduling = false;
 var SWEEP_VIP_LEVEL = 3;
-
+var LastCantSweep = false;
+var NormalGroup = [];
+var SweepGroup = [];
 var BAR_WIDTH = 570;
 var BAR_HEIGHT = 180;
 var NumMultiRows;
@@ -376,6 +378,24 @@ function showStages(chId)
     theLayer.stage.owner.btnMode.setPosition(btnModePos);
     theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
 
+    LastCantSweep = false;
+    NormalGroup = [
+        theLayer.stage.owner.nodeNormal,
+        theLayer.stage.owner.btnStage1,
+        theLayer.stage.owner.btnStage2,
+        theLayer.stage.owner.btnStage3,
+        theLayer.stage.owner.btnStage4,
+        theLayer.stage.owner.btnStage5,
+        theLayer.stage.owner.btnStage6,
+        theLayer.stage.owner.btnStage7
+    ];
+    SweepGroup = [
+        theLayer.stage.owner.nodeSweepFrame,
+        theLayer.stage.owner.nodeSweepMid,
+        theLayer.stage.owner.btnSweep1,
+        theLayer.stage.owner.btnSweep2
+    ];
+
     onNormal();
     theLayer.stage.node.setScale(0);
     theLayer.stage.node.runAction(actionPopIn());
@@ -506,7 +526,6 @@ function selectStage(sId)
     var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
-    debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
     var stgFinished = (engine.user.stage.Chapters[theChapterClass.chapterId].Stages[sId].State >= 2);
     if( sweepPower != null && stgFinished) {
         var myPower = engine.user.actor.getPower();
@@ -515,6 +534,14 @@ function selectStage(sId)
         theLayer.stage.owner.labPowerRequired.setString(sweepPower);
         theLayer.stage.owner.btnSweep1.setVisible(true);
         theLayer.stage.owner.btnSweep2.setVisible(true);
+
+        if( LastCantSweep ) {
+            for( var k1 in NormalGroup ) {
+                NormalGroup[k1].runAction(cc.MoveBy.create(0.1, cc.p(0, 67)));
+            }
+            LastCantSweep = false;
+        }
+
         if (myPower >= sweepPower) {
             theLayer.stage.owner.btnSweep1.setEnabled(true);
             theLayer.stage.owner.btnSweep2.setEnabled(true);
@@ -523,6 +550,14 @@ function selectStage(sId)
             theLayer.stage.owner.btnSweep1.setEnabled(false);
             theLayer.stage.owner.btnSweep2.setEnabled(false);
             theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_RED);
+        }
+    }
+    else{
+        if( !LastCantSweep ) {
+            for( var k2 in NormalGroup ) {
+                NormalGroup[k2].runAction(cc.MoveBy.create(0.1, cc.p(0, -67)));
+            }
+            LastCantSweep = true;
         }
     }
 }
