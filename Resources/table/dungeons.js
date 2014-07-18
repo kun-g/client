@@ -31096,7 +31096,7 @@ exports.data = [
                 "objects" :[
                     {"pool":"normalPool","from":0,to:4},
                     {"pool":"soldierPool","from":8,to:14},
-                    {"pool":"rangePool","from":0,to:3},
+                    {"pool":"rangePool","from":0,to:1},
                     {"pool":"elitePool","count":1},
                     {"id": 149,"from":0,to:2}
                 ]
@@ -31105,8 +31105,7 @@ exports.data = [
                 "objects" :[
                     {"pool":"normalPool","from":0,to:4},
                     {"pool":"soldierPool","from":8,to:14},
-                    {"pool":"rangePool","from":0,to:2},
-                    {"pool":"bossPool","count":1},
+                    {"pool":"rangePool","from":0,to:1},
                     {"id": 149,"from":0,to:2},
                     {
                         "id": 213,
@@ -31116,7 +31115,8 @@ exports.data = [
                     },
                     {
                         "id": 214,
-                        "count":2
+                        "count":2,
+                        skill:[{id:27}]
                     }
                 ],
                 "exit": 29,
@@ -31128,5 +31128,5 @@ exports.data = [
             ],
         "prizeWxp":0,"prizeGold":0, "prizeXp":0,
         "wxpRate":1,"goldRate":0.5, "xpRate":1,
-        "rank":400}
+        "rank":300}
 ];

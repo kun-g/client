@@ -44,6 +44,13 @@ var BAR_HEIGHT = 180;
 var NumMultiRows;
 var LastMultiRows;
 
+var WorldStageInfo = {};
+var WORLD_STAGE_ID = 133;
+var WORLD_STAGE_RESET_TIME = {
+    day: "二", //Tuesday
+    time: "18:00"
+};
+
 function onEvent(event)
 {
     return false;
@@ -93,6 +100,7 @@ function onEnter()
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
     theLayer.owner.onQuest = onQuest;
+    theLayer.owner.onWorldStage = onWorldStage;
     var node = cc.BuilderReader.load("sceneMap.ccbi", theLayer.owner);
     theLayer.addChild(node);
 
@@ -107,6 +115,8 @@ function onEnter()
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     initStage();
+
+    loadModule("effect.js").attachEffectCCBI(theLayer.owner.nodeLight, cc.p(0,0), "effect-jjclight.ccbi", 1);
 
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
@@ -334,11 +344,6 @@ function onChallenge(){
     engine.session.set("stage", theStageClass);
 }
 
-function onWorldTask(){
-
-}
-
-//gonna modify here for World Task stage scene
 function showStages(chId)
 {
     var stage = engine.ui.newLayer();
@@ -387,7 +392,8 @@ function showStages(chId)
         theLayer.stage.owner.btnStage4,
         theLayer.stage.owner.btnStage5,
         theLayer.stage.owner.btnStage6,
-        theLayer.stage.owner.btnStage7
+        theLayer.stage.owner.btnStage7,
+        theLayer.stage.owner.btnMode
     ];
     SweepGroup = [
         theLayer.stage.owner.nodeSweepFrame,
@@ -499,9 +505,9 @@ function selectStage(sId)
         // display loot
         var lootNode = cc.Node.create();
         var offset = 0;
-        for(var k in loot){
+        for(var k_loot in loot){
             var icon = libItem.UIItem.create({
-                ClassId: loot[k]
+                ClassId: loot[k_loot]
             });
             icon.setPosition(cc.p(offset, 0));
             lootNode.addChild(icon);
@@ -519,25 +525,25 @@ function selectStage(sId)
 //    theLayer.stage.lootLayer.onTouchEnded = onLootTouchEnded;
 
     //check sweep
-    theLayer.stage.owner.nodeSweepMid.setVisible(false);
-    theLayer.stage.owner.btnSweep1.setVisible(false);
-    theLayer.stage.owner.btnSweep2.setVisible(false);
-    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
+    for( var k_SG0 in SweepGroup ) {
+        SweepGroup[k_SG0].setVisible(false);
+    }
     var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
     var stgFinished = (engine.user.stage.Chapters[theChapterClass.chapterId].Stages[sId].State >= 2);
     if( sweepPower != null && stgFinished) {
         var myPower = engine.user.actor.getPower();
-        theLayer.stage.owner.nodeSweepFrame.setVisible(true);
-        theLayer.stage.owner.nodeSweepMid.setVisible(true);
         theLayer.stage.owner.labPowerRequired.setString(sweepPower);
-        theLayer.stage.owner.btnSweep1.setVisible(true);
-        theLayer.stage.owner.btnSweep2.setVisible(true);
-
+        for( var k_SG1 in SweepGroup ) {
+            SweepGroup[k_SG1].setVisible(true);
+        }
         if( LastCantSweep ) {
-            for( var k1 in NormalGroup ) {
-                NormalGroup[k1].runAction(cc.MoveBy.create(0.1, cc.p(0, 67)));
+            for( var k_NG1 in NormalGroup ) {
+                NormalGroup[k_NG1].runAction(cc.MoveBy.create(0.1, cc.p(0, 67)));
+            }
+            for( var k_SG2 in SweepGroup ) {
+                SweepGroup[k_SG2].runAction(cc.FadeIn.create(0.1));
             }
             LastCantSweep = false;
         }
@@ -554,8 +560,11 @@ function selectStage(sId)
     }
     else{
         if( !LastCantSweep ) {
-            for( var k2 in NormalGroup ) {
-                NormalGroup[k2].runAction(cc.MoveBy.create(0.1, cc.p(0, -67)));
+            for( var k_NG2 in NormalGroup ) {
+                NormalGroup[k_NG2].runAction(cc.MoveBy.create(0.1, cc.p(0, -67)));
+            }
+            for( var k_SG2 in SweepGroup ) {
+                SweepGroup[k_SG2].runAction(cc.FadeOut.create(0.1));
             }
             LastCantSweep = true;
         }
@@ -757,6 +766,96 @@ function onClosePrizeList() {
     selectStage(onStgTag);
 
 }
+
+//-------------------------------------
+
+function onWorldStage(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var scale1 = cc.ScaleTo.create(0.1, 1.4);
+    var scale2 = cc.ScaleTo.create(0.1, 1);
+    var call = cc.CallFunc.create(showWorldStage);
+    var sequence = cc.Sequence.create(scale1, scale2, call);
+    sender.runAction(sequence);
+}
+
+function showWorldStage() {
+    var wStage = engine.ui.newLayer();
+    var mask = blackMask();
+    wStage.addChild(mask);
+    theLayer.wStageLayer = wStage;
+    theLayer.wStage = {};
+    theLayer.wStage.owner = {};
+
+    theLayer.wStage.node = cc.BuilderReader.load("ui-sjfb.ccbi", theLayer.wStage.owner);
+    theLayer.wStage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    wStage.addChild(theLayer.wStage.node);
+    engine.ui.regMenu(theLayer.wStage.owner.menu);
+    theLayer.wStage.node.animationManager.runAnimationsForSequenceNamed("open");
+    getWorldStageInfo();
+}
+
+function getWorldStageInfo() {
+//    libUIKit.waitRPC(Request_WorldStageInfo, {}, function (rsp) {
+//        if( rsp.RET == RET_OK ){
+//            if( rsp.arg != null ) {
+//                WorldStageInfo = rsp.arg;
+//                loadWorldStageInfo();
+//            }
+//        }
+//    }, theLayer.wStage);
+
+    //test Code
+    WorldStageInfo = {
+        prg: {
+            cpl: 100,
+            ttl: 1000
+        },
+        me: {
+            cnt: 26,
+            rnk: 30
+        },
+        lst: []
+    }
+    loadWorldStageInfo();
+}
+
+function loadWorldStageInfo() {
+    if( WorldStageInfo != null ){
+        if( WorldStageInfo.me != null ) {
+            theLayer.wStage.owner.labCount.setString(WorldStageInfo.me.cnt);
+            theLayer.wStage.owner.labRank.setString(WorldStageInfo.me.rnk);
+        }
+        if( WorldStageInfo.prg != null ){
+            theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
+        }
+        var stageClass = queryStage(WORLD_STAGE_ID);
+        if( stageClass != null ){
+            theLayer.wStage.owner.labTeam.setString("人数限制："+stageClass.team+"人");
+            theLayer.wStage.owner.labEnergy.setString("消耗精力："+stageClass.cost+"点");
+        }
+        theLayer.wStage.owner.labReset.setString("重置时间：每周"+WORLD_STAGE_RESET_TIME.day+" "+WORLD_STAGE_RESET_TIME.time);
+
+        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, function () {
+            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+            startStage(WORLD_STAGE_ID, stageClass.team, stageClass.cost);
+        }, BUTTONTYPE_DEFAULT);
+        btnOK.setPosition(theLayer.wStage.owner.nodeButton2.getPosition());
+        theLayer.wStage.owner.menu.addChild(btnOK);
+        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, function () {
+            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+            theLayer.wStage.node.animationManager.setCompletedAnimationCallback(theLayer.wStage, function(){
+                engine.ui.popLayer();
+                theLayer.wStage.node.removeFromParent(true);
+                delete theLayer.wStage;
+            });
+            theLayer.wStage.node.animationManager.runAnimationsForSequenceNamed("close");
+        });
+        btnCancel.setPosition(theLayer.wStage.owner.nodeButton1.getPosition());
+        theLayer.wStage.owner.menu.addChild(btnCancel);
+    }
+}
+
+//-------------------------------------
 
 function updateScrollView(delta) {
     lerpA += 1/30;

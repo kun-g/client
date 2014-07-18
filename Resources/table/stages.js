@@ -2193,7 +2193,7 @@ var data = [
                     return true;
                   }
                   return false; 
-                },
+                }
             }
         ]
     }
