@@ -26,7 +26,8 @@ var RoleScheme = {
     ifn: "IsFriend",//好友标记
     vip: "vip",
     scr: "Score",
-    rnk: "Rank"
+    rnk: "Rank",
+    cnt: "Count"
 };
 
 function Role(source)
@@ -269,6 +270,10 @@ Role.prototype.fix = function()
         if( this.Rank == null )
         {
             this.Rank = 0;
+        }
+        if( this.Count == null )
+        {
+            this.Count = 0;
         }
     }
 

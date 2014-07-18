@@ -785,8 +785,16 @@ function showWorldStage() {
     theLayer.wStageLayer = wStage;
     theLayer.wStage = {};
     theLayer.wStage.owner = {};
-
-    theLayer.wStage.node = cc.BuilderReader.load("ui-sjfb.ccbi", theLayer.wStage.owner);
+    theLayer.wStage.node = libUIC.loadUI(theLayer.wStage, "ui-sjfb.ccbi", {
+        nodeProgress: {
+            ui: "UIProgress",
+            id: "progress",
+            length: 470,
+            begin: "index-jy1.png",
+            middle: "index-jy2.png",
+            end: "index-jy3.png"
+        }
+    });
     theLayer.wStage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     wStage.addChild(theLayer.wStage.node);
     engine.ui.regMenu(theLayer.wStage.owner.menu);
@@ -815,7 +823,7 @@ function getWorldStageInfo() {
             rnk: 30
         },
         lst: []
-    }
+    };
     loadWorldStageInfo();
 }
 
@@ -827,6 +835,7 @@ function loadWorldStageInfo() {
         }
         if( WorldStageInfo.prg != null ){
             theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
+            theLayer.wStage.ui.progress.setProgress(WorldStageInfo.prg.cpl/WorldStageInfo.prg.ttl);
         }
         var stageClass = queryStage(WORLD_STAGE_ID);
         if( stageClass != null ){
