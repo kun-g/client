@@ -38,8 +38,8 @@ set -e
 
 # paths
 
-COCOS2DX_ROOT="/Users/tringame/github/client/cocos2d-x-2.1.5"
-NDK_ROOT="/Users/tringame/Documents/adt-bundle-mac-x86_64-20140321/android-ndk-r9b"
+#COCOS2DX_ROOT="/Users/tringame/github/client/cocos2d-x-2.1.5"
+#NDK_ROOT="/Users/tringame/Documents/adt-bundle-mac-x86_64-20140321/android-ndk-r9d"
 
 if [ -z "${NDK_ROOT+aaa}" ];then
 echo "please define NDK_ROOT"
