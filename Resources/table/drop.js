@@ -5630,7 +5630,7 @@ exports.data = [
                     "type": 5,
                     "func": "countUp",
                     "counter": 133//stageid
-                },
+                }
             ]
         },
         {
