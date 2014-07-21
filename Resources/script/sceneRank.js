@@ -12,12 +12,6 @@ var libRole = loadModule("role.js");
 
 var theMode;
 
-var RANK_BATTLEPOWER = 0;
-var RANK_ENDLESS = 1;
-var RANK_KILL = 2;
-var RANK_PVP = 3;
-var RANK_WORLD = 4;
-
 var MODE_EXIT = -1;
 var MODE_BATTLEPOWER = 0;
 var MODE_PVP = 1;
@@ -26,6 +20,7 @@ var MODE_ENDLESS = 3;
 var MODE_KILL = 4;
 
 var FirstLoad = 0;
+var isShowedOut = false;
 
 function getRankId(mode) {
     switch (mode){
@@ -62,6 +57,10 @@ var BAR_WIDTH = 580;
 var BAR_HEIGHT = 150;
 var BAR_OFFSET = 80;
 var FIRST_GAP = 25;
+
+var LOAD_INDEX;
+var LOAD_FLAG;
+var LOAD_SIZE;
 
 var nodeTopList = ["nodeZdlbg1","nodeZdlbg2","nodeZdlbg3","nodeZdlbg4"];
 var topNum = [3,10,20,30];
@@ -126,7 +125,7 @@ function createRoleBar(role, rank){
 }
 
 function fillPage(page){
-    if( theCache[theMode][page] == null ){
+    if( theCache[getRankId(theMode)][page] == null ){
         engine.event.sendRPCEvent(Request_QueryLeaderboard, {
             me: true,
             src: page*PAGE_SIZE,
@@ -136,7 +135,7 @@ function fillPage(page){
             if( rsp.RET == RET_OK ){
                 thePage = page;
                 theMe = rsp.me;
-                theCache[theMode][page] = rsp;//cache
+                theCache[getRankId(theMode)][page] = rsp;//cache
                 loadPage(rsp.lst);
                 engine.session.cacheRoleInfo(rsp.lst);//缓存
             }
@@ -171,11 +170,11 @@ function loadPage(list){
         theCurrentGroup.theListLayer.addChild(label);
     }
     else{
-        theLayer.LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT*theRankList.length+BAR_OFFSET);
-        theLayer.LOAD_INDEX = 0;
-        theLayer.LOAD_FLAG = true;
+        LOAD_SIZE = cc.size(BAR_WIDTH, BAR_HEIGHT*theRankList.length+BAR_OFFSET);
+        LOAD_INDEX = 0;
+        LOAD_FLAG = true;
 
-        var size = theLayer.LOAD_SIZE;
+        var size = LOAD_SIZE;
     }
 
     //reform the list
@@ -187,29 +186,29 @@ function loadPage(list){
 }
 
 function update(delta){
-    if( this.LOAD_FLAG === true ){
+    if( LOAD_FLAG === true ){
         var offY = theCurrentGroup.scroller.getContentOffset().y - theCurrentGroup.scroller.minContainerOffset().y;
-        var idxOff = BAR_HEIGHT * this.LOAD_INDEX;
+        var idxOff = BAR_HEIGHT * LOAD_INDEX;
         var isInFrame = idxOff >= offY && idxOff <= (offY+BAR_HEIGHT*6);
 //        debug("offY:"+offY+"  idxOff:"+idxOff+"  isInFrame:"+isInFrame);
-        if( this.LOAD_INDEX < theRankList.length ){
+        if( LOAD_INDEX < theRankList.length ){
             if(isInFrame){
-                var role = new libRole.Role(theRankList[this.LOAD_INDEX]);
+                var role = new libRole.Role(theRankList[LOAD_INDEX]);
                 role.fix();
-                var rank = thePage*PAGE_SIZE+1+this.LOAD_INDEX;
+                var rank = thePage*PAGE_SIZE+1+LOAD_INDEX;
                 var node = createRoleBar(role, rank);
-                node.setPosition(cc.p(0, this.LOAD_SIZE.height - this.LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT - FIRST_GAP));
-                node.KEY = Number(this.LOAD_INDEX);
+                node.setPosition(cc.p(0, LOAD_SIZE.height - LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT - FIRST_GAP));
+                node.KEY = Number(LOAD_INDEX);
                 theCurrentGroup.theListLayer.addChild(node);
                 theLIST.push(node);
                 var m = node.owner.menuRoot;
                 engine.ui.regMenu(m);
                 theMenus.push(m);
-                this.LOAD_INDEX++;
+                LOAD_INDEX++;
             }
         }
         else{
-            this.LOAD_FLAG = false;
+            LOAD_FLAG = false;
         }
     }
     var bars = theCurrentGroup.theListLayer.getChildren();
@@ -305,16 +304,21 @@ function onClose(sender){
 function onUIAnimationCompleted(name){
     isFlying = false;
     if( theMode == MODE_EXIT ){
-        var main = loadModule("sceneMain.js");
-        engine.ui.newScene(main.scene());
+        if (isShowedOut) {
+            engine.ui.popLayer();
+        }else{
+            var main = loadModule("sceneMain.js");
+            engine.ui.newScene(main.scene());
+        }
+
     }
 
     if( theMode > MODE_EXIT ){
         if( theTransitionGroup != null ){
             theCurrentGroup = theTransitionGroup;
             theTransitionGroup = null;
-            theLayer.LOAD_FLAG = true;
-            theLayer.LOAD_INDEX = 0;
+            LOAD_FLAG = true;
+            LOAD_INDEX = 0;
             fillPage(0);
             updatePageNumber(0);
         }
@@ -555,25 +559,26 @@ function onEnter()
     theCache[MODE_ENDLESS] = [];
     theCache[MODE_KILL] = [];
     theCache[MODE_PVP] = [];
+    theCache[MODE_WORLD] = [];
     theLayer = this;
     isFlying = false;
     isScheduling = false;
     theSelect = null;
     theCurrentGroup = null;
 
-    this.owner = {};
-    this.owner.onPower = onPower;
-    this.owner.onEndless = onEndless;
-    this.owner.onKill = onKill;
-    this.owner.onClose = onClose;
-    this.owner.onMyPage = onMyPage;
-    this.owner.onFirstPage = onFirstPage;
-    this.owner.onPreviousPage = onPreviousPage;
-    this.owner.onNextPage = onNextPage;
-    this.owner.onLastPage = onLastPage;
-    this.owner.onPVP = onPVP;
-    this.owner.onWorld = onWorld;
-    var node = libUIC.loadUI(this, "sceneRanking.ccbi", {
+    theLayer.owner = {};
+    theLayer.owner.onPower = onPower;
+    theLayer.owner.onEndless = onEndless;
+    theLayer.owner.onKill = onKill;
+    theLayer.owner.onClose = onClose;
+    theLayer.owner.onMyPage = onMyPage;
+    theLayer.owner.onFirstPage = onFirstPage;
+    theLayer.owner.onPreviousPage = onPreviousPage;
+    theLayer.owner.onNextPage = onNextPage;
+    theLayer.owner.onLastPage = onLastPage;
+    theLayer.owner.onPVP = onPVP;
+    theLayer.owner.onWorld = onWorld;
+    var node = libUIC.loadUI(theLayer, "sceneRanking.ccbi", {
         nodeContent:{
             ui: "UIScrollView",
             id: "scroller",
@@ -591,73 +596,73 @@ function onEnter()
         }
     });
     theLayer.node = node;
-    this.addChild(node);
+    theLayer.addChild(node);
     theMode = MODE_BATTLEPOWER;
-    this.update = update;
+    theLayer.update = update;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
 
     //set domains
     theLeft = {};
     {
-        theLeft.scroller = this.ui.scrollerL;
-        theLeft.labTitle = this.owner.labTitleL;
-        theLeft.labPage = this.owner.labelPageL;
-        theLeft.scrollTop = this.owner.scrollTopL;
-        theLeft.scrollBottom = this.owner.scrollBottomL;
+        theLeft.scroller = theLayer.ui.scrollerL;
+        theLeft.labTitle = theLayer.owner.labTitleL;
+        theLeft.labPage = theLayer.owner.labelPageL;
+        theLeft.scrollTop = theLayer.owner.scrollTopL;
+        theLeft.scrollBottom = theLayer.owner.scrollBottomL;
         theLeft.theListLayer = cc.Layer.create();
         theLeft.scroller.setContainer(theLeft.theListLayer);
-        theLeft.nodeContent = this.owner.nodeContentL;
+        theLeft.nodeContent = theLayer.owner.nodeContentL;
         var offL = theLeft.scroller.getContentOffset();
         offL.y = theLeft.scroller.minContainerOffset().y;
         theLeft.scroller.setContentOffset(offL);
     }
     theRight = {};
     {
-        theRight.scroller = this.ui.scrollerR;
-        theRight.labTitle = this.owner.labTitleR;
-        theRight.labPage = this.owner.labelPageR;
-        theRight.scrollTop = this.owner.scrollTopR;
-        theRight.scrollBottom = this.owner.scrollBottomR;
+        theRight.scroller = theLayer.ui.scrollerR;
+        theRight.labTitle = theLayer.owner.labTitleR;
+        theRight.labPage = theLayer.owner.labelPageR;
+        theRight.scrollTop = theLayer.owner.scrollTopR;
+        theRight.scrollBottom = theLayer.owner.scrollBottomR;
         theRight.theListLayer = cc.Layer.create();
         theRight.scroller.setContainer(theRight.theListLayer);
-        theRight.nodeContent = this.owner.nodeContentR;
+        theRight.nodeContent = theLayer.owner.nodeContentR;
         var offR = theRight.scroller.getContentOffset();
         offR.y = theRight.scroller.minContainerOffset().y;
         theRight.scroller.setContentOffset(offR);
     }
     theCenter = {};
     {
-        theCenter.scroller = this.ui.scroller;
-        theCenter.labTitle = this.owner.labTitle;
-        theCenter.labPage = this.owner.labelPage;
-        theCenter.scrollTop = this.owner.scrollTop;
-        theCenter.scrollBottom = this.owner.scrollBottom;
+        theCenter.scroller = theLayer.ui.scroller;
+        theCenter.labTitle = theLayer.owner.labTitle;
+        theCenter.labPage = theLayer.owner.labelPage;
+        theCenter.scrollTop = theLayer.owner.scrollTop;
+        theCenter.scrollBottom = theLayer.owner.scrollBottom;
         theCenter.theListLayer = cc.Layer.create();
         theCenter.scroller.setContainer(theCenter.theListLayer);
-        theCenter.nodeContent = this.owner.nodeContent;
+        theCenter.nodeContent = theLayer.owner.nodeContent;
         var off = theCenter.scroller.getContentOffset();
         off.y = theCenter.scroller.minContainerOffset().y;
         theCenter.scroller.setContentOffset(off);
     }
-    engine.ui.regMenu(this.owner.menuRoot);
-    engine.ui.regMenu(this.owner.menuRoot1);
-    engine.ui.regMenu(this.owner.menuRoot2);
-    engine.ui.regMenu(this.owner.menuRoot3);
+    engine.ui.regMenu(theLayer.owner.menuRoot);
+    engine.ui.regMenu(theLayer.owner.menuRoot1);
+    engine.ui.regMenu(theLayer.owner.menuRoot2);
+    engine.ui.regMenu(theLayer.owner.menuRoot3);
 
     if( engine.session.dataBounty[3] != null
         && engine.session.dataBounty[3].sta == 1 ){
-        this.owner.btnEndless.setVisible(true);
-        this.owner.btnKill.setVisible(false);
+        theLayer.owner.btnEndless.setVisible(true);
+        theLayer.owner.btnKill.setVisible(false);
     }else if( engine.session.dataBounty[4] != null
         && engine.session.dataBounty[4].sta == 1){
-        this.owner.btnEndless.setVisible(false);
-        this.owner.btnKill.setVisible(true);
+        theLayer.owner.btnEndless.setVisible(false);
+        theLayer.owner.btnKill.setVisible(true);
     }else{
-        this.owner.btnEndless.setVisible(false);
-        this.owner.btnKill.setVisible(false);
+        theLayer.owner.btnEndless.setVisible(false);
+        theLayer.owner.btnKill.setVisible(false);
     }
-//    this.owner.btnPVP.setVisible(false);
+//    theLayer.owner.btnPVP.setVisible(false);
     switch (FirstLoad){
         case RANK_BATTLEPOWER: onPower();break;
         case RANK_ENDLESS: onEndless();break;
@@ -669,7 +674,7 @@ function onEnter()
     fillPage(0);
     updatePageNumber(0);
     //register broadcast
-    loadModule("broadcastx.js").instance.simpleInit(this);
+    loadModule("broadcastx.js").instance.simpleInit(theLayer);
 }
 
 function onActivate(){
@@ -685,6 +690,7 @@ function onExit()
 
 function scene()
 {
+    isShowedOut = false;
     return {
         onEnter: onEnter,
         onExit: onExit,
@@ -695,9 +701,11 @@ function scene()
 exports.scene = scene;
 
 function show(rankId){
+    isShowedOut = true;
     FirstLoad = rankId;
     engine.ui.newLayer({
         onEnter: onEnter,
+        onExit: onExit,
         onActivate: onActivate
     });
 }

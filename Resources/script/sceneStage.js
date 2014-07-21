@@ -773,7 +773,7 @@ function onWorldStage(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var scale1 = cc.ScaleTo.create(0.1, 1.4);
     var scale2 = cc.ScaleTo.create(0.1, 1);
-    var call = cc.CallFunc.create(showWorldStage);
+    var call = cc.CallFunc.create(getWorldStageInfo());
     var sequence = cc.Sequence.create(scale1, scale2, call);
     sender.runAction(sequence);
 }
@@ -799,8 +799,9 @@ function showWorldStage() {
     theLayer.wStage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     wStage.addChild(theLayer.wStage.node);
     engine.ui.regMenu(theLayer.wStage.owner.menu);
+    theLayer.wStage.ui.progress.setProgress(0);
     theLayer.wStage.node.animationManager.runAnimationsForSequenceNamed("open");
-    getWorldStageInfo();
+    loadWorldStageInfo();
 }
 
 function getWorldStageInfo() {
@@ -808,25 +809,10 @@ function getWorldStageInfo() {
         if( rsp.RET == RET_OK ){
             if( rsp.arg != null ) {
                 WorldStageInfo = rsp.arg;
-                loadWorldStageInfo();
+                showWorldStage();
             }
         }
     }, theLayer.wStage);
-    return;
-
-    //test Code
-    WorldStageInfo = {
-        prg: {
-            cpl: 100,
-            ttl: 1000
-        },
-        me: {
-            cnt: 26,
-            rnk: 30
-        },
-        lst: []
-    };
-    loadWorldStageInfo();
 }
 
 function loadWorldStageInfo() {
@@ -835,7 +821,7 @@ function loadWorldStageInfo() {
             theLayer.wStage.owner.labCount.setString(WorldStageInfo.me.cnt);
             theLayer.wStage.owner.labRank.setString( (WorldStageInfo.me.rnk+1) );
         }
-        if( WorldStageInfo.prg != null ){
+        if( WorldStageInfo.prg != null && WorldStageInfo.prg.ttl > 0){
             theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
             theLayer.wStage.ui.progress.setProgress(WorldStageInfo.prg.cpl/WorldStageInfo.prg.ttl);
         }
@@ -868,7 +854,7 @@ function loadWorldStageInfo() {
 
 function onWorldStageRank() {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
-    loadModule("questInfo.js").show();
+    loadModule("sceneRank.js").show(RANK_WORLD);
 }
 //-------------------------------------
 

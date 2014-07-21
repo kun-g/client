@@ -331,6 +331,13 @@ var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;
 var openScened = false;
 
+/*** Rank List Id ***/
+var RANK_BATTLEPOWER = 0;
+var RANK_ENDLESS = 1;
+var RANK_KILL = 2;
+var RANK_PVP = 3;
+var RANK_WORLD = 4;
+
 /*** Easy Functions ***/
 function calcPosInGrid(grid)
 {
