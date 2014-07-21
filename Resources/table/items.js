@@ -27938,9 +27938,9 @@ exports.data = [
     {
         "classId": 878,
         "label": "圣光之翼",
-        "icon": "item-vipbox8.png",
+        "icon": "item-wing.png",
         "category": 1,
-        "subcategory": 16,
+        "subcategory": 15,
         "basic_properties": {
             "accuracy": 50
         },

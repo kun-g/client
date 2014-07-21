@@ -16,12 +16,27 @@ var RANK_BATTLEPOWER = 0;
 var RANK_ENDLESS = 1;
 var RANK_KILL = 2;
 var RANK_PVP = 3;
+var RANK_WORLD = 4;
 
-var MODE_BATTLEPOWER = RANK_BATTLEPOWER;
-var MODE_ENDLESS = RANK_ENDLESS;
-var MODE_KILL = RANK_KILL;
-var MODE_PVP = RANK_PVP;
-var MODE_EXIT = 4;
+var MODE_EXIT = -1;
+var MODE_BATTLEPOWER = 0;
+var MODE_PVP = 1;
+var MODE_WORLD = 2;
+var MODE_ENDLESS = 3;
+var MODE_KILL = 4;
+
+var FirstLoad = 0;
+
+function getRankId(mode) {
+    switch (mode){
+        case MODE_BATTLEPOWER: return RANK_BATTLEPOWER;
+        case MODE_PVP: return RANK_PVP;
+        case MODE_WORLD: return RANK_WORLD;
+        case MODE_ENDLESS: return RANK_ENDLESS;
+        case MODE_KILL: return RANK_KILL;
+        default : return null;
+    }
+}
 
 var theLIST = [];
 var theRankList;
@@ -78,8 +93,8 @@ function createRoleBar(role, rank){
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
     for(var i=0; i<4; i++){
-        layer.owner["spType"+i].setVisible(theMode == i);
-        layer.owner["spPattern"+i].setVisible(theMode == i);
+        layer.owner["spType"+i].setVisible(getRankId(theMode) == i);
+        layer.owner["spPattern"+i].setVisible(getRankId(theMode) == i);
     }
     if( theMode == MODE_PVP ){
         layer.owner.labPower.setString(role.getPower());
@@ -116,7 +131,7 @@ function fillPage(page){
             me: true,
             src: page*PAGE_SIZE,
             cnt: PAGE_SIZE,
-            typ: theMode
+            typ: getRankId(theMode)
         }, function(rsp){
             if( rsp.RET == RET_OK ){
                 thePage = page;
@@ -294,7 +309,7 @@ function onUIAnimationCompleted(name){
         engine.ui.newScene(main.scene());
     }
 
-    if( theMode < MODE_EXIT ){
+    if( theMode > MODE_EXIT ){
         if( theTransitionGroup != null ){
             theCurrentGroup = theTransitionGroup;
             theTransitionGroup = null;
@@ -434,6 +449,37 @@ function onPVP() {
     setModeTag(theMode);
 }
 
+function onWorld() {
+    if( isFlying ) return;
+    if(theCurrentGroup != null && theCurrentGroup.theListLayer != null) {
+        theCurrentGroup.theListLayer.removeAllChildren();
+    }
+    if( theMode < MODE_WORLD ){
+        //to right
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("right");
+        theTransitionGroup = theRight;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else if( theMode > MODE_WORLD ){
+        //to left
+        theLayer.node.animationManager.runAnimationsForSequenceNamed("left");
+        theTransitionGroup = theLeft;
+        theLayer.unscheduleUpdate();
+        isScheduling = false;
+        isFlying = true;
+    }
+    else{
+        //just load
+        theTransitionGroup = null;
+        theCurrentGroup = theCenter;
+        isFlying = false;
+    }
+    theMode = MODE_WORLD;
+    setModeTag(theMode);
+}
+
 function setModeTag(mode){
     var sfc = cc.SpriteFrameCache.getInstance();
     if( mode == MODE_BATTLEPOWER ){
@@ -488,6 +534,19 @@ function setModeTag(mode){
         theLayer.owner.btnPVP.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnjjc1.png"));
         theLayer.owner.btnPVP.setEnabled(true);
     }
+    if( mode == MODE_WORLD ){
+        theLayer.owner.btnWorld.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsjfb1.png"));
+        theLayer.owner.btnWorld.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsjfb2.png"));
+        theLayer.owner.labTitle.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesjfb.png"));
+        theLayer.owner.labTitleL.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesjfb.png"));
+        theLayer.owner.labTitleR.setDisplayFrame(sfc.getSpriteFrame("ranking-titlesjfb.png"));
+        theLayer.owner.btnWorld.setEnabled(false);
+    }
+    else{
+        theLayer.owner.btnWorld.setNormalSpriteFrame(sfc.getSpriteFrame("ranking-btnsjfb2.png"));
+        theLayer.owner.btnWorld.setSelectedSpriteFrame(sfc.getSpriteFrame("ranking-btnsjfb1.png"));
+        theLayer.owner.btnWorld.setEnabled(true);
+    }
 }
 
 function onEnter()
@@ -513,6 +572,7 @@ function onEnter()
     this.owner.onNextPage = onNextPage;
     this.owner.onLastPage = onLastPage;
     this.owner.onPVP = onPVP;
+    this.owner.onWorld = onWorld;
     var node = libUIC.loadUI(this, "sceneRanking.ccbi", {
         nodeContent:{
             ui: "UIScrollView",
@@ -585,8 +645,27 @@ function onEnter()
     engine.ui.regMenu(this.owner.menuRoot2);
     engine.ui.regMenu(this.owner.menuRoot3);
 
+    if( engine.session.dataBounty[3] != null
+        && engine.session.dataBounty[3].sta == 1 ){
+        this.owner.btnEndless.setVisible(true);
+        this.owner.btnKill.setVisible(false);
+    }else if( engine.session.dataBounty[4] != null
+        && engine.session.dataBounty[4].sta == 1){
+        this.owner.btnEndless.setVisible(false);
+        this.owner.btnKill.setVisible(true);
+    }else{
+        this.owner.btnEndless.setVisible(false);
+        this.owner.btnKill.setVisible(false);
+    }
 //    this.owner.btnPVP.setVisible(false);
-    onPower();
+    switch (FirstLoad){
+        case RANK_BATTLEPOWER: onPower();break;
+        case RANK_ENDLESS: onEndless();break;
+        case RANK_KILL: onKill();break;
+        case RANK_PVP: onPVP();break;
+        case RANK_WORLD: onWorld();break;
+        default : onPower();break;
+    }
     fillPage(0);
     updatePageNumber(0);
     //register broadcast
@@ -614,3 +693,13 @@ function scene()
 }
 
 exports.scene = scene;
+
+function show(rankId){
+    FirstLoad = rankId;
+    engine.ui.newLayer({
+        onEnter: onEnter,
+        onActivate: onActivate
+    });
+}
+
+exports.show = show;

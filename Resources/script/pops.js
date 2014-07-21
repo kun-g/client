@@ -142,7 +142,7 @@ function popLevelUp(){
     layer.owner.labLevel.setString("LV."+level);
     level = level - 1;
     //set skill
-    var role = engine.user.actor;
+    var role = engine.user.actor;//todo?
     for (var x = 1;x <= 4;x++){
         if (role.querySkill(x - 1) == null){
             layer.ui["skill"+x].setGray(true);

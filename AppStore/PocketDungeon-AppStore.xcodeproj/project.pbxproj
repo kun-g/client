@@ -3475,7 +3475,7 @@
 					"\"$(PROJECT_DIR)/../libs/GA/include\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PocketDungeon/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/../libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -3534,7 +3534,7 @@
 					"\"$(PROJECT_DIR)/../libs/GA/include\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PocketDungeon/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/../libs/cocos2dx/platform/third_party/ios/libraries\"",

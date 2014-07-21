@@ -48,7 +48,7 @@ var WorldStageInfo = {};
 var WORLD_STAGE_ID = 133;
 var WORLD_STAGE_RESET_TIME = {
     day: "二", //Tuesday
-    time: "18:00"
+    time: "1:00"
 };
 
 function onEvent(event)
@@ -785,6 +785,7 @@ function showWorldStage() {
     theLayer.wStageLayer = wStage;
     theLayer.wStage = {};
     theLayer.wStage.owner = {};
+    theLayer.wStage.owner.onWorldStageRank = onWorldStageRank;
     theLayer.wStage.node = libUIC.loadUI(theLayer.wStage, "ui-sjfb.ccbi", {
         nodeProgress: {
             ui: "UIProgress",
@@ -803,14 +804,15 @@ function showWorldStage() {
 }
 
 function getWorldStageInfo() {
-//    libUIKit.waitRPC(Request_WorldStageInfo, {}, function (rsp) {
-//        if( rsp.RET == RET_OK ){
-//            if( rsp.arg != null ) {
-//                WorldStageInfo = rsp.arg;
-//                loadWorldStageInfo();
-//            }
-//        }
-//    }, theLayer.wStage);
+    libUIKit.waitRPC(Request_WorldStageInfo, {}, function (rsp) {
+        if( rsp.RET == RET_OK ){
+            if( rsp.arg != null ) {
+                WorldStageInfo = rsp.arg;
+                loadWorldStageInfo();
+            }
+        }
+    }, theLayer.wStage);
+    return;
 
     //test Code
     WorldStageInfo = {
@@ -831,7 +833,7 @@ function loadWorldStageInfo() {
     if( WorldStageInfo != null ){
         if( WorldStageInfo.me != null ) {
             theLayer.wStage.owner.labCount.setString(WorldStageInfo.me.cnt);
-            theLayer.wStage.owner.labRank.setString(WorldStageInfo.me.rnk);
+            theLayer.wStage.owner.labRank.setString( (WorldStageInfo.me.rnk+1) );
         }
         if( WorldStageInfo.prg != null ){
             theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
@@ -864,6 +866,10 @@ function loadWorldStageInfo() {
     }
 }
 
+function onWorldStageRank() {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    loadModule("questInfo.js").show();
+}
 //-------------------------------------
 
 function updateScrollView(delta) {

@@ -150,6 +150,23 @@ JSBool jsbGameCenterRetrivePlayerDisplayName(JSContext* cx, unsigned argc, JS::V
     return JS_TRUE;
 }
 
+JSBool jsbGameCenterReportScore(JSContext* cx, unsigned argc, JS::Value* vp){
+    if( argc != 2 )
+    {
+        CCLog("gamecenter.reportScore(score, identifier): wrong argument.");
+        return JS_FALSE;
+    }
+    jsval* argv = JS_ARGV(cx, vp);
+    int64_t score;
+    JS_ValueToInt64(cx, argv[0], &score);
+    JSString *arg1 = JS_ValueToString(cx, argv[1]);
+    JSStringWrapper strId(arg1);
+    string identifier = strId;
+    GameCenter::getInstance()->reportScore(score, identifier);
+    
+    return JS_TRUE;
+}
+
 void registerGameCenter(JSContext* cx, JSObject* global)
 {
     JSObject *gc = JS_NewObject(cx, NULL, NULL, NULL);
