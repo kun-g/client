@@ -91,7 +91,7 @@ function createRoleBar(role, rank){
     layer.owner.labName.setString(role.Name);
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
-    for(var i=0; i<4; i++){
+    for(var i=0; i<5; i++){
         layer.owner["spType"+i].setVisible(getRankId(theMode) == i);
         layer.owner["spPattern"+i].setVisible(getRankId(theMode) == i);
     }
@@ -664,11 +664,11 @@ function onEnter()
     }
 //    theLayer.owner.btnPVP.setVisible(false);
     switch (FirstLoad){
-        case RANK_BATTLEPOWER: onPower();break;
-        case RANK_ENDLESS: onEndless();break;
-        case RANK_KILL: onKill();break;
-        case RANK_PVP: onPVP();break;
-        case RANK_WORLD: onWorld();break;
+        case RANK_BATTLEPOWER: {theMode = MODE_BATTLEPOWER; onWorld();}break;
+        case RANK_ENDLESS: {theMode = MODE_ENDLESS; onEndless();} break;
+        case RANK_KILL: {theMode = MODE_KILL; onKill();}break;
+        case RANK_PVP: {theMode = MODE_PVP; onPVP();} break;
+        case RANK_WORLD: {theMode = MODE_WORLD; onWorld();} break;
         default : onPower();break;
     }
     fillPage(0);
