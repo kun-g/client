@@ -146,8 +146,8 @@ function fillPage(page){
     }
     else{
         thePage = page;
-        theMe = theCache[theMode][page].me;
-        loadPage(theCache[theMode][page].lst);
+        theMe = theCache[getRankId(theMode)][page].me;
+        loadPage(theCache[getRankId(theMode)][page].lst);
     }
 }
 
