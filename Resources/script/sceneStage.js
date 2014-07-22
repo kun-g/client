@@ -769,6 +769,8 @@ function onClosePrizeList() {
 
 //-------------------------------------
 
+var isWorldStageCompleted = false;
+
 function onWorldStage(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var scale1 = cc.ScaleTo.create(0.1, 1.4);
@@ -824,6 +826,7 @@ function loadWorldStageInfo() {
         if( WorldStageInfo.prg != null && WorldStageInfo.prg.ttl > 0){
             theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
             theLayer.wStage.ui.progress.setProgress(WorldStageInfo.prg.cpl/WorldStageInfo.prg.ttl);
+            isWorldStageCompleted = ( WorldStageInfo.prg.cpl >= WorldStageInfo.prg.ttl );
         }
         var stageClass = queryStage(WORLD_STAGE_ID);
         if( stageClass != null ){
@@ -849,6 +852,12 @@ function loadWorldStageInfo() {
         });
         btnCancel.setPosition(theLayer.wStage.owner.nodeButton1.getPosition());
         theLayer.wStage.owner.menu.addChild(btnCancel);
+
+        if( isWorldStageCompleted ){
+            btnOK.removeFromParent(true);
+            btnCancel.setPosition(cc.p(winSize.width/2, theLayer.wStage.owner.nodeButton1.getPosition().y));
+        }
+
     }
 }
 
