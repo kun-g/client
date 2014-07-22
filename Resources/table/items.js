@@ -27975,6 +27975,7 @@ exports.data = [
                 "file": "wing1.ccbi"
             }
         ],
-        "storeOnly": true
+        "storeOnly": true,
+        "expiration": {day: 7}
     }
 ]
