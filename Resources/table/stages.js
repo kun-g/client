@@ -44,113 +44,139 @@ var data = [
         "label":"多姆洞穴",
 		"desc":"似乎是天然形成的洞穴，出没着一些危险的\n野生怪物，让不少旅人有去无回。",
 		"icon":"mapicon2.png",
+            "stage":[
+                {
+                    "sweepPower":200,
+                    "stageId": 96,
+                    "cost": 15,
+                    "team": 1,
+                    "hidden":false,
+                    "dungeon": 92,
+                    "tutorial":2,
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.104.state"}, 2 ] }
+                    ]
+                    }
 
-		"stage":[
-            {
-				"stageId": 1,
-				"cost": 15,
-				"team": 3,
-				"hidden":false,
-				"dungeon": 1,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.0.state"}, 2 ] }
-                ]
+                },
+                {
+                    "stageId": 97,
+                    "sweepPower":200,
+                    "cost": 15,
+                    "team": 1,
+                    "hidden":false,
+                    "dungeon": 93,
+                    "teammate": [
+                        {
+                            "class" : 164,
+                            "name" : "阿雅",
+                            "gender" : 0,
+                            "hairColor" : 15,
+                            "xp" : 0
+                        }],
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.105.state"}, 2 ] }
+                    ]
+                    }
+
+                },
+                {
+                    "stageId": 98,
+                    "sweepPower":200,
+                    "cost": 15,
+                    "team": 1,
+                    "hidden":false,
+                    "dungeon": 94,
+                    "tutorial":4,
+                    "teammate": [
+                        {
+                            "class" : 164,
+                            "name" : "阿雅",
+                            "gender" : 0,
+                            "hairColor" : 15,
+                            "xp" : 0
+                        }],
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.97.state"}, 2 ] }
+                    ]
+                    }
+
+                },
+                {
+                    "stageId": 99,
+                    "sweepPower":200,
+                    "cost": 15,
+                    "team": 2,
+                    "hidden":false,
+                    "dungeon":95,
+                    "tutorial":6,
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.106.state"}, 2 ] }
+                    ]
+                    }
+
+                },
+                {
+                    "stageId": 100,
+                    "sweepPower":200,
+                    "cost": 15,
+                    "team": 2,
+                    "hidden":false,
+                    "dungeon": 96,
+                    "tutorial":7,
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.99.state"}, 2 ] }
+                    ]
+                    }
+
+                },
+                {
+                    "stageId": 101,
+                    "sweepPower":200,
+                    "cost": 15,
+                    "team": 3,
+                    "hidden":false,
+                    "dungeon": 97,
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.107.state"}, 2 ] }
+                    ]
+                    }
+
+                },
+                {
+                    "stageId": 102,
+                    "sweepPower":200,
+                    "cost": 15,
+                    "team": 3,
+                    "hidden":false,
+                    "dungeon": 98,
+                    "tutorial":9,
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.101.state"}, 2 ] }
+                    ]
+                    }
+
+                },
+                {
+                    "stageId":103,
+                    "cost":10,
+                    "dungeon":64,
+                    "isInfinite":true,
+                    "cond":
+                    { "and": [
+                        { "==": [ { "type": "getProperty", "key": "stage.102.state"}, 2 ] }
+                    ]
+                    }
+
                 }
-
-            },
-            {
-                "stageId": 2,
-                "cost": 15,
-                "team": 3,
-                "hidden":false,
-                "dungeon": 2,
-                "tutorial":3,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.1.state"}, 2 ] }
-                ]
-                }
-
-            },
-            {
-                "stageId": 3,
-                "cost": 15,
-                "team": 3,
-                "hidden":false,
-                "dungeon": 3,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.2.state"}, 2 ] }
-                ]
-                }
-
-            },
-            {
-                "stageId": 4,
-                "cost": 15,
-                "team": 3,
-                "hidden":false,
-                "dungeon":4,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.3.state"}, 2 ] }
-                ]
-                }
-
-            },
-            {
-                "stageId": 5,
-                "cost": 15,
-                "team": 3,
-                "hidden":false,
-                "dungeon": 5,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.4.state"}, 2 ] }
-                ]
-                }
-
-            },
-            {
-                "stageId": 6,
-                "cost": 15,
-                "team": 3,
-                "hidden":false,
-                "dungeon": 6,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.5.state"}, 2 ] }
-                ]
-                }
-
-            },
-            {
-                "stageId": 7,
-                "cost": 15,
-                "team": 3,
-                "hidden":false,
-                "dungeon": 7,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.6.state"}, 2 ] }
-                ]
-                }
-
-            },
-            {
-                "stageId":78,
-                "cost":10,
-                "dungeon":64,
-                "isInfinite":true,
-                "cond":
-                { "and": [
-                    { "==": [ { "type": "getProperty", "key": "stage.7.state"}, 2 ] }
-                ]
-                }
-
-            }
-		]
+            ]
 	},
 {
 "chapterId": 1,
@@ -161,128 +187,139 @@ var data = [
 "desc":"似乎是天然形成的洞穴，出没着一些危险的\n野生怪物，让不少旅人有去无回。",
 "icon":"mapicon2.png",
 
-"stage":[
-{
-"stageId": 1,
-"cost": 15,
-"team": 1,
-"hidden":false,
-"dungeon": 84,
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.0.state"}, 2 ] }
-    ]
-    }
-
-},
-{
-"stageId": 2,
-"cost": 15,
-"team": 1,
-"hidden":false,
-"dungeon": 85,
-"tutorial":3,
-    "teammate": [
+    "stage":[
         {
-            "class" : 164,
-            "name" : "琳达",
-            "gender" : 0,
-            "hairColor" : 15,
-            "xp" : 0
-        }],
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.1.state"}, 2 ] }
-    ]
-    }
+            "sweepPower":200,
+            "stageId": 96,
+            "cost": 15,
+            "team": 1,
+            "hidden":false,
+            "dungeon": 92,
+            "tutorial":2,
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.104.state"}, 2 ] }
+            ]
+            }
 
-},
-{
-"stageId": 3,
-"cost": 15,
-"team": 1,
-"hidden":false,
-"dungeon": 86,
-    "teammate": [
+        },
         {
-            "class" : 164,
-            "name" : "琳达",
-            "gender" : 0,
-            "hairColor" : 15,
-            "xp" : 0
-        }],
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.2.state"}, 2 ] }
-    ]
-    }
+            "stageId": 97,
+            "sweepPower":200,
+            "cost": 15,
+            "team": 1,
+            "hidden":false,
+            "dungeon": 93,
+            "teammate": [
+                {
+                    "class" : 164,
+                    "name" : "阿雅",
+                    "gender" : 0,
+                    "hairColor" : 15,
+                    "xp" : 0
+                }],
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.105.state"}, 2 ] }
+            ]
+            }
 
-},
-{
-"stageId": 4,
-"cost": 15,
-"team": 2,
-"hidden":false,
-"dungeon":87,
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.3.state"}, 2 ] }
-    ]
-    }
+        },
+        {
+            "stageId": 98,
+            "sweepPower":200,
+            "cost": 15,
+            "team": 1,
+            "hidden":false,
+            "dungeon": 94,
+            "tutorial":4,
+            "teammate": [
+                {
+                    "class" : 164,
+                    "name" : "阿雅",
+                    "gender" : 0,
+                    "hairColor" : 15,
+                    "xp" : 0
+                }],
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.97.state"}, 2 ] }
+            ]
+            }
 
-},
-{
-"stageId": 5,
-"cost": 15,
-"team": 2,
-"hidden":false,
-"dungeon": 88,
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.4.state"}, 2 ] }
-    ]
-    }
+        },
+        {
+            "stageId": 99,
+            "sweepPower":200,
+            "cost": 15,
+            "team": 2,
+            "hidden":false,
+            "dungeon":95,
+            "tutorial":6,
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.106.state"}, 2 ] }
+            ]
+            }
 
-},
-{
-"stageId": 6,
-"cost": 15,
-"team": 3,
-"hidden":false,
-"dungeon": 89,
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.5.state"}, 2 ] }
-    ]
-    }
+        },
+        {
+            "stageId": 100,
+            "sweepPower":200,
+            "cost": 15,
+            "team": 2,
+            "hidden":false,
+            "dungeon": 96,
+            "tutorial":7,
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.99.state"}, 2 ] }
+            ]
+            }
 
-},
-{
-"stageId": 7,
-"cost": 15,
-"team": 3,
-"hidden":false,
-"dungeon": 90,
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.6.state"}, 2 ] }
-    ]
-    }
+        },
+        {
+            "stageId": 101,
+            "sweepPower":200,
+            "cost": 15,
+            "team": 3,
+            "hidden":false,
+            "dungeon": 97,
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.107.state"}, 2 ] }
+            ]
+            }
 
-},
-{
-"stageId":78,
-"cost":10,
-"dungeon":64,
-"isInfinite":true,
-    "cond":
-    { "and": [
-        { "==": [ { "type": "getProperty", "key": "stage.7.state"}, 2 ] }
-    ]
-    }
+        },
+        {
+            "stageId": 102,
+            "sweepPower":200,
+            "cost": 15,
+            "team": 3,
+            "hidden":false,
+            "dungeon": 98,
+            "tutorial":9,
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.101.state"}, 2 ] }
+            ]
+            }
 
-}
-]
+        },
+        {
+            "stageId":103,
+            "cost":10,
+            "dungeon":64,
+            "isInfinite":true,
+            "cond":
+            { "and": [
+                { "==": [ { "type": "getProperty", "key": "stage.102.state"}, 2 ] }
+            ]
+            }
+
+        }
+    ]
 }
 ]
 },
