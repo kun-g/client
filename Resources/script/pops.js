@@ -163,7 +163,7 @@ function popLevelUp(){
     var roleData = libTable.queryTable(TABLE_ROLE, role.ClassId);
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
     //var property = levelData.levelData[theOldLevel].property;
-    var property = levelData.levelData[theOldLevel].property;
+    var property = levelData.levelData[theOldLevel+1].property;
     if (property == null){
         property = {
             "health": 0,
@@ -175,7 +175,7 @@ function popLevelUp(){
             "speed": 0
         };
     }
-    for (var n = theOldLevel + 1;n <= level;n++){
+    for (var n = theOldLevel + 2; n <= level; n++){
         for (var m in proTableList){
             property[proTableList[m]] += levelData.levelData[n].property[proTableList[m]];
         }
