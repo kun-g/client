@@ -531,6 +531,7 @@ function selectStage(sId)
     var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
+    debug("stageId:" + theStageClass.stageId + "  sweepPower:"+sweepPower);
     var stgFinished = (engine.user.stage.Chapters[theChapterClass.chapterId].Stages[sId].State >= 2);
     if( sweepPower != null && stgFinished) {
         var myPower = engine.user.actor.getPower();
