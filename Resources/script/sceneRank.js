@@ -597,7 +597,7 @@ function onEnter()
     });
     theLayer.node = node;
     theLayer.addChild(node);
-    theMode = MODE_BATTLEPOWER;
+//    theMode = MODE_BATTLEPOWER;
     theLayer.update = update;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");

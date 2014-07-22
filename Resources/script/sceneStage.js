@@ -832,13 +832,13 @@ function loadWorldStageInfo() {
         }
         theLayer.wStage.owner.labReset.setString("重置时间：每周"+WORLD_STAGE_RESET_TIME.day+" "+WORLD_STAGE_RESET_TIME.time);
 
-        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, function () {
+        var btnOK = buttonNormalL("buttontext-jr.png", BUTTON_OFFSET, this, function () {
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
             startStage(WORLD_STAGE_ID, stageClass.team, stageClass.cost);
         }, BUTTONTYPE_DEFAULT);
         btnOK.setPosition(theLayer.wStage.owner.nodeButton2.getPosition());
         theLayer.wStage.owner.menu.addChild(btnOK);
-        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, function () {
+        var btnCancel = buttonNormalL("buttontext-back.png", BUTTON_OFFSET, this, function () {
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
             theLayer.wStage.node.animationManager.setCompletedAnimationCallback(theLayer.wStage, function(){
                 engine.ui.popLayer();
