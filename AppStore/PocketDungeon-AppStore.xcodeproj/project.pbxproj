@@ -3449,8 +3449,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
-					armv7s,
 					armv7,
+					armv7s,
 				);
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3498,7 +3498,9 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../libs/Chipmunk/include/chipmunk\" \"$(PROJECT_DIR)/../libs/javascript/spidermonkey-ios/include\"";
+				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3509,8 +3511,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
-					armv7s,
 					armv7,
+					armv7s,
 				);
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3557,6 +3559,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../libs/Chipmunk/include/chipmunk\" \"$(PROJECT_DIR)/../libs/javascript/spidermonkey-ios/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s";

@@ -16,7 +16,11 @@ using namespace cocos2d;
 using namespace std;
 
 static bool gNd91Inited = false;
+static bool gNdInited = false;
+static bool gNdInitCompleted = false;
 static int gNd91ViewOpened = 0;
+
+static Nd91Delegate* gNd91Delegate = nil;
 
 void initNd91()
 {
@@ -28,25 +32,28 @@ void initNd91()
     [[NdComPlatform defaultPlatform] NdSetScreenOrientation:UIDeviceOrientationPortrait];
     [[NdComPlatform defaultPlatform] NdSetAutoRotation:NO];
     [[NdComPlatform defaultPlatform] NdHideToolBar];
-    
+
     //[[NdComPlatform defaultPlatform] NdSetDebugMode:0];//set for debug use
 }
 
 void Nd91UAC::initUAC()
 {
+    [[Nd91Delegate sharedInstance] setUACDelegate:this->getUACDelegate()];
     if( !gNd91Inited )
     {
         initNd91();
         gNd91Inited = true;
     }
-    
-    NdInitConfigure* config = [[[NdInitConfigure alloc] init] autorelease];
-    config.appid = ND91_APPID;//APP ID
-    config.appKey = ND91_APPKEY;
-    config.versionCheckLevel = ND_VERSION_CHECK_LEVEL_STRICT;
-    [[NdComPlatform defaultPlatform] NdInit:config];
-    
-    [[Nd91Delegate sharedInstance] setUACDelegate:this->getUACDelegate()];
+    if ( !gNdInited ) {
+        NdInitConfigure* config = [[[NdInitConfigure alloc] init] autorelease];
+        config.appid = ND91_APPID;//APP ID
+        config.appKey = ND91_APPKEY;
+        config.versionCheckLevel = ND_VERSION_CHECK_LEVEL_STRICT;
+        [[NdComPlatform defaultPlatform] NdInit:config];
+        gNdInited = true;
+    }else{
+        [gNd91Delegate onNd91InitComplete:nil];
+    }
 }
 
 void Nd91UAC::presentLoginView()
@@ -150,8 +157,6 @@ void Nd91UAC::getStoreName(std::string &name)
     name = "Nd91";
 }
 
-static Nd91Delegate* gNd91Delegate = nil;
-
 @implementation Nd91Delegate
 
 - (id)init{
@@ -171,8 +176,9 @@ static Nd91Delegate* gNd91Delegate = nil;
 }
 
 - (void)onNd91InitComplete:(NSNotification*)notify{
-    NSLog(@"Nd91InitComplete");
+    NSLog(@"Nd91InitComplete UACD = %p", mpUACD);
     mpUACD->onUACReady();
+    gNdInitCompleted = true;
 }
 
 - (void)onNd91LoginResult:(NSNotification *)notify{

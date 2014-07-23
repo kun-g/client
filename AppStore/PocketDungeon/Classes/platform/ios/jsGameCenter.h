@@ -21,6 +21,7 @@ JSBool jsbGameCenterRetriveFriendList(JSContext* cx, unsigned argc, JS::Value* v
 JSBool jsbGameCenterRetrivePlayerGCID(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbGameCenterRetriveAlias(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbGameCenterRetrivePlayerDisplayName(JSContext* cx, unsigned argc, JS::Value* vp);
+JSBool jsbGameCenterReportScore(JSContext* cx, unsigned argc, JS::Value* vp);
 
 void registerGameCenter(JSContext* cx, JSObject* global);
 

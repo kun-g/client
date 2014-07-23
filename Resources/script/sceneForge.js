@@ -55,6 +55,7 @@ var TouchId;
 var EnoughMtrls = false;
 var Delta = [];
 var TagArray = [[],[],[]]; //TagArray[0]:upgrade TagArray[1]:enhance TagArray[3]:forge
+var DropStages = [];
 
 var ITEM_POSITION = cc.p(45,45);
 
@@ -948,6 +949,7 @@ function loadForge(){
 
 function onAddMaterials(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    DropStages = [];
     var id = sender.getTag();
     var itemCid = theContent.ui["mtrl" + id].getItem().ClassId;
     var shopItem = engine.session.queryStore(itemCid);
@@ -964,6 +966,28 @@ function onAddMaterials(sender) {
             cc.AudioEngine.getInstance().playEffect("buy.mp3");
         }
     });
+}
+
+function getDropStage(cid) {
+    for( var i_s = 0; ; i_s++){
+        var stgClass = queryStage(i_s);
+        if( stgClass != null ) {
+            var dgnClass = libTable.queryTable(TABLE_DUNGEON, stgClass.dungeon);
+            for (var k_dropID in dgnClass.dropID) {
+                var drpClass = libTable.queryTable(TABLE_DROP, dgnClass.dropID[k_dropID]);
+                for (var k_drop in drpClass) {
+                    var drpPrizes = drpClass[k_drop].prize;
+                    for (var k_prz in drpPrizes) {
+                        if (drpPrizes[k_prz].type == 0 && drpPrizes[k_prz].value == cid) {
+                            DropStages.push(i_s);
+                        }
+                    }
+                }
+            }
+        } else {
+            return;
+        }
+    }
 }
 
 function onForgeEquip(sender){

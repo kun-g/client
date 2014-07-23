@@ -1106,9 +1106,23 @@ function onTouchCancelled(touch, event){
     onTouchEnded(touch, event);
 }
 
+//--- getItemIcon
+function getItemIcon(cid) {
+    if( cid < 0 ){
+        return ("wenhao.png");
+    }
+    var ItemClass = libTable.queryTable(TABLE_ITEM, cid);
+    if( ItemClass.icon != null ){
+        return ItemClass.icon;
+    }else{
+        return ("wenhao.png");
+    }
+}
+
 exports.Item = Item;
 exports.Inventory = Inventory;
 exports.UIItem = UIItem;
 exports.queryPrize = queryPrize;
 exports.ItemPreview = ItemPreview;
 exports.createPrizeItem = createPrizeItem;
+exports.getItemIcon = getItemIcon;

@@ -36,11 +36,20 @@ var PrizeIndex = 0;
 var SweepArgs = {};
 var isScheduling = false;
 var SWEEP_VIP_LEVEL = 3;
-
+var LastCantSweep = false;
+var NormalGroup = [];
+var SweepGroup = [];
 var BAR_WIDTH = 570;
 var BAR_HEIGHT = 180;
 var NumMultiRows;
 var LastMultiRows;
+
+var WorldStageInfo = {};
+var WORLD_STAGE_ID = 133;
+var WORLD_STAGE_RESET_TIME = {
+    day: "二", //Tuesday
+    time: "1:00"
+};
 
 function onEvent(event)
 {
@@ -91,6 +100,7 @@ function onEnter()
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
     theLayer.owner.onQuest = onQuest;
+    theLayer.owner.onWorldStage = onWorldStage;
     var node = cc.BuilderReader.load("sceneMap.ccbi", theLayer.owner);
     theLayer.addChild(node);
 
@@ -105,6 +115,8 @@ function onEnter()
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     initStage();
+
+    loadModule("effect.js").attachEffectCCBI(theLayer.owner.nodeLight, cc.p(0,0), "effect-jjclight.ccbi", 1);
 
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
@@ -333,116 +345,67 @@ function onChallenge(){
     engine.session.set("stage", theStageClass);
 }
 
-function onWorldTask(){
-
-}
-
-//gonna modify here for World Task stage scene
 function showStages(chId)
 {
     var stage = engine.ui.newLayer();
     var mask = blackMask();
     stage.addChild(mask); //weaken the map to highlight the choose-stage scene
+    theLayer.stageLayer = stage;
+    theLayer.stage = {};
+    theLayer.stage.owner = {};
+    theLayer.stage.owner.onStage = onSelectStage;
+    theLayer.stage.owner.onSweep = onSweep;
+    theLayer.stage.owner.onMode = onMode;
+    theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
+    theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    stage.addChild(theLayer.stage.node);
+    engine.ui.regMenu(theLayer.stage.owner.menu);
 
-    //judge the flag of World Task
-//    var worldTask = null;
-//    if (table.queryTable(TABLE_STAGE, chId) != null){
-//        worldTask = table.queryTable(TABLE_STAGE, chId).stageWorldTask;
-//    }
-    var worldTaskRequirement = 0;
-//    worldTaskRequirement = worldTask.requirement;
-    var worldTaskProgress = Infinity;
-//    if( worldTask.hasTask === true ) {
-//        libUIKit.waitRPC(Request_WorldTaskProgress, {}, function (rsp) {
-//            if (rsp.RET == RET_OK) {
-//                worldTaskProgress = rsp.prg;
-//            }
-//            else{
-//                libUIKit.showErrorMessage(rsp);
-//            }
-//        }, theLayer);
-//    }
-    if( worldTaskProgress < worldTaskRequirement )
-    {
-        //load World Task stage
-        theLayer.stageLayer = stage;
-        theLayer.stage = {};
-        theLayer.stage.owner = {};
-        theLayer.stage.node = ui.loadUI(theLayer.stage.owner, "ui-stageWorldTask.ccbi", {
-            nodeProgress: {
-                ui: "UIProgress",
-                id: "prg",
-                length: 475,
-                begin: "index-jy1.png",
-                middle: "index-jy2.png",
-                end: "index-jy3.png"
-            }
-        });
-        theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
-        stage.addChild(theLayer.stage.node);
-        engine.ui.regMenu(theLayer.stage.owner.menu);
+    //set values
+    theLayer.CHID = chId;
+    theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
+    var chClass = theLayer.CHCLASS;
+    theChapterClass = theLayer.CHCLASS;
+    var sfc = cc.SpriteFrameCache.getInstance();
 
-        //Progress Bar
-        theLayer.stage.owner.labProgess.setString("任务进度 "+worldTaskProgress+"/"+worldTaskRequirement);
-        theLayer.stage.ui.xp.setProgress(worldTaskProgress/worldTaskRequirement);
+    theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
+    theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
+    theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
+    theLayer.stage.owner.labelDesc.setString(chClass.desc);
+    theLayer.stage.owner.labelDesc2.setString(chClass.desc);
+    var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
+    btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
+    theLayer.stage.owner.menu.addChild(btnOK);
+    var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
+    btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
+    theLayer.stage.owner.menu.addChild(btnCancel);
+    var btnModePos = theLayer.stage.owner.btnMode.getPosition();
+    btnModePos.y -= 64;
+    theLayer.stage.owner.btnMode.setPosition(btnModePos);
+    theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
 
-        theLayer.CHID = chId;
-        theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
-        var chClass = theLayer.CHCLASS;
-        theChapterClass = theLayer.CHCLASS;
-        var sfc = cc.SpriteFrameCache.getInstance();
+    LastCantSweep = false;
+    NormalGroup = [
+        theLayer.stage.owner.nodeNormal,
+        theLayer.stage.owner.btnStage1,
+        theLayer.stage.owner.btnStage2,
+        theLayer.stage.owner.btnStage3,
+        theLayer.stage.owner.btnStage4,
+        theLayer.stage.owner.btnStage5,
+        theLayer.stage.owner.btnStage6,
+        theLayer.stage.owner.btnStage7,
+        theLayer.stage.owner.btnMode
+    ];
+    SweepGroup = [
+        theLayer.stage.owner.nodeSweepFrame,
+        theLayer.stage.owner.nodeSweepMid,
+        theLayer.stage.owner.btnSweep1,
+        theLayer.stage.owner.btnSweep2
+    ];
 
-
-        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK_WT, BUTTONTYPE_DEFAULT);
-        btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
-        theLayer.stage.owner.menu.addChild(btnOK);
-        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
-        btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
-        theLayer.stage.owner.menu.addChild(btnCancel);
-
-        onWorldTask();
-
-    }
-    else //load normal stages
-    {
-        theLayer.stageLayer = stage;
-        theLayer.stage = {};
-        theLayer.stage.owner = {};
-        theLayer.stage.owner.onStage = onSelectStage;
-        theLayer.stage.owner.onSweep = onSweep;
-        theLayer.stage.owner.onMode = onMode;
-        theLayer.stage.node = cc.BuilderReader.load("ui-stage.ccbi", theLayer.stage.owner);
-        theLayer.stage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
-        stage.addChild(theLayer.stage.node);
-        engine.ui.regMenu(theLayer.stage.owner.menu);
-
-        //set values
-        theLayer.CHID = chId;
-        theLayer.CHCLASS = table.queryTable(TABLE_STAGE, chId);
-        var chClass = theLayer.CHCLASS;
-        theChapterClass = theLayer.CHCLASS;
-        var sfc = cc.SpriteFrameCache.getInstance();
-
-        theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
-        theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
-        theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
-        theLayer.stage.owner.labelDesc.setString(chClass.desc);
-        theLayer.stage.owner.labelDesc2.setString(chClass.desc);
-        var btnOK = buttonNormalL("buttontext-confirm.png", BUTTON_OFFSET, this, onBtnOK, BUTTONTYPE_DEFAULT);
-        btnOK.setPosition(theLayer.stage.owner.nodeButton2.getPosition());
-        theLayer.stage.owner.menu.addChild(btnOK);
-        var btnCancel = buttonNormalL("buttontext-qx.png", BUTTON_OFFSET, this, onBtnCancel);
-        btnCancel.setPosition(theLayer.stage.owner.nodeButton1.getPosition());
-        theLayer.stage.owner.menu.addChild(btnCancel);
-        var btnModePos = theLayer.stage.owner.btnMode.getPosition();
-        btnModePos.y -= 64;
-        theLayer.stage.owner.btnMode.setPosition(btnModePos);
-        theLayer.stage.owner.nodeVip.addChild(cc.Sprite.create("vipicon"+SWEEP_VIP_LEVEL+".png"));
-
-        onNormal();
-        theLayer.stage.node.setScale(0);
-        theLayer.stage.node.runAction(actionPopIn());
-    }
+    onNormal();
+    theLayer.stage.node.setScale(0);
+    theLayer.stage.node.runAction(actionPopIn());
 }
 
 function hideStages()
@@ -543,9 +506,9 @@ function selectStage(sId)
         // display loot
         var lootNode = cc.Node.create();
         var offset = 0;
-        for(var k in loot){
+        for(var k_loot in loot){
             var icon = libItem.UIItem.create({
-                ClassId: loot[k]
+                ClassId: loot[k_loot]
             });
             icon.setPosition(cc.p(offset, 0));
             lootNode.addChild(icon);
@@ -563,10 +526,9 @@ function selectStage(sId)
 //    theLayer.stage.lootLayer.onTouchEnded = onLootTouchEnded;
 
     //check sweep
-    theLayer.stage.owner.nodeSweepMid.setVisible(false);
-    theLayer.stage.owner.btnSweep1.setVisible(false);
-    theLayer.stage.owner.btnSweep2.setVisible(false);
-    theLayer.stage.owner.nodeSweepFrame.setVisible(false);
+    for( var k_SG0 in SweepGroup ) {
+        SweepGroup[k_SG0].setVisible(false);
+    }
     var scrollQuantity = engine.user.inventory.countItem(SWEEP_SCROLL_CID);
     theLayer.stage.owner.labSweepScroll.setString(scrollQuantity);
     var sweepPower = theStageClass.sweepPower;
@@ -574,11 +536,20 @@ function selectStage(sId)
     var stgFinished = (engine.user.stage.Chapters[theChapterClass.chapterId].Stages[sId].State >= 2);
     if( sweepPower != null && stgFinished) {
         var myPower = engine.user.actor.getPower();
-        theLayer.stage.owner.nodeSweepFrame.setVisible(true);
-        theLayer.stage.owner.nodeSweepMid.setVisible(true);
         theLayer.stage.owner.labPowerRequired.setString(sweepPower);
-        theLayer.stage.owner.btnSweep1.setVisible(true);
-        theLayer.stage.owner.btnSweep2.setVisible(true);
+        for( var k_SG1 in SweepGroup ) {
+            SweepGroup[k_SG1].setVisible(true);
+        }
+        if( LastCantSweep ) {
+            for( var k_NG1 in NormalGroup ) {
+                NormalGroup[k_NG1].runAction(cc.MoveBy.create(0.1, cc.p(0, 67)));
+            }
+            for( var k_SG2 in SweepGroup ) {
+                SweepGroup[k_SG2].runAction(cc.FadeIn.create(0.1));
+            }
+            LastCantSweep = false;
+        }
+
         if (myPower >= sweepPower) {
             theLayer.stage.owner.btnSweep1.setEnabled(true);
             theLayer.stage.owner.btnSweep2.setEnabled(true);
@@ -587,6 +558,17 @@ function selectStage(sId)
             theLayer.stage.owner.btnSweep1.setEnabled(false);
             theLayer.stage.owner.btnSweep2.setEnabled(false);
             theLayer.stage.owner.labPowerRequired.setColor(COLOR_LABEL_RED);
+        }
+    }
+    else{
+        if( !LastCantSweep ) {
+            for( var k_NG2 in NormalGroup ) {
+                NormalGroup[k_NG2].runAction(cc.MoveBy.create(0.1, cc.p(0, -67)));
+            }
+            for( var k_SG2 in SweepGroup ) {
+                SweepGroup[k_SG2].runAction(cc.FadeOut.create(0.1));
+            }
+            LastCantSweep = true;
         }
     }
 }
@@ -787,6 +769,106 @@ function onClosePrizeList() {
     selectStage(onStgTag);
 
 }
+
+//-------------------------------------
+
+var isWorldStageCompleted = false;
+
+function onWorldStage(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var scale1 = cc.ScaleTo.create(0.1, 1.4);
+    var scale2 = cc.ScaleTo.create(0.1, 1);
+    var call = cc.CallFunc.create(getWorldStageInfo());
+    var sequence = cc.Sequence.create(scale1, scale2, call);
+    sender.runAction(sequence);
+}
+
+function showWorldStage() {
+    var wStage = engine.ui.newLayer();
+    var mask = blackMask();
+    wStage.addChild(mask);
+    theLayer.wStageLayer = wStage;
+    theLayer.wStage = {};
+    theLayer.wStage.owner = {};
+    theLayer.wStage.owner.onWorldStageRank = onWorldStageRank;
+    theLayer.wStage.node = libUIC.loadUI(theLayer.wStage, "ui-sjfb.ccbi", {
+        nodeProgress: {
+            ui: "UIProgress",
+            id: "progress",
+            length: 470,
+            begin: "index-jy1.png",
+            middle: "index-jy2.png",
+            end: "index-jy3.png"
+        }
+    });
+    theLayer.wStage.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
+    wStage.addChild(theLayer.wStage.node);
+    engine.ui.regMenu(theLayer.wStage.owner.menu);
+    theLayer.wStage.ui.progress.setProgress(0);
+    theLayer.wStage.node.animationManager.runAnimationsForSequenceNamed("open");
+    loadWorldStageInfo();
+}
+
+function getWorldStageInfo() {
+    libUIKit.waitRPC(Request_WorldStageInfo, {}, function (rsp) {
+        if( rsp.RET == RET_OK ){
+            if( rsp.arg != null ) {
+                WorldStageInfo = rsp.arg;
+                showWorldStage();
+            }
+        }
+    }, theLayer.wStage);
+}
+
+function loadWorldStageInfo() {
+    if( WorldStageInfo != null ){
+        if( WorldStageInfo.me != null ) {
+            theLayer.wStage.owner.labCount.setString(WorldStageInfo.me.cnt);
+            theLayer.wStage.owner.labRank.setString( (WorldStageInfo.me.rnk+1) );
+        }
+        if( WorldStageInfo.prg != null && WorldStageInfo.prg.ttl > 0){
+            theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
+            theLayer.wStage.ui.progress.setProgress(WorldStageInfo.prg.cpl/WorldStageInfo.prg.ttl);
+            isWorldStageCompleted = ( WorldStageInfo.prg.cpl >= WorldStageInfo.prg.ttl );
+        }
+        var stageClass = queryStage(WORLD_STAGE_ID);
+        if( stageClass != null ){
+            theLayer.wStage.owner.labTeam.setString("人数限制："+stageClass.team+"人");
+            theLayer.wStage.owner.labEnergy.setString("消耗精力："+stageClass.cost+"点");
+        }
+        theLayer.wStage.owner.labReset.setString("重置时间：每周"+WORLD_STAGE_RESET_TIME.day+" "+WORLD_STAGE_RESET_TIME.time);
+
+        var btnOK = buttonNormalL("buttontext-jr.png", BUTTON_OFFSET, this, function () {
+            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+            startStage(WORLD_STAGE_ID, stageClass.team, stageClass.cost);
+        }, BUTTONTYPE_DEFAULT);
+        btnOK.setPosition(theLayer.wStage.owner.nodeButton2.getPosition());
+        theLayer.wStage.owner.menu.addChild(btnOK);
+        var btnCancel = buttonNormalL("buttontext-back.png", BUTTON_OFFSET, this, function () {
+            cc.AudioEngine.getInstance().playEffect("card2.mp3");
+            theLayer.wStage.node.animationManager.setCompletedAnimationCallback(theLayer.wStage, function(){
+                engine.ui.popLayer();
+                theLayer.wStage.node.removeFromParent(true);
+                delete theLayer.wStage;
+            });
+            theLayer.wStage.node.animationManager.runAnimationsForSequenceNamed("close");
+        });
+        btnCancel.setPosition(theLayer.wStage.owner.nodeButton1.getPosition());
+        theLayer.wStage.owner.menu.addChild(btnCancel);
+
+        if( isWorldStageCompleted ){
+            btnOK.removeFromParent(true);
+            btnCancel.setPosition(cc.p(winSize.width/2, theLayer.wStage.owner.nodeButton1.getPosition().y));
+        }
+
+    }
+}
+
+function onWorldStageRank() {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    loadModule("sceneRank.js").show(RANK_WORLD);
+}
+//-------------------------------------
 
 function updateScrollView(delta) {
     lerpA += 1/30;

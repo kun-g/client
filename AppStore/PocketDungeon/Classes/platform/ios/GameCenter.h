@@ -42,6 +42,9 @@ public:
     //view manage
     void showGameCenterView();
     
+    //report score to leaderboard
+    void reportScore(int64_t score, std::string identifier);
+    
     //constructor
     GameCenter();
 private:

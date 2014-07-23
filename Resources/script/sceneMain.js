@@ -210,6 +210,11 @@ function onEnter()
 
     updateBattlePower();
 
+    //report power to GameCenter Leaderboard
+    if (engine.game.getConfig().binary_channel == "AppStore") {
+        gamecenter.reportScore(engine.user.actor.getPower(), "Hero_Power_Leaderboard");
+    }
+
     //getMonthCard();
 }
 
@@ -420,6 +425,15 @@ function onStage(sender)
 {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     startCloseAnimation(function(){
+
+//        var flag_testStage = system.getPreference("flag_debug");
+//        if( flag_testStage != null && flag_testStage == "1" ){
+//            var flag_stgId = Number(system.getPreference("flag_stgId"));
+//            loadModule("sceneStage.js").startStage(flag_stgId, 3, 0);
+//            return;
+//        }
+//        loadModule("sceneStage.js").startStage(133, 3, 0); return;
+
         //强制进某一关
         if( engine.user.player.Tutorial != null ){
             var tutorialStage = engine.user.player.Tutorial;

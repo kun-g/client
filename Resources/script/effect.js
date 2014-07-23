@@ -179,7 +179,7 @@ function setEffectCallback(func, obj, args){
     this.ARGS = args;
 }
 
-function attachEffectCCBI(parent, pos, file, mode, z){
+function attachEffectCCBI(parent, pos, file, mode, z, scale){
     if( mode == null ){
         mode = EFFECTMODE_AUTO;
     }
@@ -193,6 +193,9 @@ function attachEffectCCBI(parent, pos, file, mode, z){
     node.setPosition(pos);
     if( z != null ){
         node.setZOrder(z);
+    }
+    if( scale != null){
+        node.setScale(scale);
     }
     parent.addChild(node);
 

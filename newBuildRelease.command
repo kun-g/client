@@ -56,12 +56,14 @@ fi
 
 #build talkingdata
 if [ $isPause == 1 ]; then
-    read -p "To build cocos2dx-talkingdata, Press any key to continue..."
+    read -p "> Type 'Y' to build cocos2dx-talkingdata, type other key to skip: " CMDTD
 fi
-TAKINGDATA_FOLDER="libs/GA/proj.ios/"
-cd $WORK_PATH
-cd $TAKINGDATA_FOLDER
-xcodebuild -configuration Release
+if [ "$CMDTD" == 'Y' ] || [ "$CMDTD" == 'y' ]; then
+    TAKINGDATA_FOLDER="libs/GA/proj.ios/"
+    cd $WORK_PATH
+    cd $TAKINGDATA_FOLDER
+    xcodebuild -configuration Release
+fi
 
 #init
 cd $WORK_PATH
@@ -77,25 +79,31 @@ BUILD_FOLDER="develop"
 APP_NAME="测试版.app"
 PACKAGE_NAME="内网测试版.ipa"
 if [ $isPause == 1 ]; then
-    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+    read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-build
+if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+    build
+fi
 
 BUILD_FOLDER="25pp"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(PP助手).ALL.ipa"
 if [ $isPause == 1 ]; then
-    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+    read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-build
+if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+    build
+fi
 
 BUILD_FOLDER="app111"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(苹果园).ALL.ipa"
 if [ $isPause == 1 ]; then
-    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+    read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-build
+if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+    build
+fi
 
 #BUILD_FOLDER="AppStore"
 #APP_NAME="口袋地下城.app"
@@ -107,17 +115,21 @@ BUILD_FOLDER="kuaiyong"
 APP_NAME="口袋地下城.app"
 PACKAGE_NAME="口袋地下城(快用).ipa"
 if [ $isPause == 1 ]; then
-    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+    read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-build
+if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+    build
+fi
 
 BUILD_FOLDER="nd91"
 APP_NAME="PocketDungeon.app"
 PACKAGE_NAME="PocketDungeon_v${BINARY_VERSION}_${DATE_TIME}.ipa"
 if [ $isPause == 1 ]; then
-    read -p "To build "$BUILD_FOLDER" version, Press any key to continue..."
+    read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-build
+if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+    build
+fi
 
 #debug
 read -p "Press [Enter] key to continue..."

@@ -316,7 +316,7 @@ function initResult(){
             return true;
         });
     }
-    EXP_SPEED = theEXP / 2;
+    EXP_SPEED = theEXP / 1.5;
 
     theWXPSource = {};
     var theRole = engine.user.actor;
@@ -379,6 +379,9 @@ function update(delta){
                     theEXPFlag = false;//used up
                 }
                 theExpAdded += step;
+                if( theExpAdded > theEXP ){
+                    theExpAdded = theEXP;
+                }
                 theLayer.owner.labExp7.setString("+"+Math.round(theExpAdded));
                 theDummyRole.Experience += step;
                 theLayer.ui.progress7.setProgress((exp.now+step)/exp.total);

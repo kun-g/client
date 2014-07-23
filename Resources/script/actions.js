@@ -371,9 +371,74 @@ function makeSpell(pace, act)
         if( !attachAction(actor, this, 7) ){
             return;//cant attach action
         }
+        var animation = "spell-" + this.spl;
+        actor.playAnimation(animation);
+    }
+    ret.onUpdate = function(delta, dungeon, layer)
+    {
+        var actor = layer.getActor(this.tar);
+        if( actor != null )
+        {
+            //terminate by other high priority action
+            if( !isActionAlive(this, actor) ){
+                return false;
+            }
+
+            if( actor.isAnimationDone() )
+            {
+                detachAction(actor);
+                return false;
+            }
+            return true;
+        }
+        else
+        {
+            error("ActionSpell: Actor not found!");
+            return false;
+        }
+    }
+    return ret;
+}
+
+//act, spl, cid
+function makeDropSpell(pace, act) {
+    var isKey = isHero(act.act);
+    var ret = new action.Action(pace, isKey);
+    ret.tar = act.act;
+    ret.spl = act.spl;
+
+    ret.onStart = function(dungeon, layer)
+    {
+        var actor = layer.getActor(this.tar);
+
+        if( !attachAction(actor, this, 7) ){
+            return;//cant attach action
+        }
 
         var animation = "spell-" + this.spl;
-        //debug("ON SPELL ANIMATION");//debug
+
+        if( act.cid != null ){
+            if( act.cid >= 0 ){
+                var libItem = loadModule("xitem.js");
+                var spItem = cc.Sprite.create(libItem.getItemIcon(act.cid));
+            }else if( act.cid = -1 ){
+                var spItem = cc.Sprite.create("mission-coin.png");
+            }else{
+                var spItem = cc.Sprite.create("wenhao.png");
+            }
+            spItem.setScale(0.6);
+            var a1 = cc.DelayTime.create(1.6);
+            var a2 = cc.FadeOut.create(0.2);
+            var seq = cc.Sequence.create(a1, a2);
+            if( actor.box != null
+                && actor.box.owner != null
+                && actor.box.owner.nodeItem != null){
+                actor.box.owner.nodeItem.addChild(spItem);
+            }else{
+                debug("Node:actor.box.owner.nodeItem is null");
+            }
+            spItem.runAction(seq);
+        }
         actor.playAnimation(animation);
     }
     ret.onUpdate = function(delta, dungeon, layer)
@@ -1741,6 +1806,7 @@ meta[8] = makeTeleport;
 meta[9] = makeFadeScene;
 meta[10] = makeDelay;
 meta[11] = makeDialogue;
+meta[12] = makeDropSpell;
 
 meta[101] = makePopHP;
 meta[102] = makePopString;

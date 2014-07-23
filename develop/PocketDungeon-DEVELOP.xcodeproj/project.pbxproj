@@ -393,6 +393,7 @@
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
 		53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F51918FC27AE00C2D3AB /* PPImage.bundle */; };
+		80F697A9197667B300B8AFE3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 80F697A8197667B300B8AFE3 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1266,6 +1267,7 @@
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53F9F51918FC27AE00C2D3AB /* PPImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPImage.bundle; sourceTree = "<group>"; };
+		80F697A8197667B300B8AFE3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ios/Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1469,6 +1471,7 @@
 		53885EA317E93DE500A3A8B4 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				80F697A8197667B300B8AFE3 /* Settings.bundle */,
 				53A3159D18FD3191001CE8B0 /* AppStore.plist */,
 				53A3159E18FD3191001CE8B0 /* Default-568h@2x.png */,
 				53A3159F18FD3191001CE8B0 /* Default-Portrait@2x~ipad.png */,
@@ -3046,6 +3049,7 @@
 				53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */,
 				53A315B018FD3191001CE8B0 /* Default-Portrait@2x~ipad.png in Resources */,
 				53A315B618FD3191001CE8B0 /* Icon-Small.png in Resources */,
+				80F697A9197667B300B8AFE3 /* Settings.bundle in Resources */,
 				53A315B118FD3191001CE8B0 /* Default.png in Resources */,
 				53A304C418FD30EB001CE8B0 /* ChangeLog in Resources */,
 				53243B6E18EC3D2E003BEF42 /* Alixpay.bundle in Resources */,

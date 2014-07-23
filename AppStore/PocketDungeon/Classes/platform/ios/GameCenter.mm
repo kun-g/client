@@ -229,3 +229,13 @@ void GameCenter::showGameCenterView()
     [[GameCenterController sharedGameCenterController] showGameCenter];
 }
 
+void GameCenter::reportScore(int64_t score, string identifier){
+    NSString *nsstrIdentifier = [NSString stringWithCString:identifier.c_str() encoding:[NSString defaultCStringEncoding]];
+    GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:nsstrIdentifier];
+    scoreReporter.value = score;
+    scoreReporter.context = 0;
+    NSArray *scores = @[scoreReporter];
+    [GKScore reportScores:scores withCompletionHandler:^(NSError *error){
+        NSLog(@"GameCenter: reportScore %@ successfully!\n",nsstrIdentifier);
+    }];
+}

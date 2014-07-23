@@ -136,13 +136,14 @@ function popLevelUp(){
     for (var kk in nodeSkName){
         layer.owner[nodeSkName[kk]].setVisible(false);
     }
-    layer.owner[nodeSkName[engine.user.actor.ClassId]].setVisible(true);
+    var role = engine.user.actor;//todo?
+    loadModule("blackbox.js").fixHeroProperty(role);
+    layer.owner[nodeSkName[role.ClassId]].setVisible(true);
     //set level
-    var level = engine.user.actor.calcExp().level;
+    var level = role.calcExp().level;
     layer.owner.labLevel.setString("LV."+level);
     level = level - 1;
     //set skill
-    var role = engine.user.actor;
     for (var x = 1;x <= 4;x++){
         if (role.querySkill(x - 1) == null){
             layer.ui["skill"+x].setGray(true);
@@ -159,10 +160,10 @@ function popLevelUp(){
     var proRoleList = ["Health","Attack","Speed","Critical","Strong","Accuracy","Reactivity"];
     var proLabList = ["labHealth","labAttack","labSpeed","labCritical","labStrong","labAccuracy","labReactivity"];
     var proLabAddList = ["labHealthAdd","labAttackAdd","labSpeedAdd","labCriticalAdd","labStrongAdd","labAccuracyAdd","labReactivityAdd"];
-    var roleData = libTable.queryTable(TABLE_ROLE, engine.user.actor.ClassId);
+    var roleData = libTable.queryTable(TABLE_ROLE, role.ClassId);
     var levelData = libTable.queryTable(TABLE_LEVEL, roleData.levelId);
     //var property = levelData.levelData[theOldLevel].property;
-    var property = levelData.levelData[theOldLevel].property;
+    var property = levelData.levelData[theOldLevel+1].property;
     if (property == null){
         property = {
             "health": 0,
@@ -174,7 +175,7 @@ function popLevelUp(){
             "speed": 0
         };
     }
-    for (var n = theOldLevel + 1;n <= level;n++){
+    for (var n = theOldLevel + 2; n <= level; n++){
         for (var m in proTableList){
             property[proTableList[m]] += levelData.levelData[n].property[proTableList[m]];
         }
@@ -196,7 +197,7 @@ function popLevelUp(){
     for (var q = theOldLevel + 1;q <= level;q++) {
         if (levelData.levelData[q].skill != null) {
             for (var a in levelData.levelData[q].skill) {
-                if (levelData.levelData[q].skill[a].classLimit == engine.user.actor.ClassId) {
+                if (levelData.levelData[q].skill[a].classLimit == role.ClassId) {
                     skillList[levelData.levelData[q].skill[a].id] = levelData.levelData[q].skill[a];
                 }
             }

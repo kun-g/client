@@ -236,6 +236,7 @@ var Request_GetPkRivals = 32;
 var Request_ReceivePrize = 33;
 var Request_PVPInfoUpdate = 34;
 var Request_SweepStage = 35;
+var Request_WorldStageInfo = 36;
 
 var Request_AccountLogin = 100;
 var Request_AccountCreate = 101;
@@ -329,6 +330,13 @@ var Message_GetMonthCard = 1033;
 var LOAD_MENU = 0;
 var LOAD_DUNGEON = 1;
 var openScened = false;
+
+/*** Rank List Id ***/
+var RANK_BATTLEPOWER = 0;
+var RANK_ENDLESS = 1;
+var RANK_KILL = 2;
+var RANK_PVP = 3;
+var RANK_WORLD = 4;
 
 /*** Easy Functions ***/
 function calcPosInGrid(grid)
