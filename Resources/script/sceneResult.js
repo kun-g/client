@@ -288,6 +288,7 @@ function loadResult(){
     var size = theLayer.owner.layerPrize.getContentSize();
     var dimension = cc.size(size.width, 0);
     var prize = libItem.ItemPreview.create(theResult.prize, dimension);
+    prize.setShowInfo(true);
     var psize = prize.getContentSize();
     prize.setPosition(cc.p(size.width/2 - psize.width/2, size.height - psize.height));
     theLayer.owner.layerPrize.addChild(prize);
@@ -412,11 +413,21 @@ function onConfirm(sender){
     }
 }
 
+function onItem(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var tag = sender.getTag();
+    var itm = theLayer.ui["equip"+tag].getItem();
+    if (itm != null) {
+        loadModule("itemInfo.js").show(itm);
+    }
+}
+
 function onEnter(){
     theLayer = this;
 
     this.owner = {};
     this.owner.onConfirm = onConfirm;
+    this.owner.onItem = onItem;
     this.node = libUIC.loadUI(this, "sceneJiesuan.ccbi", {
         nodeRole:{
             ui: "UIAvatar",

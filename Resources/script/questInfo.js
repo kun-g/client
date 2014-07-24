@@ -31,6 +31,8 @@ var LINE_HEIGHT = 120;
 var COLOR_BLACK = cc.c3b(55,37,20);
 var COLOR_RED = cc.c3b(197,16,16);
 
+var thePrizeLayer = [];
+
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
     return true;
@@ -68,6 +70,10 @@ function onClose(sender){
 
 function onBack(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     loadQuestList();
 }
 
@@ -154,6 +160,10 @@ function loadQuestList(){
 }
 
 function loadQuestDesc(quest){
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     theMode = MODE_DESC;
     theLayer.owner.nodeList.setVisible(false);
@@ -225,7 +235,10 @@ function loadQuestDesc(quest){
     var size = text.getContentSize();
 
     var prize = libItem.ItemPreview.createRaw(dimension);
+    engine.ui.regMenu(prize);
+    thePrizeLayer.push(prize);
     prize.setTextColor(COLOR_BLACK);
+    prize.setShowInfo(true);
     if (!iphone5s){
         prize.setNodeScale(0.77);
     }
@@ -334,6 +347,7 @@ function onEnter(){
     theListLayer.setTouchEnabled(false);
 
     engine.ui.regMenu(this.owner.menuRoot);
+    engine.ui.regMenu(this.owner.menuRoot1);
 
     loadQuestList();
 }

@@ -16,6 +16,7 @@ var theBounty;
 var thePy;
 var theTime;
 var theLevel = 0;
+var thePrizeLayer = [];
 
 var MODE_LIST = 0;
 var MODE_DESC = 1;
@@ -62,9 +63,6 @@ var nodeEffList = ["nodeEffSim","nodeEffNor","nodeEffHar","nodeEffHel","nodeEffN
 var COLOR_BLACK = cc.c3b(55,37,20);
 var COLOR_RED = cc.c3b(197,16,16);
 
-var ITEMPREVIEW_WIDTH = 130;
-var ITEMPREVIEW_HEIGHT = 155;
-
 function onTouchBegan(touch, event){
     touchPosBegin = touch.getLocation();
 
@@ -91,16 +89,16 @@ function onTouchEnded(touch, event){
             }
         }
         else if (theMode == MODE_DESC){
-            var localDescPos = {};
-            debug("MODE_DESC touchPosBegin = "+JSON.stringify(touchPosBegin));
-            if (theDesc == 1){
-                localDescPos = theDescLayer.convertToNodeSpace(touchPosBegin);
-                debug("MODE_DESC localDescPos = "+JSON.stringify(localDescPos));
-            }
-            else if (theDesc == 2){
-                localDescPos = theDescLayer2.convertToNodeSpace(touchPosBegin);
-                debug("MODE_DESC2 localDescPos = "+JSON.stringify(localDescPos));
-            }
+//            var localDescPos = {};
+//            debug("MODE_DESC touchPosBegin = "+JSON.stringify(touchPosBegin));
+//            if (theDesc == 1){
+//                localDescPos = theDescLayer.convertToNodeSpace(touchPosBegin);
+//                debug("MODE_DESC localDescPos = "+JSON.stringify(localDescPos));
+//            }
+//            else if (theDesc == 2){
+//                localDescPos = theDescLayer2.convertToNodeSpace(touchPosBegin);
+//                debug("MODE_DESC2 localDescPos = "+JSON.stringify(localDescPos));
+//            }
         }
     }
 }
@@ -118,6 +116,10 @@ function onClose(sender){
 function onBack(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
     loadBountyList();
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
 }
 
 function onSubmit(sender){
@@ -319,7 +321,7 @@ function loadBountyList(){
             line.bounty = bounty;
             line.setTag(count);
 
-            if (engine.session.dataBounty[k] == null || engine.session.dataBounty[k].sta == 1){
+            if (engine.session.dataBounty[k] != null && engine.session.dataBounty[k].bid >= 0 && engine.session.dataBounty[k].sta == 1){
                 theListLayer.addChild(line);
                 count++;
             }
@@ -334,6 +336,10 @@ function loadBountyList(){
 function loadBountyDesc(bounty, lev){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     //var sfc = cc.SpriteFrameCache.getInstance();
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     theMode = MODE_DESC;
     theLayer.owner.nodeList.setVisible(false);
     theLayer.owner.nodeDesc.setVisible(true);
@@ -454,11 +460,14 @@ function loadBountyDesc(bounty, lev){
     }
     var size = text.getContentSize();
 
-
+    var prizeScale = 0.77;
     var prize = libItem.ItemPreview.createRaw(dimension);
+    thePrizeLayer.push(prize);
+    engine.ui.regMenu(prize);
     prize.setTextColor(COLOR_BLACK);
+    prize.setShowInfo(true);
     if (!iphone5s){
-        prize.setNodeScale(0.77);
+        prize.setNodeScale(prizeScale);
     }
     if (engine.session.dataBounty[k] != null &&
         engine.session.dataBounty[k].lev != null &&
@@ -476,7 +485,7 @@ function loadBountyDesc(bounty, lev){
 
     if (bountyData.level.length > 1){
         theDesc = 1;
-        theDescLayer.setTouchEnabled(true);
+        //theDescLayer.setTouchEnabled(true);
         theDescLayer.addChild(prize);
         theDescLayer.addChild(text);
         theDescLayer.setContentSize(size);
@@ -492,7 +501,7 @@ function loadBountyDesc(bounty, lev){
     }
     else if (bountyData.level.length == 1){
         theDesc = 2;
-        theDescLayer2.setTouchEnabled(true);
+        //theDescLayer2.setTouchEnabled(true);
         theDescLayer2.addChild(prize);
         theDescLayer2.addChild(text);
         theDescLayer2.setContentSize(size);
@@ -520,6 +529,10 @@ function onNotify(event){
 }
 
 function onActivate(){
+//    for (var k in thePrizeLayer){
+//        engine.ui.unregMenu(thePrizeLayer[k]);
+//    }
+//    thePrizeLayer = [];
 }
 
 function update(delta)
@@ -781,6 +794,8 @@ function onEnter(){
     theTime = new Date();
 
     engine.ui.regMenu(this.owner.menuRoot);
+    engine.ui.regMenu(this.owner.menuRoot1);
+    engine.ui.regMenu(this.owner.menuRoot2);
 
     loadBountyList();
 }
