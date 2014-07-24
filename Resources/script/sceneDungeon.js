@@ -22,6 +22,8 @@ var libGadgets = loadModule("gadgets.js");
 var theDungeon = null;
 var thePopMsg = null;
 var theStageClass = null;
+var theChapterTheme = null;
+var SpriteCache = null;
 
 var gameOverFlag = false;
 var resultFlag = false;
@@ -49,6 +51,12 @@ function onEvent(event)
             if( event.arg.stg != null ){
                 engine.user.dungeon.stage = event.arg.stg;
                 theStageClass = queryStage(event.arg.stg);
+                theChapterTheme = queryStage(event.arg.stg, true).theme; //todo?
+                if (theChapterTheme != null) {
+                    SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
+                } else {
+                    SpriteCache.addSpriteFrames("battle0.plist");
+                }
                 if( event.arg.stg == INITIAL_STAGE )
                 {
                     theDungeon.TutorialFlag = true;
@@ -767,12 +775,12 @@ function onEnter()
 
     theLayer.mode = MODE_PLAY;
 
-    var spritecache = cc.SpriteFrameCache.getInstance();
-    spritecache.addSpriteFrames("battle.plist");
-    spritecache.addSpriteFrames("character.plist");
-    spritecache.addSpriteFrames("effect.plist");
-    spritecache.addSpriteFrames("effect2.plist");
-    spritecache.addSpriteFrames("cards.plist");
+    SpriteCache = cc.SpriteFrameCache.getInstance();
+//    SpriteCache.addSpriteFrames("battle.plist");
+    SpriteCache.addSpriteFrames("character.plist");
+    SpriteCache.addSpriteFrames("effect.plist");
+    SpriteCache.addSpriteFrames("effect2.plist");
+    SpriteCache.addSpriteFrames("cards.plist");
 
     var director = cc.Director.getInstance();
     var screenSize = director.getWinSize();
@@ -1102,7 +1110,7 @@ function resetBlocks()
 function updateBlock(pos)
 {
     var block = theDungeon.Blocks[pos];
-    var spritecache = cc.SpriteFrameCache.getInstance();
+//    var SpriteCache = cc.SpriteFrameCache.getInstance();
 
     {//mark enter and exit
         if( block.type == BLOCK_EXIT )
