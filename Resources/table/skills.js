@@ -4280,7 +4280,7 @@ exports.data = [
                 {"type": "heal","self":true,"formular": {"tar":{"strong":1}}}
             ],
             "availableCondition": [
-                { "type": "event", "event": "onEndBattleTurn", "eventCount": 1 }
+                { "type": "effectCount","count":1 }
             ]
         }
     },
