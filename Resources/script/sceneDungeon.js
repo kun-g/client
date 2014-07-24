@@ -51,7 +51,7 @@ function onEvent(event)
             if( event.arg.stg != null ){
                 engine.user.dungeon.stage = event.arg.stg;
                 theStageClass = queryStage(event.arg.stg);
-                theChapterTheme = queryStage(event.arg.stg, true).theme; //todo?
+                theChapterTheme = queryStage(event.arg.stg, true).theme;
                 if (theChapterTheme != null) {
                     SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
                 } else {
