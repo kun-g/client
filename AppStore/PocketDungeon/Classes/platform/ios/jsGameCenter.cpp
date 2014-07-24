@@ -181,4 +181,5 @@ void registerGameCenter(JSContext* cx, JSObject* global)
     JS_DefineFunction(cx, gc, "getPlayerGCID",jsbGameCenterRetrivePlayerGCID, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, gc, "getPlayerAlias",jsbGameCenterRetriveAlias, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, gc, "getPlayerDisplayName",jsbGameCenterRetrivePlayerDisplayName, 0, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, gc, "reportScore", jsbGameCenterReportScore, 2, JSPROP_READONLY | JSPROP_PERMANENT);
 }
