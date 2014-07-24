@@ -1503,7 +1503,7 @@ function onUIAnimationCompleted(name){
                 theTransitionContent.node.release();
                 theContent = theTransitionContent;
                 theTransitionContent = null;
-
+                theForgeItem = null;
             }
         }break;
     }
