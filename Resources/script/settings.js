@@ -31,12 +31,7 @@ function onToggleMusic(sender){
         engine.game.getConfig().flag_music = false;
     }
     updateMusicLabel();
-    engine.game.saveConfig();
-}
-
-function onToggleSfx(sender){
-    var audio = cc.AudioEngine.getInstance();
-    var volume = audio.getEffectsVolume();
+    volume = audio.getEffectsVolume();
     if( volume == 0 ){
         audio.setEffectsVolume(SFX_VOLUME);
         engine.game.getConfig().flag_sfx = true;
@@ -47,6 +42,10 @@ function onToggleSfx(sender){
     }
     updateSfxLabel();
     engine.game.saveConfig();
+}
+
+function onToggleSfx(sender){
+    system.exit();
 }
 
 function onFeedback(sender){
@@ -138,13 +137,16 @@ function show(){
     theMode = MODE_NORMAL;
     theLayer.node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     theLayer.node.animationManager.runAnimationsForSequenceNamed("open");
-
+    theLayer.owner.btnSfx.setVisible(false);
     if( engine.game.getConfig().binary_channel == "AppStore" ){
         cacheSprite("setting-gamecenter1.png");
         cacheSprite("setting-gamecenter2.png");
         var sfc = cc.SpriteFrameCache.getInstance();
         theLayer.owner.btnUACManage.setNormalSpriteFrame(sfc.getSpriteFrame("setting-gamecenter1.png"));
         theLayer.owner.btnUACManage.setSelectedSpriteFrame(sfc.getSpriteFrame("setting-gamecenter2.png"));
+    }
+    else if (engine.game.getConfig().binary_channel == "ADND91"){
+        theLayer.owner.btnSfx.setVisible(true);
     }
 
     engine.ui.regMenu(theLayer.owner.menuRoot);
