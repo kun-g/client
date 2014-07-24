@@ -776,7 +776,7 @@ function onEnter()
     theLayer.mode = MODE_PLAY;
 
     SpriteCache = cc.SpriteFrameCache.getInstance();
-//    SpriteCache.addSpriteFrames("battle.plist");
+    SpriteCache.addSpriteFrames("dungeon.plist");
     SpriteCache.addSpriteFrames("character.plist");
     SpriteCache.addSpriteFrames("effect.plist");
     SpriteCache.addSpriteFrames("effect2.plist");
