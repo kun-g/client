@@ -46,7 +46,7 @@ UIManager.prototype.newScene = function(assign)
     singleton.newLayer(assign);
     if (engine.game.getConfig().account_type == 6){
         singleton.LAYERS[0].backClicked = system.exit();
-    }
+    } 
     else{
         singleton.LAYERS[0].backClicked = function(){
             system.alert("离开游戏", "确认要退出游戏吗？", null, function(btn){
