@@ -413,11 +413,21 @@ function onConfirm(sender){
     }
 }
 
+function onItem(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var tag = sender.getTag();
+    var itm = theLayer.ui["equip"+tag].getItem();
+    if (itm != null) {
+        loadModule("itemInfo.js").show(itm);
+    }
+}
+
 function onEnter(){
     theLayer = this;
 
     this.owner = {};
     this.owner.onConfirm = onConfirm;
+    this.owner.onItem = onItem;
     this.node = libUIC.loadUI(this, "sceneJiesuan.ccbi", {
         nodeRole:{
             ui: "UIAvatar",

@@ -229,6 +229,14 @@ function refreshTag(thiz, type) { //type 0:main 1:upgrade 2:enhance 3:forge
     }
 }
 
+function onSelectedItem(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+
+    if (theForgeItem != null) {
+        loadModule("itemInfo.js").show(theForgeItem);
+    }
+}
+
 
 //--- 升级 ---
 function onStartUpgrade(sender){
@@ -285,6 +293,8 @@ function setUpgradeItem(item){
         {//can upgrade
             theContent.owner.content1.setVisible(true);
             theContent.owner.content2.setVisible(false);
+            theContent.owner.btnSelectedItem1.setEnabled(true);
+            theContent.owner.btnSelectedItem2.setEnabled(false);
             theContent.owner.btnStartUpgrade.setEnabled(true);
             theContent.ui.oldItem.setItem(item);
             theForgeItem = item;
@@ -339,6 +349,8 @@ function setUpgradeItem(item){
         {//can't upgrade
             theContent.owner.content1.setVisible(false);
             theContent.owner.content2.setVisible(true);
+            theContent.owner.btnSelectedItem1.setEnabled(false);
+            theContent.owner.btnSelectedItem2.setEnabled(true);
             theContent.owner.btnStartUpgrade.setEnabled(false);
             theContent.owner.labLv.setString(itemClass.rank);
             theContent.owner.theName.setString(itemClass.label);
@@ -395,6 +407,7 @@ function loadUpgrade(){
     ret.owner = {};
     ret.owner.onStartUpgrade = onStartUpgrade;
     ret.owner.onUpgradeEquip = onUpgradeEquip;
+    ret.owner.onSelectedItem = onSelectedItem;
 
     var bind = {
         item1: {
@@ -756,6 +769,7 @@ function loadEnhance(){
     ret.owner.onStartEnhance = onStartEnhance;
     ret.owner.onEnhanceEquip = onEnhanceEquip;
     ret.owner.onAddStone = onAddStone;
+    ret.owner.onSelectedItem = onSelectedItem;
 
     var bind = {
         item1: {
@@ -862,6 +876,7 @@ function loadForge(){
     ret.owner.onForgeEquip = onForgeEquip;
     ret.owner.onStartForge = onStartForge;
     ret.owner.onAddMaterials = onAddMaterials;
+    ret.owner.onSelectedItem = onSelectedItem;
     var bind = {
         item1:{
             ui: "UIItem",
@@ -1336,6 +1351,7 @@ function loadSynthesize(){
     ret.owner = {};
     ret.owner.onSynthesizeStone = onSynthesizeStone;
     ret.owner.onStartSynthesize = onStartSynthesize;
+    ret.owner.onSelectedItem = onSelectedItem;
 
     var bind = {
         item2: {
