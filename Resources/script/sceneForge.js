@@ -189,7 +189,7 @@ function checkGold(gold){
         var needgold = gold - engine.user.inventory.Gold;
         var needdia = Math.ceil(needgold / 10);
         var str1 = "金币不足\n还需要"+needgold+"金币\n需要使用"+needdia+"宝石来兑换吗?";
-        var str2 = "宝石不足，无法兑换\n需要充值吗?";
+        var str2 = "金币与兑换所需宝石钧不足\n需要充值吗?";
         debug("宝石 = "+needdia);
         libUIKit.confirmPurchase(Request_BuyFeature, {
             typ: 3,
