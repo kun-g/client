@@ -338,6 +338,13 @@ var RANK_KILL = 2;
 var RANK_PVP = 3;
 var RANK_WORLD = 4;
 
+/*** Dungeon Theme ***/
+var DungeonThemes = [
+    { png: "battle0.png", plist: "battle0.plist" },//normal
+    { png: "battle1.png", plist: "battle1.plist" },//grass
+    { png: "battle2.png", plist: "battle2.plist" } //magma
+];
+
 /*** Easy Functions ***/
 function calcPosInGrid(grid)
 {

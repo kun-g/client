@@ -45,7 +45,7 @@ UIManager.prototype.newScene = function(assign)
 
     singleton.newLayer(assign);
     if (engine.game.getConfig().account_type == 6){
-        singleton.LAYERS[0].backClicked = system.exit();
+        singleton.LAYERS[0].backClicked = system.exit;
     } 
     else{
         singleton.LAYERS[0].backClicked = function(){

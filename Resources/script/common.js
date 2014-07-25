@@ -1154,11 +1154,18 @@ function filterUserInput(str){
     return ret;
 }
 
-function queryStage(stg){
+//if retChpt==true, return the ChapterClass
+function queryStage(stg, retChpt){
     var chapters = loadModule("table.js").readTable(TABLE_STAGE);
     for(var k in chapters){
         for(var m in chapters[k].stage){
-            if( chapters[k].stage[m].stageId == stg ) return chapters[k].stage[m];
+            if( chapters[k].stage[m].stageId == stg ) {
+                if (retChpt != null && retChpt == true) {
+                    return chapters[k];
+                } else {
+                    return chapters[k].stage[m];
+                }
+            }
         }
     }
     return null;
