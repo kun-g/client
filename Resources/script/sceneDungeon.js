@@ -51,14 +51,6 @@ function onEvent(event)
             if( event.arg.stg != null ){
                 engine.user.dungeon.stage = event.arg.stg;
                 theStageClass = queryStage(event.arg.stg);
-                theChapterTheme = queryStage(event.arg.stg, true).theme;
-//                if (theChapterTheme != null) {
-//                    SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
-//                    debug("AAAA: loaded battle" + theChapterTheme + ".plist");
-//                } else {
-//                    SpriteCache.addSpriteFrames("battle0.plist");
-//                    debug("BBBB: loaded battle0.plist");
-//                }
                 if( event.arg.stg == INITIAL_STAGE )
                 {
                     theDungeon.TutorialFlag = true;
@@ -562,14 +554,14 @@ function onCancelDungeon(force){
                 libUIKit.CONFIRM_NEUTRAL,
                 function(){
                     engine.event.sendNTFEvent(Request_CancelDungeon);
-
+                    theChapterTheme = null;
                     FailReason = "玩家放弃";
                 }, theLayer
             );
         }
         else{
             engine.event.sendNTFEvent(Request_CancelDungeon);
-
+            theChapterTheme = null;
             FailReason = "玩家放弃";
         }
     }
@@ -704,6 +696,7 @@ function doDungeonResult(win){
 function onGameOver()
 {
     gameOverFlag = true;
+    theChapterTheme = null;
 }
 
 function onEnter()
@@ -778,11 +771,25 @@ function onEnter()
     theLayer.mode = MODE_PLAY;
 
     SpriteCache = cc.SpriteFrameCache.getInstance();
+    SpriteCache.removeSpriteFrames();
     SpriteCache.addSpriteFrames("dungeon.plist");
     SpriteCache.addSpriteFrames("character.plist");
     SpriteCache.addSpriteFrames("effect.plist");
     SpriteCache.addSpriteFrames("effect2.plist");
     SpriteCache.addSpriteFrames("cards.plist");
+
+    if (engine.user.dungeon != null) {
+        theChapterTheme = queryStage(engine.user.dungeon.stage, true).theme;
+    }
+
+    if (theChapterTheme != null) {
+        SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
+        var pngName = "battle" + theChapterTheme + ".png";
+    } else {
+        SpriteCache.addSpriteFrames("battle0.plist");
+        var pngName = "battle0.png";
+    }
+
 
     var director = cc.Director.getInstance();
     var screenSize = director.getWinSize();
@@ -796,7 +803,7 @@ function onEnter()
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     //link variables
-    theLayer.blocks = cc.SpriteBatchNode.create("battle1.png");//todo?
+    theLayer.blocks = cc.SpriteBatchNode.create(pngName);
 
     theLayer.owner.nodeBlock.addChild(theLayer.blocks);
     theLayer.leveldisplay = theLayer.owner.labLevel;
@@ -844,7 +851,7 @@ function onEnter()
 
     thePopMsg = PopMsg.simpleInit(theLayer);
 
-    theLayer.resetBlocks();
+//    theLayer.resetBlocks();
 
     //GRID DEBUG
 //    {
@@ -1017,7 +1024,6 @@ function resetBlocks()
     theLayer.card.layerMask.setVisible(false);
     theLayer.card.layerMask.setZOrder(999);
     theLayer.actors.addChild(theLayer.card.layerMask);
-
     //init maze
     //pave floor=200+pos box=pos
     for(var i=0; i<DG_BLOCKCOUNT; ++i)
@@ -1026,7 +1032,7 @@ function resetBlocks()
         var y = Math.floor(i/5);
         var pos = cc.p(x*LO_GRID,-y*LO_GRID);
         var floor = null;
-        switch ( Math.floor(Math.random()*9 ) ) {
+        switch ( Math.floor(Math.random()*9) ) {
             case 0:
                 floor = cc.Sprite.createWithSpriteFrameName("battle-floor1.png");
                 break;
@@ -1058,7 +1064,6 @@ function resetBlocks()
         floor.setAnchorPoint(cc.p(0, 1));
         floor.setPosition(pos);
         theLayer.blocks.addChild(floor, 10, 200+i);
-
         var box = null;
         if( Math.floor(Math.random()*5) == 0 )
         {
@@ -1068,7 +1073,6 @@ function resetBlocks()
         {
             box = cc.Sprite.createWithSpriteFrameName("battle-box1.png");
         }
-
         box.setAnchorPoint(cc.p(0, 1));
         box.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(box, 20, i);
@@ -1084,7 +1088,6 @@ function resetBlocks()
     shadow.setPosition(theLayer.owner.nodeShadow.getPosition());
     shadow.setScale(2);
     theLayer.blocks.addChild(shadow, 25);
-
     //create walls=100+pos
     for(var j=0; j<49; ++j)
     {
@@ -1105,7 +1108,6 @@ function resetBlocks()
             wall.setAnchorPoint(cc.p(MAGIC_WALL, 0.5));
             wall.setPosition(cc.p(LO_GRID*(xx-4), -LO_GRID*(yy+1)));
         }
-
         theLayer.blocks.addChild(wall, 15, 100+j);
     }
 }

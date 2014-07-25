@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{128,128}</string>
             </dict>
-            <key>battle-floor9 .png</key>
+            <key>battle-floor9.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,324},{128,128}}</string>
@@ -209,7 +209,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d8999b923d3b8323ff5a1915db00827d$</string>
+            <string>$TexturePacker:SmartUpdate:c73f0d00c62173817d5124da14d70e23$</string>
             <key>textureFileName</key>
             <string>battle2.png</string>
         </dict>
