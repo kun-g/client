@@ -304,6 +304,7 @@ var data = [
 },
 	{
 		"chapterId": 2,
+        "theme": 1,
         "idx": 1,
         "style": "map-dungeon2",
 		"title":"dungeonname2.png",
@@ -426,6 +427,7 @@ var data = [
 	},
 	{
 		"chapterId": 3,
+        "theme": 2,
 		"idx": 2,
         "style": "map-dungeon3",
 		"title":"dungeonname3.png",

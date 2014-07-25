@@ -4,187 +4,200 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>dailymission-common-1.png</key>
+            <key>battle-box1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{233,886},{21,28}}</string>
+                <string>{{132,714},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{21,28}}</string>
+                <string>{{0,0},{128,128}}</string>
                 <key>sourceSize</key>
-                <string>{21,28}</string>
+                <string>{128,128}</string>
             </dict>
-            <key>dailymission-common-2.png</key>
+            <key>battle-box2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,917},{21,28}}</string>
+                <string>{{262,584},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{21,28}}</string>
+                <string>{{0,0},{128,128}}</string>
                 <key>sourceSize</key>
-                <string>{21,28}</string>
+                <string>{128,128}</string>
             </dict>
-            <key>dailymission-common-3.png</key>
+            <key>battle-boxshadow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,886},{20,29}}</string>
+                <string>{{132,584},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{20,29}}</string>
+                <string>{{0,0},{128,128}}</string>
                 <key>sourceSize</key>
-                <string>{20,29}</string>
+                <string>{128,128}</string>
             </dict>
-            <key>dailymission-common-4.png</key>
+            <key>battle-floor1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{211,947},{23,27}}</string>
+                <string>{{2,844},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{23,27}}</string>
+                <string>{{0,0},{128,128}}</string>
                 <key>sourceSize</key>
-                <string>{23,27}</string>
+                <string>{128,128}</string>
             </dict>
-            <key>dailymission-common-award.png</key>
+            <key>battle-floor2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{69,380},{200,163}}</string>
+                <string>{{2,714},{128,128}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,584},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{262,454},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132,454},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,454},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{262,324},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132,324},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-floor9 .png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,324},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>dungeon-shadow.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{320,384}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{2,2},{200,163}}</string>
+                <string>{{0,0},{320,384}}</string>
                 <key>sourceSize</key>
-                <string>{204,165}</string>
+                <string>{320,384}</string>
             </dict>
-            <key>dailymission-common-award2.png</key>
+            <key>game-wall1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,827},{207,174}}</string>
+                <string>{{426,2},{164,36}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{164,36}}</string>
+                <key>sourceSize</key>
+                <string>{164,36}</string>
+            </dict>
+            <key>game-wall2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{388,2},{36,164}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{207,174}}</string>
+                <string>{{0,0},{36,164}}</string>
                 <key>sourceSize</key>
-                <string>{207,174}</string>
-            </dict>
-            <key>dailymission-common-bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{579,65}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{579,65}}</string>
-                <key>sourceSize</key>
-                <string>{579,65}</string>
-            </dict>
-            <key>dailymission-common-btnreward1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{108,582},{242,104}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{242,104}}</string>
-                <key>sourceSize</key>
-                <string>{242,104}</string>
-            </dict>
-            <key>dailymission-common-btnreward2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,583},{242,104}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{242,104}}</string>
-                <key>sourceSize</key>
-                <string>{242,104}</string>
-            </dict>
-            <key>dailymission-common-pattern.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{69,2},{376,42}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{376,42}}</string>
-                <key>sourceSize</key>
-                <string>{376,42}</string>
-            </dict>
-            <key>dailymission-common-rw.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{211,826},{58,33}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{58,33}}</string>
-                <key>sourceSize</key>
-                <string>{58,33}</string>
-            </dict>
-            <key>dailymission-common-tabmrrw1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{113,2},{113,170}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{113,170}}</string>
-                <key>sourceSize</key>
-                <string>{113,170}</string>
-            </dict>
-            <key>dailymission-common-tabmrrw2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{113,174},{113,130}}</string>
-                <key>offset</key>
-                <string>{0,20}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{113,130}}</string>
-                <key>sourceSize</key>
-                <string>{113,170}</string>
-            </dict>
-            <key>dailymission-common-title.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{113,306},{139,45}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,45}}</string>
-                <key>sourceSize</key>
-                <string>{139,45}</string>
+                <string>{36,164}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -192,13 +205,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>dailymission-common.png</string>
+            <string>battle2.png</string>
             <key>size</key>
-            <string>{256,1024}</string>
+            <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a92aa1d35d7dbb70eaf82f150f688130$</string>
+            <string>$TexturePacker:SmartUpdate:d8999b923d3b8323ff5a1915db00827d$</string>
             <key>textureFileName</key>
-            <string>dailymission-common.png</string>
+            <string>battle2.png</string>
         </dict>
     </dict>
 </plist>
