@@ -22,7 +22,7 @@ var libGadgets = loadModule("gadgets.js");
 var theDungeon = null;
 var thePopMsg = null;
 var theStageClass = null;
-var theChapterTheme = null;
+var theTheme = null;
 var SpriteCache = null;
 
 var gameOverFlag = false;
@@ -554,14 +554,14 @@ function onCancelDungeon(force){
                 libUIKit.CONFIRM_NEUTRAL,
                 function(){
                     engine.event.sendNTFEvent(Request_CancelDungeon);
-                    theChapterTheme = null;
+                    theTheme = null;
                     FailReason = "玩家放弃";
                 }, theLayer
             );
         }
         else{
             engine.event.sendNTFEvent(Request_CancelDungeon);
-            theChapterTheme = null;
+            theTheme = null;
             FailReason = "玩家放弃";
         }
     }
@@ -696,7 +696,7 @@ function doDungeonResult(win){
 function onGameOver()
 {
     gameOverFlag = true;
-    theChapterTheme = null;
+    theTheme = null;
 }
 
 function onEnter()
@@ -771,7 +771,9 @@ function onEnter()
     theLayer.mode = MODE_PLAY;
 
     SpriteCache = cc.SpriteFrameCache.getInstance();
-    SpriteCache.removeSpriteFrames();
+    for( var k in DungeonThemes ){
+        SpriteCache.removeSpriteFramesFromFile(DungeonThemes[k].plist);
+    }
     SpriteCache.addSpriteFrames("dungeon.plist");
     SpriteCache.addSpriteFrames("character.plist");
     SpriteCache.addSpriteFrames("effect.plist");
@@ -779,16 +781,13 @@ function onEnter()
     SpriteCache.addSpriteFrames("cards.plist");
 
     if (engine.user.dungeon != null) {
-        theChapterTheme = queryStage(engine.user.dungeon.stage, true).theme;
+        theTheme = queryStage(engine.user.dungeon.stage, true).theme;
     }
 
-    if (theChapterTheme != null) {
-        SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
-        var pngName = "battle" + theChapterTheme + ".png";
-    } else {
-        SpriteCache.addSpriteFrames("battle0.plist");
-        var pngName = "battle0.png";
+    if (theTheme == null) {
+        theTheme = 0;
     }
+    SpriteCache.addSpriteFrames(DungeonThemes[theTheme].plist);
 
 
     var director = cc.Director.getInstance();
@@ -803,7 +802,7 @@ function onEnter()
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     //link variables
-    theLayer.blocks = cc.SpriteBatchNode.create(pngName);
+    theLayer.blocks = cc.SpriteBatchNode.create(DungeonThemes[theTheme].png);
 
     theLayer.owner.nodeBlock.addChild(theLayer.blocks);
     theLayer.leveldisplay = theLayer.owner.labLevel;

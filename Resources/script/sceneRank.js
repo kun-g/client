@@ -664,7 +664,7 @@ function onEnter()
     }
 //    theLayer.owner.btnPVP.setVisible(false);
     switch (FirstLoad){
-        case RANK_BATTLEPOWER: {theMode = MODE_BATTLEPOWER; onWorld();}break;
+        case RANK_BATTLEPOWER: {theMode = MODE_BATTLEPOWER; onPower();}break;
         case RANK_ENDLESS: {theMode = MODE_ENDLESS; onEndless();} break;
         case RANK_KILL: {theMode = MODE_KILL; onKill();}break;
         case RANK_PVP: {theMode = MODE_PVP; onPVP();} break;
@@ -691,6 +691,7 @@ function onExit()
 function scene()
 {
     isShowedOut = false;
+    FirstLoad = RANK_BATTLEPOWER;
     return {
         onEnter: onEnter,
         onExit: onExit,
