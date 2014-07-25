@@ -30,6 +30,58 @@
                 <key>sourceSize</key>
                 <string>{128,128}</string>
             </dict>
+            <key>battle-box3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132,714},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-box4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{262,584},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-box5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132,714},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+            <key>battle-box6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{262,584},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
             <key>battle-boxshadow.png</key>
             <dict>
                 <key>frame</key>
@@ -209,7 +261,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c73f0d00c62173817d5124da14d70e23$</string>
+            <string>$TexturePacker:SmartUpdate:cb6261c253fa14bc7ed5c861cb9ade9e$</string>
             <key>textureFileName</key>
             <string>battle2.png</string>
         </dict>

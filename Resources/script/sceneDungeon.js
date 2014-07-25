@@ -1064,13 +1064,25 @@ function resetBlocks()
         floor.setPosition(pos);
         theLayer.blocks.addChild(floor, 10, 200+i);
         var box = null;
-        if( Math.floor(Math.random()*5) == 0 )
-        {
-            box = cc.Sprite.createWithSpriteFrameName("battle-box2.png");
-        }
-        else
-        {
-            box = cc.Sprite.createWithSpriteFrameName("battle-box1.png");
+        switch ( Math.floor(Math.random()*6) ){
+            case 0:
+                box = cc.Sprite.createWithSpriteFrameName("battle-box1.png");
+                break;
+            case 1:
+                box = cc.Sprite.createWithSpriteFrameName("battle-box2.png");
+                break;
+            case 2:
+                box = cc.Sprite.createWithSpriteFrameName("battle-box3.png");
+                break;
+            case 3:
+                box = cc.Sprite.createWithSpriteFrameName("battle-box4.png");
+                break;
+            case 4:
+                box = cc.Sprite.createWithSpriteFrameName("battle-box5.png");
+                break;
+            case 5:
+                box = cc.Sprite.createWithSpriteFrameName("battle-box6.png");
+                break;
         }
         box.setAnchorPoint(cc.p(0, 1));
         box.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
