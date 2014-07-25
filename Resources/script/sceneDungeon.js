@@ -52,11 +52,13 @@ function onEvent(event)
                 engine.user.dungeon.stage = event.arg.stg;
                 theStageClass = queryStage(event.arg.stg);
                 theChapterTheme = queryStage(event.arg.stg, true).theme;
-                if (theChapterTheme != null) {
-                    SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
-                } else {
-                    SpriteCache.addSpriteFrames("battle0.plist");
-                }
+//                if (theChapterTheme != null) {
+//                    SpriteCache.addSpriteFrames("battle" + theChapterTheme + ".plist");
+//                    debug("AAAA: loaded battle" + theChapterTheme + ".plist");
+//                } else {
+//                    SpriteCache.addSpriteFrames("battle0.plist");
+//                    debug("BBBB: loaded battle0.plist");
+//                }
                 if( event.arg.stg == INITIAL_STAGE )
                 {
                     theDungeon.TutorialFlag = true;
@@ -794,7 +796,8 @@ function onEnter()
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     //link variables
-    theLayer.blocks = cc.SpriteBatchNode.create("battle.png");
+    theLayer.blocks = cc.SpriteBatchNode.create("battle1.png");//todo?
+
     theLayer.owner.nodeBlock.addChild(theLayer.blocks);
     theLayer.leveldisplay = theLayer.owner.labLevel;
 
