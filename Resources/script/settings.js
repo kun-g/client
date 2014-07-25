@@ -40,7 +40,6 @@ function onToggleMusic(sender){
         audio.setEffectsVolume(0);
         engine.game.getConfig().flag_sfx = false;
     }
-    updateSfxLabel();
     engine.game.saveConfig();
 }
 
@@ -82,20 +81,6 @@ function updateMusicLabel(){
     }
 }
 
-function updateSfxLabel(){
-    var audio = cc.AudioEngine.getInstance();
-    var volume = audio.getEffectsVolume();
-    var sfc = cc.SpriteFrameCache.getInstance();
-    if( volume == 0 ){
-        theLayer.owner.btnSfx.setNormalSpriteFrame(sfc.getSpriteFrame("setting-dkyx1.png"));
-        theLayer.owner.btnSfx.setSelectedSpriteFrame(sfc.getSpriteFrame("setting-dkyx2.png"));
-    }
-    else{
-        theLayer.owner.btnSfx.setNormalSpriteFrame(sfc.getSpriteFrame("setting-gbyx1.png"));
-        theLayer.owner.btnSfx.setSelectedSpriteFrame(sfc.getSpriteFrame("setting-gbyx2.png"));
-    }
-}
-
 function onUIAnimationCompleted(name){
     if( theMode == MODE_EXIT ){
         engine.ui.popLayer();
@@ -119,10 +104,8 @@ function show(){
     cacheSprite("setting-dkyy2.png");
     cacheSprite("setting-gbyy1.png");
     cacheSprite("setting-gbyy2.png");
-    cacheSprite("setting-dkyx1.png");
-    cacheSprite("setting-dkyx2.png");
-    cacheSprite("setting-gbyx1.png");
-    cacheSprite("setting-gbyx2.png");
+    cacheSprite("setting-tcyx1.png");
+    cacheSprite("setting-tcyx2.png");
 
     theLayer.owner = {};
     theLayer.owner.onClose = onClose;
@@ -152,9 +135,6 @@ function show(){
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
     updateMusicLabel();
-    updateSfxLabel();
-    
-    
 }
 
 exports.show = show;
