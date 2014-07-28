@@ -161,16 +161,16 @@ function readEffectNode(effectId, dropCid)
         }
 
         if( dropCid != null ){
-            if( act.cid >= 0 ){
+            if( dropCid >= 0 ){
                 var libItem = loadModule("xitem.js");
-                var spItem = cc.Sprite.create(libItem.getItemIcon(act.cid));
-            }else if( act.cid = -1 ){
+                var spItem = cc.Sprite.create(libItem.getItemIcon(dropCid));
+            }else if( dropCid = -1 ){
                 var spItem = cc.Sprite.create("mission-coin.png");
             }else{
                 var spItem = cc.Sprite.create("wenhao.png");
             }
             spItem.setScale(0.6);
-            var a1 = cc.DelayTime.create(1.6);
+            var a1 = cc.DelayTime.create(1.3);
             var a2 = cc.FadeOut.create(0.2);
             var seq = cc.Sequence.create(a1, a2);
             if( owner.nodeItem != null){

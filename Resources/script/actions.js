@@ -413,10 +413,12 @@ function makeDropItem(pace, act) {
         ret.push(makeEffect(pace, {
             dey: act.dey,
             eff: act.eff,
-            act: act.act,
+            act: null,
             pos: act.pos,
             cid: act.cid
         }));
+    }else{
+        error(": ActionDropItem: Effect not found!")
     }
     return ret;
 }
