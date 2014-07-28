@@ -193,7 +193,7 @@ Avatar.prototype.addEffect = function(param){
     if (param.serverId != null) {
         mode = effect.EFFECTMODE_LOOP;
     }
-    param.node = effect.attachEffect(this.node, cc.p(0, 0), param.effectId, mode);
+    param.node = effect.attachEffect(this.node, cc.p(0, 0), param.effectId, mode, param.dropCid);
     return param.node;
 }
 

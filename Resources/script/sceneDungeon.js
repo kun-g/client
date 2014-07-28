@@ -1347,7 +1347,7 @@ function addEffect(param){
             if( effectData.onGround === true ){
                 parent = theLayer.ground;
             }
-            param.node = effect.attachEffect(parent, pos, param.effectId, mode);
+            param.node = effect.attachEffect(parent, pos, param.effectId, mode, param.dropCid);
         }
         else{
             error("addEffect: Grid not found.");

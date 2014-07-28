@@ -400,69 +400,25 @@ function makeSpell(pace, act)
     return ret;
 }
 
-//act, spl, cid
-function makeDropSpell(pace, act) {
-    var isKey = isHero(act.act);
-    var ret = new action.Action(pace, isKey);
-    ret.tar = act.act;
-    ret.spl = act.spl;
-
-    ret.onStart = function(dungeon, layer)
-    {
-        var actor = layer.getActor(this.tar);
-
-        if( !attachAction(actor, this, 7) ){
-            return;//cant attach action
-        }
-
-        var animation = "spell-" + this.spl;
-
-        if( act.cid != null ){
-            if( act.cid >= 0 ){
-                var libItem = loadModule("xitem.js");
-                var spItem = cc.Sprite.create(libItem.getItemIcon(act.cid));
-            }else if( act.cid = -1 ){
-                var spItem = cc.Sprite.create("mission-coin.png");
-            }else{
-                var spItem = cc.Sprite.create("wenhao.png");
-            }
-            spItem.setScale(0.6);
-            var a1 = cc.DelayTime.create(1.6);
-            var a2 = cc.FadeOut.create(0.2);
-            var seq = cc.Sequence.create(a1, a2);
-            if( actor.box != null
-                && actor.box.owner != null
-                && actor.box.owner.nodeItem != null){
-                actor.box.owner.nodeItem.addChild(spItem);
-            }else{
-                debug("Node:actor.box.owner.nodeItem is null");
-            }
-            spItem.runAction(seq);
-        }
-        actor.playAnimation(animation);
+//act, eff, spl, cid
+function makeDropItem(pace, act) {
+    var ret = [];
+    if( act.spl != null ){
+        ret.push(makeSpell(pace, {
+            act: act.act,
+            spl: act.spl
+        }));
     }
-    ret.onUpdate = function(delta, dungeon, layer)
-    {
-        var actor = layer.getActor(this.tar);
-        if( actor != null )
-        {
-            //terminate by other high priority action
-            if( !isActionAlive(this, actor) ){
-                return false;
-            }
-
-            if( actor.isAnimationDone() )
-            {
-                detachAction(actor);
-                return false;
-            }
-            return true;
-        }
-        else
-        {
-            error("ActionSpell: Actor not found!");
-            return false;
-        }
+    if( act.eff != null ){
+        ret.push(makeEffect(pace, {
+            dey: act.dey,
+            eff: act.eff,
+            act: null,
+            pos: act.pos,
+            cid: act.cid
+        }));
+    }else{
+        error(": ActionDropItem: Effect not found!")
     }
     return ret;
 }
@@ -1314,7 +1270,7 @@ function makeUpdateCard(pace, act)
     return ret;
 }
 
-//dey, eff, act
+//dey, eff, act, pos, *cid
 function makeEffect(pace, act)
 {
     var ret = new action.Action(pace);
@@ -1324,6 +1280,7 @@ function makeEffect(pace, act)
     ret.grid = act.pos;
     ret.serverId = act.sid;
     ret.isRemove = act.rmf;
+    ret.dropCid = act.cid;
     debug("** makeEffect = "+JSON.stringify(ret));//test
     ret.onStart = function(dungeon, layer)
     {
@@ -1346,7 +1303,8 @@ function makeEffect(pace, act)
                     effectId: thiz.effect,
                     target: thiz.target,
                     grid: thiz.grid,
-                    serverId: thiz.serverId
+                    serverId: thiz.serverId,
+                    dropCid: thiz.dropCid
                 });
             }
         });
@@ -1806,7 +1764,7 @@ meta[8] = makeTeleport;
 meta[9] = makeFadeScene;
 meta[10] = makeDelay;
 meta[11] = makeDialogue;
-meta[12] = makeDropSpell;
+meta[12] = makeDropItem;
 
 meta[101] = makePopHP;
 meta[102] = makePopString;

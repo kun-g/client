@@ -81,22 +81,28 @@ Actions.prototype.batch = function()
 
 Actions.prototype.pushAction = function(action)
 {
-    action.pace += this.batchIndex;
-    if( action.KACT ){
-        this.keyList.push(action.AGUID);
+    if( Array.isArray(action) ){
+        for( var k in action ){
+            this.pushAction(action[k]);
+        }
+    }else{
+        action.pace += this.batchIndex;
+        if( action.KACT ){
+            this.keyList.push(action.AGUID);
+        }
+        //debug("push -> "+JSON.stringify(action));
+        if( action.pace <= this.pace )
+        {
+            //debug("start -> "+JSON.stringify(action));
+            action.onStart(this.dungeon, this.layer);
+            this.running.push(action);
+        }
+        else
+        {
+            this.pending.push(action);
+        }
+        this.working = true;
     }
-    //debug("push -> "+JSON.stringify(action));
-    if( action.pace <= this.pace )
-    {
-        //debug("start -> "+JSON.stringify(action));
-        action.onStart(this.dungeon, this.layer);
-        this.running.push(action);
-    }
-    else
-    {
-        this.pending.push(action);
-    }
-    this.working = true;
 }
 
 Action.prototype.startAction = function(action)
