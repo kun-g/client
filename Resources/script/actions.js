@@ -1314,46 +1314,51 @@ function makeEffect(pace, act)
     return ret;
 }
 
-//dey, eff, src, tar
+//dey, eff, src[{act,pos}], tar[{act,pos}]
 function makeMissileEffect(pace, act)
 {
-    var ret = new action.Action(pace);
-    ret.delay = act.dey;
-    ret.effect = act.effect;
-    ret.source = act.src;
-    ret.target = act.tar;
+    var rets = [];
+    for( var k in act.tar ){
+        var ret = new action.Action(pace);
+        ret.delay = act.dey;
+        ret.effect = act.effect;
+        ret.source = act.src.act;
+        ret.target = act.tar[k].act;
 
-    ret.onStart = function(dungeon, layer){
-        var srcActor = layer.getActor(this.source);
-        var tarActor = layer.getActor(this.target);
+        ret.onStart = function(dungeon, layer){
+            var srcActor = layer.getActor(this.source);
+            var tarActor = layer.getActor(this.target);
 
-        if( srcActor == null ){
-            error("Action Missile Effect: Source actor not found.");
-            return;
-        }
-        if( tarActor == null ){
-            error("Action Missile Effect: Target actor not found.");
-            return;
-        }
+            if( srcActor == null ){
+                error("Action Missile Effect: Source actor not found.");
+                return;
+            }
+            if( tarActor == null ){
+                error("Action Missile Effect: Target actor not found.");
+                return;
+            }
 
-        if( this.delay > 0 )
-        {
-            var zffect = this.effect;
-            var act1 = cc.DelayTime.create(this.delay);
-            var act2 = cc.CallFunc.create(function()
+            if( this.delay > 0 )
             {
-                effects.attachMissileEffect(layer.effects, zffect, srcActor.getPosition(), tarActor.getPosition());
+                var zffect = this.effect;
+                var act1 = cc.DelayTime.create(this.delay);
+                var act2 = cc.CallFunc.create(function()
+                {
+                    effects.attachMissileEffect(layer.effects, zffect, srcActor.getPosition(), tarActor.getPosition());
 
-            }, actor.getNode());
-            var seq = cc.Sequence.create(act1, act2);
-            actor.getNode().runAction(seq);
-        }
-        else
-        {
-            effects.attachMissileEffect(layer.effects, this.effect, srcActor.getPosition(), tarActor.getPosition());
-        }
+                }, actor.getNode());
+                var seq = cc.Sequence.create(act1, act2);
+                actor.getNode().runAction(seq);
+            }
+            else
+            {
+                effects.attachMissileEffect(layer.effects, this.effect, srcActor.getPosition(), tarActor.getPosition());
+            }
+        };
+        rets.push(ret);
     }
-    return ret;
+
+    return rets;
 }
 
 function makeSkillCd(pace, act)
