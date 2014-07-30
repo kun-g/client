@@ -1323,6 +1323,7 @@ function makeEffect(pace, act)
 //dey, eff, src[{act,pos}], tar[{act,pos}]
 function makeMissileEffect(pace, act)
 {
+    return;//todo?
     var ret = new libAction.Action(pace);
     ret.delay = act.dey;
     ret.effect = act.eff;
@@ -1333,7 +1334,6 @@ function makeMissileEffect(pace, act)
         var srcActor = layer.getActor(this.source);
         var tarActor = layer.getActor(this.target);
 
-        return;//todo?
         if( srcActor == null ){
             error("Action Missile Effect: Source actor not found.");
             return;
