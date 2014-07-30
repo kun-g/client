@@ -4,9 +4,9 @@
  * Time: 下午5:59
  */
 
-var action = loadModule("action.js");
-var effects = loadModule("effect.js");
-var table = loadModule("table.js");
+var libAction = loadModule("action.js");
+var libEffect = loadModule("effect.js");
+var libTable = loadModule("table.js");
 var meta = [];
 
 //static variables
@@ -41,7 +41,7 @@ function isActionAlive(action, actor){
 //tar, path
 function makeMoveTo(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.path = act.path;
     ret.target = act.target;
 
@@ -198,7 +198,7 @@ function makeMoveTo(pace, act)
 //tar, path
 function makeMoveOver(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.path = act.path;
 
     ret.onStart = function(dungeon, layer)
@@ -360,7 +360,7 @@ function makeMoveOver(pace, act)
 function makeSpell(pace, act)
 {
     var isKey = isHero(act.act);
-    var ret = new action.Action(pace, isKey);
+    var ret = new libAction.Action(pace, isKey);
     ret.tar = act.act;
     ret.spl = act.spl;
 
@@ -426,7 +426,7 @@ function makeDropItem(pace, act) {
 //sod
 function makeSound(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.sound = act.sod;
 
     ret.onStart = function(dungeon, layer)
@@ -439,7 +439,7 @@ function makeSound(pace, act)
 //mus, rep
 function makeMusic(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.music = act.mus;
     ret.repeat = act.rep;
 
@@ -464,7 +464,7 @@ function makeMusic(pace, act)
 function makeAttack(pace, act)
 {
     var isKey = isHero(act.act);
-    var ret = new action.Action(pace, isKey);
+    var ret = new libAction.Action(pace, isKey);
     ret.act = act.act;
     ret.tar = act.ref;
     ret.res = act.res;
@@ -500,7 +500,7 @@ function makeAttack(pace, act)
         //play sound
         if( !isHero(this.act) )
         {
-            var monster = table.queryTable(TABLE_ROLE, dungeon.Units[this.act-UNIT_TAG].uuid);
+            var monster = libTable.queryTable(TABLE_ROLE, dungeon.Units[this.act-UNIT_TAG].uuid);
             if( monster.soundAttack != null )
             {
                 cc.AudioEngine.getInstance().playEffect(monster.soundAttack);
@@ -521,7 +521,7 @@ function makeAttack(pace, act)
         if( mainWeapon != null ){
             if( mainWeapon != null )
             {
-                var itemClass = table.queryTable(TABLE_ITEM, mainWeapon.ClassId);
+                var itemClass = libTable.queryTable(TABLE_ITEM, mainWeapon.ClassId);
                 if( itemClass != null )
                 {
                     sound = itemClass.soundAttack;
@@ -560,19 +560,19 @@ function makeAttack(pace, act)
                 switch(this.res)
                 {
                     case 0://miss
-                        effects.attachEffectPopNum(layer.effects, pos, 0, effects.PopNum_Miss);
+                        libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Miss);
                         break;
                     case 1://hit
                     case 2://critical
                     {//play hit effect
                         if( this.hit != null )
                         {
-                            effects.attachEffect(layer.effects, target.getPosition(), this.hit);
+                            libEffect.attachEffect(layer.effects, target.getPosition(), this.hit);
                         }
                     }
                         break;
                     case 3://blocked
-                        effects.attachEffectPopNum(layer.effects, pos, 0, effects.PopNum_Block);
+                        libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Block);
                         break;
                     default ://do nothing
                         break;
@@ -607,7 +607,7 @@ function makeAttack(pace, act)
 //act, dey
 function makeHurt(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.act = act.act;
     ret.delay = act.dey;
 
@@ -650,7 +650,7 @@ function makeHurt(pace, act)
                 //play sound
                 {
                     var unit = dungeon.queryUnit(this.act);
-                    var monster = table.queryTable(TABLE_ROLE, unit.uuid);
+                    var monster = libTable.queryTable(TABLE_ROLE, unit.uuid);
                     if( monster.soundWound != null )
                     {
                         cc.AudioEngine.getInstance().playEffect(monster.soundWound);
@@ -676,7 +676,7 @@ function makeHurt(pace, act)
 function makeDead(pace, act)
 {
     var isKey = isHero(act.act);
-    var ret = new action.Action(pace, isKey);
+    var ret = new libAction.Action(pace, isKey);
     ret.act = act.act;
 
     ret.onStart = function(dungeon, layer)
@@ -702,7 +702,7 @@ function makeDead(pace, act)
             layer.syncAccess();
         }
         var actor = layer.getActor(this.act);
-        var roleData = table.queryTable(TABLE_ROLE, unit.uuid);
+        var roleData = libTable.queryTable(TABLE_ROLE, unit.uuid);
         dungeon.removeUnit(this.act);
 
         if( roleData.soundDie != null ){
@@ -713,7 +713,7 @@ function makeDead(pace, act)
             effDeath = roleData.effectDeath;
         }
         if( effDeath >= 0 ){
-            effects.attachEffect(layer.effects, actor.getPosition(), effDeath);
+            libEffect.attachEffect(layer.effects, actor.getPosition(), effDeath);
         }
 
         layer.removeActor(this.act);
@@ -725,7 +725,7 @@ function makeDead(pace, act)
 function makeEvade(pace, act)
 {
     var isKey = isHero(act.act);
-    var ret = new action.Action(pace, isKey);
+    var ret = new libAction.Action(pace, isKey);
     ret.delay = act.dey;
     ret.act = act.act;
 
@@ -792,7 +792,7 @@ function makeEvade(pace, act)
 //...
 function makeShiftOrder(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
 
     ret.onStart = function(dungeon, layer)
     {
@@ -962,7 +962,7 @@ function makeShiftOrder(pace, act)
 //act, pos
 function makeTeleport(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.act = act.act;
     ret.pos = act.pos;
 
@@ -993,7 +993,7 @@ function makeTeleport(pace, act)
 //mod, tim, col
 function makeFadeScene(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.mode = act.mod;
     ret.time = act.tim;
     ret.color = act.col;
@@ -1026,7 +1026,7 @@ function makeFadeScene(pace, act)
 //tim
 function makeDelay(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.time = act.tim;
     ret.onStart = function(dungeon, layer){
         this.timer = 0;
@@ -1045,7 +1045,7 @@ function makeDelay(pace, act)
 //dey, tim, rag
 function makeShake(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.delay = act.dey;
     ret.time = act.tim;
     ret.range = act.rag;
@@ -1080,7 +1080,7 @@ function makeShake(pace, act)
 //dey, tim, col
 function makeBlink(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.delay = act.dey;
     ret.time = act.tim;
     ret.color = act.col;
@@ -1118,7 +1118,7 @@ function makeBlink(pace, act)
 //tid
 function makeTutorial(pace, act)
 {
-    var ret= new action.Action(pace, true);
+    var ret= new libAction.Action(pace, true);
     ret.tid = act.tid;
     ret.onStart = function(dungeon, layer)
     {
@@ -1131,7 +1131,7 @@ function makeTutorial(pace, act)
 //did
 function makeDialogue(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.dialogueId = act.did;
     ret.onStart = function(dungeon, layer){
         engine.dialogue.startDialogue(this.dialogueId);
@@ -1145,7 +1145,7 @@ function makeDialogue(pace, act)
 //act, dey, num, flg
 function makePopHP(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.act = act.act;
     ret.num = act.num;
     ret.flg = act.flg;//0=MISS 1=HIT 2=CRITICAL 3=BLOCK 4=HEAL
@@ -1174,27 +1174,27 @@ function makePopHP(pace, act)
             switch(thiz.flg)
             {
                 case 0:
-                    effects.attachEffectPopNum(layer.effects, pos, 0, effects.PopNum_Miss);
+                    libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Miss);
                     break;
                 case 1:
                     unit.health -= thiz.num;
                     actor.setHealth(unit.health);
-                    effects.attachEffectPopNum(layer.effects, pos, thiz.num, effects.PopNum_Damage);
+                    libEffect.attachEffectPopNum(layer.effects, pos, thiz.num, libEffect.PopNum_Damage);
                     actor.flash(cc.c3b(255, 0, 0));//flash red
                     break;
                 case 2:
                     unit.health -= thiz.num;
                     actor.setHealth(unit.health);
-                    effects.attachEffectPopNum(layer.effects, pos, thiz.num, effects.PopNum_Critical);
+                    libEffect.attachEffectPopNum(layer.effects, pos, thiz.num, libEffect.PopNum_Critical);
                     actor.flash(cc.c3b(255, 0, 0));//flash red
                     break;
                 case 3:
-                    effects.attachEffectPopNum(layer.effects, pos, 0, effects.PopNum_Block);
+                    libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Block);
                     break;
                 case 4:
                     unit.health += thiz.num;
                     actor.setHealth(unit.health);
-                    effects.attachEffectPopNum(layer.effects, pos, thiz.num, effects.PopNum_Heal);
+                    libEffect.attachEffectPopNum(layer.effects, pos, thiz.num, libEffect.PopNum_Heal);
                     actor.flash(cc.c3b(0, 255, 0));//flash green
                     break;
             }
@@ -1208,7 +1208,7 @@ function makePopHP(pace, act)
 //act, dey, str, flg
 function makePopString(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.onStart = function(dungeon, layer)
     {
         debug("[warning] no more popstring support now.");
@@ -1219,7 +1219,7 @@ function makePopString(pace, act)
 //sid, typ, cnt
 function makeUpdateCard(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.card = {};
     ret.card.ServerId = act.sid;
     ret.card.Type = act.typ;
@@ -1273,7 +1273,7 @@ function makeUpdateCard(pace, act)
 //dey, eff, act, pos, *cid
 function makeEffect(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.delay = act.dey;
     ret.effect = act.eff;
     ret.target = act.act;
@@ -1319,11 +1319,12 @@ function makeMissileEffect(pace, act)
 {
     var rets = [];
     for( var k in act.tar ){
-        var ret = new action.Action(pace);
+        var ret = new libAction.Action(pace);
         ret.delay = act.dey;
-        ret.effect = act.effect;
+        ret.effect = act.eff;
         ret.source = act.src.act;
         ret.target = act.tar[k].act;
+        debug("1327");
 
         ret.onStart = function(dungeon, layer){
             var srcActor = layer.getActor(this.source);
@@ -1338,23 +1339,27 @@ function makeMissileEffect(pace, act)
                 return;
             }
 
+            debug("1342");
             if( this.delay > 0 )
             {
+                debug("1345");
                 var zffect = this.effect;
                 var act1 = cc.DelayTime.create(this.delay);
-                var act2 = cc.CallFunc.create(function()
-                {
-                    effects.attachMissileEffect(layer.effects, zffect, srcActor.getPosition(), tarActor.getPosition());
-
-                }, actor.getNode());
+                var act2 = cc.CallFunc.create(function(){
+                    libEffect.attachMissileEffect(layer.effects, zffect, srcActor.getPosition(), tarActor.getPosition());
+                });
                 var seq = cc.Sequence.create(act1, act2);
-                actor.getNode().runAction(seq);
+                debug("1352");
+                srcActor.getNode().runAction(seq);
+//                layer.runAction(seq);
+                debug("1355");
             }
             else
             {
-                effects.attachMissileEffect(layer.effects, this.effect, srcActor.getPosition(), tarActor.getPosition());
+                libEffect.attachMissileEffect(layer.effects, this.effect, srcActor.getPosition(), tarActor.getPosition());
             }
         };
+        debug("1362");
         rets.push(ret);
     }
 
@@ -1363,7 +1368,7 @@ function makeMissileEffect(pace, act)
 
 function makeSkillCd(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.cd = act.cd;
 
     ret.onStart = function(dungeon, layer)
@@ -1376,7 +1381,7 @@ function makeSkillCd(pace, act)
 
 function makeDungeonEvent(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.type = act.typ;
     ret.pos = act.pos;
 
@@ -1395,7 +1400,7 @@ function makeDungeonEvent(pace, act)
 //pos, pas, typ 更新角色
 function makeDungeonBlock(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.pos = act.pos;
     ret.pas = act.pas;
     ret.typ = act.typ;
@@ -1446,7 +1451,7 @@ function makeDungeonBlock(pace, act)
         dungeon.UpdateAccessFlag = true;
 
         if( showEffect ){
-            effects.attachEffect(layer.effects, calcPosInGrid(this.pos), 6);
+            libEffect.attachEffect(layer.effects, calcPosInGrid(this.pos), 6);
             //play sound (anyway now)
             //if( layer.requestExplore )
             {
@@ -1464,7 +1469,7 @@ function makeDungeonBlock(pace, act)
 //pos, id, hp, dc, typ, eff 创建角色
 function makeDungeonEnemy(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.arg = act;
 
     ret.onStart = function(dungeon, layer)
@@ -1508,7 +1513,7 @@ function makeDungeonEnemy(pace, act)
             dungeon.Units[unit.ref - UNIT_TAG] = unit;
 
             //play spwan sound
-            var monster = table.queryTable(TABLE_ROLE, unit.uuid);
+            var monster = libTable.queryTable(TABLE_ROLE, unit.uuid);
             var boss = false;
             if( monster.bossFlag )
             {
@@ -1546,7 +1551,7 @@ function makeDungeonEnemy(pace, act)
         }
         //add effect
         if( this.arg.eff != null && this.arg.eff >= 0 ){
-            effects.attachEffect(layer.effects, actor.getPosition(), this.arg.eff);
+            libEffect.attachEffect(layer.effects, actor.getPosition(), this.arg.eff);
         }
     }
 
@@ -1556,7 +1561,7 @@ function makeDungeonEnemy(pace, act)
 //ref, hp, dc
 function makeUnitUpdate(pace, act)
 {
-    var ret = new action.Action(pace);
+    var ret = new libAction.Action(pace);
     ret.ref = act.ref;
     ret.hp = act.hp;
     ret.dc = act.dc;
@@ -1630,7 +1635,7 @@ function makeUnitUpdate(pace, act)
 }
 
 function makeDungeonResult(pace, act){
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.win = act.win;
 
     ret.onStart = function(dungeon, layer){
@@ -1640,7 +1645,7 @@ function makeDungeonResult(pace, act){
 }
 
 function makeEnterLevel(pace, act){
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.pos = act.pos;
     ret.pos1 = act.pos1;
     ret.pos2 = act.pos2;
@@ -1732,7 +1737,7 @@ function makeEnterLevel(pace, act){
 
 function makeAllDead(pace, act)
 {
-    var ret= new action.Action(pace, true);
+    var ret= new libAction.Action(pace, true);
     ret.count = act.cnt;
     ret.onStart = function(dungeon, layer)
     {
@@ -1745,7 +1750,7 @@ function makeAllDead(pace, act)
 //event
 function makeEventAction(pace, act)
 {
-    var ret = new action.Action(pace, true);
+    var ret = new libAction.Action(pace, true);
     ret.event = act.event;
 
     ret.onStart = function(dungeon, layer)
