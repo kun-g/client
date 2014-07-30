@@ -3109,7 +3109,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "Touch -cm ${SRCROOT}/../Resources/misc\nTouch -cm ${SRCROOT}/../Resources/script\nTouch -cm ${SRCROOT}/../Resources/table\nTouch -cm ${SRCROOT}/../Resources/blackbox\nTouch -cm ${SRCROOT}/../Resources/font\nTouch -cm ${SRCROOT}/../Resources/node\nTouch -cm ${SRCROOT}/../Resources/sound\nTouch -cm ${SRCROOT}/../Resources/sprite\nTouch -cm ${SRCROOT}/../Resources/spritesheets\nTouch -cm ${SRCROOT}/../Resources/ui/960\nTouch -cm ${SRCROOT}/../Resources/ui/1136";
+			shellScript = "#Touch -cm ${SRCROOT}/../Resources/misc\nTouch -cm ${SRCROOT}/../Resources/script\nTouch -cm ${SRCROOT}/../Resources/table\n#Touch -cm ${SRCROOT}/../Resources/blackbox\n#Touch -cm ${SRCROOT}/../Resources/font\n#Touch -cm ${SRCROOT}/../Resources/node\n#Touch -cm ${SRCROOT}/../Resources/sound\n#Touch -cm ${SRCROOT}/../Resources/sprite\n#Touch -cm ${SRCROOT}/../Resources/spritesheets\n#Touch -cm ${SRCROOT}/../Resources/ui/960\n#Touch -cm ${SRCROOT}/../Resources/ui/1136";
 		};
 /* End PBXShellScriptBuildPhase section */
 

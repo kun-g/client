@@ -242,36 +242,33 @@ function attachEffect(node, offset, effectId, mode, dropCid)
 }
 
 function onMissileEffectUpdate(delta){
-    debug("EEU: 245");
-    var eff = this;//.getChildByTag(254);
+    var eff = this;
+    var pPrevious = eff.getPosition();
     eff.TIMER += delta;
     debug("TIMER:"+eff.TIMER + "FLYTIME:"+eff.FLYTIME);
-
     var alpha = eff.TIMER / eff.FLYTIME;
-    debug("alpha:"+alpha);
+    var pNext = cc.pBezier1(eff.V1, eff.V2, eff.V3, alpha);
+    var radians = cc.pAngle(pPrevious, pNext);
+    debug("alpha:"+alpha+" angle:"+ radians*(180/Math.PI) );
     if( alpha > 1 ){
         this.unscheduleUpdate();
         eff.removeFromParent();
     }
     else{
-        debug("before");
-        eff.setPosition(cc.pBezier1(eff.V1, eff.V2, eff.V3, alpha));
-        debug("after");
+        eff.setRotation(radians*(180/Math.PI));
+        eff.setPosition(pNext);
     }
 }
 
 function attachMissileEffect(node, effectId, startPoint, endPoint)
 {
-    debug("EEE: 257");
     var eff = readEffectNode(effectId);
     eff.MODE = EFFECTMODE_LOOP;
     eff.animationManager.setCompletedAnimationCallback(eff, onEffectCompleted);
     eff.setPosition(startPoint);
     node.addChild(eff);
-    debug("EEE: 263");
     //setup arguments
     var scheme = loadModule("table.js").queryTable(TABLE_EFFECT, effectId);
-    debug("scheme:"+JSON.stringify(scheme));
     eff.V1 = startPoint;
     eff.V3 = endPoint;
     var dist = cc.pDistance(startPoint, endPoint);
@@ -280,7 +277,6 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
     eff.V2.y += hoff;
     eff.TIMER = 0;
     eff.FLYTIME = scheme.flytime;
-    debug("EEE: 274");
     eff.update = onMissileEffectUpdate;
     eff.scheduleUpdate();
 

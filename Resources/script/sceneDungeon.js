@@ -632,6 +632,8 @@ function doDungeonResult(win){
         theLayer.runAction(actSeq);
     }
     else{
+        effect.attachEffect(theLayer, cc.p(winSize.width/2, winSize.height/2), 53, effect.EFFECTMODE_STAY);
+        cc.AudioEngine.getInstance().playEffect("win.mp3");
         var actDelay = cc.DelayTime.create(3);
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
         var actSeq = cc.Sequence.create(actDelay, actFunc);
