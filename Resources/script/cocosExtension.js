@@ -345,3 +345,16 @@ cc.pBezier1 = function(A, B, C, alpha){
     return cc.pLerp(m, n, alpha);
 }
 
+cc.angleOfLine = function (A, B) {
+    var distance = cc.pDistance(A, B);
+    if( Math.abs(B.x - A.x) > 0.1){
+        var sinAlpha = (B.x - A.x)/distance;
+        return ( Math.asin(sinAlpha) *(180/Math.PI) );
+    } else if( Math.abs(B.y - A.y) > 0.1 ){
+        var cos = (B.y - A.y)/distance;
+        return ( Math.acos(cos) *(180/Math.PI) );
+    }else{
+        return 0;
+    }
+
+}

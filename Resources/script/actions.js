@@ -1333,6 +1333,7 @@ function makeMissileEffect(pace, act)
         var srcActor = layer.getActor(this.source);
         var tarActor = layer.getActor(this.target);
 
+        return;//todo?
         if( srcActor == null ){
             error("Action Missile Effect: Source actor not found.");
             return;
