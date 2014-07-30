@@ -15,6 +15,7 @@ var theItem;
 var theOperate;
 var theItemClass;
 var theRole;
+var thePurchase;
 
 /******* OPEN CHEST *********/
 var theOpenLayer;
@@ -377,6 +378,35 @@ function onSell(sender){
     ]);
 }
 
+function onPurchase(sender){
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    var itemCid = theItem.ClassId;
+    var itemCount = theItem.cnt
+    var shopItem = engine.session.queryStore(itemCid);
+    var cost = shopItem.cost["diamond"] * itemCount;
+    var str1 = "材料不足\n立即花费" + cost + "宝石买齐材料？";
+    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
+    var args = {
+        sid: shopItem.sid,
+        cnt: itemCount,
+        ver: engine.session.shop.version
+    };
+    libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function (rsp) {
+        if (rsp.RET == RET_OK) {
+            cc.AudioEngine.getInstance().playEffect("buy.mp3");
+        }
+    });
+}
+
+function onCollectMaterial(sender){
+    if (theItem.stage != null){
+        cc.AudioEngine.getInstance().playEffect("card2.mp3");
+        var libStage = loadModule("sceneStage.js");
+        var stageData = queryStage(theItem.stage);
+        libStage.startStage(theItem.stage, stageData.team, stageData.cost);
+    }
+}
+
 function canDissolve(){
 //    if( theItemClass.category == ITEM_EQUIPMENT ){
 //        if( theItemClass.subcategory >= EquipSlot_MainHand
@@ -392,9 +422,29 @@ function onActivate(){
     engine.pop.invokePop("itemInfo");
 }
 
+function onSwTouchBegan(touch, event){
+    if (thePurchase){
+        onClose();
+    }
+}
+
+function onSwTouchMoved(touch, event){
+
+}
+
+function onSwTouchEnded(touch, event){
+
+}
+
+function onSwTouchCancelled(touch, event){
+
+}
+
 function onEnter(){
     theLayer = this;
 
+    cacheSprite("buttontext-fbsj.png");
+    cacheSprite("buttontext-buy.png");
     this.owner = {};
     this.owner.onSell = onSell;
 //    this.owner.onDissolve = onDissolve;
@@ -419,6 +469,7 @@ function onEnter(){
     this.node.setScale(0);
     this.node.runAction(actionPopIn());
     engine.ui.regMenu(this.owner.menuRoot);
+    engine.ui.regMenu(theLayer);
 
     //assign values
     this.ui.icon.setItem(theItem,theRole);
@@ -486,6 +537,21 @@ function onEnter(){
         }
     }
 
+    if (thePurchase){
+        operates = [];
+        operates.push({
+            label: "buttontext-fbsj.png",
+            func: onCollectMaterial,
+            obj: theLayer
+        });
+        operates.push({
+            label: "buttontext-buy.png",
+            func: onPurchase,
+            obj: theLayer,
+            type: BUTTONTYPE_DEFAULT
+        });
+    }
+
     //do the operate
     if( operates.length == 1 )
     {//Only One Button
@@ -510,13 +576,23 @@ function onEnter(){
     else{
         contentNormal();
     }
-    
-    
+    theLayer.onTouchBegan = onSwTouchBegan;
+    theLayer.onTouchMoved = onSwTouchMoved;
+    theLayer.onTouchEnded = onSwTouchEnded;
+    theLayer.onTouchCancelled = onSwTouchCancelled;
+    theLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theLayer.setTouchPriority(1);
+    theLayer.setTouchEnabled(true);
 }
 
 //pass the item and if can operate
 function show(item, operate, role){
     theItem = item;
+    debug("iteminfo theItem = "+JSON.stringify(theItem));
+    thePurchase = item.purchase;
+    if (thePurchase == null){
+        thePurchase = false;
+    }
     theOperate = operate;
     if( theOperate == null )
     {

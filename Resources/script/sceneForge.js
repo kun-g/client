@@ -967,24 +967,18 @@ function onAddMaterials(sender) {
     DropStages = [];
     var id = sender.getTag();
     var itemCid = theContent.ui["mtrl" + id].getItem().ClassId;
-    var shopItem = engine.session.queryStore(itemCid);
-    var cost = shopItem.cost["diamond"] * Delta[id];
-    var str1 = "材料不足\n立即花费" + cost + "宝石买齐材料？";
-    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
-    var args = {
-        sid: shopItem.sid,
-        cnt: Delta[id],
-        ver: engine.session.shop.version
-    };
-    libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function (rsp) {
-        if (rsp.RET == RET_OK) {
-            cc.AudioEngine.getInstance().playEffect("buy.mp3");
-        }
-    });
+    getDropStage(itemCid);
+    var item = new libItem.Item({cid:itemCid});
+    item.purchase = true;
+    item.cnt = Delta[id];
+    if (DropStages.length > 0){
+        item.stage = DropStages[0];
+    }
+    loadModule("itemInfo.js").show(item);
 }
 
 function getDropStage(cid) {
-    for( var i_s = 0; ; i_s++){
+    for( var i_s = 8; ; i_s++){
         var stgClass = queryStage(i_s);
         if( stgClass != null ) {
             var dgnClass = libTable.queryTable(TABLE_DUNGEON, stgClass.dungeon);
