@@ -1323,7 +1323,6 @@ function makeEffect(pace, act)
 //dey, eff, src[{act,pos}], tar[{act,pos}]
 function makeMissileEffect(pace, act)
 {
-    return;//todo?
     var ret = new libAction.Action(pace);
     ret.delay = act.dey;
     ret.effect = act.eff;
