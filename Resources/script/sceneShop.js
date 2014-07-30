@@ -82,6 +82,7 @@ function onConfirmPurchase(sender){
                 Number(theConfirmCount.getString()),
                 theConfirmShopItem.cost.diamond);
             }
+            libUIKit.showAlert("购买成功。");
         }
         else{
             libUIKit.showErrorMessage(rsp);

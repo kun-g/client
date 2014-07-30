@@ -43,7 +43,7 @@ var BAR_WIDTH = 570;
 var BAR_HEIGHT = 180;
 var NumMultiRows;
 var LastMultiRows;
-
+var thePrizeLayer = [];
 var WorldStageInfo = {};
 var WORLD_STAGE_ID = 133;
 var WORLD_STAGE_RESET_TIME = {
@@ -59,6 +59,10 @@ function onEvent(event)
 function onClose(sender)
 {
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     var main = loadModule("sceneMain.js");
     engine.ui.newScene(main.scene());
 }
@@ -124,6 +128,10 @@ function onEnter()
 
 function onExit()
 {
+    for (var k in thePrizeLayer){
+        engine.ui.unregMenu(thePrizeLayer[k]);
+    }
+    thePrizeLayer = [];
     loadModule("broadcastx.js").instance.close();
 }
 
@@ -519,11 +527,21 @@ function selectStage(sId)
         theLayer.stage.owner["loot"].removeAllChildren();
         theLayer.stage.owner["loot"].addChild(lootNode);
     }
-//    theLayer.stage.lootLayer = theLayer.stage.owner["lootLayer"];
-//    theLayer.stage.lootLayer.setZOrder(10);
-//    theLayer.stage.lootLayer.setTouchEnabled(true);
-//    theLayer.stage.lootLayer.loots = loot;
-//    theLayer.stage.lootLayer.onTouchEnded = onLootTouchEnded;
+
+
+    theLayer.stage.lootLayer = theLayer.stage.owner["lootLayer"];
+    theLayer.stage.lootLayer.setZOrder(10);
+    theLayer.stage.lootLayer.loots = loot;
+    theLayer.stage.lootLayer.onTouchBegan = onLootTouchBegan;
+    theLayer.stage.lootLayer.onTouchMoved = onLootTouchMoved;
+    theLayer.stage.lootLayer.onTouchCancelled = onLootTouchCancelled;
+    theLayer.stage.lootLayer.onTouchEnded = onLootTouchEnded;
+    theLayer.stage.lootLayer.setTouchMode(cc.TOUCH_ONE_BY_ONE);
+    theLayer.stage.lootLayer.setTouchPriority(1);
+    theLayer.stage.lootLayer.setTouchEnabled(true);
+    theLayer.stage.lootLayer.setVisible(true);
+    engine.ui.regMenu(theLayer.stage.lootLayer);
+    thePrizeLayer.push(theLayer.stage.lootLayer);
 
     //check sweep
     for( var k_SG0 in SweepGroup ) {
@@ -573,25 +591,38 @@ function selectStage(sId)
     }
 }
 
-//function onLootTouchEnded(touch, event) {
-//    var pos = touch.getLocation();
-//    var relPos = pos;
+function onLootTouchBegan(touch, event) {
+    debug("onLootTouchBegan");
+    var pos = touch.getLocation();
+    var relPos = theLayer.stage.lootLayer.convertToNodeSpace(pos);
 //    relPos.x -= theLayer.stage.lootLayer.getPosition().x;
 //    relPos.y -= theLayer.stage.lootLayer.getPosition().y;
-//    debug(JSON.stringify(pos));
-//    debug(JSON.stringify(relPos));
-//    if( cc.rectContainsPoint(cc.rect(0, 0,
-//        theLayer.stage.lootLayer.getContentSize().width,
-//        theLayer.stage.lootLayer.getContentSize().height
-//    ), relPos) ){
-//        var itemCid = theLayer.stage.lootLayer.loots[Math.floor(relPos.y/80)];
-//        debug("Cid:"+itemCid);
-//        if( itemCid != null ){
-//            var item = new libItem.Item({cid:itemCid});
-//            loadModule("itemInfo.js").show(item);
-//        }
-//    }
-//}
+    debug(JSON.stringify(pos));
+    debug(JSON.stringify(relPos));
+    if( cc.rectContainsPoint(cc.rect(0, 0,
+        theLayer.stage.lootLayer.getContentSize().width,
+        theLayer.stage.lootLayer.getContentSize().height
+    ), relPos) ){
+        var itemCid = theLayer.stage.lootLayer.loots[Math.floor(relPos.x/80)];
+        debug("Cid:"+itemCid);
+        if( itemCid != null ){
+            var item = new libItem.Item({cid:itemCid});
+            loadModule("itemInfo.js").show(item);
+        }
+    }
+}
+
+function onLootTouchMoved(touch, event) {
+    debug("onLootTouchMoved");
+}
+
+function onLootTouchCancelled(touch, event) {
+    debug("onLootTouchCancelled");
+}
+
+function onLootTouchEnded(touch, event) {
+    debug("onLootTouchEnded");
+}
 
 function onSelectStage(sender)
 {
