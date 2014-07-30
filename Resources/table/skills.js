@@ -662,10 +662,8 @@ exports.data = [
               "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":1}]
           },
           "action":[
-              {"type": "playEffect","delay":0},
-              {"type": "delay", "delay":0.5},
-              {"type": "rangeAttack"}
-
+              {"type": "rangeAttack"},
+              {"type": "rangeAttackEff","delay":1}
           ],
         "levelConfig":[
             {"effect":50},
