@@ -247,15 +247,24 @@ function onMissileEffectUpdate(delta){
     eff.TIMER += delta;
     var alpha = eff.TIMER / eff.FLYTIME;
     var pNext = cc.pBezier1(eff.V1, eff.V2, eff.V3, alpha);
+    var oNext = missileOpacCtrl(alpha);
 //    var radians = cc.pAngle(eff.V1, eff.V3);
     if( alpha > 1 ){
         this.unscheduleUpdate();
         eff.removeFromParent();
     }
     else{
-//        eff.setRotation(radians*(180/Math.PI));
+        for (var k in eff.getChildren() ){
+            eff.getChildren()[k].setOpacity(oNext);
+        }
         eff.setPosition(pNext);
     }
+}
+
+function missileOpacCtrl(x) {
+    var y = - Math.pow(x-1, 2) + 1;
+    y *= 255;
+    return y;
 }
 
 function attachMissileEffect(node, effectId, startPoint, endPoint)
@@ -274,7 +283,6 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
     eff.V2 = cc.pMidpoint(startPoint, endPoint);
     eff.V2.y += hoff;
     eff.setRotation(cc.angleOfLine(eff.V1, eff.V3));
-    debug("rotation:"+eff.getRotation());
     eff.TIMER = 0;
     eff.FLYTIME = scheme.flytime;
     eff.update = onMissileEffectUpdate;

@@ -463,13 +463,12 @@ function makeMusic(pace, act)
 //act, ref, res(0=miss, 1=hit 2=critical 3=block 4=heal)
 function makeAttack(pace, act)
 {
-    var rets = [];
-
     var isKey = isHero(act.act);
     var ret = new libAction.Action(pace, isKey);
     ret.act = act.act;
     ret.tar = act.ref;
     ret.res = act.res;
+    ret.rng = act.rng;
 
     ret.onStart = function(dungeon, layer)
     {
@@ -547,7 +546,8 @@ function makeAttack(pace, act)
     {
         var actor = layer.getActor(this.act);
         var target = layer.getActor(this.tar);
-
+        var hitEffId = this.hit;
+        this.funcHit = function () {};
         if( !isActionAlive(this, actor) ){
             return false;
         }
@@ -562,22 +562,36 @@ function makeAttack(pace, act)
                 switch(this.res)
                 {
                     case 0://miss
-                        libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Miss);
+                        this.funcHit = function () {
+                            libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Miss);
+                        };
                         break;
                     case 1://hit
                     case 2://critical
                     {//play hit effect
                         if( this.hit != null )
                         {
-                            libEffect.attachEffect(layer.effects, target.getPosition(), this.hit);
+                            this.funcHit = function () {
+                                libEffect.attachEffect(layer.effects, target.getPosition(), hitEffId);
+                            };
                         }
                     }
                         break;
                     case 3://blocked
-                        libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Block);
+                        this.funcHit = function () {
+                            libEffect.attachEffectPopNum(layer.effects, pos, 0, libEffect.PopNum_Block);
+                        };
                         break;
                     default ://do nothing
                         break;
+                }
+                if( this.rng ){
+                    var a1 = cc.DelayTime.create(0.5);
+                    var a2 = cc.CallFunc.create(this.funcHit);
+                    var seq = cc.Sequence.create(a1, a2);
+                    target.getNode().runAction(seq);
+                }else{
+                    this.funcHit();
                 }
             }
         }
@@ -603,11 +617,7 @@ function makeAttack(pace, act)
         }
         return true;
     };
-    rets.push(ret);
-    if( act.eff != null && act.src != null && act.tar != null ){
-//        rets.push(makeMissileEffect(pace, act));
-    }
-    return rets;
+    return ret;
 }
 
 //act, dey
