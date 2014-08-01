@@ -126,6 +126,7 @@ function onStartPK(sender) {
     if( theRival != null ){
         var libStage = loadModule("sceneStage.js");
         var stageDate = queryStage(PVP_STAGEID);
+        engine.session.PkInfo.curRival = theRival;
         libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
     }else{
         libUIKit.showAlert("PK对手不存在");
