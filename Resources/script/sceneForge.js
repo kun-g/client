@@ -55,6 +55,7 @@ var TouchId;
 var EnoughMtrls = false;
 var Delta = [];
 var TagArray = [[],[],[]]; //TagArray[0]:upgrade TagArray[1]:enhance TagArray[3]:forge
+var DropStages = [];
 
 var ITEM_POSITION = cc.p(45,45);
 
@@ -188,7 +189,7 @@ function checkGold(gold){
         var needgold = gold - engine.user.inventory.Gold;
         var needdia = Math.ceil(needgold / 10);
         var str1 = "金币不足\n还需要"+needgold+"金币\n需要使用"+needdia+"宝石来兑换吗?";
-        var str2 = "宝石不足，无法兑换\n需要充值吗?";
+        var str2 = "金币与兑换所需宝石钧不足\n需要充值吗?";
         debug("宝石 = "+needdia);
         libUIKit.confirmPurchase(Request_BuyFeature, {
             typ: 3,
@@ -225,6 +226,14 @@ function refreshTag(thiz, type) { //type 0:main 1:upgrade 2:enhance 3:forge
                 thiz.owner[ "tag"+TagArray[type-1][k] ].setVisible(true);
             }
         }
+    }
+}
+
+function onSelectedItem(sender) {
+    cc.AudioEngine.getInstance().playEffect("card2.mp3");
+
+    if (theForgeItem != null) {
+        loadModule("itemInfo.js").show(theForgeItem);
     }
 }
 
@@ -284,6 +293,8 @@ function setUpgradeItem(item){
         {//can upgrade
             theContent.owner.content1.setVisible(true);
             theContent.owner.content2.setVisible(false);
+            theContent.owner.btnSelectedItem1.setEnabled(true);
+            theContent.owner.btnSelectedItem2.setEnabled(false);
             theContent.owner.btnStartUpgrade.setEnabled(true);
             theContent.ui.oldItem.setItem(item);
             theForgeItem = item;
@@ -338,6 +349,8 @@ function setUpgradeItem(item){
         {//can't upgrade
             theContent.owner.content1.setVisible(false);
             theContent.owner.content2.setVisible(true);
+            theContent.owner.btnSelectedItem1.setEnabled(false);
+            theContent.owner.btnSelectedItem2.setEnabled(true);
             theContent.owner.btnStartUpgrade.setEnabled(false);
             theContent.owner.labLv.setString(itemClass.rank);
             theContent.owner.theName.setString(itemClass.label);
@@ -394,6 +407,7 @@ function loadUpgrade(){
     ret.owner = {};
     ret.owner.onStartUpgrade = onStartUpgrade;
     ret.owner.onUpgradeEquip = onUpgradeEquip;
+    ret.owner.onSelectedItem = onSelectedItem;
 
     var bind = {
         item1: {
@@ -471,6 +485,7 @@ function loadUpgrade(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag1.setVisible(false);
     refreshTag(ret, 1);
+    autoSelect(ret,1);
     return ret;
 }
 
@@ -755,6 +770,7 @@ function loadEnhance(){
     ret.owner.onStartEnhance = onStartEnhance;
     ret.owner.onEnhanceEquip = onEnhanceEquip;
     ret.owner.onAddStone = onAddStone;
+    ret.owner.onSelectedItem = onSelectedItem;
 
     var bind = {
         item1: {
@@ -808,24 +824,27 @@ function loadEnhance(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag2.setVisible(false);
     refreshTag(ret, 2);
-    autoSelect(ret.ui.itemOld,1);
+    autoSelect(ret,2);
     return ret;
 }
 
 function autoSelect(ui,type) {
-  var slot = EquipSlot_MainHand;
-    var upInfo = getUpgradeInfo(type).lst;
-    upable = upInfo.filter(function(e) {return e>0;});
-    if (upable.length > 0){
-      slot = upable[0] - 1;
-    }
-    var oldItem = engine.user.actor.queryArmor(slot);
-    ui.setItem(oldItem);
+  var action =[setUpgradeItem,setEnhanceEquip,setForgeEquip];
+  var slot = EquipSlot_SecondHand;  //EquipSlot_MainHand;
+  var upInfo = getUpgradeInfo(type).lst;
+  upable = upInfo.filter(function(e) {return e > 0;});
+  if (upable.length > 0){
+          slot = upable[0] - 1;
+  }
+  var theItem = engine.user.actor.queryArmor(slot);
+  theContent = ui;
+  action[type-1](theItem);
+  //ui.ui.equip.setItem(oldItem);
 
 }
 
 function getUpgradeInfo(type) {
-  var TagArray = [{res:false,lst:[]},{res:false,lst:[]},{res:false, lst[]}];
+  var TagArray = [{res:false,lst:[]},{res:false,lst:[]},{res:false, lst:[]}];
   if (type > 3 || type < 0 ) {
     return TagArray[0] ;
   }
@@ -834,7 +853,6 @@ function getUpgradeInfo(type) {
   TagArray[2].res = engine.user.inventory.checkForgable(TagArray[2].lst) ;
   return TagArray[type-1];
 }
-
 function onEnhance(sender){
     if( !engine.user.player.checkUnlock("enhance") ){
         return;
@@ -885,6 +903,7 @@ function loadForge(){
     ret.owner.onForgeEquip = onForgeEquip;
     ret.owner.onStartForge = onStartForge;
     ret.owner.onAddMaterials = onAddMaterials;
+    ret.owner.onSelectedItem = onSelectedItem;
     var bind = {
         item1:{
             ui: "UIItem",
@@ -967,27 +986,45 @@ function loadForge(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag3.setVisible(false);
     refreshTag(ret, 3);
+    autoSelect(ret,3);
     return ret;
 }
 
 function onAddMaterials(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    DropStages = [];
     var id = sender.getTag();
     var itemCid = theContent.ui["mtrl" + id].getItem().ClassId;
-    var shopItem = engine.session.queryStore(itemCid);
-    var cost = shopItem.cost["diamond"] * Delta[id];
-    var str1 = "材料不足\n立即花费" + cost + "宝石买齐材料？";
-    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
-    var args = {
-        sid: shopItem.sid,
-        cnt: Delta[id],
-        ver: engine.session.shop.version
-    };
-    libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function (rsp) {
-        if (rsp.RET == RET_OK) {
-            cc.AudioEngine.getInstance().playEffect("buy.mp3");
+    getDropStage(itemCid);
+    var item = new libItem.Item({cid:itemCid});
+    item.purchase = true;
+    item.cnt = Delta[id];
+    if (DropStages.length > 0){
+        item.stage = DropStages[0];
+    }
+    loadModule("itemInfo.js").show(item);
+}
+
+function getDropStage(cid) {
+    for( var i_s = 8; ; i_s++){
+        var stgClass = queryStage(i_s);
+        if( stgClass != null ) {
+            var dgnClass = libTable.queryTable(TABLE_DUNGEON, stgClass.dungeon);
+            for (var k_dropID in dgnClass.dropID) {
+                var drpClass = libTable.queryTable(TABLE_DROP, dgnClass.dropID[k_dropID]);
+                for (var k_drop in drpClass) {
+                    var drpPrizes = drpClass[k_drop].prize;
+                    for (var k_prz in drpPrizes) {
+                        if (drpPrizes[k_prz].type == 0 && drpPrizes[k_prz].value == cid) {
+                            DropStages.push(i_s);
+                        }
+                    }
+                }
+            }
+        } else {
+            return;
         }
-    });
+    }
 }
 
 function onForgeEquip(sender){
@@ -1336,6 +1373,7 @@ function loadSynthesize(){
     ret.owner = {};
     ret.owner.onSynthesizeStone = onSynthesizeStone;
     ret.owner.onStartSynthesize = onStartSynthesize;
+    ret.owner.onSelectedItem = onSelectedItem;
 
     var bind = {
         item2: {
@@ -1487,7 +1525,7 @@ function onUIAnimationCompleted(name){
                 theTransitionContent.node.release();
                 theContent = theTransitionContent;
                 theTransitionContent = null;
-
+                theForgeItem = null;
             }
         }break;
     }
