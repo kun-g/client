@@ -20,10 +20,13 @@ function UIManager()
 UIManager.prototype.start = function(assign)
 {
     var scene = cc.Scene.create();
+    var node = cc.Node.create();
     director.runWithScene(scene);
     singleton.LAYERS = [];
     singleton.curScene = scene;
+    singleton.curNode = node;
 
+    singleton.curScene.addChild(singleton.curNode);
     singleton.newLayer(assign);
 }
 
@@ -39,9 +42,12 @@ UIManager.prototype.newScene = function(assign)
     var scene = cc.Scene.create();
     singleton.LAYERS = [];
     singleton.curScene = scene;
-
+    var node = cc.Node.create();
+    singleton.curNode = node;
     //replace scene
     director.replaceScene(scene);
+
+    autoAdaptResolution();
 
     singleton.newLayer(assign);
 
@@ -59,6 +65,7 @@ UIManager.prototype.newScene = function(assign)
     }
 
     singleton.LAYERS[0].setKeypadEnabled(true);
+    singleton.curScene.addChild(singleton.curNode);
 }
 
 /*
@@ -87,12 +94,12 @@ UIManager.prototype.newLayer = function(assign)
         engine.event.pushNTFHandler(layer.onNotify, layer);
     }
 
-    //add layer
-    singleton.curScene.addChild(layer);
-
     if( layer.onActivate != null ){
         layer.onActivate();
     }
+
+    //add layer
+    singleton.curNode.addChild(layer);
     return layer;
 }
 
@@ -101,7 +108,7 @@ UIManager.prototype.popLayer = function()
     engine.event.removeNTFHandler(singleton.curLayer);
 
     //remove layer
-    singleton.curScene.removeChild(singleton.curLayer);
+    singleton.curNode.removeChild(singleton.curLayer);
 
     singleton.LAYERS.pop();
     if( singleton.LAYERS.length > 0 )
@@ -122,7 +129,7 @@ UIManager.prototype.removeLayer = function(layer){
             if( ly === layer ){
                 engine.event.removeNTFHandler(ly);
                 //remove layer
-                singleton.curScene.removeChild(ly);
+                singleton.curNode.removeChild(ly);
                 return false;
             }
             return true;
@@ -238,6 +245,118 @@ function disableLayer(layer)
     catch(e){
         traceError(e);
     }
+}
+
+function autoAdaptResolution()
+{
+    var winViewWidth = engine.game.viewSize.width;
+    var winViewHeight = engine.game.viewSize.height;
+    var marginIcon = "item-sjw8.png";
+
+    //auto adapt resolution
+    var winSize = cc.Director.getInstance().getWinSize();
+
+    if (winSize.height != winViewHeight || winSize.width != winViewWidth){
+        var ratioDev = winSize.height / winSize.width;
+        var ratioFit = winViewHeight / winViewWidth;
+        var sub = ratioDev - ratioFit;
+        var offsetFloat = 0.01;
+
+        if (sub < -offsetFloat){
+            var offsetX = Math.round((winSize.width - winSize.height / winViewHeight * winViewWidth) / 2);
+
+            singleton.curNode.setPosition(cc.p(offsetX,0));
+            singleton.curNode.setAnchorPoint(cc.p(0,0));
+            singleton.curNode.setScale(winSize.height/winViewHeight);
+
+            var stepMarginH = caculateMarginHeightStep(marginIcon,offsetX,false)
+            for (var k = 0;k < caculateMarginCount(marginIcon,offsetX,false);k++){
+                var margin = cc.Sprite.create(marginIcon);
+                margin.setPosition(cc.p(-offsetX, k * stepMarginH));
+                margin.setScale(caculateMarginScale(marginIcon,offsetX,false));
+                margin.setAnchorPoint(cc.p(0, 0));
+                singleton.curNode.addChild(margin,100);
+
+                var margin1 = cc.Sprite.create(marginIcon);
+                margin1.setPosition(cc.p(winViewWidth, k * stepMarginH));
+                margin1.setScale(caculateMarginScale(marginIcon,offsetX,false));
+                margin1.setAnchorPoint(cc.p(0, 0));
+                singleton.curNode.addChild(margin1,100);
+            }
+        }
+        else if (sub > offsetFloat){
+            var offsetY = Math.round((winSize.height - winSize.width / winViewWidth * winViewHeight) / 2);
+
+            singleton.curNode.setPosition(cc.p(0,offsetY));
+            singleton.curNode.setAnchorPoint(cc.p(0,0));
+            singleton.curNode.setScale(winSize.width/winViewWidth);
+
+            var stepMarginW = caculateMarginHeightStep(marginIcon,offsetY,true)
+            for (var k = 0;k < caculateMarginCount(marginIcon,offsetY,true);k++) {
+                var margin2 = cc.Sprite.create(marginIcon);
+                margin2.setPosition(cc.p(k * stepMarginW, -offsetY));
+                margin2.setScale(caculateMarginScale(marginIcon,offsetY,true));
+                margin2.setAnchorPoint(cc.p(0, 0));
+                singleton.curNode.addChild(margin2, 100);
+
+                var margin3 = cc.Sprite.create(marginIcon);
+                margin3.setPosition(cc.p(k * stepMarginW, winViewHeight));
+                margin3.setScale(caculateMarginScale(marginIcon,offsetY,true));
+                margin3.setAnchorPoint(cc.p(0, 0));
+                singleton.curNode.addChild(margin3, 100);
+            }
+        }
+        else{
+            singleton.curNode.setScale(winSize.height/winViewHeight);
+        }
+    }
+}
+
+function caculateMarginCount(icon,offset,mode){//mode false X mode true Y
+    var retvalue = 0;
+    if (mode == true){
+        retvalue = Math.ceil(engine.game.viewSize.width / caculateMarginHeightStep(icon,offset,mode));
+    }
+    else{
+        retvalue = Math.ceil(engine.game.viewSize.height / caculateMarginHeightStep(icon,offset,mode));
+    }
+    debug("caculateMarginCount = "+retvalue);
+    return retvalue;
+}
+
+function caculateMarginHeightStep(icon,offset,mode){
+
+    var retvalue = 0;
+    if (mode == true){
+        var margin = cc.Sprite.create(icon);
+        var marginSize = margin.getContentSize();
+        var ratioY = marginSize.height / offset;
+        retvalue = marginSize.width / ratioY;
+    }
+    else{
+        var margin = cc.Sprite.create(icon);
+        var marginSize = margin.getContentSize();
+        var ratioX = marginSize.width / offset;
+        retvalue = marginSize.height / ratioX;
+    }
+    debug("caculateMarginHeightStep = "+retvalue);
+    return retvalue;
+}
+
+function caculateMarginScale(icon,offset,mode){
+    var retvalue = 0;
+    if (mode == true){
+        var margin = cc.Sprite.create(icon);
+        var marginSize = margin.getContentSize();
+        retvalue = offset / marginSize.height;
+    }
+    else{
+        var margin = cc.Sprite.create(icon);
+        var marginSize = margin.getContentSize();
+        retvalue = offset / marginSize.width;
+    }
+    debug("caculateMarginScale = "+retvalue);
+    return retvalue;
 }
 
 var singleton = new UIManager();

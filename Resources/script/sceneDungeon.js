@@ -429,7 +429,7 @@ function onPause(sender)
     var thiz = theLayer;
     var newLayer = engine.ui.newLayer();
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     thiz.greymask.setVisible(true);
 
     thiz.pause = {};
@@ -609,7 +609,7 @@ function doDungeonResult(win){
     theLayer.waitResponse = true;
     theLayer.waitResult = true;
     theLayer.updateMode();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     cc.AudioEngine.getInstance().stopMusic(true);
     if( win == 1 )
     {//win
@@ -1043,7 +1043,7 @@ function updateMode()
 
 function resetBlocks()
 {
-    var screenSize = cc.Director.getInstance().getWinSize();
+    var screenSize = engine.game.viewSize;
     theLayer.actors.removeAllChildren();
     theLayer.blocks.removeAllChildren();
     theLayer.ground.removeAllChildren();
@@ -1580,7 +1580,7 @@ function updateCardDesc()
             theLayer.card.layerMask.setVisible(true);
         }
 
-        var screen = cc.Director.getInstance().getWinSize();
+        var screen = engine.game.viewSize;
         var start = theLayer.owner.nodeCard.getPosition();
         start.x += theLayer.card.select*CARD_SPACE;
 
@@ -1806,7 +1806,8 @@ function onTouchBegan(touch, event)
         return false;//block illegal control
     }
 
-    theLayer.touchBegin = touch.getLocation();
+    theLayer.touchBegin = theLayer.convertToNodeSpace(touch.getLocation());
+    debug("onTouchBegan theLayer.touchBegin = "+JSON.stringify(theLayer.touchBegin));
     if( cc.rectContainsPoint(theLayer.card.rect, theLayer.touchBegin) )
     {//trigger card
         var slot = theLayer.selectCard(theLayer.touchBegin);
@@ -1834,7 +1835,7 @@ function onTouchMoved(touch, event)
 {
     if( theLayer.touchMode == TOUCH_CARD )
     {
-        var pos = touch.getLocation();
+        var pos = theLayer.convertToNodeSpace(touch.getLocation());
         if( cc.rectContainsPoint(theLayer.card.rect, pos) )
         {
             var newselect = theLayer.selectCard(pos);
@@ -1890,8 +1891,8 @@ function onTouchMoved(touch, event)
 
 function onTouchEnded(touch, event)
 {
-    var pos = touch.getLocation();
-
+    var pos = theLayer.convertToNodeSpace(touch.getLocation());
+    debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
         if( theLayer.canControl )
@@ -1900,6 +1901,8 @@ function onTouchEnded(touch, event)
             if( Math.abs(dis) < CLICK_RANGE )
             {
                 pos = theLayer.touchBegin;//使用之前的触点做判断
+                debug("theLayer.touchBegin pos = "+JSON.stringify(pos));
+                debug("theLayer.owner.nodeBlock = "+JSON.stringify(theLayer.owner.nodeBlock.getPosition()));
                 var rp = cc.pSub( pos, theLayer.owner.nodeBlock.getPosition() );
                 rp.y *= -1;
                 var gx = Math.floor(rp.x / LO_GRID);
@@ -1963,7 +1966,7 @@ function showBossHP(max)
         this.BOSSHP = null;
     }
     this.BOSSHP = libGadgets.BossHP.create(max);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.BOSSHP.setPosition(cc.p(winSize.width/2, winSize.height));
     this.addChild(this.BOSSHP);
     return this.BOSSHP;

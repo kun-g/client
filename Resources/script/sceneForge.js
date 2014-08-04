@@ -70,7 +70,7 @@ function pushForgeAnimation(file, args, func, obj){
     var layer = engine.ui.newLayer();
     var mask = blackMask();
     layer.addChild(mask);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theForgeAnimationNode = libEffect.attachEffectCCBI(layer, cc.p(winSize.width/2, winSize.height/2), file, libEffect.EFFECTMODE_STAY);
     for(var k in args){
         var icon = libItem.UIItem.create(args[k]);

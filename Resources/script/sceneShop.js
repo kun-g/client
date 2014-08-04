@@ -137,7 +137,7 @@ function onConfirmEnter(){
         }
     });
     var mask = blackMask();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     this.addChild(mask);
     this.addChild(this.node);

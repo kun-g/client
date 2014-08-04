@@ -9,6 +9,7 @@ function Game()
     this.serverTimeOffset = 0;
     this.config = {};
     this.language = "";
+    this.viewSize = {};
 }
 
 Game.prototype.init = function()
@@ -38,7 +39,9 @@ Game.prototype.init = function()
 
     //init language
     this.language = "chinese";
-
+    //init viewSize
+    this.viewSize.width = system.getViewSizeWidth();
+    this.viewSize.height = system.getViewSizeHeight();
     //binary version check: special for 1.0.3 hotfix
     if( system.getBinaryVersion() != this.config.binary_version ){
         //re init dynamic version

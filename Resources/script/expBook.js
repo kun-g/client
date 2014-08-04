@@ -429,7 +429,7 @@ function onEnter(){
     var mask = blackMask();
     this.addChild(mask);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     this.addChild(this.node);
 

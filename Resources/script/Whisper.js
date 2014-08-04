@@ -136,7 +136,7 @@ Whisper.prototype.showSend = function(name){
     });
     layer.ui.input.onEditReturned = onEditReturned;
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
 
@@ -176,7 +176,7 @@ Whisper.prototype.showMessage = function(event){
     thiz.node.onExit = onDisplayExit;
 
     thiz.node.setZOrder(1000);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     thiz.node.setPosition(cc.p(0, winSize.height));
     engine.ui.curLayer.addChild(thiz.node);
 

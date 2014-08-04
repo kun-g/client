@@ -604,7 +604,7 @@ function ajustPostion(bountyId){
         theLayer.owner[nodeEffList[k]].setVisible(false);
     }
     if (levCount > 0){
-        var winSize = cc.Director.getInstance().getWinSize();
+        var winSize = engine.game.viewSize;
         var postion = (winSize.width - 2 * theOffset) / levCount;
         var btnPos = theLayer.owner[btnList[0]].getPosition();
         var nodelockPos = theLayer.owner[btnList[0]].getPosition();
