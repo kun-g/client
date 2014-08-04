@@ -1449,6 +1449,7 @@ function makeDungeonEnemy(pace, act)
         unit.uuid = this.arg.rid;
         unit.type = this.arg.typ;
         unit.pos = this.arg.pos;
+        unit.keyed = this.arg.keyed;
 
         //status color
         unit.hs = 0;
@@ -1494,6 +1495,10 @@ function makeDungeonEnemy(pace, act)
             //add to scene
             var actor = layer.addActor(unit, boss);
 
+            if (unit.keyed != null) {
+                effects.attachEffect(layer.effects, actor.getPosition(), 28);
+            }
+
             if( monster.soundSpawn != null )
             {
                 cc.AudioEngine.getInstance().playEffect(monster.soundSpawn);
@@ -1521,7 +1526,6 @@ function makeDungeonEnemy(pace, act)
             effects.attachEffect(layer.effects, actor.getPosition(), this.arg.eff);
         }
     }
-
     return ret;
 }
 

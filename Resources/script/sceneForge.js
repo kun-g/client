@@ -808,7 +808,31 @@ function loadEnhance(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag2.setVisible(false);
     refreshTag(ret, 2);
+    autoSelect(ret.ui.itemOld,1);
     return ret;
+}
+
+function autoSelect(ui,type) {
+  var slot = EquipSlot_MainHand;
+    var upInfo = getUpgradeInfo(type).lst;
+    upable = upInfo.filter(function(e) {return e>0;});
+    if (upable.length > 0){
+      slot = upable[0] - 1;
+    }
+    var oldItem = engine.user.actor.queryArmor(slot);
+    ui.setItem(oldItem);
+
+}
+
+function getUpgradeInfo(type) {
+  var TagArray = [{res:false,lst:[]},{res:false,lst:[]},{res:false, lst[]}];
+  if (type > 3 || type < 0 ) {
+    return TagArray[0] ;
+  }
+  TagArray[0].res = engine.user.inventory.checkUpgradable(TagArray[0].lst);
+  TagArray[1].res = engine.user.inventory.checkEnhancable(TagArray[1].lst);
+  TagArray[2].res = engine.user.inventory.checkForgable(TagArray[2].lst) ;
+  return TagArray[type-1];
 }
 
 function onEnhance(sender){
