@@ -44,17 +44,18 @@ UIManager.prototype.newScene = function(assign)
     director.replaceScene(scene);
 
     singleton.newLayer(assign);
+
     if (engine.game.getConfig().account_type == 6){
         singleton.LAYERS[0].backClicked = system.exit;
     } 
     else{
         singleton.LAYERS[0].backClicked = function(){
-            system.alert("离开游戏", "确认要退出游戏吗？", null, function(btn){
-                if( btn != 0 ){//switch
-                    system.exit();
-                }
-            }, "点错了", "退出");
-        };
+        system.alert(translate(engine.game.language, "uiLeaveGame"), translate(engine.game.language, "uiWantLeave"), null, function(btn){
+                       if( btn != 0 ){//switch
+                           system.exit();
+                       }
+                  }, translate(engine.game.language, "uiNo"), translate(engine.game.language, "uiExit"));
+    };
     }
 
     singleton.LAYERS[0].setKeypadEnabled(true);

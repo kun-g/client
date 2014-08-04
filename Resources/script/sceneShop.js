@@ -57,13 +57,13 @@ function onConfirmPurchase(sender){
         switch(k){
             case "gold":{
                 if( engine.user.inventory.Gold < theCurrentPrice[k] ){
-                    libUIKit.showAlert("金币数量不足");
+                    libUIKit.showAlert(translate(engine.game.language, "sceneShopCoin"));
                     return;
                 }
             }break;
             case "diamond":{
                 if( engine.user.inventory.Diamond < theCurrentPrice[k] ){
-                    libUIKit.showAlert("宝石数量不足");
+                    libUIKit.showAlert(translate(engine.game.language, "sceneShopDia"));
                     return;
                 }
             }break;
@@ -185,7 +185,7 @@ function onConfirmEnter(){
         owner.labelDesc.setString(theConfirmItemClass.description);
     }
     else{
-        owner.labelDesc.setString("这是一件普普通通的道具");
+        owner.labelDesc.setString(translate(engine.game.language, "sceneShopOrdinaryEquip"));
         owner.labelDesc.setColor(cc.c3b(128, 128, 128));
     }
 

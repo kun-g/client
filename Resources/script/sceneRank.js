@@ -164,7 +164,7 @@ function loadPage(list){
 
     if( theRankList.length == 0 ){
         var size = cc.size(0, 0);
-        var label = cc.LabelTTF.create("暂时还没有数据", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "sceneRankNoData"), UI_FONT, UI_SIZE_XL);
         var viewSize = theCurrentGroup.scroller.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -2*viewSize.height/5));
         theCurrentGroup.theListLayer.addChild(label);
@@ -258,7 +258,7 @@ function onFirstPage(sender){
 function onPreviousPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( thePage == 0 ){
-        PopMsg.pop("已经到第一页了", POPTYPE_ERROR);
+        PopMsg.pop(translate(engine.game.language, "sceneRankFirstPage"), POPTYPE_ERROR);
     }
     else{
         var page = thePage-1;
@@ -273,7 +273,7 @@ function onPreviousPage(sender){
 function onNextPage(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     if( thePage == PAGE_COUNT-1 ){
-        PopMsg.pop("已经到最后一页了", POPTYPE_ERROR);
+        PopMsg.pop(translate(engine.game.language, "sceneRankLastPage"), POPTYPE_ERROR);
     }
     else{
         if( theRankList.length == 10){

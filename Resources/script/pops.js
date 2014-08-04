@@ -556,7 +556,7 @@ function popMonthCard(){
     engine.ui.regMenu(theMonthLayer.owner.menuRoot);
 
     //set panel data
-    theMonthLayer.owner.labelTitle.setString("月卡奖励");
+    theMonthLayer.owner.labelTitle.setString(translate(engine.game.language, "popsMonthCardPrize"));
     var prize = libItem.ItemPreview.create(pdata);
     var size = prize.getContentSize();
     prize.setPosition(cc.p(-size.width/2, -size.height/2));

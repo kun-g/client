@@ -333,8 +333,8 @@ function onChallenge(){
         team = 2;
     }
     theLayer.TEAM = team;
-    theLayer.stage.owner.labelTeam.setString("队伍人数："+team+"人");
-    theLayer.stage.owner.labelTeam2.setString("队伍人数："+team+"人");
+    theLayer.stage.owner.labelTeam.setString(translate(engine.game.language, "sceneStageTeamPersons", [team]));
+    theLayer.stage.owner.labelTeam2.setString(translate(engine.game.language, "sceneStageTeamPersons", [team]));
     theLayer.stage.owner.labelLevel.setString(chInst.Stages[theLayer.INFIKEY].Level);
 
     theStageClass = theLayer.CHCLASS.stage[theLayer.INFIKEY];
@@ -344,10 +344,10 @@ function onChallenge(){
     var prize = getInfiPrize(dungeon, chInst.Stages[theLayer.INFIKEY].Level);
     var preview = libItem.ItemPreview.create([prize]);
     preview.setShowInfo(true);
-    theLayer.stage.owner.labNext.setString("打通第"+prize.level+"关可以获得额外奖励：");
+    theLayer.stage.owner.labNext.setString(translate(engine.game.language, "sceneStageGetExprize", [prize.level]));
     theLayer.stage.owner.nodePrize.addChild(preview);
-    theLayer.stage.owner.labelEnergy.setString("精力消耗："+theLayer.COST+"点");
-    theLayer.stage.owner.labelEnergy2.setString("精力消耗："+theLayer.COST+"点");
+    theLayer.stage.owner.labelEnergy.setString(translate(engine.game.language, "sceneStageCostEnergy", [theLayer.COST]));
+    theLayer.stage.owner.labelEnergy2.setString(translate(engine.game.language, "sceneStageCostEnergy", [theLayer.COST]));
 
     theEnergyCost = theLayer.COST;
     engine.session.set("stage", theStageClass);
@@ -375,7 +375,6 @@ function showStages(chId)
     var chClass = theLayer.CHCLASS;
     theChapterClass = theLayer.CHCLASS;
     var sfc = cc.SpriteFrameCache.getInstance();
-
     theLayer.stage.owner.spriteIcon1.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
     theLayer.stage.owner.spriteIcon2.setDisplayFrame(sfc.getSpriteFrame(chClass.icon));
     theLayer.stage.owner.spriteTitle.setDisplayFrame(sfc.getSpriteFrame("x"+chClass.title));
@@ -499,10 +498,10 @@ function selectStage(sId)
     theStageClass = stg;
     theLayer.stageSelected = stg.stageId;
     theLayer.TEAM = stg.team;
-    theLayer.stage.owner.labelTeam.setString("队伍人数："+stg.team+"人");
-    theLayer.stage.owner.labelTeam2.setString("队伍人数："+stg.team+"人");
-    theLayer.stage.owner.labelEnergy.setString("精力消耗："+stg.cost+"点");
-    theLayer.stage.owner.labelEnergy2.setString("精力消耗："+stg.cost+"点");
+    theLayer.stage.owner.labelTeam.setString(translate(engine.game.language, "sceneStageTeamPersons", [stg.team]));
+    theLayer.stage.owner.labelTeam2.setString(translate(engine.game.language, "sceneStageTeamPersons", [stg.team]));
+    theLayer.stage.owner.labelEnergy.setString(translate(engine.game.language, "sceneStageCostEnergy", [stg.cost]));
+    theLayer.stage.owner.labelEnergy2.setString(translate(engine.game.language, "sceneStageCostEnergy", [stg.cost]));
     theEnergyCost = stg.cost;
 
     //set current stage data
@@ -1007,15 +1006,15 @@ function startStage(stg, team, cost, pkRival){
     //check energy
     if( engine.user.player.Energy < cost ){
         var need = cost - engine.user.player.Energy;
-        var str1 = "精力值不足\n进入此关还需要"+need+"精力\n需要使用"+need+"宝石来立即恢复吗?";
-        var str2 = "精力值不足，无法进入此关\n使用"+need+"宝石可以立即恢复\n需要充值吗?";
+        var str1 = translate(engine.game.language, "sceneStageRecovery", [need,need]);
+        var str2 = translate(engine.game.language, "sceneStageChargeForRecovery", [need]);
         libUIKit.confirmPurchase(Request_BuyFeature, {
             typ: 0,
             tar: cost
         }, str1, str2, cost, function(rsp){
             if( rsp.RET == RET_OK ){
                 //统计
-                tdga.itemPurchase("精力值", need, 1);
+                tdga.itemPurchase(translate(engine.game.language, "sceneStageEnergy"), need, 1);
             }
         });
         return;

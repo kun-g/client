@@ -87,19 +87,19 @@ BountyLog.prototype.checkLimit = function(bountyId, level){
     var str = "";
     var bountyData = libTable.queryTable(TABLE_BOUNTY, bountyId);
     if (!engine.user.bounty.checkLevel(bountyId, level)){
-        str = "需要等级" + bountyData.level[level].powerLimit + "。";
+        str = translate(engine.game.language, "bountyLimitLevel", [bountyData.level[level].levelLimit]);
     };
     if (!engine.user.bounty.checkPower(bountyId, level)){
-        str = "需要战斗力" + bountyData.level[level].powerLimit + "。";
+        str = translate(engine.game.language, "bountyLimitPower", [bountyData.level[level].powerLimit]);
     }
     if (!engine.user.bounty.checkClass(bountyId, level)){
         for (var k in bountyData.level[level].classLimit) {
             var roleClass = libTable.queryTable(TABLE_ROLE, bountyData.level[level].classLimit[k]);
-            str += roleClass.className + "、";
+            str += roleClass.className + translate(engine.game.language, "globalSymbolStop");
         }
         if (str.length > 0){
             str=str.substring(0,str.length-1);
-            str += "职业可以做。";
+            str += translate(engine.game.language, "bountyLimitClass");
         }
     }
     return str;

@@ -33,6 +33,7 @@ TABLE_BOUNTY = "bounty";
 TABLE_COST = "costs";
 TABLE_DP = "dailyPrize";
 TABLE_ARENA = "arena";
+TABLE_LOCALIZE = "localize";
 
 /*** GAME CONSTANTS ***/
 ItemId_RevivePotion = 540;

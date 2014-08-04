@@ -8,6 +8,7 @@ function Game()
 {
     this.serverTimeOffset = 0;
     this.config = {};
+    this.language = "";
 }
 
 Game.prototype.init = function()
@@ -34,6 +35,9 @@ Game.prototype.init = function()
 
         this.saveConfig();
     }
+
+    //init language
+    this.language = "chinese";
 
     //binary version check: special for 1.0.3 hotfix
     if( system.getBinaryVersion() != this.config.binary_version ){
@@ -94,6 +98,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_DROP);
     table.loadTable(TABLE_DP);
     table.loadTable(TABLE_ARENA);
+    table.loadTable(TABLE_LOCALIZE);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();

@@ -86,7 +86,7 @@ function loadEventList(){
     var size = cc.size(LINE_WIDTH, engine.user.activity.list.length*LINE_HEIGHT);
     theListLayer.setContentSize(size);
     if( engine.user.activity.list.length == 0 ){
-        var label = cc.LabelTTF.create("暂无活动", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "eventInfoNoBounty"), UI_FONT, UI_SIZE_XL);
         var viewSize = theLayer.ui.scrollList.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -viewSize.height/2));
         theListLayer.addChild(label);
@@ -147,7 +147,7 @@ function loadEventDesc(quest){
     if( quest.date != null ){
         text.pushText({text: "  "});
         text.pushText({//push objectives
-            text: "活动日期",
+            text: translate(engine.game.language, "eventInfoBountyData"),
             color: COLOR_RED,
             size: UI_SIZE_L
         });
@@ -164,7 +164,7 @@ function loadEventDesc(quest){
     if( quest.prz != null ){
         text.pushText({text: "  "});
         text.pushText({//push title
-            text: "活动奖励",
+            text: translate(engine.game.language, "eventInfoBountyPrize"),
             color: COLOR_RED,
             size: UI_SIZE_L
         });

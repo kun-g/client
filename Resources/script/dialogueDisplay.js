@@ -108,10 +108,10 @@ DialogueDisplay.prototype.update = function(delta){
                                     break;
                                 case "G":
                                     if( engine.user.actor.Gender == 0 ){
-                                        singleton.BUFFER += "女";
+                                        singleton.BUFFER += translate(engine.game.language, "dialogDisplayFemale");
                                     }
                                     else{
-                                        singleton.BUFFER += "男";
+                                        singleton.BUFFER += translate(engine.game.language, "dialogDisplayMale");
                                     }
                                     break;
                                 case "C":

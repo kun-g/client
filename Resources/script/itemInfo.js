@@ -130,7 +130,7 @@ function contentNormal(){
         theLayer.owner.labelDesc.setColor(cc.c3b(255, 255, 255));
     }
     else{
-        theLayer.owner.labelDesc.setString("这只是一件平淡无奇的道具");
+        theLayer.owner.labelDesc.setString(translate(engine.game.language, "itemInfoPlainItem"));
         theLayer.owner.labelDesc.setColor(cc.c3b(128, 128, 128));
     }
 }
@@ -145,11 +145,11 @@ function contentEquip(){
     //type
     var strType = EquipSlotDesc[theItemClass.subcategory];
     if( theItemClass.classLimit != null ){
-        strType += "  职业限定：";
+        strType += translate(engine.game.language, "itemInfoLimitClass");
         var flag = false;
         for(var k in theItemClass.classLimit){
             if(flag){
-                strType += "，";
+                strType += translate(engine.game.language, "globalSymbolCommon");
             }
             var roleClassId = theItemClass.classLimit[k];
             var roleClass = libTable.queryTable(TABLE_ROLE, roleClassId);
@@ -197,7 +197,7 @@ function contentEquip(){
         owner.labelDesc.setString(theItemClass.description);
     }
     else{
-        owner.labelDesc.setString("这是一件普普通通的装备");
+        owner.labelDesc.setString(translate(engine.game.language, "itemInfoOrdinaryItem"));
         owner.labelDesc.setColor(cc.c3b(128, 128, 128));
     }
 
@@ -209,7 +209,7 @@ function contentEquip(){
             xpNow = xpTotal;
         }
         if( xpNow > 0 ){
-            owner.labelXp.setString("熟练度："+xpNow+"/"+xpTotal);
+            owner.labelXp.setString(translate(engine.game.language, "itemInfoProficiency",[xpNow,xpTotal]));
         }
 
         var prog = new ProgressBar(400, "index-jy1.png", "index-jy2.png", "index-jy3.png");
@@ -223,7 +223,7 @@ function contentEquip(){
         var purchaseTime = theItem.TimeStamp;
         var currentTime = engine.game.getServerTime();
         var leftDays = Math.floor( expiration - (currentTime - purchaseTime)/(1000*60*60*24) );
-        owner.labLeftdays.setString( (leftDays < 1)? "还剩不到1天":("还剩"+leftDays+"天"));
+        owner.labLeftdays.setString( (leftDays < 1)? translate(engine.game.language, "itemInfoLessThanDay"):translate(engine.game.language, "itemInfoLeftNDay",[leftDays]));
     }else{
         owner.labLeftdays.setString("");
     }
@@ -236,7 +236,7 @@ function onDissolve(sender){
     if( !engine.user.player.checkUnlock("dissolve") ) return;
 
     var alert = libUIKit.alert();
-    alert.setContent("确定要分解\n【"+theItemClass.label+"】?");
+    alert.setContent(translate(engine.game.language, "itemInfoDissolve",[theItemClass.label]));
     alert.setButton([
         {
             label: "buttontext-qx.png",
@@ -257,7 +257,7 @@ function onDissolve(sender){
                         if( rsp.RET == RET_OK ){
                             var forge = loadModule("sceneForge.js");
                             forge.pushForgeAnimation("effect-fenjie.ccbi", {nodeItem:theItem}, function(){
-                                libUIKit.showAlert("装备分解成功", function(){
+                                libUIKit.showAlert(translate(engine.game.language, "itemInfoDissolveSuc"), function(){
                                     engine.ui.removeLayer(theLayer);
                                     tdga.itemUse(theItemClass.label, 1);
                                 }, theLayer);
@@ -343,7 +343,7 @@ function onSell(sender){
 
     var total = theItemClass.sellprice*theItem.StackCount;
     var alert = libUIKit.alert();
-    alert.setContent("【"+theItemClass.label+"】\n售价"+total+"金币\n确定要卖出？");
+    alert.setContent(translate(engine.game.language, "itemInfoSell",[theItemClass.label,total]));
     alert.setButton([
         {
             label: "buttontext-qx.png",
