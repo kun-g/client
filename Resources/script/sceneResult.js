@@ -38,11 +38,7 @@ function onFriendAdd(sender){
     if( theFriendList.length > index ){
         var role = theFriendList[index];
         if( !role.REQUESTED ){
-            engine.event.sendRPCEvent(Request_FriendInvite, {
-                nam: role.Name
-            },function(rsp){
-                //do nothing
-            });
+            addFriend(role.Name);
         }
     }
     sender.setEnabled(false);
@@ -69,11 +65,7 @@ function onFriendAddAll(sender){
     for(var k in theFriendList){
         var role = theFriendList[k];
         if( !role.REQUESTED ){
-            engine.event.sendRPCEvent(Request_FriendInvite, {
-                nam: role.Name
-            },function(rsp){
-                //do nothing
-            });
+            addFriend(role.Name);
             role.REQUESTED = true;
         }
     }

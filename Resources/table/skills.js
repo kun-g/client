@@ -143,8 +143,9 @@ exports.data = [
             "pool": "target"
         },
       "action": [
-        { "type": "modifyVar", "x": "damage", "formular": {"src": {"health":0.18,"attack":1}} },
           {"type": "playEffect","effect":4,"act":"self"},
+          {"type": "delay","delay":0.4},
+          {"type": "modifyVar", "x": "damage", "formular": {"src": {"health":0.18,"attack":1}} },
           {"type": "blink","delay":0.3,"time":0.08},
           {"type":"shock","delay":0.3,"range":5,"time":0.2}
       ]
@@ -202,8 +203,9 @@ exports.data = [
           "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"}]
       },
       "action": [
-        {"type": "damage","damageType":"Spell","isRange":true,"formular": {"src":{"attack":0.3},"c":15}},
           {"type": "playEffect","effect":4,"act":"self"},
+          {"type": "delay","delay":0.4},
+          {"type": "damage","damageType":"Spell","isRange":true,"formular": {"src":{"attack":0.3},"c":15}},
           {"type":"shock","delay":0.3,"range":5,"time":0.2}
       ]
     }
@@ -319,7 +321,7 @@ exports.data = [
       "action": [
           {"type": "playEffect","effect":4,"act":"self"},
           {"type":"shock","delay":0.3,"range":5,"time":0.2},
-          {"type":"delay"},
+          {"type": "delay","delay":0.4},
           {"type": "installSpell", "spell": 14 }
       ],
       "targetSelection": {
@@ -357,6 +359,7 @@ exports.data = [
       },
       "action": [
           {"type": "playEffect","effect":4,"act":"self"},
+          {"type": "delay","delay":0.4},
           {"type":"shock","delay":0.3,"range":5,"time":0.2},
           {"type": "heal", "formular": {"environment":{"damage":1}}},
           {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}},
@@ -662,7 +665,7 @@ exports.data = [
               "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":1}]
           },
           "action":[
-              {"type": "rangeAttack", "hurtDelay": 0.5, "effDelay": 0.3}
+              {"type": "rangeAttack", "hurtDelay": 0.6, "effDelay": 0.3}
           ],
         "levelConfig":[
             {"effect":50},
@@ -1161,9 +1164,10 @@ exports.data = [
               "pool": "target"
           },
           "action": [
+              {"type": "playEffect","effect":4,"act":"self"},
+              {"type": "delay","delay":0.4},
               { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
               {"type": "heal","self":true,"formular": {"tar":{"c":150}}},
-              {"type": "playEffect","effect":4,"act":"self"},
               {"type":"shock","delay":0.3,"range":5,"time":0.2}
           ]
       }
@@ -2909,8 +2913,9 @@ exports.data = [
                 {"type" :"event","event":"onTurnBegin"}
             ],
             "action": [
-                { "type": "installSpell", "spell": 127},
                 {"type": "playEffect","effect":4,"act":"self"},
+                {"type":"delay","delay":0.4},
+                { "type": "installSpell", "spell": 127},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2}
             ],
             "levelConfig": [
@@ -3229,7 +3234,7 @@ exports.data = [
             "action": [
                 {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2},
-                {"type":"delay"},
+                {"type":"delay","delay":0.4},
                 {"type": "installSpell", "spell": 136 }
             ],
             "targetSelection": {
@@ -3266,10 +3271,11 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action": [
+                {"type": "playEffect","effect":4,"act":"self"},
+                {"type":"delay","delay":0.4},
                 {"type": "heal", "formular": {"environment":{"damage":1}}},
                 {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}},
                 {"type": "setTargetMutex", "mutex": "lightOfMiracel", "count": 1 },
-                {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2}
             ],
             "levelConfig" : [
@@ -4278,9 +4284,10 @@ exports.data = [
                 "pool": "self"
             },
             "action":[
+                {"type": "playEffect","effect":4,"act":"self"},
+                {"type":"delay","delay":0.4},
                 { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
                 {"type": "heal","self":true,"formular": {"tar":{"strong":1}}},
-                {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2}
             ],
             "availableCondition": [
@@ -4849,7 +4856,7 @@ exports.data = [
             "action": [
                 {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2},
-                {"type":"delay"},
+                {"type":"delay","delay":0.4},
                 {"type": "installSpell", "spell": 209 }
             ],
             "targetSelection": {

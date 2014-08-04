@@ -44,7 +44,6 @@ var BAR_HEIGHT = 180;
 var NumMultiRows;
 var LastMultiRows;
 var thePrizeLayer = [];
-var WorldStageInfo = {};
 var WORLD_STAGE_ID = 133;
 var WORLD_STAGE_RESET_TIME = {
     day: "二", //Tuesday
@@ -801,16 +800,19 @@ function onClosePrizeList() {
 
 }
 
-//-------------------------------------
+//--------------World Stage-----------------
 
 var isWorldStageCompleted = false;
+var isWorldStageInfoLoaded = false;
 
 function onWorldStage(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    isWorldStageInfoLoaded = false;
+    var call1 = cc.CallFunc.create(getWorldStageInfo);
     var scale1 = cc.ScaleTo.create(0.1, 1.4);
     var scale2 = cc.ScaleTo.create(0.1, 1);
-    var call = cc.CallFunc.create(getWorldStageInfo());
-    var sequence = cc.Sequence.create(scale1, scale2, call);
+    var call2 = cc.CallFunc.create(showWorldStage);
+    var sequence = cc.Sequence.create(call1, scale1, scale2, call2);
     sender.runAction(sequence);
 }
 
@@ -841,26 +843,30 @@ function showWorldStage() {
 }
 
 function getWorldStageInfo() {
-    libUIKit.waitRPC(Request_WorldStageInfo, {}, function (rsp) {
+    engine.event.sendRPCEvent(Request_WorldStageInfo, {}, function (rsp) {
         if( rsp.RET == RET_OK ){
             if( rsp.arg != null ) {
-                WorldStageInfo = rsp.arg;
-                showWorldStage();
+                engine.session.WorldStageInfo = rsp.arg;
+                if( isWorldStageInfoLoaded ){
+                    loadWorldStageInfo(); // Reload Info
+                }
             }
         }
     }, theLayer.wStage);
 }
 
 function loadWorldStageInfo() {
-    if( WorldStageInfo != null ){
-        if( WorldStageInfo.me != null ) {
-            theLayer.wStage.owner.labCount.setString(WorldStageInfo.me.cnt);
-            theLayer.wStage.owner.labRank.setString( (WorldStageInfo.me.rnk+1) );
+    isWorldStageInfoLoaded = true;
+    var worldStageInfo = engine.session.WorldStageInfo;
+    if( worldStageInfo != null ){
+        if( worldStageInfo.me != null ) {
+            theLayer.wStage.owner.labCount.setString(worldStageInfo.me.cnt);
+            theLayer.wStage.owner.labRank.setString( (worldStageInfo.me.rnk+1) );
         }
-        if( WorldStageInfo.prg != null && WorldStageInfo.prg.ttl > 0){
-            theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
-            theLayer.wStage.ui.progress.setProgress(WorldStageInfo.prg.cpl/WorldStageInfo.prg.ttl);
-            isWorldStageCompleted = ( WorldStageInfo.prg.cpl >= WorldStageInfo.prg.ttl );
+        if( worldStageInfo.prg != null && worldStageInfo.prg.ttl > 0){
+            theLayer.wStage.owner.labProgress.setString("世界闯关次数："+worldStageInfo.prg.cpl+"/"+worldStageInfo.prg.ttl);
+            theLayer.wStage.ui.progress.setProgress(worldStageInfo.prg.cpl/worldStageInfo.prg.ttl);
+            isWorldStageCompleted = ( worldStageInfo.prg.cpl >= worldStageInfo.prg.ttl );
         }
         var stageClass = queryStage(WORLD_STAGE_ID);
         if( stageClass != null ){

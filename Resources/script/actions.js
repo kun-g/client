@@ -586,7 +586,7 @@ function makeAttack(pace, act)
                         break;
                 }
                 if( this.rng ){
-                    var a1 = cc.DelayTime.create(0.2);
+                    var a1 = cc.DelayTime.create(0.3);
                     var a2 = cc.CallFunc.create(this.funcHit);
                     var seq = cc.Sequence.create(a1, a2);
                     target.getNode().runAction(seq);

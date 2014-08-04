@@ -316,9 +316,7 @@ function confirmAdd(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var str = theAddLayer.ui.input.getText();
     if( str != null && str != "" ){
-        libUIKit.waitRPC(Request_FriendInvite, {
-            nam: str
-        }, function(rsp){
+        addFriend(str, true, function(rsp){
             engine.ui.popLayer();
             if( rsp.RET == RET_OK ){
                 theAddLayer.node.runAction(actionPopOut(engine.ui.popLayer));
@@ -327,7 +325,19 @@ function confirmAdd(sender){
             else{
                 thePopMsg.pushMsg(ErrorMsgs[rsp.RET], POPTYPE_ERROR);
             }
-        })
+        });
+//        libUIKit.waitRPC(Request_FriendInvite, {
+//            nam: str
+//        }, function(rsp){
+//            engine.ui.popLayer();
+//            if( rsp.RET == RET_OK ){
+//                theAddLayer.node.runAction(actionPopOut(engine.ui.popLayer));
+//                thePopMsg.pushMsg("邀请已经发送", POPTYPE_INFO);
+//            }
+//            else{
+//                thePopMsg.pushMsg(ErrorMsgs[rsp.RET], POPTYPE_ERROR);
+//            }
+//        });
     }
 }
 
@@ -416,6 +426,7 @@ function onExtend(sender){
         }
     });
 }
+exports.extendFriends = onExtend;
 
 function onClose(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
