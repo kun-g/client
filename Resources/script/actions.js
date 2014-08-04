@@ -463,6 +463,8 @@ function makeMusic(pace, act)
 //act, ref, res(0=miss, 1=hit 2=critical 3=block 4=heal)
 function makeAttack(pace, act)
 {
+    var rets = [];
+
     var isKey = isHero(act.act);
     var ret = new libAction.Action(pace, isKey);
     ret.act = act.act;
@@ -540,7 +542,7 @@ function makeAttack(pace, act)
 
         this.timer = 0;
         this.effected = false;
-    }
+    };
     ret.onUpdate = function(delta, dungeon, layer)
     {
         var actor = layer.getActor(this.act);
@@ -600,8 +602,12 @@ function makeAttack(pace, act)
             return false;
         }
         return true;
+    };
+    rets.push(ret);
+    if( act.eff != null && act.src != null && act.tar != null ){
+//        rets.push(makeMissileEffect(pace, act));
     }
-    return ret;
+    return rets;
 }
 
 //act, dey
@@ -1317,53 +1323,42 @@ function makeEffect(pace, act)
 //dey, eff, src[{act,pos}], tar[{act,pos}]
 function makeMissileEffect(pace, act)
 {
-    var rets = [];
-    for( var k in act.tar ){
-        var ret = new libAction.Action(pace);
-        ret.delay = act.dey;
-        ret.effect = act.eff;
-        ret.source = act.src.act;
-        ret.target = act.tar[k].act;
-        debug("1327");
+    var ret = new libAction.Action(pace);
+    ret.delay = act.dey;
+    ret.effect = act.eff;
+    ret.source = act.src.act;
+    ret.target = act.tar.act;
 
-        ret.onStart = function(dungeon, layer){
-            var srcActor = layer.getActor(this.source);
-            var tarActor = layer.getActor(this.target);
+    ret.onStart = function(dungeon, layer){
+        var srcActor = layer.getActor(this.source);
+        var tarActor = layer.getActor(this.target);
 
-            if( srcActor == null ){
-                error("Action Missile Effect: Source actor not found.");
-                return;
-            }
-            if( tarActor == null ){
-                error("Action Missile Effect: Target actor not found.");
-                return;
-            }
+        if( srcActor == null ){
+            error("Action Missile Effect: Source actor not found.");
+            return;
+        }
+        if( tarActor == null ){
+            error("Action Missile Effect: Target actor not found.");
+            return;
+        }
 
-            debug("1342");
-            if( this.delay > 0 )
-            {
-                debug("1345");
-                var zffect = this.effect;
-                var act1 = cc.DelayTime.create(this.delay);
-                var act2 = cc.CallFunc.create(function(){
-                    libEffect.attachMissileEffect(layer.effects, zffect, srcActor.getPosition(), tarActor.getPosition());
-                });
-                var seq = cc.Sequence.create(act1, act2);
-                debug("1352");
-                srcActor.getNode().runAction(seq);
+        if( this.delay > 0 )
+        {
+            var zffect = this.effect;
+            var act1 = cc.DelayTime.create(this.delay);
+            var act2 = cc.CallFunc.create(function(){
+                libEffect.attachMissileEffect(layer.effects, zffect, srcActor.getPosition(), tarActor.getPosition());
+            });
+            var seq = cc.Sequence.create(act1, act2);
+            srcActor.getNode().runAction(seq);
 //                layer.runAction(seq);
-                debug("1355");
-            }
-            else
-            {
-                libEffect.attachMissileEffect(layer.effects, this.effect, srcActor.getPosition(), tarActor.getPosition());
-            }
-        };
-        debug("1362");
-        rets.push(ret);
-    }
-
-    return rets;
+        }
+        else
+        {
+            libEffect.attachMissileEffect(layer.effects, this.effect, srcActor.getPosition(), tarActor.getPosition());
+        }
+    };
+    return ret;
 }
 
 function makeSkillCd(pace, act)

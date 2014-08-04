@@ -344,3 +344,4 @@ cc.pBezier1 = function(A, B, C, alpha){
     var n = cc.pLerp(B, C, alpha);
     return cc.pLerp(m, n, alpha);
 }
+

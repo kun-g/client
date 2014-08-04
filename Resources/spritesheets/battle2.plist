@@ -7,7 +7,7 @@
             <key>battle-box1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{132,714},{128,128}}</string>
+                <string>{{262,714},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>battle-box2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{262,584},{128,128}}</string>
+                <string>{{132,844},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>battle-box5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{132,714},{128,128}}</string>
+                <string>{{262,714},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>battle-box6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{262,584},{128,128}}</string>
+                <string>{{132,844},{128,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -261,7 +261,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:cb6261c253fa14bc7ed5c861cb9ade9e$</string>
+            <string>$TexturePacker:SmartUpdate:fcbdf294ada52c752ebccfe9aaf6f87c$</string>
             <key>textureFileName</key>
             <string>battle2.png</string>
         </dict>

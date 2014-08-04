@@ -7701,50 +7701,52 @@ exports.data = [
     },
     {
         "classId": 215,
-        "className": "NB蜘蛛",
+        "className": "测试怪",
         "faction": "monster",
         "classType": 1,
-        "avatar": "enemy-spider1.ccbi",
+        "avatar": "enemy-thief13.ccbi",
         "property": {
-            "health": 30,
-            "attack": 0.6,
-            "critical": 10,
-            "strong": 20,
-            "accuracy": 100,
-            "reactivity": -40,
-            "speed": 20,
+            "health": 10,
+            "attack": 0.05,
+            "critical": 30,
+            "strong": -40,
+            "accuracy": 80,
+            "reactivity": 100,
+            "speed": 40,
             "counterAttack": true,
             "exp": 0,
             "gold": 0
         },
         "xproperty": {
             "balance": 0.1,
-            "health": 1.5,
-            "attack": 0.4,
+            "health": 15,
+            "attack": 0.05,
             "critical": 1,
             "strong": 1,
-            "accuracy": 1.5,
-            "reactivity": 1,
+            "accuracy": 1,
+            "reactivity": 5,
             "speed": 1
         },
-        "soundSpawn": "zhizhu.mp3",
-        "soundWound": "zhizhuwound.mp3",
-        "soundAttack": "zhizhuattack.mp3",
-        "soundDie": "zhizhudie.mp3",
-        "effectAttack": 9,
+        "soundWound": "daozeiwound.mp3",
+        "soundAttack": "daozeiattack.mp3",
+        "soundDie": "daozeidie.mp3",
+        "effectAttack": 8,
         "skill": [
             {
-                "id": 192,
+                "id": 27,
                 "level": 1
             },
             {
-                "id": 188,
+                "id": 183,
                 "level": 1
             },
             {
-                "id": 173,
+                "id": 178,
                 "level": 1
             }
+        ],
+        "dropInfo": [
+            90
         ]
     }
 ]
