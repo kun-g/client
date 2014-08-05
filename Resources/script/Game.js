@@ -8,6 +8,8 @@ function Game()
 {
     this.serverTimeOffset = 0;
     this.config = {};
+    this.language = "";
+    this.viewSize = {};
 }
 
 Game.prototype.init = function()
@@ -35,6 +37,11 @@ Game.prototype.init = function()
         this.saveConfig();
     }
 
+    //init language
+    this.language = "chinese";
+    //init viewSize
+    this.viewSize.width = system.getViewSizeWidth();
+    this.viewSize.height = system.getViewSizeHeight();
     //binary version check: special for 1.0.3 hotfix
     if( system.getBinaryVersion() != this.config.binary_version ){
         //re init dynamic version
@@ -94,6 +101,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_DROP);
     table.loadTable(TABLE_DP);
     table.loadTable(TABLE_ARENA);
+    table.loadTable(TABLE_LOCALIZE);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();

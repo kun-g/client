@@ -108,10 +108,10 @@ DialogueDisplay.prototype.update = function(delta){
                                     break;
                                 case "G":
                                     if( engine.user.actor.Gender == 0 ){
-                                        singleton.BUFFER += "女";
+                                        singleton.BUFFER += translate(engine.game.language, "dialogDisplayFemale");
                                     }
                                     else{
-                                        singleton.BUFFER += "男";
+                                        singleton.BUFFER += translate(engine.game.language, "dialogDisplayMale");
                                     }
                                     break;
                                 case "C":
@@ -272,7 +272,7 @@ DialogueDisplay.prototype.displayDialogue = function(did){
             this.LAYER.addChild(this.LAYER.mask);
             this.LAYER.owner = {};
             this.LAYER.node = cc.BuilderReader.load("ui-dialogue.ccbi", this.LAYER.owner);
-            var winSize = cc.Director.getInstance().getWinSize();
+            var winSize = engine.game.viewSize;
             this.LAYER.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
             this.LAYER.addChild(this.LAYER.node);
 
