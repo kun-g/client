@@ -871,6 +871,7 @@ function makeShiftOrder(pace, act)
         for(var i=0; i<this.count; ++i)
         {
             dungeon.TeamShiftPos[this.refs[i].order] = this.newpos[i];
+            switchTeamHeaderEffect((this.refs[i].order ==0), this.refs[i].ref, layer);
         }
 
         if( sWalkEffectId == -1 )
@@ -975,6 +976,18 @@ function makeShiftOrder(pace, act)
     return ret;
 }
 
+function switchTeamHeaderEffect(isTeamHeader, target, layer)
+{
+    if (isTeamHeader) 
+    {
+        var param ={
+            serverId:'teamHeaderEffect',
+            target: target,
+            effectId: 55 
+        };
+        layer.addEffect(param);
+    }
+}
 //act, pos
 function makeTeleport(pace, act)
 {
@@ -1642,6 +1655,7 @@ function makeUnitUpdate(pace, act)
                 actor.setZOrder(z);
                 //update team shift
                 dungeon.TeamShiftPos[unit.order] = unit.pos;
+                switchTeamHeaderEffect((unit.order ==0), this.ref, layer);
             }
         }
     }
