@@ -570,7 +570,7 @@ function onCancelDungeon(force){
 function showRevive(potionNeedCount){
     if( theStageClass.pvp === true ){
         engine.event.sendNTFEvent(Request_CancelDungeon);
-        FailReason = "PK战败";
+        FailReason = translate(engine.game.language, "sceneDungeonPKFailed");
         return;
     }
     //show revive dialogue
@@ -1806,8 +1806,7 @@ function onTouchBegan(touch, event)
         return false;//block illegal control
     }
 
-    theLayer.touchBegin = theLayer.convertToNodeSpace(touch.getLocation());
-    debug("onTouchBegan theLayer.touchBegin = "+JSON.stringify(theLayer.touchBegin));
+    theLayer.touchBegin = touch.getLocation();
     if( cc.rectContainsPoint(theLayer.card.rect, theLayer.touchBegin) )
     {//trigger card
         var slot = theLayer.selectCard(theLayer.touchBegin);
@@ -1835,7 +1834,7 @@ function onTouchMoved(touch, event)
 {
     if( theLayer.touchMode == TOUCH_CARD )
     {
-        var pos = theLayer.convertToNodeSpace(touch.getLocation());
+        var pos = touch.getLocation();
         if( cc.rectContainsPoint(theLayer.card.rect, pos) )
         {
             var newselect = theLayer.selectCard(pos);
@@ -1891,7 +1890,7 @@ function onTouchMoved(touch, event)
 
 function onTouchEnded(touch, event)
 {
-    var pos = theLayer.convertToNodeSpace(touch.getLocation());
+    var pos = touch.getLocation();
     debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
@@ -1901,8 +1900,6 @@ function onTouchEnded(touch, event)
             if( Math.abs(dis) < CLICK_RANGE )
             {
                 pos = theLayer.touchBegin;//使用之前的触点做判断
-                debug("theLayer.touchBegin pos = "+JSON.stringify(pos));
-                debug("theLayer.owner.nodeBlock = "+JSON.stringify(theLayer.owner.nodeBlock.getPosition()));
                 var rp = cc.pSub( pos, theLayer.owner.nodeBlock.getPosition() );
                 rp.y *= -1;
                 var gx = Math.floor(rp.x / LO_GRID);

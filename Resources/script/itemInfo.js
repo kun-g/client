@@ -384,8 +384,8 @@ function onPurchase(sender){
     var itemCount = theItem.cnt
     var shopItem = engine.session.queryStore(itemCid);
     var cost = shopItem.cost["diamond"] * itemCount;
-    var str1 = "材料不足\n立即花费" + cost + "宝石买齐材料？";
-    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
+    var str1 = translate(engine.game.language, "sceneForgeBuyStuff", [cost]);
+    var str2 = translate(engine.game.language, "sceneForgeChargeForStuff", [cost]);
     var args = {
         sid: shopItem.sid,
         cnt: itemCount,

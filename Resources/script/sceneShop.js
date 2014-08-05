@@ -82,7 +82,7 @@ function onConfirmPurchase(sender){
                 Number(theConfirmCount.getString()),
                 theConfirmShopItem.cost.diamond);
             }
-            libUIKit.showAlert("购买成功。");
+            libUIKit.showAlert(translate(engine.game.language, "sceneShopBuySuccess"));
         }
         else{
             libUIKit.showErrorMessage(rsp);

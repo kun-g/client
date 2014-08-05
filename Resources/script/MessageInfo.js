@@ -276,7 +276,7 @@ function loadDeliverDetail(data){
 
     theCurrentGroup.labContTitle.setString(data.tit);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var iphone5s = (winSize.height == 1136);
     var dimension = cc.size(theCurrentGroup.nodeContent.getContentSize().width, 0);
     var text = DCTextArea.create();

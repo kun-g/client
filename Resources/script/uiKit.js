@@ -225,7 +225,7 @@ function confirmPurchase(command, args, text1, text2, cost, callback){
                                 showErrorMessage(rsp);
                             }
                             else if (rsp.RET == RET_OK){
-                                showAlert("购买成功。");
+                                showAlert(translate(engine.game.language, "sceneShopBuySuccess"));
                             }
                             if( callback != null ){
                                 callback(rsp);

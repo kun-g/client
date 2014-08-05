@@ -132,7 +132,7 @@ function loadEventDesc(quest){
 
     theLayer.owner.labTitle.setString(quest.title);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     var size = cc.size(0, 0);

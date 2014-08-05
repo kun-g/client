@@ -456,7 +456,7 @@ function refreshDailyQuest(){
             var dimension = cc.size(layer.owner.layerDesc.getContentSize().width, 0);
             var dimensionPrize = cc.size(layer.owner.layerPrize.getContentSize().width, 0);
 
-            var winSize = cc.Director.getInstance().getWinSize();
+            var winSize = engine.game.viewSize;
             var iphone5s = (winSize.height == 1136);
             var text = DCTextArea.create();
             text.setDimension(dimension);

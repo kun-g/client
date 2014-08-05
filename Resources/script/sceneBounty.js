@@ -378,7 +378,7 @@ function loadBountyDesc(bounty, lev){
         theLayer.owner.btnBack2.setVisible(true);
     }
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     text.setDimension(dimension);

@@ -642,7 +642,7 @@ function onSweep(sender) {
     SweepArgs = {};
     var multi = !( sender.getTag() == 0 ); //true:批量扫荡 false:单次扫荡
     if( multi && engine.user.actor.vip < SWEEP_VIP_LEVEL ){
-        libUIKit.showAlert("VIP等级不足！\n扫荡需要达到VIP3");
+        libUIKit.showAlert(translate(engine.game.language, "sceneStageVIPNeed3"));
         return;
     }
     theLayer.stage.owner.btnSweep2.setEnabled(engine.user.actor.vip >= SWEEP_VIP_LEVEL);
@@ -650,20 +650,20 @@ function onSweep(sender) {
     var totalEnergyCost = theEnergyCost * times;
     var scrollQuantity = Math.floor(Number(theLayer.stage.owner.labSweepScroll.getString()));
     if( scrollQuantity < times ){
-        libUIKit.showAlert("扫荡卷轴不足！");
+        libUIKit.showAlert(translate(engine.game.language, "sceneStageNoSweepReel"));
         return;
     }
     if( engine.user.player.Energy < totalEnergyCost ){
         var need = totalEnergyCost - engine.user.player.Energy;
-        var str1 = "精力值不足\n进行扫荡还需要"+need+"精力\n需要使用"+need+"宝石来立即恢复吗?";
-        var str2 = "精力值不足，无法扫荡此关\n使用"+need+"宝石可以立即恢复\n需要充值吗?";
+        var str1 = translate(engine.game.language, "sceneStageSwRecovery", [need,need]);
+        var str2 = translate(engine.game.language, "sceneStageSwChargeForRecovery", [need,need]);
         libUIKit.confirmPurchase(Request_BuyFeature, {
             typ: 0,
             tar: totalEnergyCost
         }, str1, str2, totalEnergyCost, function(rsp){
             if( rsp.RET == RET_OK ){
                 //统计
-                tdga.itemPurchase("精力值", need, 1);
+                tdga.itemPurchase(translate(engine.game.language, "sceneStageEnergy"), need, 1);
             }
         });
         return;
@@ -859,16 +859,16 @@ function loadWorldStageInfo() {
             theLayer.wStage.owner.labRank.setString( (WorldStageInfo.me.rnk+1) );
         }
         if( WorldStageInfo.prg != null && WorldStageInfo.prg.ttl > 0){
-            theLayer.wStage.owner.labProgress.setString("世界闯关次数："+WorldStageInfo.prg.cpl+"/"+WorldStageInfo.prg.ttl);
+            theLayer.wStage.owner.labProgress.setString(translate(engine.game.language, "sceneStageWorldWin", [WorldStageInfo.prg.cpl,WorldStageInfo.prg.ttl]));
             theLayer.wStage.ui.progress.setProgress(WorldStageInfo.prg.cpl/WorldStageInfo.prg.ttl);
             isWorldStageCompleted = ( WorldStageInfo.prg.cpl >= WorldStageInfo.prg.ttl );
         }
         var stageClass = queryStage(WORLD_STAGE_ID);
         if( stageClass != null ){
-            theLayer.wStage.owner.labTeam.setString("人数限制："+stageClass.team+"人");
-            theLayer.wStage.owner.labEnergy.setString("消耗精力："+stageClass.cost+"点");
+            theLayer.wStage.owner.labTeam.setString(translate(engine.game.language, "sceneStageWorldPersonsLimit", [stageClass.team]));
+            theLayer.wStage.owner.labEnergy.setString(translate(engine.game.language, "sceneStageCostEnergy", [stageClass.cost]));
         }
-        theLayer.wStage.owner.labReset.setString("重置时间：每周"+WORLD_STAGE_RESET_TIME.day+" "+WORLD_STAGE_RESET_TIME.time);
+        theLayer.wStage.owner.labReset.setString(translate(engine.game.language, "sceneStageWorldReset", [WORLD_STAGE_RESET_TIME.day,WORLD_STAGE_RESET_TIME.time]));
 
         var btnOK = buttonNormalL("buttontext-jr.png", BUTTON_OFFSET, this, function () {
             cc.AudioEngine.getInstance().playEffect("card2.mp3");
