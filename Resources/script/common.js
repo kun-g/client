@@ -1291,9 +1291,9 @@ function addFriend(name, isWait, func) {
     else{
         loadModule("sceneFriend.js").extendFriends();
     }
+}
 
-function translate(language,keyword,args)
-{
+function translate(language,keyword,args){
     var libLocal = loadModule("table.js").readTable(TABLE_LOCALIZE);
     debug("language = "+language+";keyword = "+keyword);
     var text = "";
