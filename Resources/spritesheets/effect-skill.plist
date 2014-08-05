@@ -7,7 +7,7 @@
             <key>effectn-skill1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,553},{224,224}}</string>
+                <string>{{592,2},{224,224}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>effectn-skill2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{396,324},{114,114}}</string>
+                <string>{{818,2},{114,114}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,28 +33,28 @@
             <key>effectn-skill3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{320,406}}</string>
+                <string>{{2,436},{538,482}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{320,406}}</string>
+                <string>{{0,0},{538,482}}</string>
                 <key>sourceSize</key>
-                <string>{320,406}</string>
+                <string>{538,482}</string>
             </dict>
             <key>effectn-skill4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,324},{392,227}}</string>
+                <string>{{2,2},{588,432}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{392,227}}</string>
+                <string>{{0,0},{588,432}}</string>
                 <key>sourceSize</key>
-                <string>{392,227}</string>
+                <string>{588,432}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>effect-skill.png</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:878ab2e5253a4f6b0fdef16dd4b52726$</string>
+            <string>$TexturePacker:SmartUpdate:3cafdc6935b05f1ee9e5dfd5bbf0db44$</string>
             <key>textureFileName</key>
             <string>effect-skill.png</string>
         </dict>

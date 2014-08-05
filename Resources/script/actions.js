@@ -1158,6 +1158,11 @@ function makeDialogue(pace, act)
     return ret;
 }
 
+function makeEmoticon(pace, act) {
+    var ret = new libAction.Action(pace);
+
+}
+
 //act, dey, num, flg
 function makePopHP(pace, act)
 {

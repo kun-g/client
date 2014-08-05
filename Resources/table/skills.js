@@ -3909,7 +3909,8 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" }
+                {"type": "myMutex", "mutex": "xuli" },
+                {"type":"alive"}
             ]
         }
     },
@@ -3950,7 +3951,8 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" }
+                {"type": "myMutex", "mutex": "xuli" },
+                {"type":"alive"}
             ]
         }
     },
@@ -3981,7 +3983,7 @@ exports.data = [
         "config": {
             "action":[
                 {"type": "playEffect","effect":28,"pos":"self"},
-                { "type": "setProperty","modifications": {"attack":{"c":25}}}
+                { "type": "setProperty","modifications": {"attack":{"c":100}}}
             ],
             "targetSelection":{ "pool":"self" },
             "uninstallAction": [
@@ -3991,7 +3993,8 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" }
+                {"type": "myMutex", "mutex": "xuli" },
+                {"type":"alive"}
             ]
         }
     },
@@ -4109,7 +4112,7 @@ exports.data = [
                 {"type":"alive"}
             ],
             "targetSelection":{
-                "pool": "source",
+                "pool": "sources",
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action": [
@@ -4239,12 +4242,12 @@ exports.data = [
                 {"type" :"event", "event":"onPhysicalDamage" }
             ],
             "targetSelection":{
-                "pool": "target",
-                "filter": [{"type":"alive"},{"type":"visible"}]
+                "pool": "object",
+                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"not-target"}]
             },
             "action": [
-                { "type": "removeSpell", "spell": 186},
-                { "type": "installSpell", "spell": 186}
+                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
+                {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"src":{"attack":0.5}}}
             ]
         }
     },
