@@ -289,6 +289,7 @@ function setUpgradeItem(item){
     }
     if( item != null && itemClass.label != null )
     {//set value
+        theForgeItem = item;
         if( itemClass.upgradeTarget != null )
         {//can upgrade
             theContent.owner.content1.setVisible(true);
@@ -297,7 +298,6 @@ function setUpgradeItem(item){
             theContent.owner.btnSelectedItem2.setEnabled(false);
             theContent.owner.btnStartUpgrade.setEnabled(true);
             theContent.ui.oldItem.setItem(item);
-            theForgeItem = item;
             theContent.owner.oldName.setString(itemClass.label);
             theContent.owner.labLvOld.setString(itemClass.rank);
             libGadget.setProperties(item, theContent.owner.nodeProperties1);
