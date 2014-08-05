@@ -1539,7 +1539,7 @@ function makeDungeonEnemy(pace, act)
             var actor = layer.addActor(unit, boss);
 
             if (unit.keyed != null) {
-                effects.attachEffect(layer.effects, actor.getPosition(), 54);
+                libEffect.attachEffect(layer.effects, actor.getPosition(), 54);
             }
 
             if( monster.soundSpawn != null )
