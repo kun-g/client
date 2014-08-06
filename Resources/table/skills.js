@@ -143,9 +143,8 @@ exports.data = [
             "pool": "target"
         },
       "action": [
+        { "type": "modifyVar", "x": "damage", "formular": {"src": {"health":0.18,"attack":1}} },
           {"type": "playEffect","effect":4,"act":"self"},
-          {"type": "delay","delay":0.4},
-          {"type": "modifyVar", "x": "damage", "formular": {"src": {"health":0.18,"attack":1}} },
           {"type": "blink","delay":0.3,"time":0.08},
           {"type":"shock","delay":0.3,"range":5,"time":0.2}
       ]
@@ -203,9 +202,8 @@ exports.data = [
           "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"}]
       },
       "action": [
+        {"type": "damage","damageType":"Spell","isRange":true,"formular": {"src":{"attack":0.3},"c":15}},
           {"type": "playEffect","effect":4,"act":"self"},
-          {"type": "delay","delay":0.4},
-          {"type": "damage","damageType":"Spell","isRange":true,"formular": {"src":{"attack":0.3},"c":15}},
           {"type":"shock","delay":0.3,"range":5,"time":0.2}
       ]
     }
@@ -321,7 +319,7 @@ exports.data = [
       "action": [
           {"type": "playEffect","effect":4,"act":"self"},
           {"type":"shock","delay":0.3,"range":5,"time":0.2},
-          {"type": "delay","delay":0.4},
+          {"type":"delay"},
           {"type": "installSpell", "spell": 14 }
       ],
       "targetSelection": {
@@ -359,7 +357,6 @@ exports.data = [
       },
       "action": [
           {"type": "playEffect","effect":4,"act":"self"},
-          {"type": "delay","delay":0.4},
           {"type":"shock","delay":0.3,"range":5,"time":0.2},
           {"type": "heal", "formular": {"environment":{"damage":1}}},
           {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}},
@@ -665,7 +662,7 @@ exports.data = [
               "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":1}]
           },
           "action":[
-              {"type": "rangeAttack", "hurtDelay": 0.6, "effDelay": 0.3}
+              {"type": "rangeAttack", "hurtDelay": 0.8, "effDelay": 0.3}
           ],
         "levelConfig":[
             {"effect":50},
@@ -1164,10 +1161,9 @@ exports.data = [
               "pool": "target"
           },
           "action": [
-              {"type": "playEffect","effect":4,"act":"self"},
-              {"type": "delay","delay":0.4},
               { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
               {"type": "heal","self":true,"formular": {"tar":{"c":150}}},
+              {"type": "playEffect","effect":4,"act":"self"},
               {"type":"shock","delay":0.3,"range":5,"time":0.2}
           ]
       }
@@ -2913,9 +2909,8 @@ exports.data = [
                 {"type" :"event","event":"onTurnBegin"}
             ],
             "action": [
-                {"type": "playEffect","effect":4,"act":"self"},
-                {"type":"delay","delay":0.4},
                 { "type": "installSpell", "spell": 127},
+                {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2}
             ],
             "levelConfig": [
@@ -3234,7 +3229,7 @@ exports.data = [
             "action": [
                 {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2},
-                {"type":"delay","delay":0.4},
+                {"type":"delay"},
                 {"type": "installSpell", "spell": 136 }
             ],
             "targetSelection": {
@@ -3271,11 +3266,10 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action": [
-                {"type": "playEffect","effect":4,"act":"self"},
-                {"type":"delay","delay":0.4},
                 {"type": "heal", "formular": {"environment":{"damage":1}}},
                 {"type": "modifyVar", "x": "damage", "formular": {"environment":{"c":0}}},
                 {"type": "setTargetMutex", "mutex": "lightOfMiracel", "count": 1 },
+                {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2}
             ],
             "levelConfig" : [
@@ -3909,8 +3903,7 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" },
-                {"type":"alive"}
+                {"type": "myMutex", "mutex": "xuli" }
             ]
         }
     },
@@ -3951,8 +3944,7 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" },
-                {"type":"alive"}
+                {"type": "myMutex", "mutex": "xuli" }
             ]
         }
     },
@@ -3983,7 +3975,7 @@ exports.data = [
         "config": {
             "action":[
                 {"type": "playEffect","effect":28,"pos":"self"},
-                { "type": "setProperty","modifications": {"attack":{"c":100}}}
+                { "type": "setProperty","modifications": {"attack":{"c":25}}}
             ],
             "targetSelection":{ "pool":"self" },
             "uninstallAction": [
@@ -3993,8 +3985,7 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" },
-                {"type":"alive"}
+                {"type": "myMutex", "mutex": "xuli" }
             ]
         }
     },
@@ -4112,7 +4103,7 @@ exports.data = [
                 {"type":"alive"}
             ],
             "targetSelection":{
-                "pool": "sources",
+                "pool": "source",
                 "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action": [
@@ -4242,12 +4233,12 @@ exports.data = [
                 {"type" :"event", "event":"onPhysicalDamage" }
             ],
             "targetSelection":{
-                "pool": "object",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"not-target"}]
+                "pool": "target",
+                "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action": [
-                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
-                {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"src":{"attack":0.5}}}
+                { "type": "removeSpell", "spell": 186},
+                { "type": "installSpell", "spell": 186}
             ]
         }
     },
@@ -4287,10 +4278,9 @@ exports.data = [
                 "pool": "self"
             },
             "action":[
-                {"type": "playEffect","effect":4,"act":"self"},
-                {"type":"delay","delay":0.4},
                 { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0}} },
                 {"type": "heal","self":true,"formular": {"tar":{"strong":1}}},
+                {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2}
             ],
             "availableCondition": [
@@ -4859,7 +4849,7 @@ exports.data = [
             "action": [
                 {"type": "playEffect","effect":4,"act":"self"},
                 {"type":"shock","delay":0.3,"range":5,"time":0.2},
-                {"type":"delay","delay":0.4},
+                {"type":"delay"},
                 {"type": "installSpell", "spell": 209 }
             ],
             "targetSelection": {
@@ -5590,471 +5580,6 @@ exports.data = [
                 {"type": "delay"},
                 {"type": "randTeleport"}
             ]
-        }
-    },
-    {
-        "skillId": 243,
-        "label":"单个闪电",
-        "desc":"召唤闪电，对一名敌人造成伤害，伤害值与使用者攻击力相关。",
-        "config": {
-            "basic": {
-                "spellAction": 1
-            },
-            "triggerCondition": [
-                {"type" :"card", "id": 10}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":1}]
-            },
-            "action": [
-                { "type": "damage","damageType":"Spell","isRange":true,"delay":0.8},
-                {"type": "playEffect","effect":44,"act":"self"},
-                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
-                {"type": "blink","delay":0.6,"time":0.08},
-                {"type":"shock","delay":0.6,"range":5,"time":0.2},
-                {"type": "costCard", "card":10}
-            ],
-            "levelConfig" : [
-                { "formular": {"src":{"attack":1}} }
-            ]
-        }
-    },
-    {
-        "skillId": 244,
-        "label":"多个闪电",
-        "desc":"召唤闪电，对多名敌人造成伤害，伤害值与使用者攻击力相关。",
-        "config": {
-            "basic": {
-                "spellAction": 1
-            },
-            "triggerCondition": [
-                {"type" :"card", "id": 11}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":3}]
-            },
-            "action": [
-                { "type": "damage","damageType":"Spell","isRange":true,"delay":0.8},
-                {"type": "playEffect","effect":44,"act":"self"},
-                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
-                {"type": "blink","delay":0.6,"time":0.08},
-                {"type":"shock","delay":0.6,"range":5,"time":0.2},
-                {"type": "costCard", "card":11}
-            ],
-            "levelConfig" : [
-                { "formular": {"src":{"attack":1}} }
-            ]
-        }
-    },
-    {
-        "skillId": 245,
-        "label":"固定范围攻击",
-        "config": {
-            "basic":{
-                "spellAction": 1
-            },
-            "triggerCondition": [
-                {"type" :"card", "id": 12}
-            ],
-            "targetSelection": {
-                "pool": "self",
-                "filter": [{"type":"count","count":1},{"type":"anchor","anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":1,"y":1},{"x":-1,"y":1},{"x":-1,"y":-1},{"x":1,"y":-1}]}]
-            },
-            "action":[
-                {"type":"installSpell", "spell": 246,"delay":{"base":1.6,"range":3}},
-                {"type":"shock","delay":1.6,"range":20,"time":2},
-                {"type": "costCard", "card":12}
-            ]
-        }
-    },
-    {
-        "skillId": 246,
-        "config":{
-            "installAction":[
-                {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":150}},
-                {"type": "playEffect","effect":18,"pos":"self"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"same-block"},{"type":"same-faction","faction":"monster"},{"type":"alive"},{"type":"visible"}]
-            },
-            "availableCondition": [
-                { "type": "event", "event": "onTurnEnd" }
-            ]
-        }
-    },
-    {
-        "skillId": 247,
-        "label":"随机范围攻击",
-        "config": {
-            "basic":{
-                "spellAction": 1
-            },
-            "triggerCondition": [
-                {"type" :"card", "id": 13}
-            ],
-            "targetSelection": {
-                "pool": "blocks",
-                "blocks":[ Math.floor(Math.random()*20+5)],
-                "filter": [{"type":"anchor","anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":1,"y":1},{"x":-1,"y":1},{"x":-1,"y":-1},{"x":1,"y":-1}]}]
-            },
-            "action":[
-                {"type":"installSpell", "spell": 246,"delay":{"base":1.6,"range":3}},
-                {"type":"shock","delay":1.6,"range":20,"time":2},
-                {"type": "costCard", "card":13}
-            ]
-        }
-    },
-    {
-        "skillId": 248,
-        "label":"全屏攻击",
-        "desc":"召唤闪电，对全屏敌人造成伤害，伤害值与使用者攻击力相关。",
-        "config": {
-            "basic": {
-                "spellAction": 1
-            },
-            "triggerCondition": [
-                {"type" :"card", "id": 14}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"}]
-            },
-            "action": [
-                { "type": "damage","damageType":"Spell","isRange":true,"delay":0.8},
-                {"type": "playEffect","effect":44,"act":"self"},
-                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
-                {"type": "blink","delay":0.6,"time":0.08},
-                {"type":"shock","delay":0.6,"range":5,"time":0.2},
-                {"type": "costCard", "card":14}
-            ],
-            "levelConfig" : [
-                { "formular": {"src":{"attack":1}} }
-            ]
-        }
-    },
-    {
-        "skillId": 249,
-        "label":"敌方全体攻击下降",
-        "config": {
-            "triggerCondition": [
-                {"type" :"card", "id": 15}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"not-me"}]
-            },
-            "action":[
-                {"type":"delay"},
-                { "type": "installSpell", "spell": 250,"delay":1.5} ,
-                {"type": "playEffect","effect":38,"pos":"target","delay":1.5} ,
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type": "costCard", "card":15}
-            ]
-        }
-    },
-    {
-        "skillId": 250,
-        "config": {
-            "installAction":[
-                { "type": "setProperty","modifications": {"attack":{"src":{"attack":-0.5}}} }
-            ],
-            "uninstallAction": [
-                { "type": "resetProperty" }
-            ],
-            "buffType":"AttackBuff",
-            "availableCondition": [
-                { "type": "event", "event": "onEndBattleTurn", "eventCount": 2 },
-                { "type": "event", "event": "onBeEndBattleTurn", "eventCount": 2 }
-            ]
-        }
-    },
-    {
-        "skillId": 251,
-        "label":"敌方全体致盲",
-        "config": {
-
-            "triggerCondition": [
-                {"type" :"card", "id": 16}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"not-me"} ]
-            },
-            "action":[
-                {"type":"delay"},
-                {"type": "installSpell", "spell": 239},
-                {"type": "playEffect","effect":36,"pos":"target","delay":2.0},
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type": "costCard", "card":16}
-            ]
-        }
-    },
-    {
-        "skillId": 252,
-        "label":"我方全体加无敌",
-        "config":{
-
-            "triggerCondition":[
-                {"type" :"card", "id": 17}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"not-me"} ]
-            },
-            "action":[
-                {"type":"delay"},
-                { "type": "installSpell", "spell": 234,"delay":0.3},
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type": "costCard", "card":17}
-            ]
-        }
-    },
-    {
-        "skillId": 253,
-        "label":"攻击吸收",
-        "desc":"我方全体攻击吸收",
-        "config": {
-
-            "triggerCondition": [
-                {"type" :"card", "id": 18}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"not-me"} ]
-            },
-            "action":[
-                {"type":"delay"},
-                { "type": "installSpell", "spell": 98},
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type": "costCard", "card":18}
-            ]
-        }
-    },
-    { "skillId": 254,
-        "label": "获得金币",
-        "config": {
-            "triggerCondition": [
-                {"type" :"card", "id": 19}
-            ],
-            "targetSelection":{
-                "pool":"self",
-                "filter": [{"type":"alive"},{"type": "visible"}]
-            },
-            "action": [
-                {"type":"delay"},
-                {"type": "dropGold","count":Math.floor(Math.random()*900+100),"showPrize":true, "effect":49, "pos":"self"},
-                {"type": "costCard", "card":19}
-            ]
-        }
-    },
-    {
-        "skillId": 255,
-        "label":"怪物伤害增加",
-        "config": {
-            "triggerCondition": [
-                {"type" :"event","event": "onBeActivate"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"same-faction","faction":"monster"}]
-            },
-            "action":[
-                {"type":"delay"},
-                { "type": "installSpell", "spell": 223,"delay":1.5} ,
-                {"type": "playEffect","effect":13,"pos":"target","delay":1.5} ,
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type":"delay"},
-                {"type":"kill","self": true}
-            ]
-        }
-    },
-    {
-        "skillId": 256,
-        "label":"怪物伤害减弱",
-        "config": {
-            "triggerCondition": [
-                {"type" :"event","event": "onBeActivate"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"same-faction","faction":"monster"}]
-            },
-            "action":[
-                {"type":"delay"},
-                { "type": "installSpell", "spell": 226,"delay":1.5} ,
-                {"type": "playEffect","effect":38,"pos":"target","delay":1.5} ,
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type":"delay"},
-                {"type":"kill","self": true}
-            ]
-        }
-    },
-    {
-        "skillId":257,
-        "label":"怪物生命增加",
-        "config": {
-            "triggerCondition": [
-                {"type" :"event","event": "onBeActivate"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"same-faction","faction":"monster"}]
-            },
-            "action":[
-                {"type":"delay"},
-                {"type": "heal", "delay":1.3,"formular": {"src":{"strong":0.5}, "c":5}},
-                {"type": "playEffect","delay":1.3,"effect":19,"pos":"target"} ,
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type":"delay"},
-                {"type":"kill","self": true}
-            ]
-        }
-    },
-    {
-        "skillId":258,
-        "label":"怪物生命减弱",
-        "config": {
-            "triggerCondition": [
-                {"type" :"event","event": "onBeActivate"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"same-faction","faction":"monster"}]
-            },
-            "action":[
-                {"type":"delay"},
-                {"type": "damage","damageType":"Spell","isRange":true,"formular": {"c":150}},
-                {"type":"delay"},
-                {"type":"kill","self": true}
-            ]
-        }
-    },
-    {
-        "skillId": 259,
-        "label":"每轮都会掉血",
-        "config": {
-
-            "triggerCondition": [
-                {"type" :"event","event": "onBeActivate"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"not-me"} ]
-            },
-            "action":[
-                {"type":"delay"},
-                {"type": "installSpell", "spell": 260},
-                {"type": "playEffect","effect":36,"pos":"target","delay":2.0},
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type":"delay"},
-                {"type":"kill","self": true}
-
-            ]
-        }
-    },
-    {
-        "skillId": 260,
-        "config": {
-            "basic" : {
-                "buffEffect": 36
-            },
-            "action":[
-                {"type": "damage","damageType":"poison","formular": {"src":{"health":0.1}}}
-            ],
-            "targetSelection":
-            {
-                "pool":"self",
-                "filter": [{"type":"alive"}]
-            },
-            "buffType":"HealthDebuff",
-            "triggerCondition":[
-                { "type": "event", "event": "onEndBattleTurn"}
-            ],
-            "availableCondition": [
-                { "type": "effectCount", "count":3}
-            ]
-        }
-    }, {
-        "skillId": 261,
-        "label":"每轮都会加血",
-        "config": {
-
-            "triggerCondition": [
-                {"type" :"event","event": "onBeActivate"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"not-me"} ]
-            },
-            "action":[
-                {"type":"delay"},
-                {"type": "installSpell", "spell": 262},
-                {"type": "playEffect","effect":36,"pos":"target","delay":2.0},
-                {"type":"playAction","motion":1,"pos":"self"},
-                {"type":"delay"},
-                {"type":"kill","self": true}
-
-            ]
-        }
-    },
-    {
-        "skillId": 262,
-        "config": {
-            "basic" : {
-                "buffEffect": 36
-            },
-            "action":[
-                {"type": "heal","formular": {"src":{"health":0.1}}}
-            ],
-            "targetSelection":
-            {
-                "pool":"self",
-                "filter": [{"type":"alive"}]
-            },
-            "buffType":"HealthDebuff",
-            "triggerCondition":[
-                { "type": "event", "event": "onEndBattleTurn"}
-            ],
-            "availableCondition": [
-                { "type": "effectCount", "count":3}
-            ]
-        }
-    },
-    {
-        "skillId": 263,
-        "label":"每回合随机aoe，敌我均会受到伤害",
-        "config": {
-            "basic":{
-                "spellAction": 1
-            },
-            "triggerCondition": [
-                {"type":"event","event":"onBeBattleTurnEnd"}
-            ],
-            "targetSelection": {
-                "pool": "blocks",
-                "blocks":[ Math.floor(Math.random()*20+5)],
-                "filter": [{"type":"anchor","anchor":[{"x":1,"y":0},{"x":-1,"y":0},{"x":0,"y":-1},{"x":0,"y":1},{"x":1,"y":1},{"x":-1,"y":1},{"x":-1,"y":-1},{"x":1,"y":-1}]}]
-            },
-            "action":[
-                {"type":"installSpell", "spell": 264,"delay":{"base":1.6,"range":3}},
-                {"type":"shock","delay":1.6,"range":20,"time":2}
-            ]
-        }
-    },
-    {
-        "skillId": 264,
-        "config":{
-            "installAction":[
-                {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"c":150}},
-                {"type": "playEffect","effect":18,"pos":"self"}
-            ],
-            "targetSelection": {
-                "pool": "objects",
-                "filter": [{"type":"same-block"},{"type":"alive"},{"type":"visible"}]
-            }
         }
     }
 ];

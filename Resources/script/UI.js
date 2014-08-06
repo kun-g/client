@@ -251,7 +251,7 @@ function autoAdaptResolution()
 {
     var winViewWidth = engine.game.viewSize.width;
     var winViewHeight = engine.game.viewSize.height;
-    var marginIcon = "item-sjw8.png";
+    var marginIcon = "shipei1.png";
 
     //auto adapt resolution
     var winSize = cc.Director.getInstance().getWinSize();
@@ -269,10 +269,11 @@ function autoAdaptResolution()
             singleton.curNode.setAnchorPoint(cc.p(0,0));
             singleton.curNode.setScale(winSize.height/winViewHeight);
 
-            var stepMarginH = caculateMarginHeightStep(marginIcon,offsetX,false)
+            var stepMarginH = caculateMarginHeightStep(marginIcon,offsetX,false);
+            var marOffsetX = caculateMarginHeightStep(marginIcon,offsetX,true);
             for (var k = 0;k < caculateMarginCount(marginIcon,offsetX,false);k++){
                 var margin = cc.Sprite.create(marginIcon);
-                margin.setPosition(cc.p(-offsetX, k * stepMarginH));
+                margin.setPosition(cc.p(-marOffsetX, k * stepMarginH));
                 margin.setScale(caculateMarginScale(marginIcon,offsetX,false));
                 margin.setAnchorPoint(cc.p(0, 0));
                 singleton.curNode.addChild(margin,100);
@@ -291,10 +292,11 @@ function autoAdaptResolution()
             singleton.curNode.setAnchorPoint(cc.p(0,0));
             singleton.curNode.setScale(winSize.width/winViewWidth);
 
-            var stepMarginW = caculateMarginHeightStep(marginIcon,offsetY,true)
+            var stepMarginW = caculateMarginHeightStep(marginIcon,offsetY,true);
+            var marOffsetY = caculateMarginHeightStep(marginIcon,offsetX,false);
             for (var k = 0;k < caculateMarginCount(marginIcon,offsetY,true);k++) {
                 var margin2 = cc.Sprite.create(marginIcon);
-                margin2.setPosition(cc.p(k * stepMarginW, -offsetY));
+                margin2.setPosition(cc.p(k * stepMarginW, -marOffsetY));
                 margin2.setScale(caculateMarginScale(marginIcon,offsetY,true));
                 margin2.setAnchorPoint(cc.p(0, 0));
                 singleton.curNode.addChild(margin2, 100);
@@ -330,13 +332,13 @@ function caculateMarginHeightStep(icon,offset,mode){
     if (mode == true){
         var margin = cc.Sprite.create(icon);
         var marginSize = margin.getContentSize();
-        var ratioY = marginSize.height / offset;
+        var ratioY = 1;//marginSize.height / offset;
         retvalue = marginSize.width / ratioY;
     }
     else{
         var margin = cc.Sprite.create(icon);
         var marginSize = margin.getContentSize();
-        var ratioX = marginSize.width / offset;
+        var ratioX = 1;//marginSize.width / offset;
         retvalue = marginSize.height / ratioX;
     }
     debug("caculateMarginHeightStep = "+retvalue);
@@ -348,12 +350,12 @@ function caculateMarginScale(icon,offset,mode){
     if (mode == true){
         var margin = cc.Sprite.create(icon);
         var marginSize = margin.getContentSize();
-        retvalue = offset / marginSize.height;
+        retvalue = 1;//offset / marginSize.height;
     }
     else{
         var margin = cc.Sprite.create(icon);
         var marginSize = margin.getContentSize();
-        retvalue = offset / marginSize.width;
+        retvalue = 1;//offset / marginSize.width;
     }
     debug("caculateMarginScale = "+retvalue);
     return retvalue;
