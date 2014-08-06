@@ -511,6 +511,7 @@ function refreshDailyQuest(){
                 layer.owner.btnGet.setSelectedSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
                 layer.owner.btnGet.setDisabledSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward2.png"));
                 theDQInvokeAction = DQINVOKE_GETPRIZE;
+                onInvokeDailyQuest();
             }
             else{
                 layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnstart1.png"));

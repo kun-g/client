@@ -49,7 +49,16 @@ initServer = function () {
   };
 };
 
-logError = function(log) { print('Error', log); };
+logError = function(log) {
+  if (log.err == null || log.err == undefined){
+    log.err ={};
+  }
+  if (log.stack != null && log.stack != undefined){
+    log.err.stack = log.stack;
+  }
+  log.err = JSON.stringify(log.err);
+  print('Error', log); 
+};
 logInfo = function(log) { print('Info', log); };
 logUser = function(log) { print('User', log); };
 logWarn = function(log) { print('Warn', log); };
@@ -411,6 +420,27 @@ mapContact = function (target, source) {
   return target
 }
 
+generatePrize = function (cfg, dropInfo,rand) {
+  var reward;
+  if (rand == null || typeof rand == 'undefined') {
+    rand = Math.random;
+  }
+  if (cfg == null || typeof cfg == 'undefined') {
+    return [];
+  }
+  return reward = dropInfo.reduce((function(r, p) {
+    return r.concat(cfg[p]);
+  }), []).filter(function(p) {
+    return p && rand() < p.rate;
+  }).map(function(g) {
+    var e;
+    e = selectElementFromWeightArray(g.prize, rand());
+    return e;
+  });
+};
+
+
+
 logLevel = 0;
 
 updateStageStatus = function (stageStatus, player, abindex) {
@@ -496,6 +526,7 @@ ACT_DROPITEM = 103;
 ACT_EFFECT = 104;
 ACT_SkillCD = 105;
 ACT_EventDummy = 106;
+ACT_RangeAttackEffect = 107;
 ACT_PlaySound = 108;
 ACT_ChangeBGM = 109;
 ACT_Shock = 110;

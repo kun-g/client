@@ -126,7 +126,7 @@ function onEffectCompleted(name)
     }
 }
 
-function readEffectNode(effectId)
+function readEffectNode(effectId, dropCid)
 {
     var scheme = loadModule("table.js").queryTable(TABLE_EFFECT, effectId);
     if( scheme != null )
@@ -159,6 +159,28 @@ function readEffectNode(effectId)
         {
             eff.setRotation(360*Math.random());
         }
+
+        if( dropCid != null ){
+            if( dropCid >= 0 ){
+                var libItem = loadModule("xitem.js");
+                var spItem = cc.Sprite.create(libItem.getItemIcon(dropCid));
+            }else if( dropCid = -1 ){
+                var spItem = cc.Sprite.create("mission-coin.png");
+            }else{
+                var spItem = cc.Sprite.create("wenhao.png");
+            }
+            spItem.setScale(0.6);
+            var a1 = cc.DelayTime.create(1.3);
+            var a2 = cc.FadeOut.create(0.2);
+            var seq = cc.Sequence.create(a1, a2);
+            if( owner.nodeItem != null){
+                owner.nodeItem.addChild(spItem);
+            }else{
+                debug("owner.nodeItem is null");
+            }
+            spItem.runAction(seq);
+        }
+
         eff.animationManager.runAnimationsForSequenceNamed("effect");
         if( scheme.z != null ){
             eff.setZOrder(scheme.z);
@@ -203,13 +225,13 @@ function attachEffectCCBI(parent, pos, file, mode, z, scale){
     return node;
 }
 
-function attachEffect(node, offset, effectId, mode)
+function attachEffect(node, offset, effectId, mode, dropCid)
 {
     if( mode == null )
     {
         mode = EFFECTMODE_AUTO;
     }
-    var eff = readEffectNode(effectId);
+    var eff = readEffectNode(effectId, dropCid);
     eff.MODE = mode;
     eff.animationManager.setCompletedAnimationCallback(eff, onEffectCompleted);
     eff.setPosition(offset);
@@ -220,14 +242,29 @@ function attachEffect(node, offset, effectId, mode)
 }
 
 function onMissileEffectUpdate(delta){
-    this.TIMER += delta;
-    var alpha = this.TIMER/this.FLYTIME;
+    var eff = this;
+//    var pPrevious = eff.getPosition();
+    eff.TIMER += delta;
+    var alpha = eff.TIMER / eff.FLYTIME;
+    var pNext = cc.pBezier1(eff.V1, eff.V2, eff.V3, alpha);
+    var oNext = missileOpacCtrl(alpha);
+//    var radians = cc.pAngle(eff.V1, eff.V3);
     if( alpha > 1 ){
-        this.removeFromParent();
+        this.unscheduleUpdate();
+        eff.removeFromParent();
     }
     else{
-        this.setPosition(cc.pBezier1(this.V1, this.V2, this.V3, alpha));
+        for (var k in eff.getChildren() ){
+            eff.getChildren()[k].setOpacity(oNext);
+        }
+        eff.setPosition(pNext);
     }
+}
+
+function missileOpacCtrl(x) {
+    var y = - Math.pow(x-1, 2) + 1;
+    y *= 255;
+    return y;
 }
 
 function attachMissileEffect(node, effectId, startPoint, endPoint)
@@ -237,7 +274,6 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
     eff.animationManager.setCompletedAnimationCallback(eff, onEffectCompleted);
     eff.setPosition(startPoint);
     node.addChild(eff);
-
     //setup arguments
     var scheme = loadModule("table.js").queryTable(TABLE_EFFECT, effectId);
     eff.V1 = startPoint;
@@ -246,11 +282,11 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
     var hoff = dist*scheme.radian;
     eff.V2 = cc.pMidpoint(startPoint, endPoint);
     eff.V2.y += hoff;
+    eff.setRotation(cc.angleOfLine(eff.V1, eff.V3));
     eff.TIMER = 0;
     eff.FLYTIME = scheme.flytime;
-
-    node.update = onMissileEffectUpdate;
-    node.scheduleUpdate();
+    eff.update = onMissileEffectUpdate;
+    eff.scheduleUpdate();
 
     return eff;
 }

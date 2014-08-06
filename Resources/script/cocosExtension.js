@@ -344,3 +344,15 @@ cc.pBezier1 = function(A, B, C, alpha){
     var n = cc.pLerp(B, C, alpha);
     return cc.pLerp(m, n, alpha);
 }
+
+cc.angleOfLine = function (A, B) {
+    var distance = cc.pDistance(A, B);
+    var sinAlpha = (B.x - A.x)/distance;
+    var ret = ( Math.asin(sinAlpha) *(180/Math.PI) );
+    if( B.y >= A.y ) {
+        return ret;
+    }
+    else{
+        return 180 - ret;
+    }
+}
