@@ -1618,7 +1618,8 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" }
+                {"type": "myMutex", "mutex": "xuli" },
+                {"type":"alive"}
             ]
         }
     },
@@ -3592,7 +3593,6 @@ exports.data = [
             "action": [
                 {"type":"delay"},
                 {"type": "dropPrize", "showPrize":true, "effect":49,"pos":"self"},
-                {"type":"delay"},
                 {"type":"kill"}]
         }
     },
@@ -3611,7 +3611,6 @@ exports.data = [
             "action": [
                 {"type":"delay"},
                 {"type": "dropPrize", "showPrize":true, "effect":49, "pos":"self"},
-                {"type":"delay"},
                 {"type":"kill"}]
         }
     },
