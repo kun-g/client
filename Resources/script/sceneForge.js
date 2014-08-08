@@ -238,15 +238,18 @@ function onSelectedItem(sender) {
 }
 
 function autoSelect(ui,type) {
+    return;
     var action =[setUpgradeItem,setEnhanceEquip,setForgeEquip];
-    var slot = EquipSlot_SecondHand;  //EquipSlot_MainHand;
+    var slot = 1;
     var upInfo = getUpgradeInfo(type).lst;
     upable = upInfo.filter(function(e) {return e > 0;});
     if (upable.length > 0){
         slot = upable[0];
     }
-    var theItem = ui["equip"+slot].getItem();
+    var theItem = ui.ui["equip"+slot].getItem();
     theContent = ui;
+    TouchId = slot;
+    upItem(TouchId);
     action[type-1](theItem);
     //ui.ui.equip.setItem(oldItem);
 
@@ -300,6 +303,9 @@ function onStartUpgrade(sender){
                     }
                 }, theLayer);
             }
+        }
+        else{
+            debug("UpgradeArgs is " + JSON.stringify(UpgradeArgs));
         }
     }
     else{
@@ -357,7 +363,6 @@ function setUpgradeItem(item){
             if( itemClass.rank != null && itemClass.rank < engine.user.actor.Level ){
                 theContent.owner.labXp.setString("熟练度 "+xp+"/"+upgradeXp);
                 theContent.ui.xp.setProgress(xp/upgradeXp);
-
                 UpgradeArgs = {
                     sid: item.ServerId,
                     opn: ITMOP_UPGRADE
@@ -549,7 +554,6 @@ function onUpgrade(sender){
     theMode = MODE_UPGRADE;
     setModeTag(theMode);
 
-    UpgradeArgs = null;
 }
 
 //--- 强化 ---
@@ -559,7 +563,7 @@ function onStartEnhance(sender){
     if( EnoughMtrls ){
         if( EnhanceArgs != null){
             if( checkGold(goldCost)){
-                libUIKit.waitRPC(Request_InventoryUseItem, EnhanceArgs, function(rsp){
+                engine.event.sendRPCEvent(Request_InventoryUseItem, EnhanceArgs, function(rsp){
                     if( rsp.RET == RET_OK || rsp.RET == RET_EnhanceFailed ){
                         if( rsp.RET == RET_OK) {
                             libEffect.attachEffectCCBI(theContent.owner.itemEquip, cc.p(0,0), "effect-forgeqh.ccbi");
@@ -894,7 +898,6 @@ function onEnhance(sender){
     theMode = MODE_ENHANCE;
     setModeTag(theMode);
 
-    EnhanceArgs = null;
 }
 
 //--- 锻造(升阶) ---
@@ -1221,7 +1224,6 @@ function onForge(sender){
     theMode = MODE_FORGE;
     setModeTag(theMode);
 
-    ForgeArgs = null;
 }
 
 function onStartForge(sender){
@@ -1465,7 +1467,6 @@ function onSynthesize(sender){
     theMode = MODE_SYNTHESIZE;
     setModeTag(theMode);
 
-    SynthesizeArgs = null;
 }
 
 function onStartSynthesize(sender){
@@ -1572,6 +1573,11 @@ function onNotify(ntf){
 }
 
 function onEnter(){
+    UpgradeArgs = null;
+    EnhanceArgs = null;
+    ForgeArgs = null;
+    SynthesizeArgs = null;
+
     theLayer = this;
     engine.user.inventory.syncArmors();
     theMode = MODE_UPGRADE;
