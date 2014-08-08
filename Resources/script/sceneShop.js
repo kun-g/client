@@ -191,6 +191,10 @@ function onConfirmEnter(){
 
     theConfirmCount = owner.labCount;
     theConfirmCount.setString(1);
+    if( theConfirmItemClass.category == 0 && theConfirmItemClass.subcategory == 0 ){
+        owner.btnConfirmUp.setEnabled(false);
+        owner.btnConfirmDown.setEnabled(false);
+    }
     theConfirmPrice = UIPrice.create(theConfirmShopItem.cost);
     owner.nodePrice.addChild(theConfirmPrice);
     theCurrentPrice = theConfirmShopItem.cost;

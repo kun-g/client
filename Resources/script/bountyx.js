@@ -400,6 +400,7 @@ BountyLog.prototype.getNextActiveTime = function(bountyId){
 }
 
 BountyLog.prototype.setScheduleLocalNotification = function(){
+    system.unscheduleAllLocalNotifications();
     var bountyCount = engine.user.bounty.getBountyListCount();
     if (bountyCount > 0) {
         var list = engine.user.bounty.getBountyList();

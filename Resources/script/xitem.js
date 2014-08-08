@@ -411,23 +411,26 @@ Inventory.prototype.getShopItems = function()
     });
 }
 
-Inventory.prototype.checkUpgradable = function(lst){
-    var slots = [
-        EquipSlot_MainHand,
-        EquipSlot_SecondHand,
-        EquipSlot_Chest,
-        EquipSlot_Legs,
-        EquipSlot_Finger,
-        EquipSlot_Neck
-    ];
+var slots = [
+    EquipSlot_MainHand,
+    EquipSlot_SecondHand,
+    EquipSlot_Chest,
+    EquipSlot_Legs,
+    EquipSlot_Finger,
+    EquipSlot_Neck
+];
+Inventory.prototype.checkUpgradable = function(lst, mode){
+
     for(var k in slots){
         var item = engine.user.actor.queryArmor(slots[k]);
         item = syncItemData(item);
-        if( item.isUpgradable() ) {
+        if( ((mode == null || mode == 0) && item.isUpgradable())
+            || (mode == 1 && item.isEnhancable())
+            || (mode == 2 && item.isForgable()) ){
             if(lst != null){
                 lst[lst.length] = slotsTransfrom(slots[k]);
             }else{
-                return true
+                return true;
             }
         }
     }
@@ -435,49 +438,11 @@ Inventory.prototype.checkUpgradable = function(lst){
 }
 
 Inventory.prototype.checkEnhancable = function(lst){
-    var slots = [
-        EquipSlot_MainHand,
-        EquipSlot_SecondHand,
-        EquipSlot_Chest,
-        EquipSlot_Legs,
-        EquipSlot_Finger,
-        EquipSlot_Neck
-    ];
-    for(var k in slots){
-        var item = engine.user.actor.queryArmor(slots[k]);
-        item = syncItemData(item);
-        if( item.isEnhancable() ) {
-            if(lst != null){
-                lst[lst.length] = slotsTransfrom(slots[k]);
-            }else{
-                return true
-            }
-        }
-    }
-    return (lst != null && lst.length > 0);
+    return this.checkUpgradable(lst, 1);
 }
 
 Inventory.prototype.checkForgable = function(lst){
-    var slots = [
-        EquipSlot_MainHand,
-        EquipSlot_SecondHand,
-        EquipSlot_Chest,
-        EquipSlot_Legs,
-        EquipSlot_Finger,
-        EquipSlot_Neck
-    ];
-    for(var k in slots){
-        var item = engine.user.actor.queryArmor(slots[k]);
-        item = syncItemData(item);
-        if( item.isForgable() ) {
-            if(lst != null){
-                lst[lst.length] = slotsTransfrom(slots[k]);
-            }else{
-                return true
-            }
-        }
-    }
-    return(lst != null && lst.length > 0);
+    return this.checkUpgradable(lst, 2);
 }
 
 function slotsTransfrom(slot) {

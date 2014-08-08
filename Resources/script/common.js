@@ -1270,3 +1270,26 @@ function matchDateinterval(scheme, date){
     }
     return false;
 }
+
+function addFriend(name, isWait, func) {
+    if( engine.user.friend.Count < engine.user.friend.Capacity ){
+        if( isWait != null && isWait ){
+            loadModule("uiKit.js").waitRPC(Request_FriendInvite, {
+                nam: name
+            },function(rsp){
+                if( func != null ) func(rsp);
+            });
+        }else{
+            engine.event.sendRPCEvent(Request_FriendInvite, {
+                nam: name
+            },function(rsp){
+                if( func != null ) func(rsp);
+            });
+        }
+
+    }
+    else{
+        loadModule("sceneFriend.js").extendFriends();
+    }
+
+}

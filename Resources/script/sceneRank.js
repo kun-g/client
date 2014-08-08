@@ -72,7 +72,7 @@ function onRoleInfo(sender){
     libUIKit.showRoleInfo(role.Name);
 }
 
-function createRoleBar(role, rank){
+function createRoleBar(role, rank, rankId){
     var layer = cc.Node.create();
     layer.owner = {};
     layer.owner.onRoleInfo = onRoleInfo;
@@ -92,10 +92,10 @@ function createRoleBar(role, rank){
     appendVipIcon(layer.owner.labName, role.vip);
     layer.owner.labLevel.setString("Lv."+role.Level+" "+RoleClass.className);
     for(var i=0; i<5; i++){
-        layer.owner["spType"+i].setVisible(getRankId(theMode) == i);
-        layer.owner["spPattern"+i].setVisible(getRankId(theMode) == i);
+        layer.owner["spType"+i].setVisible(rankId == i);
+        layer.owner["spPattern"+i].setVisible(rankId == i);
     }
-    if( theMode == MODE_PVP ){
+    if( rankId == getRankId(MODE_PVP) ){
         layer.owner.labPower.setString(role.getPower());
     }else{
         layer.owner.labPower.setString(role.Score);
@@ -123,6 +123,7 @@ function createRoleBar(role, rank){
 
     return layer;
 }
+exports.createRoleBar = createRoleBar;
 
 function fillPage(page){
     if( theCache[getRankId(theMode)][page] == null ){
@@ -196,7 +197,7 @@ function update(delta){
                 var role = new libRole.Role(theRankList[LOAD_INDEX]);
                 role.fix();
                 var rank = thePage*PAGE_SIZE+1+LOAD_INDEX;
-                var node = createRoleBar(role, rank);
+                var node = createRoleBar(role, rank, getRankId(theMode));
                 node.setPosition(cc.p(0, LOAD_SIZE.height - LOAD_INDEX*BAR_HEIGHT - BAR_HEIGHT - FIRST_GAP));
                 node.KEY = Number(LOAD_INDEX);
                 theCurrentGroup.theListLayer.addChild(node);

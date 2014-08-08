@@ -73,9 +73,7 @@ function onMenuWhisper(sender){
 }
 
 function onMenuInvite(sender){
-    libUIKit.waitRPC(Request_FriendInvite, {
-        nam: theSelectedNode.CHAT.src
-    }, function(rsp){
+    addFriend(theSelectedNode.CHAT.src, true, function(rsp){
         engine.ui.popLayer();
         if( rsp.RET == RET_OK ){
             engine.msg.pop("邀请已经发送", POPTYPE_INFO);

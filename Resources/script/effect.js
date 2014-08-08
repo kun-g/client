@@ -291,6 +291,11 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
     return eff;
 }
 
+
+function attachEmoticonEffect(node) {
+
+}
+
 exports.PopNum_Damage = PopNum_Damage;
 exports.PopNum_Heal = PopNum_Heal;
 exports.PopNum_Miss = PopNum_Miss;

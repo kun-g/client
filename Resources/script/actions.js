@@ -586,7 +586,7 @@ function makeAttack(pace, act)
                         break;
                 }
                 if( this.rng ){
-                    var a1 = cc.DelayTime.create(0.5);
+                    var a1 = cc.DelayTime.create(0.3);
                     var a2 = cc.CallFunc.create(this.funcHit);
                     var seq = cc.Sequence.create(a1, a2);
                     target.getNode().runAction(seq);
@@ -871,6 +871,7 @@ function makeShiftOrder(pace, act)
         for(var i=0; i<this.count; ++i)
         {
             dungeon.TeamShiftPos[this.refs[i].order] = this.newpos[i];
+            switchTeamHeaderEffect((this.refs[i].order ==0), this.refs[i].ref, layer);
         }
 
         if( sWalkEffectId == -1 )
@@ -975,6 +976,18 @@ function makeShiftOrder(pace, act)
     return ret;
 }
 
+function switchTeamHeaderEffect(isTeamHeader, target, layer)
+{
+    if (isTeamHeader) 
+    {
+        var param ={
+            serverId:'teamHeaderEffect',
+            target: target,
+            effectId: 55 
+        };
+        layer.addEffect(param);
+    }
+}
 //act, pos
 function makeTeleport(pace, act)
 {
@@ -1156,6 +1169,11 @@ function makeDialogue(pace, act)
         return engine.dialogue.isPlaying();
     }
     return ret;
+}
+
+function makeEmoticon(pace, act) {
+    var ret = new libAction.Action(pace);
+
 }
 
 //act, dey, num, flg
@@ -1487,6 +1505,7 @@ function makeDungeonEnemy(pace, act)
         unit.uuid = this.arg.rid;
         unit.type = this.arg.typ;
         unit.pos = this.arg.pos;
+        unit.keyed = this.arg.keyed;
 
         //status color
         unit.hs = 0;
@@ -1532,6 +1551,10 @@ function makeDungeonEnemy(pace, act)
             //add to scene
             var actor = layer.addActor(unit, boss);
 
+            if (unit.keyed != null) {
+                libEffect.attachEffect(layer.effects, actor.getPosition(), 54);
+            }
+
             if( monster.soundSpawn != null )
             {
                 cc.AudioEngine.getInstance().playEffect(monster.soundSpawn);
@@ -1559,7 +1582,6 @@ function makeDungeonEnemy(pace, act)
             libEffect.attachEffect(layer.effects, actor.getPosition(), this.arg.eff);
         }
     }
-
     return ret;
 }
 
@@ -1633,6 +1655,7 @@ function makeUnitUpdate(pace, act)
                 actor.setZOrder(z);
                 //update team shift
                 dungeon.TeamShiftPos[unit.order] = unit.pos;
+                switchTeamHeaderEffect((unit.order ==0), this.ref, layer);
             }
         }
     }

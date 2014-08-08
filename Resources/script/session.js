@@ -30,6 +30,7 @@ function Session(){
         ttl: 0,
         rcv: false
     };
+    this.WorldStageInfo = {};
 }
 
 Session.prototype.pushFriendApply = function(msg){

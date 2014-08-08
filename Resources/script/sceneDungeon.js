@@ -618,7 +618,36 @@ function doDungeonResult(win){
 
         var actDelay = cc.DelayTime.create(4);
         var actFunc = cc.CallFunc.create(theLayer.onGameOver, theLayer);
-        var actSeq = cc.Sequence.create(actDelay, actFunc);
+        var actDelayPK = cc.DelayTime.create(3.5);
+        var actFuncPK = cc.CallFunc.create(function(){
+            var owner = {};
+            configParticle(owner);
+            var eff = cc.BuilderReader.load("ui-rankingup.ccbi", owner);
+            eff.owner = owner;
+
+            var libSceneRank = loadModule("sceneRank.js");
+            var barMe = libSceneRank.createRoleBar(engine.user.actor, engine.session.PkInfo.rnk+1, RANK_PVP);
+            barMe.setPosition(cc.p(-291, -68));
+            eff.owner.nodeMe.addChild(barMe);
+            var roleRival = new role.Role(engine.session.PkInfo.curRival);
+            roleRival.fix();
+            var barHim = libSceneRank.createRoleBar(roleRival, roleRival.Rank+1, RANK_PVP);
+            barHim.setPosition(cc.p(-291, -68));
+            eff.owner.nodeHim.addChild(barHim);
+            eff.setPosition(cc.p(winSize.width/2, winSize.height/2));
+            theLayer.addChild(eff);
+
+//            eff.runAnimationsForSequenceNamed("effect");
+        });
+        var actSeq;
+        if(theStageClass.pvp === true
+            && engine.session.PkInfo != null
+            && engine.session.PkInfo.curRival != null
+            && engine.session.PkInfo.rnk > engine.session.PkInfo.curRival.rnk){
+            actSeq = cc.Sequence.create(actDelay, actFuncPK, actDelayPK, actFunc);
+        }else{
+            actSeq = cc.Sequence.create(actDelay, actFunc);
+        }
         theLayer.runAction(actSeq);
     }
     else if( win == 0 )
