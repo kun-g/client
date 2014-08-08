@@ -106,7 +106,12 @@ bool AppDelegate::applicationDidFinishLaunching()
                     score = 8;
                 }
             }
-            
+            if(fitWidth == 0 || fitHeight == 0)
+            {
+                fitWidth = 640;
+                fitHeight = 960;
+                display = "960/";
+            }
             //set best resolution
             pDirector->getOpenGLView()->setDesignResolutionSize(fitWidth, fitHeight, kResolutionShowAll);
             CCLog("Resolution Adapter: %dx%d (%s) = %f", (int)fitWidth, (int)fitHeight, display.c_str(), fitScore);
