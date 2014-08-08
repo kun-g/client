@@ -230,6 +230,13 @@ void GameCenter::showGameCenterView()
 }
 
 void GameCenter::reportScore(int64_t score, string identifier){
+    NSString *strVersion = [UIDevice currentDevice].systemVersion;
+    int intVer = [[strVersion substringWithRange:NSMakeRange(0, 1)] intValue];
+    if (intVer != 7) {
+        NSLog(@"GameCenter: cannot report score, the iOS version is earlier than 7.0");
+        return;
+    }
+    
     NSString *nsstrIdentifier = [NSString stringWithCString:identifier.c_str() encoding:[NSString defaultCStringEncoding]];
     GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:nsstrIdentifier];
     scoreReporter.value = score;

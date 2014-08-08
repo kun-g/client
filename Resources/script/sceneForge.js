@@ -289,6 +289,7 @@ function setUpgradeItem(item){
     }
     if( item != null && itemClass.label != null )
     {//set value
+        theForgeItem = item;
         if( itemClass.upgradeTarget != null )
         {//can upgrade
             theContent.owner.content1.setVisible(true);
@@ -297,7 +298,6 @@ function setUpgradeItem(item){
             theContent.owner.btnSelectedItem2.setEnabled(false);
             theContent.owner.btnStartUpgrade.setEnabled(true);
             theContent.ui.oldItem.setItem(item);
-            theForgeItem = item;
             theContent.owner.oldName.setString(itemClass.label);
             theContent.owner.labLvOld.setString(itemClass.rank);
             libGadget.setProperties(item, theContent.owner.nodeProperties1);
@@ -486,6 +486,7 @@ function loadUpgrade(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag1.setVisible(false);
     refreshTag(ret, 1);
+    autoSelect(ret,1);
     return ret;
 }
 
@@ -824,9 +825,35 @@ function loadEnhance(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag2.setVisible(false);
     refreshTag(ret, 2);
+    autoSelect(ret,2);
     return ret;
 }
 
+function autoSelect(ui,type) {
+  var action =[setUpgradeItem,setEnhanceEquip,setForgeEquip];
+  var slot = EquipSlot_SecondHand;  //EquipSlot_MainHand;
+  var upInfo = getUpgradeInfo(type).lst;
+  upable = upInfo.filter(function(e) {return e > 0;});
+  if (upable.length > 0){
+          slot = upable[0] - 1;
+  }
+  var theItem = engine.user.actor.queryArmor(slot);
+  theContent = ui;
+  action[type-1](theItem);
+  //ui.ui.equip.setItem(oldItem);
+
+}
+
+function getUpgradeInfo(type) {
+  var TagArray = [{res:false,lst:[]},{res:false,lst:[]},{res:false, lst:[]}];
+  if (type > 3 || type < 0 ) {
+    return TagArray[0] ;
+  }
+  TagArray[0].res = engine.user.inventory.checkUpgradable(TagArray[0].lst);
+  TagArray[1].res = engine.user.inventory.checkEnhancable(TagArray[1].lst);
+  TagArray[2].res = engine.user.inventory.checkForgable(TagArray[2].lst) ;
+  return TagArray[type-1];
+}
 function onEnhance(sender){
     if( !engine.user.player.checkUnlock("enhance") ){
         return;
@@ -960,6 +987,7 @@ function loadForge(){
     refreshTag(theLayer, 0);
     theLayer.owner.tag3.setVisible(false);
     refreshTag(ret, 3);
+    autoSelect(ret,3);
     return ret;
 }
 
