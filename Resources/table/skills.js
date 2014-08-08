@@ -1618,7 +1618,8 @@ exports.data = [
                 { "type":"event", "event":"onBattleTurnEnd" },
                 { "type":"event", "event":"onMoveTurnEnd" },
                 {"type":"visible"},
-                {"type": "myMutex", "mutex": "xuli" }
+                {"type": "myMutex", "mutex": "xuli" },
+                {"type":"alive"}
             ]
         }
     },
@@ -3592,7 +3593,6 @@ exports.data = [
             "action": [
                 {"type":"delay"},
                 {"type": "dropPrize", "showPrize":true, "effect":49,"pos":"self"},
-                {"type":"delay"},
                 {"type":"kill"}]
         }
     },
@@ -3611,7 +3611,6 @@ exports.data = [
             "action": [
                 {"type":"delay"},
                 {"type": "dropPrize", "showPrize":true, "effect":49, "pos":"self"},
-                {"type":"delay"},
                 {"type":"kill"}]
         }
     },
@@ -4112,8 +4111,8 @@ exports.data = [
                 {"type":"alive"}
             ],
             "targetSelection":{
-                "pool": "sources",
-                "filter": [{"type":"alive"},{"type":"visible"}]
+                "pool": "object",
+                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"count","count":1}]
             },
             "action": [
                 {"type": "attack"}
@@ -4242,12 +4241,11 @@ exports.data = [
                 {"type" :"event", "event":"onPhysicalDamage" }
             ],
             "targetSelection":{
-                "pool": "object",
-                "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"not-target"}]
+                "pool": "target",
+                "filter": [{"type":"alive"},{"type":"visible"}]
             },
             "action": [
-                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
-                {"type": "damage","damageType":"Spell","isRange":true,"delay":0.4,"formular": {"src":{"attack":0.5}}}
+                { "type": "installSpell", "spell": 186}
             ]
         }
     },
@@ -4261,12 +4259,11 @@ exports.data = [
                 "pool": "objects",
                 "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"healable"},{"type":"not-me"}]
             },
-            "buffType":"HealthBuff",
             "availableCondition": [
                 { "type": "effectCount", "count":1}
             ],
             "action":[
-                { "type": "modifyVar", "x": "damage", "formular": {"environment": {"damage":0.5}} }
+                { "type": "damage","formular": {"environment": {"damage":0.5}} }
             ]
         }
     },
@@ -4422,7 +4419,7 @@ exports.data = [
         "label":"弱变强",
         "config":{
             "triggerCondition":[
-                {"type":"countDown","cd":3},
+                {"type":"countDown","cd":10},
                 {"type":"event","event":"onTurnEnd"}
             ],
             "targetSelection":{

@@ -51,7 +51,7 @@
     result = {};
     for (k in source) {
       v = source[k];
-      if (__indexOf.call(excludeLst, k) < 0 && (v != null)) {
+      if (__indexOf.call(excludeLst, k) < 0) {
         result[k] = v;
       }
     }
@@ -246,43 +246,41 @@
         }
         idList.forEach(function(c) {
           var k, u, v, _ref7, _ref8;
-          if (c != null) {
-            u = {};
-            for (k in c) {
-              v = c[k];
-              if (k !== 'levels') {
-                u[k] = v;
-              }
-            }
-            for (k in proList) {
-              v = proList[k];
+          u = {};
+          for (k in c) {
+            v = c[k];
+            if (k !== 'levels') {
               u[k] = v;
             }
-            if (levelOtherKey[lConfig.id] != null) {
-              _ref7 = levelOtherKey[lConfig.id];
-              for (k in _ref7) {
-                v = _ref7[k];
-                u[k] = v;
-              }
-            }
-            _ref8 = mapDiff(r, ['pool', 'levels', 'count']);
-            for (k in _ref8) {
-              v = _ref8[k];
-              u[k] = v;
-            }
-            u.count = count;
-            if (r.pos) {
-              if (typeof r.pos === 'number') {
-                u.pos = r.pos;
-              }
-              if (Array.isArray(r.pos)) {
-                u.pos = selectPos(r.pos, lConfig);
-              }
-              lConfig.takenPos[r.pos] = true;
-            }
-            lConfig.total += count;
-            return result.push(u);
           }
+          for (k in proList) {
+            v = proList[k];
+            u[k] = v;
+          }
+          if (levelOtherKey[lConfig.id] != null) {
+            _ref7 = levelOtherKey[lConfig.id];
+            for (k in _ref7) {
+              v = _ref7[k];
+              u[k] = v;
+            }
+          }
+          _ref8 = mapDiff(r, ['pool', 'levels', 'count']);
+          for (k in _ref8) {
+            v = _ref8[k];
+            u[k] = v;
+          }
+          u.count = count;
+          if (r.pos) {
+            if (typeof r.pos === 'number') {
+              u.pos = r.pos;
+            }
+            if (Array.isArray(r.pos)) {
+              u.pos = selectPos(r.pos, lConfig);
+            }
+            lConfig.takenPos[r.pos] = true;
+          }
+          lConfig.total += count;
+          return result.push(u);
         });
       }
       return result;
@@ -332,7 +330,6 @@
       var cfg, k, t, v, _i, _len, _ref5;
       this.effectCounter = 0;
       this.killingInfo = [];
-      this.prizeInfo = [];
       this.currentLevel = -1;
       this.cardStack = CardStack(5);
       this.actionLog = [];
@@ -2370,38 +2367,16 @@
         }
       },
       output: function(env) {
-        var flag, rangeEff, src, tar;
-        if (env.variable('isRange') && (env.variable('eff') != null)) {
-          src = env.variable('src');
-          tar = env.variable('tar');
-          rangeEff = [
-            {
-              id: ACT_RangeAttackEffect,
-              dey: env.variable('effDelay'),
-              eff: env.variable('eff'),
-              src: {
-                act: src.ref,
-                pos: src.pos
-              },
-              tar: {
-                act: tar.ref,
-                pos: tar.pos
-              }
-            }
-          ];
-        } else {
-          rangeEff = [];
-        }
+        var flag;
         flag = env.variable('hit') ? HP_RESULT_TYPE_HIT : HP_RESULT_TYPE_MISS;
         return [
           {
             act: env.variable('src').ref,
             id: ACT_ATTACK,
             ref: env.variable('tar').ref,
-            res: flag,
-            rng: env.variable('isRange')
+            res: flag
           }
-        ].concat(rangeEff);
+        ];
       }
     },
     ShiftOrder: {
@@ -2719,42 +2694,15 @@
     },
     DropPrize: {
       callback: function(env) {
-        var drop, dropID, showPrize;
+        var dropID;
         dropID = env.variable('dropID');
         if (dropID == null) {
           dropID = env.variable('me').dropPrize;
         }
-        showPrize = env.variable('showPrize');
         if (dropID != null) {
-          if (showPrize) {
-            drop = generatePrize(queryTable(TABLE_DROP), [dropID], function() {
-              return env.rand();
-            });
-            if (drop[0].type === 1) {
-              env.variable('cid', -1);
-            } else {
-              env.variable('cid', drop[0].value);
-            }
-            return env.dungeon.prizeInfo = env.dungeon.prizeInfo.concat(drop);
-          } else {
-            return env.dungeon.killingInfo.push({
-              dropInfo: dropID
-            });
-          }
-        }
-      },
-      output: function(env) {
-        if (env.variable('cid') != null) {
-          return [
-            {
-              id: ACT_DropItem,
-              eff: env.variable('effect'),
-              spl: env.variable('motion'),
-              act: env.variable('ref'),
-              cid: env.variable('cid'),
-              pos: env.variable('pos')
-            }
-          ];
+          return env.dungeon.killingInfo.push({
+            dropInfo: dropID
+          });
         }
       }
     },
@@ -3058,9 +3006,6 @@
         ret = [];
         if (damage > 0) {
           delay = 0.3;
-          if (env.variable('hurtDelay')) {
-            delay = env.variable('hurtDelay');
-          }
           if (env.variable('delay')) {
             delay = env.variable('delay');
           }
@@ -3220,32 +3165,6 @@
             break;
           case Block_Npc:
             return block.getRef(-1).onEvent('onBeActivate', this);
-        }
-      }
-    },
-    RangeAttackEffect: {
-      output: function(env) {
-        var src, tar;
-        src = env.variable('src');
-        tar = env.variable('tar');
-        if ((src != null) && (tar != null)) {
-          return [
-            {
-              id: ACT_RangeAttackEffect,
-              dey: env.variable('dey'),
-              eff: env.variable('eff'),
-              src: {
-                act: src.ref,
-                pos: src.pos
-              },
-              tar: tar.map(function(e) {
-                return {
-                  act: e.ref,
-                  pos: e.pos
-                };
-              })
-            }
-          ];
         }
       }
     }
