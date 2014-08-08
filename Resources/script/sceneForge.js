@@ -237,6 +237,31 @@ function onSelectedItem(sender) {
     }
 }
 
+function autoSelect(ui,type) {
+    var action =[setUpgradeItem,setEnhanceEquip,setForgeEquip];
+    var slot = EquipSlot_SecondHand;  //EquipSlot_MainHand;
+    var upInfo = getUpgradeInfo(type).lst;
+    upable = upInfo.filter(function(e) {return e > 0;});
+    if (upable.length > 0){
+        slot = upable[0];
+    }
+    var theItem = ui["equip"+slot].getItem();
+    theContent = ui;
+    action[type-1](theItem);
+    //ui.ui.equip.setItem(oldItem);
+
+}
+
+function getUpgradeInfo(type) {
+    var TagArray = [{res:false,lst:[]},{res:false,lst:[]},{res:false, lst:[]}];
+    if (type > 3 || type < 0 ) {
+        return TagArray[0] ;
+    }
+    TagArray[0].res = engine.user.inventory.checkUpgradable(TagArray[0].lst);
+    TagArray[1].res = engine.user.inventory.checkEnhancable(TagArray[1].lst);
+    TagArray[2].res = engine.user.inventory.checkForgable(TagArray[2].lst) ;
+    return TagArray[type-1];
+}
 
 //--- 升级 ---
 function onStartUpgrade(sender){
@@ -829,31 +854,6 @@ function loadEnhance(){
     return ret;
 }
 
-function autoSelect(ui,type) {
-  var action =[setUpgradeItem,setEnhanceEquip,setForgeEquip];
-  var slot = EquipSlot_SecondHand;  //EquipSlot_MainHand;
-  var upInfo = getUpgradeInfo(type).lst;
-  upable = upInfo.filter(function(e) {return e > 0;});
-  if (upable.length > 0){
-          slot = upable[0] - 1;
-  }
-  var theItem = engine.user.actor.queryArmor(slot);
-  theContent = ui;
-  action[type-1](theItem);
-  //ui.ui.equip.setItem(oldItem);
-
-}
-
-function getUpgradeInfo(type) {
-  var TagArray = [{res:false,lst:[]},{res:false,lst:[]},{res:false, lst:[]}];
-  if (type > 3 || type < 0 ) {
-    return TagArray[0] ;
-  }
-  TagArray[0].res = engine.user.inventory.checkUpgradable(TagArray[0].lst);
-  TagArray[1].res = engine.user.inventory.checkEnhancable(TagArray[1].lst);
-  TagArray[2].res = engine.user.inventory.checkForgable(TagArray[2].lst) ;
-  return TagArray[type-1];
-}
 function onEnhance(sender){
     if( !engine.user.player.checkUnlock("enhance") ){
         return;
