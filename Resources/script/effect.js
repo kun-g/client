@@ -292,8 +292,43 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
 }
 
 
-function attachEmoticonEffect(node) {
+function attachEmoticonEffect(node, effectId, type, content, duration) {
+    if( node == null || effectId == null ){
+        error("attachEmoticonEffect: node or effectId is null");
+        return;
+    }
+    var eff = readEffectNode(effectId);
+    node.addChild(eff);
+    switch (type){
+        case 0: //Picture
+            var sp = cc.Sprite.create(content);
+            if( eff.owner.nodeContent != null){
+                eff.owner.nodeContent.addChild(sp);
+            }else{
+                error("attachEmoticonEffect: eff.owner.nodeContent is null");
+            }
+            break;
+        case 1: //Text
+            break;
+        case 2: //Effect(CCB)
+            break;
+        default:
+            break;
+    }
+    eff.animationManager.runAnimationsForSequenceNamed("open");
 
+    if( duration == null || duration < 0 ){
+        duration = 2;
+    }
+    var act1 = cc.DelayTime.create(duration);
+    var act2 = cc.CallFunc.create(function() {
+        eff.animationManager.setCompletedAnimationCallback(eff, function(){
+            eff.removeFromParent();
+        });
+        eff.animationManager.runAnimationsForSequenceNamed("close");
+    });
+    var seq = cc.Sequence.create(act1, act2);
+    node.runAction(seq);
 }
 
 exports.PopNum_Damage = PopNum_Damage;
@@ -305,6 +340,7 @@ exports.attachEffectPopNum = attachEffectPopNum;
 exports.attachEffect = attachEffect;
 exports.attachEffectCCBI = attachEffectCCBI;
 exports.attachMissileEffect = attachMissileEffect;
+exports.attachEmoticonEffect = attachEmoticonEffect;
 exports.readEffectNode = readEffectNode;
 exports.EFFECTMODE_AUTO = EFFECTMODE_AUTO;
 exports.EFFECTMODE_LOOP = EFFECTMODE_LOOP;
