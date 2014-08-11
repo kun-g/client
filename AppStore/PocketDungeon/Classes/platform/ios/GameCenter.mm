@@ -232,17 +232,32 @@ void GameCenter::showGameCenterView()
 void GameCenter::reportScore(int64_t score, string identifier){
     NSString *strVersion = [UIDevice currentDevice].systemVersion;
     int intVer = [[strVersion substringWithRange:NSMakeRange(0, 1)] intValue];
-    if (intVer != 7) {
-        NSLog(@"GameCenter: cannot report score, the iOS version is earlier than 7.0");
-        return;
+    switch (intVer) {
+        case 7: //iOS 7
+        {
+            NSString *nsstrIdentifier = [NSString stringWithCString:identifier.c_str() encoding:[NSString defaultCStringEncoding]];
+            GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:nsstrIdentifier];
+            scoreReporter.value = score;
+            scoreReporter.context = 0;
+            NSArray *scores = @[scoreReporter];
+            [GKScore reportScores:scores withCompletionHandler:^(NSError *error){
+                NSLog(@"GameCenter: reportScore %@ successfully!\n",nsstrIdentifier);
+            }];
+        }
+            break;
+        case 6: //iOS 6
+        {
+            NSString *nsstrIdentifier = [NSString stringWithCString:identifier.c_str() encoding:[NSString defaultCStringEncoding]];
+            GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:nsstrIdentifier];
+            scoreReporter.value = score;
+            scoreReporter.context = 0;
+            [scoreReporter reportScoreWithCompletionHandler:^(NSError *error){
+                NSLog(@"GameCenter: reportScore %@ successfully!\n",nsstrIdentifier);
+            }];
+        }
+            break;
+        default: //earlier than 6
+            NSLog(@"GameCenter: cannot report score, the iOS version is earlier than 7.0");
+            break;
     }
-    
-    NSString *nsstrIdentifier = [NSString stringWithCString:identifier.c_str() encoding:[NSString defaultCStringEncoding]];
-    GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:nsstrIdentifier];
-    scoreReporter.value = score;
-    scoreReporter.context = 0;
-    NSArray *scores = @[scoreReporter];
-    [GKScore reportScores:scores withCompletionHandler:^(NSError *error){
-        NSLog(@"GameCenter: reportScore %@ successfully!\n",nsstrIdentifier);
-    }];
 }
