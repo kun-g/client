@@ -83,6 +83,7 @@ function CleanDFolders {
 
 function CompileJSC {
 	_PWD=`pwd`
+    echo $1
 	for _OBJ in `ls $1`
 	do
 		if [[ $_OBJ == *.js ]]; then
