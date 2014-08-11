@@ -17,7 +17,7 @@ var theSuppressLogin = false;
 var loadReady;
 var loadFlag;
 var tutorialId;
-
+var isSwitching = false;
 var MODE_PRESS = 0;
 var MODE_LOAD = 1;
 var theMode;
@@ -66,6 +66,7 @@ function onLoggedIn(token, type){
 }
 
 function onAccountChanged(token, type){
+    if( isSwitching ) return;
     debug("onAccountChanged("+token+", "+type+")");
     if( type != null && type != engine.session.accountType ){
         engine.event.sendRPCEvent(Request_BindAccount, {
@@ -73,6 +74,7 @@ function onAccountChanged(token, type){
             id: token
         }, function(rsp){
               if( rsp.RET == RET_OK && rsp.aid != engine.user.player.AID ){
+                  isSwitching = true;
                   system.alert("账号切换", "我们检测到您在"+AccountTypeName[type]+"上已经绑定了另外一个账号，要现在切换过去吗？(切换后，将不再登陆现在的账号)", uacDelegate, function(btn){
                        if( btn != 0 ){//switch
                            debug("onSwitchAccount");
@@ -432,6 +434,7 @@ function onTouchEnded(touch, event){
 
 function onEnter()
 {
+    isSwitching = false;
     theLayer = engine.ui.curLayer;
 
     theLayer.update = update;
