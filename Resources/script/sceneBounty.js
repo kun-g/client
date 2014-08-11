@@ -550,49 +550,50 @@ function update(delta)
 function updateTime()
 {
     if (theMode == MODE_LIST) {
-        var sfc = cc.SpriteFrameCache.getInstance();
-        var bountyCount = engine.user.bounty.getBountyListCount();
-        if (bountyCount > 0) {
-            var list = engine.user.bounty.getBountyList();
-            for (var k in list) {
-                var bounty = list[k];
-                var line = theListLayer.getChildByTag(k);
-                if (line == null){
-                    break;
-                }
-                var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
-                var segmentSel = engine.user.bounty.getProcess(bounty.BountyId);
-                var timediff = engine.user.bounty.cacultime(bounty.BountyId, segmentSel);
-                var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId, segmentSel);
-                //setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess*2]));
-                if (chkProcess >= 0 && chkProcess < loadList.length / 2) {
-                    line.owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
-                }
-                line.owner.labPower.setString(timediff);
-                if (bountyData.titlePic != null){
-                    line.owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
-                }
-                if (bountyData.timePic != null){
-                    line.owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
-                }
-                var remainFlag = bountyData.count;
-                if (remainFlag != null && remainFlag > 0){
-                    if (engine.session.dataBounty[k] != null &&
-                        engine.session.dataBounty[k].cnt != null &&
-                        engine.session.dataBounty[k].cnt > 0){
-                        line.owner.labelRemain.setString(engine.session.dataBounty[k].cnt);
-                    }
-                    else if (engine.session.dataBounty[k] != null &&
-                        engine.session.dataBounty[k].cnt != null &&
-                        engine.session.dataBounty[k].cnt <= 0){
-                        line.owner.labelRemain.setString(0);
-                    }
-                }
-                else{
-                    line.owner.nodeRemain.setVisible(false);
-                }
-            }
-        }
+        loadBountyList();
+        // var sfc = cc.SpriteFrameCache.getInstance();
+        // var bountyCount = engine.user.bounty.getBountyListCount();
+        // if (bountyCount > 0) {
+        //     var list = engine.user.bounty.getBountyList();
+        //     for (var k in list) {
+        //         var bounty = list[k];
+        //         var line = theListLayer.getChildByTag(k);
+        //         if (line == null){
+        //             break;
+        //         }
+        //         var bountyData = libTable.queryTable(TABLE_BOUNTY, bounty.BountyId);
+        //         var segmentSel = engine.user.bounty.getProcess(bounty.BountyId);
+        //         var timediff = engine.user.bounty.cacultime(bounty.BountyId, segmentSel);
+        //         var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId, segmentSel);
+        //         //setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess*2]));
+        //         if (chkProcess >= 0 && chkProcess < loadList.length / 2) {
+        //             line.owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
+        //         }
+        //         line.owner.labPower.setString(timediff);
+        //         // if (bountyData.titlePic != null){
+        //         //     line.owner.nodeTitle.setDisplayFrame(sfc.getSpriteFrame(bountyData.titlePic));
+        //         // }
+        //         // if (bountyData.timePic != null){
+        //         //     line.owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
+        //         // }
+        //         var remainFlag = bountyData.count;
+        //         if (remainFlag != null && remainFlag > 0){
+        //             if (engine.session.dataBounty[k] != null &&
+        //                 engine.session.dataBounty[k].cnt != null &&
+        //                 engine.session.dataBounty[k].cnt > 0){
+        //                 line.owner.labelRemain.setString(engine.session.dataBounty[k].cnt);
+        //             }
+        //             else if (engine.session.dataBounty[k] != null &&
+        //                 engine.session.dataBounty[k].cnt != null &&
+        //                 engine.session.dataBounty[k].cnt <= 0){
+        //                 line.owner.labelRemain.setString(0);
+        //             }
+        //         }
+        //         else{
+        //             line.owner.nodeRemain.setVisible(false);
+        //         }
+        //     }
+        // }
     }
 }
 
