@@ -307,7 +307,7 @@ function attachEmoticonEffect(node, effectId, type, content, duration, grid) {
         error("attachEmoticonEffect: eff.owner.nodeContent is null");
         return;
     }
-    switch (type){
+    switch (Number(type)){
         case 0: //Picture
             var sp = cc.Sprite.create(content);
             eff.owner.nodeContent.addChild(sp);
