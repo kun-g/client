@@ -292,9 +292,9 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
 }
 
 
-function attachEmoticonEffect(node, effectId, type, content, duration, grid) {
+function attachBubbleEffect(node, effectId, type, content, duration, grid) {
     if( node == null || effectId == null ){
-        error("attachEmoticonEffect: node or effectId is null");
+        error("attachBubbleEffect: node or effectId is null");
         return;
     }
     var eff = readEffectNode(effectId);
@@ -304,7 +304,7 @@ function attachEmoticonEffect(node, effectId, type, content, duration, grid) {
         eff.setPosition(position);
     }
     if( eff.owner.nodeContent == null){
-        error("attachEmoticonEffect: eff.owner.nodeContent is null");
+        error("attachBubbleEffect: eff.owner.nodeContent is null");
         return;
     }
     switch (Number(type)){
@@ -350,6 +350,19 @@ function attachEmoticonEffect(node, effectId, type, content, duration, grid) {
     });
     var seq = cc.Sequence.create(act1, act2);
     node.runAction(seq);
+    eff.update = bubbleEffectUpdate;
+    eff.scheduleUpdate();
+}
+
+function bubbleEffectUpdate(delta) {
+    var worldPos = this.owner.nodeContent.getParent().convertToWorldSpace(this.owner.nodeContent.getPosition());
+    if( worldPos.x < 0 ){
+        this.setFlipX(true);
+        this.owner.labContent.setFlipX(true);
+    }else{
+        this.setFlipX(false);
+        this.owner.labContent.setFlipX(false);
+    }
 }
 
 exports.PopNum_Damage = PopNum_Damage;
@@ -361,7 +374,7 @@ exports.attachEffectPopNum = attachEffectPopNum;
 exports.attachEffect = attachEffect;
 exports.attachEffectCCBI = attachEffectCCBI;
 exports.attachMissileEffect = attachMissileEffect;
-exports.attachEmoticonEffect = attachEmoticonEffect;
+exports.attachBubbleEffect = attachBubbleEffect;
 exports.readEffectNode = readEffectNode;
 exports.EFFECTMODE_AUTO = EFFECTMODE_AUTO;
 exports.EFFECTMODE_LOOP = EFFECTMODE_LOOP;

@@ -1193,12 +1193,12 @@ function makeBubble(pace, act) {
                 return;
             }
             var cb = function() {
-                libEffect.attachEmoticonEffect(actor.getNode(), thiz.effectId, thiz.bubbleType,
+                libEffect.attachBubbleEffect(actor.getNode(), thiz.effectId, thiz.bubbleType,
                     thiz.content, thiz.duration);
             };
         }else if( this.grid != null ){
             var cb = function() {
-                libEffect.attachEmoticonEffect(layer.effects, thiz.effectId, thiz.bubbleType,
+                libEffect.attachBubbleEffect(layer.effects, thiz.effectId, thiz.bubbleType,
                     thiz.content, thiz.duration, thiz.grid);
             };
         }else{
