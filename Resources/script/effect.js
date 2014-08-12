@@ -292,25 +292,46 @@ function attachMissileEffect(node, effectId, startPoint, endPoint)
 }
 
 
-function attachEmoticonEffect(node, effectId, type, content, duration) {
+function attachEmoticonEffect(node, effectId, type, content, duration, grid) {
     if( node == null || effectId == null ){
         error("attachEmoticonEffect: node or effectId is null");
         return;
     }
     var eff = readEffectNode(effectId);
     node.addChild(eff);
+    if( grid != null ){ //add to pos
+        var position = calcPosInGrid(grid);
+        eff.setPosition(position);
+    }
+    if( eff.owner.nodeContent == null){
+        error("attachEmoticonEffect: eff.owner.nodeContent is null");
+        return;
+    }
     switch (type){
         case 0: //Picture
             var sp = cc.Sprite.create(content);
-            if( eff.owner.nodeContent != null){
-                eff.owner.nodeContent.addChild(sp);
-            }else{
-                error("attachEmoticonEffect: eff.owner.nodeContent is null");
-            }
+            eff.owner.nodeContent.addChild(sp);
             break;
         case 1: //Text
+            var lab = eff.owner.labContent;
+            var bubble = eff.owner.spBubble;
+            lab.setString(content);
+            var labSize = lab.getContentSize();
+            var bubbleSize = bubble.getContentSize();
+            if( labSize.width > 70 ){
+                bubbleSize.width += (labSize.width-70)*1.25;
+                bubble.setContentSize(bubbleSize);
+                var labPos = lab.getPosition();
+                labPos.x += -(labSize.width-70)*0.625;
+                lab.setPosition(labPos);
+            }
+            if( labSize.height > 36 ){
+                bubbleSize.height += (labSize.height-36);
+                bubble.setContentSize(bubbleSize);
+            }
             break;
         case 2: //Effect(CCB)
+            attachEffectCCBI(eff.owner.nodeContent, cc.p(0, 0), content);
             break;
         default:
             break;

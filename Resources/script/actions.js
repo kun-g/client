@@ -1180,26 +1180,34 @@ function makeBubble(pace, act) {
     ret.delay = act.dey;
     ret.duration = act.dur;
     ret.actorRef = act.act;
-    ret.position = act.pos;
+    ret.grid = act.pos;
     ret.onStart = function(dungeon, layer) {
+
+        if( this.delay == null ) this.delay = 0;
+        var thiz = this;
+
         if( this.actorRef != null ){
             var actor = layer.getActor(this.actorRef);
             if( actor == null ){
                 error("Action Emoticon: Actor not found.");
                 return;
             }
+            var cb = function() {
+                libEffect.attachEmoticonEffect(actor.getNode(), thiz.effectId, thiz.bubbleType,
+                    thiz.content, thiz.duration);
+            };
+        }else if( this.grid != null ){
+            var cb = function() {
+                libEffect.attachEmoticonEffect(layer.effects, thiz.effectId, thiz.bubbleType,
+                    thiz.content, thiz.duration, thiz.grid);
+            };
+        }else{
+            var cb = null;
         }
-
-        //todo?
-        if( this.delay == null ) this.delay = 0;
-        var thiz = this;
         var act1 = cc.DelayTime.create(thiz.delay);
-        var act2 = cc.CallFunc.create(function() {
-            libEffect.attachEmoticonEffect(actor.getNode(), thiz.effectId, thiz.bubbleType, thiz.content, thiz.duration);
-        });
+        var act2 = cc.CallFunc.create(cb);
         var seq = cc.Sequence.create(act1, act2);
         actor.getNode().runAction(seq);
-
     };
     return ret;
 
