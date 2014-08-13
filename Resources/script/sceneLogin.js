@@ -57,6 +57,10 @@ function onLoggedIn(token, type){
     if( arg.tp == null ){
         arg.tp = engine.game.getConfig().account_type;
     }
+    
+    if (arg.tp == 7){
+        arg.atp = 6;
+    }
 
     engine.session.accountName = uac.getUserName();
     engine.session.accountId = uac.getUserId();
