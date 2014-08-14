@@ -156,7 +156,6 @@ function onEvent(event)
             loadReady = true;
             loadFlag = event.arg;
             updateLoading("正在进入游戏", 1);
-
             return true;
         }
         case Message_StartTutorial:
@@ -498,7 +497,6 @@ function onEnter()
 
     engine.event.releaseNotifications();
     debug("- LOGIN ENTER -");
-
     //91 special process
 //    if( iap.getStoreName() == "Nd91" ){
 //        onStartGame();
