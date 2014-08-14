@@ -120,11 +120,15 @@ DebugRecorder.prototype.saveDebugMsg = function(){
 DebugRecorder.prototype.cleanDebugMsg = function(){
     if( !this.inited ) return;
     this.DebugMessages = "";
-    this.savePath = "";
-    this.inited = false;
 };
 
 DebugRecorder.prototype.deleteDebugMsg = function(){
     if( !this.inited ) return;
     file.remove(this.savePath);
+};
+
+DebugRecorder.prototype.uninit = function() {
+    this.DebugMessages = "";
+    this.savePath = "";
+    this.inited = false;
 };

@@ -609,7 +609,7 @@ function showRevive(potionNeedCount){
 
 function doDungeonResult(win){
     DebugRecorderDungeon.saveDebugMsg();
-    DebugRecorderDungeon.cleanDebugMsg();
+    DebugRecorderDungeon.uninit();
     theLayer.waitResponse = true;
     theLayer.waitResult = true;
     theLayer.updateMode();
