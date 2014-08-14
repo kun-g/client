@@ -38631,7 +38631,12 @@ exports.data = [
                     {"pool":"soldierPool","from":8,to:14},
                     {"pool":"rangePool","from":0,to:1},
                     {"pool":"elitePool","count":1},
-                    {"id": 149,"from":0,to:2}
+                    {"id": 149,"from":0,to:2},
+                    {
+                        "id": 215,
+                        "count":2,
+                        "keyed":true
+                    }
                 ]
             },
             {
@@ -38643,7 +38648,7 @@ exports.data = [
                     {
                         "id": 213,
                         "count":1,
-                        /*"pos": Math.floor(Math.random()*25+5), */
+                        "pos": [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29],
                         "keyed":true
                     },
                     {
@@ -38662,5 +38667,73 @@ exports.data = [
             ],
         "prizeWxp":0,"prizeGold":1000, "prizeXp":0,
         "wxpRate":1,"goldRate":1, "xpRate":1,
-        "rank":230}
+        "rank":230},
+    {
+        "dungeonId": 128,
+        "rank": 100,
+        "levelCount" :1,
+        "levels" :[
+            {
+                "objects" :[
+                    {
+                        "id": 15 ,
+                        "count":2,
+                        "keyed":true
+                    },
+                    {
+                        "id": 47 ,
+                        "count":2,
+                        "keyed":true
+                    },
+                    {
+                        "id": 79 ,
+                        "count":2,
+                        "keyed":true
+                    },
+                    {
+                        "id": 111 ,
+                        "count":2,
+                        "keyed":true
+                    },
+                    {
+                        "id": 194 ,
+                        "count":2,
+                        "keyed":true
+                    },
+                    {
+                        "id": 6 ,
+                        "count":1,
+                        "keyed":true
+                    },
+                    {
+                        "id": 38 ,
+                        "count":1,
+                        "keyed":true
+                    },
+                    {
+                        "id": 70 ,
+                        "count":1,
+                        "keyed":true
+                    },
+                    {
+                        "id": 103 ,
+                        "count":1,
+                        "keyed":true
+                    },
+                    {
+                        "id": 206 ,
+                        "count":1,
+                        "keyed":true
+                    }
+                ]
+            }
+        ],
+        "dropID":[
+            19
+        ],
+        "prizeWxp":30,"prizeGold": 150,
+        "prizeXp":400,
+        "wxpRate":1,"goldRate":0.5,
+        "xpRate":1
+    }
 ];
