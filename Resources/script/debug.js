@@ -85,3 +85,38 @@ function printArray(ary){
     }
     error(str);
 }
+
+
+/********* Debug Recorder *********/
+function DebugRecorder(){
+    this.DebugMessages = "";
+    this.savePath = "";
+}
+
+DebugRecorder.prototype.init = function(fileName){
+    this.DebugMessages = "";
+    var docPath = file.getDocumentPath();
+    if( fileName != null ){
+        this.savePath = docPath+PATH_DEBUG+fileName;
+    }else{
+        this.savePath = docPath+PATH_DEBUG+"DefaultDebugMsg";
+    }
+};
+
+DebugRecorder.prototype.addDebugMsg = function(msg){
+    this.DebugMessages += msg+"\n";
+};
+
+DebugRecorder.prototype.saveDebugMsg = function(){
+    file.write(this.savePath, this.DebugMessages);
+};
+
+DebugRecorder.prototype.clearDebugMsg = function(){
+    this.DebugMessages = "";
+};
+
+DebugRecorder.prototype.deleteDebugMsg = function(){
+    file.remove(this.savePath);
+};
+
+var DebugRecorderInstance = new DebugRecorder();

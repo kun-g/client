@@ -28,6 +28,7 @@ var PATH_UPDATE = "update/";
 var PATH_DOWNLOAD = "download/";
 var PATH_USER = "user/";
 var PATH_LOG = "log/";
+var PATH_DEBUG = "debug/";
 
 /*** UI DEFINES ***/
 var UI_FONT = "Helvetica-Bold";

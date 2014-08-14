@@ -459,6 +459,8 @@ function onPause(sender)
     if( theDungeon.TutorialFlag ){
         exit.setEnabled(false);
     }
+
+    DebugRecorderInstance.saveDebugMsg();
 }
 
 function onQuest(sender){
@@ -606,6 +608,7 @@ function showRevive(potionNeedCount){
 }
 
 function doDungeonResult(win){
+    DebugRecorderInstance.saveDebugMsg();
     theLayer.waitResponse = true;
     theLayer.waitResult = true;
     theLayer.updateMode();
