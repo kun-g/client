@@ -432,7 +432,7 @@ function onStage(sender)
 //            loadModule("sceneStage.js").startStage(flag_stgId, 3, 0);
 //            return;
 //        }
-//        loadModule("sceneStage.js").startStage(133, 3, 0); return;
+        loadModule("sceneStage.js").startStage(134, 3, 0); return;
 
         //强制进某一关
         if( engine.user.player.Tutorial != null ){
