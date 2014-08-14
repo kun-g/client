@@ -460,7 +460,7 @@ function onPause(sender)
         exit.setEnabled(false);
     }
 
-    DebugRecorderInstance.saveDebugMsg();
+    DebugRecorderDungeon.saveDebugMsg();
 }
 
 function onQuest(sender){
@@ -608,7 +608,8 @@ function showRevive(potionNeedCount){
 }
 
 function doDungeonResult(win){
-    DebugRecorderInstance.saveDebugMsg();
+    DebugRecorderDungeon.saveDebugMsg();
+    DebugRecorderDungeon.cleanDebugMsg();
     theLayer.waitResponse = true;
     theLayer.waitResult = true;
     theLayer.updateMode();

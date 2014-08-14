@@ -187,11 +187,11 @@ function fixHeroProperty(role)
 function processRequest(req){
     var msgBOXIN = "* BOX IN = \n"+JSON.stringify(req);
     debug(msgBOXIN);
-    DebugRecorderInstance.addDebugMsg(msgBOXIN);
+    DebugRecorderDungeon.addDebugMsg(msgBOXIN);
     var obj = process(req);
     var msgBOXOUT = "* BOX OUT = \n"+JSON.stringify(obj);
     debug(msgBOXOUT);
-    DebugRecorderInstance.addDebugMsg(msgBOXOUT);
+    DebugRecorderDungeon.addDebugMsg(msgBOXOUT);
     if( Array.isArray(obj) )
     {//multi-response
         for(var k in obj)

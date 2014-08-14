@@ -7,6 +7,7 @@
 function error(msg)
 {
     cc.log("[error]"+msg);
+    if( DebugRecorderDungeon.inited ) DebugRecorderDungeon.addDebugMsg("[error]"+msg);
 }
 
 function warn(msg)
@@ -17,6 +18,7 @@ function warn(msg)
 function debug(msg)
 {
     cc.log("[debug]"+msg);
+    if( DebugRecorderDungeon.inited ) DebugRecorderDungeon.addDebugMsg("[debug]"+msg);
 }
 
 function display(key, val)
@@ -91,6 +93,7 @@ function printArray(ary){
 function DebugRecorder(){
     this.DebugMessages = "";
     this.savePath = "";
+    this.inited = false;
 }
 
 DebugRecorder.prototype.init = function(fileName){
@@ -101,22 +104,27 @@ DebugRecorder.prototype.init = function(fileName){
     }else{
         this.savePath = docPath+PATH_DEBUG+"DefaultDebugMsg";
     }
+    this.inited = true;
 };
 
 DebugRecorder.prototype.addDebugMsg = function(msg){
+    if( !this.inited ) return;
     this.DebugMessages += msg+"\n";
 };
 
 DebugRecorder.prototype.saveDebugMsg = function(){
+    if( !this.inited ) return;
     file.write(this.savePath, this.DebugMessages);
 };
 
-DebugRecorder.prototype.clearDebugMsg = function(){
+DebugRecorder.prototype.cleanDebugMsg = function(){
+    if( !this.inited ) return;
     this.DebugMessages = "";
+    this.savePath = "";
+    this.inited = false;
 };
 
 DebugRecorder.prototype.deleteDebugMsg = function(){
+    if( !this.inited ) return;
     file.remove(this.savePath);
 };
-
-var DebugRecorderInstance = new DebugRecorder();

@@ -12,6 +12,7 @@ function initEngine()
         require("debug.js");
         require("common.js");
 
+        DebugRecorderDungeon = new DebugRecorder();
         engine.ui = loadModule("UI.js").instance;
         engine.event = loadModule("Event.js").instance;
         engine.game = loadModule("Game.js").instance;
