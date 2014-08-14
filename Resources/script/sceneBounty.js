@@ -43,6 +43,14 @@ var loadList = [
     "bounty-zzjxbg.png" //4 正在进行
 ];
 
+var loadTextList = [
+    "bounty-jjjs.png",//0 即将结束
+    "bounty-jjkq.png",//1 即将开启
+    "bounty-yjjs.png",//2 已经结束
+    "bounty-yjwc.png",//3 已经完成
+    "bounty-zzjx.png" //4 正在进行
+];
+
 var levelBtnList = [
     "bounty-btn-easy1.png",
     "bounty-btn-easy2.png",
@@ -279,6 +287,20 @@ function loadBountyList(){
             var timediff = engine.user.bounty.cacultime(bounty.BountyId,segmentSel);
             var chkProcess = engine.user.bounty.checkProcess(bounty.BountyId,segmentSel);
 
+            if (chkProcess == 4){
+                owner.nodeBountyBg.setDisplayFrame(sfc.getSpriteFrame("bounty-bg2.png"));
+            }
+            if (chkProcess >= 2 && chkProcess <= 4){
+                owner.nodeTextTime.setVisible(false);
+                owner.nodeText.setVisible(true);
+            }
+            else if (chkProcess >= 0 && chkProcess < loadTextList.length){
+                owner.nodeTextTime.setVisible(true);
+                owner.nodeText.setVisible(false);
+                owner.nodeTextTime.setDisplayFrame(sfc.getSpriteFrame(loadTextList[chkProcess]));
+            }
+
+            //
             if (chkProcess >= 0 && chkProcess < loadList.length){
                 owner.nodeProcbg.setDisplayFrame(sfc.getSpriteFrame(loadList[chkProcess]));
             }
@@ -288,6 +310,9 @@ function loadBountyList(){
             }
             if (bountyData.timePic != null){
                 owner.nodeTime.setDisplayFrame(sfc.getSpriteFrame(bountyData.timePic));
+            }
+            if (bountyData.prizePic != null){
+                owner.nodePrize.setDisplayFrame(sfc.getSpriteFrame(bountyData.prizePic));
             }
 
             var remainFlag = bountyData.count;
