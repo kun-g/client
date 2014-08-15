@@ -293,6 +293,7 @@ function loadBountyList(){
             if (chkProcess >= 2 && chkProcess <= 4){
                 owner.nodeTextTime.setVisible(false);
                 owner.nodeText.setVisible(true);
+                owner.nodeText.setDisplayFrame(sfc.getSpriteFrame(loadTextList[chkProcess]));
             }
             else if (chkProcess >= 0 && chkProcess < loadTextList.length){
                 owner.nodeTextTime.setVisible(true);
