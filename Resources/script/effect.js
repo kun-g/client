@@ -336,6 +336,10 @@ function attachBubbleEffect(node, effectId, type, content, duration, grid) {
         default:
             break;
     }
+
+    eff.flipCtrl = bubbleFlipController;
+    eff.flipCtrl();
+
     eff.animationManager.runAnimationsForSequenceNamed("open");
 
     if( duration == null || duration < 0 ){
@@ -350,18 +354,18 @@ function attachBubbleEffect(node, effectId, type, content, duration, grid) {
     });
     var seq = cc.Sequence.create(act1, act2);
     node.runAction(seq);
-    eff.update = bubbleEffectUpdate;
-    eff.scheduleUpdate();
+//    eff.update = bubbleEffectUpdate;
+//    eff.scheduleUpdate();
 }
 
-function bubbleEffectUpdate(delta) {
+function bubbleFlipController() {
     var worldPos = this.owner.nodeContent.getParent().convertToWorldSpace(this.owner.nodeContent.getPosition());
-    if( worldPos.x < 0 ){
-        this.setFlipX(true);
-        this.owner.labContent.setFlipX(true);
+    if( worldPos.x-30 < 0 ){
+        this.setScaleX(-1);
+        this.owner.labContent.setScaleX(-1);
     }else{
-        this.setFlipX(false);
-        this.owner.labContent.setFlipX(false);
+        this.setScaleX(1);
+        this.owner.labContent.setScaleX(1);
     }
 }
 

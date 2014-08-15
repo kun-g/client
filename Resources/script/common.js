@@ -1064,6 +1064,9 @@ function requestBattle(stage, party, pkRival){
     if( party != null ){
         engine.user.dungeon.party = party;
     }
+
+    DebugRecorderDungeon.init("Dungeon");
+    DebugRecorderDungeon.addDebugMsg("EnterDungeon: Stage Id = " + stage);
     //go request
     if( FLAG_BLACKBOX ){
         var args = {};
@@ -1081,8 +1084,6 @@ function requestBattle(stage, party, pkRival){
         }
         libUIKit.waitRPC(Request_GameStartDungeon, args, function(rsp){
             if( rsp.RET == RET_OK ){
-                DebugRecorderDungeon.init("BlackBoxInOut");
-                DebugRecorderDungeon.addDebugMsg("EnterDungeon: "+JSON.stringify(args));
                 engine.box.start(rsp.arg);
                 engine.event.holdNotifications();
                 engine.box.process({
