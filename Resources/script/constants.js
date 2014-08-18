@@ -32,6 +32,7 @@ var PATH_DEBUG = "debug/";
 
 /*** UI DEFINES ***/
 var UI_FONT = "Helvetica-Bold";
+var UI_SIZE_XS = 20;
 var UI_SIZE_S = 24;
 var UI_SIZE_L = 28;
 var UI_SIZE_XL = 32;
