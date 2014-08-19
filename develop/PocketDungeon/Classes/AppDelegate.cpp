@@ -97,6 +97,9 @@ bool AppDelegate::applicationDidFinishLaunching()
                     if( dist < fitScore )
                     {
                         fitScore = dist;
+//                        fitWidth = 640;
+//                        fitHeight = 960;
+//                        display = "960//";
                         fitWidth = width;
                         fitHeight = height;
                         display = pPath->getCString();
@@ -108,6 +111,12 @@ bool AppDelegate::applicationDidFinishLaunching()
                 }
                 
 
+            }
+            if(fitWidth == 0 || fitHeight == 0)
+            {
+                fitWidth = 640;
+                fitHeight = 960;
+                display = "960/";
             }
             //set best resolution
             if (isFitable){

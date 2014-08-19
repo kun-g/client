@@ -249,9 +249,9 @@ function disableLayer(layer)
 
 function autoAdaptResolution()
 {
-    var winViewWidth = engine.game.viewSize.width;
-    var winViewHeight = engine.game.viewSize.height;
-    var marginIcon = "shipei1.png";
+    var winViewWidth = system.getViewSizeWidth();
+    var winViewHeight = system.getViewSizeHeight();
+    var marginIconList = ["shipei1.png","shipei2.png","shipei3.png","shipei4.png"];
 
     //auto adapt resolution
     var winSize = cc.Director.getInstance().getWinSize();
@@ -269,18 +269,18 @@ function autoAdaptResolution()
             singleton.curNode.setAnchorPoint(cc.p(0,0));
             singleton.curNode.setScale(winSize.height/winViewHeight);
 
-            var stepMarginH = caculateMarginHeightStep(marginIcon,offsetX,false);
-            var marOffsetX = caculateMarginHeightStep(marginIcon,offsetX,true);
-            for (var k = 0;k < caculateMarginCount(marginIcon,offsetX,false);k++){
-                var margin = cc.Sprite.create(marginIcon);
+            var stepMarginH = caculateMarginHeightStep(marginIconList[0],offsetX,false);
+            var marOffsetX = caculateMarginHeightStep(marginIconList[0],offsetX,true);
+            for (var k = 0;k < caculateMarginCount(marginIconList[0],offsetX,false);k++){
+                var margin = cc.Sprite.create(marginIconList[0]);
                 margin.setPosition(cc.p(-marOffsetX, k * stepMarginH));
-                margin.setScale(caculateMarginScale(marginIcon,offsetX,false));
+                margin.setScale(caculateMarginScale(marginIconList[0],offsetX,false));
                 margin.setAnchorPoint(cc.p(0, 0));
                 singleton.curNode.addChild(margin,100);
 
-                var margin1 = cc.Sprite.create(marginIcon);
+                var margin1 = cc.Sprite.create(marginIconList[1]);
                 margin1.setPosition(cc.p(winViewWidth, k * stepMarginH));
-                margin1.setScale(caculateMarginScale(marginIcon,offsetX,false));
+                margin1.setScale(caculateMarginScale(marginIconList[1],offsetX,false));
                 margin1.setAnchorPoint(cc.p(0, 0));
                 singleton.curNode.addChild(margin1,100);
             }
@@ -292,18 +292,18 @@ function autoAdaptResolution()
             singleton.curNode.setAnchorPoint(cc.p(0,0));
             singleton.curNode.setScale(winSize.width/winViewWidth);
 
-            var stepMarginW = caculateMarginHeightStep(marginIcon,offsetY,true);
-            var marOffsetY = caculateMarginHeightStep(marginIcon,offsetX,false);
-            for (var k = 0;k < caculateMarginCount(marginIcon,offsetY,true);k++) {
-                var margin2 = cc.Sprite.create(marginIcon);
+            var stepMarginW = caculateMarginHeightStep(marginIconList[2],offsetY,true);
+            var marOffsetY = caculateMarginHeightStep(marginIconList[2],offsetX,false);
+            for (var k = 0;k < caculateMarginCount(marginIconList[2],offsetY,true);k++) {
+                var margin2 = cc.Sprite.create(marginIconList[2]);
                 margin2.setPosition(cc.p(k * stepMarginW, -marOffsetY));
-                margin2.setScale(caculateMarginScale(marginIcon,offsetY,true));
+                margin2.setScale(caculateMarginScale(marginIconList[2],offsetY,true));
                 margin2.setAnchorPoint(cc.p(0, 0));
                 singleton.curNode.addChild(margin2, 100);
 
-                var margin3 = cc.Sprite.create(marginIcon);
+                var margin3 = cc.Sprite.create(marginIconList[3]);
                 margin3.setPosition(cc.p(k * stepMarginW, winViewHeight));
-                margin3.setScale(caculateMarginScale(marginIcon,offsetY,true));
+                margin3.setScale(caculateMarginScale(marginIconList[3],offsetY,true));
                 margin3.setAnchorPoint(cc.p(0, 0));
                 singleton.curNode.addChild(margin3, 100);
             }
