@@ -235,6 +235,9 @@ function onUIAnimationCompleted(name){
             closeCBFUNC.apply(closeCBOBJ);
         }
     }
+    else if(theMode == MODE_NORMAL){
+        updateVIP();
+    }
 }
 
 function onEnter()
@@ -265,7 +268,7 @@ function onEnter()
 
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
-    updateVIP();
+    //updateVIP();
 
     this.owner.nodePurMC.setVisible(false);
     this.owner.nodeHasMC.setVisible(false);
