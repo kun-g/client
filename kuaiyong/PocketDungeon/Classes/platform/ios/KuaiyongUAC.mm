@@ -26,7 +26,7 @@ void initKuaiyong()
 void KuaiyongUAC::initUAC()
 {
     NSLog(@"initUAC");
-    [[KYSDK instance] setKYDelegate:[KuaiyongDelegate sharedInstance]];
+    [[KYSDK instance] setSdkdelegate:[KuaiyongDelegate sharedInstance]];
     [[KYSDK instance] changeLogOption:KYLOG_OFFGAMENAME];
     getUACDelegate()->onUACReady();
     [[KuaiyongDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
@@ -105,8 +105,8 @@ void KuaiyongUAC::makePayment(string billno, int product, uint32_t quantity, str
             
             NSLog(@"*** MAKEPAYMENT\nCOST=%d\nBILLNO=%@\nTITLE=%@\nROLE=%@\nZONE=%d\nFEE=%@\n\n",
                   cost, strBillNo, strTitle, strUserName, zoneId, [numPrice stringValue]);
+            [[KYSDK instance] showPayWith:strBillNo fee:[numPrice stringValue] game:@"4032" gamesvr:@"" subject:strTitle md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" userId:nil];
             
-            [[KYSDK instance] showPayWith:strBillNo fee:[numPrice stringValue] game:@"4032" gamesvr:@"" subject:strTitle md5Key:@"yh3SljbeMwGzu0w0wF10TYJ30r49XOxv" appScheme:@"pocketdungeon"];
         }
         else{
             NSLog(@"KuaiyongUAC.makePayment: product(%d) not found.", product);
@@ -177,7 +177,7 @@ static KuaiyongDelegate* gKuaiyongDelegate = nil;
     NSLog(@"*** checkResult(%d)", result);
 }
 //用户行为
--(void)userBehavior:(BEHAVIOR)kind{
+-(void)userBehavior:(UNIPAYTYPE)kind{
     NSLog(@"*** userBehavior(%d)", kind);
 }
 

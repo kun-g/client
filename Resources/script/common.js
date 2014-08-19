@@ -1064,6 +1064,9 @@ function requestBattle(stage, party, pkRival){
     if( party != null ){
         engine.user.dungeon.party = party;
     }
+
+    DebugRecorderDungeon.init("Dungeon");
+    DebugRecorderDungeon.addDebugMsg("EnterDungeon: Stage Id = " + stage);
     //go request
     if( FLAG_BLACKBOX ){
         var args = {};

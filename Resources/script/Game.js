@@ -20,6 +20,7 @@ Game.prototype.init = function()
     utils.initDirectory(doc+PATH_UPDATE);
     utils.initDirectory(doc+PATH_USER);
     utils.initDirectory(doc+PATH_LOG);
+    utils.initDirectory(doc+PATH_DEBUG);
 
     //init config
     if( file.exist(doc+"dynamic.json") )

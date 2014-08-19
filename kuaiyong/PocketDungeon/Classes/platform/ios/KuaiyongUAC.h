@@ -36,7 +36,7 @@ private:
     NSArray* mProducts;
 };
 
-@interface KuaiyongDelegate : NSObject<KyUserSDKDelegate, KY_PaySDKDelegate>{
+@interface KuaiyongDelegate : NSObject<KYSDKDelegate>{
     UACDelegate* mpUACD;
     IAPDelegate* mpIAPD;
 }
