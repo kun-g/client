@@ -148,9 +148,10 @@ function updateVIP(){
         var labPos = theLayer.owner.labVipNext.getPosition();
         theLayer.owner.labVipNext.setString("再充值"+left+"元即可永久获得"+(curVipLevel+1)+"级VIP");
         var labCont = theLayer.owner.labVipNext.getContentSize();
-        theLayer.owner.labVipNext.setVisible(false);
-        var textPosX = labPos.x - labCont.width / 2;
-        var textPosY = labPos.y - labCont.height / 2;
+        theLayer.owner.labVipNext.setVisible(true);
+        var textPosX = -labCont.width / 2;//labPos.x - labCont.width / 2;
+        var textPosY = -labCont.height / 2;//labPos.y - labCont.height / 2;
+        theLayer.owner.labVipNext.setString("");
 
         var text = DCTextArea.create();
         text.setDimension(490);
@@ -181,7 +182,7 @@ function updateVIP(){
             size: UI_SIZE_XS
         });
         text.setPosition(cc.p(textPosX, textPosY));
-        theLayer.addChild(text);
+        theLayer.owner.labVipNext.addChild(text);
     }
     //show now
     var sfc = cc.SpriteFrameCache.getInstance();
@@ -236,7 +237,6 @@ function onUIAnimationCompleted(name){
         }
     }
     else if(theMode == MODE_NORMAL){
-        updateVIP();
     }
 }
 
@@ -268,7 +268,7 @@ function onEnter()
 
     engine.ui.regMenu(theLayer.owner.menuRoot);
 
-    //updateVIP();
+    updateVIP();
 
     this.owner.nodePurMC.setVisible(false);
     this.owner.nodeHasMC.setVisible(false);
