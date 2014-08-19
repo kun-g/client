@@ -1096,6 +1096,7 @@ function requestBattle(stage, party, pkRival){
     DebugRecorderDungeon.addDebugMsg("EnterDungeon: Stage Id = " + stage);
     //go request
     if( FLAG_BLACKBOX ){
+        DebugRecorderBlackBox.init("BlackBoxRep");
         var args = {};
         if(pkRival != null){
             args = {

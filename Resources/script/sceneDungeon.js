@@ -461,6 +461,7 @@ function onPause(sender)
     }
 
     DebugRecorderDungeon.saveDebugMsg();
+    DebugRecorderBlackBox.saveDebugMsg();
 }
 
 function onQuest(sender){
@@ -711,6 +712,9 @@ function doDungeonResult(win){
                 }
             }
         }, theLayer);
+        DebugRecorderBlackBox.addDebugMsg(JSON.stringify(log));
+        DebugRecorderBlackBox.saveDebugMsg();
+        DebugRecorderBlackBox.uninit();
     }
     else{
         if( win == 1 ){

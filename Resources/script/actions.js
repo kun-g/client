@@ -1567,7 +1567,8 @@ function makeDungeonEnemy(pace, act)
                 error("Action.makeDungeonEnemy: Hero existed.");
             }
         }
-        else if(dungeon.Blocks[unit.pos].ref == null){
+        else if(dungeon.Blocks[unit.pos].ref == -1)
+        {
             /*** monsters and npcs ***/
             //link to grid
             dungeon.Blocks[unit.pos].ref = unit.ref;
