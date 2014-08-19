@@ -276,7 +276,7 @@ function loadDeliverDetail(data){
 
     theCurrentGroup.labContTitle.setString(data.tit);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var iphone5s = (winSize.height == 1136);
     var dimension = cc.size(theCurrentGroup.nodeContent.getContentSize().width, 0);
     var text = DCTextArea.create();
@@ -300,7 +300,7 @@ function loadDeliverDetail(data){
     if( data.prz != null ){
         text.pushText({text: "  "});
         text.pushText({//push title
-            text: "附件",
+            text: translate(engine.game.language, "messageInfoAttachment"),
             color: COLOR_RED,
             size: UI_SIZE_L
         });
@@ -480,7 +480,7 @@ function onFIRoleInfo(sender){
 function onFIRejectAll(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var alt = libUIKit.alert();
-    alt.setContent("确定要拒绝所有好友邀请吗？");
+    alt.setContent(translate(engine.game.language, "messageInfoRefuseAll"));
     alt.setButton([
         {
             label: "buttontext-confirm.png",

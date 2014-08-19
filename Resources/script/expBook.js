@@ -251,16 +251,16 @@ function bookUseFlag(itempart){
     if (item != null) {
         var upgreadeXp = item.equipUpgradeXp();
         if (upgreadeXp <= 0) {
-            engine.msg.pop("该装备无法升级。", POPTYPE_ERROR);
+            engine.msg.pop(translate(engine.game.language, "expBookCannotUpgrade"), POPTYPE_ERROR);
             ret = false;
         }
         else if (item.Xp >= upgreadeXp){
-            engine.msg.pop("该装备已经满经验了。", POPTYPE_INFO);
+            engine.msg.pop(translate(engine.game.language, "expBookEnoughExp"), POPTYPE_INFO);
             ret = false;
         }
     }
     else{
-        engine.msg.pop("该装备不存在。", POPTYPE_ERROR);
+        engine.msg.pop(translate(engine.game.language, "expBookNoItem"), POPTYPE_ERROR);
         ret = false;
     }
     return ret;
@@ -429,7 +429,7 @@ function onEnter(){
     var mask = blackMask();
     this.addChild(mask);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     this.addChild(this.node);
 

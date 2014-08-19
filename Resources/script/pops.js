@@ -120,7 +120,7 @@ function popLevelUp(){
         }
     });
     layer.node.animationManager.runAnimationsForSequenceNamed("effect");
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
     //set all invisible
@@ -479,7 +479,7 @@ function popInvalidDungeon(){
     var mask = blackMask();
     layer.addChild(mask);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     layer.owner = {};
     layer.node = libUIC.loadUI(layer, "ui-tcfb.ccbi", {
@@ -550,13 +550,13 @@ function popMonthCard(){
         nodeSubmit:submit
     });
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theMonthLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theMonthLayer.addChild(theMonthLayer.node);
     engine.ui.regMenu(theMonthLayer.owner.menuRoot);
 
     //set panel data
-    theMonthLayer.owner.labelTitle.setString("月卡奖励");
+    theMonthLayer.owner.labelTitle.setString(translate(engine.game.language, "popsMonthCardPrize"));
     var prize = libItem.ItemPreview.create(pdata);
     var size = prize.getContentSize();
     prize.setPosition(cc.p(-size.width/2, -size.height/2));
