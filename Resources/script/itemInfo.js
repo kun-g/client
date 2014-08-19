@@ -298,6 +298,8 @@ function onUse(sender){
                 //处理开箱子的特效
                 if (theItemClass.category == 0 && theItemClass.subcategory == 2){
                     showOpenEffect(rsp.prz);
+                }else if(theItemClass.category == 0 && theItemClass.subcategory == 0){
+                    showOpenEffect(theItemClass.prize);
                 }
                 else{
                     processOpenChest(theItem, rsp);

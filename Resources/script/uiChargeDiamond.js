@@ -31,6 +31,9 @@ var payStr = [
     {str:"25元", cost:25, dm:2500 }
 ];
 
+var COLOR_UID_YELLOW = cc.c3b(252, 230, 38);
+var COLOR_UID_RED = cc.c3b(233, 24, 24);
+
 var theLastBillNo = null;
 
 function fixNumber(num, len){
@@ -137,11 +140,49 @@ function updateVIP(){
         spent = engine.user.player.RMB;
     }
     if( curVipLevel >= maxVipLevel ){
+        theLayer.owner.labVipNext.setVisible(true);
         theLayer.owner.labVipNext.setString("您已经获得最高等级VIP");
     }
     else{
         var left = vipInfo.VIP.requirement[curVipLevel+1].rmb - spent;
+        var labPos = theLayer.owner.labVipNext.getPosition();
         theLayer.owner.labVipNext.setString("再充值"+left+"元即可永久获得"+(curVipLevel+1)+"级VIP");
+        var labCont = theLayer.owner.labVipNext.getContentSize();
+        theLayer.owner.labVipNext.setVisible(true);
+        var textPosX = -labCont.width / 2;//labPos.x - labCont.width / 2;
+        var textPosY = -labCont.height / 2;//labPos.y - labCont.height / 2;
+        theLayer.owner.labVipNext.setString("");
+
+        var text = DCTextArea.create();
+        text.setDimension(490);
+        text.setTextLine(true);
+        text.pushText({//push desc
+            text: "再充值",
+            color: cc.c3b(255, 255, 255),
+            size: UI_SIZE_XS
+        });
+        text.pushText({//push desc
+            text: left,
+            color: COLOR_UID_YELLOW,
+            size: UI_SIZE_XS
+        });
+        text.pushText({//push desc
+            text: "元即可永久获得",
+            color: cc.c3b(255, 255, 255),
+            size: UI_SIZE_XS
+        });
+        text.pushText({//push desc
+            text: (curVipLevel+1),
+            color: COLOR_UID_RED,
+            size: UI_SIZE_XS
+        });
+        text.pushText({//push desc
+            text: "级VIP",
+            color: cc.c3b(255, 255, 255),
+            size: UI_SIZE_XS
+        });
+        text.setPosition(cc.p(textPosX, textPosY));
+        theLayer.owner.labVipNext.addChild(text);
     }
     //show now
     var sfc = cc.SpriteFrameCache.getInstance();
@@ -194,6 +235,8 @@ function onUIAnimationCompleted(name){
         if( closeCBFUNC != null ){
             closeCBFUNC.apply(closeCBOBJ);
         }
+    }
+    else if(theMode == MODE_NORMAL){
     }
 }
 
