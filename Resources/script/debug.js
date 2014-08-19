@@ -7,7 +7,8 @@
 function error(msg)
 {
     cc.log("[error]"+msg);
-    if( DebugRecorderDungeon.inited ) DebugRecorderDungeon.addDebugMsg("[error]"+msg);
+    if( DebugRecorderDungeon != null && DebugRecorderDungeon.inited ) {
+        DebugRecorderDungeon.addDebugMsg("[error]"+msg);}
 }
 
 function warn(msg)
@@ -18,7 +19,8 @@ function warn(msg)
 function debug(msg)
 {
     cc.log("[debug]"+msg);
-    if( DebugRecorderDungeon.inited ) DebugRecorderDungeon.addDebugMsg("[debug]"+msg);
+    if( DebugRecorderDungeon != null &&  DebugRecorderDungeon.inited ) {
+        DebugRecorderDungeon.addDebugMsg("[debug]"+msg);}
 }
 
 function display(key, val)
