@@ -1567,7 +1567,8 @@ function makeDungeonEnemy(pace, act)
                 error("Action.makeDungeonEnemy: Hero existed.");
             }
         }
-        else{
+        else if(dungeon.Blocks[unit.pos].ref == -1)
+        {
             /*** monsters and npcs ***/
             //link to grid
             dungeon.Blocks[unit.pos].ref = unit.ref;
@@ -1613,6 +1614,8 @@ function makeDungeonEnemy(pace, act)
                 actor.setBossFlag(true);
                 actor.linkBossHp(layer.showBossHp(unit.health));
             }
+        }else{
+            debug("Action.makeDungeonEnemy: actor already exists");
         }
         //add effect
         if( this.arg.eff != null && this.arg.eff >= 0 ){

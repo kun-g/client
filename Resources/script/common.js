@@ -624,6 +624,7 @@ var DCTextArea = cc.Layer.extend({
         this.DIMENSION = cc.size(0, 0);
         this.TEXT_DIMENSION = cc.size(0, 0);
         this.ALIGN = cc.TEXT_ALIGNMENT_LEFT;
+        this.SAMELINE = false;
         this.TEXT_HEIGHT = 0;
         this.TEXT_WIDTH = 0;
         this.CONTENTS = [];
@@ -647,7 +648,9 @@ var DCTextArea = cc.Layer.extend({
     setTextAligment: function(align){
         this.ALIGN = align;
     },
-
+    setTextLine: function(sameline){
+        this.SAMELINE = sameline;
+    },
     /*
     A content is an object with given KVs:
     {
@@ -683,34 +686,58 @@ var DCTextArea = cc.Layer.extend({
         label.setColor(content.color);
         label.setOpacity(this.OPACITY);
         var height = label.getContentSize().height;
-        if( label.getContentSize().width > this.TEXT_WIDTH )
-        {
-            this.TEXT_WIDTH = label.getContentSize().width;
-        }
-        for(var k in this.CONTENTS)
-        {
-            var old = this.CONTENTS[k];
-            var oldpos = old.getPosition();
-            oldpos.y += height;
-            old.setPosition(oldpos);
-        }
-        label.setAnchorPoint(cc.p(0, 0));
-        label.setPosition(cc.p(0, 0));
-        this.addChild(label);
-        this.CONTENTS.push(label);
-        this.TEXT_HEIGHT += height;
-        //check dimension
-        if( this.DIMENSION.height > 0 )
-        {
-            while(this.TEXT_HEIGHT > this.DIMENSION.height)
+        var width = label.getContentSize().width;
+        if (this.SAMELINE == false){
+            if( label.getContentSize().width > this.TEXT_WIDTH )
             {
-                var rm = this.CONTENTS[0];
-                this.TEXT_HEIGHT -= rm.getContentSize().height;
-                this.removeChild(rm);
-                this.CONTENTS.splice(0, 1);
+                this.TEXT_WIDTH = label.getContentSize().width;
+            }
+            for(var k in this.CONTENTS)
+            {
+                var old = this.CONTENTS[k];
+                var oldpos = old.getPosition();
+                oldpos.y += height;
+                old.setPosition(oldpos);
+            }
+            label.setAnchorPoint(cc.p(0, 0));
+            label.setPosition(cc.p(0, 0));
+            this.addChild(label);
+            this.CONTENTS.push(label);
+            this.TEXT_HEIGHT += height;
+            //check dimension
+            if( this.DIMENSION.height > 0 )
+            {
+                while(this.TEXT_HEIGHT > this.DIMENSION.height)
+                {
+                    var rm = this.CONTENTS[0];
+                    this.TEXT_HEIGHT -= rm.getContentSize().height;
+                    this.removeChild(rm);
+                    this.CONTENTS.splice(0, 1);
+                }
             }
         }
-
+        else if (this.SAMELINE == true){
+            if (this.CONTENTS.length > 0){
+                var oldpos = this.CONTENTS[this.CONTENTS.length - 1].getPosition();
+                var oldcont = this.CONTENTS[this.CONTENTS.length - 1].getContentSize();
+                var lineWidth = oldpos.x + oldcont.width;
+                if (lineWidth > this.DIMENSION){
+                    this.TEXT_HEIGHT = oldpos.y + height;
+                    this.TEXT_WIDTH = this.DIMENSION;
+                    label.setPosition(cc.p(0, oldpos.y));
+                }
+                else {
+                    label.setPosition(cc.p(lineWidth, oldpos.y));
+                }
+            }
+            else {
+                this.TEXT_WIDTH = label.getContentSize().width;
+                label.setPosition(cc.p(0, 0));
+            }
+            label.setAnchorPoint(cc.p(0, 0));
+            this.addChild(label);
+            this.CONTENTS.push(label);
+        }
         //recalc size
         this.setContentSize(cc.size(this.TEXT_WIDTH, this.TEXT_HEIGHT));
     },
@@ -1065,10 +1092,13 @@ function requestBattle(stage, party, pkRival){
         engine.user.dungeon.party = party;
     }
 
+    if( DebugRecorderDungeon != null ) DebugRecorderDungeon = new DebugRecorder();
     DebugRecorderDungeon.init("Dungeon");
     DebugRecorderDungeon.addDebugMsg("EnterDungeon: Stage Id = " + stage);
     //go request
     if( FLAG_BLACKBOX ){
+        if( DebugRecorderBlackBox == null ) DebugRecorderBlackBox = new DebugRecorder();
+        DebugRecorderBlackBox.init("BlackBoxRep");
         var args = {};
         if(pkRival != null){
             args = {

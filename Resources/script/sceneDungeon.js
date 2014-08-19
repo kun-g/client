@@ -461,6 +461,7 @@ function onPause(sender)
     }
 
     DebugRecorderDungeon.saveDebugMsg();
+    DebugRecorderBlackBox.saveDebugMsg();
 }
 
 function onQuest(sender){
@@ -711,6 +712,9 @@ function doDungeonResult(win){
                 }
             }
         }, theLayer);
+        DebugRecorderBlackBox.addDebugMsg(JSON.stringify(log));
+        DebugRecorderBlackBox.saveDebugMsg();
+        DebugRecorderBlackBox.uninit();
     }
     else{
         if( win == 1 ){
@@ -1776,6 +1780,8 @@ function setCardCount(index, count)
 function setCardCd(index, cd)
 {
     var node = theLayer.card.nodeList.getChildByTag(index);
+    debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
+    if( node == null ) return;
     if( node.cd != null )
     {
         node.removeChild(node.cd, true);

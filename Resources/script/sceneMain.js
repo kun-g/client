@@ -212,7 +212,7 @@ function onEnter()
 
     //report power to GameCenter Leaderboard
     if (engine.game.getConfig().binary_channel == "AppStore") {
-        gamecenter.reportScore(engine.user.actor.getPower(), "Hero_Power_Leaderboard");
+//        gamecenter.reportScore(engine.user.actor.getPower(), "Hero_Power_Leaderboard");
     }
 
     //getMonthCard();
