@@ -396,6 +396,7 @@ function onPurchase(sender){
     libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function (rsp) {
         if (rsp.RET == RET_OK) {
             cc.AudioEngine.getInstance().playEffect("buy.mp3");
+            tdga.itemPurchase("PurchaseMaterial", args.cnt, cost);
         }
     });
 }

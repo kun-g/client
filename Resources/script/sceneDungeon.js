@@ -474,7 +474,7 @@ function showBuyRevive(){
     if( order != null ){
         var alert = libUIKit.alert();
         if( engine.user.inventory.Diamond >= order.cost.diamond ){
-            alert.setContent(translate(engine.game.language, "sceneDungeonBuyRecovery", [rder.cost.diamond]));
+            alert.setContent(translate(engine.game.language, "sceneDungeonBuyRecovery", [order.cost.diamond]));
             alert.setButton([
                 {
                     label: "buttontext-qx.png",

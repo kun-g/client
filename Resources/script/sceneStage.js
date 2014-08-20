@@ -865,7 +865,7 @@ function loadWorldStageInfo() {
             theLayer.wStage.owner.labRank.setString( (worldStageInfo.me.rnk+1) );
         }
         if( worldStageInfo.prg != null && worldStageInfo.prg.ttl > 0){
-            theLayer.wStage.owner.labProgress.setString(translate(engine.game.language, "sceneStageWorldWin", [WorldStageInfo.prg.cpl,WorldStageInfo.prg.ttl]));
+            theLayer.wStage.owner.labProgress.setString(translate(engine.game.language, "sceneStageWorldWin", [worldStageInfo.prg.cpl,worldStageInfo.prg.ttl]));
             theLayer.wStage.ui.progress.setProgress(worldStageInfo.prg.cpl/worldStageInfo.prg.ttl);
             isWorldStageCompleted = ( worldStageInfo.prg.cpl >= worldStageInfo.prg.ttl );
         }
