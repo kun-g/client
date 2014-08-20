@@ -1781,7 +1781,7 @@ function setCardCd(index, cd)
 {
     var node = theLayer.card.nodeList.getChildByTag(index);
     debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
-    //if( node == null ) return;
+    if( node == null ) return;
     if( node.cd != null )
     {
         node.removeChild(node.cd, true);
@@ -1816,7 +1816,7 @@ function onTouchBegan(touch, event)
         return false;//block illegal control
     }
 
-    theLayer.touchBegin = touch.getLocation();
+    theLayer.touchBegin = theLayer.convertToNodeSpace(touch.getLocation());
     if( cc.rectContainsPoint(theLayer.card.rect, theLayer.touchBegin) )
     {//trigger card
         var slot = theLayer.selectCard(theLayer.touchBegin);
@@ -1844,7 +1844,7 @@ function onTouchMoved(touch, event)
 {
     if( theLayer.touchMode == TOUCH_CARD )
     {
-        var pos = touch.getLocation();
+        var pos = theLayer.convertToNodeSpace(touch.getLocation());
         if( cc.rectContainsPoint(theLayer.card.rect, pos) )
         {
             var newselect = theLayer.selectCard(pos);
@@ -1900,7 +1900,7 @@ function onTouchMoved(touch, event)
 
 function onTouchEnded(touch, event)
 {
-    var pos = touch.getLocation();
+    var pos = theLayer.convertToNodeSpace(touch.getLocation());
     debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
