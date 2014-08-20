@@ -7,7 +7,7 @@
             <key>nja-m1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{92,742},{64,64}}</string>
+                <string>{{400,460},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,11 +20,11 @@
             <key>nja-m10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{92,666},{64,74}}</string>
+                <string>{{920,518},{64,74}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{1,2},{64,74}}</string>
                 <key>sourceSize</key>
@@ -33,7 +33,7 @@
             <key>nja-m2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{366,738},{86,86}}</string>
+                <string>{{832,518},{86,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>nja-m3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{278,738},{86,86}}</string>
+                <string>{{616,396},{86,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>nja-m4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{160,624},{116,116}}</string>
+                <string>{{902,184},{116,116}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>nja-m5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,600},{136,136}}</string>
+                <string>{{862,380},{136,136}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>nja-m6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,508},{156,156}}</string>
+                <string>{{242,384},{156,156}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
@@ -98,11 +98,11 @@
             <key>nja-m7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{460,290},{30,34}}</string>
+                <string>{{992,302},{30,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{30,34}}</string>
                 <key>sourceSize</key>
@@ -111,7 +111,7 @@
             <key>nja-m8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,744},{60,58}}</string>
+                <string>{{184,206},{60,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>nja-m9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,666},{76,88}}</string>
+                <string>{{902,302},{76,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -134,10 +134,101 @@
                 <key>sourceSize</key>
                 <string>{76,88}</string>
             </dict>
+            <key>nja-p1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{920,584},{64,64}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{64,64}}</string>
+                <key>sourceSize</key>
+                <string>{64,64}</string>
+            </dict>
+            <key>nja-p2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{616,308},{86,86}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{86,86}}</string>
+                <key>sourceSize</key>
+                <string>{86,86}</string>
+            </dict>
+            <key>nja-p3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{704,438},{126,126}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{126,126}}</string>
+                <key>sourceSize</key>
+                <string>{126,126}</string>
+            </dict>
+            <key>nja-p4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,352},{176,176}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{176,176}}</string>
+                <key>sourceSize</key>
+                <string>{176,176}</string>
+            </dict>
+            <key>nja-p5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{704,158},{196,196}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{196,196}}</string>
+                <key>sourceSize</key>
+                <string>{196,196}</string>
+            </dict>
+            <key>nja-p6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{438,308},{150,176}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{150,176}}</string>
+                <key>sourceSize</key>
+                <string>{150,176}</string>
+            </dict>
+            <key>nja-p7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{490,160},{146,194}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{146,194}}</string>
+                <key>sourceSize</key>
+                <string>{146,194}</string>
+            </dict>
             <key>nja-w1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{246,202},{156,212}}</string>
+                <string>{{490,2},{156,212}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +241,7 @@
             <key>nja-w2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,206},{154,210}}</string>
+                <string>{{704,2},{154,210}}</string>
                 <key>offset</key>
                 <string>{-1,-1}</string>
                 <key>rotated</key>
@@ -163,7 +254,7 @@
             <key>nja-w3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{406,360},{92,180}}</string>
+                <string>{{916,2},{92,180}}</string>
                 <key>offset</key>
                 <string>{-32,-13}</string>
                 <key>rotated</key>
@@ -176,11 +267,11 @@
             <key>nja-w4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{318,542},{56,148}}</string>
+                <string>{{184,266},{56,148}}</string>
                 <key>offset</key>
                 <string>{-45,-28}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{5,60},{56,148}}</string>
                 <key>sourceSize</key>
@@ -189,7 +280,7 @@
             <key>nja-w5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{460,202},{42,86}}</string>
+                <string>{{438,202},{42,86}}</string>
                 <key>offset</key>
                 <string>{-53,-63}</string>
                 <key>rotated</key>
@@ -228,7 +319,7 @@
             <key>nja-wb3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{214,360},{180,190}}</string>
+                <string>{{246,202},{180,190}}</string>
                 <key>offset</key>
                 <string>{-30,5}</string>
                 <key>rotated</key>
@@ -241,7 +332,7 @@
             <key>nja-wb4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,362},{144,180}}</string>
+                <string>{{2,206},{144,180}}</string>
                 <key>offset</key>
                 <string>{-47,10}</string>
                 <key>rotated</key>
@@ -254,7 +345,7 @@
             <key>nja-wb5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{160,542},{80,156}}</string>
+                <string>{{704,356},{80,156}}</string>
                 <key>offset</key>
                 <string>{-78,22}</string>
                 <key>rotated</key>
@@ -272,9 +363,9 @@
             <key>realTextureFileName</key>
             <string>newjobattack.png</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7581fd37d3e35c78f1c2b590253353bd$</string>
+            <string>$TexturePacker:SmartUpdate:a2d29bc4c4cb8a26cf64f96020a413b7$</string>
             <key>textureFileName</key>
             <string>newjobattack.png</string>
         </dict>
