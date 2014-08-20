@@ -1781,7 +1781,7 @@ function setCardCd(index, cd)
 {
     var node = theLayer.card.nodeList.getChildByTag(index);
     debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
-    if( node == null ) return;
+    //if( node == null ) return;
     if( node.cd != null )
     {
         node.removeChild(node.cd, true);
