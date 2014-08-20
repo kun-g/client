@@ -125,7 +125,7 @@ function loadQuestList(){
     var size = cc.size(LINE_WIDTH, engine.user.quest.Count*LINE_HEIGHT);
     theListLayer.setContentSize(size);
     if( engine.user.quest.Count == 0 ){
-        var label = cc.LabelTTF.create("暂无任务", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "questInfoNoMission"), UI_FONT, UI_SIZE_XL);
         var viewSize = theLayer.ui.scrollList.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -viewSize.height/3));
         theListLayer.addChild(label);
@@ -182,7 +182,7 @@ function loadQuestDesc(quest){
 
     theLayer.owner.labTitle.setString(questData.title);
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var iphone5s = (winSize.height == 1136);
     var text = DCTextArea.create();
     text.setDimension(dimension);
@@ -196,7 +196,7 @@ function loadQuestDesc(quest){
     });
     text.pushText({text: "  "});
     text.pushText({//push objectives
-        text: "任务目标",
+        text: translate(engine.game.language, "questInfoNoTarget"),
         color: COLOR_RED,
         size: UI_SIZE_L
     });
@@ -225,7 +225,7 @@ function loadQuestDesc(quest){
     }
     text.pushText({text: "  "});
     text.pushText({//push title
-        text: "任务奖励",
+        text: translate(engine.game.language, "questInfoMissonTarget"),
         color: COLOR_RED,
         size: UI_SIZE_L
     });
@@ -452,7 +452,7 @@ function showQuestComplete(qid, mode, prz){
     theQCLayer.node = libUIC.loadUI(theQCLayer, filename, {
        nodeSubmit:submit
     });
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theQCLayer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     theQCLayer.addChild(theQCLayer.node);
     engine.ui.regMenu(theQCLayer.owner.menuRoot);

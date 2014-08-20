@@ -288,7 +288,7 @@ function blackMask(width, height)
     //auto complete
     if( height == null || width == null )
     {
-        var screen = cc.Director.getInstance().getWinSize();
+        var screen = engine.game.viewSize;
         if( width == null )
         {
             width = screen.width;
@@ -1063,7 +1063,7 @@ PopMsg.create = function(){
 }
 
 PopMsg.simpleInit = function(layer){
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var ret = PopMsg.create();
     ret.setPosition(cc.p(winSize.width/2, winSize.height*2/3));
     ret.setZOrder(2000);
@@ -1092,7 +1092,7 @@ function requestBattle(stage, party, pkRival){
         engine.user.dungeon.party = party;
     }
 
-    if( DebugRecorderDungeon != null ) DebugRecorderDungeon = new DebugRecorder();
+    if( DebugRecorderDungeon == null ) DebugRecorderDungeon = new DebugRecorder();
     DebugRecorderDungeon.init("Dungeon");
     DebugRecorderDungeon.addDebugMsg("EnterDungeon: Stage Id = " + stage);
     //go request
@@ -1324,5 +1324,20 @@ function addFriend(name, isWait, func) {
     else{
         loadModule("sceneFriend.js").extendFriends();
     }
+}
 
+function translate(language,keyword,args){
+    var libLocal = loadModule("table.js").readTable(TABLE_LOCALIZE);
+    debug("language = "+language+";keyword = "+keyword);
+    var text = "";
+    if (libLocal[language] != null && libLocal[language][keyword] != null){
+        text = libLocal[language][keyword];
+        for (var k in args){
+            var num = +k + 1;
+            var str = "{#" + num.toString() +  "}";
+            text = text.replace(str, args[k]);
+        }
+    }
+    debug("text = "+text);
+    return text;
 }

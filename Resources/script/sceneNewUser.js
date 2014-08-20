@@ -59,7 +59,7 @@ function onWarrior(sender)
         theRole.fix();
         theAvatar.setRole(theRole);
 
-        theLayer.owner.labDesc.setString("战士：战场上的中坚力量，拥有大量生命\n值以及不俗的爆发力，是团队的守护神。");
+        theLayer.owner.labDesc.setString(translate(engine.game.language, "sceneNewUserWarrior"));
     }
 }
 
@@ -107,7 +107,7 @@ function onMage(sender)
         theRole.fix();
         theAvatar.setRole(theRole);
 
-        theLayer.owner.labDesc.setString("法师：拥有强大的输出能力，配合群体伤\n害技能，能够对敌人造成毁灭性的打击。");
+        theLayer.owner.labDesc.setString(translate(engine.game.language, "sceneNewUserMage"));
     }
 }
 
@@ -155,7 +155,7 @@ function onPriest(sender)
         theRole.fix();
         theAvatar.setRole(theRole);
 
-        theLayer.owner.labDesc.setString("牧师：拥有恢复队友生命值的神圣技能，\n使其在战场上成为不可或缺的团队后盾。");
+        theLayer.owner.labDesc.setString(translate(engine.game.language, "sceneNewUserPastor"));
     }
 }
 
@@ -263,7 +263,7 @@ function onEnter()
     theEditbox.setPlaceholderFontName(UI_FONT);
     theEditbox.setPlaceholderFontSize(UI_SIZE_XL);
     theEditbox.setPlaceholderFontColor(cc.c3b(127, 102, 65));
-    theEditbox.setPlaceHolder("请输入角色名称");
+    theEditbox.setPlaceHolder(translate(engine.game.language, "sceneNewUserRoleName"));
     theEditbox.setFontName(UI_FONT);
     theEditbox.setFontColor(cc.c3b(49, 34, 13));
     theEditbox.setFontSize(UI_SIZE_XL);
