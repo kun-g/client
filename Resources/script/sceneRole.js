@@ -197,7 +197,7 @@ function onEnter()
     theLayer.owner.labReactivity.setString(theRole.Reactivity);
 
     var RoleClass = libTable.queryTable(TABLE_ROLE, theRole.ClassId);
-    theLayer.owner.labClass.setString(theRole.Level+"级"+RoleClass.className);
+    theLayer.owner.labClass.setString(theRole.Level+translate(engine.game.language, "sceneRoleLev")+RoleClass.className);
     theLayer.owner.labSkillDesc.setString("");
 
     //--- vip panel ---

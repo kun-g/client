@@ -88,7 +88,7 @@ Broadcast.prototype.pushBroadcast = function(arg){
 Broadcast.prototype.invokeDisplay = function(){
     if( !this.FLAG ) return false;
     if( this.FLYING == null && this.ACTIVE.length > 0 ){
-        var winSize = cc.Director.getInstance().getWinSize();
+        var winSize = engine.game.viewSize;
         if( !this.LAYER.isVisible() ){
             this.LAYER.setVisible(true);
             this.LAYER.stopAllActions();
@@ -123,7 +123,7 @@ Broadcast.prototype.scrollOver = function(){
     }
     this.FLYING = null;
     if( !this.invokeDisplay() ){
-        var winSize = cc.Director.getInstance().getWinSize();
+        var winSize = engine.game.viewSize;
         var sd = cc.MoveTo.create(0.5, cc.p(0, winSize.height));
         var hd = cc.Hide.create();
         var sq = cc.Sequence.create(sd, hd);
@@ -143,7 +143,7 @@ Broadcast.prototype.tick = function(delta){
 }
 
 Broadcast.prototype.simpleInit = function(layer){
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.LAYER = cc.LayerColor.create(cc.c4b(0, 0, 0, 205), winSize.width, BROADCAST_HEIGHT);
     this.LAYER.setAnchorPoint(cc.p(0, 0));
     this.LAYER.setPosition(cc.p(0, winSize.height));

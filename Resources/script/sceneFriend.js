@@ -148,7 +148,7 @@ function onRemove(sender){
         if( rsp.RET == RET_OK ){
             engine.user.friend.removeFriend(role.Name);
             loadFriend();
-            thePopMsg.pushMsg("好友已删除", POPTYPE_INFO);
+            thePopMsg.pushMsg(translate(engine.game.language, "sceneFriendDeleted"), POPTYPE_INFO);
         }
         else{
             thePopMsg.pushMsg(ErrorMsgs[rsp.RET], POPTYPE_ERROR);
@@ -239,7 +239,7 @@ function loadFriend(){
     var friends = engine.user.friend.Friends;
     if( friends.length == 0 ){
         var size = cc.size(0, 0);
-        var label = cc.LabelTTF.create("暂时还没有好友", UI_FONT, UI_SIZE_XL);
+        var label = cc.LabelTTF.create(translate(engine.game.language, "sceneFriendNoFriend"), UI_FONT, UI_SIZE_XL);
         var viewSize = theLayer.ui.scroller.getViewSize();
         label.setPosition(cc.p(viewSize.width/2, -2*viewSize.height/5));
         theListLayer.addChild(label);
@@ -320,7 +320,7 @@ function confirmAdd(sender){
             engine.ui.popLayer();
             if( rsp.RET == RET_OK ){
                 theAddLayer.node.runAction(actionPopOut(engine.ui.popLayer));
-                thePopMsg.pushMsg("邀请已经发送", POPTYPE_INFO);
+                thePopMsg.pushMsg(translate(engine.game.language, "chatInfoInviteSended"), POPTYPE_INFO);
             }
             else{
                 thePopMsg.pushMsg(ErrorMsgs[rsp.RET], POPTYPE_ERROR);
@@ -381,13 +381,13 @@ function onAdd(sender){
             ui: "UIInput",
             id: "input",
             length: UI_NAME_LENGTH,
-            hold: "请输入玩家的名称/ID",
+            hold: translate(engine.game.language, "sceneFriendInputPlayerName"),
             type: cc.KEYBOARD_RETURNTYPE_SEND
         }
     });
     layer.ui.input.onEditReturned = onAddEditReturned;
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     var mask = blackMask();
     layer.addChild(mask);
@@ -415,14 +415,14 @@ function onExtend(sender){
     var n = x+1;
     if( x > 5 ) x = 5;
     var cost = 50 + x*30;
-    var str1 = "使用"+cost+"宝石来扩展5名好友上限";
-    var str2 = "剩余的宝石不足\n扩充好友上限需要使用"+cost+"宝石\n是否需要充值?";
+    var str1 = translate(engine.game.language, "sceneFriendExfriend",[cost]);
+    var str2 = translate(engine.game.language, "sceneFriendChargeForExfriend",[cost]);
     libUIKit.confirmPurchase(Request_BuyFeature, {
         typ: 2
     }, str1, str2, cost, function(rsp){
         if( rsp.RET == RET_OK ){
             //统计
-            tdga.itemPurchase("好友扩充"+n, 1, cost);
+            tdga.itemPurchase(translate(engine.game.language, "sceneFriendExfriendN",[n]), 1, cost);
         }
     });
 }

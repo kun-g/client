@@ -71,6 +71,7 @@ bool AppDelegate::applicationDidFinishLaunching()
             float fitScore = 10;
             float fitWidth = 0;
             float fitHeight = 0;
+            bool isFitable = false;
             
             CCObject *pObj = NULL;
             CCARRAY_FOREACH(pResolutions, pObj)
@@ -83,7 +84,10 @@ bool AppDelegate::applicationDidFinishLaunching()
                 float width, height, score;
                 sscanf(pWidth->getCString(), "%f", &width);
                 sscanf(pHeight->getCString(), "%f", &height);
-                
+                if (winSize.height == height) {
+                    isFitable = true;
+                }
+
                 if( winSize.width >= width && winSize.height >= height )
                 {
                     score = 0;
@@ -101,10 +105,22 @@ bool AppDelegate::applicationDidFinishLaunching()
                 {
                     score = 8;
                 }
+                
+            }
+            if(fitWidth == 0 || fitHeight == 0)
+            {
+                fitWidth = 640;
+                fitHeight = 960;
+                display = "960/";
+            }
+
+            //set best resolution
+            if (isFitable){
+                pDirector->getOpenGLView()->setDesignResolutionSize(fitWidth, fitHeight, kResolutionShowAll);
             }
             
-            //set best resolution
-            pDirector->getOpenGLView()->setDesignResolutionSize(fitWidth, fitHeight, kResolutionShowAll);
+            getSystem()->setViewSizeHeight((int)fitHeight);
+            getSystem()->setViewSizeWidth((int)fitWidth);
             CCLog("Resolution Adapter: %dx%d (%s) = %f", (int)fitWidth, (int)fitHeight, display.c_str(), fitScore);
         }
     }

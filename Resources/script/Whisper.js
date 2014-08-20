@@ -14,26 +14,26 @@ function getDeltaTime(sts){
     var delta = snow - sts;
     var tail = "";
     if(delta > 0){
-        tail = "前";
+        tail = translate(engine.game.language, "whisperFront");
     }
     else{
-        tail = "后";
+        tail = translate(engine.game.language, "whisperBack");
     }
     delta = Math.abs(delta/1000);
     if( delta < 60 ){
-        return "刚刚";
+        return translate(engine.game.language, "whisperJust");
     }
     else if( delta < 60*60 ){
         var m = Math.floor(delta/60);
-        return m+"分钟"+tail;
+        return m+translate(engine.game.language, "whisperMin")+tail;
     }
     else if( delta < 60*60*24 ){
         var h = Math.floor(delta/(60*60));
-        return h+"小时"+tail;
+        return h+translate(engine.game.language, "whisperHour")+tail;
     }
     else{
         var d = Math.floor(delta/(60*60*24));
-        return d+"天"+tail;
+        return d+translate(engine.game.language, "whisperDay")+tail;
     }
 }
 
@@ -136,11 +136,11 @@ Whisper.prototype.showSend = function(name){
     });
     layer.ui.input.onEditReturned = onEditReturned;
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(layer.node);
 
-    layer.owner.labelTitle.setString("发送给"+name);
+    layer.owner.labelTitle.setString(translate(engine.game.language, "whisperSendTo")+name);
 
     layer.node.setScale(0);
     layer.node.runAction(actionPopIn());
@@ -176,13 +176,13 @@ Whisper.prototype.showMessage = function(event){
     thiz.node.onExit = onDisplayExit;
 
     thiz.node.setZOrder(1000);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     thiz.node.setPosition(cc.p(0, winSize.height));
     engine.ui.curLayer.addChild(thiz.node);
 
     engine.ui.regMenu(thiz.owner.menuRoot);
 
-    var title = event.src+"对你说：";
+    var title = event.src+translate(engine.game.language, "whisperSayToYou");
     thiz.ui.text.pushText({
         text: title,
         color: cc.c3b(80, 80, 240),

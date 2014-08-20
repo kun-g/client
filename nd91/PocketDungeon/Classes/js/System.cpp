@@ -358,6 +358,30 @@ JSBool jsbSysReset(JSContext* cx, unsigned argc, JS::Value* vp)
     return JS_TRUE;
 }
 
+JSBool jsbSysGetViewSizeWidth(JSContext* cx, unsigned argc, JS::Value* vp)
+{
+    int width = 0;
+    width = getSystem()->getViewSizeWidth();
+    jsval jsret;
+    jsret = int32_to_jsval(cx, width);
+    
+    JS_SET_RVAL(cx, vp, jsret);
+    
+    return JS_TRUE;
+}
+
+JSBool jsbSysGetViewSizeHeight(JSContext* cx, unsigned argc, JS::Value* vp)
+{
+    int height = 0;
+    height = getSystem()->getViewSizeHeight();
+    jsval jsret;
+    jsret = int32_to_jsval(cx, height);
+    
+    JS_SET_RVAL(cx, vp, jsret);
+    
+    return JS_TRUE;
+}
+
 void registerSys(JSContext* cx, JSObject* global)
 {
     JSObject *sys = JS_NewObject(cx, NULL, NULL, NULL);
@@ -380,4 +404,7 @@ void registerSys(JSContext* cx, JSObject* global)
     JS_DefineFunction(cx, sys, "checkNetworkStatus", jsbSysCheckNetworkStatus, 0, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, sys, "getPreference", jsbSysGetPreference, 1, JSPROP_READONLY | JSPROP_PERMANENT);
     JS_DefineFunction(cx, sys, "reset", jsbSysReset, 0, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, sys, "getViewSizeWidth", jsbSysGetViewSizeWidth, 0, JSPROP_READONLY | JSPROP_PERMANENT);
+    JS_DefineFunction(cx, sys, "getViewSizeHeight", jsbSysGetViewSizeHeight, 0, JSPROP_READONLY | JSPROP_PERMANENT);
+
 }

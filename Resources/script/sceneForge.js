@@ -70,7 +70,7 @@ function pushForgeAnimation(file, args, func, obj){
     var layer = engine.ui.newLayer();
     var mask = blackMask();
     layer.addChild(mask);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     theForgeAnimationNode = libEffect.attachEffectCCBI(layer, cc.p(winSize.width/2, winSize.height/2), file, libEffect.EFFECTMODE_STAY);
     for(var k in args){
         var icon = libItem.UIItem.create(args[k]);
@@ -188,8 +188,8 @@ function checkGold(gold){
     if (engine.user.inventory.Gold < gold){
         var needgold = gold - engine.user.inventory.Gold;
         var needdia = Math.ceil(needgold / 10);
-        var str1 = "金币不足\n还需要"+needgold+"金币\n需要使用"+needdia+"宝石来兑换吗?";
-        var str2 = "金币与兑换所需宝石钧不足\n需要充值吗?";
+        var str1 = translate(engine.game.language, "sceneForgeChangeCoin", [needgold,needdia]);
+        var str2 = translate(engine.game.language, "sceneForgeCharge");
         debug("宝石 = "+needdia);
         libUIKit.confirmPurchase(Request_BuyFeature, {
             typ: 3,
@@ -197,7 +197,7 @@ function checkGold(gold){
         }, str1, str2, needdia, function(rsp){
             if( rsp.RET == RET_OK ){
                 //统计
-                tdga.itemPurchase("兑金币", needgold, 0.1);
+                tdga.itemPurchase(translate(engine.game.language, "sceneForgeCoin"), needgold, 0.1);
             }
         });
         return false;
@@ -276,7 +276,7 @@ function onStartUpgrade(sender){
                 libUIKit.waitRPC(Request_InventoryUseItem, UpgradeArgs, function (rsp) {
                     if (rsp.RET == RET_OK) {
                         pushForgeAnimation("effect-forge.ccbi", {nodeItem: theForgeItem}, function () {
-                            libUIKit.showAlert("装备升级成功", function () {
+                            libUIKit.showAlert(translate(engine.game.language, "sceneForgeUpgradeSuc"), function () {
                             }, theLayer);
                             //execute result
                             if (rsp.RES != null) {
@@ -309,7 +309,7 @@ function onStartUpgrade(sender){
         }
     }
     else{
-        libUIKit.showAlert("条件不足无法升级");
+        libUIKit.showAlert(translate(engine.game.language, "sceneForgeCannotUpgrade"));
     }
 }
 
@@ -361,7 +361,7 @@ function setUpgradeItem(item){
             }
 
             if( itemClass.rank != null && itemClass.rank < engine.user.actor.Level ){
-                theContent.owner.labXp.setString("熟练度 "+xp+"/"+upgradeXp);
+                theContent.owner.labXp.setString(translate(engine.game.language, "itemInfoProficiency", [xp, upgradeXp]));
                 theContent.ui.xp.setProgress(xp/upgradeXp);
                 UpgradeArgs = {
                     sid: item.ServerId,
@@ -369,7 +369,7 @@ function setUpgradeItem(item){
                 };
             }
             else{
-                theContent.owner.labXp.setString("玩家等级不足，无法升级装备");
+                theContent.owner.labXp.setString(translate(engine.game.language, "sceneForgeNoLevel"));
                 theContent.ui.xp.setProgress(xp/upgradeXp);
 
                 UpgradeArgs = null;
@@ -586,11 +586,11 @@ function onStartEnhance(sender){
             }
         }
         else{
-            libUIKit.showAlert("该装备无法再强化");
+            libUIKit.showAlert(translate(engine.game.language, "sceneForgeCannotEnhanceAgain"));
         }
     }
     else{
-        libUIKit.showAlert("强化宝石的数量不足");
+        libUIKit.showAlert(translate(engine.game.language, "sceneForgeNoEnoughDiamond"));
     }
 
 }
@@ -652,7 +652,7 @@ function setEnhanceEquip(item){
     }
     else{
         theContent.ui.equip.setItem(null);
-        theContent.owner.labEquipName.setString("请选择装备");
+        theContent.owner.labEquipName.setString(translate(engine.game.language, "sceneForgeSelEquip"));
         libGadget.setProperties(null, theContent.owner.nodeProperties);
         theContent.owner.labLv.setString("0");
         //load equip enhance state
@@ -760,8 +760,8 @@ function onAddStone(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var shopItem = engine.session.queryStore(EnhanceStoneCid[EnhanceStoneLevel]);
     var cost = shopItem.cost["diamond"]*Delta[0];
-    var str1 = "材料不足\n立即花费"+cost+"宝石买齐材料？";
-    var str2 = "材料不足，且没有足够宝石来购买材料\n立即去充值页面？";
+    var str1 = translate(engine.game.language, "sceneForgeBuyStuff", [cost]);
+    var str2 = translate(engine.game.language, "sceneForgeChargeForStuff", [cost]);
     var args = {
         sid: shopItem.sid,
         cnt: Delta[0],
@@ -770,6 +770,7 @@ function onAddStone(sender){
     libUIKit.confirmPurchase(Request_StoreBuyItem, args, str1, str2, cost, function(rsp){
         if( rsp.RET == RET_OK){
             cc.AudioEngine.getInstance().playEffect("buy.mp3");
+            tdga.itemPurchase("PurchaseStone", args.cnt, cost);
         }
     });
 }
@@ -1108,7 +1109,7 @@ function setForgeEquip(item){
     }
     else {
         theContent.ui.equipTarget.setItem(null);
-        theContent.owner.labName.setString("请选择装备");
+        theContent.owner.labName.setString(translate(engine.game.language, "sceneForgeSelEquip"));
         theContent.owner.btnStartForge.setEnabled(false);
         libGadget.setProperties(null, theContent.owner.nodeProperties);
         if( ForgeArgs != null ){
@@ -1229,7 +1230,7 @@ function onForge(sender){
 function onStartForge(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     switch(ableToForge){
-        case -1: libUIKit.showAlert("请选择装备"); break;
+        case -1: libUIKit.showAlert(translate(engine.game.language, "sceneForgeSelEquip")); break;
         case 0:{
             if( EnoughMtrls ){
                 if( ForgeArgs != null ){
@@ -1237,7 +1238,7 @@ function onStartForge(sender){
                         libUIKit.waitRPC(Request_InventoryUseItem, ForgeArgs, function(rsp){
                             if( rsp.RET == RET_OK ){
                                 pushForgeAnimation("effect-forge3.ccbi", {nodeItem:theForgeItem}, function(){
-                                    libUIKit.showAlert("升阶成功！", function(){
+                                    libUIKit.showAlert(translate(engine.game.language, "sceneForgeForge"), function(){
                                         EnoughMtrls = false;
                                     }, theLayer);
                                     //execute result
@@ -1267,14 +1268,14 @@ function onStartForge(sender){
                     }
                 }
             }else{
-                libUIKit.showAlert("材料不足！");
+                libUIKit.showAlert(translate(engine.game.language, "sceneForgeNoEnoughStuff"));
             }
         }break;
         case 1:{
-            libUIKit.showAlert("装备已是最高品质！");
+            libUIKit.showAlert(translate(engine.game.language, "sceneForgeMaxQualification"));
         }break;
         case 2:{
-            libUIKit.showAlert("装备等级不足\n无法升阶！");
+            libUIKit.showAlert(translate(engine.game.language, "sceneForgeEquipNoLevel"));
         }break;
     }
 
@@ -1324,7 +1325,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
                 callback: function(val){
                     var count = Math.floor(val);
                     theContent.owner.labelCount.setString(count);
-                    theContent.owner.labCost.setString("数量不足");
+                    theContent.owner.labCost.setString(translate(engine.game.language, "sceneForgeNoEnoughCount"));
                     theContent.ui.cost.setPrice({
                         gold: 0
                     })
@@ -1343,7 +1344,7 @@ function setSynthesizeStone(sto1Class, sto2Class){
                 callback: function(val){
                     var count = Math.floor(val);
                     theContent.owner.labelCount.setString(count);
-                    theContent.owner.labCost.setString("需要"+(count*stoneCost)+"颗");
+                    theContent.owner.labCost.setString(translate(engine.game.language, "sceneForgeRequireCount",[count*stoneCost]));
                     theContent.ui.cost.setPrice({
                         gold: moneyCost * count
                     });
@@ -1478,7 +1479,7 @@ function onStartSynthesize(sender){
                     if ( rsp.RET == RET_OK ){
                         var dummyStone = new libItem.Item({cid: EnhanceStoneCid[SynthesizeStoneFrom-1]});
                         pushForgeAnimation("effect-forge.ccbi", {nodeItem:dummyStone}, function(){
-                            libUIKit.showAlert("提炼成功", function(){
+                            libUIKit.showAlert(translate(engine.game.language, "sceneForgeExtract"), function(){
                                 EnoughMtrls = false;
                             }, theLayer);
                             if ( rsp.RES != null){
@@ -1495,10 +1496,10 @@ function onStartSynthesize(sender){
                 }, theLayer);
             }
         }else{
-            libUIKit.showAlert("无法提炼强化石");
+            libUIKit.showAlert(translate(engine.game.language, "sceneForgeCannotExtract"));
         }
     }else{
-        libUIKit.showAlert("无法提炼强化石");
+        libUIKit.showAlert(translate(engine.game.language, "sceneForgeCannotExtract"));
     }
 }
 
