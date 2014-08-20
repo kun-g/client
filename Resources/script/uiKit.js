@@ -77,7 +77,7 @@ function alert()
     var theLayer = engine.ui.newLayer();
     theLayer.addChild(blackMask());
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     theLayer.owner = {};
     theLayer.theNode = cc.BuilderReader.load("ui-tip.ccbi", theLayer.owner);
@@ -100,7 +100,7 @@ exports.alert = alert;
 
 function pushLoading(){
     var layer = engine.ui.newLayer();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     var sp = cc.Sprite.create("loading.png");
     sp.setPosition(cc.p(winSize.width/2, winSize.height/2));
     layer.addChild(sp);
@@ -136,7 +136,7 @@ exports.showErrorMessage = showErrorMessage;
 function showAlert(msg, func, obj){
     var ly = engine.ui.newLayer();
     var mask = blackMask();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     ly.owner = {};
     ly.theNode = cc.BuilderReader.load("ui-tip.ccbi", ly.owner);
     ly.theNode.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -225,7 +225,7 @@ function confirmPurchase(command, args, text1, text2, cost, callback){
                                 showErrorMessage(rsp);
                             }
                             else if (rsp.RET == RET_OK){
-                                showAlert("购买成功。");
+                                showAlert(translate(engine.game.language, "sceneShopBuySuccess"));
                             }
                             if( callback != null ){
                                 callback(rsp);

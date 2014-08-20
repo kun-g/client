@@ -429,7 +429,7 @@ function onPause(sender)
     var thiz = theLayer;
     var newLayer = engine.ui.newLayer();
 
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     thiz.greymask.setVisible(true);
 
     thiz.pause = {};
@@ -474,7 +474,7 @@ function showBuyRevive(){
     if( order != null ){
         var alert = libUIKit.alert();
         if( engine.user.inventory.Diamond >= order.cost.diamond ){
-            alert.setContent("你没有复活药水\n是否立即花"+order.cost.diamond+"宝石购买一瓶？");
+            alert.setContent(translate(engine.game.language, "sceneDungeonBuyRecovery", [rder.cost.diamond]));
             alert.setButton([
                 {
                     label: "buttontext-qx.png",
@@ -510,7 +510,7 @@ function showBuyRevive(){
             ]);
         }
         else{
-            alert.setContent("你没有复活药水\n也没有足够的宝石购买一瓶\n是否要立即充值？");
+            alert.setContent(translate(engine.game.language, "sceneDungeonCharge"));
             alert.setButton([
                 {
                     label: "buttontext-qx.png",
@@ -553,19 +553,19 @@ function onCancelDungeon(force){
     if( !theDungeon.TutorialFlag ){
         if( !force ){
             libUIKit.confirm(
-                "放弃战斗会立即使战斗失败，\n确定要放弃吗？",
+                translate(engine.game.language, "sceneDungeonWantGiveUp"),
                 libUIKit.CONFIRM_NEUTRAL,
                 function(){
                     engine.event.sendNTFEvent(Request_CancelDungeon);
                     theTheme = null;
-                    FailReason = "玩家放弃";
+                    FailReason = translate(engine.game.language, "sceneDungeonGiveUp");
                 }, theLayer
             );
         }
         else{
             engine.event.sendNTFEvent(Request_CancelDungeon);
             theTheme = null;
-            FailReason = "玩家放弃";
+            FailReason = translate(engine.game.language, "sceneDungeonGiveUp");
         }
     }
 }
@@ -573,12 +573,12 @@ function onCancelDungeon(force){
 function showRevive(potionNeedCount){
     if( theStageClass.pvp === true ){
         engine.event.sendNTFEvent(Request_CancelDungeon);
-        FailReason = "PK战败";
+        FailReason = translate(engine.game.language, "sceneDungeonPKFailed");
         return;
     }
     //show revive dialogue
     var alert = libUIKit.alert();
-    alert.setContent("队伍成员已经全部牺牲\n是否要使用复活药水继续战斗？");
+    alert.setContent(translate(engine.game.language, "sceneDungeonUseRecovery"));
     alert.setImage("item-revive.png");
     alert.setButton([
         {
@@ -614,7 +614,7 @@ function doDungeonResult(win){
     theLayer.waitResponse = true;
     theLayer.waitResult = true;
     theLayer.updateMode();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     cc.AudioEngine.getInstance().stopMusic(true);
     if( win == 1 )
     {//win
@@ -929,7 +929,7 @@ function onEnter()
         debug("*** NO SKILL ***");
     }
 
-    FailReason = "玩家被击败";
+    FailReason = translate(engine.game.language, "sceneDungeonDefeated");
 
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
@@ -1051,7 +1051,7 @@ function updateMode()
 
 function resetBlocks()
 {
-    var screenSize = cc.Director.getInstance().getWinSize();
+    var screenSize = engine.game.viewSize;
     theLayer.actors.removeAllChildren();
     theLayer.blocks.removeAllChildren();
     theLayer.ground.removeAllChildren();
@@ -1588,7 +1588,7 @@ function updateCardDesc()
             theLayer.card.layerMask.setVisible(true);
         }
 
-        var screen = cc.Director.getInstance().getWinSize();
+        var screen = engine.game.viewSize;
         var start = theLayer.owner.nodeCard.getPosition();
         start.x += theLayer.card.select*CARD_SPACE;
 
@@ -1901,7 +1901,7 @@ function onTouchMoved(touch, event)
 function onTouchEnded(touch, event)
 {
     var pos = touch.getLocation();
-
+    debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
         if( theLayer.canControl )
@@ -1973,7 +1973,7 @@ function showBossHP(max)
         this.BOSSHP = null;
     }
     this.BOSSHP = libGadgets.BossHP.create(max);
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.BOSSHP.setPosition(cc.p(winSize.width/2, winSize.height));
     this.addChild(this.BOSSHP);
     return this.BOSSHP;

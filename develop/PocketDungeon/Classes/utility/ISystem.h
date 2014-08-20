@@ -97,6 +97,13 @@ public:
     virtual bool getPreference(std::string key, std::string &out) = 0;
     
     virtual bool isFirstLaunch() = 0;
+    
+    int viewSizeWidth = 640;
+    int viewSizeHeight = 960;
+    void setViewSizeWidth(int width);
+    int getViewSizeWidth();
+    void setViewSizeHeight(int height);
+    int getViewSizeHeight();
 };
 
 //set and access to system

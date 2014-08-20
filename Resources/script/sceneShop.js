@@ -57,13 +57,13 @@ function onConfirmPurchase(sender){
         switch(k){
             case "gold":{
                 if( engine.user.inventory.Gold < theCurrentPrice[k] ){
-                    libUIKit.showAlert("金币数量不足");
+                    libUIKit.showAlert(translate(engine.game.language, "sceneShopCoin"));
                     return;
                 }
             }break;
             case "diamond":{
                 if( engine.user.inventory.Diamond < theCurrentPrice[k] ){
-                    libUIKit.showAlert("宝石数量不足");
+                    libUIKit.showAlert(translate(engine.game.language, "sceneShopDia"));
                     return;
                 }
             }break;
@@ -82,7 +82,7 @@ function onConfirmPurchase(sender){
                 Number(theConfirmCount.getString()),
                 theConfirmShopItem.cost.diamond);
             }
-            libUIKit.showAlert("购买成功。");
+            libUIKit.showAlert(translate(engine.game.language, "sceneShopBuySuccess"));
         }
         else{
             libUIKit.showErrorMessage(rsp);
@@ -137,7 +137,7 @@ function onConfirmEnter(){
         }
     });
     var mask = blackMask();
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
     this.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
     this.addChild(mask);
     this.addChild(this.node);
@@ -185,7 +185,7 @@ function onConfirmEnter(){
         owner.labelDesc.setString(theConfirmItemClass.description);
     }
     else{
-        owner.labelDesc.setString("这是一件普普通通的道具");
+        owner.labelDesc.setString(translate(engine.game.language, "sceneShopOrdinaryEquip"));
         owner.labelDesc.setColor(cc.c3b(128, 128, 128));
     }
 

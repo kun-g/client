@@ -316,8 +316,8 @@ function onEvent(event)
         {
             var deliver = event.arg;
             if( deliver.typ == 0 ){
-                deliver.tit = "组队战斗奖励";
-                deliver.txt = "你的英雄和别人组队厮杀打拼。又挣到了一些奖励⋯⋯";
+                deliver.tit = translate(engine.game.language, "backTeamBattleTitle");
+                deliver.txt = translate(engine.game.language, "backTeamBattleText");
             }
             engine.session.pushSystemDeliver(deliver);
             engine.event.processNotification(Message_NewSystemDeliver);
@@ -335,9 +335,9 @@ function onEvent(event)
         }
         case Event_Reconnect:
         {
-            system.alert("重新登陆",ErrorMsgs[event.err], null, function(){
+            system.alert(translate(engine.game.language, "backRelogin"),ErrorMsgs[event.err], null, function(){
                 reboot();
-            }, "重新连接");
+            }, translate(engine.game.language, "backReconnect"));
             return true;
         }
         case Event_TutorialInfo:

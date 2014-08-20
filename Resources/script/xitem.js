@@ -764,19 +764,19 @@ function queryPrize(pit, treasureDisplayFlag){
         case PRIZETYPE_GOLD:{//gold
             strIcon = "mission-coin.png";
             if( pit.count != null ){
-                strLabel = pit.count+"金";
+                strLabel = pit.count+translate(engine.game.language, "xitemCoin");
             }
             else{
-                strLabel = "金币";
+                strLabel = translate(engine.game.language, "xitemCoin");
             }
         }break;
         case PRIZETYPE_DIAMOND:{//diamond
             strIcon = "mission-jewel.png";
             if ( pit.count != null ){
-                strLabel = pit.count+"钻";
+                strLabel = pit.count+translate(engine.game.language, "xitemDiamond");
             }
             else{
-                strLabel = "宝石";
+                strLabel = translate(engine.game.language, "xitemDiamond");
             }
         }break;
         case PRIZETYPE_EXP:{//exp
@@ -785,7 +785,7 @@ function queryPrize(pit, treasureDisplayFlag){
                 strLabel = pit.count;
             }
             else{
-                strLabel = "经验";
+                strLabel = translate(engine.game.language, "xitemExp");
             }
         }break;
         case PRIZETYPE_WXP:{//wxp
@@ -794,7 +794,7 @@ function queryPrize(pit, treasureDisplayFlag){
                 strLabel = pit.count;
             }
             else{
-                strLabel = "熟练";
+                strLabel = translate(engine.game.language, "xitemProficiency");
             }
         }break;
         default : return null;

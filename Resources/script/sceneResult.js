@@ -129,7 +129,7 @@ function checkFriendInvite(){
                 id: "role2"
             }
         });
-        var winSize = cc.Director.getInstance().getWinSize();
+        var winSize = engine.game.viewSize;
         layer.node.setPosition(cc.p(winSize.width/2, winSize.height/2));
         layer.addChild(layer.node);
 

@@ -5,11 +5,11 @@
  */
 
 var text = [
-    "很久很久以前，在怪物肆虐的时代，弱小的人类只能生活在不见天日的密林中以躲避各种怪物的欺凌。",
-    "直到奥拉夫和他的伙伴们挺身而出，他们改变了一切，他们是人类的救世主。",
-    "几位英雄们击溃了绝大多数怪物，将他们彻底从地面上赶走，残余的敌人们都躲入了地下，人类获得了繁荣与发展。",
-    "随着时间的推移，英雄们早已作古，怪物们在地底建造了大量的地下城并伺机卷土重来。",
-    "继承英雄力量的勇者们，为保护人类，展开了地下城的冒险⋯⋯"
+    translate(engine.game.language, "openSceneText0"),
+    translate(engine.game.language, "openSceneText1"),
+    translate(engine.game.language, "openSceneText2"),
+    translate(engine.game.language, "openSceneText3"),
+    translate(engine.game.language, "openSceneText4")
 ];
 
 var theLayer;
@@ -264,7 +264,7 @@ function onEnter(){
     cc.AudioEngine.getInstance().playMusic("login.mp3", true);
 
     //add text area
-    var winSize = cc.Director.getInstance().getWinSize();
+    var winSize = engine.game.viewSize;
 
     theNode = cc.Node.create();
     theNode.setPosition(cc.p(0, winSize.height - 960));

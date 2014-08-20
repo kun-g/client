@@ -117,7 +117,7 @@ function onStartPK(sender) {
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     TouchId = sender.getTag();
     if( myPkInfo.cpl >= myPkInfo.ttl ){
-        libUIKit.showAlert("今日PK次数已用完");
+        libUIKit.showAlert(translate(engine.game.language, "scenePVPNOPKCount"));
         return;
     }
     if( theRivalsList != null && theRivalsList[TouchId-1] != null ){
@@ -129,7 +129,7 @@ function onStartPK(sender) {
         engine.session.PkInfo.curRival = theRival;
         libStage.startStage(PVP_STAGEID, stageDate.team, stageDate.cost, theRival.nam);
     }else{
-        libUIKit.showAlert("PK对手不存在");
+        libUIKit.showAlert(translate(engine.game.language, "scenePVPNOPlayer"));
     }
 
 }
