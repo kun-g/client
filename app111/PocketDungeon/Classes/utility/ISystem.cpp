@@ -19,3 +19,23 @@ ISystem* getSystem()
 {
     return sSystemInstance;
 }
+
+void ISystem::setViewSizeWidth(int width)
+{
+    viewSizeWidth = width;
+}
+
+int ISystem::getViewSizeWidth()
+{
+    return viewSizeWidth;
+}
+
+void ISystem::setViewSizeHeight(int height)
+{
+    viewSizeHeight = height;
+}
+
+int ISystem::getViewSizeHeight()
+{
+    return viewSizeHeight;
+}

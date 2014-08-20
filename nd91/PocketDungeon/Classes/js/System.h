@@ -49,6 +49,8 @@ JSBool jsbSysEnterForegroundCallback(JSContext* cx, unsigned argc, JS::Value* vp
 JSBool jsbSysCheckNetworkStatus(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbSysGetPreference(JSContext* cx, unsigned argc, JS::Value* vp);
 JSBool jsbSysReset(JSContext* cx, unsigned argc, JS::Value* vp);
+JSBool jsbSysGetViewSizeWidth(JSContext* cx, unsigned argc, JS::Value* vp);
+JSBool jsbSysGetViewSizeHeight(JSContext* cx, unsigned argc, JS::Value* vp);
 
 void registerSys(JSContext* cx, JSObject* global);
 
