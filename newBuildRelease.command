@@ -58,7 +58,7 @@ fi
 if [ $isPause == 1 ]; then
     read -p "> Type 'Y' to build cocos2dx-talkingdata, type other key to skip: " CMDTD
 fi
-if [ "$CMDTD" == 'Y' ] || [ "$CMDTD" == 'y' ]; then
+if [ $isPause == 0 ] || [ "$CMDTD" == 'Y' ] || [ "$CMDTD" == 'y' ]; then
     TAKINGDATA_FOLDER="libs/GA/proj.ios/"
     cd $WORK_PATH
     cd $TAKINGDATA_FOLDER
@@ -81,7 +81,7 @@ PACKAGE_NAME="内网测试版.ipa"
 if [ $isPause == 1 ]; then
     read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
     build
 fi
 
@@ -91,7 +91,7 @@ PACKAGE_NAME="口袋地下城(PP助手).ALL.ipa"
 if [ $isPause == 1 ]; then
     read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
     build
 fi
 
@@ -101,7 +101,7 @@ PACKAGE_NAME="口袋地下城(苹果园).ALL.ipa"
 if [ $isPause == 1 ]; then
     read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
     build
 fi
 
@@ -117,7 +117,7 @@ PACKAGE_NAME="口袋地下城(快用).ipa"
 if [ $isPause == 1 ]; then
     read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
     build
 fi
 
@@ -127,7 +127,7 @@ PACKAGE_NAME="PocketDungeon_v${BINARY_VERSION}_${DATE_TIME}.ipa"
 if [ $isPause == 1 ]; then
     read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
 fi
-if [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
     build
 fi
 
