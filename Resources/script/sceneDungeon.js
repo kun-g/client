@@ -828,9 +828,7 @@ function onEnter()
     }
     SpriteCache.addSpriteFrames(DungeonThemes[theTheme].plist);
 
-
-    var director = cc.Director.getInstance();
-    var screenSize = director.getWinSize();
+    var screenSize = engine.game.viewSize;
 
     theLayer.owner = {};
     theLayer.owner.onPause = onPause;
