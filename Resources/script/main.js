@@ -1,6 +1,8 @@
 require("jsb.js");
 
 var engine = {};
+var DebugRecorderDungeon;
+var DebugRecorderBlackBox;
 var isGameLoggedIn = false;
 
 function initEngine()
