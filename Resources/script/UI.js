@@ -322,7 +322,6 @@ function caculateMarginCount(icon,offset,mode){//mode false X mode true Y
     else{
         retvalue = Math.ceil(engine.game.viewSize.height / caculateMarginHeightStep(icon,offset,mode));
     }
-    debug("caculateMarginCount = "+retvalue);
     return retvalue;
 }
 
@@ -341,7 +340,6 @@ function caculateMarginHeightStep(icon,offset,mode){
         var ratioX = 1;//marginSize.width / offset;
         retvalue = marginSize.height / ratioX;
     }
-    debug("caculateMarginHeightStep = "+retvalue);
     return retvalue;
 }
 
@@ -357,7 +355,6 @@ function caculateMarginScale(icon,offset,mode){
         var marginSize = margin.getContentSize();
         retvalue = 1;//offset / marginSize.width;
     }
-    debug("caculateMarginScale = "+retvalue);
     return retvalue;
 }
 
