@@ -230,7 +230,7 @@
       this.level = 0;
       this.levelUp();
       this.gearUp();
-      if (!this.isAlive()) {
+      if (this.health <= 0) {
         this.health = 1;
       }
       if (this.attack <= 0) {
@@ -390,7 +390,7 @@
       cfg = queryTable(TABLE_ROLE, config.id);
     }
     if (cfg == null) {
-      throw Error('No such an unit:' + (config != null ? config.id : void 0) + ' cfg: ' + config);
+      throw Error('No such an unit:' + (config != null ? config.id : void 0));
     }
     switch (cfg.classType) {
       case Unit_Enemy:

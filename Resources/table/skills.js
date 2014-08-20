@@ -4473,7 +4473,7 @@ exports.data = [
         "config": {
             "basic" : {
                 "spellAction": 2,
-                "spellEffect": 45,
+                "spellEffect": 13,
                 "spellDelay": 0.3
             },
             "targetSelection": {
@@ -6114,6 +6114,7 @@ exports.data = [
         "label":"198-血之狂怒",
         "config": {
             "action":[
+                {"type": "playEffect","effect":13,"pos":"self","delay":1.5},
                 { "type": "setProperty"}
             ],
             "targetSelection":{ "pool":"Self" },
