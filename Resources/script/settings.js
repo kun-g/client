@@ -47,8 +47,34 @@ function onToggleSfx(sender){
     system.exit();
 }
 
+function calcNetwork(tiems,handler) {
+	var i = 0;
+	var res =[];
+	for (i = 0; i< tiems;i++) {
+		helper(function(td) {
+            debug(td+"  p2");
+			res.push(td);
+		});
+	}
+	var r = res.reduce(function (a,b) {return a+b;})/tiems;
+    debug(r+"  dddddddd")
+	handler(r);
+}
+
+function helper(handler) {
+	var n = Date();
+	var f = function (ret) {
+        debug(ret+"  p1");
+		handler(Date() -n);
+	}
+	engine.event.sendRPCEvent(103, {sign: 1}, f);
+}
+
 function onFeedback(sender){
-    libKit.showAlert(translate(engine.game.language, "settingsTel"));
+	var res = calcNetwork(20, function(r) {
+			libKit.showAlert(res);
+	});
+    //libKit.showAlert("客服电话:0571-85133085\n邮箱:support@tringame.com\n官方QQ交流群号:121017982");
 }
 
 function onUACManage(sender){
@@ -56,7 +82,7 @@ function onUACManage(sender){
 }
 
 function onResetData(sender){
-    libKit.confirm(translate(engine.game.language, "settingsResetData"), libKit.CONFIRM_DEFAULT, function(){
+    libKit.confirm("数据出错时请重置数据\n重置数据不会有任何损失", libKit.CONFIRM_DEFAULT, function(){
         engine.user.clearProfile();
         reboot();
     });
