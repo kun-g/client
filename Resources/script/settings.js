@@ -54,25 +54,30 @@ function calcNetwork(tiems,handler) {
 		helper(function(td) {
             debug(td+"  p2");
 			res.push(td);
+            if (res.length == tiems){
+                var r = res.reduce(function (a,b) {return a+b;})/tiems;
+                debug(r+"  dddddddd")
+                handler(r);
+            }
+
 		});
 	}
-	var r = res.reduce(function (a,b) {return a+b;})/tiems;
-    debug(r+"  dddddddd")
-	handler(r);
+
+
 }
 
 function helper(handler) {
-	var n = Date();
-	var f = function (ret) {
+	var n = new Date().getTime();
+	engine.event.sendRPCEvent(103, {sign: -2}, function (ret) {
         debug(ret+"  p1");
-		handler(Date() -n);
-	}
-	engine.event.sendRPCEvent(103, {sign: 1}, f);
+        var m = new Date().getTime();
+        handler( m-n);
+    });
 }
 
 function onFeedback(sender){
-	var res = calcNetwork(20, function(r) {
-			libKit.showAlert(res);
+	calcNetwork(20, function(rsp) {
+			libKit.showAlert(rsp);
 	});
     //libKit.showAlert("客服电话:0571-85133085\n邮箱:support@tringame.com\n官方QQ交流群号:121017982");
 }
