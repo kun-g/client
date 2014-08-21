@@ -56,8 +56,8 @@ function calcNetwork(tiems,handler) {
 			res.push(td);
             if (res.length == tiems){
                 var r = res.reduce(function (a,b) {return a+b;})/tiems;
-                debug(r+"  dddddddd")
-                handler(r);
+                res.sort(function (a,b) {return a -b;});
+                handler(r+' ,'+res[0]+', '+ res[tiems-1]);
             }
 
 		});
@@ -68,6 +68,7 @@ function calcNetwork(tiems,handler) {
 
 function helper(handler) {
 	var n = new Date().getTime();
+    engine.event.connectServer("122.226.199.14", "7757");
 	engine.event.sendRPCEvent(103, {sign: -2}, function (ret) {
         debug(ret+"  p1");
         var m = new Date().getTime();
