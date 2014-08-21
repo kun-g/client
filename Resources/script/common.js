@@ -1125,7 +1125,7 @@ function requestBattle(stage, party, pkRival){
                 engine.user.saveProfile();
 
                 engine.session.clearTeam();
-                engine.ui.newScene(loadModule("sceneDungeon.js").scene());
+                engine.ui.newLayer(loadModule("sceneDungeon.js").scene()); //todo?
 
                 //统计
                 tdga.questBegin("D"+stage);
@@ -1152,7 +1152,7 @@ function requestBattle(stage, party, pkRival){
             if( rsp.RET == RET_OK ){
                 engine.event.holdNotifications();
                 engine.session.clearTeam();
-                engine.ui.newScene(loadModule("sceneDungeon.js").scene());
+                engine.ui.newLayer(loadModule("sceneDungeon.js").scene()); //todo?
 
                 //统计
                 tdga.questBegin("D"+stage);

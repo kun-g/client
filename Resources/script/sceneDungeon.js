@@ -1018,10 +1018,11 @@ function update(delta)
     if( resultFlag && gameOverFlag ){
         //game really over
         if( hasResult ){
-            engine.ui.newScene(loadModule("sceneResult.js").scene());
+            engine.ui.popLayer();
+            loadModule("sceneResult.js").show(); //todo?
         }
         else{
-            engine.ui.newScene(loadModule("sceneMain.js").scene());
+            engine.ui.popLayer(); //todo?
         }
     }
 }
