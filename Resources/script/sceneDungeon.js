@@ -631,12 +631,12 @@ function doDungeonResult(win){
             eff.owner = owner;
 
             var libSceneRank = loadModule("sceneRank.js");
-            var barMe = libSceneRank.createRoleBar(engine.user.actor, engine.session.PkInfo.rnk+1, RANK_PVP);
-            barMe.setPosition(cc.p(-291, -68));
-            eff.owner.nodeMe.addChild(barMe);
             var roleRival = new role.Role(engine.session.PkInfo.curRival);
             roleRival.fix();
-            var barHim = libSceneRank.createRoleBar(roleRival, roleRival.Rank+1, RANK_PVP);
+            var barMe = libSceneRank.createRoleBar(engine.user.actor, roleRival.Rank+1, RANK_PVP);
+            var barHim = libSceneRank.createRoleBar(roleRival, engine.session.PkInfo.rnk+1, RANK_PVP);
+            barMe.setPosition(cc.p(-291, -68));
+            eff.owner.nodeMe.addChild(barMe);
             barHim.setPosition(cc.p(-291, -68));
             eff.owner.nodeHim.addChild(barHim);
             eff.setPosition(cc.p(winSize.width/2, winSize.height/2));
