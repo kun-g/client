@@ -113,8 +113,7 @@ Session.prototype.queryRoleInfo = function(name){
 }
 
 Session.prototype.updatePVPInfo = function(func) {
-    var libUIKit = loadModule("uiKit.js");
-    libUIKit.waitRPC(Request_PVPInfoUpdate, {}, function (rsp) {
+    engine.event.sendRPCEvent(Request_PVPInfoUpdate, {}, function (rsp) {
         if( rsp.RET == RET_OK ){
             if( rsp.arg != null ){
                 if(engine.session.PkInfo == null) engine.session.PkInfo = {rnk: 99999, cpl: 0, ttl: 0, rcv: false};
