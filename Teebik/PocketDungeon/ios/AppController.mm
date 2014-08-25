@@ -14,6 +14,11 @@
 #import "RootViewController.h"
 
 #import "PublishVersions.h"
+#import "TeebikUAC.h"
+#import "AvazuTracking.h"
+#import "AppsFlyerTracker.h"
+
+#define MY_TRACKING_ID @"UA-49289183-1"
 
 @implementation AppController
 
@@ -63,11 +68,28 @@ static AppDelegate s_sharedApplication;
 
     postInitAPI();
     
+    // Google analytics init
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[GAI sharedInstance] trackerWithTrackingId:MY_TRACKING_ID];
+    
+    // AppsFlyer iOS Tracking SDK
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"ELctKLYrDm4fb6desm4gmm";
+    [AppsFlyerTracker sharedTracker].appleAppID = @"741982712";
+    [AppsFlyerTracker sharedTracker].currencyCode = @"USD";
+    [AppsFlyerTracker sharedTracker].customerUserID =@"com.teebik.paytest.appsflyer.avazu.ios";
+    [AppsFlyerTracker sharedTracker].isHTTPS = YES;
+    
+    // Avazu Tracking Sdk
+    [AvazuTracking reportAppDownloadGoalWithSales:nil];
+    
+    initTeebik();
     //Teebik Game SDK
     //For release version:
-    [[TeebikGameSdk getInstance] init:self
-                        launchOptions:launchOptions
-                      customAlertView:NO];
+//    [[TeebikGameSdk getInstance] init:self
+//                        launchOptions:launchOptions
+//                      customAlertView:NO];
     //Only for Debug version:
 //    [[TeebikGameSdk getInstance] init:self
 //                        launchOptions:launchOptions
@@ -75,7 +97,7 @@ static AppDelegate s_sharedApplication;
 //                             debugUrl:@"http://144.76.221:80"];
     
     //进入游戏的入口必须写在teebikGameSdkWithInitSuccess方法中
-    //cocos2d::CCApplication::sharedApplication()->run();
+//    cocos2d::CCApplication::sharedApplication()->run();
     
     return YES;
 }

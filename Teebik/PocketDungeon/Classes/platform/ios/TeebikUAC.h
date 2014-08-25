@@ -9,9 +9,13 @@
 #ifndef PocketDungeon_Teebik_TeebikUAC_h
 #define PocketDungeon_Teebik_TeebikUAC_h
 
+#import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
 #include "IUAC.h"
 #include "IIAP.h"
 #import "TeebikGameSdk.h"
+
+void initTeebik();
 
 class TeebikUAC : public IUAC, public IIAP {
 public:
@@ -37,31 +41,27 @@ private:
 @interface TeebikDelegate : NSObject{
     UACDelegate* mpUACD;
     IAPDelegate* mpIAPD;
+    NSArray* mProducts;
+    NSArray* mProductsMeta;
 }
 
 + (TeebikDelegate*) sharedInstance;
 
 - (void) setUACDelegate:(UACDelegate*)pInstance;
-
 - (void) setIAPDelegate:(IAPDelegate*)pInstance;
+- (BOOL) isIAPEnabled;
+- (BOOL) productRequested;
+- (void) requestProductData;
+- (void) makePurchase:(NSInteger)product;
 
-- (void) teebikGameSdkWithInitSuccess;
+@end
 
-- (void) teebikGameSdkWithInitFailed:(NSString*)error;
+@interface AlertViewController: UIViewController<UIAlertViewDelegate>{
+    
+}
 
-- (void)teebikGameSdkWithExitApp;
-
-- (void) teebikGameSdkWithClosedView;
-
-- (void)teebikGameSdkWithProcessDlgStart;
-
-- (void)teebikGameSdkWithProcessDlgStop;
-
-- (void)teebikGameSdkWithErrorInfo:(NSString *)error;
-
-- (void)teebikGameSdkWithWraningInfo:(NSString *)wraning;
-
-- (void)teebikGameSdkWithFinishInfo:(NSString *)info;
++ (AlertViewController*) sharedInstance;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
 
