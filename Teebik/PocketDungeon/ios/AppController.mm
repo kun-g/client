@@ -84,20 +84,11 @@ static AppDelegate s_sharedApplication;
     // Avazu Tracking Sdk
     [AvazuTracking reportAppDownloadGoalWithSales:nil];
     
-    initTeebik();
-    //Teebik Game SDK
-    //For release version:
-//    [[TeebikGameSdk getInstance] init:self
-//                        launchOptions:launchOptions
-//                      customAlertView:NO];
-    //Only for Debug version:
-//    [[TeebikGameSdk getInstance] init:self
-//                        launchOptions:launchOptions
-//                      customAlertView:NO
-//                             debugUrl:@"http://144.76.221:80"];
+//    initTeebik();
+
     
     //进入游戏的入口必须写在teebikGameSdkWithInitSuccess方法中
-//    cocos2d::CCApplication::sharedApplication()->run();
+    cocos2d::CCApplication::sharedApplication()->run();
     
     return YES;
 }

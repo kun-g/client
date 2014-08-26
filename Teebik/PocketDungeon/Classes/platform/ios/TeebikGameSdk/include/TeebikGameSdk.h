@@ -195,6 +195,7 @@
 - (void)menuHide;
 - (void)buttonEnable;
 - (void)buttonDisable;
+- (void)closeSdkView ;
 
 /* Private method */
 - (NSMutableArray *)getProducts;

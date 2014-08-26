@@ -23,16 +23,17 @@ static AlertViewController* gAlertDelegate = nil;
 void initTeebik(){
     [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO];
 //    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO debugUrl:@"http://144.76.221:80"];
+
 }
 
 //----------UAC-----------
 
 void TeebikUAC::initUAC(){
+    [[TeebikDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
     if (!gTeebikInited) {
         initTeebik();
         gTeebikInited = true;
     }
-    [[TeebikDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
 }
 
 void TeebikUAC::presentLoginView(){
@@ -83,6 +84,7 @@ void TeebikUAC::initPayment(){
         gTeebikInited = true;
     }
     [TeebikGameSdk getInstance].paymentDelegate = [TeebikDelegate sharedInstance];
+    [[TeebikDelegate sharedInstance] setIAPDelegate:this->getIAPDelegate()];
     [[TeebikGameSdk getInstance] setGameServer:@"http://"]; //todo?
     [[TeebikDelegate sharedInstance] requestProductData];
 }
@@ -179,14 +181,16 @@ void TeebikUAC::getStoreName(std::string &name){
 - (void)teebikGameSdkWithInitSuccess{
     //your code here
     NSLog(@"sdk init success");
+    gTeebikInited = true;
     [[TeebikGameSdk getInstance] buttonEnable];
-    CCApplication::sharedApplication()->run();
+//    CCApplication::sharedApplication()->run();
     mpUACD->onUACReady();
 }
 
 // 接口为初始化失败后回调
 // 参数 error: 返回造成错误原因的文字信息
 - (void)teebikGameSdkWithInitFailed:(NSString *)error{
+    gTeebikInited = false;
     [[[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:self cancelButtonTitle:@"Exit App" otherButtonTitles:nil, nil] show];
     
 }
@@ -240,6 +244,8 @@ void TeebikUAC::getStoreName(std::string &name){
     [tracker set:kGAISessionControl value:@"start"];
     
     NSMutableDictionary *userinfo = [[TeebikGameSdk getInstance] getUserInfo];
+    NSLog(@"RegisterInfo:\nuid:%@\nusername:%@\ntoken:%@\n",
+          [userinfo objectForKey:@"uid"], [userinfo objectForKey:@"username"], [userinfo objectForKey:@"token"]);
 }
 
 // 接口为登录成功后回调
@@ -251,6 +257,8 @@ void TeebikUAC::getStoreName(std::string &name){
     [tracker set:kGAISessionControl value:@"start"];
     
     NSMutableDictionary *userinfo = [[TeebikGameSdk getInstance] getUserInfo];
+    NSLog(@"LoginInfo:\nuid:%@\nusername:%@\ntoken:%@\n",
+          [userinfo objectForKey:@"uid"], [userinfo objectForKey:@"username"], [userinfo objectForKey:@"token"]);
 }
 
 // 接口为登出成功后回调
