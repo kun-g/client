@@ -10,7 +10,7 @@
 #define PocketDungeon_Teebik_TeebikUAC_h
 
 #import <Foundation/Foundation.h>
-#import <StoreKit/StoreKit.h>
+//#import <StoreKit/StoreKit.h>
 #include "IUAC.h"
 #include "IIAP.h"
 #import "TeebikGameSdk.h"

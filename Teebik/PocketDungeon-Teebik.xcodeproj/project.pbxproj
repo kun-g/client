@@ -366,9 +366,6 @@
 		9801F21719A7819D00F16217 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F21619A7819D00F16217 /* libAppsFlyerLib.a */; };
 		9801F22319A781B900F16217 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F22219A781B900F16217 /* libGoogleAnalyticsServices.a */; };
 		9801F22719A7863F00F16217 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F22619A7863F00F16217 /* MapKit.framework */; };
-		98A2969D19A8975B00185D64 /* dblackbox in Resources */ = {isa = PBXBuildFile; fileRef = 98A2969A19A8975B00185D64 /* dblackbox */; };
-		98A2969E19A8975B00185D64 /* dscript in Resources */ = {isa = PBXBuildFile; fileRef = 98A2969B19A8975B00185D64 /* dscript */; };
-		98A2969F19A8975B00185D64 /* dtable in Resources */ = {isa = PBXBuildFile; fileRef = 98A2969C19A8975B00185D64 /* dtable */; };
 		98A9012919A70F0D00344A21 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9011219A70F0D00344A21 /* AppController.mm */; };
 		98A9012A19A70F0D00344A21 /* AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A9011319A70F0D00344A21 /* AppStore.plist */; };
 		98A9012B19A70F0D00344A21 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A9011419A70F0D00344A21 /* Default-568h@2x.png */; };
@@ -404,6 +401,9 @@
 		98A9016D19A7286900344A21 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016C19A7286900344A21 /* libicucore.dylib */; };
 		98A9016F19A7287900344A21 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016E19A7287900344A21 /* CoreText.framework */; };
 		98A9017819A75DC300344A21 /* libAvazuTrackingSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9017719A75DC300344A21 /* libAvazuTrackingSdk.a */; };
+		98AB486D19AEDC7100CC079F /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 98AB486A19AEDC7100CC079F /* blackbox */; };
+		98AB486E19AEDC7100CC079F /* script in Resources */ = {isa = PBXBuildFile; fileRef = 98AB486B19AEDC7100CC079F /* script */; };
+		98AB486F19AEDC7100CC079F /* table in Resources */ = {isa = PBXBuildFile; fileRef = 98AB486C19AEDC7100CC079F /* table */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1253,9 +1253,6 @@
 		9801F22119A781B900F16217 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
 		9801F22219A781B900F16217 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		9801F22619A7863F00F16217 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		98A2969A19A8975B00185D64 /* dblackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dblackbox; sourceTree = "<group>"; };
-		98A2969B19A8975B00185D64 /* dscript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dscript; sourceTree = "<group>"; };
-		98A2969C19A8975B00185D64 /* dtable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dtable; sourceTree = "<group>"; };
 		98A9011119A70F0D00344A21 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		98A9011219A70F0D00344A21 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
 		98A9011319A70F0D00344A21 /* AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppStore.plist; sourceTree = "<group>"; };
@@ -1299,6 +1296,9 @@
 		98A9016E19A7287900344A21 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		98A9017619A75DC300344A21 /* AvazuTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvazuTracking.h; sourceTree = "<group>"; };
 		98A9017719A75DC300344A21 /* libAvazuTrackingSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAvazuTrackingSdk.a; sourceTree = "<group>"; };
+		98AB486A19AEDC7100CC079F /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
+		98AB486B19AEDC7100CC079F /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
+		98AB486C19AEDC7100CC079F /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2929,9 +2929,9 @@
 		53A305BF18FD3101001CE8B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				98A2969A19A8975B00185D64 /* dblackbox */,
-				98A2969B19A8975B00185D64 /* dscript */,
-				98A2969C19A8975B00185D64 /* dtable */,
+				98AB486A19AEDC7100CC079F /* blackbox */,
+				98AB486B19AEDC7100CC079F /* script */,
+				98AB486C19AEDC7100CC079F /* table */,
 				5371A1DC192CAE700033411F /* misc */,
 				53A3158718FD317E001CE8B0 /* font */,
 				53A3158918FD317E001CE8B0 /* node */,
@@ -3159,7 +3159,6 @@
 				53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */,
 				53A30DC218FD3121001CE8B0 /* jsb_debugger.jsc in Resources */,
 				53A30DBE18FD3121001CE8B0 /* jsb_cocos2d.jsc in Resources */,
-				98A2969D19A8975B00185D64 /* dblackbox in Resources */,
 				98A9013A19A70F0D00344A21 /* Info.pliste in Resources */,
 				98A9013719A70F0D00344A21 /* Icon~ipad.png in Resources */,
 				98A9013819A70F0D00344A21 /* Icon~iphone.png in Resources */,
@@ -3176,14 +3175,13 @@
 				98A9013319A70F0D00344A21 /* Icon-Small@2x.png in Resources */,
 				53A3047E18FD30EB001CE8B0 /* chipmunk-docs.html in Resources */,
 				98A9013119A70F0D00344A21 /* Icon-Small-50.png in Resources */,
-				98A2969F19A8975B00185D64 /* dtable in Resources */,
 				53A3047F18FD30EB001CE8B0 /* LICENSE.txt in Resources */,
 				53A30DBB18FD3121001CE8B0 /* jsb.jsc in Resources */,
 				53A30DC118FD3121001CE8B0 /* jsb_cocosbuilder.jsc in Resources */,
 				53575817190119F600E6932D /* static.json in Resources */,
-				98A2969E19A8975B00185D64 /* dscript in Resources */,
 				98A9012E19A70F0D00344A21 /* Default~ipad.png in Resources */,
 				53A3159A18FD317E001CE8B0 /* spritesheets in Resources */,
+				98AB486F19AEDC7100CC079F /* table in Resources */,
 				53A30DBF18FD3121001CE8B0 /* jsb_cocos2d_constants.jsc in Resources */,
 				53A3107F18FD3123001CE8B0 /* Setup.plist in Resources */,
 				98A9013019A70F0D00344A21 /* Icon-72.png in Resources */,
@@ -3193,10 +3191,12 @@
 				53A30DC418FD3121001CE8B0 /* jsb_opengl_constants.jsc in Resources */,
 				53A3048218FD30EB001CE8B0 /* CMakeLists.txt in Resources */,
 				53A30DC318FD3121001CE8B0 /* jsb_opengl.jsc in Resources */,
+				98AB486E19AEDC7100CC079F /* script in Resources */,
 				53A3048018FD30EB001CE8B0 /* README.txt in Resources */,
 				53A30DC618FD3121001CE8B0 /* main.debug.jsc in Resources */,
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
 				98A9013619A70F0D00344A21 /* Icon@2x~ipad.png in Resources */,
+				98AB486D19AEDC7100CC079F /* blackbox in Resources */,
 				98A9013E19A70F0D00344A21 /* Settings.bundle in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,
 				98A9013419A70F0D00344A21 /* Icon.png in Resources */,

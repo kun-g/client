@@ -10,6 +10,7 @@
 #include "PublishVersions.h"
 #include "cocos2d.h"
 #import "AppsFlyerTracker.h"
+#import "GTMBase64.h"
 
 #define SHOPFILE ("AppStore.plist")
 
@@ -19,9 +20,12 @@ using namespace std;
 static bool gTeebikInited = false;
 static TeebikDelegate* gTeebikDelegate = nil;
 static AlertViewController* gAlertDelegate = nil;
+static int gTeebikViewOpened = 0;
 
 void initTeebik(){
+    NSLog(@"initTeebik");
     [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO];
+    [[TeebikGameSdk getInstance] setGameServer:@"http://61.174.8.29/TBK"];
 //    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO debugUrl:@"http://144.76.221:80"];
 
 }
@@ -29,31 +33,38 @@ void initTeebik(){
 //----------UAC-----------
 
 void TeebikUAC::initUAC(){
+    NSLog(@"initUAC");
     [[TeebikDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
     if (!gTeebikInited) {
         initTeebik();
         gTeebikInited = true;
     }
+    this->presentLoginView();
 }
 
 void TeebikUAC::presentLoginView(){
+    NSLog(@"presentLoginView");
+    CCDirector::sharedDirector()->pause();
     [TeebikGameSdk getInstance].loginDelegate = [TeebikDelegate sharedInstance];
-    BOOL willSilentLogin = [[TeebikGameSdk getInstance] canSilentLogin];
+    BOOL willSilentLogin = YES; //[[TeebikGameSdk getInstance] canSilentLogin];
     if (willSilentLogin) {
         [[TeebikGameSdk getInstance] login];
     }else{
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Option" message:@"You wanna login as..." delegate:[AlertViewController sharedInstance] cancelButtonTitle:@"Guest" otherButtonTitles:@"User", nil];
         [alert show];
     }
-    
+    gTeebikViewOpened = 1;
 }
 
 void TeebikUAC::presentManageView(){
+    NSLog(@"presentManageView");
     [[TeebikGameSdk getInstance] bringMenuAndButtonToFront];
     [[TeebikGameSdk getInstance] menuShow];
+    gTeebikViewOpened = 2;
 }
 
 void TeebikUAC::logout(){
+    NSLog(@"logout");
     [TeebikGameSdk getInstance].logoutDelegate = [TeebikDelegate sharedInstance];
     [[TeebikGameSdk getInstance] logout];
 }
@@ -79,13 +90,13 @@ void TeebikUAC::getUserId(std::string &token){
 //----------IAP-----------
 
 void TeebikUAC::initPayment(){
+    NSLog(@"initPayment");
     if (!gTeebikInited) {
         initTeebik();
         gTeebikInited = true;
     }
     [TeebikGameSdk getInstance].paymentDelegate = [TeebikDelegate sharedInstance];
     [[TeebikDelegate sharedInstance] setIAPDelegate:this->getIAPDelegate()];
-    [[TeebikGameSdk getInstance] setGameServer:@"http://"]; //todo?
     [[TeebikDelegate sharedInstance] requestProductData];
 }
 
@@ -117,6 +128,7 @@ void TeebikUAC::getStoreName(std::string &name){
 + (TeebikDelegate*) sharedInstance{
     if( gTeebikDelegate == nil ){
         gTeebikDelegate = [[TeebikDelegate alloc] init];
+        NSLog(@"gTeebikDelegate init mpUACD = NULL");
     }
     return gTeebikDelegate;
 }
@@ -124,10 +136,12 @@ void TeebikUAC::getStoreName(std::string &name){
 
 - (void)setUACDelegate:(UACDelegate *)pInstance{
     mpUACD = pInstance;
+    NSLog(@"setUACDelegate mpUACD = %p", mpUACD);
 }
 
 - (void)setIAPDelegate:(IAPDelegate *)pInstance{
     mpIAPD = pInstance;
+    NSLog(@"setIAPDelegate mpIAPD = %p", mpIAPD);
 }
 
 - (BOOL) isIAPEnabled{
@@ -176,7 +190,7 @@ void TeebikUAC::getStoreName(std::string &name){
     return iapId;
 }
 
-//----------------------------------------//
+//-------------- Call Back --------------//
 // 接口为初始化成功后回调
 - (void)teebikGameSdkWithInitSuccess{
     //your code here
@@ -184,7 +198,8 @@ void TeebikUAC::getStoreName(std::string &name){
     gTeebikInited = true;
     [[TeebikGameSdk getInstance] buttonEnable];
 //    CCApplication::sharedApplication()->run();
-    mpUACD->onUACReady();
+    NSLog(@"initSuccessCB mpUACD = %p", mpUACD);
+//    mpUACD->onUACReady();
 }
 
 // 接口为初始化失败后回调
@@ -202,7 +217,16 @@ void TeebikUAC::getStoreName(std::string &name){
 
 // 接口为SDK的WebView窗口退出时调用
 - (void)teebikGameSdkWithClosedView{
-    
+    NSLog(@"teebikGameSdkWithClosedView");
+    switch (gTeebikViewOpened) {
+        case 1:
+            mpUACD->onLoginViewClosed();
+            break;
+        case 2:
+            mpUACD->onManageViewClosed();
+        default:
+            break;
+    }
 }
 
 // 开始显示等待窗
@@ -250,7 +274,7 @@ void TeebikUAC::getStoreName(std::string &name){
 
 // 接口为登录成功后回调
 - (void)teebikGameSdkWithLoginSuccess {
-    // Your code here
+    CCDirector::sharedDirector()->resume();
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     // Start a new session. The next hit from this tracker will be the first in
     // a new session.
@@ -259,11 +283,14 @@ void TeebikUAC::getStoreName(std::string &name){
     NSMutableDictionary *userinfo = [[TeebikGameSdk getInstance] getUserInfo];
     NSLog(@"LoginInfo:\nuid:%@\nusername:%@\ntoken:%@\n",
           [userinfo objectForKey:@"uid"], [userinfo objectForKey:@"username"], [userinfo objectForKey:@"token"]);
+    NSString* decToken = [[NSString alloc] initWithData:[GTMBase64 decodeData:[userinfo objectForKey:@"token"]] encoding:NSUTF8StringEncoding];
+    NSLog(@"decoded token = %@", decToken);
+    mpUACD->onLoggedIn(string([decToken cStringUsingEncoding:NSUTF8StringEncoding]));
 }
 
 // 接口为登出成功后回调
 - (void)teebikGameSdkWithLogoutSuccess {
-    // Your code here
+    mpUACD->onLoggedOut();
 }
 
 
@@ -303,7 +330,7 @@ void TeebikUAC::getStoreName(std::string &name){
     [tracker send:[itemBuilder build]];
     
     // AppsFlyer iOS Tracking SDK
-    [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[NSString stringWithFormat:@"%0.02f", [transaction getAmount]]];
+//    [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[NSString stringWithFormat:@"%0.02f", [transaction getAmount]]];
 }
 
 // 接口为支付失败后回调
@@ -326,7 +353,7 @@ void TeebikUAC::getStoreName(std::string &name){
 
 // 接口为当发现尚未设置游戏支付服务器时回调
 - (void)teebikGameSdkWithGameServerNotExist {
-    
+    NSLog(@"GameServer has not been set");
 }
 
 @end
