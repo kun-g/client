@@ -10,7 +10,6 @@
 #include "PublishVersions.h"
 #include "cocos2d.h"
 #import "AppsFlyerTracker.h"
-#import "GTMBase64.h"
 
 #define SHOPFILE ("AppStore.plist")
 
@@ -218,6 +217,7 @@ void TeebikUAC::getStoreName(std::string &name){
 // 接口为SDK的WebView窗口退出时调用
 - (void)teebikGameSdkWithClosedView{
     NSLog(@"teebikGameSdkWithClosedView");
+    CCDirector::sharedDirector()->resume();
     switch (gTeebikViewOpened) {
         case 1:
             mpUACD->onLoginViewClosed();
@@ -283,13 +283,12 @@ void TeebikUAC::getStoreName(std::string &name){
     NSMutableDictionary *userinfo = [[TeebikGameSdk getInstance] getUserInfo];
     NSLog(@"LoginInfo:\nuid:%@\nusername:%@\ntoken:%@\n",
           [userinfo objectForKey:@"uid"], [userinfo objectForKey:@"username"], [userinfo objectForKey:@"token"]);
-    NSString* decToken = [[NSString alloc] initWithData:[GTMBase64 decodeData:[userinfo objectForKey:@"token"]] encoding:NSUTF8StringEncoding];
-    NSLog(@"decoded token = %@", decToken);
-    mpUACD->onLoggedIn(string([decToken cStringUsingEncoding:NSUTF8StringEncoding]));
+    mpUACD->onLoggedIn(string([[userinfo objectForKey:@"token"] cStringUsingEncoding:NSUTF8StringEncoding]));
 }
 
 // 接口为登出成功后回调
 - (void)teebikGameSdkWithLogoutSuccess {
+    CCDirector::sharedDirector()->resume();
     mpUACD->onLoggedOut();
 }
 
