@@ -66,6 +66,7 @@ var nodeTopList = ["nodeZdlbg1","nodeZdlbg2","nodeZdlbg3","nodeZdlbg4"];
 var topNum = [3,10,20,30];
 
 function onRoleInfo(sender){
+    if( scrolling ) return;
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     var layer = sender.LAYER;
     var role = layer.ROLE;
@@ -118,8 +119,7 @@ function createRoleBar(role, rank, rankId){
         }
     }
 
-    theCurrentGroup.scroller.node.setTouchEnabled(true, false);
-    layer.owner.menuRoot.setTouchPriority(theCurrentGroup.scroller.node.getTouchPriority()+1);
+    layer.owner.menuRoot.setTouchPriority(theCurrentGroup.scroller.getTouchPriority()+1);
 
     layer.owner.btnRoleInfo.LAYER = layer;
     layer.ROLE = role;
@@ -488,6 +488,28 @@ function onWorld() {
     setModeTag(theMode);
 }
 
+function scTouchBegan(touch, event){
+    posBegan = touch.getLocation();
+    debug("posBegan:"+JSON.stringify(posBegan));
+}
+
+function scTouchMoved(touch, event){
+    scrolling = true;
+}
+
+function scTouchEnded(touch, event){
+    posEnded = touch.getLocation();
+    if( posBegan != null ){
+        var dist = cc.pDistance(posBegan, posEnded);
+        if( dist > 10 ){
+            scrolling = true;
+        }else{
+            scrolling = false;
+        }
+    }
+    debug("posEnded:"+JSON.stringify(posEnded)+"\n dist:"+dist);
+}
+
 function setModeTag(mode){
     var sfc = cc.SpriteFrameCache.getInstance();
     if( mode == MODE_BATTLEPOWER ){
@@ -605,6 +627,16 @@ function onEnter()
     theLayer.update = update;
     node.animationManager.setCompletedAnimationCallback(theLayer, onUIAnimationCompleted);
     node.animationManager.runAnimationsForSequenceNamed("open");
+
+    scrolling = false; posBegan = null; posEnded = null;
+    var groupContent = ["nodeContent", "nodeContentL", "nodeContentR"];
+    for( var k in groupContent){
+        theLayer.owner[groupContent[k]].setTouchEnabled(true);
+        theLayer.owner[groupContent[k]].setTouchPriority(theLayer.ui.scroller.getTouchPriority()-1);
+        theLayer.owner[groupContent[k]].ccTouchBegan = scTouchBegan;
+        theLayer.owner[groupContent[k]].ccTouchMoved = scTouchMoved;
+        theLayer.owner[groupContent[k]].ccTouchEnded = scTouchEnded;
+    }
 
     //set domains
     theLeft = {};

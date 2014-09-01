@@ -1338,6 +1338,6 @@ function translate(language,keyword,args){
             text = text.replace(str, args[k]);
         }
     }
-    debug("text = "+text);
+//    debug("text = "+text);
     return text;
 }
