@@ -38,7 +38,7 @@ void TeebikUAC::initUAC(){
         initTeebik();
         gTeebikInited = true;
     }
-    this->presentLoginView();
+//    this->presentLoginView();
 }
 
 void TeebikUAC::presentLoginView(){
@@ -57,7 +57,7 @@ void TeebikUAC::presentLoginView(){
 
 void TeebikUAC::presentManageView(){
     NSLog(@"presentManageView");
-    [[TeebikGameSdk getInstance] bringMenuAndButtonToFront];
+//    [[TeebikGameSdk getInstance] bringMenuAndButtonToFront];
     [[TeebikGameSdk getInstance] menuShow];
     gTeebikViewOpened = 2;
 }
@@ -195,7 +195,7 @@ void TeebikUAC::getStoreName(std::string &name){
     //your code here
     NSLog(@"sdk init success");
     gTeebikInited = true;
-    [[TeebikGameSdk getInstance] buttonEnable];
+//    [[TeebikGameSdk getInstance] buttonEnable];
 //    CCApplication::sharedApplication()->run();
     NSLog(@"initSuccessCB mpUACD = %p", mpUACD);
 //    mpUACD->onUACReady();
