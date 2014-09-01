@@ -46,7 +46,7 @@ private:
 }
 
 + (TeebikDelegate*) sharedInstance;
-
+- (void) initUacSuccess;
 - (void) setUACDelegate:(UACDelegate*)pInstance;
 - (void) setIAPDelegate:(IAPDelegate*)pInstance;
 - (BOOL) isIAPEnabled;

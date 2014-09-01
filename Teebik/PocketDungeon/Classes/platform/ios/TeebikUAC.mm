@@ -17,6 +17,7 @@ using namespace cocos2d;
 using namespace std;
 
 static bool gTeebikInited = false;
+static bool gTeebikLogging = false;
 static TeebikDelegate* gTeebikDelegate = nil;
 static AlertViewController* gAlertDelegate = nil;
 static int gTeebikViewOpened = 0;
@@ -33,16 +34,18 @@ void initTeebik(){
 
 void TeebikUAC::initUAC(){
     NSLog(@"initUAC");
+    gTeebikLogging = false;
     [[TeebikDelegate sharedInstance] setUACDelegate:this->getUACDelegate()];
     if (!gTeebikInited) {
         initTeebik();
         gTeebikInited = true;
     }
-//    this->presentLoginView();
+    [[TeebikDelegate sharedInstance] initUacSuccess];
 }
 
 void TeebikUAC::presentLoginView(){
     NSLog(@"presentLoginView");
+    gTeebikLogging = true;
     CCDirector::sharedDirector()->pause();
     [TeebikGameSdk getInstance].loginDelegate = [TeebikDelegate sharedInstance];
     BOOL willSilentLogin = YES; //[[TeebikGameSdk getInstance] canSilentLogin];
@@ -190,6 +193,12 @@ void TeebikUAC::getStoreName(std::string &name){
 }
 
 //-------------- Call Back --------------//
+- (void)initUacSuccess{
+    if (mpUACD != nil) {
+        mpUACD->onUACReady();
+    }
+}
+
 // 接口为初始化成功后回调
 - (void)teebikGameSdkWithInitSuccess{
     //your code here
@@ -197,8 +206,9 @@ void TeebikUAC::getStoreName(std::string &name){
     gTeebikInited = true;
 //    [[TeebikGameSdk getInstance] buttonEnable];
 //    CCApplication::sharedApplication()->run();
-    NSLog(@"initSuccessCB mpUACD = %p", mpUACD);
-//    mpUACD->onUACReady();
+    if (!gTeebikLogging && mpUACD != nil) {
+        mpUACD->onUACReady();
+    }
 }
 
 // 接口为初始化失败后回调

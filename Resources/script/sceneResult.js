@@ -56,8 +56,8 @@ function onRoleInfo(sender){
 function onFriendCancel(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
     theFriendLayer.node.runAction(actionPopOut(function(){
-        engine.ui.popLayer();
-//        engine.ui.newScene(loadModule("sceneMain.js").scene());
+//        engine.ui.popLayer();
+        engine.ui.newScene(loadModule("sceneMain.js").scene());
     }))
 }
 
@@ -403,7 +403,7 @@ function onConfirm(sender){
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
     engine.ui.popLayer();
     if( !checkFriendInvite() ){
-//        engine.ui.newScene(loadModule("sceneMain.js").scene());
+        engine.ui.newScene(loadModule("sceneMain.js").scene());
     }
 
 }

@@ -363,8 +363,6 @@
 		53D8B4B31888047E00F2804E /* aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D8B4B11888047E00F2804E /* aes.cpp */; };
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
 		53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F51918FC27AE00C2D3AB /* PPImage.bundle */; };
-		9801F21719A7819D00F16217 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F21619A7819D00F16217 /* libAppsFlyerLib.a */; };
-		9801F22319A781B900F16217 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F22219A781B900F16217 /* libGoogleAnalyticsServices.a */; };
 		9801F22719A7863F00F16217 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F22619A7863F00F16217 /* MapKit.framework */; };
 		98A9012919A70F0D00344A21 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9011219A70F0D00344A21 /* AppController.mm */; };
 		98A9012A19A70F0D00344A21 /* AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A9011319A70F0D00344A21 /* AppStore.plist */; };
@@ -389,8 +387,6 @@
 		98A9013D19A70F0D00344A21 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9012719A70F0D00344A21 /* RootViewController.mm */; };
 		98A9013E19A70F0D00344A21 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012819A70F0D00344A21 /* Settings.bundle */; };
 		98A9015319A723EB00344A21 /* TeebikUAC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9015219A723EB00344A21 /* TeebikUAC.mm */; };
-		98A9015C19A7268A00344A21 /* delfiles.sh in Resources */ = {isa = PBXBuildFile; fileRef = 98A9015519A7268A00344A21 /* delfiles.sh */; };
-		98A9015D19A7268A00344A21 /* libTeebikGameSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9015B19A7268A00344A21 /* libTeebikGameSdk.a */; };
 		98A9015F19A7275700344A21 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9015E19A7275700344A21 /* CoreLocation.framework */; };
 		98A9016119A7278E00344A21 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016019A7278E00344A21 /* MobileCoreServices.framework */; };
 		98A9016319A727D800344A21 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016219A727D800344A21 /* MessageUI.framework */; };
@@ -400,7 +396,11 @@
 		98A9016B19A7283800344A21 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016A19A7283800344A21 /* CoreData.framework */; };
 		98A9016D19A7286900344A21 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016C19A7286900344A21 /* libicucore.dylib */; };
 		98A9016F19A7287900344A21 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016E19A7287900344A21 /* CoreText.framework */; };
-		98A9017819A75DC300344A21 /* libAvazuTrackingSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9017719A75DC300344A21 /* libAvazuTrackingSdk.a */; };
+		98A9E46019B4762200FD91A8 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9E44619B4762200FD91A8 /* libAppsFlyerLib.a */; };
+		98A9E46119B4762200FD91A8 /* libAvazuTrackingSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9E44A19B4762200FD91A8 /* libAvazuTrackingSdk.a */; };
+		98A9E46219B4762200FD91A8 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9E45719B4762200FD91A8 /* libGoogleAnalyticsServices.a */; };
+		98A9E46319B4762200FD91A8 /* delfiles.sh in Resources */ = {isa = PBXBuildFile; fileRef = 98A9E45919B4762200FD91A8 /* delfiles.sh */; };
+		98A9E46419B4762200FD91A8 /* libTeebikGameSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9E45F19B4762200FD91A8 /* libTeebikGameSdk.a */; };
 		98AB486D19AEDC7100CC079F /* blackbox in Resources */ = {isa = PBXBuildFile; fileRef = 98AB486A19AEDC7100CC079F /* blackbox */; };
 		98AB486E19AEDC7100CC079F /* script in Resources */ = {isa = PBXBuildFile; fileRef = 98AB486B19AEDC7100CC079F /* script */; };
 		98AB486F19AEDC7100CC079F /* table in Resources */ = {isa = PBXBuildFile; fileRef = 98AB486C19AEDC7100CC079F /* table */; };
@@ -1243,15 +1243,6 @@
 		53D8B4B21888047E00F2804E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53F9F51918FC27AE00C2D3AB /* PPImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPImage.bundle; sourceTree = "<group>"; };
-		9801F21519A7819D00F16217 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
-		9801F21619A7819D00F16217 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
-		9801F21C19A781B900F16217 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		9801F21D19A781B900F16217 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		9801F21E19A781B900F16217 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		9801F21F19A781B900F16217 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		9801F22019A781B900F16217 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		9801F22119A781B900F16217 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		9801F22219A781B900F16217 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		9801F22619A7863F00F16217 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		98A9011119A70F0D00344A21 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		98A9011219A70F0D00344A21 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -1279,12 +1270,6 @@
 		98A9012819A70F0D00344A21 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		98A9015119A716A100344A21 /* TeebikUAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeebikUAC.h; sourceTree = "<group>"; };
 		98A9015219A723EB00344A21 /* TeebikUAC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TeebikUAC.mm; sourceTree = "<group>"; };
-		98A9015519A7268A00344A21 /* delfiles.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = delfiles.sh; sourceTree = "<group>"; };
-		98A9015719A7268A00344A21 /* MY_BaseListBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MY_BaseListBean.h; sourceTree = "<group>"; };
-		98A9015819A7268A00344A21 /* TBK_TransactionBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBK_TransactionBean.h; sourceTree = "<group>"; };
-		98A9015919A7268A00344A21 /* TeebikGameSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeebikGameSdk.h; sourceTree = "<group>"; };
-		98A9015A19A7268A00344A21 /* TeebikGameSdkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeebikGameSdkDelegate.h; sourceTree = "<group>"; };
-		98A9015B19A7268A00344A21 /* libTeebikGameSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTeebikGameSdk.a; sourceTree = "<group>"; };
 		98A9015E19A7275700344A21 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		98A9016019A7278E00344A21 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		98A9016219A727D800344A21 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -1294,8 +1279,27 @@
 		98A9016A19A7283800344A21 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		98A9016C19A7286900344A21 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		98A9016E19A7287900344A21 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		98A9017619A75DC300344A21 /* AvazuTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvazuTracking.h; sourceTree = "<group>"; };
-		98A9017719A75DC300344A21 /* libAvazuTrackingSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAvazuTrackingSdk.a; sourceTree = "<group>"; };
+		98A9E44519B4762200FD91A8 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
+		98A9E44619B4762200FD91A8 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
+		98A9E44919B4762200FD91A8 /* AvazuTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvazuTracking.h; sourceTree = "<group>"; };
+		98A9E44A19B4762200FD91A8 /* libAvazuTrackingSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAvazuTrackingSdk.a; sourceTree = "<group>"; };
+		98A9E44D19B4762200FD91A8 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		98A9E44E19B4762200FD91A8 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		98A9E44F19B4762200FD91A8 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		98A9E45019B4762200FD91A8 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		98A9E45119B4762200FD91A8 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		98A9E45219B4762200FD91A8 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		98A9E45319B4762200FD91A8 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		98A9E45419B4762200FD91A8 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		98A9E45519B4762200FD91A8 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		98A9E45619B4762200FD91A8 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		98A9E45719B4762200FD91A8 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		98A9E45919B4762200FD91A8 /* delfiles.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = delfiles.sh; sourceTree = "<group>"; };
+		98A9E45B19B4762200FD91A8 /* MY_BaseListBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MY_BaseListBean.h; sourceTree = "<group>"; };
+		98A9E45C19B4762200FD91A8 /* TBK_TransactionBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBK_TransactionBean.h; sourceTree = "<group>"; };
+		98A9E45D19B4762200FD91A8 /* TeebikGameSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeebikGameSdk.h; sourceTree = "<group>"; };
+		98A9E45E19B4762200FD91A8 /* TeebikGameSdkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeebikGameSdkDelegate.h; sourceTree = "<group>"; };
+		98A9E45F19B4762200FD91A8 /* libTeebikGameSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTeebikGameSdk.a; sourceTree = "<group>"; };
 		98AB486A19AEDC7100CC079F /* blackbox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = blackbox; sourceTree = "<group>"; };
 		98AB486B19AEDC7100CC079F /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = "<group>"; };
 		98AB486C19AEDC7100CC079F /* table */ = {isa = PBXFileReference; lastKnownFileType = folder; path = table; sourceTree = "<group>"; };
@@ -1309,8 +1313,8 @@
 				9801F22719A7863F00F16217 /* MapKit.framework in Frameworks */,
 				98A9016F19A7287900344A21 /* CoreText.framework in Frameworks */,
 				98A9016D19A7286900344A21 /* libicucore.dylib in Frameworks */,
+				98A9E46219B4762200FD91A8 /* libGoogleAnalyticsServices.a in Frameworks */,
 				98A9016B19A7283800344A21 /* CoreData.framework in Frameworks */,
-				9801F22319A781B900F16217 /* libGoogleAnalyticsServices.a in Frameworks */,
 				98A9016919A7281800344A21 /* libxml2.2.dylib in Frameworks */,
 				98A9016719A7280200344A21 /* libz.1.2.5.dylib in Frameworks */,
 				98A9016519A727F300344A21 /* libsqlite3.0.dylib in Frameworks */,
@@ -1325,7 +1329,6 @@
 				533FB3CD18841201008925DC /* GameKit.framework in Frameworks */,
 				53A304F918FD30EB001CE8B0 /* libcurl.a in Frameworks */,
 				53A304FA18FD30EB001CE8B0 /* libwebp.a in Frameworks */,
-				98A9015D19A7268A00344A21 /* libTeebikGameSdk.a in Frameworks */,
 				535EF28F17E9447100D0D61D /* libiconv.dylib in Frameworks */,
 				535EF28917E9444D00D0D61D /* libz.dylib in Frameworks */,
 				53885E7B17E93DE400A3A8B4 /* QuartzCore.framework in Frameworks */,
@@ -1335,13 +1338,14 @@
 				53A305B718FD30EC001CE8B0 /* libjs_static.a in Frameworks */,
 				53885E8117E93DE400A3A8B4 /* AudioToolbox.framework in Frameworks */,
 				53885E8317E93DE400A3A8B4 /* AVFoundation.framework in Frameworks */,
+				98A9E46419B4762200FD91A8 /* libTeebikGameSdk.a in Frameworks */,
 				53885E8517E93DE400A3A8B4 /* UIKit.framework in Frameworks */,
 				53885E8717E93DE400A3A8B4 /* Foundation.framework in Frameworks */,
 				53885E8917E93DE400A3A8B4 /* CoreGraphics.framework in Frameworks */,
-				9801F21719A7819D00F16217 /* libAppsFlyerLib.a in Frameworks */,
+				98A9E46019B4762200FD91A8 /* libAppsFlyerLib.a in Frameworks */,
 				5308A0C2188394C0008CEC46 /* libUMFeedback.a in Frameworks */,
-				98A9017819A75DC300344A21 /* libAvazuTrackingSdk.a in Frameworks */,
 				534BEFE717F535E00078CD45 /* StoreKit.framework in Frameworks */,
+				98A9E46119B4762200FD91A8 /* libAvazuTrackingSdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1394,10 +1398,10 @@
 		535EF23A17E942B400D0D61D /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				9801F21A19A781B900F16217 /* GoogleAnalyticsSdk */,
-				9801F21419A7819D00F16217 /* AF-iOS-SDK */,
-				98A9017419A75DC300344A21 /* AvazuTrackingSdk */,
-				98A9015419A7268A00344A21 /* TeebikGameSdk */,
+				98A9E44419B4762200FD91A8 /* AF-iOS-SDK */,
+				98A9E44719B4762200FD91A8 /* AvazuTrackingSdk */,
+				98A9E44B19B4762200FD91A8 /* GoogleAnalyticsSdk */,
+				98A9E45819B4762200FD91A8 /* TeebikGameSdk */,
 				538AC93918EC41170072C7AA /* json */,
 				53243B6C18EC3D2E003BEF42 /* Alixpay.bundle */,
 				5308A0BF188394C0008CEC46 /* libUMFeedback.a */,
@@ -2966,37 +2970,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9801F21419A7819D00F16217 /* AF-iOS-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				9801F21519A7819D00F16217 /* AppsFlyerTracker.h */,
-				9801F21619A7819D00F16217 /* libAppsFlyerLib.a */,
-			);
-			path = "AF-iOS-SDK";
-			sourceTree = "<group>";
-		};
-		9801F21A19A781B900F16217 /* GoogleAnalyticsSdk */ = {
-			isa = PBXGroup;
-			children = (
-				9801F21B19A781B900F16217 /* include */,
-				9801F22219A781B900F16217 /* libGoogleAnalyticsServices.a */,
-			);
-			path = GoogleAnalyticsSdk;
-			sourceTree = "<group>";
-		};
-		9801F21B19A781B900F16217 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				9801F21C19A781B900F16217 /* GAI.h */,
-				9801F21D19A781B900F16217 /* GAIDictionaryBuilder.h */,
-				9801F21E19A781B900F16217 /* GAIFields.h */,
-				9801F21F19A781B900F16217 /* GAILogger.h */,
-				9801F22019A781B900F16217 /* GAITrackedViewController.h */,
-				9801F22119A781B900F16217 /* GAITracker.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		98A9011019A70F0D00344A21 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -3028,40 +3001,75 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
-		98A9015419A7268A00344A21 /* TeebikGameSdk */ = {
+		98A9E44419B4762200FD91A8 /* AF-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				98A9015519A7268A00344A21 /* delfiles.sh */,
-				98A9015619A7268A00344A21 /* include */,
-				98A9015B19A7268A00344A21 /* libTeebikGameSdk.a */,
+				98A9E44519B4762200FD91A8 /* AppsFlyerTracker.h */,
+				98A9E44619B4762200FD91A8 /* libAppsFlyerLib.a */,
 			);
-			path = TeebikGameSdk;
+			path = "AF-iOS-SDK";
 			sourceTree = "<group>";
 		};
-		98A9015619A7268A00344A21 /* include */ = {
+		98A9E44719B4762200FD91A8 /* AvazuTrackingSdk */ = {
 			isa = PBXGroup;
 			children = (
-				98A9015719A7268A00344A21 /* MY_BaseListBean.h */,
-				98A9015819A7268A00344A21 /* TBK_TransactionBean.h */,
-				98A9015919A7268A00344A21 /* TeebikGameSdk.h */,
-				98A9015A19A7268A00344A21 /* TeebikGameSdkDelegate.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		98A9017419A75DC300344A21 /* AvazuTrackingSdk */ = {
-			isa = PBXGroup;
-			children = (
-				98A9017519A75DC300344A21 /* include */,
-				98A9017719A75DC300344A21 /* libAvazuTrackingSdk.a */,
+				98A9E44819B4762200FD91A8 /* include */,
+				98A9E44A19B4762200FD91A8 /* libAvazuTrackingSdk.a */,
 			);
 			path = AvazuTrackingSdk;
 			sourceTree = "<group>";
 		};
-		98A9017519A75DC300344A21 /* include */ = {
+		98A9E44819B4762200FD91A8 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				98A9017619A75DC300344A21 /* AvazuTracking.h */,
+				98A9E44919B4762200FD91A8 /* AvazuTracking.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		98A9E44B19B4762200FD91A8 /* GoogleAnalyticsSdk */ = {
+			isa = PBXGroup;
+			children = (
+				98A9E44C19B4762200FD91A8 /* include */,
+				98A9E45719B4762200FD91A8 /* libGoogleAnalyticsServices.a */,
+			);
+			path = GoogleAnalyticsSdk;
+			sourceTree = "<group>";
+		};
+		98A9E44C19B4762200FD91A8 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				98A9E44D19B4762200FD91A8 /* GAI.h */,
+				98A9E44E19B4762200FD91A8 /* GAIDictionaryBuilder.h */,
+				98A9E44F19B4762200FD91A8 /* GAIEcommerceFields.h */,
+				98A9E45019B4762200FD91A8 /* GAIEcommerceProduct.h */,
+				98A9E45119B4762200FD91A8 /* GAIEcommerceProductAction.h */,
+				98A9E45219B4762200FD91A8 /* GAIEcommercePromotion.h */,
+				98A9E45319B4762200FD91A8 /* GAIFields.h */,
+				98A9E45419B4762200FD91A8 /* GAILogger.h */,
+				98A9E45519B4762200FD91A8 /* GAITrackedViewController.h */,
+				98A9E45619B4762200FD91A8 /* GAITracker.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		98A9E45819B4762200FD91A8 /* TeebikGameSdk */ = {
+			isa = PBXGroup;
+			children = (
+				98A9E45919B4762200FD91A8 /* delfiles.sh */,
+				98A9E45A19B4762200FD91A8 /* include */,
+				98A9E45F19B4762200FD91A8 /* libTeebikGameSdk.a */,
+			);
+			path = TeebikGameSdk;
+			sourceTree = "<group>";
+		};
+		98A9E45A19B4762200FD91A8 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				98A9E45B19B4762200FD91A8 /* MY_BaseListBean.h */,
+				98A9E45C19B4762200FD91A8 /* TBK_TransactionBean.h */,
+				98A9E45D19B4762200FD91A8 /* TeebikGameSdk.h */,
+				98A9E45E19B4762200FD91A8 /* TeebikGameSdkDelegate.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -3164,9 +3172,9 @@
 				98A9013819A70F0D00344A21 /* Icon~iphone.png in Resources */,
 				98A9012C19A70F0D00344A21 /* Default-Portrait@2x~ipad.png in Resources */,
 				53A3104218FD3122001CE8B0 /* PP25Pay.plist in Resources */,
-				98A9015C19A7268A00344A21 /* delfiles.sh in Resources */,
 				98A9013219A70F0D00344A21 /* Icon-Small.png in Resources */,
 				98A9013B19A70F0D00344A21 /* iTunesArtwork in Resources */,
+				98A9E46319B4762200FD91A8 /* delfiles.sh in Resources */,
 				98A9013919A70F0D00344A21 /* Info.plist in Resources */,
 				53A304C418FD30EB001CE8B0 /* ChangeLog in Resources */,
 				53243B6E18EC3D2E003BEF42 /* Alixpay.bundle in Resources */,
