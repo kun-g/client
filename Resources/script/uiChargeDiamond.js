@@ -142,13 +142,15 @@ function updateVIP(){
     else{
         var left = vipInfo.VIP.requirement[curVipLevel+1].rmb - spent;
         var labPos = theLayer.owner.labVipNext.getPosition();
+        debug("uiChargeDiamond 145 labPos = "+JSON.stringify(labPos));
         theLayer.owner.labVipNext.setString(translate(engine.game.language, "uiChargeDiamondVipLevUp",[left,(curVipLevel+1)]));
         var labCont = theLayer.owner.labVipNext.getContentSize();
+        debug("uiChargeDiamond 148 labCont = "+JSON.stringify(labCont));
         theLayer.owner.labVipNext.setVisible(true);
         var textPosX = -labCont.width / 2;//labPos.x - labCont.width / 2;
         var textPosY = -labCont.height / 2;//labPos.y - labCont.height / 2;
         theLayer.owner.labVipNext.setString("");
-
+        debug("uiChargeDiamond 153 textPosX = "+textPosX+"  textPosY = "+textPosY);
         var text = DCTextArea.create();
         text.setDimension(490);
         text.setTextLine(true);
