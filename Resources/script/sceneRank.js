@@ -631,11 +631,13 @@ function onEnter()
     scrolling = false; posBegan = null; posEnded = null;
     var groupContent = ["nodeContent", "nodeContentL", "nodeContentR"];
     for( var k in groupContent){
-        theLayer.owner[groupContent[k]].setTouchEnabled(true);
         theLayer.owner[groupContent[k]].setTouchPriority(theLayer.ui.scroller.getTouchPriority()-1);
+        theLayer.owner[groupContent[k]].setTouchMode(cc.TOUCH_ONE_BY_ONE);
         theLayer.owner[groupContent[k]].ccTouchBegan = scTouchBegan;
         theLayer.owner[groupContent[k]].ccTouchMoved = scTouchMoved;
         theLayer.owner[groupContent[k]].ccTouchEnded = scTouchEnded;
+        theLayer.owner[groupContent[k]].setTouchEnabled(true);
+        
     }
 
     //set domains
