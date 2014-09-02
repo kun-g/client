@@ -490,7 +490,7 @@
 		53744E3518891EFF0096A891 /* PublishVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVersions.h; sourceTree = "<group>"; };
 		5388185F1894A2B500B1E461 /* TDGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDGA.cpp; sourceTree = "<group>"; };
 		538818601894A2B500B1E461 /* TDGA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDGA.h; sourceTree = "<group>"; };
-		53885E7717E93DE400A3A8B4 /* 口袋地下城.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "口袋地下城.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53885E7717E93DE400A3A8B4 /* PocketDungeon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketDungeon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		53885E7C17E93DE400A3A8B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		53885E7E17E93DE400A3A8B4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1466,7 +1466,7 @@
 		53885E7817E93DE400A3A8B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				53885E7717E93DE400A3A8B4 /* 口袋地下城.app */,
+				53885E7717E93DE400A3A8B4 /* PocketDungeon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3077,9 +3077,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		53885E7617E93DE400A3A8B4 /* 口袋地下城 */ = {
+		53885E7617E93DE400A3A8B4 /* PocketDungeon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "口袋地下城" */;
+			buildConfigurationList = 5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "PocketDungeon" */;
 			buildPhases = (
 				53885E7317E93DE400A3A8B4 /* Sources */,
 				53885E7417E93DE400A3A8B4 /* Frameworks */,
@@ -3090,9 +3090,9 @@
 			);
 			dependencies = (
 			);
-			name = "口袋地下城";
+			name = PocketDungeon;
 			productName = PocketDungeon;
-			productReference = 53885E7717E93DE400A3A8B4 /* 口袋地下城.app */;
+			productReference = 53885E7717E93DE400A3A8B4 /* PocketDungeon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3135,7 +3135,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				53885E7617E93DE400A3A8B4 /* 口袋地下城 */,
+				53885E7617E93DE400A3A8B4 /* PocketDungeon */,
 			);
 		};
 /* End PBXProject section */
@@ -3763,7 +3763,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "口袋地下城" */ = {
+		5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "PocketDungeon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5388632417E93DF600A3A8B4 /* Debug */,
