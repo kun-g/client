@@ -41,6 +41,8 @@ var MAGIC_WALL = 0.109756;
 
 var theSkillCdEffect;
 var theFadeInFlag = false;
+var isClicked = false;
+
 
 function onEvent(event)
 {
@@ -609,7 +611,6 @@ function showRevive(potionNeedCount){
 }
 
 function doDungeonResult(win){
-    cc.Director.getInstance().getScheduler().setTimeScale(1.0);//todo?
     DebugRecorderDungeon.saveDebugMsg();
     DebugRecorderDungeon.uninit();
     theLayer.waitResponse = true;
@@ -745,7 +746,7 @@ function onEnter()
     theFadeInFlag = false;
 
     cc.AudioEngine.getInstance().playMusic("battle.mp3", true);
-    cc.Director.getInstance().getScheduler().setTimeScale(2.0);//todo?
+
     //-----------------
     theLayer.actions = new action.Actions();
     theLayer.EffectList = {};
@@ -1041,6 +1042,8 @@ function updateMode()
     else
     {
         theLayer.canControl = true;
+        cc.Director.getInstance().getScheduler().setTimeScale(1.0);
+
     }
 
 //    if( theLayer.canControl != before )
@@ -1782,7 +1785,7 @@ function setCardCount(index, count)
 function setCardCd(index, cd)
 {
     var node = theLayer.card.nodeList.getChildByTag(index);
-    debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
+    //debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
     if( node == null ) return;
     if( node.cd != null )
     {
@@ -1903,9 +1906,22 @@ function onTouchMoved(touch, event)
 function onTouchEnded(touch, event)
 {
     var pos = theLayer.convertToNodeSpace(touch.getLocation());
-    debug("onTouchEnded pos = "+JSON.stringify(pos));
+//    debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
+        //if double clicked, accelerate the game speed until next pace
+        if( isClicked ){
+            isClicked = false;
+            cc.Director.getInstance().getScheduler().setTimeScale(2.0);
+        }else{
+            this.scheduleOnce(function(){
+                if( isClicked ){
+                    isClicked = false;
+                }
+            }, 0.5);
+            isClicked = true;
+        }
+
         if( theLayer.canControl )
         {
             var dis = cc.pDistance(theLayer.touchBegin, pos);

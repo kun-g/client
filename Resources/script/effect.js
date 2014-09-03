@@ -236,7 +236,7 @@ function attachEffect(node, offset, effectId, mode, dropCid, flipX)
     eff.animationManager.setCompletedAnimationCallback(eff, onEffectCompleted);
     eff.setPosition(offset);
     if( flipX != null ){
-        eff.setFlipX(flipX? -1: 1);
+        eff.setScaleX(flipX? -1: 1);
     }
     node.addChild(eff);
 
