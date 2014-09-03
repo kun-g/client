@@ -4473,7 +4473,7 @@ exports.data = [
         "config": {
             "basic" : {
                 "spellAction": 2,
-                "spellEffect": 13,
+                "spellEffect": 66,
                 "spellDelay": 0.3
             },
             "targetSelection": {
@@ -4569,7 +4569,7 @@ exports.data = [
         "config": {
             "basic" : {
                 "spellAction":4,
-                "spellEffect": 9,
+                "spellEffect": 68,
                 "targetEffect": 15,
                 "spellDelay": 0,
                 "targetDelay": 0
@@ -4650,9 +4650,7 @@ exports.data = [
                 "filter": [{"type":"alive"},{"type":"visible"},{"type":"target-faction-with-flag","flag":"attackable"},{"type":"shuffle"},{"type":"count","count":3}]
             },
             "action": [
-                { "type": "damage","damageType":"Spell","isRange":true,"delay":0.8},
-                {"type": "playEffect","effect":44,"act":"self"},
-                {"type": "playEffect","effect":0,"act":"target","delay":0.6},
+                { "type": "damage","damageType":"Spell","isRange":true, "hurtDelay": 0.6, "effDelay": 0.3, "effect":65 },
                 {"type": "blink","delay":0.6,"time":0.08},
                 {"type":"shock","delay":0.6,"range":5,"time":0.2}
             ],
@@ -4671,7 +4669,7 @@ exports.data = [
         "slotId": 1,
         "config": {
             "triggerCondition": [
-                { "type": "event", "event": "onTurnBegin" },
+                { "type": "event", "event": "onTurnEnd" },
                 { "type":"alive" }
             ],
             "targetSelection": {
@@ -4727,7 +4725,7 @@ exports.data = [
             "action": [
                 {"type":"delay"},
                 { "type": "installSpell", "spell": 205},
-                {"type": "playEffect","effect":36,"pos":"target"}
+                {"type": "playEffect","effect":70,"pos":"target"}
             ],
             "levelConfig" : [
                 { "chance":0.25, "level": 1 },
@@ -4782,8 +4780,6 @@ exports.data = [
             },
             "triggerCondition": [
                 { "type": "event", "event": "onPhysicalDamage" },
-                { "type": "event", "event": "onSpellDamage"  },
-                { "type": "event", "event": "onSpellRangeDamage" },
                 { "type": "chance" }
             ],
             "targetSelection": {
@@ -4799,9 +4795,9 @@ exports.data = [
                 { "type": "shock","delay":0.6,"range":5,"time":0.2}
             ],
             "levelConfig":[
-                { "chance":0.1,"formular": {"src":{"attack":0.3}}, "level": 1},
-                { "chance":0.2,"formular": {"src":{"attack":0.45}}, "level": 2},
-                { "chance":0.3,"formular": {"src":{"attack":0.6}}, "level": 3}
+                { "chance":0,"formular": {"src":{"attack":0.3}}, "level": 1},
+                { "chance":0,"formular": {"src":{"attack":0.45}}, "level": 2},
+                { "chance":0,"formular": {"src":{"attack":0.6}}, "level": 3}
             ]
         }
     },
@@ -4845,7 +4841,7 @@ exports.data = [
         "config":{
             "basic":{
                 "spellAction": 1,
-                "targetEffect": 13,
+                "targetEffect": 71,
                 "spellDelay": 0.3,
                 "targetDelay": 0.3
             },
@@ -4899,7 +4895,7 @@ exports.data = [
         "config": {
             "basic": {
                 "spellAction":1,
-                "spellEffect": 47,
+                "spellEffect": 64,
                 "targetEffect": 48,
                 "spellDelay": 0.3,
                 "targetDelay": 0.7
@@ -4931,7 +4927,7 @@ exports.data = [
             "basic" : {
                 "spellAction":4,
                 "spellEffect": 9,
-                "targetEffect": 1 ,
+                "targetEffect": 67 ,
                 "spellDelay": 0,
                 "targetDelay": 0
             },

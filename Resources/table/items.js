@@ -28089,8 +28089,8 @@ exports.data = [
                 "file": "m-warriorn-mainweapon1.ccbi"
             }
         ],
-        "soundAttack": "attackzhanshi.mp3",
-        "effectAttack": 57
+        "effectAttack": 57,
+        "soundAttack": "attackzhanshi.mp3"
     },
     {
         "classId": 883,

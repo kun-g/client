@@ -1,0 +1,17 @@
+{
+	"packageUrl":"http://localhost/develop/153/",
+	"remoteManifestUrl":"http://localhost/develop/153/project.manifest",
+	"remoteVersionUrl":"http://localhost/develop/153/version.manifest",
+	"engineVersion":"3.0 rc0",
+	"version" : "153",
+	"branch": "master",
+	"prevVersion" : 152,
+	"engineVersion" : "3.0 dev",
+
+	"files": [
+	
+	], 
+
+	"assets": {
+	}
+}
