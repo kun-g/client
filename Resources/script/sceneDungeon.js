@@ -609,6 +609,7 @@ function showRevive(potionNeedCount){
 }
 
 function doDungeonResult(win){
+    cc.Director.getInstance().getScheduler().setTimeScale(1.0);//todo?
     DebugRecorderDungeon.saveDebugMsg();
     DebugRecorderDungeon.uninit();
     theLayer.waitResponse = true;
@@ -744,7 +745,7 @@ function onEnter()
     theFadeInFlag = false;
 
     cc.AudioEngine.getInstance().playMusic("battle.mp3", true);
-
+    cc.Director.getInstance().getScheduler().setTimeScale(2.0);//todo?
     //-----------------
     theLayer.actions = new action.Actions();
     theLayer.EffectList = {};
