@@ -170,15 +170,30 @@ echo "------ end of list ------"
 PACK_DIR=updatePack/update/$COMMAND/$NEW_VERSION/
 mkdir -p PACK_DIR
 
-# 6.6
+# 6.6 gen manifest
+cp updateTempl/*.manifest $PACK_DIR
+
+HOST='http://localhost/'
+URL=$HOST$COMMAND/$NEW_VERSION/
+#LAST_VERSION NEW_VERSION
+FILES=`echo $CHANGES | sed 's/\(.*\)/"\1",/'`
+ASSERT=`echo $CHANGES | sed 's/\(.*\)/"\1":{ "md5" : "..."},/'`
+
+for f in `ls $PACK_DIR'` do
+    sed -i 's/URL/'$URL'/' $f
+    sed -i 's/VERS/'$NEW_VERSION'/' $f
+    sed -i 's/PVERS/'$LAST_VERSION'/' $f
+    sed -i 's/FILES/'$FILES'/' $f
+    sed -i 's/ASSERT/'$ASSERT'/' $f
+done
 
 #6.7 copy 2 update dir
 for TAR in $CHANGES
 do
     FILE_PATH=`echo $TAR | awk 'BEGIN{FS="'$RES_PATH'"} { print $1}'`
-    c
-    UPDATE_DST=
-    UpdateFile $TAR
+    cp $TAR $PACK_DIR/$FILE_PATH
+#UPDATE_DST=
+#UpdateFile $TAR
 done
 
 
