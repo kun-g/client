@@ -157,8 +157,13 @@ CHANGES=`git diff $LAST_TAG..$NEW_TAG --name-status -- $RES_PATH | awk 'BEGIN{FS
 echo "------ update list ------"
 for TAR in $CHANGES
 do
-	UpdateFile $TAR
+    echo $TAR
+    #UpdateFile $TAR
 done
+
+exit
+#for debug
+
 echo "------ end of list ------"
 
 echo "NOTICE: The update content is about to be packed. You may manually interfere with the update content by now."
