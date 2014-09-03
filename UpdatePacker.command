@@ -157,14 +157,32 @@ CHANGES=`git diff $LAST_TAG..$NEW_TAG --name-status -- $RES_PATH | awk 'BEGIN{FS
 echo "------ update list ------"
 for TAR in $CHANGES
 do
-    echo $TAR
-    #UpdateFile $TAR
+#echo $TAR
+    UpdateFile $TAR
 done
 
 exit
 #for debug
 
 echo "------ end of list ------"
+
+#6.5 gen update dir
+PACK_DIR=updatePack/update/$COMMAND/$NEW_VERSION/
+mkdir -p PACK_DIR
+
+# 6.6
+
+#6.7 copy 2 update dir
+for TAR in $CHANGES
+do
+    FILE_PATH=`echo $TAR | awk 'BEGIN{FS="'$RES_PATH'"} { print $1}'`
+    c
+    UPDATE_DST=
+    UpdateFile $TAR
+done
+
+
+
 
 echo "NOTICE: The update content is about to be packed. You may manually interfere with the update content by now."
 read -p "When you are ready, Press any key to continue..."
