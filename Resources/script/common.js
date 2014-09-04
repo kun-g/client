@@ -741,7 +741,7 @@ var DCTextArea = cc.Layer.extend({
         //recalc size
         this.setContentSize(cc.size(this.TEXT_WIDTH, this.TEXT_HEIGHT));
     },
-    pushMarkdown: function(content){
+    pushMarkdown: function(content, activity){
         content = content.replace("\n\r", "\n");
         content = content.replace("\r", "\n");
         var segments = content.split("\n\n");
@@ -754,7 +754,7 @@ var DCTextArea = cc.Layer.extend({
                 this.pushText({//push desc
                     text: strTitle,
                     size: UI_SIZE_XL,
-                    color: cc.c3b(236, 199, 101)
+                    color: (activity? cc.c3b(190, 36, 0):cc.c3b(236, 199, 101))
                 });
                 this.pushText({text: "  "});
             }
@@ -763,7 +763,7 @@ var DCTextArea = cc.Layer.extend({
                 this.pushText({//push desc
                     text: strTitle,
                     size: UI_SIZE_L,
-                    color: cc.c3b(95, 187, 38)
+                    color: (activity? cc.c3b(18, 49, 17):cc.c3b(95, 187, 38))
                 });
             }
             else if( regPz.test(seg) ){//奖励
@@ -776,7 +776,7 @@ var DCTextArea = cc.Layer.extend({
                     error("Markdown: Parse failed: \n"+strPrize);
                 }
                 var libItem = loadModule("xitem.js");
-                var prize = libItem.ItemPreview.create(prz, cc.size(this.DIMENSION.width, 0));
+                var prize = libItem.ItemPreview.create(prz, cc.size(this.DIMENSION.width, 0), cc.c3b(55,37,20));
                 var height = prize.getContentSize().height;
                 if( prize.getContentSize().width > this.TEXT_WIDTH )
                 {

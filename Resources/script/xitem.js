@@ -773,7 +773,7 @@ function queryPrize(pit, treasureDisplayFlag){
         case PRIZETYPE_DIAMOND:{//diamond
             strIcon = "mission-jewel.png";
             if ( pit.count != null ){
-                strLabel = pit.count+translate(engine.game.language, "xitemDiamond");
+                strLabel = pit.count /*+translate(engine.game.language, "xitemDiamond")*/;
             }
             else{
                 strLabel = translate(engine.game.language, "xitemDiamond");
@@ -1008,11 +1008,14 @@ ItemPreview.createRaw = function(dimension){
     return ret;
 }
 
-ItemPreview.create = function(pvs, dimension){
+ItemPreview.create = function(pvs, dimension, color){
     var ret = new ItemPreview();
     ret.init();
     if( dimension != null ){
         ret.setDimension(dimension);
+    }
+    if( color != null ){
+        ret.setTextColor(color);
     }
     if( pvs != null ){
         ret.setPreview(pvs);
