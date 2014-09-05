@@ -41,6 +41,8 @@ var MAGIC_WALL = 0.109756;
 
 var theSkillCdEffect;
 var theFadeInFlag = false;
+var isClicked = false;
+
 
 function onEvent(event)
 {
@@ -631,12 +633,12 @@ function doDungeonResult(win){
             eff.owner = owner;
 
             var libSceneRank = loadModule("sceneRank.js");
-            var barMe = libSceneRank.createRoleBar(engine.user.actor, engine.session.PkInfo.rnk+1, RANK_PVP);
-            barMe.setPosition(cc.p(-291, -68));
-            eff.owner.nodeMe.addChild(barMe);
             var roleRival = new role.Role(engine.session.PkInfo.curRival);
             roleRival.fix();
-            var barHim = libSceneRank.createRoleBar(roleRival, roleRival.Rank+1, RANK_PVP);
+            var barMe = libSceneRank.createRoleBar(engine.user.actor, roleRival.Rank+1, RANK_PVP);
+            var barHim = libSceneRank.createRoleBar(roleRival, engine.session.PkInfo.rnk+1, RANK_PVP);
+            barMe.setPosition(cc.p(-291, -68));
+            eff.owner.nodeMe.addChild(barMe);
             barHim.setPosition(cc.p(-291, -68));
             eff.owner.nodeHim.addChild(barHim);
             eff.setPosition(cc.p(winSize.width/2, winSize.height/2));
@@ -1019,9 +1021,12 @@ function update(delta)
         //game really over
         if( hasResult ){
             engine.ui.newScene(loadModule("sceneResult.js").scene());
+//            engine.ui.popLayer();
+//            loadModule("sceneResult.js").show(); //todo?
         }
         else{
             engine.ui.newScene(loadModule("sceneMain.js").scene());
+//            engine.ui.popLayer(); //todo?
         }
     }
 }
@@ -1037,6 +1042,8 @@ function updateMode()
     else
     {
         theLayer.canControl = true;
+        cc.Director.getInstance().getScheduler().setTimeScale(1.0);
+
     }
 
 //    if( theLayer.canControl != before )
@@ -1778,7 +1785,7 @@ function setCardCount(index, count)
 function setCardCd(index, cd)
 {
     var node = theLayer.card.nodeList.getChildByTag(index);
-    debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
+    //debug("sceneDungeon->setCardCd->: Children of theLayer.card.nodeList\n"+JSON.stringify(theLayer.card.nodeList.getChildren()));
     if( node == null ) return;
     if( node.cd != null )
     {
@@ -1899,9 +1906,25 @@ function onTouchMoved(touch, event)
 function onTouchEnded(touch, event)
 {
     var pos = theLayer.convertToNodeSpace(touch.getLocation());
-    debug("onTouchEnded pos = "+JSON.stringify(pos));
+//    debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
+        //if double clicked, accelerate the game speed until next pace
+//        debug("isClicked:"+isClicked);
+        if( isClicked ){
+            isClicked = false;
+            cc.Director.getInstance().getScheduler().setTimeScale(2.0);
+        }else{
+            this.scheduleOnce(function(){
+                if( isClicked ){
+                    isClicked = false;
+//                    debug("isClicked set "+isClicked);
+                }
+            }, 1.0);
+            isClicked = true;
+//            debug("isClicked set "+isClicked);
+        }
+
         if( theLayer.canControl )
         {
             var dis = cc.pDistance(theLayer.touchBegin, pos);

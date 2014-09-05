@@ -585,6 +585,8 @@ function popDailyQuest(){
     refreshDailyQuest();
 
     layer.setTouchEnabled(true);
+
+    layer.schedule(refreshDailyQuest, 5);
 }
 
 exports.updateDailyQuest = updateDailyQuest;

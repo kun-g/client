@@ -145,10 +145,7 @@ function updateVIP(){
         theLayer.owner.labVipNext.setString(translate(engine.game.language, "uiChargeDiamondVipLevUp",[left,(curVipLevel+1)]));
         var labCont = theLayer.owner.labVipNext.getContentSize();
         theLayer.owner.labVipNext.setVisible(true);
-        var textPosX = -labCont.width / 2;//labPos.x - labCont.width / 2;
-        var textPosY = -labCont.height / 2;//labPos.y - labCont.height / 2;
         theLayer.owner.labVipNext.setString("");
-
         var text = DCTextArea.create();
         text.setDimension(490);
         text.setTextLine(true);
@@ -159,6 +156,11 @@ function updateVIP(){
         });
         text.pushText({//push desc
             text: left,
+            color: COLOR_UID_YELLOW,
+            size: UI_SIZE_XS
+        });
+        text.pushText({//push desc
+            text: translate(engine.game.language, "uiChargeDiamondYuan"),
             color: COLOR_UID_YELLOW,
             size: UI_SIZE_XS
         });
@@ -174,11 +176,13 @@ function updateVIP(){
         });
         text.pushText({//push desc
             text: translate(engine.game.language, "uiChargeDiamondVIPLevel"),
-            color: cc.c3b(255, 255, 255),
+            color: COLOR_UID_RED,
             size: UI_SIZE_XS
         });
+        var textPosX = -labCont.width / 2;
+        var textPosY = -11;//-labCont.height / 2;
         text.setPosition(cc.p(textPosX, textPosY));
-        theLayer.owner.labVipNext.addChild(text);
+        theLayer.owner.nodeVipNext.addChild(text);
     }
     //show now
     var sfc = cc.SpriteFrameCache.getInstance();
@@ -284,9 +288,9 @@ function onEnter()
     theLayer.scheduleUpdate();
 
     //shutdown monthcard
-    theLayer.owner.nodePurMC.setVisible(false);
-    theLayer.owner.nodeHasMC.setVisible(false);
-    theLayer.owner.btnMonthCard.setVisible(false);
+    // theLayer.owner.nodePurMC.setVisible(false);
+    // theLayer.owner.nodeHasMC.setVisible(false);
+    // theLayer.owner.btnMonthCard.setVisible(false);
 }
 
 function onClose(sender)

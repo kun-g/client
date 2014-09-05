@@ -56,6 +56,7 @@ function onRoleInfo(sender){
 function onFriendCancel(sender){
     cc.AudioEngine.getInstance().playEffect("cancel.mp3");
     theFriendLayer.node.runAction(actionPopOut(function(){
+//        engine.ui.popLayer();
         engine.ui.newScene(loadModule("sceneMain.js").scene());
     }))
 }
@@ -400,9 +401,11 @@ function onConfirm(sender){
         theWXPSound = -1;
     }
     cc.AudioEngine.getInstance().playEffect("card2.mp3");
+    engine.ui.popLayer();
     if( !checkFriendInvite() ){
         engine.ui.newScene(loadModule("sceneMain.js").scene());
     }
+
 }
 
 function onItem(sender) {
@@ -536,6 +539,13 @@ function scene(){
     }
 }
 
+function show(){
+    engine.ui.newLayer({
+        onEnter: onEnter,
+        onExit: onExit
+    });
+}
+
 function setResult(result){
     theResult = result;
     initResult();
@@ -547,4 +557,5 @@ function setParty(party){
 
 exports.setResult = setResult;
 exports.scene = scene;
+exports.show = show;
 exports.setParty = setParty;

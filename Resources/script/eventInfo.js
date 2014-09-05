@@ -141,7 +141,7 @@ function loadEventDesc(quest){
         text.pushText({text: "  "});
     }
     if( quest.desc != null ){
-        text.pushMarkdown(quest.desc);
+        text.pushMarkdown(quest.desc, true);
         size = text.getContentSize();
     }
     if( quest.date != null ){
