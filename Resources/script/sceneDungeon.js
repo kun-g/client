@@ -1910,7 +1910,7 @@ function onTouchEnded(touch, event)
     if( theLayer.touchMode == TOUCH_GRID )
     {
         //if double clicked, accelerate the game speed until next pace
-        debug("isClicked:"+isClicked);
+//        debug("isClicked:"+isClicked);
         if( isClicked ){
             isClicked = false;
             cc.Director.getInstance().getScheduler().setTimeScale(2.0);
@@ -1918,11 +1918,11 @@ function onTouchEnded(touch, event)
             this.scheduleOnce(function(){
                 if( isClicked ){
                     isClicked = false;
-                    debug("isClicked set "+isClicked);
+//                    debug("isClicked set "+isClicked);
                 }
             }, 1.0);
             isClicked = true;
-            debug("isClicked set "+isClicked);
+//            debug("isClicked set "+isClicked);
         }
 
         if( theLayer.canControl )
