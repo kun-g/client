@@ -182,7 +182,7 @@ function updateVIP(){
             color: COLOR_UID_RED,
             size: UI_SIZE_XS
         });
-        text.setPosition(cc.p(textPosX, textPosY));
+        text.setPosition(cc.p(textPosX, -text.TEXT_HEIGHT / 2));
         theLayer.owner.labVipNext.addChild(text);
     }
     //show now
