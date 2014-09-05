@@ -59,13 +59,13 @@
             <key>creat-mageicon2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,471},{166,435}}</string>
+                <string>{{2,471},{166,431}}</string>
                 <key>offset</key>
-                <string>{0,15}</string>
+                <string>{0,17}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,0},{166,435}}</string>
+                <string>{{3,0},{166,431}}</string>
                 <key>sourceSize</key>
                 <string>{172,465}</string>
             </dict>
@@ -111,13 +111,13 @@
             <key>creat-priesticon2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{506,338},{166,435}}</string>
+                <string>{{2,303},{166,431}}</string>
                 <key>offset</key>
-                <string>{0,15}</string>
+                <string>{0,17}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,0},{166,435}}</string>
+                <string>{{3,0},{166,431}}</string>
                 <key>sourceSize</key>
                 <string>{172,465}</string>
             </dict>
@@ -146,6 +146,19 @@
                 <string>{{0,0},{124,104}}</string>
                 <key>sourceSize</key>
                 <string>{124,104}</string>
+            </dict>
+            <key>creat-sjzx.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{973,282},{110,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{110,32}}</string>
+                <key>sourceSize</key>
+                <string>{110,32}</string>
             </dict>
             <key>creat-title-cjjs.png</key>
             <dict>
@@ -189,15 +202,28 @@
             <key>creat-warrioricon2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,303},{166,435}}</string>
+                <string>{{506,338},{166,431}}</string>
                 <key>offset</key>
-                <string>{0,15}</string>
+                <string>{0,17}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,0},{166,435}}</string>
+                <string>{{3,0},{166,431}}</string>
                 <key>sourceSize</key>
                 <string>{172,465}</string>
+            </dict>
+            <key>creat-xzxb.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{973,170},{110,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{110,32}}</string>
+                <key>sourceSize</key>
+                <string>{110,32}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -209,7 +235,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3d6d57bbd0c0f3e27f63fa7cdf5805c8$</string>
+            <string>$TexturePacker:SmartUpdate:3c611758913e1cd2867ebdb2d6e3fc3d$</string>
             <key>textureFileName</key>
             <string>newuser.png</string>
         </dict>

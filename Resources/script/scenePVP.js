@@ -23,10 +23,10 @@ var theRivalsList;
 var theRival;
 var myPkInfo;
 var myRank;
-var PKINFO_UPDATE_PERIOD = 60; // unit: s
+var PKINFO_UPDATE_PERIOD = 5; // unit: s
 
 function getPkRivals() {
-    libUIKit.waitRPC(Request_GetPkRivals, {}, function(rsp) {
+    engine.event.sendRPCEvent(Request_GetPkRivals, {}, function(rsp) {
         if( rsp.RET == RET_OK ){
             theRivalsList = rsp.arg;
             loadPkRivals();
@@ -201,7 +201,7 @@ function onEnter() {
     engine.ui.regMenu(this.owner.menuRoot);
 
     loadMyInfo();
-//    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
+    this.schedule(loadMyInfo, PKINFO_UPDATE_PERIOD);
     //register broadcast
     loadModule("broadcastx.js").instance.simpleInit(this);
 }

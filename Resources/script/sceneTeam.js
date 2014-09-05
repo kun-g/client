@@ -82,6 +82,7 @@ function onStart(sender)
     }
 
     requestBattle(engine.user.dungeon.stage, party);
+//    engine.ui.popLayer();
 }
 
 function updateRoleInfo(id, role)

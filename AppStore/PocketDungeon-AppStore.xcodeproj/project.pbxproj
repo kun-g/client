@@ -1405,22 +1405,22 @@
 		53885E7917E93DE400A3A8B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53C284D518FFC13D00725B8F /* CoreTelephony.framework */,
-				531F129E18895FA8004E036F /* Security.framework */,
-				533FB3CC18841201008925DC /* GameKit.framework */,
 				535615CA18113104008298BF /* AdSupport.framework */,
-				534BEFE617F535E00078CD45 /* StoreKit.framework */,
-				535EF28E17E9447100D0D61D /* libiconv.dylib */,
-				535EF28A17E9445800D0D61D /* SystemConfiguration.framework */,
-				535EF28817E9444C00D0D61D /* libz.dylib */,
-				53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */,
-				53885E7C17E93DE400A3A8B4 /* OpenGLES.framework */,
-				53885E7E17E93DE400A3A8B4 /* OpenAL.framework */,
 				53885E8017E93DE400A3A8B4 /* AudioToolbox.framework */,
 				53885E8217E93DE400A3A8B4 /* AVFoundation.framework */,
-				53885E8417E93DE400A3A8B4 /* UIKit.framework */,
-				53885E8617E93DE400A3A8B4 /* Foundation.framework */,
 				53885E8817E93DE400A3A8B4 /* CoreGraphics.framework */,
+				53C284D518FFC13D00725B8F /* CoreTelephony.framework */,
+				53885E8617E93DE400A3A8B4 /* Foundation.framework */,
+				533FB3CC18841201008925DC /* GameKit.framework */,
+				535EF28E17E9447100D0D61D /* libiconv.dylib */,
+				535EF28817E9444C00D0D61D /* libz.dylib */,
+				53885E7E17E93DE400A3A8B4 /* OpenAL.framework */,
+				53885E7C17E93DE400A3A8B4 /* OpenGLES.framework */,
+				53885E7A17E93DE400A3A8B4 /* QuartzCore.framework */,
+				531F129E18895FA8004E036F /* Security.framework */,
+				534BEFE617F535E00078CD45 /* StoreKit.framework */,
+				535EF28A17E9445800D0D61D /* SystemConfiguration.framework */,
+				53885E8417E93DE400A3A8B4 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
