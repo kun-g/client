@@ -385,7 +385,6 @@
 		98A9013B19A70F0D00344A21 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012419A70F0D00344A21 /* iTunesArtwork */; };
 		98A9013C19A70F0D00344A21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A9012519A70F0D00344A21 /* main.m */; };
 		98A9013D19A70F0D00344A21 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9012719A70F0D00344A21 /* RootViewController.mm */; };
-		98A9013E19A70F0D00344A21 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012819A70F0D00344A21 /* Settings.bundle */; };
 		98A9015319A723EB00344A21 /* TeebikUAC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9015219A723EB00344A21 /* TeebikUAC.mm */; };
 		98A9015F19A7275700344A21 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9015E19A7275700344A21 /* CoreLocation.framework */; };
 		98A9016119A7278E00344A21 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A9016019A7278E00344A21 /* MobileCoreServices.framework */; };
@@ -1267,7 +1266,6 @@
 		98A9012519A70F0D00344A21 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		98A9012619A70F0D00344A21 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		98A9012719A70F0D00344A21 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
-		98A9012819A70F0D00344A21 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		98A9015119A716A100344A21 /* TeebikUAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeebikUAC.h; sourceTree = "<group>"; };
 		98A9015219A723EB00344A21 /* TeebikUAC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TeebikUAC.mm; sourceTree = "<group>"; };
 		98A9015E19A7275700344A21 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2996,7 +2994,6 @@
 				98A9012519A70F0D00344A21 /* main.m */,
 				98A9012619A70F0D00344A21 /* RootViewController.h */,
 				98A9012719A70F0D00344A21 /* RootViewController.mm */,
-				98A9012819A70F0D00344A21 /* Settings.bundle */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -3205,7 +3202,6 @@
 				5308A0C3188394C0008CEC46 /* umFeedback.bundle in Resources */,
 				98A9013619A70F0D00344A21 /* Icon@2x~ipad.png in Resources */,
 				98AB486D19AEDC7100CC079F /* blackbox in Resources */,
-				98A9013E19A70F0D00344A21 /* Settings.bundle in Resources */,
 				53A30DBD18FD3121001CE8B0 /* jsb_chipmunk_constants.jsc in Resources */,
 				98A9013419A70F0D00344A21 /* Icon.png in Resources */,
 				53A30DBC18FD3121001CE8B0 /* jsb_chipmunk.jsc in Resources */,
