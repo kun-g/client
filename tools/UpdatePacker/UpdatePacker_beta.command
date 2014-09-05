@@ -157,9 +157,47 @@ CHANGES=`git diff $LAST_TAG..$NEW_TAG --name-status -- $RES_PATH | awk 'BEGIN{FS
 echo "------ update list ------"
 for TAR in $CHANGES
 do
-	UpdateFile $TAR
+#echo $TAR
+    UpdateFile $TAR
 done
+
+exit
+#for debug
+
 echo "------ end of list ------"
+
+#6.5 gen update dir
+PACK_DIR=updatePack/update/$COMMAND/$NEW_VERSION/
+mkdir -p PACK_DIR
+
+# 6.6 gen manifest
+cp updateTempl/*.manifest $PACK_DIR
+
+HOST='http://localhost/'
+URL=$HOST$COMMAND/$NEW_VERSION/
+#LAST_VERSION NEW_VERSION
+FILES=`echo $CHANGES | sed 's/\(.*\)/"\1",/'`
+ASSERT=`echo $CHANGES | sed 's/\(.*\)/"\1":{ "md5" : "..."},/'`
+
+for f in `ls $PACK_DIR'` do
+    sed -i 's/URL/'$URL'/' $f
+    sed -i 's/VERS/'$NEW_VERSION'/' $f
+    sed -i 's/PVERS/'$LAST_VERSION'/' $f
+    sed -i 's/FILES/'$FILES'/' $f
+    sed -i 's/ASSERT/'$ASSERT'/' $f
+done
+
+#6.7 copy 2 update dir
+for TAR in $CHANGES
+do
+    FILE_PATH=`echo $TAR | awk 'BEGIN{FS="'$RES_PATH'"} { print $1}'`
+    cp $TAR $PACK_DIR/$FILE_PATH
+#UPDATE_DST=
+#UpdateFile $TAR
+done
+
+
+
 
 echo "NOTICE: The update content is about to be packed. You may manually interfere with the update content by now."
 read -p "When you are ready, Press any key to continue..."
