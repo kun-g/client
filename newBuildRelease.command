@@ -131,5 +131,15 @@ if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
     build
 fi
 
+BUILD_FOLDER="Teebik"
+APP_NAME="PocketDungeon.app"
+PACKAGE_NAME="PocketDungeon_Teebik.ipa"
+if [ $isPause == 1 ]; then
+    read -p "> Type 'Y' to build "$BUILD_FOLDER" version, type other key to skip: " CMDIPA
+fi
+if [ $isPause == 0 ] || [ "$CMDIPA" == 'Y' ] || [ "$CMDIPA" == 'y' ]; then
+    build
+fi
+
 #debug
 read -p "Press [Enter] key to continue..."

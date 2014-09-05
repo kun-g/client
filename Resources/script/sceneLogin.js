@@ -375,8 +375,9 @@ function invokeLogin()
 function startLogin()
 {
     theLayer.loadingCircle.setVisible(false);
-
+    debug("startLogin1");
     updateLoading(translate(engine.game.language, "sceneLoginLogining2"), 0.05);
+    debug("startLogin2");
     uac.setDelegate(uacDelegate);
     uac.init();
 }
@@ -496,9 +497,7 @@ function onEnter()
     engine.event.releaseNotifications();
     debug("- LOGIN ENTER -");
 
-    //test translate
-    debug("test = "+translate(engine.game.language, "test"));
-    debug("test1 = "+translate(engine.game.language, "test1", [1,5,6]));//{val1:1, val2:5, val3:6}
+
     //91 special process
 //    if( iap.getStoreName() == "Nd91" ){
 //        onStartGame();

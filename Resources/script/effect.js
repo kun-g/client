@@ -225,7 +225,7 @@ function attachEffectCCBI(parent, pos, file, mode, z, scale){
     return node;
 }
 
-function attachEffect(node, offset, effectId, mode, dropCid)
+function attachEffect(node, offset, effectId, mode, dropCid, flipX)
 {
     if( mode == null )
     {
@@ -235,6 +235,9 @@ function attachEffect(node, offset, effectId, mode, dropCid)
     eff.MODE = mode;
     eff.animationManager.setCompletedAnimationCallback(eff, onEffectCompleted);
     eff.setPosition(offset);
+    if( flipX != null ){
+        eff.setScaleX(flipX? -1: 1);
+    }
     node.addChild(eff);
 
     node.setCompleteCallback = setEffectCallback;

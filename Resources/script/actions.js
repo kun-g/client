@@ -572,7 +572,7 @@ function makeAttack(pace, act)
                         if( this.hit != null )
                         {
                             this.funcHit = function () {
-                                libEffect.attachEffect(layer.effects, target.getPosition(), hitEffId);
+                                libEffect.attachEffect(layer.effects, target.getPosition(), hitEffId, null, null, actor.getFlipX());
                             };
                         }
                     }
