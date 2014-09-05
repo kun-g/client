@@ -163,6 +163,11 @@ function updateVIP(){
             size: UI_SIZE_XS
         });
         text.pushText({//push desc
+            text: translate(engine.game.language, "uiChargeDiamondYuan"),
+            color: COLOR_UID_YELLOW,
+            size: UI_SIZE_XS
+        });
+        text.pushText({//push desc
             text: translate(engine.game.language, "uiChargeDiamondGain"),
             color: cc.c3b(255, 255, 255),
             size: UI_SIZE_XS
@@ -174,10 +179,10 @@ function updateVIP(){
         });
         text.pushText({//push desc
             text: translate(engine.game.language, "uiChargeDiamondVIPLevel"),
-            color: cc.c3b(255, 255, 255),
+            color: COLOR_UID_RED,
             size: UI_SIZE_XS
         });
-        text.setPosition(cc.p(textPosX, textPosY));
+        text.setPosition(cc.p(textPosX, -text.TEXT_HEIGHT / 2));
         theLayer.owner.labVipNext.addChild(text);
     }
     //show now
@@ -284,9 +289,9 @@ function onEnter()
     theLayer.scheduleUpdate();
 
     //shutdown monthcard
-    theLayer.owner.nodePurMC.setVisible(false);
-    theLayer.owner.nodeHasMC.setVisible(false);
-    theLayer.owner.btnMonthCard.setVisible(false);
+    // theLayer.owner.nodePurMC.setVisible(false);
+    // theLayer.owner.nodeHasMC.setVisible(false);
+    // theLayer.owner.btnMonthCard.setVisible(false);
 }
 
 function onClose(sender)
