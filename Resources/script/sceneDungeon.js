@@ -820,6 +820,10 @@ function onEnter()
     SpriteCache.addSpriteFrames("effect.plist");
     SpriteCache.addSpriteFrames("effect2.plist");
     SpriteCache.addSpriteFrames("cards.plist");
+    var preloadRes = table.readTable(TABLE_PRELOAD);
+    for( var k in preloadRes ){
+        SpriteCache.addSpriteFrames(preloadRes[k]);
+    }
 
     if (engine.user.dungeon != null) {
         theTheme = queryStage(engine.user.dungeon.stage, true).theme;
@@ -1830,7 +1834,7 @@ function onTouchBegan(touch, event)
                 isClicked = false;
 //                    debug("isClicked set "+isClicked);
             }
-        }, 1.0);
+        }, 0.5);
         isClicked = true;
 //            debug("isClicked set "+isClicked);
     }

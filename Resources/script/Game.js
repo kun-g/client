@@ -103,6 +103,7 @@ Game.prototype.init = function()
     table.loadTable(TABLE_DP);
     table.loadTable(TABLE_ARENA);
     table.loadTable(TABLE_LOCALIZE);
+    table.loadTable(TABLE_PRELOAD);
 
     //init global resources
     var sfc = cc.SpriteFrameCache.getInstance();
