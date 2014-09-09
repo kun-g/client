@@ -1817,12 +1817,30 @@ function setCardCd(index, cd)
 
 function onTouchBegan(touch, event)
 {
+    //if double clicked, accelerate the game speed until next pace
+//        debug("isClicked:"+isClicked);
+    var posBegan = theLayer.convertToNodeSpace(touch.getLocation());
+    var contains = cc.rectContainsPoint(theLayer.card.rect, posBegan);
+    if( isClicked ){
+        isClicked = false;
+        cc.Director.getInstance().getScheduler().setTimeScale(2.0);
+    }else{
+        this.scheduleOnce(function(){
+            if( isClicked ){
+                isClicked = false;
+//                    debug("isClicked set "+isClicked);
+            }
+        }, 1.0);
+        isClicked = true;
+//            debug("isClicked set "+isClicked);
+    }
+
     if( !theLayer.canControl ){
         return false;//block illegal control
     }
 
-    theLayer.touchBegin = theLayer.convertToNodeSpace(touch.getLocation());
-    if( cc.rectContainsPoint(theLayer.card.rect, theLayer.touchBegin) )
+    theLayer.touchBegin = posBegan;
+    if( contains )
     {//trigger card
         var slot = theLayer.selectCard(theLayer.touchBegin);
         if( slot >= 0 )
@@ -1909,21 +1927,6 @@ function onTouchEnded(touch, event)
 //    debug("onTouchEnded pos = "+JSON.stringify(pos));
     if( theLayer.touchMode == TOUCH_GRID )
     {
-        //if double clicked, accelerate the game speed until next pace
-//        debug("isClicked:"+isClicked);
-        if( isClicked ){
-            isClicked = false;
-            cc.Director.getInstance().getScheduler().setTimeScale(2.0);
-        }else{
-            this.scheduleOnce(function(){
-                if( isClicked ){
-                    isClicked = false;
-//                    debug("isClicked set "+isClicked);
-                }
-            }, 1.0);
-            isClicked = true;
-//            debug("isClicked set "+isClicked);
-        }
 
         if( theLayer.canControl )
         {
