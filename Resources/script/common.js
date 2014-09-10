@@ -1328,7 +1328,7 @@ function addFriend(name, isWait, func) {
 
 function translate(language,keyword,args){
     var libLocal = loadModule("table.js").readTable(TABLE_LOCALIZE);
-    debug("language = "+language+";keyword = "+keyword);
+//    debug("language = "+language+";keyword = "+keyword);
     var text = "";
     if (libLocal[language] != null && libLocal[language][keyword] != null){
         text = libLocal[language][keyword];

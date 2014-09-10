@@ -18,7 +18,7 @@
 #import "AvazuTracking.h"
 #import "AppsFlyerTracker.h"
 
-#define MY_TRACKING_ID @"UA-49289183-1"
+#define MY_TRACKING_ID @"UA-43607753-45"
 
 @implementation AppController
 
@@ -76,9 +76,9 @@ static AppDelegate s_sharedApplication;
     
     // AppsFlyer iOS Tracking SDK
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"ELctKLYrDm4fb6desm4gmm";
-    [AppsFlyerTracker sharedTracker].appleAppID = @"741982712";
+    [AppsFlyerTracker sharedTracker].appleAppID = @"914818890";
     [AppsFlyerTracker sharedTracker].currencyCode = @"USD";
-    [AppsFlyerTracker sharedTracker].customerUserID =@"com.teebik.paytest.appsflyer.avazu.ios";
+    [AppsFlyerTracker sharedTracker].customerUserID =@"com.kddxc.koudaidixiacheng";
     [AppsFlyerTracker sharedTracker].isHTTPS = YES;
     
     // Avazu Tracking Sdk

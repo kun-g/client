@@ -43,6 +43,7 @@ var theSkillCdEffect;
 var theFadeInFlag = false;
 var isClicked = false;
 
+var BoxTextureId = [];
 
 function onEvent(event)
 {
@@ -611,6 +612,7 @@ function showRevive(potionNeedCount){
 }
 
 function doDungeonResult(win){
+    cc.Director.getInstance().getScheduler().setTimeScale(1.0);
     DebugRecorderDungeon.saveDebugMsg();
     DebugRecorderDungeon.uninit();
     theLayer.waitResponse = true;
@@ -1064,7 +1066,7 @@ function resetBlocks()
     theLayer.actors.removeAllChildren();
     theLayer.blocks.removeAllChildren();
     theLayer.ground.removeAllChildren();
-
+    BoxTextureId = [];
     //set card mask
     theLayer.card.layerMask = blackMask();
     theLayer.card.layerMask.setPosition(cc.p(0, -screenSize.height));
@@ -1079,59 +1081,15 @@ function resetBlocks()
         var y = Math.floor(i/5);
         var pos = cc.p(x*LO_GRID,-y*LO_GRID);
         var floor = null;
-        switch ( Math.floor(Math.random()*9) ) {
-            case 0:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor1.png");
-                break;
-            case 1:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor2.png");
-                break;
-            case 2:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor3.png");
-                break;
-            case 3:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor4.png");
-                break;
-            case 4:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor5.png");
-                break;
-            case 5:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor6.png");
-                break;
-            case 6:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor7.png");
-                break;
-            case 7:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor8.png");
-                break;
-            case 8:
-                floor = cc.Sprite.createWithSpriteFrameName("battle-floor9.png");
-                break;
-        }
+        var randFloor = Math.floor(Math.random()*9)+1;
+        floor = cc.Sprite.createWithSpriteFrameName("battle-box"+randFloor+".png");
         floor.setAnchorPoint(cc.p(0, 1));
         floor.setPosition(pos);
         theLayer.blocks.addChild(floor, 10, 200+i);
         var box = null;
-        switch ( Math.floor(Math.random()*6) ){
-            case 0:
-                box = cc.Sprite.createWithSpriteFrameName("battle-box1.png");
-                break;
-            case 1:
-                box = cc.Sprite.createWithSpriteFrameName("battle-box2.png");
-                break;
-            case 2:
-                box = cc.Sprite.createWithSpriteFrameName("battle-box3.png");
-                break;
-            case 3:
-                box = cc.Sprite.createWithSpriteFrameName("battle-box4.png");
-                break;
-            case 4:
-                box = cc.Sprite.createWithSpriteFrameName("battle-box5.png");
-                break;
-            case 5:
-                box = cc.Sprite.createWithSpriteFrameName("battle-box6.png");
-                break;
-        }
+        var randBox = Math.floor(Math.random()*6)+1;
+        box = cc.Sprite.createWithSpriteFrameName("battle-box"+randBox+".png");
+        BoxTextureId.push(randBox);
         box.setAnchorPoint(cc.p(0, 1));
         box.setPosition(cc.p(x*LO_GRID,-y*LO_GRID));
         theLayer.blocks.addChild(box, 20, i);
@@ -1264,15 +1222,22 @@ function syncAccess()
         var flag = theDungeon.Blocks[pos].access;
 
         var mask = theLayer.blocks.getChildByTag(300+pos);
+        var box = theLayer.blocks.getChildByTag(pos);
         if( flag )
         {
             mask.stopAllActions();
             mask.runAction(cc.FadeTo.create(0.6, 0));
+            if( BoxTextureId[pos] != null ){
+                box.setSpriteFrame("battle-box"+(BoxTextureId[pos])+"-2.png");
+            }
         }
         else
         {
             mask.stopAllActions();
             mask.runAction(cc.FadeTo.create(0.6, 255));
+            if( BoxTextureId[pos] != null ){
+                box.setSpriteFrame("battle-box"+(BoxTextureId[pos])+".png");
+            }
         }
     }
 }

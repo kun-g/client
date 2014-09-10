@@ -18,6 +18,7 @@
 #include "Feedback.h"
 #include "UAC.h"
 #include "TDGA.h"
+#include "EventTracker.h"
 
 #if defined(CC_TARGET_OS_IPHONE)
     #include "jsGameCenter.h"
@@ -39,4 +40,6 @@ void registerNativeAPI(JSContext* cx, JSObject* global)
     {
         registerGameCenter(cx, global);
     }
+    registerEventTracker(cx, global);
+    
 }

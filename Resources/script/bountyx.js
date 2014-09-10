@@ -59,7 +59,6 @@ BountyLog.prototype.checkPower = function(bountyId, level){
             ret = true;
         }
     }
-
     return ret;
 };
 

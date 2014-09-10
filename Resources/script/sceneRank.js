@@ -119,7 +119,9 @@ function createRoleBar(role, rank, rankId){
         }
     }
 
-    layer.owner.menuRoot.setTouchPriority(theCurrentGroup.scroller.getTouchPriority()+1);
+    if( theCurrentGroup != null && theCurrentGroup.scroller != null ){
+        layer.owner.menuRoot.setTouchPriority(theCurrentGroup.scroller.getTouchPriority()+1);
+    }
 
     layer.owner.btnRoleInfo.LAYER = layer;
     layer.ROLE = role;

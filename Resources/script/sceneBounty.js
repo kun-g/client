@@ -93,6 +93,7 @@ function onTouchEnded(touch, event){
                 var PY = Math.floor((size.height - localPos.y)/LINE_HEIGHT);
                 thePy = PY;
                 var line = theListLayer.getChildByTag(PY);
+                theLevel = 0;
                 loadBountyDesc(line.bounty, 0);
             }
         }
@@ -148,14 +149,15 @@ function onSubmit(sender){
 
         if (chkProcess == 1){
             engine.msg.pop(translate(engine.game.language, "questInfoMissonTarget"), POPTYPE_ERROR);
-        }else if (chkProcess == 2){
+        }
+        else if (chkProcess == 2){
             engine.msg.pop(translate(engine.game.language, "sceneBountyOver"), POPTYPE_ERROR);
         }
-        else if (str.length <= 0 && (
+        else if (str.length <= 0 && ((
             engine.session.dataBounty[line.bounty.BountyId] != null &&
-            engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
-            engine.session.dataBounty[line.bounty.BountyId].cnt > 0) ||
-            line.bounty.count <= 0){
+                engine.session.dataBounty[line.bounty.BountyId].cnt != null &&
+                engine.session.dataBounty[line.bounty.BountyId].cnt > 0 ) ||
+            line.bounty.count <= 0)){
             var libStage = loadModule("sceneStage.js");
             var stageData = queryStage(bountyData.level[theLevel].stage);
 

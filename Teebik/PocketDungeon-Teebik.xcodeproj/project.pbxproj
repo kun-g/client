@@ -364,6 +364,8 @@
 		53F150211893E74C00B3FF06 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F150201893E74C00B3FF06 /* CoreTelephony.framework */; };
 		53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F51918FC27AE00C2D3AB /* PPImage.bundle */; };
 		9801F22719A7863F00F16217 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9801F22619A7863F00F16217 /* MapKit.framework */; };
+		98A1180B19C0444C004E04DE /* EventTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98A1180A19C0444C004E04DE /* EventTracker.cpp */; };
+		98A1181119C04C1F004E04DE /* iEventTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A1181019C04C1F004E04DE /* iEventTracker.mm */; };
 		98A9012919A70F0D00344A21 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9011219A70F0D00344A21 /* AppController.mm */; };
 		98A9012A19A70F0D00344A21 /* AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A9011319A70F0D00344A21 /* AppStore.plist */; };
 		98A9012B19A70F0D00344A21 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A9011419A70F0D00344A21 /* Default-568h@2x.png */; };
@@ -1243,6 +1245,10 @@
 		53F150201893E74C00B3FF06 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		53F9F51918FC27AE00C2D3AB /* PPImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPImage.bundle; sourceTree = "<group>"; };
 		9801F22619A7863F00F16217 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		98A1180719C04304004E04DE /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
+		98A1180A19C0444C004E04DE /* EventTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventTracker.cpp; sourceTree = "<group>"; };
+		98A1180F19C04BF4004E04DE /* iEventTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iEventTracker.h; sourceTree = "<group>"; };
+		98A1181019C04C1F004E04DE /* iEventTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iEventTracker.mm; sourceTree = "<group>"; };
 		98A9011119A70F0D00344A21 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		98A9011219A70F0D00344A21 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
 		98A9011319A70F0D00344A21 /* AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppStore.plist; sourceTree = "<group>"; };
@@ -1379,6 +1385,8 @@
 				531F129C18895859004E036F /* UAC.h */,
 				5388185F1894A2B500B1E461 /* TDGA.cpp */,
 				538818601894A2B500B1E461 /* TDGA.h */,
+				98A1180719C04304004E04DE /* EventTracker.h */,
+				98A1180A19C0444C004E04DE /* EventTracker.cpp */,
 			);
 			name = js;
 			path = Classes/js;
@@ -1427,6 +1435,8 @@
 				53744E3518891EFF0096A891 /* PublishVersions.h */,
 				98A9015119A716A100344A21 /* TeebikUAC.h */,
 				98A9015219A723EB00344A21 /* TeebikUAC.mm */,
+				98A1180F19C04BF4004E04DE /* iEventTracker.h */,
+				98A1181019C04C1F004E04DE /* iEventTracker.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -3074,9 +3084,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		53885E7617E93DE400A3A8B4 /* PocketDungeon */ = {
+		53885E7617E93DE400A3A8B4 /* 口袋地下城 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "PocketDungeon" */;
+			buildConfigurationList = 5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "口袋地下城" */;
 			buildPhases = (
 				53885E7317E93DE400A3A8B4 /* Sources */,
 				53885E7417E93DE400A3A8B4 /* Frameworks */,
@@ -3087,7 +3097,7 @@
 			);
 			dependencies = (
 			);
-			name = PocketDungeon;
+			name = "口袋地下城";
 			productName = PocketDungeon;
 			productReference = 53885E7717E93DE400A3A8B4 /* PocketDungeon.app */;
 			productType = "com.apple.product-type.application";
@@ -3101,7 +3111,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					53885E7617E93DE400A3A8B4 = {
-						DevelopmentTeam = 6SA2THV979;
+						DevelopmentTeam = 7N296C66L6;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -3132,7 +3142,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				53885E7617E93DE400A3A8B4 /* PocketDungeon */,
+				53885E7617E93DE400A3A8B4 /* 口袋地下城 */,
 			);
 		};
 /* End PBXProject section */
@@ -3406,6 +3416,7 @@
 				53A3052F18FD30EC001CE8B0 /* CCBKeyframe.cpp in Sources */,
 				53A305B518FD30EC001CE8B0 /* XMLHTTPRequest.cpp in Sources */,
 				53A3053418FD30EC001CE8B0 /* CCControlButtonLoader.cpp in Sources */,
+				98A1180B19C0444C004E04DE /* EventTracker.cpp in Sources */,
 				535EF25617E942B400D0D61D /* CallbackManager.cpp in Sources */,
 				53A3050F18FD30EB001CE8B0 /* ccCArray.cpp in Sources */,
 				53A304A318FD30EB001CE8B0 /* CCActionGrid.cpp in Sources */,
@@ -3499,6 +3510,7 @@
 				53A3049018FD30EB001CE8B0 /* cpBB.c in Sources */,
 				53A304CB18FD30EB001CE8B0 /* plane.c in Sources */,
 				53A3049B18FD30EB001CE8B0 /* cpSpaceStep.c in Sources */,
+				98A1181119C04C1F004E04DE /* iEventTracker.mm in Sources */,
 				53A3051818FD30EB001CE8B0 /* CCTextFieldTTF.cpp in Sources */,
 				53A3054818FD30EC001CE8B0 /* CCInputDelegate.cpp in Sources */,
 				53A3056D18FD30EC001CE8B0 /* Bone.cpp in Sources */,
@@ -3759,7 +3771,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "PocketDungeon" */ = {
+		5388632317E93DF600A3A8B4 /* Build configuration list for PBXNativeTarget "口袋地下城" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5388632417E93DF600A3A8B4 /* Debug */,
