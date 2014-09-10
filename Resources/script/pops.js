@@ -140,9 +140,8 @@ function popLevelUp(){
     loadModule("blackbox.js").fixHeroProperty(role);
     layer.owner[nodeSkName[role.ClassId]].setVisible(true);
     //set level
-    var level = role.calcExp().level;
-    layer.owner.labLevel.setString("LV."+level);
-    level = level - 1;
+    var level = role.calcExp().level -1;
+    layer.owner.labLevel.setString("LV."+(level+1));
     //set skill
     for (var x = 1;x <= 4;x++){
         if (role.querySkill(x - 1) == null){
@@ -251,6 +250,12 @@ function popLevelUp(){
     layer.node.runAction(actionPopIn(function(){
         layer.setTouchEnabled(true);
     }));
+
+    //Google Analytics & Appsflyer
+    if( role.calcExp().level == 5 && evtTracker != null ) {
+        evtTracker.createGAIEvent("UserEvent", "Levelup5", "", null);
+        evtTracker.createAFEvent("Levelup5", null);
+    }
 }
 
 function getSkillLev(slotId){

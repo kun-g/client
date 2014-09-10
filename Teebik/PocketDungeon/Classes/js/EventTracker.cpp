@@ -24,19 +24,28 @@ JSBool jsbEventTrackerCreateGAIEvent(JSContext* cx, unsigned argc, JS::Value* vp
     JSStringWrapper strAction(arg1);
     string action = strAction;
     
-    JSString* arg2 = JS_ValueToString(cx, argv[2]);
-    JSStringWrapper strLabel(arg2);
-    string label = strLabel;
-    
+    string label;
+    if (JSVAL_IS_NULL(argv[2]) == JS_TRUE) {
+        label = "";
+    }else{
+        JSString* arg2 = JS_ValueToString(cx, argv[2]);
+        JSStringWrapper strLabel(arg2);
+        label = strLabel.get();
+    }
     
     double value;
-    JS_ValueToNumber(cx, argv[3], &value);
+    if (JSVAL_IS_NULL(argv[3]) == JS_TRUE) {
+        value = 0;
+    }else{
+        JS_ValueToNumber(cx, argv[3], &value);
+    }
+    
     createGAIEvent(category, action, label, value);
     return JS_TRUE;
 }
 
 JSBool jsbEventTrackerCreateAFEvent(JSContext* cx, unsigned argc, JS::Value* vp){
-    if (argc != 2) {
+    if (argc < 1 || argc > 2) {
         CCLog("evtTracker.createEvent: wrong argument.");
         return JS_FALSE;
     }
@@ -46,9 +55,14 @@ JSBool jsbEventTrackerCreateAFEvent(JSContext* cx, unsigned argc, JS::Value* vp)
     JSStringWrapper strEvent(arg0);
     string event = strEvent;
     
-    JSString* arg1 = JS_ValueToString(cx, argv[1]);
-    JSStringWrapper strValue(arg1);
-    string value = strValue;
+    string value;
+    if (JSVAL_IS_NULL(argv[1]) == JS_TRUE) {
+        value = "";
+    }else{
+        JSString* arg1 = JS_ValueToString(cx, argv[1]);
+        JSStringWrapper strValue(arg1);
+        value = strValue.get();
+    }
     
     createAFEvent(event, value);
 

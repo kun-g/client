@@ -10,6 +10,7 @@
 #include "PublishVersions.h"
 #include "cocos2d.h"
 #import "AppsFlyerTracker.h"
+#import "iEventTracker.h"
 
 #define SHOPFILE ("AppStore.plist")
 
@@ -269,13 +270,11 @@ void TeebikUAC::getStoreName(std::string &name){
 - (void)teebikGameSdkWithRegisterSuccess {
     // Your code here
     // AppsFlyer iOS Tracking SDK
-    [[AppsFlyerTracker sharedTracker] trackEvent:@"registration" withValue:@""];
+    createAFEvent("Register", "");
     
     // Google analytics
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    // Start a new session. The next hit from this tracker will be the first in
-    // a new session.
-    [tracker set:kGAISessionControl value:@"start"];
+    [[[GAI sharedInstance] defaultTracker] set:kGAISessionControl value:@"start"];
+    createGAIEvent("UserEvent", "Register", "", 0);
     
     NSMutableDictionary *userinfo = [[TeebikGameSdk getInstance] getUserInfo];
     NSLog(@"RegisterInfo:\nuid:%@\nusername:%@\ntoken:%@\n",
@@ -337,9 +336,11 @@ void TeebikUAC::getStoreName(std::string &name){
                                                                                  quantity:@([transaction getQuantity])
                                                                              currencyCode:[transaction getCurrency]];
     [tracker send:[itemBuilder build]];
+    createGAIEvent("UserEvent", "Purchase", string([[transaction getProductId] cStringUsingEncoding:NSUTF8StringEncoding]), [transaction getAmount]);
     
+    NSString* amount = [NSString stringWithFormat:@"%0.02f", [transaction getAmount]];
     // AppsFlyer iOS Tracking SDK
-//    [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[NSString stringWithFormat:@"%0.02f", [transaction getAmount]]];
+    createAFEvent("Purchase", string([amount cStringUsingEncoding:NSUTF8StringEncoding]));
 }
 
 // 接口为支付失败后回调

@@ -227,6 +227,12 @@ function onConfirm(sender)
                 engine.ui.newScene(loadModule("sceneLogin.js").scene(true));
                 engine.event.holdNotifications();
                 engine.event.processNotification(Message_AccountLoginSuccess, rsp.arg);
+
+                //Google Analytics & Appsflyer
+                if( evtTracker != null ) {
+                    evtTracker.createGAIEvent("UserEvent", "Role", "", null);
+                    evtTracker.createAFEvent("Role", null);
+                }
             }
             else{
                 libUIKit.showErrorMessage(rsp);

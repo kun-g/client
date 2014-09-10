@@ -1082,7 +1082,7 @@ function resetBlocks()
         var pos = cc.p(x*LO_GRID,-y*LO_GRID);
         var floor = null;
         var randFloor = Math.floor(Math.random()*9)+1;
-        floor = cc.Sprite.createWithSpriteFrameName("battle-box"+randFloor+".png");
+        floor = cc.Sprite.createWithSpriteFrameName("battle-floor"+randFloor+".png");
         floor.setAnchorPoint(cc.p(0, 1));
         floor.setPosition(pos);
         theLayer.blocks.addChild(floor, 10, 200+i);
@@ -1228,7 +1228,8 @@ function syncAccess()
             mask.stopAllActions();
             mask.runAction(cc.FadeTo.create(0.6, 0));
             if( BoxTextureId[pos] != null ){
-                box.setSpriteFrame("battle-box"+(BoxTextureId[pos])+"-2.png");
+                //todo?
+//                box.setSpriteFrame("battle-box"+(BoxTextureId[pos])+"-2.png");
             }
         }
         else
@@ -1236,7 +1237,8 @@ function syncAccess()
             mask.stopAllActions();
             mask.runAction(cc.FadeTo.create(0.6, 255));
             if( BoxTextureId[pos] != null ){
-                box.setSpriteFrame("battle-box"+(BoxTextureId[pos])+".png");
+                //todo?
+//                box.setSpriteFrame("battle-box"+(BoxTextureId[pos])+".png");
             }
         }
     }

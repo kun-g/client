@@ -16,6 +16,7 @@ void createGAIEvent(std::string category, std::string action, std::string label,
     NSNumber* nsValue = [NSNumber numberWithDouble:value];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:nsCategory action:nsAction label:nsLabel value:nsValue] build]];
+    NSLog(@"-- EventTracker: GAIEvent created -- \n category:%@, action:%@, label:%@, value:%@", nsCategory, nsAction, nsLabel, nsValue);
     
 }
 
@@ -23,4 +24,5 @@ void createAFEvent(std::string event, std::string value){
     NSString* nsEvent = [NSString stringWithFormat:@"%s", event.c_str()];
     NSString* nsValue = [NSString stringWithFormat:@"%s", value.c_str()];
     [[AppsFlyerTracker sharedTracker] trackEvent:nsEvent withValue:nsValue];
+    NSLog(@"-- EventTracker: AFEvent created -- \n event:%@, value:%@", nsEvent, nsValue);
 }
