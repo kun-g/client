@@ -26,7 +26,7 @@ static int gTeebikViewOpened = 0;
 void initTeebik(){
     NSLog(@"initTeebik");
     [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO];
-    [[TeebikGameSdk getInstance] setGameServer:@"http://61.174.8.29/TBK"];
+    [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14/TBK"]; //http://61.174.8.29/TBK
 //    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO debugUrl:@"http://144.76.221:80"];
 
 }
@@ -288,7 +288,7 @@ void TeebikUAC::getStoreName(std::string &name){
     // Start a new session. The next hit from this tracker will be the first in
     // a new session.
     [tracker set:kGAISessionControl value:@"start"];
-    
+    [[TeebikGameSdk getInstance] buttonDisable];
     NSMutableDictionary *userinfo = [[TeebikGameSdk getInstance] getUserInfo];
     NSLog(@"LoginInfo:\nuid:%@\nusername:%@\ntoken:%@\n",
           [userinfo objectForKey:@"uid"], [userinfo objectForKey:@"username"], [userinfo objectForKey:@"token"]);

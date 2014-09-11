@@ -382,8 +382,6 @@
 		98A9013619A70F0D00344A21 /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A9011F19A70F0D00344A21 /* Icon@2x~ipad.png */; };
 		98A9013719A70F0D00344A21 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012019A70F0D00344A21 /* Icon~ipad.png */; };
 		98A9013819A70F0D00344A21 /* Icon~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012119A70F0D00344A21 /* Icon~iphone.png */; };
-		98A9013919A70F0D00344A21 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012219A70F0D00344A21 /* Info.plist */; };
-		98A9013A19A70F0D00344A21 /* Info.pliste in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012319A70F0D00344A21 /* Info.pliste */; };
 		98A9013B19A70F0D00344A21 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 98A9012419A70F0D00344A21 /* iTunesArtwork */; };
 		98A9013C19A70F0D00344A21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98A9012519A70F0D00344A21 /* main.m */; };
 		98A9013D19A70F0D00344A21 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98A9012719A70F0D00344A21 /* RootViewController.mm */; };
@@ -3174,7 +3172,6 @@
 				53F9F51A18FC27AE00C2D3AB /* PPImage.bundle in Resources */,
 				53A30DC218FD3121001CE8B0 /* jsb_debugger.jsc in Resources */,
 				53A30DBE18FD3121001CE8B0 /* jsb_cocos2d.jsc in Resources */,
-				98A9013A19A70F0D00344A21 /* Info.pliste in Resources */,
 				98A9013719A70F0D00344A21 /* Icon~ipad.png in Resources */,
 				98A9013819A70F0D00344A21 /* Icon~iphone.png in Resources */,
 				98A9012C19A70F0D00344A21 /* Default-Portrait@2x~ipad.png in Resources */,
@@ -3182,7 +3179,6 @@
 				98A9013219A70F0D00344A21 /* Icon-Small.png in Resources */,
 				98A9013B19A70F0D00344A21 /* iTunesArtwork in Resources */,
 				98A9E46319B4762200FD91A8 /* delfiles.sh in Resources */,
-				98A9013919A70F0D00344A21 /* Info.plist in Resources */,
 				53A304C418FD30EB001CE8B0 /* ChangeLog in Resources */,
 				53243B6E18EC3D2E003BEF42 /* Alixpay.bundle in Resources */,
 				98A9012A19A70F0D00344A21 /* AppStore.plist in Resources */,
