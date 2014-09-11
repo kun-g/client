@@ -28089,7 +28089,7 @@ exports.data = [
                 "file": "m-warriorn-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 57,
+        "effectAttack": 8,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -28221,7 +28221,7 @@ exports.data = [
             "file": "m-magen-mainweapon1.ccbi"
         }
     ],
-        "effectAttack": 58,
+        "effectAttack": 10,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -28361,7 +28361,7 @@ exports.data = [
                 "file": "m-priestn-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 59,
+        "effectAttack": 9,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -28493,7 +28493,7 @@ exports.data = [
             "file": "m-warriorn2-mainweapon1.ccbi"
         }
     ],
-        "effectAttack": 57,
+        "effectAttack": 8,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -28625,7 +28625,7 @@ exports.data = [
                 "file": "m-magen2-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 58,
+        "effectAttack": 10,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -28765,7 +28765,7 @@ exports.data = [
                 "file": "m-priestn2-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 59,
+        "effectAttack": 9,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -28897,7 +28897,7 @@ exports.data = [
                 "file": "m-warriorn3-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 57,
+        "effectAttack": 8,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29029,7 +29029,7 @@ exports.data = [
                 "file": "m-magen3-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 58,
+        "effectAttack": 10,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29169,7 +29169,7 @@ exports.data = [
                 "file": "m-priestn3-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 59,
+        "effectAttack": 9,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29301,7 +29301,7 @@ exports.data = [
                 "file": "m-warriorn4-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 57,
+        "effectAttack": 8,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29433,7 +29433,7 @@ exports.data = [
                 "file": "m-magen4-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 58,
+        "effectAttack": 10,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29573,7 +29573,7 @@ exports.data = [
                 "file": "m-priestn4-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 59,
+        "effectAttack": 9,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29705,7 +29705,7 @@ exports.data = [
                 "file": "m-warriorn5-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 57,
+        "effectAttack": 8,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29837,7 +29837,7 @@ exports.data = [
                 "file": "m-magen5-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 58,
+        "effectAttack": 10,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
@@ -29977,7 +29977,7 @@ exports.data = [
                 "file": "m-priestn5-mainweapon1.ccbi"
             }
         ],
-        "effectAttack": 59,
+        "effectAttack": 9,
         "soundAttack": "attackzhanshi.mp3"
     },
     {
