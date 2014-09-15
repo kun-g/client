@@ -26,8 +26,8 @@ static int gTeebikViewOpened = 0;
 void initTeebik(){
     NSLog(@"initTeebik");
     [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO];
-    [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14/TBK"]; //http://61.174.8.29/TBK
 //    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO debugUrl:@"http://144.76.221:80"];
+    [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14/TBK"]; //http://61.174.8.29/TBK
 
 }
 
@@ -169,7 +169,9 @@ void TeebikUAC::getStoreName(std::string &name){
 }
 
 - (void) makePurchase:(NSInteger)product{
-    [[TeebikGameSdk getInstance] paymentWithProductId:[self queryProductByIndex:product]];
+    NSString *productId = [self queryProductByIndex:product];
+    NSLog(@"makePurchase: %@", productId);
+    [[TeebikGameSdk getInstance] paymentWithProductId:productId];
 }
 
 - (int) queryProductIndex:(NSString *)iapId
