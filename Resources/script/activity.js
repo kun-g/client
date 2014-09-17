@@ -445,6 +445,8 @@ function refreshDailyQuest(){
     //quest & buttons
     if( dailyQuest.step < 4 ){
         layer.owner.nodeComplete.setVisible(false);
+        layer.owner.nodeRenwu.setVisible(true);
+        layer.owner.spIndex.setVisible(true);
         var fileIndex = "dailymission-common-"+(dailyQuest.step+1)+".png";
         layer.owner.spIndex.setDisplayFrame(sfc.getSpriteFrame(fileIndex));
         var questData = libTable.queryTable(TABLE_QUEST, dailyQuest.quest);
@@ -534,6 +536,8 @@ function refreshDailyQuest(){
     else if( dailyQuest.step == 4 ){//take to prize
         layer.owner.nodeComplete.setVisible(true);
         layer.owner.labComplete.setString(translate(engine.game.language, "activityMissionDone"));
+        layer.owner.nodeRenwu.setVisible(false);
+        layer.owner.spIndex.setVisible(false);
         //gather prize
         layer.owner.btnGet.setEnabled(true);
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
@@ -544,6 +548,8 @@ function refreshDailyQuest(){
     else{//daily quest is done
         layer.owner.nodeComplete.setVisible(true);
         layer.owner.labComplete.setString(translate(engine.game.language, "activityMissonOver"));
+        layer.owner.nodeRenwu.setVisible(false);
+        layer.owner.spIndex.setVisible(false);
         //gather prize & greyed out
         layer.owner.btnGet.setEnabled(false);
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));

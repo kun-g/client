@@ -151,6 +151,7 @@ function onEvent(event)
         }
         case Message_LoadReady:
         {
+            debug("准备就绪");
             loadReady = true;
             loadFlag = event.arg;
             updateLoading(translate(engine.game.language, "sceneLoginIntoGame"), 1);
@@ -547,6 +548,7 @@ function update(delta)
         }
         var rect = cc.rect(theLayer.loadrect.x, theLayer.loadrect.y, theLayer.loadrect.width, theLayer.loadrect.height);
         rect.width *= theLayer.CurrentPercentage;
+        debug("update: CurrentPercentage="+theLayer.CurrentPercentage+"width="+rect.width);
         theLayer.clip.setClipRect(rect);
     }
 }
