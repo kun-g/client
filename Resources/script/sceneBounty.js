@@ -148,7 +148,7 @@ function onSubmit(sender){
         }
 
         if (chkProcess == 1){
-            engine.msg.pop(translate(engine.game.language, "questInfoMissonTarget"), POPTYPE_ERROR);
+            engine.msg.pop(translate(engine.game.language, "sceneBountyNoStart"), POPTYPE_ERROR);
         }
         else if (chkProcess == 2){
             engine.msg.pop(translate(engine.game.language, "sceneBountyOver"), POPTYPE_ERROR);
