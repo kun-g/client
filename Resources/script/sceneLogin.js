@@ -443,6 +443,11 @@ function onEnter()
 
     var winSize = engine.game.viewSize;
 
+    var ratio = 1;
+    if (engine.game.curNodeScale != null) {
+        ratio = engine.game.curNodeScale;
+    }
+
     theLayer.owner = {};
     var node = cc.BuilderReader.load("sceneLogin2.ccbi", theLayer.owner);
     node.animationManager.runAnimationsForSequenceNamed("effect");
@@ -457,7 +462,7 @@ function onEnter()
     bar.setPosition(cc.p(0, 0));
     var size = bar.getContentSize();
     theLayer.clip.addChild(bar);
-    theLayer.loadrect = cc.rect(- size.width/2, - size.height/2, size.width, size.height);
+    theLayer.loadrect = cc.rect(- size.width/2, - size.height/2, size.width*ratio, size.height*ratio);
     theLayer.clip.setClipRect(theLayer.loadrect);
 
     theLayer.onTouchBegan = onTouchBegan;
@@ -548,7 +553,6 @@ function update(delta)
         }
         var rect = cc.rect(theLayer.loadrect.x, theLayer.loadrect.y, theLayer.loadrect.width, theLayer.loadrect.height);
         rect.width *= theLayer.CurrentPercentage;
-        debug("update: CurrentPercentage="+theLayer.CurrentPercentage+"width="+rect.width);
         theLayer.clip.setClipRect(rect);
     }
 }
