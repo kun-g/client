@@ -268,6 +268,7 @@ function autoAdaptResolution()
             singleton.curNode.setPosition(cc.p(offsetX,0));
             singleton.curNode.setAnchorPoint(cc.p(0,0));
             singleton.curNode.setScale(winSize.height/winViewHeight);
+            engine.game.curNodeScale = winSize.height/winViewHeight;
 
             var stepMarginH = caculateMarginHeightStep(marginIconList[0],offsetX,false);
             var marOffsetX = caculateMarginHeightStep(marginIconList[0],offsetX,true);
@@ -291,6 +292,7 @@ function autoAdaptResolution()
             singleton.curNode.setPosition(cc.p(0,offsetY));
             singleton.curNode.setAnchorPoint(cc.p(0,0));
             singleton.curNode.setScale(winSize.width/winViewWidth);
+            engine.game.curNodeScale = winSize.width/winViewWidth;
 
             var stepMarginW = caculateMarginHeightStep(marginIconList[2],offsetY,true);
             var marOffsetY = caculateMarginHeightStep(marginIconList[2],offsetX,false);
@@ -310,6 +312,7 @@ function autoAdaptResolution()
         }
         else{
             singleton.curNode.setScale(winSize.height/winViewHeight);
+            engine.game.curNodeScale = winSize.height/winViewHeight;
         }
     }
 }

@@ -50,6 +50,8 @@ function reboot()
     engine.ui.newScene({
         onEnter: function(){
             var layer = cc.LayerColor.create(cc.c4b(255, 255, 255, 255));
+            var layerworld = this.convertToWorldSpace(cc.p(0, 0));
+            layer.setPosition(cc.p(-layerworld.x,-layerworld.y));
             this.addChild(layer);
 
             var call = cc.CallFunc.create(function(){
@@ -83,6 +85,8 @@ function splash(){
     return {
         onEnter: function(){
             var layer = cc.LayerColor.create(cc.c4b(255, 255, 255, 255));
+            var layerworld = this.convertToWorldSpace(cc.p(0, 0));
+            layer.setPosition(cc.p(-layerworld.x,-layerworld.y));
             this.addChild(layer);
 
             var call = cc.CallFunc.create(function(){

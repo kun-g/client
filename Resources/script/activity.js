@@ -32,6 +32,7 @@ var theDay = 0;
 
 var animTag = 100;
 var dmStarEffect = false;
+var androidDQOffset = 231;
 
 var prizeIconList = ["dailyprize-common-lq.png",
     "dailyprize-common-light.png",
@@ -445,6 +446,8 @@ function refreshDailyQuest(){
     //quest & buttons
     if( dailyQuest.step < 4 ){
         layer.owner.nodeComplete.setVisible(false);
+        layer.owner.nodeRenwu.setVisible(true);
+        layer.owner.spIndex.setVisible(true);
         var fileIndex = "dailymission-common-"+(dailyQuest.step+1)+".png";
         layer.owner.spIndex.setDisplayFrame(sfc.getSpriteFrame(fileIndex));
         var questData = libTable.queryTable(TABLE_QUEST, dailyQuest.quest);
@@ -504,6 +507,9 @@ function refreshDailyQuest(){
             text.setPosition(cc.p(0, 0));
             layer.owner.layerDesc.addChild(text);
             size.height += prize.getContentSize().height;
+            if (engine.game.getConfig().binary_channel.substr(0, 2) == "AD"){
+                text.setPosition(cc.p(0, androidDQOffset - size.height));
+            }
 
             layer.owner.btnGet.setEnabled(true);
             if( theQuest.State == QUESTSTATUS_COMPLETE ){
@@ -534,6 +540,8 @@ function refreshDailyQuest(){
     else if( dailyQuest.step == 4 ){//take to prize
         layer.owner.nodeComplete.setVisible(true);
         layer.owner.labComplete.setString(translate(engine.game.language, "activityMissionDone"));
+        layer.owner.nodeRenwu.setVisible(false);
+        layer.owner.spIndex.setVisible(false);
         //gather prize
         layer.owner.btnGet.setEnabled(true);
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));
@@ -544,6 +552,8 @@ function refreshDailyQuest(){
     else{//daily quest is done
         layer.owner.nodeComplete.setVisible(true);
         layer.owner.labComplete.setString(translate(engine.game.language, "activityMissonOver"));
+        layer.owner.nodeRenwu.setVisible(false);
+        layer.owner.spIndex.setVisible(false);
         //gather prize & greyed out
         layer.owner.btnGet.setEnabled(false);
         layer.owner.btnGet.setNormalSpriteFrame(sfc.getSpriteFrame("dailymission-common-btnreward1.png"));

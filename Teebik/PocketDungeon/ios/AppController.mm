@@ -20,6 +20,8 @@
 
 #define MY_TRACKING_ID @"UA-43607753-45"
 
+static NSDictionary* s_launchOptions;
+
 @implementation AppController
 
 @synthesize window;
@@ -32,7 +34,7 @@
 static AppDelegate s_sharedApplication;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    s_launchOptions = launchOptions;
     preInitAPI();
 
     // Add the view controller's view to the window and display.
@@ -165,10 +167,17 @@ static AppDelegate s_sharedApplication;
     [[TeebikGameSdk getInstance] didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
+
+
 - (void)dealloc {
     [super dealloc];
 }
 
-
 @end
+
+
+void initTeebikSdk(){
+    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:s_launchOptions customAlertView:NO];
+    //    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:s_launchOptions customAlertView:NO debugUrl:@"http://144.76.221:80"];
+}
 

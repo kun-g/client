@@ -11,6 +11,7 @@
 #include "cocos2d.h"
 #import "AppsFlyerTracker.h"
 #import "iEventTracker.h"
+#import "AppController.h"
 
 #define SHOPFILE ("AppStore.plist")
 
@@ -25,10 +26,8 @@ static int gTeebikViewOpened = 0;
 
 void initTeebik(){
     NSLog(@"initTeebik");
-    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO];
-//    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO debugUrl:@"http://144.76.221:80"];
+    initTeebikSdk();
     [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14/TBK"]; //http://61.174.8.29/TBK
-
 }
 
 //----------UAC-----------

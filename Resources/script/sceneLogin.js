@@ -151,6 +151,7 @@ function onEvent(event)
         }
         case Message_LoadReady:
         {
+            debug("准备就绪");
             loadReady = true;
             loadFlag = event.arg;
             updateLoading(translate(engine.game.language, "sceneLoginIntoGame"), 1);
@@ -442,6 +443,11 @@ function onEnter()
 
     var winSize = engine.game.viewSize;
 
+    var ratio = 1;
+    if (engine.game.curNodeScale != null) {
+        ratio = engine.game.curNodeScale;
+    }
+
     theLayer.owner = {};
     var node = cc.BuilderReader.load("sceneLogin2.ccbi", theLayer.owner);
     node.animationManager.runAnimationsForSequenceNamed("effect");
@@ -456,7 +462,7 @@ function onEnter()
     bar.setPosition(cc.p(0, 0));
     var size = bar.getContentSize();
     theLayer.clip.addChild(bar);
-    theLayer.loadrect = cc.rect(- size.width/2, - size.height/2, size.width, size.height);
+    theLayer.loadrect = cc.rect(- size.width/2, - size.height/2, size.width*ratio, size.height*ratio);
     theLayer.clip.setClipRect(theLayer.loadrect);
 
     theLayer.onTouchBegan = onTouchBegan;
