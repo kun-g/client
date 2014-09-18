@@ -7,20 +7,33 @@
             <key>ebihu00022.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,136},{256,136}}</string>
+                <string>{{260,2},{246,140}}</string>
                 <key>offset</key>
-                <string>{23,103}</string>
+                <string>{24,108}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{185,114},{256,136}}</string>
+                <string>{{191,107},{246,140}}</string>
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
             <key>ebihu00023.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{218,132}}</string>
+                <string>{{2,2},{256,136}}</string>
+                <key>offset</key>
+                <string>{23,103}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{185,114},{256,136}}</string>
+                <key>sourceSize</key>
+                <string>{580,570}</string>
+            </dict>
+            <key>ebihu00024.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,140},{218,132}}</string>
                 <key>offset</key>
                 <string>{1,100}</string>
                 <key>rotated</key>
@@ -30,14 +43,14 @@
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
-            <key>ebihu00024.png</key>
+            <key>ebihu00025.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,2},{34,18}}</string>
+                <string>{{222,140},{34,18}}</string>
                 <key>offset</key>
                 <string>{88,155}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{361,121},{34,18}}</string>
                 <key>sourceSize</key>
@@ -51,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>effect-bihu6.png</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8fc9fa7db1000b61b2c765e9d6df8ad7$</string>
+            <string>$TexturePacker:SmartUpdate:b4892e5b3542027270c1815066fff0f3$</string>
             <key>textureFileName</key>
             <string>effect-bihu6.png</string>
         </dict>

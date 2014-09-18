@@ -7,13 +7,13 @@
             <key>00018.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,374},{434,376}}</string>
+                <string>{{2,374},{372,374}}</string>
                 <key>offset</key>
-                <string>{-3,10}</string>
+                <string>{-1,9}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{191,87},{434,376}}</string>
+                <string>{{224,89},{372,374}}</string>
                 <key>sourceSize</key>
                 <string>{822,570}</string>
             </dict>
@@ -40,7 +40,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e687533a94fe6777ab37793f54b8bf4e$</string>
+            <string>$TexturePacker:SmartUpdate:769e1bb46ddf5909c8a8b828e443d07a$</string>
             <key>textureFileName</key>
             <string>effect-fennuzhiyan8.png</string>
         </dict>

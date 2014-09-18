@@ -7,52 +7,52 @@
             <key>efennuzhiyan00002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,230},{352,76}}</string>
+                <string>{{156,294},{290,74}}</string>
                 <key>offset</key>
-                <string>{-3,121}</string>
+                <string>{-1,121}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{232,126},{352,76}}</string>
+                <string>{{265,127},{290,74}}</string>
                 <key>sourceSize</key>
                 <string>{822,570}</string>
             </dict>
             <key>efennuzhiyan00003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,308},{350,158}}</string>
+                <string>{{314,2},{290,158}}</string>
                 <key>offset</key>
-                <string>{-3,28}</string>
+                <string>{-1,28}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{233,178},{350,158}}</string>
+                <string>{{265,178},{290,158}}</string>
                 <key>sourceSize</key>
                 <string>{822,570}</string>
             </dict>
             <key>efennuzhiyan00004.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{358,2},{338,152}}</string>
+                <string>{{2,230},{278,152}}</string>
                 <key>offset</key>
-                <string>{-3,-13}</string>
+                <string>{-1,-13}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{239,222},{338,152}}</string>
+                <string>{{271,222},{278,152}}</string>
                 <key>sourceSize</key>
                 <string>{822,570}</string>
             </dict>
             <key>efennuzhiyan00005.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{354,226}}</string>
+                <string>{{2,2},{310,226}}</string>
                 <key>offset</key>
-                <string>{-3,-11}</string>
+                <string>{0,-11}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{231,183},{354,226}}</string>
+                <string>{{256,183},{310,226}}</string>
                 <key>sourceSize</key>
                 <string>{822,570}</string>
             </dict>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7e9c9ed458b142ae5fa10e7410594c9f$</string>
+            <string>$TexturePacker:SmartUpdate:9a48a5df56e8976eebb48db64a5555b1$</string>
             <key>textureFileName</key>
             <string>effect-fennuzhiyan.png</string>
         </dict>

@@ -7,52 +7,52 @@
             <key>ebihu00006.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{324,2},{310,418}}</string>
+                <string>{{2,2},{296,440}}</string>
                 <key>offset</key>
-                <string>{7,54}</string>
+                <string>{1,65}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{142,22},{310,418}}</string>
+                <string>{{143,0},{296,440}}</string>
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
             <key>ebihu00007.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{322,422},{314,418}}</string>
+                <string>{{300,2},{310,414}}</string>
                 <key>offset</key>
-                <string>{9,54}</string>
+                <string>{7,52}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{142,22},{314,418}}</string>
+                <string>{{142,26},{310,414}}</string>
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
             <key>ebihu00008.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,422},{318,418}}</string>
+                <string>{{612,2},{314,400}}</string>
                 <key>offset</key>
-                <string>{11,54}</string>
+                <string>{9,45}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{142,22},{318,418}}</string>
+                <string>{{142,40},{314,400}}</string>
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
             <key>ebihu00009.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{320,418}}</string>
+                <string>{{2,444},{318,418}}</string>
                 <key>offset</key>
-                <string>{13,54}</string>
+                <string>{11,54}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{143,22},{320,418}}</string>
+                <string>{{142,22},{318,418}}</string>
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7129315bf51602d5c684ec2c4e075d99$</string>
+            <string>$TexturePacker:SmartUpdate:3dbff7c5be419711757df4fe5c5b7523$</string>
             <key>textureFileName</key>
             <string>effect-bihu2.png</string>
         </dict>

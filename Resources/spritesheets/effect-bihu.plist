@@ -7,7 +7,7 @@
             <key>ebihu00002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{164,568},{116,266}}</string>
+                <string>{{164,564},{116,266}}</string>
                 <key>offset</key>
                 <string>{-3,20}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>ebihu00003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,568},{160,394}}</string>
+                <string>{{2,564},{160,394}}</string>
                 <key>offset</key>
                 <string>{-3,48}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>ebihu00004.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,302},{264,416}}</string>
+                <string>{{2,2},{264,416}}</string>
                 <key>offset</key>
                 <string>{-1,37}</string>
                 <key>rotated</key>
@@ -46,13 +46,13 @@
             <key>ebihu00005.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{298,428}}</string>
+                <string>{{2,268},{294,402}}</string>
                 <key>offset</key>
-                <string>{0,58}</string>
+                <string>{-2,45}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{141,13},{298,428}}</string>
+                <string>{{141,39},{294,402}}</string>
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4933b8502d8a0fc2f871cc9b23f2a91d$</string>
+            <string>$TexturePacker:SmartUpdate:bca027444e22ddaea53881d44d3c1e00$</string>
             <key>textureFileName</key>
             <string>effect-bihu.png</string>
         </dict>

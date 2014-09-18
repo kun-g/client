@@ -7,6 +7,19 @@
             <key>ebihu00010.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{2,422},{320,418}}</string>
+                <key>offset</key>
+                <string>{13,54}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{143,22},{320,418}}</string>
+                <key>sourceSize</key>
+                <string>{580,570}</string>
+            </dict>
+            <key>ebihu00011.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{2,2},{324,418}}</string>
                 <key>offset</key>
                 <string>{15,54}</string>
@@ -17,10 +30,10 @@
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
-            <key>ebihu00011.png</key>
+            <key>ebihu00012.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,422},{304,418}}</string>
+                <string>{{324,422},{304,418}}</string>
                 <key>offset</key>
                 <string>{5,54}</string>
                 <key>rotated</key>
@@ -30,23 +43,10 @@
                 <key>sourceSize</key>
                 <string>{580,570}</string>
             </dict>
-            <key>ebihu00012.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{328,2},{292,418}}</string>
-                <key>offset</key>
-                <string>{-1,54}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{143,22},{292,418}}</string>
-                <key>sourceSize</key>
-                <string>{580,570}</string>
-            </dict>
             <key>ebihu00013.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,422},{292,418}}</string>
+                <string>{{328,2},{292,418}}</string>
                 <key>offset</key>
                 <string>{-1,54}</string>
                 <key>rotated</key>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d425d22cc8dd8aa0e55d63685395bbee$</string>
+            <string>$TexturePacker:SmartUpdate:c958d59113a1c81020df476d24a030c6$</string>
             <key>textureFileName</key>
             <string>effect-bihu3.png</string>
         </dict>

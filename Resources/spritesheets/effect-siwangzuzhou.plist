@@ -7,299 +7,598 @@
             <key>esiwangzuzhou00001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,946},{72,154}}</string>
+                <string>{{218,740},{80,176}}</string>
                 <key>offset</key>
-                <string>{14,-103}</string>
+                <string>{16,-94}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{618,386},{72,154}}</string>
+                <string>{{616,366},{80,176}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,492},{188,238}}</string>
+                <string>{{2,558},{214,272}}</string>
                 <key>offset</key>
-                <string>{-14,-61}</string>
+                <string>{-16,-45}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{532,302},{188,238}}</string>
+                <string>{{517,269},{214,272}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{232,246}}</string>
+                <string>{{2,2},{262,280}}</string>
                 <key>offset</key>
-                <string>{3,-54}</string>
+                <string>{3,-38}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{527,291},{232,246}}</string>
+                <string>{{512,258},{262,280}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00004.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,250},{228,240}}</string>
+                <string>{{2,284},{260,272}}</string>
                 <key>offset</key>
-                <string>{2,-52}</string>
+                <string>{2,-36}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{528,292},{228,240}}</string>
+                <string>{{512,260},{260,272}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00005.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{376,464},{160,204}}</string>
+                <string>{{2,832},{182,232}}</string>
                 <key>offset</key>
-                <string>{-9,-39}</string>
+                <string>{-11,-21}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{551,297},{160,204}}</string>
+                <string>{{538,265},{182,232}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00006.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{538,406},{130,130}}</string>
+                <string>{{496,546},{142,154}}</string>
                 <key>offset</key>
-                <string>{-18,-24}</string>
+                <string>{-24,-6}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{557,319},{130,130}}</string>
+                <string>{{545,289},{142,154}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00007.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{538,538},{98,116}}</string>
+                <string>{{264,446},{98,124}}</string>
                 <key>offset</key>
-                <string>{1,-43}</string>
+                <string>{1,-34}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{592,345},{98,116}}</string>
+                <string>{{592,332},{98,124}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00008.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{488,920},{98,116}}</string>
+                <string>{{508,2},{98,116}}</string>
                 <key>offset</key>
-                <string>{1,-44}</string>
+                <string>{1,-38}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{592,346},{98,116}}</string>
+                <string>{{592,340},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00009.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{370,920},{98,116}}</string>
+                <string>{{596,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{1,-45}</string>
+                <string>{1,-39}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{592,347},{98,116}}</string>
+                <string>{{592,341},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00010.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{370,920},{98,116}}</string>
+                <string>{{496,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{1,-45}</string>
+                <string>{1,-39}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{592,347},{98,116}}</string>
+                <string>{{592,341},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00011.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{416,216},{162,188}}</string>
+                <string>{{396,704},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-35}</string>
+                <string>{1,-39}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{561,301},{162,188}}</string>
+                <string>{{592,341},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00012.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{370,706},{182,212}}</string>
+                <string>{{596,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-19}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,273},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00013.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{236,2},{182,212}}</string>
+                <string>{{390,446},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-19}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{551,273},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00014.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{232,250},{182,212}}</string>
+                <string>{{496,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-18}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,272},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00015.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{192,492},{182,212}}</string>
+                <string>{{496,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-18}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,272},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00016.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{236,2},{182,212}}</string>
+                <string>{{496,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-19}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,273},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00017.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{370,706},{182,212}}</string>
+                <string>{{496,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-19}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,273},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00018.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{370,706},{182,212}}</string>
+                <string>{{496,702},{98,116}}</string>
                 <key>offset</key>
-                <string>{2,-19}</string>
+                <string>{1,-40}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,273},{182,212}}</string>
+                <string>{{592,342},{98,116}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00019.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{236,2},{182,212}}</string>
+                <string>{{508,102},{114,134}}</string>
                 <key>offset</key>
-                <string>{2,-19}</string>
+                <string>{2,-32}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,273},{182,212}}</string>
+                <string>{{585,325},{114,134}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00020.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{232,250},{182,212}}</string>
+                <string>{{662,820},{128,154}}</string>
                 <key>offset</key>
-                <string>{2,-18}</string>
+                <string>{2,-24}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,272},{182,212}}</string>
+                <string>{{578,307},{128,154}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00021.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{186,732},{182,212}}</string>
+                <string>{{384,822},{146,180}}</string>
                 <key>offset</key>
-                <string>{2,-20}</string>
+                <string>{2,-16}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,274},{182,212}}</string>
+                <string>{{569,286},{146,180}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00022.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,732},{182,212}}</string>
+                <string>{{236,822},{146,180}}</string>
                 <key>offset</key>
-                <string>{2,-22}</string>
+                <string>{2,-15}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{551,276},{182,212}}</string>
+                <string>{{569,285},{146,180}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
             <key>esiwangzuzhou00023.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{420,2},{160,180}}</string>
+                <string>{{218,558},{146,180}}</string>
                 <key>offset</key>
-                <string>{2,-23}</string>
+                <string>{2,-14}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{562,293},{160,180}}</string>
+                <string>{{569,284},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00024.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00025.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{218,558},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00026.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-16}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,286},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00027.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-16}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,286},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00028.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{236,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00029.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{218,558},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-14}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,284},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00030.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00031.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{218,558},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00032.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-16}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,286},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00033.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-16}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,286},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00034.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{236,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00035.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{218,558},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-14}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,284},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00036.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00037.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{218,558},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00038.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-16}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,286},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00039.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-16}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,286},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00040.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{236,822},{146,180}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{569,285},{146,180}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00041.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{264,284},{130,160}}</string>
+                <key>offset</key>
+                <string>{2,-14}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{577,294},{130,160}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00042.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{366,546},{128,156}}</string>
+                <key>offset</key>
+                <string>{2,-15}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{578,297},{128,156}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00043.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{532,820},{128,154}}</string>
+                <key>offset</key>
+                <string>{2,-17}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{578,300},{128,154}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00044.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{792,2},{126,154}}</string>
+                <key>offset</key>
+                <string>{2,-18}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{579,301},{126,154}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00045.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{640,2},{124,150}}</string>
+                <key>offset</key>
+                <string>{2,-19}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{580,304},{124,150}}</string>
+                <key>sourceSize</key>
+                <string>{1280,720}</string>
+            </dict>
+            <key>esiwangzuzhou00046.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{640,128},{114,138}}</string>
+                <key>offset</key>
+                <string>{2,-18}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{585,309},{114,138}}</string>
                 <key>sourceSize</key>
                 <string>{1280,720}</string>
             </dict>
@@ -313,7 +612,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3fa772941b55fb0dee38cbc47e36bf2e$</string>
+            <string>$TexturePacker:SmartUpdate:6c95a00594a57614cc195ba6e719d8cf$</string>
             <key>textureFileName</key>
             <string>effect-siwangzuzhou.png</string>
         </dict>
