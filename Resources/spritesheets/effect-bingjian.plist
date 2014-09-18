@@ -7,210 +7,67 @@
             <key>ebingjian00001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{544,380},{266,34}}</string>
+                <string>{{736,2},{181,204}}</string>
                 <key>offset</key>
-                <string>{-217,-17}</string>
+                <string>{-105,178}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,133},{266,34}}</string>
+                <string>{{204,33},{181,204}}</string>
                 <key>sourceSize</key>
-                <string>{700,266}</string>
+                <string>{799,626}</string>
             </dict>
             <key>ebingjian00002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{280,244},{268,34}}</string>
+                <string>{{736,185},{179,204}}</string>
                 <key>offset</key>
-                <string>{-95,-17}</string>
+                <string>{-24,86}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{121,133},{268,34}}</string>
+                <string>{{286,125},{179,204}}</string>
                 <key>sourceSize</key>
-                <string>{700,266}</string>
+                <string>{799,626}</string>
             </dict>
             <key>ebingjian00003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{812,380},{512,74}}</string>
+                <string>{{423,2},{311,416}}</string>
                 <key>offset</key>
-                <string>{-94,3}</string>
+                <string>{-9,99}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,93},{512,74}}</string>
+                <string>{{235,6},{311,416}}</string>
                 <key>sourceSize</key>
-                <string>{700,266}</string>
+                <string>{799,626}</string>
             </dict>
             <key>ebingjian00004.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{180,244},{516,98}}</string>
+                <string>{{2,528},{441,464}}</string>
                 <key>offset</key>
-                <string>{30,-9}</string>
+                <string>{25,23}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{122,93},{516,98}}</string>
+                <string>{{204,58},{441,464}}</string>
                 <key>sourceSize</key>
-                <string>{700,266}</string>
+                <string>{799,626}</string>
             </dict>
             <key>ebingjian00005.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{544,244},{402,134}}</string>
+                <string>{{2,2},{419,524}}</string>
                 <key>offset</key>
-                <string>{95,-12}</string>
+                <string>{51,36}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{244,78},{402,134}}</string>
+                <string>{{241,15},{419,524}}</string>
                 <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00006.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,244},{686,176}}</string>
-                <key>offset</key>
-                <string>{-7,-14}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,59},{686,176}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00007.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{338,2},{568,204}}</string>
-                <key>offset</key>
-                <string>{55,-8}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{121,39},{568,204}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00008.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{280,572},{442,218}}</string>
-                <key>offset</key>
-                <string>{115,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{244,22},{442,218}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00009.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{334,240}}</string>
-                <key>offset</key>
-                <string>{183,-7}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{366,20},{334,240}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00010.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{638,792},{170,200}}</string>
-                <key>offset</key>
-                <string>{243,15}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{508,18},{170,200}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00011.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{544,2},{210,240}}</string>
-                <key>offset</key>
-                <string>{245,12}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{490,1},{210,240}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00012.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{410,792},{174,226}}</string>
-                <key>offset</key>
-                <string>{252,-3}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{515,23},{174,226}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00013.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{180,792},{170,228}}</string>
-                <key>offset</key>
-                <string>{243,1}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{508,18},{170,228}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00014.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{756,2},{210,218}}</string>
-                <key>offset</key>
-                <string>{245,-24}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{490,48},{210,218}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00015.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{810,894},{144,122}}</string>
-                <key>offset</key>
-                <string>{245,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{523,70},{144,122}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
-            </dict>
-            <key>ebingjian00016.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{544,416},{152,132}}</string>
-                <key>offset</key>
-                <string>{246,3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{520,64},{152,132}}</string>
-                <key>sourceSize</key>
-                <string>{700,266}</string>
+                <string>{799,626}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -222,7 +79,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:934a342bfbcfe36a54a6b911e5a11b7f$</string>
+            <string>$TexturePacker:SmartUpdate:fff5559218c616324d85880ee5e4f40d$</string>
             <key>textureFileName</key>
             <string>effect-bingjian.png</string>
         </dict>
