@@ -4,7 +4,7 @@ var engine = {};
 var DebugRecorderDungeon;
 var DebugRecorderBlackBox;
 var isGameLoggedIn = false;
-
+var evtTracker = evtTracker || null;
 function initEngine()
 {
     try{
