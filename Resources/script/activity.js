@@ -32,6 +32,7 @@ var theDay = 0;
 
 var animTag = 100;
 var dmStarEffect = false;
+var androidDQOffset = 231;
 
 var prizeIconList = ["dailyprize-common-lq.png",
     "dailyprize-common-light.png",
@@ -506,8 +507,9 @@ function refreshDailyQuest(){
             text.setPosition(cc.p(0, 0));
             layer.owner.layerDesc.addChild(text);
             size.height += prize.getContentSize().height;
-            debug("prize.getContentSize().height="+prize.getContentSize().height+" size.height="+size.height);
-            //engine.game.getConfig().binary_channel.substr(0, 2) == "AD"
+            if (engine.game.getConfig().binary_channel.substr(0, 2) == "AD"){
+                text.setPosition(cc.p(0, androidDQOffset - size.height));
+            }
 
             layer.owner.btnGet.setEnabled(true);
             if( theQuest.State == QUESTSTATUS_COMPLETE ){
