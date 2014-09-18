@@ -506,6 +506,8 @@ function refreshDailyQuest(){
             text.setPosition(cc.p(0, 0));
             layer.owner.layerDesc.addChild(text);
             size.height += prize.getContentSize().height;
+            debug("prize.getContentSize().height="+prize.getContentSize().height+" size.height="+size.height);
+            //engine.game.getConfig().binary_channel.substr(0, 2) == "AD"
 
             layer.owner.btnGet.setEnabled(true);
             if( theQuest.State == QUESTSTATUS_COMPLETE ){

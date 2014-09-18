@@ -128,7 +128,7 @@ function show(){
         theLayer.owner.btnUACManage.setNormalSpriteFrame(sfc.getSpriteFrame("setting-gamecenter1.png"));
         theLayer.owner.btnUACManage.setSelectedSpriteFrame(sfc.getSpriteFrame("setting-gamecenter2.png"));
     }
-    else if (engine.game.getConfig().binary_channel == "ADND91"){
+    else if (engine.game.getConfig().binary_channel.substr(0, 2) == "AD"){
         theLayer.owner.btnSfx.setVisible(true);
     }
 

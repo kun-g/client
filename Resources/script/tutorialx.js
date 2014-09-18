@@ -111,7 +111,7 @@ var TutorialPress = cc.Layer.extend({
         engine.ui.unregMenu(this);
     },
     onTouchBegan: function(touch, event){
-        var pos = touch.getLocation();
+        var pos = this.convertToNodeSpace(touch.getLocation());
         if( cc.rectContainsPoint(this.RECT, pos) ){
             if( this.CALLBACK != null ){
                 this.CALLBACK(this.TRIGGER);
