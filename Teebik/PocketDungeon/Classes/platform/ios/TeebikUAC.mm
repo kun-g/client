@@ -26,8 +26,9 @@ static int gTeebikViewOpened = 0;
 
 void initTeebik(){
     NSLog(@"initTeebik");
-    initTeebikSdk();
-    [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14/TBK"]; //http://61.174.8.29/TBK
+    [[TeebikGameSdk getInstance] init:[TeebikDelegate sharedInstance] launchOptions:nil customAlertView:NO];
+//    initTeebikSdk();
+    [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14:6499/TBK"]; //61.174.8.29
 }
 
 //----------UAC-----------
@@ -107,6 +108,7 @@ bool TeebikUAC::isPaymentEnabled(){
 }
 
 void TeebikUAC::makePayment(std::string billno, int product, uint32_t quantity, std::string username, int zoneId){
+    [[TeebikGameSdk getInstance] setGameServer:@"http://122.226.199.14:6499/TBK"]; //61.174.8.29
     [[TeebikDelegate sharedInstance] makePurchase:product];
 }
 
@@ -366,6 +368,7 @@ void TeebikUAC::getStoreName(std::string &name){
 - (void)teebikGameSdkWithGameServerNotExist {
     NSLog(@"GameServer has not been set");
 }
+
 
 @end
 

@@ -70,7 +70,7 @@ function onEvent(event)
                         tdga.paymentSuccess(theLastBillNo);
                         theLastBillNo = null;
                     }
-                    if( iap.getStoreName() == "AppStore" ){
+                    if( iap.getStoreName() == "AppStore" || iap.getStoreName() == "AppStore(tb)" ){
                         uikit.waitRPC(Request_ChargeDiamond, {
                             pid: event.arg.product,
                             stp: iap.getStoreName(),
